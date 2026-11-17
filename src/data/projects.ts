@@ -131,12 +131,12 @@ export const projects: Project[] = [
     mock: { srcs: ['/images/nodi/m-home.webp', '/images/nodi/m-recs.webp', '/images/nodi/m-review.webp'], framed: false },
     proto: { url: '/proto/nodi/index.html', w: 414, h: 868 },
     gallery: [
-      { src: '/images/nodi/home.webp', alt: 'NODI 홈: 자연어 입력, 빠른 선택, 작성 중 회의', caption: '홈' },
-      { src: '/images/nodi/conds.webp', alt: 'AI가 정리한 회의 조건 확인 카드', caption: '조건 확인' },
-      { src: '/images/nodi/progress.webp', alt: '참석자 응답 현황과 리마인드', caption: '조율 현황' },
-      { src: '/images/nodi/recs.webp', alt: '추천 시간 카드와 추천 이유', caption: '추천 시간' },
-      { src: '/images/nodi/review.webp', alt: '확정 전 최종 검토와 후속 처리', caption: '최종 검토' },
-      { src: '/images/nodi/done.webp', alt: '저장 완료와 후속 처리 현황: 캘린더 연동·알림 상태 구분', caption: '저장 완료' },
+      { src: '/images/nodi/hi-home.webp', alt: 'NODI 홈: 자연어 입력, 빠른 선택, 작성 중 회의', caption: '홈' },
+      { src: '/images/nodi/hi-conds.webp', alt: 'AI가 정리한 회의 조건 확인 카드', caption: '조건 확인' },
+      { src: '/images/nodi/hi-progress.webp', alt: '참석자 응답 현황과 리마인드', caption: '조율 현황' },
+      { src: '/images/nodi/hi-recs.webp', alt: '추천 시간 카드와 추천 이유', caption: '추천 시간' },
+      { src: '/images/nodi/hi-review.webp', alt: '확정 전 최종 검토와 후속 처리', caption: '최종 검토' },
+      { src: '/images/nodi/hi-done.webp', alt: '저장 완료와 후속 처리 현황: 캘린더 연동·알림 상태 구분', caption: '저장 완료' },
     ],
     sections: [
       { id: 'overview', title: 'Overview', body: 'NODI는 AI와 대화하며 회의 조건을 입력하고, 참석자의 일정 정보를 확인한 뒤 적합한 회의 시간을 추천받아 확정하는 서비스입니다. 제가 직접 기획한 신규 서비스입니다. PRD v13.0과 초기 모바일 UI 7개 화면에서 출발해 UX/UI 개선 명세(v2.0)로 다듬고, 26개 아트보드의 모바일 시안으로 구현했습니다.\n\n기획, 디자인, 시안 구현을 혼자 진행했습니다.' },

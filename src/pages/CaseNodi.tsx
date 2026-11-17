@@ -218,7 +218,7 @@ export default function CaseNodi() {
           <span className="px-5 py-3 rounded-full bg-ink text-white text-[14px] shrink-0">이어서 보기</span>
         </div>
       </Link>
-      <Modal open={open} onClose={() => setOpen(false)} label="NODI 프로토타입"><div className="flex justify-center"><ProtoFrame p={p} width={380} /></div></Modal>
+      <Modal open={open} onClose={() => setOpen(false)} label="NODI 프로토타입"><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>
     </article>
   )
 }

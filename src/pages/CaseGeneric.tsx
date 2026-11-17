@@ -298,7 +298,7 @@ export default function CaseGeneric() {
           <span className="px-5 py-3 rounded-full bg-ink text-white text-[14px] shrink-0">이어서 보기</span>
         </div>
       </Link>
-      {p.proto && <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center"><ProtoFrame p={p} width={380} /></div></Modal>}
+      {p.proto && <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>}
     </article>
   )
 }

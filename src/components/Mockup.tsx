@@ -26,15 +26,19 @@ export function ProtoFrame({ p, width = 300 }: { p: Project; width?: number }) {
       </div>
     )
   }
-  const inner = width - 20, k = inner / p.proto.w
+  const bare = !!p.proto.bare // 프로토타입이 자체 기기 베젤을 가진 경우 바깥 프레임을 또 씌우지 않는다
+  const inner = bare ? width : width - 20, k = inner / p.proto.w
+  const frame = (
+    <iframe key={p.slug} title={`${p.name} 프로토타입`} src={p.proto.url} loading="lazy" allowTransparency
+      style={{ width: p.proto.w, height: p.proto.h, transform: `scale(${k})`, transformOrigin: 'top left', border: 0, background: 'transparent' }} />
+  )
   return (
     <div>
-      <div className="rounded-[28px] bg-[#111] p-[10px] shadow-[0_30px_60px_-20px_rgba(0,0,0,.45)]" style={{ width }}>
-        <div className="overflow-hidden rounded-[28px] bg-white" style={{ width: inner, height: p.proto.h * k }}>
-          <iframe key={p.slug} title={`${p.name} 프로토타입`} src={p.proto.url} loading="lazy"
-            style={{ width: p.proto.w, height: p.proto.h, transform: `scale(${k})`, transformOrigin: 'top left', border: 0 }} />
-        </div>
-      </div>
+      {bare
+        ? <div className="overflow-hidden" style={{ width: inner, height: p.proto.h * k, borderRadius: 62 * k }}>{frame}</div>
+        : <div className="rounded-[28px] bg-[#111] p-[10px] shadow-[0_30px_60px_-20px_rgba(0,0,0,.45)]" style={{ width }}>
+            <div className="overflow-hidden rounded-[28px] bg-white" style={{ width: inner, height: p.proto.h * k }}>{frame}</div>
+          </div>}
       <p className="mt-3 text-[13px] text-sub flex items-center justify-between" style={{ width }}>
         <span>{p.name} · 직접 눌러보세요</span>
         <a className="text-bluetext underline underline-offset-4 py-1" href={p.proto.url} target="_blank" rel="noreferrer">새 탭에서 열기</a>

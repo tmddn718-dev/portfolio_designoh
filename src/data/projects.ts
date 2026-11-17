@@ -14,7 +14,7 @@ export interface Project {
   thumbAlt?: string
   accent: string // 프로젝트 서브컬러(Hero 틴트·마커 전용) // 썸네일 placeholder 에서만 사용하는 프로젝트 색
   mock: { srcs: [string, string, string]; framed: boolean } // 섬네일 목업(가운데가 메인)
-  proto?: { url: string; w: number; h: number } // public/proto 에 담긴 실행 가능한 프로토타입
+  proto?: { url: string; w: number; h: number; bare?: boolean } // public/proto 에 담긴 실행 가능한 프로토타입
   // 본 흐름 밖의 연관 개선(예: 매출과 연결되는 구매 구간). 있을 때만 상세 Exploration 챕터에 나타난다.
   extra?: { eyebrow: string; title: string; intro: string; bullets: string[]; images: { src: string; alt: string; caption: string; tall?: boolean }[] }
   gallery?: { src: string; alt: string; caption: string }[] // 앱 화면 (세로형)
@@ -129,7 +129,7 @@ export const projects: Project[] = [
     tags: ['신규 제품 설계', '규칙·예외 정책', '일정 추천'],
     accent: '#3654D4',
     mock: { srcs: ['/images/nodi/m-home.webp', '/images/nodi/m-recs.webp', '/images/nodi/m-review.webp'], framed: false },
-    proto: { url: '/proto/nodi/index.html', w: 414, h: 868 },
+    proto: { url: '/proto/nodi/index.html', w: 414, h: 868, bare: true },
     gallery: [
       { src: '/images/nodi/hi-home.webp', alt: 'NODI 홈: 자연어 입력, 빠른 선택, 작성 중 회의', caption: '홈' },
       { src: '/images/nodi/hi-conds.webp', alt: 'AI가 정리한 회의 조건 확인 카드', caption: '조건 확인' },

@@ -92,7 +92,7 @@ function FeatureNodi({ p }: { p: Project }) {
           ))}
         </ol>
       </Link>
-      <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center"><ProtoFrame p={p} width={380} /></div></Modal>
+      <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>
     </article>
   )
 }

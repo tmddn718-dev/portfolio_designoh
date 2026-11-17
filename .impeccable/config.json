@@ -1,0 +1,50 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "public/proto/karrot/index.html"
+        ],
+        "createdAt": "2026-11-17T23:22:09.017Z",
+        "reason": "사이트 디자인이 아닌 프로토타입 원본 복사본(실제 UI 임의 변경 금지 원칙). Claude 판단, 사용자 확인 아님"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "public/proto/oliveyoung/index.html"
+        ],
+        "createdAt": "2026-11-17T23:22:09.052Z",
+        "reason": "사이트 디자인이 아닌 프로토타입 원본 복사본(실제 UI 임의 변경 금지 원칙). Claude 판단, 사용자 확인 아님"
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "public/proto/oliveyoung/index.html"
+        ],
+        "createdAt": "2026-11-17T23:22:09.085Z",
+        "reason": "사이트 디자인이 아닌 프로토타입 원본 복사본(실제 UI 임의 변경 금지 원칙). Claude 판단, 사용자 확인 아님"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "public/proto/oliveyoung/index.html"
+        ],
+        "createdAt": "2026-11-17T23:22:09.118Z",
+        "reason": "사이트 디자인이 아닌 프로토타입 원본 복사본(실제 UI 임의 변경 금지 원칙). Claude 판단, 사용자 확인 아님"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-17T23:27:42.777Z",
+        "reason": "user confirmed: 브리프의 영문 서체 지정(Inter 또는 Geist)이고 표지 원본 타이포와 일치"
+      }
+    ]
+  }
+}

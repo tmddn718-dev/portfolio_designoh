@@ -30,7 +30,9 @@ main p { max-width: 70ch; }
 }
 @media (max-width: 767px) { .grid-bg { background-size: 60px 60px; } }
 
-.outline-text { color: transparent; -webkit-text-stroke: 2px var(--color-line); }
+/* 외곽선 글자는 겹치는 윤곽이 없는 정적 Inter 800으로(가변 폰트는 획이 겹쳐 선이 깨져 보임) */
+@font-face { font-family: 'Inter Outline'; font-weight: 800; font-style: normal; font-display: swap; src: url('/fonts/inter-800.woff2') format('woff2'); }
+.outline-text { font-family: 'Inter Outline', Inter, sans-serif; font-weight: 800; color: transparent; -webkit-text-stroke: 2px var(--color-line); }
 @media (max-width: 767px) { .outline-text { -webkit-text-stroke-width: 1.2px; } }
 .outline-text.filled { color: var(--color-blue); -webkit-text-stroke-color: var(--color-blue); }
 

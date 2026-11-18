@@ -70,8 +70,8 @@ export const projects: Project[] = [
     beforeAfter: [
       {
         before: '/images/oliveyoung-todaydream/n-optMain.webp', after: '/images/oliveyoung-todaydream/n-optC.webp',
-        beforeAlt: '기존 옵션 선택 바텀시트 재현: 품절 옵션마다 일시품절 표시와 재입고 알림 버튼이 있다', afterAlt: '개선 옵션 선택 화면: 오늘드림 품절 옵션을 고르면 하단에서 다른 구매 방법 확인이 주요 행동으로 나온다',
-        points: ['Before: 품절 옵션마다 "일시품절" 표시와 "재입고 알림" 버튼이 줄마다 있고, 다른 구매 방법을 확인하는 행동은 보이지 않는다', 'After: 옵션 목록은 비교하는 영역으로 두고, 선택한 옵션에 맞는 주요 CTA("다른 구매 방법 확인")를 하단에 고정한다', '※ Before는 실제 앱의 옵션 바텀시트 구조(일시품절 표시, 재입고 알림)를 관찰해 재현한 화면이며 실제 앱 캡처가 아닙니다. 상품 이미지는 시안으로 대체했습니다'],
+        beforeAlt: '기존 옵션 선택 바텀시트(실제 앱 캡처): 품절 옵션마다 일시품절 표시와 재입고 알림 버튼이 있다', afterAlt: '개선 옵션 선택 화면: 오늘드림 품절 옵션을 고르면 하단에서 다른 구매 방법 확인이 주요 행동으로 나온다',
+        points: ['Before: 품절 옵션마다 "일시품절" 표시와 "재입고 알림" 버튼이 줄마다 있고, 다른 구매 방법을 확인하는 행동은 보이지 않는다', 'After: 옵션 목록은 비교하는 영역으로 두고, 선택한 옵션에 맞는 주요 CTA("다른 구매 방법 확인")를 하단에 고정한다', '※ Before는 실제 올리브영 앱 화면 캡처입니다'],
       },
       {
         before: '/images/oliveyoung-todaydream/n-detailAsis.webp', after: '/images/oliveyoung-todaydream/n-detailExpanded.webp',

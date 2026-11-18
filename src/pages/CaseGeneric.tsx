@@ -156,7 +156,7 @@ function Olive({ c }: { c: Ctx }) {
         <div className="mt-8 rounded-[20px] p-6 md:p-8" style={{ background: T(14) }}>
           <p className="eyebrow text-sub">실제 화면에서 확인한 사실</p>
           <ul className="mt-3 text-[16px] leading-[1.8] list-disc pl-5"><li>상품 상세에 오늘드림 또는 픽업 이용 영역이 있다</li><li>주문/결제에서 배송 시간대에 따라 배송비가 다르다: 12:45~13:45 5,000원 · 15:00~16:00 2,500원 · 22:00~24:00 2,500원</li><li>최종 결제금액 12,500원 화면이 확인된다</li></ul>
-          <p className="mt-3 text-[13px] text-sub">품절 옵션 선택 화면은 실제 캡처가 아니라, 관찰한 구조(옵션 바텀시트, 일시품절 표시, 재입고 알림)를 재현한 거예요. 그 이후의 기존 동작은 단정하지 않고 검증할 가설로 뒀어요.</p>
+          <p className="mt-3 text-[13px] text-sub">품절 옵션 선택 화면도 실제 앱 캡처예요. 그 이후의 기존 동작은 단정하지 않고 검증할 가설로 뒀어요.</p>
         </div>
 
         <div className="mt-20 md:grid md:grid-cols-12 gap-10">
@@ -182,7 +182,7 @@ function Olive({ c }: { c: Ctx }) {
               <table className="mt-6 w-full text-[15px] bg-white rounded-[20px] overflow-hidden"><caption className="sr-only">옵션 상태별 하단 CTA</caption><thead><tr className="text-left text-[13px] text-sub"><th scope="col" className="py-3 pl-5">옵션 상태</th><th scope="col" className="py-3 pr-5">하단 CTA</th></tr></thead><tbody>{ctas.map(([a, b]) => <tr key={a} className="border-t border-grid"><th scope="row" className="py-3 pl-5 pr-3 text-left font-semibold">{a}</th><td className="py-3 pr-5" style={{ color: S }}>{b}</td></tr>)}</tbody></table></div>
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('n-optA')} alt="옵션 미선택 상태" cap="옵션 미선택" /><Fig src={I('n-optC')} alt="오늘드림 품절 옵션 선택" cap="오늘드림 품절" className="md:mt-10" /><Fig src={I('n-optFail')} alt="재고 확인 실패 상태" cap="재고 확인 실패" /></div>
           </div>
-          {p.beforeAfter?.[0] && <div className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 품절 옵션 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">옵션별 행동을 찾는 방식에서, 선택한 옵션의 다음 행동을 확인하는 방식으로</h3><p className="mt-4 text-[15px] text-sub">Before는 실제 앱의 옵션 시트를 관찰해 <b>재현한 화면</b>이에요(실제 캡처 아님).</p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={A} /></div></div>}
+          {p.beforeAfter?.[0] && <div className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 품절 옵션 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">옵션별 행동을 찾는 방식에서, 선택한 옵션의 다음 행동을 확인하는 방식으로</h3><p className="mt-4 text-[15px] text-sub">Before는 실제 올리브영 앱의 옵션 시트 캡처예요.</p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={A} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24">
             <Num n="02" t="수령 방법별로 재고와 주문 가능 상태를 구분" />

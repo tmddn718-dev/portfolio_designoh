@@ -218,7 +218,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '약 1~2주',
     tags: ['서비스 기획', '협업·권한', '상호작용'],
-    accent: '#8F7FD6',
+    accent: '#566B5C',
     mock: { srcs: ['/images/woorisai/feed.webp', '/images/woorisai/home.webp', '/images/woorisai/new.webp'], framed: true },
     proto: { url: '/proto/woorisai/index.html', w: 390, h: 844 },
     gallery: [

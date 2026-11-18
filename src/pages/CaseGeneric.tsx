@@ -305,62 +305,103 @@ function Woorisai({ c }: { c: Ctx }) {
   const { p, A, S, T } = c
   const I = (n: string) => `/images/woorisai/${n}.webp`
   const col = [A, tintOf(A, 45), '#d9d9d9', '#ececec']
+  const Need = ({ t }: { t: string }) => <p className="rounded-[16px] border border-dashed border-grid p-4 text-[14px] text-sub">[추가 자료 필요] {t}</p>
+  const Tag = ({ t }: { t: string }) => <span className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold text-white" style={{ background: S }}>{t}</span>
   return (
     <>
-      <section id="c1" className="overflow-hidden" style={{ background: T(13) }}>
+      <section id="c1" className="overflow-hidden" style={{ background: '#FAF9F6' }}>
         <div className="wrap gutter pt-10 md:pt-16 pb-14 text-center">
           <Link to="/#work" className="inline-block py-2 text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
           <p className="eyebrow mt-6" style={{ color: S }}>Personal Case Study · {p.category}</p>
-          <h1 className="mt-4 text-[72px] md:text-[168px] font-extrabold tracking-[-0.05em] leading-[0.95]">우리사이</h1>
-          <p className="mt-6 mx-auto text-[24px] md:text-[28px] font-bold leading-snug max-w-[22ch]">흩어지는 만남,<br />남지 않는 이야기.</p>
+          <h1 className="mt-4 text-[72px] md:text-[168px] font-extrabold tracking-[-0.05em] leading-[0.95]" style={{ color: '#242622' }}>우리사이</h1>
+          <p className="mt-6 mx-auto text-[22px] md:text-[28px] font-bold leading-snug max-w-[28ch]">흩어진 사진과 기억을 하나의 추억으로 연결하고, 기록이 다시 대화로 이어지는 경험을 설계했습니다.</p>
           <div className="mx-auto max-w-xl"><dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] text-left rule pt-4" style={{ borderColor: T(40) }}>
             <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div><div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div><div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div></dl></div>
           {c.proto && <button onClick={() => c.setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
           <ul className="mt-14 flex items-end justify-center gap-4 md:gap-8 max-w-[860px] mx-auto">
-            {[['feed', '추억 피드', 'w-[28%]'], ['home', '홈', 'w-[34%]'], ['new', '새 추억 만들기', 'w-[28%]']].map(([n, a, w], i) => <li key={n} className={`${w} ${i !== 1 ? 'md:translate-y-8' : ''}`}><div className="phone-light"><img src={I(n)} alt={`우리사이 ${a} 화면`} className="screen" /></div></li>)}
+            {[['feed', '추억 피드', 'w-[28%]'], ['ph-after-top', '사진 상세', 'w-[34%]'], ['foot-after', '발자국', 'w-[28%]']].map(([n, a, w], i) => <li key={n} className={`${w} ${i !== 1 ? 'md:translate-y-8' : ''}`}><div className="phone-light"><img src={I(n)} alt={`우리사이 ${a} 화면`} className="screen" /></div></li>)}
           </ul>
         </div>
       </section>
-      <p className="wrap gutter pt-8 text-[13px] text-sub text-center">우리사이 모바일 화면 시안 · 사진은 Unsplash 예시 이미지, 이름과 내용은 예시 데이터</p>
+      <p className="wrap gutter pt-8 text-[13px] text-sub text-center">실제 프로토타입 화면 캡처 · 사진은 Unsplash 예시 이미지, 이름과 내용은 예시 데이터</p>
 
-      <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="01" label="The Challenge" title="한 번의 만남이 여러 서비스로 흩어진다" />
-        <ol className="mt-10 flex flex-wrap items-center gap-2" aria-label="흩어지는 서비스">{['약속 → 메신저', '사진 → 각자의 갤러리', '정산 → 정산 앱', '과거 찾기 → 사진 앱'].map((s, i, a) => <li key={s} className="flex items-center gap-2"><span className="px-4 py-2 rounded-full bg-white border border-grid text-[14px]">{s}</span>{i < a.length - 1 && <span aria-hidden className="text-sub">·</span>}</li>)}</ol>
-        <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-start">
-          <div className="md:col-span-5"><p className="eyebrow text-sub">설문 · 응답 7명 (2026.11.12-16)</p><p className="mt-3 text-[28px] font-extrabold leading-tight tracking-tight">쉽다는 답이 많았고, 초대와 기능 이동에서 막혔다</p><p className="mt-4 text-[16px] text-sub leading-relaxed">서술 의견: 친구 초대 기능을 못 찾음 · 일정 미응답자 재촉 버튼 제안 · 장소가 “서울 서울”로 표시 · 기능 구분이 불분명. 소규모 표본(20대 여성 중심)이라 방향 확인용입니다.</p></div>
-          <div className="mt-8 md:mt-0 md:col-span-7 rounded-[20px] p-6 md:p-8 space-y-6" style={{ background: T(12) }}>
-            {survey.map(([q, seg]) => <div key={q}><p className="text-[16px] font-semibold">{q}</p><div role="img" aria-label={seg.map(([l, n]) => `${l} ${n}명`).join(', ')} className="mt-2 flex h-3 rounded-full overflow-hidden gap-[2px]">{seg.map(([l, n], i) => <span key={l} style={{ flex: n, background: col[i] }} />)}</div><p className="mt-2 text-[13px] text-sub">{seg.map(([l, n]) => `${l} ${n}`).join(' · ')}</p></div>)}
+      <section className="wrap gutter py-16 md:py-24 md:grid md:grid-cols-12 gap-10">
+        <div className="md:col-span-4"><p className="eyebrow text-sub">Overview</p><h2 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">함께한 사람만 초대해, 하나의 추억을 같이 완성한다</h2></div>
+        <div className="mt-6 md:mt-0 md:col-span-8 text-[17px] leading-[1.8] space-y-4">{c.body('overview').map(t => <p key={t}>{t}</p>)}</div>
+      </section>
+
+      <section id="c2" className="scroll-mt-20 md:mt-8" style={{ background: '#F4F2EC' }}>
+        <div className="wrap gutter py-20 md:py-28">
+          <ChapterHead color={S} n="01" label="Problem Framing" title="한 번의 만남이 여러 서비스로 흩어진다" />
+          <ol className="mt-10 flex flex-wrap items-center gap-2" aria-label="흩어지는 서비스">{['약속 → 메신저', '사진 → 각자의 갤러리', '정산 → 정산 앱', '과거 찾기 → 사진 앱'].map((s, i, a) => <li key={s} className="flex items-center gap-2"><span className="px-4 py-2 rounded-full bg-white border border-grid text-[14px]">{s}</span>{i < a.length - 1 && <span aria-hidden className="text-sub">·</span>}</li>)}</ol>
+          <p className="mt-6 text-[14px] text-sub max-w-[60ch]">※ 위 흐름은 PRD에서 세운 문제 가설이며, 검증된 사용자 문제가 아닙니다.</p>
+          <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-start">
+            <div className="md:col-span-5"><p className="eyebrow text-sub">설문 · 응답 7명 (2026.11.12-16)</p><p className="mt-3 text-[28px] font-extrabold leading-tight tracking-tight">쉽다는 답이 많았고, 초대와 기능 이동에서 막혔다</p><p className="mt-4 text-[16px] text-sub leading-relaxed">서술 의견: 친구 초대 기능을 못 찾음 · 일정 미응답자 재촉 버튼 제안 · 장소가 “서울 서울”로 표시 · 기능 구분이 불분명. 20대 여성 중심 소규모 표본이라 방향 확인용입니다.</p></div>
+            <div className="mt-8 md:mt-0 md:col-span-7 rounded-[20px] p-6 md:p-8 space-y-6 bg-white">
+              {survey.map(([q, seg]) => <div key={q}><p className="text-[16px] font-semibold">{q}</p><div role="img" aria-label={seg.map(([l, n]) => `${l} ${n}명`).join(', ')} className="mt-2 flex h-3 rounded-full overflow-hidden gap-[2px]">{seg.map(([l, n], i) => <span key={l} style={{ flex: n, background: col[i] }} />)}</div><p className="mt-2 text-[13px] text-sub">{seg.map(([l, n]) => `${l} ${n}`).join(' · ')}</p></div>)}
+            </div>
+          </div>
+          <div className="mt-20">
+            <p className="eyebrow text-sub">Design Strategy</p>
+            <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">기록 → 함께 쌓기 → 다시 발견하기 → 대화로 이어지기</h3>
+            <ol className="mt-8 grid md:grid-cols-4 gap-4">{[['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자별 사진과 이야기를 한 추억에'], ['다시 발견하기', '사람·장소·시간으로 되찾기'], ['대화로 이어지기', '사진 단위 반응과 댓글']].map(([t, d], i) => <li key={t} className="rounded-[20px] bg-white border border-grid p-5"><span className="text-[24px] font-extrabold" style={{ color: S }}>0{i + 1}</span><p className="mt-2 text-[18px] font-bold">{t}</p><p className="mt-1 text-[14px] text-sub leading-snug">{d}</p></li>)}</ol>
           </div>
         </div>
       </section>
 
-      <section id="c3" className="scroll-mt-20 md:mt-24" style={{ background: '#F7F8FA' }}>
-        <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="02" label="Design Decisions" title="함께 쓰고, 다시 찾고, 보이는 범위는 하나로" />
+      <section id="c3" className="scroll-mt-20 md:mt-24">
+        <div className="wrap gutter py-20 md:py-28">
+          <ChapterHead color={S} n="02" label="Solutions" title="기록, 대화, 발자국 — 세 가지 해결" />
+
           <Reveal className="mt-14 md:grid md:grid-cols-12 gap-10 items-center">
-            <div className="md:col-span-5"><Num n="01" t="사람을 고르면, 각자의 사진과 이야기가 한 추억에 모인다" />
-              <ul className="mt-8 space-y-5"><Ann color={S} n="A" t="첫 CTA는 ‘그룹 만들기’가 아니라 ‘추억 만들기’" d="그룹 없이 사람을 골라 바로 시작합니다." /><Ann color={S} n="B" t="초대를 수락한 사람만 보고 더한다" d="사진·글·댓글·좋아요를 함께 쌓습니다." /></ul></div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('detail')} alt="공동 게시물 상세" cap="추억 상세" /><Fig src={I('add')} alt="내 사진과 이야기 더하기" cap="사진·이야기 더하기" className="md:mt-12" /><Fig src={I('people')} alt="볼 수 있는 사람 확인" cap="볼 수 있는 사람" /></div>
+            <div className="md:col-span-5"><Num n="01" t="추억 하나부터, 함께 기록한다" />
+              <ul className="mt-8 space-y-5"><Ann color={S} n="A" t="첫 CTA는 ‘그룹 만들기’가 아니라 ‘추억 만들기’" d="그룹 없이 사람을 골라 바로 시작합니다." /><Ann color={S} n="B" t="친구 선택 · 검색과 여러 명 선택" d="검색해서 여러 친구를 한 번에 고르는 선택기를 구현했습니다." /><Ann color={S} n="C" t="참여자별 기록 유지" d="각자의 사진과 이야기가 사라지지 않고 한 추억에 모입니다." /></ul></div>
+            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('new')} alt="새 추억 만들기" cap="새 추억 만들기" /><Fig src={I('people')} alt="볼 수 있는 사람 확인" cap="참여자" className="md:mt-12" /><Fig src={I('add')} alt="내 사진과 이야기 더하기" cap="사진·이야기 더하기" /></div>
           </Reveal>
-          <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
-            <div className="md:col-span-5 md:order-2"><Num n="02" t="사람·장소·시간으로 다시 발견한다" />
-              <ul className="mt-8 space-y-5"><Ann color={S} n="A" t="달력·목록·지역별 발자국" d="사람·그룹·연도 필터로 추억을 좁힙니다." /><Ann color={S} n="B" t="지역을 열면 구 단위까지" d="‘서울 > 마포구’처럼 세부 지역으로 내려갑니다." /></ul></div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6 md:order-1"><Fig src={I('calendar')} alt="추억 달력" cap="달력" /><Fig src={I('foot')} alt="우리의 발자국" cap="우리의 발자국" className="md:mt-12" /><Fig src={I('region')} alt="지역별 추억" cap="지역별 추억" /></div>
+          <div className="mt-6"><Need t="친구 검색·다중 선택 화면 캡처" /></div>
+
+          <Reveal className="mt-24 md:mt-32 rounded-[28px] p-6 md:p-12 bg-[#F4F2EC]">
+            <div className="max-w-[60ch]"><Tag t="Solution 02 · 핵심" /><h3 className="mt-4 text-[32px] md:text-[48px] font-extrabold tracking-tight leading-tight">사진 아래에서 바로 반응하고, 대화한다</h3>
+              <p className="mt-4 text-[17px] leading-[1.8]">사진 상세에서 이어지는 기록(‘기억 이어가기’)이 사진과 분리된 별도 카드에 있었습니다. 같은 프로토타입의 이전 버전과 현재 버전을 비교합니다.</p></div>
+            <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
+              <div className="md:col-span-4"><p className="eyebrow text-sub">Before</p><div className="mt-3 max-w-[300px]"><Screen src={I('ph-before')} alt="이전 버전 사진 상세: 사진 아래 별도 기억 이어가기 카드" cap="Before · 사진 상세" /></div></div>
+              <div className="mt-10 md:mt-0 md:col-span-8">
+                <p className="eyebrow text-sub">발견한 문제 (제 점검)</p>
+                <ul className="mt-4 space-y-5"><Ann color={S} n="1" t="‘기억 이어가기’ 카드가 사진에서 떨어져 있다" d="사진을 보다가 바로 반응하기 어렵습니다." /><Ann color={S} n="2" t="반응·댓글 수가 ‘0’으로 표시된 카드에 묻혀 있다" d="사진에 대한 가벼운 참여와 함께 기록하기가 구분되지 않습니다." /><Ann color={S} n="3" t="‘이어진 기억이 아직 없어요’ 문구가 비어 있다는 인상만 준다" d="다음에 할 행동이 버튼 하나뿐입니다." /></ul>
+                <p className="mt-10 eyebrow text-sub">개선 가설</p>
+                <p className="mt-3 text-[20px] md:text-[24px] font-bold leading-snug max-w-[28ch]">반응·댓글이 사진 바로 아래에 있으면, 가벼운 참여가 먼저 일어나고 대화로 이어질 것이다.</p>
+                <p className="mt-3 text-[14px] text-sub">※ 가설이며 사용자 검증 전입니다.</p>
+              </div>
+            </div>
+            <div className="mt-14"><p className="eyebrow text-sub">After</p>
+              <div className="mt-3 md:grid md:grid-cols-12 gap-10 items-start">
+                <div className="md:col-span-7 grid grid-cols-2 gap-4 md:gap-6"><Fig src={I('ph-after-top')} alt="현재 버전: 사진 바로 아래 반응·댓글" cap="사진 바로 아래 반응·댓글" /><Fig src={I('ph-after-mid')} alt="현재 버전: 최근 댓글 미리보기와 함께 남기는 추억" cap="최근 댓글 · 함께 남기는 추억" className="md:mt-10" /></div>
+                <ul className="mt-8 md:mt-0 md:col-span-5 space-y-5"><Ann color={S} n="A" t="반응·댓글을 사진 바로 아래로" d="사진을 본 자리에서 바로 남깁니다." /><Ann color={S} n="B" t="최근 댓글 미리보기 + ‘이 사진에 댓글 남기기’" d="대화가 있는지 한눈에 보입니다." /><Ann color={S} n="C" t="가벼운 반응과 ‘함께 남기는 추억’ 분리" d="반응은 가볍게, 함께 기록은 별도 카드로." /></ul>
+              </div>
+              <div className="mt-6"><Need t="전체 댓글·답글 바텀시트 화면 캡처" /></div>
+            </div>
+            <div className="mt-12 rounded-[20px] bg-white border border-grid p-6"><p className="eyebrow text-sub">검증 계획 (미수행)</p><ul className="mt-3 text-[16px] leading-[1.8] list-disc pl-5"><li>사진 단위 반응·댓글 사용 비율을 Before/After로 비교</li><li>‘함께 남기는 추억’과 ‘반응’을 구분해 이해하는지 과제 기반 관찰</li></ul><p className="mt-3 text-[13px] text-sub">아직 수행하지 않았고, 결과는 없습니다.</p></div>
           </Reveal>
-          <Reveal className="mt-20 md:mt-24"><blockquote className="text-[24px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]">그룹은 편의를 위한 묶음, 모임은 특정 시점의 약속, 공동 게시물은 실제로 공유하기로 한 추억이다.</blockquote>
-            <ul className="mt-10 grid md:grid-cols-3 gap-4">{['열람 권한은 게시물 멤버(초대 수락자)만 결정', '그룹·약속 초대·참석 응답은 권한의 근거가 아님', '지도·회상 같은 파생 뷰는 원본 권한보다 넓지 않음'].map((t, i) => <li key={t} className="rounded-[20px] bg-white border border-grid p-5 flex gap-4"><span className="text-[24px] font-extrabold" style={{ color: S }}>0{i + 1}</span><p className="text-[16px] leading-snug">{t}</p></li>)}</ul></Reveal>
+
+          <Reveal className="mt-24 md:mt-32">
+            <div className="md:grid md:grid-cols-12 gap-10 items-start">
+              <div className="md:col-span-5"><Num n="03" t="발자국으로 다녀온 곳을 다시 발견한다" />
+                <ul className="mt-8 space-y-5"><Ann color={S} n="1" t="전체 시도 라벨 → 기록된 지역만 사진 마커로" d="이전 버전은 17개 라벨이 지도 위에서 겹치거나 잘렸습니다." /><Ann color={S} n="2" t="지역별 추억 개수와 국내/해외 구분" d="기록된 지역 수와 연결된 추억 수를 요약합니다." /><Ann color={S} n="3" t="내 발자국 / 함께한 발자국" d="지역을 열면 그 지역의 추억 목록으로 이어집니다. GPS는 필요하지 않습니다." /></ul></div>
+              <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('foot-before')} alt="이전 버전 발자국: 지도 형태가 부정확하고 라벨이 겹침" cap="Before" /><Fig src={I('foot-after')} alt="현재 버전 발자국: 기록된 지역 사진 마커" cap="After" className="md:mt-12" /><Fig src={I('region')} alt="지역별 추억" cap="지역별 추억" /></div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="03" label="Final Experience" title="추억을 만들고, 약속을 잡고, 다시 발견하기" />
-        <ul className="mt-14 columns-2 md:columns-3 gap-5 md:gap-8 [&>li]:mb-5 md:[&>li]:mb-8 [&>li]:break-inside-avoid">
-          {['home', 'photo', 'plan', 'feed', 'space', 'new'].map(n => <li key={n}><Screen src={I(n)} alt={`우리사이 화면 ${n}`} cap={({ home: '홈', photo: '사진으로 시작', plan: '초대받은 약속 · 참석 응답', feed: '추억 피드', space: '우리 공간', new: '새 추억 만들기' } as Record<string, string>)[n]} /></li>)}
+      <section id="c4" className="wrap gutter py-20 md:py-28 scroll-mt-20 md:mt-8">
+        <ChapterHead color={S} n="03" label="Supporting Experience" title="약속과 우리 공간은 추억을 돕는 보조 기능" />
+        <ul className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
+          {['plan', 'space', 'calendar', 'home'].map(n => <li key={n}><Screen src={I(n)} alt={`우리사이 화면 ${n}`} cap={({ plan: '초대받은 약속 · 참석 응답', space: '우리 공간', calendar: '추억 달력', home: '홈' } as Record<string, string>)[n]} /></li>)}
         </ul>
-        <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="이전 버전 프로토타입" note="화면 시안과 세부가 다를 수 있습니다." />
+        <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="이전 버전 프로토타입" note="현재 화면 시안과 세부가 다를 수 있습니다." />
       </section>
 
-      <Outcome c={c} cards={<>{[['7', '설문 응답 (2026.11.12-16)'], ['통과', '서버 권한 시나리오 테스트 (마지막 실행)']].map(([n, l]) => <div key={l} className="rounded-[20px] p-6" style={{ background: T(16) }}><p className="text-[48px] md:text-[64px] font-extrabold leading-none" style={{ color: S }}>{n}</p><p className="mt-2 text-[16px]">{l}</p></div>)}<p className="text-[13px] text-sub">설문은 소규모 표본, 권한 테스트는 자동화된 서버 테스트입니다. 사용자 테스트 결과가 아닙니다.</p></>} />
+      <Outcome c={c} cards={<>{[['7', '설문 응답 (2026.11.12-16)'], ['통과', '서버 권한 시나리오 테스트 (마지막 실행)']].map(([n, l]) => <div key={l} className="rounded-[20px] p-6" style={{ background: T(16) }}><p className="text-[48px] md:text-[64px] font-extrabold leading-none" style={{ color: S }}>{n}</p><p className="mt-2 text-[16px]">{l}</p></div>)}<p className="text-[13px] text-sub">설문은 소규모 표본, 권한 테스트는 자동화된 서버 테스트입니다. Solution 02·03의 사용자 검증은 아직 수행하지 않았습니다.</p></>} />
     </>
   )
 }

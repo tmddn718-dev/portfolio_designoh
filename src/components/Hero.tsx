@@ -15,16 +15,14 @@ export function HeroUI() {
       <Reveal as="dl" stagger className="grid sm:grid-cols-3 gap-x-8 gap-y-5 rule pt-6">
         {proof.map(([k, v]) => <div key={k}><dt className="text-[22px] md:text-[28px] font-bold tracking-tight leading-none">{k}</dt><dd className="mt-2 text-[14px] text-sub leading-snug">{v}</dd></div>)}
       </Reveal>
-      <div className="mt-12 flex items-end justify-between gap-4 flex-wrap">
+      <div className="mt-12">
         <h2 className="text-[24px] md:text-[32px] font-bold tracking-tight">작업 5개, 한눈에</h2>
-        <p className="text-[14px] text-sub">시간이 없다면 <b className="text-ink">trigr → NODI</b> 순서로 보시길 권해요.</p>
       </div>
       <Reveal as="ul" stagger className="mt-5 grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-5">
         {items.map(({ p, src, launched }) => (
           <li key={p.slug}>
-            <Link to={`/work/${p.slug}`} data-cursor="보기" className="group flex flex-col h-full rounded-[20px] overflow-hidden border border-grid bg-white">
+            <Link to={`/work/${p.slug}`} className="group flex flex-col h-full rounded-[20px] overflow-hidden border border-grid bg-white">
               <div className="relative h-[170px] md:h-[210px] overflow-hidden" style={{ background: `color-mix(in srgb, ${launched ? '#DE5DE2' : p.accent} 16%, white)` }}>
-                {(launched || p.slug === 'nodi') && <span className="absolute left-3 top-3 z-10 px-2.5 py-1 rounded-full bg-ink text-white text-[13px] font-semibold">{launched ? '먼저 보기' : '2순위'}</span>}
                 <img src={src} alt="" loading="lazy" className="w-[60%] mx-auto mt-10 rounded-t-[12px] object-cover object-top transition-transform duration-500 group-hover:-translate-y-1" />
               </div>
               <div className="p-4 flex-1 flex flex-col">

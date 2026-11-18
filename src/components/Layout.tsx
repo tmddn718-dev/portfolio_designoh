@@ -1,28 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { profile } from '../data/projects'
 
 gsap.registerPlugin(ScrollTrigger)
-
-// 마우스를 따라다니는 라벨: [data-cursor] 위에서만 보이고, 터치·모션 줄이기 환경에서는 쓰지 않는다
-function CursorChip() {
-  const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    if (!matchMedia('(hover: hover) and (pointer: fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const el = ref.current!; let x = 0, y = 0, raf = 0
-    const move = (e: MouseEvent) => {
-      x = e.clientX; y = e.clientY
-      const t = (e.target as Element).closest('[data-cursor]')
-      if (t) { el.textContent = t.getAttribute('data-cursor'); el.dataset.on = '1' } else el.dataset.on = '0'
-      if (!raf) raf = requestAnimationFrame(() => { el.style.transform = `translate(${x + 18}px, ${y + 18}px)`; raf = 0 })
-    }
-    addEventListener('mousemove', move)
-    return () => removeEventListener('mousemove', move)
-  }, [])
-  return <div ref={ref} aria-hidden className="cursor-chip" data-on="0" />
-}
 
 export default function Layout() {
   const { pathname, hash } = useLocation()
@@ -77,7 +59,6 @@ export default function Layout() {
         {open && <nav id="mobile-nav" aria-label="모바일 메뉴" className="md:hidden glass gutter pb-3 flex flex-col border-t border-grid">{items}</nav>}
       </header>
       <main id="main" key={pathname} className="page-in"><Outlet /></main>
-      <CursorChip />
       <footer className="border-t border-grid mt-24">
         <div className="wrap gutter py-8 text-[13px] text-sub flex justify-between gap-4 flex-wrap">
           <span>© 2026 Portfolio</span>

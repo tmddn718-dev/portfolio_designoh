@@ -76,10 +76,9 @@ function ThumbnailVisual({ p }: { p: Project }) {
     <div className="relative aspect-[4/3] overflow-hidden bg-[#EEEDE3] transition-transform duration-300 group-hover:scale-[1.015]">
       <div className="absolute left-[5%] top-[7%] z-20 text-[11px] font-bold uppercase tracking-[.18em] text-[#566B5C]">A shared memory archive</div>
       <div className="absolute left-[5%] top-[16%] z-20 max-w-[48%] text-[clamp(22px,2.6vw,40px)] font-black leading-[.94] tracking-[-.055em] text-[#263B2F]">SHARED MOMENTS,<br />REDISCOVERED.</div>
-      <div className="absolute bottom-[-35%] left-[5%] h-[74%] w-[34%] -rotate-3 overflow-hidden rounded-[4px] bg-white p-2 shadow-[0_24px_50px_rgba(40,56,47,.15)]"><img src="/images/woorisai/home.webp" alt="" className="h-full w-full object-cover object-top" /></div>
-      <div className="absolute bottom-[-17%] left-[35%] z-10 h-[70%] w-[43%] rotate-2 overflow-hidden rounded-[5px] border-[8px] border-white bg-white shadow-[0_26px_60px_rgba(40,56,47,.2)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-1"><img src="/images/woorisai/detail.webp" alt="" className="h-full w-full object-cover object-top" /></div>
-      <div className="absolute bottom-[5%] right-[-6%] h-[47%] w-[29%] rotate-6 overflow-hidden rounded-[4px] border-[7px] border-white bg-white shadow-[0_20px_42px_rgba(40,56,47,.15)]"><img src="/images/woorisai/feed.webp" alt="" className="h-full w-full object-cover object-[center_18%]" /></div>
-      <span aria-hidden className="absolute bottom-[7%] left-[8%] h-2 w-2 rounded-full bg-[#718777] shadow-[18px_0_0_#B8A58C,36px_0_0_#D4CCB8]" />
+      <div className="absolute -bottom-[30%] left-[4%] z-10 w-[29%] -rotate-[5deg] drop-shadow-[0_24px_36px_rgba(40,56,47,.2)] transition-transform duration-300 group-hover:-translate-y-1"><div className="phone-pro"><img src="/images/woorisai/home.webp" alt="" className="screen" /><span className="glare" /></div></div>
+      <div className="absolute -bottom-[34%] left-[35.5%] z-20 w-[30%] drop-shadow-[0_28px_44px_rgba(40,56,47,.26)] transition-transform duration-300 group-hover:-translate-y-2"><div className="phone-pro"><img src="/images/woorisai/detail.webp" alt="" className="screen" /><span className="glare" /></div></div>
+      <div className="absolute -bottom-[30%] right-[4%] z-10 w-[29%] rotate-[5deg] drop-shadow-[0_24px_36px_rgba(40,56,47,.2)] transition-transform duration-300 group-hover:-translate-y-1"><div className="phone-pro"><img src="/images/woorisai/feed.webp" alt="" className="screen" /><span className="glare" /></div></div>
     </div>
   )
 

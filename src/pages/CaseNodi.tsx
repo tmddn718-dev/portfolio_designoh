@@ -82,13 +82,13 @@ export default function CaseNodi() {
             </div>
             <div className="mt-14 md:mt-0 md:col-span-6 relative flex justify-center md:justify-end gap-4 md:gap-0">
               <div data-rise className="relative w-[58%] md:w-[62%] z-10">
-                <img src={img('conds')} alt="NODI 조건 확인 화면: AI가 정리한 회의 조건" className="phone-bare" />
+                <div className="phone-pro"><img src="/images/nodi/hero-conds.webp" alt="NODI 조건 확인 화면: AI가 정리한 회의 조건" className="screen" /><span className="glare" /></div>
                 <ul className="hidden md:block absolute -left-40 top-[22%] w-36 space-y-24 text-[13px] leading-snug">
                   <li className="rounded-[12px] bg-white p-3 shadow-sm border border-grid"><b style={{ color: S }}>① AI가 정리</b><br />자연어를 회의 조건 카드로</li>
                   <li className="rounded-[12px] bg-white p-3 shadow-sm border border-grid"><b style={{ color: S }}>② 사용자가 수정</b><br />조건 항목별 수정·직접 입력</li>
                 </ul>
               </div>
-              <div data-rise className="w-[38%] md:w-[34%] mt-16 md:mt-24 md:-ml-8"><img src={img('review')} alt="NODI 최종 검토 화면: 사용자가 일정을 확정" className="phone-bare" /></div>
+              <div data-rise className="w-[38%] md:w-[34%] mt-16 md:mt-24 md:-ml-8"><div className="phone-pro"><img src="/images/nodi/hero-review.webp" alt="NODI 최종 검토 화면: 사용자가 일정을 확정" className="screen" /><span className="glare" /></div></div>
             </div>
           </div>
           {/* 모바일용 주석 */}

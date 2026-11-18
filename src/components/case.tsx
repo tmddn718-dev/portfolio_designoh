@@ -116,11 +116,11 @@ export function CaseSummary({ p }: { p: Project }) {
       <div className="wrap gutter py-10 md:py-14">
         <p className="eyebrow" style={{ color: S }}>30초 요약</p>
         <Reveal stagger className="mt-5 grid md:grid-cols-12 gap-3 md:gap-4">
-          <div className={`${cell} md:col-span-5`}><p className={h}>해결한 문제</p><p className="mt-2 text-[18px] md:text-[20px] font-bold leading-snug">{p.problem}</p></div>
-          <div className={`${cell} md:col-span-4`}><p className={h}>내 역할</p><p className="mt-2 text-[17px] font-semibold leading-snug">{p.role}</p><p className="mt-1 text-[14px] text-sub">{p.period}</p><ul className="mt-3 flex flex-wrap gap-1.5">{p.tags.map(t => <li key={t} className="text-[13px] px-2.5 py-1 rounded-full bg-[#f5f5f7]">{t}</li>)}</ul></div>
-          <div className={`${cell} md:col-span-3`}><p className={h}>검증 상태</p><span className="mt-2 inline-block px-3 py-1 rounded-full text-[13px] font-bold text-white" style={{ background: p.summary.kind === 'launched' ? '#111' : S }}>{kindLabel[p.summary.kind]}</span><p className="mt-3 text-[15px] leading-snug">{p.summary.status}</p></div>
+          <div className={`${cell} md:col-span-7`}><p className={h}>해결한 문제</p><p className="mt-2 text-[18px] md:text-[20px] font-bold leading-snug">{p.problem}</p></div>
+          <div className={`${cell} md:col-span-5`}><p className={h}>내 역할</p><p className="mt-2 text-[17px] font-semibold leading-snug">{p.role}</p><p className="mt-1 text-[14px] text-sub">{p.period}</p><ul className="mt-3 flex flex-wrap gap-1.5">{p.tags.map(t => <li key={t} className="text-[13px] px-2.5 py-1 rounded-full bg-[#f5f5f7]">{t}</li>)}</ul></div>
+          
           <div className={`${cell} md:col-span-12`}><p className={h}>핵심 결정</p><p className="mt-2 text-[20px] md:text-[26px] font-bold tracking-tight leading-snug max-w-[40ch]">{p.summary.decision}</p></div>
-          <ul aria-label="컨셉 키워드" className="md:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">{p.summary.concept.map(([k, d], i) => <li key={k} className="rounded-[20px] p-5 md:p-6 text-white" style={{ background: `linear-gradient(160deg, color-mix(in srgb, ${p.accent} 45%, #111), #111 80%)` }}><p className="text-[13px] text-white/60">CONCEPT 0{i + 1}</p><p className="mt-3 apple-h text-[24px] md:text-[30px]">{k}</p><p className="mt-2 text-[14px] leading-snug text-white/75">{d}</p></li>)}</ul>
+          <ul aria-label="컨셉 키워드" className="md:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">{p.summary.concept.map(([k, d], i) => <li key={k} className="rounded-[20px] p-5 md:p-6 text-white" style={{ background: `color-mix(in srgb, ${p.accent} 48%, #000)` }}><p className="text-[13px] text-white/80">CONCEPT 0{i + 1}</p><p className="mt-3 apple-h text-[24px] md:text-[30px]">{k}</p><p className="mt-2 text-[15px] leading-snug text-white">{d}</p></li>)}</ul>
         </Reveal>
       </div>
     </section>

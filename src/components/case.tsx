@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal'
 
-export const chapters = [['c1', 'Hero'], ['c2', 'Challenge'], ['c3', 'Decisions'], ['c4', 'Experience'], ['c5', 'Outcome']]
+export const chapters = [['c1', '개요'], ['c2', '문제'], ['c3', '핵심 결정'], ['c4', '최종 화면'], ['c5', '검증']]
 export const tintOf = (c: string, n: number) => `color-mix(in srgb, ${c} ${n}%, white)`
 export const strongOf = (c: string) => `color-mix(in srgb, ${c} 62%, black)` // 밝은 서브컬러를 글자색으로 쓸 때
 
@@ -85,5 +85,27 @@ export function PinnedPhone({ steps, color, label }: { steps: Step[]; color: str
         </div>
       </div>
     </div>
+  )
+}
+
+
+// 채용 담당자용 30초 요약: 문제 · 내 역할 · 핵심 결정 · 검증 상태를 한 화면에서 읽게 한다.
+const kindLabel = { launched: '출시', design: '설계안', evidence: '근거 일부' } as const
+export function CaseSummary({ p }: { p: Project }) {
+  const S = strongOf(p.accent)
+  const cell = 'rounded-[20px] bg-white border border-grid p-5 md:p-6'
+  const h = 'text-[13px] font-semibold text-sub'
+  return (
+    <section aria-label="30초 요약" className="bg-[#f5f5f7]">
+      <div className="wrap gutter py-10 md:py-14">
+        <p className="eyebrow" style={{ color: S }}>30초 요약</p>
+        <div className="mt-5 grid md:grid-cols-12 gap-3 md:gap-4">
+          <div className={`${cell} md:col-span-5`}><p className={h}>해결한 문제</p><p className="mt-2 text-[18px] md:text-[20px] font-bold leading-snug">{p.problem}</p></div>
+          <div className={`${cell} md:col-span-4`}><p className={h}>내 역할</p><p className="mt-2 text-[17px] font-semibold leading-snug">{p.role}</p><p className="mt-1 text-[14px] text-sub">{p.period}</p><ul className="mt-3 flex flex-wrap gap-1.5">{p.tags.map(t => <li key={t} className="text-[13px] px-2.5 py-1 rounded-full bg-[#f5f5f7]">{t}</li>)}</ul></div>
+          <div className={`${cell} md:col-span-3`}><p className={h}>검증 상태</p><span className="mt-2 inline-block px-3 py-1 rounded-full text-[13px] font-bold text-white" style={{ background: p.summary.kind === 'launched' ? '#111' : S }}>{kindLabel[p.summary.kind]}</span><p className="mt-3 text-[15px] leading-snug">{p.summary.status}</p></div>
+          <div className={`${cell} md:col-span-12`}><p className={h}>핵심 결정</p><p className="mt-2 text-[20px] md:text-[26px] font-bold tracking-tight leading-snug max-w-[40ch]">{p.summary.decision}</p></div>
+        </div>
+      </div>
+    </section>
   )
 }

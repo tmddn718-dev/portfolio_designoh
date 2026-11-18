@@ -10,6 +10,7 @@ export interface Project {
   role: string
   period: string
   tags: string[]
+  summary: { decision: string; status: string; kind: 'launched' | 'design' | 'evidence' } // 채용 담당자용 30초 요약(원문 근거 내 표현만)
   thumbnail?: string // public/images/<slug>/thumb.png 가 준비되면 지정
   thumbAlt?: string
   accent: string // 프로젝트 서브컬러(Hero 틴트·마커 전용) // 썸네일 placeholder 에서만 사용하는 프로젝트 색
@@ -39,6 +40,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '약 1~2주',
     tags: ['상태 표현', '구매 흐름', '예외 처리'],
+    summary: { decision: '옵션별 행동을 찾는 방식에서, 선택한 옵션의 다음 행동을 확인하는 방식으로. 옵션 목록 + 하단 고정 CTA, 수령 방법별 재고 확인 분리.', status: '설계안 · 시뮬레이션 데이터로 점검(실제 사용성 테스트 아님)', kind: 'design' },
     accent: '#82DC28',
     mock: { srcs: ['/images/oliveyoung-todaydream/n-altMethods.webp', '/images/oliveyoung-todaydream/n-optC.webp', '/images/oliveyoung-todaydream/n-restock.webp'], framed: true },
     proto: { url: '/proto/oliveyoung/index.html', w: 390, h: 844 },
@@ -118,6 +120,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '약 1~2주',
     tags: ['정보 구조화', '구매 판단 지원', '리서치'],
+    summary: { decision: '거래 조건을 자유 서술이 아닌 구조화된 카드로. 미입력·판매자도 모름·불러오지 못함을 구분하고, 질문 초안은 사용자가 편집해서 보낸다.', status: '설계안 · 사용성 테스트 미수행(예측 지표는 ‘예상’으로 별도 표기)', kind: 'design' },
     accent: '#FF6F0F',
     mock: { srcs: ['/images/karrot-large-furniture/k-questions.webp', '/images/karrot-large-furniture/k-detail.webp', '/images/karrot-large-furniture/k-form.webp'], framed: true },
     forecast: {
@@ -169,6 +172,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '약 1~2주',
     tags: ['신규 제품 설계', '규칙·예외 정책', '일정 추천'],
+    summary: { decision: 'AI는 자연어 이해와 설명을, 사용자는 참석자·날짜·후보를 구조화된 UI로 결정한다. 확정은 명시적 행동으로만.', status: '설계안 · 직장인 6명 인터뷰 기반 · 클릭 시나리오 19개 점검 통과(사용성 테스트 미수행)', kind: 'design' },
     accent: '#3654D4',
     mock: { srcs: ['/images/nodi/m-home.webp', '/images/nodi/m-recs.webp', '/images/nodi/m-review.webp'], framed: false },
     beforeAfter: [
@@ -218,6 +222,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '약 1~2주',
     tags: ['서비스 기획', '협업·권한', '상호작용'],
+    summary: { decision: '추억 하나부터 함께 기록하고, 사진 아래에서 바로 반응·대화하고, 발자국으로 다시 발견한다.', status: '설문 7명 · 권한 서버 테스트 통과 · 사진 상호작용·발자국 검증은 미수행', kind: 'evidence' },
     accent: '#566B5C',
     mock: { srcs: ['/images/woorisai/feed.webp', '/images/woorisai/home.webp', '/images/woorisai/new.webp'], framed: true },
     proto: { url: '/proto/woorisai/index.html', w: 390, h: 844 },
@@ -253,6 +258,7 @@ export const projects: Project[] = [
     role: 'UX/UI 총괄 · 디자인 시스템 구축',
     period: '2025.05 – 2026.06',
     tags: ['미션 플랫폼', 'UX/UI 설계', '디자인 시스템', '출시'],
+    summary: { decision: 'Figma Variables 기반 디자인 시스템을 처음부터 구축하고, 세 차례 개편을 거쳐 태국 시장에 출시.', status: '출시 완료 · 서비스는 현재 운영되지 않음', kind: 'launched' },
     accent: '#DD5BE0',
     mock: { srcs: ['/images/trigr/mission-create.webp', '/images/trigr/home-map.webp', '/images/trigr/t-proof-detail.webp'], framed: true },
     gallery: [

@@ -7,7 +7,7 @@ import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
-import { ChapterHead, ChapterNav, InteractionPreview, tintOf, strongOf, useActive } from '../components/case'
+import { ChapterHead, ChapterNav, InteractionPreview, tintOf, strongOf, useActive, CaseSummary } from '../components/case'
 import Strip from '../components/Strip'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -94,6 +94,7 @@ export default function CaseNodi() {
           </ul>
         </div>
       </section>
+      <CaseSummary p={p} />
 
       {/* 01 Challenge */}
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">

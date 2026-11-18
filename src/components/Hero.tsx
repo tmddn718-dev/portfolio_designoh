@@ -1,24 +1,36 @@
 import { useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
-import { projects } from '../data/projects'
+import { projects, profile } from '../data/projects'
 
 // 표지 그대로: 얇은 그리드 위 outline Complexity → 검정 화살표 → 파란 Clarity, 하단 국문 카피.
 // 첫 진입 때만 Complexity 가 나타나고 Clarity 가 outline 에서 파랑으로 채워진다.
 export function HeroUI() {
   const items = projects.map(p => ({ p, src: p.mock.srcs[1], launched: p.slug === 'trigr' }))
+  // 채용 담당자가 10초 안에 읽을 근거만. 수치는 이력서·프로젝트 문서에 있는 것만 쓴다.
+  const proof: [string, string][] = [['약 29개월', '실무 UX/UI 경력'], ['1건', '출시한 서비스(trigr, 태국)'], ['Figma Variables', '디자인 시스템 직접 구축'], ['직접 구현', 'Claude Code로 프로토타입 제작']]
   return (
-    <section aria-label="프로젝트 한눈에 보기" className="wrap gutter -mt-2 md:-mt-6 relative z-10">
-      <ul className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-5">
+    <section aria-label="프로젝트 한눈에 보기" className="wrap gutter pt-10 md:pt-14 relative z-10">
+      <dl className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5 rule pt-6">
+        {proof.map(([k, v]) => <div key={k}><dt className="text-[22px] md:text-[28px] font-bold tracking-tight leading-none">{k}</dt><dd className="mt-2 text-[14px] text-sub leading-snug">{v}</dd></div>)}
+      </dl>
+      <div className="mt-12 flex items-end justify-between gap-4 flex-wrap">
+        <h2 className="text-[24px] md:text-[32px] font-bold tracking-tight">작업 5개, 한눈에</h2>
+        <p className="text-[14px] text-sub">시간이 없다면 <b className="text-ink">trigr → NODI</b> 순서로 보시길 권해요.</p>
+      </div>
+      <ul className="mt-5 grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-5">
         {items.map(({ p, src, launched }) => (
           <li key={p.slug}>
-            <Link to={`/work/${p.slug}`} className="group block rounded-[20px] overflow-hidden border border-grid bg-white">
-              <div className="h-[170px] md:h-[210px] overflow-hidden" style={{ background: `color-mix(in srgb, ${launched ? '#DE5DE2' : p.accent} 16%, white)` }}>
-                <img src={src} alt="" loading="lazy" className="w-[60%] mx-auto mt-6 rounded-t-[12px] object-cover object-top transition-transform duration-500 group-hover:-translate-y-1" />
+            <Link to={`/work/${p.slug}`} className="group flex flex-col h-full rounded-[20px] overflow-hidden border border-grid bg-white">
+              <div className="relative h-[170px] md:h-[210px] overflow-hidden" style={{ background: `color-mix(in srgb, ${launched ? '#DE5DE2' : p.accent} 16%, white)` }}>
+                {(launched || p.slug === 'nodi') && <span className="absolute left-3 top-3 z-10 px-2.5 py-1 rounded-full bg-ink text-white text-[12px] font-semibold">{launched ? '먼저 보기' : '2순위'}</span>}
+                <img src={src} alt="" loading="lazy" className="w-[60%] mx-auto mt-10 rounded-t-[12px] object-cover object-top transition-transform duration-500 group-hover:-translate-y-1" />
               </div>
-              <div className="p-4">
-                <p className="text-[13px] text-sub">{launched ? 'Launched Product' : 'Personal Case Study'}</p>
-                <p className="mt-1 text-[16px] font-bold leading-tight">{p.name}</p>
+              <div className="p-4 flex-1 flex flex-col">
+                <p className="text-[13px] text-sub">{launched ? '출시 서비스' : p.kind}</p>
+                <p className="mt-1 text-[17px] font-bold leading-tight">{p.name}</p>
+                <p className="mt-2 text-[13px] leading-snug text-sub line-clamp-3">{p.summary.decision}</p>
+                <p className="mt-auto pt-3 text-[13px] font-semibold text-bluetext">{p.role.replace(' (1인)', '')} →</p>
               </div>
             </Link>
           </li>
@@ -68,7 +80,7 @@ export default function Hero() {
             복잡한 정보를<br />사용자가 <span className="text-blue font-bold">판단할 수 있는</span> 경험으로.
           </p>
           <div data-copy className="max-w-[34ch] md:text-right">
-            <p className="text-[13px] font-semibold tracking-wide">Product Designer / UX·UI Designer</p>
+            <p className="text-[15px] font-bold tracking-wide">{profile.name} · Product Designer / UX·UI Designer</p>
             <p className="mt-2 text-[16px] leading-relaxed text-sub">복잡한 문제를 명확한 사용자 경험과 완성도 높은 인터페이스로 해결합니다.</p>
             <Link to="/#work" className="inline-block mt-4 text-[16px] font-semibold text-bluetext py-2 border-b border-bluetext">Selected Work ↓</Link>
           </div>

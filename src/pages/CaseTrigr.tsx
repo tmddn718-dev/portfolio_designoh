@@ -6,7 +6,7 @@ import { projects } from '../data/projects'
 import Reveal from '../components/Reveal'
 import { Zoomable } from '../components/Modal'
 import { owner } from '../components/Mockup'
-import { ChapterHead, ChapterNav, strongOf, tintOf, useActive } from '../components/case'
+import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, CaseSummary } from '../components/case'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -15,7 +15,7 @@ const PINK = '#DE5DE2', TEAL = '#2FD1CD' // 출시 화면에서 추출한 색
 const T = (n: number) => tintOf(PINK, n)
 const S = strongOf(PINK)
 const I = (n: string) => `/images/trigr/tr-${n}.webp`
-const list = [['c1', 'Hero'], ['c2', 'Challenge'], ['c3', 'Decisions'], ['c4', 'Experience'], ['c5', 'Outcome']]
+const list = [['c1', '개요'], ['c2', '문제'], ['c3', '핵심 결정'], ['c4', '최종 화면'], ['c5', '검증']]
 
 // 실제 화면 하나를 밝은 폰 프레임에 넣고 클릭하면 확대
 function Screen({ src, alt, caption, className = '' }: { src: string; alt: string; caption?: string; className?: string }) {
@@ -82,6 +82,7 @@ export default function CaseTrigr() {
           </div>
         </div>
       </section>
+      <CaseSummary p={p} />
 
       {/* 01 Challenge */}
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">

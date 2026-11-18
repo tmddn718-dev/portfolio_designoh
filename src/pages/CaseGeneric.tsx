@@ -7,12 +7,12 @@ import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
-import { ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive } from '../components/case'
+import { CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive } from '../components/case'
 import Strip from '../components/Strip'
 import NotFound from './NotFound'
 
 gsap.registerPlugin(ScrollTrigger)
-const list = [['c1', 'Hero'], ['c2', 'Challenge'], ['c3', 'Decisions'], ['c4', 'Experience'], ['c5', 'Outcome']]
+const list = [['c1', '개요'], ['c2', '문제'], ['c3', '핵심 결정'], ['c4', '최종 화면'], ['c5', '검증']]
 
 // ── 공통 조각 ────────────────────────────────────────────
 const Screen = ({ src, alt, cap, className = '' }: { src: string; alt: string; cap?: string; className?: string }) => (
@@ -31,6 +31,7 @@ type Ctx = { p: Project; A: string; S: string; T: (n: number) => string; body: (
 function Hero({ c, kicker, title, lead, children, size = 'md' }: { c: Ctx; kicker?: string; title: string; lead: string; children: ReactNode; size?: 'md' | 'xl' }) {
   const { p, S, T, setOpen } = c
   return (
+    <>
     <section id="c1" className="overflow-hidden" style={{ background: T(13) }}>
       <div className="wrap gutter pt-10 md:pt-16 pb-14 md:pb-20">
         <Link to="/#work" className="inline-block py-2 text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
@@ -51,6 +52,8 @@ function Hero({ c, kicker, title, lead, children, size = 'md' }: { c: Ctx; kicke
         </div>
       </div>
     </section>
+    <CaseSummary p={p} />
+    </>
   )
 }
 
@@ -324,6 +327,7 @@ function Woorisai({ c }: { c: Ctx }) {
         </div>
       </section>
       <p className="wrap gutter pt-8 text-[13px] text-sub text-center">실제 프로토타입 화면 캡처 · 사진은 Unsplash 예시 이미지, 이름과 내용은 예시 데이터</p>
+      <CaseSummary p={p} />
 
       <section className="wrap gutter py-16 md:py-24 md:grid md:grid-cols-12 gap-10">
         <div className="md:col-span-4"><p className="eyebrow text-sub">Overview</p><h2 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">함께한 사람만 초대해, 하나의 추억을 같이 완성한다</h2></div>

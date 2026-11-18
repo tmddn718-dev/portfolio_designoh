@@ -9,10 +9,10 @@ import Reveal from './Reveal'
 export function HeroUI() {
   const items = projects.map(p => ({ p, src: p.mock.srcs[1], launched: p.slug === 'trigr' }))
   // 채용 담당자가 10초 안에 읽을 근거만. 수치는 이력서·프로젝트 문서에 있는 것만 쓴다.
-  const proof: [string, string][] = [['약 29개월', '실무 UX/UI 경력'], ['1건', '출시한 서비스(trigr, 태국)'], ['Figma Variables', '디자인 시스템 직접 구축'], ['직접 구현', 'Claude Code로 프로토타입 제작']]
+  const proof: [string, string][] = [['1건', '출시한 서비스(trigr, 태국)'], ['Figma Variables', '디자인 시스템 직접 구축'], ['직접 구현', 'Claude Code로 프로토타입 제작']]
   return (
     <section aria-label="프로젝트 한눈에 보기" className="wrap gutter pt-10 md:pt-14 relative z-10">
-      <Reveal as="dl" stagger className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5 rule pt-6">
+      <Reveal as="dl" stagger className="grid sm:grid-cols-3 gap-x-8 gap-y-5 rule pt-6">
         {proof.map(([k, v]) => <div key={k}><dt className="text-[22px] md:text-[28px] font-bold tracking-tight leading-none">{k}</dt><dd className="mt-2 text-[14px] text-sub leading-snug">{v}</dd></div>)}
       </Reveal>
       <div className="mt-12 flex items-end justify-between gap-4 flex-wrap">

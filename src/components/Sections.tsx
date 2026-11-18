@@ -197,6 +197,7 @@ export function AboutContact() {
           <p className="eyebrow text-bluetext md:col-span-4">About</p>
           <div className="md:col-span-8">
             <p className="text-[28px] md:text-[36px] font-semibold leading-snug tracking-tight">복잡한 정보를 사용자가 판단할 수 있는 경험으로 바꾸는 프로덕트 디자이너, {profile.name}입니다.</p>
+            <p className="mt-6 text-[17px] font-semibold">{profile.name}{profile.phone && <> · <a className="py-1 text-bluetext underline underline-offset-4" href={`tel:${profile.phone.replace(/-/g, '')}`}>{profile.phone}</a></>}</p>
             <ul className="mt-8 grid sm:grid-cols-2 gap-3">{[['실제 서비스 출시', 'trigr — 초기 기획부터 세 차례 개편, 출시까지 참여'], ['UX/UI 설계·디자인 시스템', 'Figma Variables 기반 컴포넌트 디자인 시스템 구축'], ['프로토타이핑', 'Claude Code, Figma Make로 HTML 기반 프로토타입 구현'], ['개발 협업', '개발 과정에서 구현 가능성을 확인하며 화면 조정']].map(([a, b]) => <li key={a} className="rounded-[20px] bg-[#F7F8FA] p-5"><p className="text-[16px] font-bold">{a}</p><p className="mt-1 text-[14px] leading-snug text-sub">{b}</p></li>)}</ul>
             <ul className="mt-8 text-[16px]">
               {profile.experience.map(e => (
@@ -213,6 +214,7 @@ export function AboutContact() {
           <p className="mt-3 text-[32px] md:text-[64px] font-extrabold tracking-tight leading-[1.05]">함께 <span className="text-blue">명확한</span> 경험을<br />만들어요.</p>
           <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-[17px]">
             {profile.email && <><a className="py-2 underline underline-offset-4" href={`mailto:${profile.email}`}>{profile.email}</a><CopyEmail email={profile.email} /></>}
+            {profile.phone && <a className="py-2 underline underline-offset-4" href={`tel:${profile.phone.replace(/-/g, '')}`}>{profile.phone}</a>}
             {profile.resume && <a className="py-2 underline underline-offset-4" href={profile.resume} target="_blank" rel="noreferrer">이력서 PDF</a>}
           </div>
         </Reveal>

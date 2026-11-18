@@ -21,7 +21,11 @@ export default function About() {
             <h1 className="mt-4 text-[48px] md:text-[96px] font-extrabold tracking-[-0.045em] leading-[1]">{profile.name}</h1>
             <p className="mt-6 text-[24px] md:text-[32px] font-bold leading-snug max-w-[24ch]">복잡한 정보를 <span className="text-blue">사용자가 판단할 수 있는</span> 경험으로.</p>
           </div>
-          <p className="mt-6 md:mt-0 md:col-span-4 text-[16px] leading-relaxed text-sub">Product Designer / UX·UI Designer. 문제를 구조로 정리하고, 판단에 필요한 정보의 우선순위를 설계합니다.</p>
+          <div className="mt-6 md:mt-0 md:col-span-4">
+          <p className="text-[18px] font-bold">{profile.name}</p>
+          {profile.phone && <a className="mt-1 inline-block py-1 text-[18px] font-semibold text-bluetext" href={`tel:${profile.phone.replace(/-/g, '')}`}>{profile.phone}</a>}
+          <p className="mt-3 text-[16px] leading-relaxed text-sub">Product Designer / UX·UI Designer. 문제를 구조로 정리하고, 판단에 필요한 정보의 우선순위를 설계합니다.</p>
+          </div>
         </div>
       </section>
 

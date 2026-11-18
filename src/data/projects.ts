@@ -288,6 +288,7 @@ export const projects: Project[] = [
 export const profile = {
   name: '노승우',
   email: 'tmddn718@naver.com', // 이력서 기재 이메일. 공개 사이트에 노출되므로 바꾸려면 여기만 수정
+  phone: '010-8511-1091', // 이력서 기재 번호(공개 사이트에 노출됨, 본인 요청)
   resume: '', // 이력서 PDF 에는 주소·전화·생년월일이 있어 공개용 사본이 준비되면 '/resume.pdf' 로 지정
   experience: [
     { period: '2025.05 – 2026.06', org: '핀랩스', role: '사원 · 프로덕트 디자인', desc: '미션 기반 리워드 앱(trigr) UX/UI 총괄, 디자인 시스템 구축, 글로벌(태국) 서비스 출시.' },

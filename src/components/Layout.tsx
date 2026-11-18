@@ -68,7 +68,7 @@ export default function Layout() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2">본문으로 건너뛰기</a>
       <header className="sticky top-0 z-40 glass border-b border-black/10">
         <div className="wrap gutter flex items-center justify-between h-12">
-          <Link to="/" className="inline-flex items-center min-h-[44px] text-[14px] font-semibold tracking-tight text-ink">PORTFOLIO 2026</Link>
+          <Link to="/" className="inline-flex items-center min-h-[44px] text-[14px] font-semibold tracking-tight text-ink">디자이너 {profile.name}</Link>
           <nav aria-label="주 메뉴" className="hidden md:flex items-center -mr-3">{items}</nav>
           <button className="md:hidden -mr-2 px-2 py-3 text-[16px]" aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}>
             {open ? '닫기' : '메뉴'}

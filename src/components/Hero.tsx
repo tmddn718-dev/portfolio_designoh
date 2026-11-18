@@ -33,7 +33,7 @@ export default function Hero() {
         <h1 aria-label="Complexity → Clarity" className="font-extrabold leading-[0.98] tracking-[-0.05em] text-[clamp(52px,17.5vw,96px)] md:text-[11.6vw]">
           <span data-cx aria-hidden className="outline-text block">Complexity</span>
           <span aria-hidden className="flex items-center gap-[0.1em]">
-            <svg data-arrow viewBox="0 0 170 170" className="h-[0.74em] w-auto shrink-0 text-white" fill="none" stroke="currentColor" strokeWidth="30" strokeLinejoin="miter" strokeMiterlimit="10"><path d="M0 85H146M66 5L146 85L66 165" /></svg>
+            <svg data-arrow viewBox="0 0 170 170" style={{ overflow: 'visible' }} className="h-[0.74em] w-auto shrink-0 text-white" fill="none" stroke="currentColor" strokeWidth="30" strokeLinejoin="miter" strokeMiterlimit="10"><path d="M0 85H146M66 5L146 85L66 165" /></svg>
             <span className="relative inline-block">
               <span data-ol className="outline-text opacity-0">Clarity</span>
               <span data-fill className="absolute left-0 top-0 text-[#2997ff]">Clarity</span>

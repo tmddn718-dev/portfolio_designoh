@@ -73,9 +73,9 @@ function FeatureNodi({ p }: { p: Project }) {
         <h3 className="mt-6 text-[44px] md:text-[72px] font-extrabold tracking-tight leading-[1]">{p.name}</h3>
         <p className="mt-5 text-[24px] md:text-[28px] font-bold leading-snug">AI는 이해하고,<br />사용자는 결정한다.</p>
         <p className="mt-4 text-[16px] leading-relaxed text-sub">{p.problem}</p>
-        <div className="mt-auto pt-10 flex flex-wrap gap-3">
-          <Link to={`/work/${p.slug}`} className="px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">케이스 스터디 보기</Link>
-          {p.proto && <button onClick={() => setOpen(true)} className="px-6 py-3 rounded-full border border-ink text-[16px] font-semibold">프로토타입 실행</button>}
+        <div className="mt-auto pt-10 grid w-fit gap-3">
+          <Link to={`/work/${p.slug}`} className="px-6 py-3 rounded-full border border-ink bg-ink text-white text-[16px] font-semibold text-center">케이스 스터디 보기</Link>
+          {p.proto && <button onClick={() => setOpen(true)} className="px-6 py-3 rounded-full border border-ink text-[16px] font-semibold text-center">프로토타입 실행</button>}
         </div>
       </div>
       <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="group md:col-span-8 block overflow-hidden rounded-[28px] px-5 py-8 md:px-10 md:py-12" style={{ background: tint('#6F8BFF', 14) }}>

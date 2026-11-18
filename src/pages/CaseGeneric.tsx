@@ -558,8 +558,8 @@ function Woorisai({ c }: { c: Ctx }) {
           <Reveal className="mt-24 md:mt-32">
             <div className="md:grid md:grid-cols-12 gap-10 items-start">
               <div className="md:col-span-5"><Num n="03" t="발자국으로 다녀온 곳을 다시 발견한다" />
-                <ul className="mt-8 space-y-5"><Ann color={A} n="1" t="전체 시도 라벨 → 기록된 지역만 사진 마커로" d="초기 버전은 17개 라벨이 지도 위에서 겹치거나 잘렸습니다." /><Ann color={A} n="2" t="지역별 추억 개수와 국내/해외 구분" d="기록된 지역 수와 연결된 추억 수를 요약합니다." /><Ann color={A} n="3" t="내 발자국 / 함께한 발자국" d="지역을 열면 그 지역의 추억 목록으로 이어집니다. GPS는 필요하지 않습니다." /></ul></div>
-              <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('foot-before')} alt="초기 버전 발자국: 지도 형태가 부정확하고 라벨이 겹침" cap="초기 버전" /><Fig src={I('foot-after')} alt="개선 버전 발자국: 기록된 지역 사진 마커" cap="개선 버전" className="md:mt-12" /><Fig src={I('region')} alt="지역별 추억" cap="지역별 추억" /></div>
+                <ul className="mt-8 space-y-5"><Ann color={A} n="1" t="전체 시도 라벨 → 기록된 지역만 사진 마커로" d="17개 시도 라벨이 지도 위에서 겹치지 않도록, 추억이 있는 지역만 사진 마커로 보여줍니다." /><Ann color={A} n="2" t="지역별 추억 개수와 국내/해외 구분" d="기록된 지역 수와 연결된 추억 수를 요약합니다." /><Ann color={A} n="3" t="내 발자국 / 함께한 발자국" d="지역을 열면 그 지역의 추억 목록으로 이어집니다. GPS는 필요하지 않습니다." /></ul></div>
+              <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-5 md:gap-10 max-w-[620px] md:ml-auto"><Fig src={I('foot-after')} alt="우리의 발자국: 기록된 지역을 사진 마커로 보여주는 지도와 하단 탭바" cap="우리의 발자국" /><Fig src={I('region')} alt="서울의 발자국: 지역 안의 추억 목록" cap="지역별 추억" className="md:mt-12" /></div>
             </div>
           </Reveal>
         </div>

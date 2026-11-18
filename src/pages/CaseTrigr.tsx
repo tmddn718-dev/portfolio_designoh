@@ -138,15 +138,17 @@ export default function CaseTrigr() {
 
           {/* Decision 1 */}
           <Reveal className="mt-20 md:mt-24">
-            <div className="md:grid md:grid-cols-12 gap-10 items-end">
-              <div className="md:col-span-5"><p className="text-[56px] font-extrabold leading-none outline-text">01</p><h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">미션 생성은 4단계, 한 번에 끝낸다</h3></div>
-              <ul className="md:col-span-7 mt-6 md:mt-0 space-y-4"><Ann n="A" t="제목 → 태그 → 상금 → 미션 종류" d="미션 생성부터 모집 조건 설정까지 한 번에 완료되도록 단계를 나눴습니다." /></ul>
-            </div>
-            <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-              {['제목 입력', '태그 선택', '상금 설정', '미션 종류'].map((t, i) => (
-                <figure key={t}><p className="text-[14px] mb-3"><b style={{ color: S }}>0{i + 1}</b> <span className="text-sub">{t}</span></p>
-                  <Zoomable src={`/images/trigr/pdf/create-${i + 1}.webp`} alt={`미션 생성 ${i + 1}단계: ${t}`} caption={t} className="w-full" imgClass="w-full" /></figure>
-              ))}
+            <div className="md:grid md:grid-cols-12 gap-10 lg:gap-16 items-center">
+              <div className="md:col-span-6">
+                <p className="text-[56px] font-extrabold leading-none outline-text">01</p>
+                <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight max-w-[16ch]">미션 생성을 한 화면에서 끝낸다</h3>
+                <ul className="mt-8 space-y-4"><Ann n="A" t="제목 → 미션 종류 → 태그 → 상금" d="미션 생성부터 모집 조건 설정까지 한 화면에서 완료되도록 입력 순서를 정리했습니다." /></ul>
+                <ol aria-label="입력 항목" className="mt-8 grid grid-cols-2 gap-3 max-w-[460px]">{[['01', '미션 제목'], ['02', '미션 종류'], ['03', '태그 설정'], ['04', '상금 설정']].map(([n, t]) => <li key={n} className="rounded-[16px] px-4 py-3 text-[16px] font-semibold flex gap-3" style={{ background: T(14) }}><b style={{ color: S }}>{n}</b>{t}</li>)}</ol>
+                <p className="mt-6 text-[15px] leading-[1.7] text-sub max-w-[44ch]">하단의 ‘미션 생성하기’ 버튼은 실제 앱처럼 화면 아래에 고정돼요. 화면 안에서 스크롤해 보세요.</p>
+              </div>
+              <div className="mt-12 md:mt-0 md:col-span-6 flex justify-center">
+                <div className="w-full max-w-[320px]"><ScrollPhone body="/images/trigr/create-sample-body.webp" top="/images/trigr/create-sample-top.webp" cta="/images/trigr/create-sample-cta.webp" w={715} ctaH={195} topH={176} alt="미션 만들기: 제목, 미션 종류, 태그, 상금을 한 화면에서 설정하고 하단 고정 버튼으로 생성" /></div>
+              </div>
             </div>
           </Reveal>
 
@@ -203,8 +205,8 @@ export default function CaseTrigr() {
             <p className="text-[14px] text-sub max-w-md">디자인 시스템 상세(변수·컴포넌트 구조), 다국어·다크 모드 범위는 PDF에서 확인되지 않아 추가 자료가 필요한 항목입니다.</p>
           </div>
         </div>
-        <div className="mt-16"><p className="text-[14px] text-sub mb-4">마이페이지 · 활동 / 피드 / 레벨업 보상</p>
-          <Strip label="마이페이지 화면">{[[I('my-1'), '활동', '마이페이지 활동 탭'], [I('my-2'), '피드', '마이페이지 피드 탭'], [I('my-3'), '레벨업 보상', '레벨업 보상']].map(([s, l, a]) => <Mini key={s} src={s} label={l} alt={a} />)}</Strip></div>
+        <div className="mt-16"><p className="text-[16px] font-semibold mb-5">마이페이지 · 활동 / 피드 / 레벨업 보상</p>
+          <ul className="grid grid-cols-3 gap-3 md:gap-8 max-w-[880px]">{[[I('my-1'), '활동', '마이페이지 활동 탭'], [I('my-2'), '피드', '마이페이지 피드 탭'], [I('my-3'), '레벨업 보상', '레벨업 보상']].map(([src, l, a]) => <li key={src}><Zoomable src={src} alt={a} caption={l} className="w-full" imgClass="w-full rounded-[20px] border border-grid bg-white" /><p className="mt-3 text-[14px] text-sub">{l}</p></li>)}</ul></div>
       </section>
 
       {/* 04 Reflection */}
@@ -213,16 +215,16 @@ export default function CaseTrigr() {
           <ChapterHead color={S} n="04" label="Outcome & Reflection" title="출시 이후 다시 바라본 미션 생성" />
           <p className="mt-6 inline-block px-4 py-2 rounded-full text-[13px] font-semibold" style={{ background: T(14), color: S }}>사후 개선 제안 · 샘플 작업, 출시된 기능이 아닙니다</p>
           <div className="mt-8 md:grid md:grid-cols-12 gap-10 items-center">
-            <div className="md:col-span-7 grid sm:grid-cols-2 gap-5">
+            <div className="md:col-span-12 grid sm:grid-cols-2 gap-5 max-w-[860px]">
               {[['Current · 출시 버전', ['미션 제목', '태그 선택', '상금 설정', '미션 종류'], false], ['Proposed · 개선 제안', ['미션 제목', '미션 종류', '태그 선택', '상금 설정'], true]].map(([t, items, prop]) => (
                 <div key={t as string} className="rounded-[20px] p-6" style={{ background: prop ? T(10) : '#f3f3f3', border: prop ? `1px solid ${T(45)}` : 'none' }}>
                   <p className="text-[16px] font-bold" style={{ color: prop ? S : undefined }}>{t as string}</p>
                   <ol className="mt-4 space-y-2">{(items as string[]).map((x, i) => <li key={x} className="rounded-[12px] bg-white px-4 py-3 text-[16px] flex gap-3" style={prop && i >= 1 ? { color: S } : undefined}><span className="text-sub">{i + 1}</span>{x}</li>)}</ol>
                 </div>
               ))}
-              <p className="sm:col-span-2 text-[17px] leading-[1.8]">미션의 수행 방식(종류)을 먼저 정한 뒤 보상을 설정하는 흐름이 더 자연스러울 가능성이 있다고 판단해, 새 페이지로 전환하는 구성을 제안했습니다.</p>
+              <p className="sm:col-span-2 text-[17px] leading-[1.8]">미션의 수행 방식(종류)을 먼저 정한 뒤 보상을 설정하는 흐름이 더 자연스러울 가능성이 있다고 판단해, 새 페이지로 전환하는 구성을 제안했습니다. 위 01에서 보여준 한 화면 구성이 그 샘플 작업이에요.</p>
             </div>
-            <div className="mt-10 md:mt-0 md:col-span-5 max-w-[300px] md:ml-auto w-full"><ScrollPhone body="/images/trigr/create-sample-body.webp" top="/images/trigr/create-sample-top.webp" cta="/images/trigr/create-sample-cta.webp" w={715} ctaH={195} topH={176} alt="미션 만들기: 제목, 미션 종류, 태그, 상금을 한 화면에서 설정하고 하단 고정 버튼으로 생성" /><p className="mt-1 text-[13px] text-sub">회고하며 바라본 흐름대로 진행한 샘플 작업</p></div>
+
           </div>
           <div className="mt-20 rounded-[28px] p-8 md:p-12" style={{ background: T(8) }}>
             <p className="eyebrow" style={{ color: S }}>What I Learned</p>

@@ -244,7 +244,7 @@ export default function CaseNodi() {
           ))}
         </Strip></div>
         <p className="mt-8 max-w-3xl text-[17px] leading-[1.8]">재조율, 받은 요청과 응답, 이전 회의 재사용, 작성 중 이어하기까지 포함해 26개 아트보드로 구현했습니다.</p>
-        <InteractionPreview p={p} wide={wide} onOpen={() => setOpen(true)} title="직접 눌러보세요" note="GitHub 저장소 기준의 이전 버전 프로토타입입니다. 화면 이미지는 v6 시안과 세부가 다를 수 있습니다." />
+        <InteractionPreview p={p} wide={wide} onOpen={() => setOpen(true)} title="직접 눌러보세요" note="화면 이미지는 v6 시안과 세부가 다를 수 있습니다." />
       </section>
 
       {/* 04 Outcome */}

@@ -529,9 +529,8 @@ function Woorisai({ c }: { c: Ctx }) {
           <Reveal className="mt-14 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5"><Num n="01" t="추억 하나부터, 함께 기록한다" />
               <ul className="mt-8 space-y-5"><Ann color={A} n="A" t="첫 CTA는 ‘그룹 만들기’가 아니라 ‘추억 만들기’" d="그룹 없이 사람을 골라 바로 시작합니다." /><Ann color={A} n="B" t="친구 선택 · 검색과 여러 명 선택" d="검색해서 여러 친구를 한 번에 고르는 선택기를 구현했습니다." /><Ann color={A} n="C" t="참여자별 기록 유지" d="각자의 사진과 이야기가 사라지지 않고 한 추억에 모입니다." /></ul></div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('new')} alt="새 추억 만들기" cap="새 추억 만들기" /><Fig src={I('people')} alt="볼 수 있는 사람 확인" cap="참여자" className="md:mt-12" /><Fig src={I('add')} alt="내 사진과 이야기 더하기" cap="사진·이야기 더하기" /></div>
+            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5"><Fig src={I('new')} alt="새 추억 만들기" cap="새 추억 만들기" /><Fig src={I('picker')} alt="함께한 친구 선택: 이름으로 검색하고 여러 명을 한 번에 선택" cap="친구 검색·다중 선택" className="md:mt-10" /><Fig src={I('picker-many')} alt="친구가 많을 때의 선택 목록" cap="친구가 많을 때" /><Fig src={I('people')} alt="볼 수 있는 사람 확인" cap="볼 수 있는 사람 확인" className="md:mt-10" /></div>
           </Reveal>
-          <div className="mt-6"><Need t="친구 검색·다중 선택 화면 캡처" /></div>
 
           <Reveal className="mt-24 md:mt-32 rounded-[28px] p-6 md:p-12 bg-[#F4F2EC]">
             <div className="max-w-[60ch]"><Tag t="Solution 02 · 핵심" /><h3 className="mt-4 text-[32px] md:text-[48px] font-extrabold tracking-tight leading-tight">사진 아래에서 바로 반응하고, 대화한다</h3>
@@ -571,7 +570,7 @@ function Woorisai({ c }: { c: Ctx }) {
         <ul className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8" data-scale>
           {['plan', 'space', 'calendar', 'home'].map(n => <li key={n}><Screen src={I(n)} alt={`우리사이 화면 ${n}`} cap={({ plan: '초대받은 약속 · 참석 응답', space: '우리 공간', calendar: '추억 달력', home: '홈' } as Record<string, string>)[n]} /></li>)}
         </ul>
-        <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="이전 버전 프로토타입" note="현재 화면 시안과 세부가 다를 수 있습니다." />
+        <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="최신 프로토타입 직접 체험" note="GitHub에 올라온 최신 프로토타입이에요. 화면 시안과 세부가 조금 다를 수 있어요." />
       </section>
 
       <Outcome c={c} cards={<>{[['7', '설문 응답 (2026.11.12-16)'], ['통과', '서버 권한 시나리오 테스트 (마지막 실행)']].map(([n, l]) => <div key={l} className="rounded-[20px] p-6" style={{ background: T(16) }}><p className="text-[48px] md:text-[64px] font-extrabold leading-none" style={{ color: S }}>{n}</p><p className="mt-2 text-[16px]">{l}</p></div>)}<p className="text-[13px] text-sub">설문은 소규모 표본, 권한 테스트는 자동화된 서버 테스트입니다. Solution 02·03의 사용자 검증은 아직 수행하지 않았습니다.</p></>} />

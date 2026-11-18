@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<meta name="theme-color" content="#FAF9F6">
+<meta name="application-name" content="우리사이">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="우리사이">
+<link rel="stylesheet" href="./ux-test/a11y-p0.css">
+<link rel="stylesheet" href="./ux-test/ux-test.css">
 </head>
 <body>
 <x-dc>
@@ -23,6 +30,7 @@
     a{color:var(--ws-color-fg-link)}a:hover{color:var(--ws-color-bg-brand-hover)}
     *{box-sizing:border-box}
     .ws-scroll::-webkit-scrollbar{display:none}
+    [data-memory-create] .ws-btn{min-height:52px;border-radius:16px;font-size:15px;line-height:1.4;font-weight:600}
   </style>
 </helmet>
 <div style="min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:{{ outerPad }}">
@@ -46,7 +54,7 @@
           <div style="display:flex;align-items:center;justify-content:space-between;height:44px">
             <span style="display:flex;align-items:center;gap:6px">
               <img src="brand/woorisai-symbol.svg" alt="" style="width:34px;height:34px;margin:-3px;flex:none">
-              <span style="font-family:var(--ws-font-wordmark);font-weight:800;font-size:20px;line-height:1;color:var(--ws-color-fg-brand)">우리사이</span>
+              <span style="position:relative;top:.084em;font-family:var(--ws-font-wordmark);font-weight:800;font-size:20px;line-height:1;color:var(--ws-color-fg-brand)">우리사이</span>
             </span>
             <button onClick="{{ toMe }}" aria-label="나" style="border:0;background:none;padding:0;cursor:pointer;display:flex"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Avatar" size="32" name="{{ meName }}" hint-size="32px,32px"></x-import></button>
           </div>
@@ -94,13 +102,15 @@
           </section>
           </sc-if>
           <sc-if value="{{ hasMems }}" hint-placeholder-val="{{ true }}">
-            <div style="display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-recall-subtle)">
-              <span style="width:44px;height:44px;flex:none;border-radius:9999px;display:grid;place-items:center;background:var(--ws-color-bg-surface);color:var(--ws-color-fg-brand)"><lucide-icon name="square-pen" size="22"></lucide-icon></span>
-              <span style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0">
-                <span style="font:var(--type-headline-2);color:var(--ws-color-fg-strong)">함께한 순간을 남겨볼까요?</span>
-                <span style="font:var(--type-label-1-read);color:var(--ws-color-fg-secondary);text-wrap:pretty">사진과 이야기를 하나의 추억으로 모아보세요.</span>
-                <span style="display:flex;margin-top:10px"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" size="sm" icon="{{ ic.create }}" label="새 추억 만들기" on-click="{{ startCreate }}" hint-size="140px,36px"></x-import></span>
-              </span>
+            <div data-memory-create style="display:flex;flex-direction:column;gap:8px;width:100%;min-width:0">
+              <div style="display:flex;align-items:center;gap:16px;padding:20px;border-radius:20px;background:var(--ws-color-bg-recall-subtle)">
+                <span style="display:grid;place-items:center;flex:0 0 52px;width:52px;height:52px;border-radius:9999px;background:var(--ws-color-bg-surface);color:var(--ws-color-fg-brand)"><lucide-icon name="square-pen" size="24"></lucide-icon></span>
+                <span style="display:flex;flex-direction:column;gap:6px;flex:1;min-width:0">
+                  <span style="font:600 17px/1.4 var(--ws-font-product);color:var(--ws-color-fg-strong);text-wrap:pretty">함께한 순간을 남겨볼까요?</span>
+                  <span style="font:400 14px/1.5 var(--ws-font-product);color:var(--ws-color-fg-secondary);text-wrap:pretty">사진과 이야기를 하나의 추억으로 모아보세요.</span>
+                </span>
+              </div>
+              <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" full-width="{{ true }}" label="새 추억 만들기" on-click="{{ startCreate }}" hint-size="100%,52px"></x-import>
             </div>
           </sc-if>
           <sc-if value="{{ hasPlanSection }}" hint-placeholder-val="{{ true }}">
@@ -110,23 +120,22 @@
                 <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" style2="ghost" size="sm" icon="{{ ic.planAdd }}" label="새 약속 만들기" on-click="{{ newPlan }}" hint-size="128px,36px"></x-import>
               </div>
               <sc-for list="{{ upPlans }}" as="p" hint-placeholder-count="2">
-                <div onClick="{{ p.open }}" role="button" aria-label="{{ p.aria }}" style="cursor:pointer;display:flex;align-items:center;gap:12px;padding:12px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle)">
-                  <span style="width:52px;height:56px;flex:none;border-radius:var(--ws-radius-small);background:var(--ws-color-bg-brand-subtle);color:var(--ws-color-fg-brand);display:flex;flex-direction:column;align-items:center;justify-content:center">
+                <div onClick="{{ p.open }}" role="button" aria-label="{{ p.aria }}" style="cursor:pointer;display:grid;grid-template-columns:54px minmax(0,1fr);align-items:start;gap:12px;padding:16px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle)">
+                  <span style="width:54px;height:54px;border-radius:var(--ws-radius-small);background:var(--ws-color-bg-brand-subtle);color:var(--ws-color-fg-brand);display:flex;flex-direction:column;align-items:center;justify-content:center">
                     <span style="font:var(--type-caption-1)">{{ p.monthLabel }}</span>
                     <span style="font:var(--type-heading-2);line-height:1.15">{{ p.dayNum }}</span>
                   </span>
-                  <span style="display:flex;flex-direction:column;gap:3px;min-width:0;flex:1">
-                    <span style="font:var(--type-headline-2);color:var(--ws-color-fg-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.title }}</span>
+                  <span style="display:flex;flex-direction:column;gap:4px;min-width:0;flex:1">
+                    <span style="margin-bottom:4px;font:var(--type-headline-2);line-height:22px;color:var(--ws-color-fg-strong);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere">{{ p.title }}</span>
                     <span style="font:var(--type-label-2);color:var(--ws-color-fg-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.timeText }} · {{ p.placeText }}</span>
-                    <span style="display:flex;align-items:center;gap:6px;min-width:0">
-                      <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.ParticipantGroup" names="{{ p.goingNames }}" size="{{ 20 }}" hint-size="56px,20px"></x-import>
-                      <span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary);white-space:nowrap">{{ p.goingText }}</span>
+                    <span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary);white-space:nowrap">{{ p.goingText }}</span>
                     </span>
                   </span>
-                  <span style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none">
-                    <span style="padding:3px 10px;border-radius:9999px;font:var(--type-label-2);white-space:nowrap;background:{{ p.myBg }};color:{{ p.myFg }}">{{ p.myLabel }}</span>
-                    <sc-if value="{{ p.hasChanged }}" hint-placeholder-val="{{ false }}"><span style="padding:2px 8px;border-radius:9999px;font:var(--type-caption-1);white-space:nowrap;background:var(--ws-badge-info-bg);color:var(--ws-badge-info-fg)">변경됨</span></sc-if>
-                  </span>
+                    <span style="grid-column:1/-1;display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;padding-top:4px">
+                      <sc-if value="{{ p.showResp }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:6px;font:var(--type-label-2);color:var(--ws-color-fg-tertiary);white-space:nowrap">내 응답<span style="padding:2px 10px;border-radius:9999px;font:var(--type-label-2);background:{{ p.myBg }};color:{{ p.myFg }}">{{ p.myLabel }}</span></span></sc-if>
+                      <sc-if value="{{ p.isHost }}" hint-placeholder-val="{{ false }}"><span style="font:var(--type-label-2);color:var(--ws-color-fg-brand);white-space:nowrap">내가 만든 약속</span></sc-if>
+                    </span>
+                    <sc-if value="{{ p.hasChanged }}" hint-placeholder-val="{{ false }}"><span style="grid-column:1/-1;display:flex;align-items:flex-start;gap:8px;min-width:0;padding:12px;border-radius:12px;background:#F0F5FA;color:#456B94"><lucide-icon name="info" size="16" style="flex:none;margin-top:1px"></lucide-icon><span style="min-width:0;display:flex;flex-direction:column;gap:2px;font:var(--type-label-2)"><b>{{ p.changeTitle }}</b><sc-if value="{{ p.hasChangeDetail }}" hint-placeholder-val="{{ true }}"><span style="overflow-wrap:anywhere;font:var(--type-caption-1)">{{ p.changeDetail }}</span></sc-if></span></span></sc-if>
                 </div>
               </sc-for>
               <sc-if value="{{ noUpcoming }}" hint-placeholder-val="{{ false }}">
@@ -275,6 +284,32 @@
             </sc-if>
           </sc-if>
 
+          <sc-if value="{{ viewSpace }}" hint-placeholder-val="{{ false }}">
+            <sc-if value="{{ hasSpaces }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ spaceCards }}" as="sp" hint-placeholder-count="2">
+                  <div onClick="{{ sp.open }}" role="button" aria-label="{{ sp.aria }}" style="cursor:pointer;display:flex;align-items:center;gap:12px;padding:16px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle)">
+                    <span style="display:flex;flex-direction:column;gap:6px;min-width:0;flex:1">
+                      <span style="font:var(--type-headline-1);color:var(--ws-color-fg-strong)">{{ sp.name }}</span>
+                      <span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary)">{{ sp.meta }}</span>
+                      <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.ParticipantGroup" names="{{ sp.names }}" size="{{ 28 }}" hint-size="96px,28px"></x-import>
+                    </span>
+                    <lucide-icon name="chevron-right" size="20"></lucide-icon>
+                  </div>
+                </sc-for>
+                <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" style2="secondary" full-width="{{ true }}" label="우리 공간 만들기" on-click="{{ newSpace }}" hint-size="100%,48px"></x-import>
+              </div>
+            </sc-if>
+            <sc-if value="{{ noSpaces }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 20px;width:100%">
+                <span style="display:grid;place-items:center;width:72px;height:72px;margin-bottom:16px;border-radius:50%;background:var(--ws-color-bg-recall-subtle);color:var(--ws-color-fg-brand)"><lucide-icon name="users-round" size="32"></lucide-icon></span>
+                <div style="font:var(--type-headline-2);color:var(--ws-color-fg-strong)">아직 우리 공간이 없어요</div>
+                <div style="margin:4px 0 20px;font:var(--type-label-1-read);color:var(--ws-color-fg-secondary);text-wrap:pretty">자주 함께하는 친구들과 공간을 만들면, 같이 쓰는 추억을 한곳에서 볼 수 있어요. 공간에 연결해도 추억은 직접 초대한 사람만 볼 수 있어요.</div>
+                <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" label="우리 공간 만들기" on-click="{{ newSpace }}" hint-size="160px,48px"></x-import>
+              </div>
+            </sc-if>
+          </sc-if>
+
           <sc-if value="{{ viewCal }}" hint-placeholder-val="{{ false }}">
             <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
               <div style="display:flex;gap:8px">
@@ -354,33 +389,43 @@
           </div>
           <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.SegmentedControl" label="발자국 종류" options="{{ footOptions }}" value="{{ footMode }}" on-change="{{ setFootMode }}" dc-props="{{ fullW }}" hint-size="100%,44px"></x-import>
           <sc-if value="{{ footWithMode }}" hint-placeholder-val="{{ false }}">
-            <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <sc-for list="{{ footPeople }}" as="p" hint-placeholder-count="6">
-                <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.FilterChip" label="{{ p.nick }}" selected="{{ p.selected }}" on-change="{{ p.pick }}" hint-size="64px,36px"></x-import>
-              </sc-for>
+            <div style="display:flex;align-items:center;gap:12px;min-height:64px;padding:10px 12px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle)">
+              <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Avatar" size="36" name="{{ footFriendName }}" hint-size="36px,36px"></x-import>
+              <span style="display:flex;flex:1;min-width:0;flex-direction:column;gap:2px"><small style="font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">함께한 친구</small><b style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:var(--type-headline-2);color:var(--ws-color-fg-strong)">{{ footFriendName }}</b></span>
+              <button onClick="{{ openFootFriend }}" style="min-width:76px;min-height:44px;border:0;background:none;color:var(--ws-color-fg-brand);font:var(--type-label-1);font-family:var(--ws-font-product);cursor:pointer">친구 변경</button>
             </div>
           </sc-if>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div style="padding:14px 16px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle);display:flex;flex-direction:column;gap:2px">
+            <button onClick="{{ openFootRegions }}" aria-label="기록된 지역 목록 보기, {{ footRegionStat }}" style="min-height:132px;padding:14px 16px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle);display:flex;flex-direction:column;gap:4px;text-align:left;font-family:var(--ws-font-product);cursor:pointer">
               <span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary)">기록된 지역</span>
-              <span style="font:var(--type-title-2);color:var(--ws-color-fg-strong)">{{ footRegionCount }}<span style="font:var(--type-body-2);color:var(--ws-color-fg-secondary)"> / 17곳</span></span>
-            </div>
-            <div style="padding:14px 16px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle);display:flex;flex-direction:column;gap:2px">
+              <strong style="font:var(--type-title-2);color:var(--ws-color-fg-strong)">{{ footRegionStat }}</strong>
+              <small style="margin-top:auto;font:var(--type-caption-1);color:var(--ws-color-fg-secondary)">지역 목록 보기</small>
+            </button>
+            <button onClick="{{ openFootMems }}" aria-label="연결된 추억 목록 보기, {{ footMemCount }}개" style="min-height:132px;padding:14px 16px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle);display:flex;flex-direction:column;gap:4px;text-align:left;font-family:var(--ws-font-product);cursor:pointer">
               <span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary)">연결된 추억</span>
-              <span style="font:var(--type-title-2);color:var(--ws-color-fg-strong)">{{ footMemCount }}<span style="font:var(--type-body-2);color:var(--ws-color-fg-secondary)">개</span></span>
-            </div>
+              <strong style="font:var(--type-title-2);color:var(--ws-color-fg-strong)">{{ footMemCount }}<span style="font:var(--type-body-2);color:var(--ws-color-fg-secondary)">개</span></strong>
+              <small style="margin-top:auto;font:var(--type-caption-1);color:var(--ws-color-fg-secondary)">추억 목록 보기</small>
+            </button>
           </div>
-          <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px 4px;padding:16px 6px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle)">
-            <sc-for list="{{ stamps }}" as="r" hint-placeholder-count="17">
-              <button onClick="{{ r.pick }}" aria-label="{{ r.aria }}" style="display:flex;flex-direction:column;align-items:center;gap:5px;border:0;background:none;padding:0;cursor:pointer;font-family:var(--ws-font-product)">
-                <span style="position:relative;width:52px;height:52px;border-radius:9999px;overflow:hidden;display:grid;place-items:center;border:{{ r.border }};background:{{ r.bg }};font:var(--type-label-2);color:var(--ws-color-fg-tertiary)">
+          <div role="tablist" aria-label="국내외 발자국" style="display:grid;grid-template-columns:1fr 1fr;padding:3px;border-radius:var(--ws-radius-control);background:var(--ws-color-bg-surface-muted)"><button role="tab" aria-selected="{{ footDomestic }}" onClick="{{ showDomestic }}" style="min-height:40px;border:0;border-radius:calc(var(--ws-radius-control) - 3px);background:{{ domesticBg }};color:{{ domesticFg }};font:var(--type-label-1);font-family:var(--ws-font-product);cursor:pointer">국내</button><button role="tab" aria-selected="{{ footOverseas }}" onClick="{{ showOverseas }}" style="min-height:40px;border:0;border-radius:calc(var(--ws-radius-control) - 3px);background:{{ overseasBg }};color:{{ overseasFg }};font:var(--type-label-1);font-family:var(--ws-font-product);cursor:pointer">해외</button></div>
+          <sc-if value="{{ footDomestic }}" hint-placeholder-val="{{ true }}">
+          <div role="img" aria-label="대한민국 지역별 추억 지도" style="position:relative;width:100%;max-width:430px;aspect-ratio:300/324;margin:0 auto;border-radius:var(--ws-radius-card);overflow:hidden;background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle)">
+            <img src="./brand/korea-admin1.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain">
+            <sc-for list="{{ mapMarkers }}" as="r" hint-placeholder-count="5">
+              <button onClick="{{ r.pick }}" aria-label="{{ r.aria }}" style="position:absolute;left:{{ r.x }}%;top:{{ r.y }}%;transform:translate(-50%,-50%);z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:44px;min-height:44px;border:0;background:none;padding:0;cursor:{{ r.cursor }};font-family:var(--ws-font-product)">
+                <span style="position:relative;width:{{ r.size }}px;height:{{ r.size }}px;border-radius:9999px;overflow:hidden;display:grid;place-items:center;border:{{ r.border }};background:{{ r.bg }};font:var(--type-caption-1);color:var(--ws-color-fg-tertiary);box-shadow:{{ r.shadow }}">
                   {{ r.initial }}
                   <sc-if value="{{ r.has }}" hint-placeholder-val="{{ false }}"><img src="{{ r.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></sc-if>
                 </span>
-                <span style="min-height:16px;font:var(--type-caption-1);color:{{ r.capColor }}">{{ r.cap }}</span>
+                <sc-if value="{{ r.has }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;right:-2px;top:-4px;min-width:20px;height:20px;padding:0 5px;display:grid;place-items:center;border-radius:9999px;background:var(--ws-color-bg-brand);border:2px solid #fff;color:#fff;font:var(--type-caption-1)">{{ r.count }}</span></sc-if>
+                <span style="padding:1px 4px;border-radius:4px;background:rgba(250,249,246,.88);font:var(--type-caption-1);color:var(--ws-color-fg-secondary);white-space:nowrap">{{ r.name }}</span>
               </button>
             </sc-for>
           </div>
+          <div style="display:flex;align-items:center;justify-content:space-between"><b style="font:var(--type-headline-2);color:var(--ws-color-fg-strong)">추억이 있는 지역</b><span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary)">{{ mapRegionCount }}곳</span></div>
+          <div style="display:flex;flex-direction:column;gap:10px"><sc-for list="{{ mapMarkers }}" as="r" hint-placeholder-count="3"><button onClick="{{ r.pick }}" style="display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:center;gap:12px;min-height:72px;padding:8px 12px;border:1px solid var(--ws-color-border-subtle);border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);font-family:var(--ws-font-product);text-align:left;cursor:pointer"><span style="position:relative;width:56px;height:56px;border-radius:var(--ws-radius-small);overflow:hidden;background:var(--ws-color-bg-recall-subtle)"><img src="{{ r.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></span><span style="min-width:0;display:flex;flex-direction:column;gap:4px"><b style="font:var(--type-headline-2);color:var(--ws-color-fg-strong)">{{ r.name }}</b><small style="font:var(--type-label-2);color:var(--ws-color-fg-secondary)">추억 {{ r.count }}개</small></span><lucide-icon name="chevron-right" size="20"></lucide-icon></button></sc-for></div>
+          </sc-if>
+          <sc-if value="{{ footOverseas }}" hint-placeholder-val="{{ false }}"><div style="padding:36px 20px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);text-align:center"><b style="display:block;font:var(--type-headline-2);color:var(--ws-color-fg-strong)">아직 해외에 남긴 발자국이 없어요</b><p style="margin:8px 0 0;font:var(--type-body-2-read);color:var(--ws-color-fg-secondary);text-wrap:pretty">해외에서 함께한 추억을 기록하면 이곳에서 다시 만날 수 있어요.</p></div></sc-if>
           <sc-if value="{{ footEmpty }}" hint-placeholder-val="{{ false }}">
             <p style="margin:0;text-align:center;font:var(--type-body-2-read);color:var(--ws-color-fg-tertiary)">{{ footEmptyText }}</p>
           </sc-if>
@@ -454,6 +499,32 @@
               <span aria-live="polite" style="position:absolute;right:12px;bottom:12px;padding:4px 10px;border-radius:9999px;background:rgba(36,38,34,.72);color:#fff;font:var(--type-caption-1);pointer-events:none">{{ cur.topPos }} / {{ cur.allCount }}</span>
             </sc-if>
           </div>
+          <sc-if value="{{ cur.hasFocusPhoto }}" hint-placeholder-val="{{ true }}">
+            <section class="wsux-photo-thread" style="margin:-20px 20px 0;display:flex;flex-direction:column;gap:16px;padding:8px 0 4px">
+              <div style="position:relative;display:flex;align-items:center;gap:20px;border-bottom:1px solid var(--ws-color-border-subtle);padding:0 10px 12px">
+                <button data-press onClick="{{ cur.toggleReaction }}" aria-expanded="{{ cur.threadReactionOpen }}" aria-haspopup="true" style="min-width:44px;min-height:44px;display:flex;align-items:center;gap:7px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--ws-color-fg-secondary);font:var(--type-label-1);font-family:var(--ws-font-product);cursor:pointer"><lucide-icon name="heart" size="20"></lucide-icon><span>반응</span><sc-if value="{{ cur.threadHasReaction }}" hint-placeholder-val="{{ false }}"><span style="font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">{{ cur.threadReactionCount }}</span></sc-if></button>
+                <button data-press onClick="{{ cur.openThread }}" style="min-width:44px;min-height:44px;display:flex;align-items:center;gap:7px;padding:0;border:0;border-radius:12px;background:transparent;color:var(--ws-color-fg-secondary);font:var(--type-label-1);font-family:var(--ws-font-product);cursor:pointer"><lucide-icon name="message-circle" size="20"></lucide-icon><span>댓글</span><span style="font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">{{ cur.threadCommentCount }}</span></button>
+                <sc-if value="{{ cur.threadReactionOpen }}" hint-placeholder-val="{{ false }}">
+                  <div class="wsux-reaction-popover" role="dialog" aria-label="사진 반응 선택" style="position:absolute;left:0;bottom:54px;z-index:6;display:flex;gap:4px;padding:6px;border:1px solid var(--ws-color-border-subtle);border-radius:16px;background:#fff;box-shadow:0 10px 28px rgba(36,38,34,.14)">
+                    <sc-for list="{{ cur.threadReactions }}" as="r" hint-placeholder-count="5"><button data-press onClick="{{ r.toggle }}" aria-pressed="{{ r.on }}" aria-label="{{ r.aria }}" style="width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:12px;border:{{ r.border }};background:{{ r.bg }};font-size:22px;line-height:1;cursor:pointer">{{ r.emoji }}</button></sc-for>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ cur.threadHasReaction }}" hint-placeholder-val="{{ false }}"><span style="margin-left:auto;font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">{{ cur.threadReactionText }}</span></sc-if>
+              </div>
+
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Avatar" size="32" name="{{ cur.focusAuthor }}" hint-size="32px,32px"></x-import>
+                <div style="min-width:0;display:flex;flex:1;flex-direction:column;gap:3px"><b style="font:var(--type-label-1);color:var(--ws-color-fg-strong)">{{ cur.focusAuthor }}</b><sc-if value="{{ cur.focusHasStory }}" hint-placeholder-val="{{ true }}"><p style="margin:0;font:var(--type-body-2-read);color:var(--ws-color-fg-default);text-wrap:pretty">{{ cur.focusStory }}</p></sc-if><sc-if value="{{ cur.focusStoryEmpty }}" hint-placeholder-val="{{ false }}"><span style="font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">사진으로 남긴 순간</span></sc-if></div>
+              </div>
+
+              <sc-if value="{{ cur.threadHasPreview }}" hint-placeholder-val="{{ false }}">
+                <button data-press onClick="{{ cur.openThread }}" style="width:100%;min-height:44px;padding:10px 12px;border:0;border-radius:12px;background:var(--ws-color-bg-surface-muted);font-family:var(--ws-font-product);text-align:left;cursor:pointer"><sc-for list="{{ cur.threadPreview }}" as="c" hint-placeholder-count="1"><span style="display:-webkit-box;overflow:hidden;-webkit-line-clamp:2;-webkit-box-orient:vertical;font:var(--type-label-1-read);color:var(--ws-color-fg-default)"><b>{{ c.by }}</b> {{ c.text }}</span></sc-for><sc-if value="{{ cur.threadShowAll }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:5px;font:var(--type-caption-1);color:var(--ws-color-fg-brand)">댓글 {{ cur.threadCommentCount }}개 모두 보기</span></sc-if></button>
+              </sc-if>
+              <sc-if value="{{ cur.threadEmpty }}" hint-placeholder-val="{{ true }}"><p style="margin:0;font:var(--type-label-1-read);color:var(--ws-color-fg-tertiary)">이 사진에서 떠오르는 기억을 먼저 남겨보세요.</p></sc-if>
+              <button data-press onClick="{{ cur.startThread }}" style="width:100%;min-height:48px;padding:0 14px;border:1px solid var(--ws-color-border-default);border-radius:14px;background:var(--ws-color-bg-surface);color:var(--ws-color-fg-strong);font:var(--type-label-1);font-family:var(--ws-font-product);cursor:pointer">이 사진에 댓글 남기기</button>
+            </section>
+          </sc-if>
+          <section style="margin:4px 20px 0;display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-brand-subtle)"><b style="font:var(--type-headline-2);color:var(--ws-color-fg-strong)">함께 남기는 추억</b><p style="margin:0;font:var(--type-label-1-read);color:var(--ws-color-fg-secondary)">내 사진과 이야기를 더해 하나의 추억으로 모아보세요.</p></section>
           <div style="display:flex;flex-direction:column;gap:8px;padding:0 20px">
             <div style="display:flex"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Badge" tone="brand" icon="{{ ic.lock }}" label="{{ cur.scopeLabel }}" hint-size="104px,24px"></x-import></div>
             <h1 style="margin:4px 0 0;font:var(--type-title-2);color:var(--ws-color-fg-strong);text-wrap:pretty">{{ cur.title }}</h1>
@@ -472,9 +543,9 @@
             </div>
             <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" style2="ghost" size="sm" icon="{{ ic.users }}" label="참여자" on-click="{{ openMembers }}" hint-size="88px,36px"></x-import>
           </div>
-          <section style="display:flex;flex-direction:column;gap:24px;padding:0 20px">
+          <section style="display:flex;flex-direction:column;gap:32px;padding:0 20px">
             <sc-for list="{{ cur.contribs }}" as="c" hint-placeholder-count="2">
-              <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;flex-direction:column;gap:12px">
                 <div style="display:flex;align-items:center;gap:10px">
                   <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Avatar" size="32" name="{{ c.name }}" hint-size="32px,32px"></x-import>
                   <span style="display:flex;flex-direction:column;flex:1;min-width:0">
@@ -484,16 +555,21 @@
                   <sc-if value="{{ c.mine }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Badge" tone="neutral" label="내 기록" hint-size="56px,24px"></x-import></sc-if>
                 </div>
                 <sc-if value="{{ c.hasPhotos }}" hint-placeholder-val="{{ true }}">
-                  <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="position:relative">
                     <div data-gal="{{ c.key }}" onScroll="{{ c.onScroll }}" class="ws-scroll" role="region" aria-label="{{ c.galLabel }}" style="display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x pan-y;margin:0 -20px;padding:0 20px;scroll-padding:0 20px">
                       <sc-for list="{{ c.photos }}" as="p" hint-placeholder-count="2">
                         <button data-ph="1" onClick="{{ p.view }}" aria-label="{{ p.aria }}" style="position:relative;flex:0 0 {{ c.itemW }};aspect-ratio:4/3;scroll-snap-align:start;border:0;padding:0;border-radius:var(--ws-radius-small);overflow:hidden;background:var(--ws-color-bg-recall-subtle);cursor:zoom-in">
                           <img src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
                         </button>
                       </sc-for>
+                      <sc-if value="{{ c.multi }}" hint-placeholder-val="{{ true }}">
+                        <span aria-hidden="true" style="flex:0 0 {{ c.restW }}"></span>
+                      </sc-if>
                     </div>
                     <sc-if value="{{ c.multi }}" hint-placeholder-val="{{ true }}">
-                      <span aria-live="polite" style="align-self:flex-end;font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">{{ c.pos }} / {{ c.count }}</span>
+                      <div style="position:absolute;left:0;top:0;bottom:0;width:{{ c.itemW }};z-index:1;pointer-events:none">
+                        <span aria-live="polite" style="position:absolute;right:12px;bottom:12px;padding:6px 12px;border-radius:9999px;background:rgba(36,38,34,.72);color:#fff;font:var(--type-caption-1);white-space:nowrap;font-variant-numeric:tabular-nums">{{ c.pos }} / {{ c.count }}</span>
+                      </div>
                     </sc-if>
                   </div>
                 </sc-if>
@@ -506,13 +582,29 @@
         </div>
       </sc-if>
 
+      <sc-if value="{{ isFootRegions }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="기록된 지역" style="display:flex;flex-direction:column;gap:20px;padding:4px 20px 32px">
+          <div style="margin-left:-8px"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.IconButton" icon1="{{ ic.chevronLeft }}" label="뒤로" on-click="{{ back }}" hint-size="44px,44px"></x-import></div>
+          <div><h1 style="margin:0;font:var(--type-title-2);color:var(--ws-color-fg-strong)">기록된 지역</h1><p style="margin:8px 0 0;font:var(--type-body-2-read);color:var(--ws-color-fg-secondary)">{{ footListSummary }}</p></div>
+          <div style="display:flex;flex-direction:column;gap:10px"><sc-for list="{{ footRegionRows }}" as="r" hint-placeholder-count="3"><button onClick="{{ r.open }}" style="display:grid;grid-template-columns:56px minmax(0,1fr) 24px;align-items:center;gap:12px;min-height:72px;padding:8px 12px;border:1px solid var(--ws-color-border-subtle);border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);font-family:var(--ws-font-product);text-align:left;cursor:pointer"><span style="position:relative;width:56px;height:56px;border-radius:var(--ws-radius-small);overflow:hidden;background:var(--ws-color-bg-recall-subtle)"><img src="{{ r.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></span><span style="display:flex;min-width:0;flex-direction:column;gap:4px"><b style="font:var(--type-headline-2);color:var(--ws-color-fg-strong)">{{ r.name }}</b><small style="font:var(--type-label-2);color:var(--ws-color-fg-secondary)">추억 {{ r.count }}개</small></span><lucide-icon name="chevron-right" size="20"></lucide-icon></button></sc-for><sc-if value="{{ footListEmpty }}" hint-placeholder-val="{{ false }}"><p style="padding:28px 16px;text-align:center;font:var(--type-body-2-read);color:var(--ws-color-fg-tertiary)">아직 기록된 지역이 없어요.</p></sc-if></div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isFootMems }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="연결된 추억" style="display:flex;flex-direction:column;gap:20px;padding:4px 20px 32px">
+          <div style="margin-left:-8px"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.IconButton" icon1="{{ ic.chevronLeft }}" label="뒤로" on-click="{{ back }}" hint-size="44px,44px"></x-import></div>
+          <div><h1 style="margin:0;font:var(--type-title-2);color:var(--ws-color-fg-strong)">연결된 추억</h1><p style="margin:8px 0 0;font:var(--type-body-2-read);color:var(--ws-color-fg-secondary)">{{ footListSummary }}</p></div>
+          <div style="display:flex;flex-direction:column;gap:12px"><sc-for list="{{ footMemRows }}" as="m" hint-placeholder-count="3"><button onClick="{{ m.open }}" style="display:grid;grid-template-columns:76px minmax(0,1fr) 24px;align-items:center;gap:12px;padding:12px;border:1px solid var(--ws-color-border-subtle);border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);font-family:var(--ws-font-product);text-align:left;cursor:pointer"><span style="position:relative;width:76px;height:76px;border-radius:var(--ws-radius-small);overflow:hidden;background:var(--ws-color-bg-recall-subtle)"><img src="{{ m.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></span><span style="display:flex;min-width:0;flex-direction:column;gap:4px"><b style="overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font:var(--type-headline-2);color:var(--ws-color-fg-strong)">{{ m.title }}</b><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:var(--type-label-2);color:var(--ws-color-fg-tertiary)">{{ m.rangeShort }} · {{ m.r }}</span><small style="font:var(--type-label-2);color:var(--ws-color-fg-secondary)">{{ m.counts }}</small></span><lucide-icon name="chevron-right" size="20"></lucide-icon></button></sc-for><sc-if value="{{ footListEmpty }}" hint-placeholder-val="{{ false }}"><p style="padding:28px 16px;text-align:center;font:var(--type-body-2-read);color:var(--ws-color-fg-tertiary)">이 조건에 해당하는 추억이 아직 없어요.</p></sc-if></div>
+        </div>
+      </sc-if>
+
       <sc-if value="{{ isRegion }}" hint-placeholder-val="{{ false }}">
         <div data-screen-label="08 지역별 추억" style="display:flex;flex-direction:column;gap:20px;padding:4px 20px 32px">
           <div style="margin-left:-8px"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.IconButton" icon1="{{ ic.chevronLeft }}" label="뒤로" on-click="{{ back }}" hint-size="44px,44px"></x-import></div>
           <div style="display:flex;align-items:center;gap:16px">
             <span style="position:relative;width:72px;height:72px;flex:none;border-radius:9999px;overflow:hidden;border:2px solid var(--ws-color-border-brand);background:var(--ws-color-bg-brand-subtle)"><img src="{{ region.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></span>
             <div style="display:flex;flex-direction:column;gap:4px">
-              <h1 style="margin:0;font:var(--type-title-2);color:var(--ws-color-fg-strong)">{{ region.name }}의 발자국</h1>
+              <h1 style="margin:0;font:var(--type-title-2);color:var(--ws-color-fg-strong)">{{ region.path }}</h1>
               <span style="font:var(--type-label-1-read);color:var(--ws-color-fg-secondary)">{{ region.sub }}</span>
             </div>
           </div>
@@ -520,17 +612,18 @@
             <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.ParticipantGroup" names="{{ region.names }}" hint-size="96px,32px"></x-import>
             <span style="font:var(--type-label-1-read);color:var(--ws-color-fg-secondary)">{{ region.withText }}</span>
           </div>
+          <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none" aria-label="세부 지역"><sc-for list="{{ region.districts }}" as="d" hint-placeholder-count="3"><button onClick="{{ d.pick }}" aria-pressed="{{ d.on }}" style="min-height:44px;padding:0 14px;border-radius:9999px;border:{{ d.border }};background:{{ d.bg }};color:{{ d.fg }};font:var(--type-label-1);font-family:var(--ws-font-product);white-space:nowrap;cursor:pointer">{{ d.name }} · {{ d.count }}</button></sc-for></div>
           <section style="display:flex;flex-direction:column;gap:12px">
             <h2 style="margin:0;font:var(--type-headline-2);color:var(--ws-color-fg-strong)">이곳의 추억</h2>
             <sc-for list="{{ region.list }}" as="m" hint-placeholder-count="2">
-              <div onClick="{{ m.open }}" role="button" style="cursor:pointer;display:flex;align-items:center;gap:12px;padding:12px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle)">
-                <span style="position:relative;width:64px;height:64px;flex:none;border-radius:var(--ws-radius-small);overflow:hidden;background:var(--ws-color-bg-recall-subtle)"><img src="{{ m.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></span>
+              <div onClick="{{ m.open }}" role="button" style="cursor:pointer;display:grid;grid-template-columns:76px minmax(0,1fr) 44px;align-items:center;gap:12px;padding:16px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle)">
+                <span style="position:relative;width:76px;height:76px;border-radius:var(--ws-radius-small);overflow:hidden;background:var(--ws-color-bg-recall-subtle)"><img src="{{ m.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></span>
                 <span style="display:flex;flex-direction:column;gap:3px;min-width:0;flex:1">
-                  <span style="font:var(--type-headline-2);color:var(--ws-color-fg-strong)">{{ m.title }}</span>
-                  <span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary)">{{ m.rangeShort }} · {{ m.p }}</span>
-                  <span style="font:var(--type-label-2);color:var(--ws-color-fg-secondary)">{{ m.withShort }} · {{ m.counts }}</span>
+                  <span style="font:var(--type-headline-2);color:var(--ws-color-fg-strong);min-height:2lh;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere">{{ m.title }}</span>
+                  <span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ m.rangeShort }} · {{ m.p }}</span>
+                  <span style="font:var(--type-label-2);color:var(--ws-color-fg-secondary);white-space:nowrap">{{ m.counts }}</span>
                 </span>
-                <lucide-icon name="chevron-right" size="20"></lucide-icon>
+                <lucide-icon name="chevron-right" size="20" style="flex:none"></lucide-icon>
               </div>
             </sc-for>
           </section>
@@ -609,10 +702,10 @@
                 <span>기기에서</span>
               </label>
               <sc-for list="{{ pool }}" as="p" hint-placeholder-count="8">
-                <button onClick="{{ p.toggle }}" aria-label="{{ p.aria }}" style="position:relative;aspect-ratio:1;border:0;padding:0;border-radius:var(--ws-radius-small);overflow:hidden;cursor:pointer;background:var(--ws-color-bg-recall-subtle);outline:{{ p.ring }};outline-offset:-3px">
-                  <img src="{{ p.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ p.op }}">
-                  <sc-if value="{{ p.selected }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:9999px;background:var(--ws-color-bg-brand);color:var(--ws-color-fg-on-brand);display:grid;place-items:center;font:var(--type-caption-1)">{{ p.order }}</span></sc-if>
-                </button>
+                <div style="position:relative;aspect-ratio:1;border-radius:var(--ws-radius-small);overflow:hidden;background:var(--ws-color-bg-recall-subtle);outline:{{ p.ring }};outline-offset:-3px">
+                  <button onClick="{{ p.view }}" aria-label="{{ p.viewAria }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:none;cursor:zoom-in"><img src="{{ p.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ p.op }}"></button>
+                  <button onClick="{{ p.toggle }}" aria-label="{{ p.aria }}" aria-pressed="{{ p.selected }}" style="position:absolute;top:0;right:0;width:44px;height:44px;border:0;padding:0;background:none;cursor:pointer;display:grid;place-items:center"><span style="width:22px;height:22px;border-radius:9999px;border:1.5px solid #fff;background:{{ p.chipBg }};color:var(--ws-color-fg-on-brand);display:grid;place-items:center;font:var(--type-caption-1)">{{ p.chipText }}</span></button>
+                </div>
               </sc-for>
             </div>
           </div>
@@ -622,12 +715,19 @@
             <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.TextField" label="이야기 (선택)" placeholder="그날 어땠는지 한두 줄" value="{{ c.story }}" on-change="{{ onStory }}" dc-props="{{ fullW }}" hint-size="100%,72px"></x-import>
           </sc-if>
           <div style="display:flex;flex-direction:column;gap:8px">
-            <span style="font:var(--type-label-1);color:var(--ws-color-fg-strong)">함께한 사람</span>
-            <div style="display:flex;flex-wrap:wrap;gap:8px">
-              <sc-for list="{{ cPeople }}" as="p" hint-placeholder-count="6">
-                <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.FilterChip" label="{{ p.nick }}" selected="{{ p.selected }}" on-change="{{ p.toggle }}" hint-size="64px,36px"></x-import>
-              </sc-for>
-            </div>
+            <span style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <span style="font:var(--type-label-1);color:var(--ws-color-fg-strong)">함께한 사람 (선택)</span>
+              <sc-if value="{{ cPeopleHasSelection }}" hint-placeholder-val="{{ false }}"><span aria-live="polite" style="font:var(--type-label-2);color:var(--ws-color-fg-brand)">{{ cPeopleCount }}명 선택</span></sc-if>
+            </span>
+            <sc-if value="{{ cPeopleCanPick }}" hint-placeholder-val="{{ true }}">
+              <span style="font:var(--type-label-1-read);color:var(--ws-color-fg-secondary)">이 추억에 함께한 친구를 선택해 주세요.</span>
+              <button id="create-people-trigger" onClick="{{ openCreatePeople }}" aria-label="{{ cPeopleTriggerAria }}" style="display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:12px 16px;border:1px solid var(--ws-color-border-default);border-radius:var(--ws-radius-control);background:var(--ws-color-bg-surface);color:var(--ws-color-fg-strong);font-family:var(--ws-font-product);text-align:left;cursor:pointer">
+                <span style="min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:var(--type-label-1)">{{ cPeopleSummary }}</span>
+                <span style="flex:none;font:var(--type-label-1);color:var(--ws-color-fg-brand)">{{ cPeopleAction }}</span>
+              </button>
+              <sc-if value="{{ cPeopleNoSelection }}" hint-placeholder-val="{{ true }}"><span style="font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">선택한 친구가 없어요.</span></sc-if>
+            </sc-if>
+            <sc-if value="{{ cPeopleNoFriends }}" hint-placeholder-val="{{ false }}"><span style="padding:14px 16px;border:1px solid var(--ws-color-border-subtle);border-radius:var(--ws-radius-control);background:var(--ws-color-bg-surface);font:var(--type-label-1-read);color:var(--ws-color-fg-secondary);text-wrap:pretty">아직 연결된 친구가 없어요. 친구와 연결되면 함께한 사람으로 선택할 수 있어요.</span></sc-if>
           </div>
           <div style="display:flex;flex-direction:column;gap:8px">
             <span style="font:var(--type-label-1);color:var(--ws-color-fg-strong)">지역</span>
@@ -695,7 +795,7 @@
                 <div style="display:flex;align-items:center;gap:12px;min-height:52px;border-top:{{ r.border }}">
                   <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Avatar" size="32" name="{{ r.nick }}" hint-size="32px,32px"></x-import>
                   <span style="flex:1;display:flex;align-items:center;gap:6px;min-width:0;font:var(--type-body-1);color:var(--ws-color-fg-strong)">{{ r.nick }}<sc-if value="{{ r.isMe }}" hint-placeholder-val="{{ false }}"><span style="font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">나</span></sc-if></span>
-                  <span style="display:flex;align-items:center;gap:4px;padding:3px 10px 3px 8px;border-radius:9999px;font:var(--type-label-2);background:{{ r.bg }};color:{{ r.color }}"><lucide-icon name="{{ r.icon }}" size="16"></lucide-icon>{{ r.label }}</span>
+                  <span style="display:flex;align-items:center;gap:4px;padding:3px 10px;border-radius:9999px;font:var(--type-label-2);background:{{ r.bg }};color:{{ r.color }}">{{ r.label }}</span>
                 </div>
               </sc-for>
             </div>
@@ -740,6 +840,70 @@
         </div>
       </sc-if>
 
+      <sc-if value="{{ isSpace }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="13 우리 공간" style="display:flex;flex-direction:column;gap:20px;padding:4px 20px 32px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-left:-8px">
+            <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.IconButton" icon1="{{ ic.chevronLeft }}" label="뒤로" on-click="{{ back }}" hint-size="44px,44px"></x-import>
+            <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" style2="ghost" size="sm" label="공간 설정" on-click="{{ openSpaceSet }}" hint-size="88px,36px"></x-import>
+          </div>
+          <h1 style="margin:0;font:var(--type-title-2);color:var(--ws-color-fg-strong);text-wrap:pretty">{{ sp.name }}</h1>
+          <section style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle)">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <h2 style="margin:0;font:var(--type-headline-1);color:var(--ws-color-fg-strong)">멤버 {{ sp.count }}명</h2>
+              <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" style2="secondary" size="sm" label="친구 초대하기" on-click="{{ editSpace }}" hint-size="112px,36px"></x-import>
+            </div>
+            <div style="display:flex;flex-direction:column">
+              <sc-for list="{{ sp.rows }}" as="r" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:12px;min-height:48px">
+                  <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Avatar" size="32" name="{{ r.nick }}" hint-size="32px,32px"></x-import>
+                  <span style="flex:1;font:var(--type-body-1);color:var(--ws-color-fg-strong)">{{ r.nick }}</span>
+                  <span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary)">{{ r.role }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+          <section style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <h2 style="margin:0;font:var(--type-headline-1);color:var(--ws-color-fg-strong)">볼 수 있는 추억 {{ sp.memCount }}개</h2>
+              <span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary);text-wrap:pretty">공간 멤버라도 초대받은 추억만 볼 수 있어요. 이 목록에는 내가 볼 수 있는 추억만 보여요.</span>
+            </div>
+            <sc-for list="{{ sp.mems }}" as="m" hint-placeholder-count="2">
+              <div onClick="{{ m.open }}" role="button" style="cursor:pointer;display:flex;align-items:center;gap:12px;padding:12px;border-radius:var(--ws-radius-card);background:var(--ws-color-bg-surface);border:1px solid var(--ws-color-border-subtle)">
+                <span style="position:relative;width:64px;height:64px;flex:none;border-radius:var(--ws-radius-small);overflow:hidden;background:var(--ws-color-bg-recall-subtle)"><img src="{{ m.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></span>
+                <span style="display:flex;flex-direction:column;gap:3px;min-width:0;flex:1">
+                  <span style="font:var(--type-headline-2);color:var(--ws-color-fg-strong)">{{ m.title }}</span>
+                  <span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary)">{{ m.meta }}</span>
+                </span>
+                <lucide-icon name="chevron-right" size="20"></lucide-icon>
+              </div>
+            </sc-for>
+            <sc-if value="{{ sp.noMems }}" hint-placeholder-val="{{ false }}">
+              <span style="font:var(--type-body-2-read);color:var(--ws-color-fg-tertiary)">아직 이 공간에서 볼 수 있는 추억이 없어요.</span>
+            </sc-if>
+          </section>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isSpaceForm }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="14 우리 공간 만들기" style="display:flex;flex-direction:column;gap:22px;padding:4px 20px 24px">
+          <div style="margin-left:-8px"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.IconButton" icon1="{{ ic.close }}" label="닫기" on-click="{{ back }}" hint-size="44px,44px"></x-import></div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <h1 style="margin:0;font:var(--type-title-2);color:var(--ws-color-fg-strong)">{{ spHeading }}</h1>
+            <p style="margin:0;font:var(--type-body-2-read);color:var(--ws-color-fg-secondary);text-wrap:pretty">자주 함께하는 친구들을 한곳에 묶어 둬요.</p>
+          </div>
+          <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.TextField" label="공간 이름" placeholder="예: 성수 친구들" value="{{ spf.name }}" on-change="{{ spfName }}" error="{{ spfNameErr }}" dc-props="{{ fullW }}" hint-size="100%,72px"></x-import>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:var(--type-label-1);color:var(--ws-color-fg-strong)">함께할 친구 (선택)</span>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ spfPeople }}" as="p" hint-placeholder-count="6">
+                <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.FilterChip" label="{{ p.nick }}" selected="{{ p.selected }}" on-change="{{ p.toggle }}" hint-size="64px,36px"></x-import>
+              </sc-for>
+            </div>
+          </div>
+          <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.InlineMessage" tone="info" text2="{{ spNote }}" dc-props="{{ fullW }}" hint-size="100%,64px"></x-import>
+        </div>
+      </sc-if>
+
       <sc-if value="{{ isPlanForm }}" hint-placeholder-val="{{ false }}">
         <div data-screen-label="12 약속 만들기" style="display:flex;flex-direction:column;gap:22px;padding:4px 20px 24px">
           <div style="margin-left:-8px"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.IconButton" icon1="{{ ic.close }}" label="닫기" on-click="{{ back }}" hint-size="44px,44px"></x-import></div>
@@ -748,17 +912,20 @@
             <p style="margin:0;font:var(--type-body-2-read);color:var(--ws-color-fg-secondary);text-wrap:pretty">약속은 추억과 따로 보관돼요. 만난 뒤에 그날을 추억으로 이어 남길 수 있어요.</p>
           </div>
           <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.TextField" label="약속 제목" placeholder="예: 토요일 성수 카페 투어" value="{{ pf.title }}" on-change="{{ pfTitle }}" error="{{ pfTitleErr }}" dc-props="{{ fullW }}" hint-size="100%,72px"></x-import>
-          <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr);gap:12px">
             <label style="display:flex;flex-direction:column;gap:6px;font:var(--type-label-1);color:var(--ws-color-fg-strong)">날짜
               <input type="date" value="{{ pf.date }}" onChange="{{ pfDate }}" aria-invalid="{{ pfDateInvalid }}" style="height:48px;width:100%;min-width:0;padding:0 12px;border-radius:var(--ws-radius-control);background:var(--ws-color-bg-surface);font:var(--type-body-1);font-family:var(--ws-font-product);color:var(--ws-color-fg-strong);border:{{ pfDateBorder }}">
               <sc-if value="{{ pfDateErr }}" hint-placeholder-val="{{ false }}"><span style="font:var(--type-caption-1);color:var(--ws-color-fg-danger)">날짜를 골라 주세요.</span></sc-if>
             </label>
-            <label style="display:flex;flex-direction:column;gap:6px;font:var(--type-label-1);color:var(--ws-color-fg-strong)">시간
+            <div style="display:flex;flex-direction:column;gap:8px"><span style="font:var(--type-label-1);color:var(--ws-color-fg-strong)">시간</span><div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ pfTimeKinds }}" as="k" hint-placeholder-count="4"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.FilterChip" label="{{ k.label }}" selected="{{ k.selected }}" on-change="{{ k.pick }}" hint-size="88px,36px"></x-import></sc-for></div><span style="font:var(--type-caption-1);color:var(--ws-color-fg-secondary)">시간은 나중에 정해도 괜찮아요.</span></div>
+            <sc-if value="{{ pfTimeExact }}" hint-placeholder-val="{{ true }}">
+            <label style="display:flex;flex-direction:column;gap:6px;font:var(--type-label-1);color:var(--ws-color-fg-strong)"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">시간 입력</span>
               <input type="time" value="{{ pf.time }}" onChange="{{ pfTime }}" aria-invalid="{{ pfTimeInvalid }}" style="height:48px;width:100%;min-width:0;padding:0 12px;border-radius:var(--ws-radius-control);background:var(--ws-color-bg-surface);font:var(--type-body-1);font-family:var(--ws-font-product);color:var(--ws-color-fg-strong);border:{{ pfTimeBorder }}">
-              <sc-if value="{{ pfTimeErr }}" hint-placeholder-val="{{ false }}"><span style="font:var(--type-caption-1);color:var(--ws-color-fg-danger)">시간을 골라 주세요.</span></sc-if>
+              <sc-if value="{{ pfTimeErr }}" hint-placeholder-val="{{ false }}"><span style="font:var(--type-caption-1);color:var(--ws-color-fg-danger)">시간을 입력하거나, 오전쯤·오후쯤·아직 미정을 골라 주세요.</span></sc-if>
             </label>
+            </sc-if>
           </div>
-          <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.TextField" label="장소 (선택)" placeholder="정하지 않았다면 비워 두세요" value="{{ pf.place }}" on-change="{{ pfPlace }}" dc-props="{{ fullW }}" hint-size="100%,72px"></x-import>
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font:var(--type-label-1);color:var(--ws-color-fg-strong)">장소</span><div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ pfPlaceKinds }}" as="k" hint-placeholder-count="4"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.FilterChip" label="{{ k.label }}" selected="{{ k.selected }}" on-change="{{ k.pick }}" hint-size="88px,36px"></x-import></sc-for></div><sc-if value="{{ pfPlaceOn }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.TextField" label="{{ pfPlaceLabel }}" placeholder="{{ pfPlacePh }}" value="{{ pf.place }}" on-change="{{ pfPlace }}" error="{{ pfPlaceErr }}" dc-props="{{ fullW }}" hint-size="100%,72px"></x-import></sc-if><span style="font:var(--type-caption-1);color:var(--ws-color-fg-secondary)">장소도 나중에 정해서 바꿀 수 있어요.</span></div>
           <div style="display:flex;flex-direction:column;gap:8px">
             <span style="display:flex;align-items:center;gap:6px;font:var(--type-label-1);color:var(--ws-color-fg-strong)"><lucide-icon name="user-round-plus" size="16"></lucide-icon>함께할 사람 초대 (선택)</span>
             <div style="display:flex;flex-wrap:wrap;gap:8px">
@@ -774,7 +941,7 @@
     </div>
 
     <sc-if value="{{ hasBar }}" hint-placeholder-val="{{ false }}">
-      <div style="flex:none;display:flex;gap:8px;padding:12px 20px 24px;background:var(--ws-color-bg-canvas);border-top:1px solid var(--ws-color-border-subtle)">
+      <div class="wsux-fixed-bar" style="flex:none;display:flex;gap:8px;padding:12px 20px 24px;background:var(--ws-color-bg-canvas);border-top:1px solid var(--ws-color-border-subtle)">
         <div style="flex:1;display:flex;min-width:0">
           <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" full-width="{{ true }}" label="{{ barLabel }}" icon="{{ barIcon }}" disabled="{{ barDisabled }}" loading="{{ barLoading }}" on-click="{{ barAction }}" hint-size="100%,48px"></x-import>
         </div>
@@ -793,7 +960,38 @@
     </sc-if>
 
     <sc-if value="{{ hasOverlay }}" hint-placeholder-val="{{ false }}">
-      <div onClick="{{ closeOverlay }}" style="position:absolute;inset:0;background:var(--ws-color-overlay-scrim);z-index:20"></div>
+      <div class="wsux-scrim" onClick="{{ closeOverlay }}" style="position:absolute;inset:0;background:var(--ws-color-overlay-scrim);z-index:20"></div>
+    </sc-if>
+
+    <sc-if value="{{ sheetSpaceSet }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:0;right:0;bottom:0;z-index:30">
+        <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.BottomSheet" title="공간 설정" dc-props="{{ fullW }}" hint-size="100%,260px">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" style2="secondary" full-width="{{ true }}" label="이름 바꾸기" on-click="{{ editSpace }}" hint-size="100%,48px"></x-import>
+            <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" style2="secondary" full-width="{{ true }}" label="공간 삭제하기" on-click="{{ spaceDelete }}" hint-size="100%,48px"></x-import>
+            <p style="margin:0;font:var(--type-label-1-read);color:var(--ws-color-fg-secondary);text-wrap:pretty">공간만 사라지고, 연결된 추억은 그대로 남아요.</p>
+          </div>
+        </x-import>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ sheetCreatePeople }}" hint-placeholder-val="{{ false }}">
+      <div role="dialog" aria-modal="true" aria-label="함께한 친구 선택" style="position:absolute;left:0;right:0;bottom:0;z-index:30;height:min(88dvh,760px);max-height:88dvh;min-height:0;display:flex;flex-direction:column;gap:12px;padding:10px 20px max(16px,env(safe-area-inset-bottom));overflow:hidden;border-radius:24px 24px 0 0;background:#fff">
+            <span aria-hidden="true" style="width:40px;height:5px;flex:none;align-self:center;border-radius:9999px;background:#C7CAC5"></span>
+            <span style="display:flex;align-items:center;justify-content:space-between;gap:12px"><strong style="font:var(--type-headline-1);color:var(--ws-color-fg-strong)">함께한 친구 선택</strong><span aria-live="polite" style="font:var(--type-label-1);color:var(--ws-color-fg-brand)">{{ cPeopleDraftCount }}명 선택</span></span>
+            <label style="display:flex;align-items:center;gap:8px;min-height:48px;padding:0 14px;border:1px solid var(--ws-color-border-default);border-radius:var(--ws-radius-control);background:#fff"><lucide-icon name="search" size="20"></lucide-icon><input data-create-people-search value="{{ cPeopleQuery }}" onChange="{{ cPeopleSearch }}" placeholder="친구 이름 검색" aria-label="친구 이름 검색" style="width:100%;min-width:0;border:0;outline:0;background:transparent;font:var(--type-body-2);font-family:var(--ws-font-product);color:var(--ws-color-fg-strong)"></label>
+            <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:8px;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch">
+              <sc-for list="{{ cPeopleRows }}" as="p" hint-placeholder-count="6">
+                <button onClick="{{ p.toggle }}" aria-pressed="{{ p.selected }}" aria-label="{{ p.aria }}" style="display:grid;grid-template-columns:40px minmax(0,1fr) 24px;align-items:center;gap:12px;min-height:56px;padding:8px 12px;border:{{ p.border }};border-radius:12px;background:{{ p.bg }};font-family:var(--ws-font-product);text-align:left;cursor:pointer;transition:background-color 150ms,border-color 150ms">
+                  <span style="width:40px;height:40px;display:grid;place-items:center;border-radius:9999px;background:{{ p.avatarBg }}"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Avatar" size="36" name="{{ p.name }}" hint-size="36px,36px"></x-import></span>
+                  <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><b style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:15px;line-height:22px;font-weight:{{ p.weight }};color:{{ p.fg }}">{{ p.name }}</b><sc-if value="{{ p.inSpace }}" hint-placeholder-val="{{ false }}"><small style="font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">현재 공간 멤버</small></sc-if></span>
+                  <span aria-hidden="true" style="width:22px;height:22px;display:grid;place-items:center;border:{{ p.checkBorder }};border-radius:6px;background:{{ p.checkBg }};color:#fff">{{ p.check }}</span>
+                </button>
+              </sc-for>
+              <sc-if value="{{ cPeopleNoResult }}" hint-placeholder-val="{{ false }}"><div style="padding:28px 8px;text-align:center"><p style="margin:0;font:var(--type-label-1);color:var(--ws-color-fg-strong)">검색 결과가 없어요.</p><p style="margin:6px 0 0;font:var(--type-label-1-read);color:var(--ws-color-fg-secondary)">다른 이름으로 검색해 보세요.</p></div></sc-if>
+            </div>
+            <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" full-width="{{ true }}" label="{{ cPeopleApplyLabel }}" on-click="{{ applyCreatePeople }}" hint-size="100%,52px"></x-import>
+      </div>
     </sc-if>
 
     <sc-if value="{{ sheetAuth }}" hint-placeholder-val="{{ false }}">
@@ -829,9 +1027,53 @@
       </div>
     </sc-if>
 
+    <sc-if value="{{ sheetFootFriend }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:0;right:0;bottom:0;z-index:30;overflow:hidden;border-radius:24px 24px 0 0;background:#fff">
+        <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.BottomSheet" title="함께한 친구 선택" style="width:100%;max-width:none;max-height:min(80dvh,680px);overflow:auto;border-radius:24px 24px 0 0;background:#fff" dc-props="{{ fullW }}" hint-size="100%,600px">
+          <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:max(4px,env(safe-area-inset-bottom))">
+            <label style="display:flex;align-items:center;gap:8px;min-height:48px;padding:0 14px;border:1px solid var(--ws-color-border-default);border-radius:var(--ws-radius-control);background:var(--ws-color-bg-surface)"><lucide-icon name="search" size="20"></lucide-icon><input value="{{ footFriendQuery }}" onChange="{{ footFriendSearch }}" placeholder="친구 이름 검색" aria-label="친구 이름 검색" style="width:100%;min-width:0;border:0;outline:0;background:transparent;font:var(--type-body-2);font-family:var(--ws-font-product);color:var(--ws-color-fg-strong)"></label>
+            <div style="display:flex;max-height:340px;flex-direction:column;gap:6px;overflow:auto"><sc-for list="{{ footFriendRows }}" as="p" hint-placeholder-count="6"><button onClick="{{ p.pick }}" aria-pressed="{{ p.selected }}" style="display:grid;grid-template-columns:40px minmax(0,1fr) 24px;align-items:center;gap:12px;min-height:64px;padding:8px 10px;border:{{ p.border }};border-radius:var(--ws-radius-control);background:{{ p.bg }};font-family:var(--ws-font-product);text-align:left;cursor:pointer"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Avatar" size="40" name="{{ p.nick }}" hint-size="40px,40px"></x-import><span style="display:flex;min-width:0;flex-direction:column;gap:2px"><b style="font:var(--type-label-1);color:var(--ws-color-fg-strong)">{{ p.nick }}</b><small style="font:var(--type-caption-1);color:var(--ws-color-fg-secondary)">함께한 추억 {{ p.count }}개</small></span><span style="color:var(--ws-color-fg-brand)">{{ p.check }}</span></button></sc-for><sc-if value="{{ footFriendNone }}" hint-placeholder-val="{{ false }}"><p style="padding:24px 0;text-align:center;font:var(--type-label-1-read);color:var(--ws-color-fg-tertiary)">검색 결과가 없어요.</p></sc-if></div>
+            <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" full-width="{{ true }}" label="선택 완료" disabled="{{ footFriendDisabled }}" on-click="{{ applyFootFriend }}" hint-size="100%,52px"></x-import>
+          </div>
+        </x-import>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ sheetRegionPeek }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:0;right:0;bottom:0;z-index:30;overflow:hidden;border-radius:24px 24px 0 0;background:#fff">
+        <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.BottomSheet" title="{{ regionPeek.name }}의 발자국" style="width:100%;max-width:none;max-height:calc(100dvh - 12px);overflow:auto;border-radius:24px 24px 0 0;background:#fff" dc-props="{{ fullW }}" hint-size="100%,420px">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <span style="font:var(--type-label-1-read);color:var(--ws-color-fg-secondary)">추억 {{ regionPeek.count }}개</span>
+            <div style="display:flex;flex-direction:column;gap:10px"><sc-for list="{{ regionPeek.list }}" as="m" hint-placeholder-count="2"><button onClick="{{ m.open }}" style="display:grid;grid-template-columns:64px minmax(0,1fr) 44px;align-items:center;gap:12px;padding:10px;border-radius:var(--ws-radius-card);border:1px solid var(--ws-color-border-subtle);background:var(--ws-color-bg-surface);font-family:var(--ws-font-product);text-align:left;cursor:pointer"><span style="position:relative;width:64px;height:64px;border-radius:var(--ws-radius-small);overflow:hidden;background:var(--ws-color-bg-recall-subtle)"><img src="{{ m.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></span><span style="min-width:0;display:flex;flex-direction:column;gap:3px"><b style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:var(--type-headline-2);color:var(--ws-color-fg-strong)">{{ m.title }}</b><span style="font:var(--type-label-2);color:var(--ws-color-fg-secondary)">{{ regionPeek.name }} &gt; {{ m.district }}</span><span style="font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">{{ m.rangeShort }}</span></span><lucide-icon name="chevron-right" size="20"></lucide-icon></button></sc-for></div>
+            <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" full-width="{{ true }}" label="전체 추억 보기" on-click="{{ regionPeek.openAll }}" hint-size="100%,48px"></x-import>
+          </div>
+        </x-import>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ sheetThread }}" hint-placeholder-val="{{ false }}">
+      <div class="wsux-sheet-shell" style="position:absolute;left:0;right:0;bottom:0;z-index:30;overflow:hidden;border-radius:24px 24px 0 0;background:#fff">
+        <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.BottomSheet" title="이 사진의 이야기" style="width:100%;max-width:none;max-height:calc(100dvh - 12px);overflow:hidden;border-radius:24px 24px 0 0;background:#fff" dc-props="{{ fullW }}" hint-size="100%,650px">
+          <div style="display:flex;max-height:calc(100dvh - 120px);flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><span style="font:var(--type-label-1);color:var(--ws-color-fg-secondary)">댓글 {{ threadCommentCount }}개</span><span style="font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">초대된 사람만 볼 수 있어요</span></div>
+            <div class="wsux-thread-list" style="display:flex;min-height:84px;max-height:min(45dvh,360px);flex:1;flex-direction:column;gap:0;overflow:auto;overscroll-behavior:contain">
+              <sc-for list="{{ threadRows }}" as="c" hint-placeholder-count="3"><div class="wsux-thread-row" style="margin-left:{{ c.indent }}px;padding:12px 0;border-bottom:1px solid var(--ws-color-border-subtle);border-left:{{ c.border }}"><div style="display:flex;align-items:flex-start;gap:10px"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Avatar" size="32" name="{{ c.by }}" hint-size="32px,32px"></x-import><div style="min-width:0;flex:1"><div style="display:flex;align-items:center;gap:6px"><b style="font:var(--type-label-1);color:var(--ws-color-fg-strong)">{{ c.by }}</b><span style="font:var(--type-caption-1);color:var(--ws-color-fg-tertiary)">{{ c.at }}</span></div><p style="margin:4px 0 0;font:var(--type-body-2-read);color:var(--ws-color-fg-default);white-space:pre-wrap;overflow-wrap:anywhere">{{ c.text }}</p><sc-if value="{{ c.hasPhoto }}" hint-placeholder-val="{{ false }}"><img src="{{ c.photo }}" alt="댓글에 첨부한 사진" style="display:block;width:min(100%,220px);max-height:180px;margin-top:8px;border-radius:12px;object-fit:cover"></sc-if><div style="display:flex;align-items:center;gap:4px;margin-top:4px"><button data-press onClick="{{ c.reply }}" style="min-height:36px;padding:0 6px;border:0;border-radius:8px;background:none;font:var(--type-caption-1);font-family:var(--ws-font-product);color:var(--ws-color-fg-secondary);cursor:pointer">답글</button><sc-if value="{{ c.canRemove }}" hint-placeholder-val="{{ false }}"><button data-press onClick="{{ c.remove }}" style="min-height:36px;padding:0 6px;border:0;border-radius:8px;background:none;font:var(--type-caption-1);font-family:var(--ws-font-product);color:var(--ws-color-fg-tertiary);cursor:pointer">삭제</button></sc-if></div></div></div></div></sc-for>
+              <sc-if value="{{ threadEmpty }}" hint-placeholder-val="{{ true }}"><div style="min-height:120px;display:grid;place-items:center;padding:20px"><p style="margin:0;text-align:center;font:var(--type-label-1-read);color:var(--ws-color-fg-tertiary)">이 사진에서 떠오르는 기억을<br>먼저 남겨보세요.</p></div></sc-if>
+            </div>
+            <div class="wsux-thread-composer" style="position:sticky;bottom:0;display:flex;flex-direction:column;gap:8px;margin:0 -20px -20px;padding:12px 20px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--ws-color-border-subtle);background:#fff">
+              <sc-if value="{{ threadReplying }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:10px;background:var(--ws-color-bg-brand-subtle)"><span style="font:var(--type-caption-1);color:var(--ws-color-fg-brand)">{{ threadInputLabel }}</span><button data-press onClick="{{ threadReplyCancel }}" style="min-height:32px;padding:0 6px;border:0;border-radius:8px;background:none;font:var(--type-caption-1);font-family:var(--ws-font-product);color:var(--ws-color-fg-secondary);cursor:pointer">취소</button></div></sc-if>
+              <sc-if value="{{ threadHasPhoto }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:72px;height:72px"><img src="{{ threadPhoto }}" alt="첨부할 사진" style="width:72px;height:72px;border-radius:10px;object-fit:cover"><button data-press onClick="{{ threadPhotoRemove }}" aria-label="첨부 사진 삭제" style="position:absolute;right:-8px;top:-8px;width:32px;height:32px;border:1px solid var(--ws-color-border-subtle);border-radius:9999px;background:#fff;display:grid;place-items:center;cursor:pointer"><lucide-icon name="x" size="16"></lucide-icon></button></div></sc-if>
+              <textarea data-thread-input value="{{ threadDraft }}" onChange="{{ threadDraftChange }}" maxlength="500" placeholder="이 사진에서 기억나는 순간을 남겨보세요" style="width:100%;min-height:72px;max-height:132px;padding:11px 12px;resize:none;border:1px solid var(--ws-color-border-default);border-radius:14px;background:var(--ws-color-bg-surface);font:var(--type-body-2-read);font-family:var(--ws-font-product);color:var(--ws-color-fg-strong)"></textarea>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><label data-press style="min-height:44px;display:inline-flex;align-items:center;padding:0 10px;border-radius:10px;color:var(--ws-color-fg-secondary);font:var(--type-label-2);cursor:pointer"><input type="file" accept="image/*" onChange="{{ threadFile }}" style="display:none">사진 첨부</label><button data-press onClick="{{ threadSubmit }}" disabled="{{ threadSubmitDisabled }}" style="min-width:72px;min-height:44px;padding:0 16px;border:0;border-radius:12px;background:{{ threadSubmitBg }};color:#fff;font:var(--type-label-1);font-family:var(--ws-font-product);cursor:{{ threadSubmitCursor }}">등록</button></div>
+            </div>
+          </div>
+        </x-import>
+      </div>
+    </sc-if>
+
     <sc-if value="{{ sheetContrib }}" hint-placeholder-val="{{ false }}">
       <div style="position:absolute;left:0;right:0;bottom:0;z-index:30">
-        <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.BottomSheet" title="내 사진과 이야기 더하기" dc-props="{{ fullW }}" hint-size="100%,420px">
+        <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.BottomSheet" title="내 사진 추가하기" style="width:100%;max-width:none;max-height:calc(100dvh - 12px);overflow:auto;border-radius:24px 24px 0 0;background:#fff" dc-props="{{ fullW }}" hint-size="100%,420px"><p style="margin:0 0 16px;font:var(--type-label-1-read);color:var(--ws-color-fg-secondary)">같은 날의 사진과 이야기를 함께 남겨보세요.</p>
           <div style="display:flex;flex-direction:column;gap:16px">
             <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px">
               <sc-for list="{{ kPool }}" as="p" hint-placeholder-count="4">
@@ -844,6 +1086,46 @@
             <div style="display:flex;gap:8px">
               <div style="flex:1;display:flex"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" style2="secondary" full-width="{{ true }}" label="취소" on-click="{{ closeOverlay }}" hint-size="100%,48px"></x-import></div>
               <div style="flex:1;display:flex"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" full-width="{{ true }}" label="더하기" disabled="{{ kEmpty }}" on-click="{{ kSubmit }}" hint-size="100%,48px"></x-import></div>
+            </div>
+          </div>
+        </x-import>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ pvOpen }}" hint-placeholder-val="{{ false }}">
+      <div role="dialog" aria-modal="true" aria-label="사진 크게 보기" style="position:absolute;inset:0;z-index:40;background:#242622;display:flex;flex-direction:column">
+        <div style="flex:none;display:flex;align-items:center;padding:12px 20px;min-height:56px;color:#fff;font:var(--type-label-1)" aria-live="polite">{{ pvCount }}</div>
+        <div data-gal="pv" onScroll="{{ pvScroll }}" class="ws-scroll" style="flex:1;min-height:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior:contain">
+          <sc-for list="{{ pvList }}" as="v" hint-placeholder-count="3">
+            <div style="flex:0 0 100%;height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:center"><img src="{{ v.img }}" alt="" draggable="false" style="max-width:100%;max-height:100%;object-fit:contain"></div>
+          </sc-for>
+        </div>
+        <div style="flex:none;display:flex;flex-direction:column;gap:12px;padding:12px 20px 24px;background:var(--ws-color-bg-surface)">
+          <span style="font:var(--type-caption-1);color:var(--ws-color-fg-secondary)">{{ pvNote }}</span>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;display:flex"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" style2="secondary" full-width="{{ true }}" label="닫기" on-click="{{ pvClose }}" hint-size="100%,48px"></x-import></div>
+            <div style="flex:1;display:flex"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" full-width="{{ true }}" label="{{ pvLabel }}" on-click="{{ pvToggle }}" hint-size="100%,48px"></x-import></div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ sheetConfirm }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:0;right:0;bottom:0;z-index:30">
+        <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.BottomSheet" title="{{ confirmTitle }}" dc-props="{{ fullW }}" hint-size="100%,360px">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ confirmRows }}" as="v" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:12px;min-height:40px">
+                  <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Avatar" size="32" name="{{ v.nick }}" hint-size="32px,32px"></x-import>
+                  <span style="flex:1;font:var(--type-body-1);color:var(--ws-color-fg-strong)">{{ v.nick }}</span>
+                  <span style="font:var(--type-label-2);color:var(--ws-color-fg-tertiary)">{{ v.role }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <p style="margin:0;font:var(--type-body-2-read);color:var(--ws-color-fg-secondary);text-wrap:pretty">{{ confirmNote }}</p>
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;display:flex"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" style2="secondary" full-width="{{ true }}" label="수정하기" on-click="{{ closeOverlay }}" hint-size="100%,48px"></x-import></div>
+              <div style="flex:1;display:flex"><x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Button" full-width="{{ true }}" label="추억 만들기" on-click="{{ confirmSave }}" hint-size="100%,48px"></x-import></div>
             </div>
           </div>
         </x-import>
@@ -894,7 +1176,7 @@
     </sc-if>
 
     <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
-      <div style="position:absolute;left:16px;right:16px;bottom:{{ toastBottom }};z-index:40;display:flex;justify-content:center;pointer-events:none">
+      <div class="wsux-toast" style="position:absolute;left:16px;right:16px;bottom:{{ toastBottom }};z-index:40;display:flex;justify-content:center;pointer-events:none">
         <x-import component-from-global-scope="WOORISAIDesignSystem_e5e56b.Toast" tone="neutral" dc-props="{{ toastProps }}" hint-size="100%,52px"></x-import>
       </div>
     </sc-if>
@@ -903,10 +1185,18 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;startAs&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;user&quot;,&quot;newUser&quot;,&quot;guest&quot;],&quot;default&quot;:&quot;user&quot;,&quot;tsType&quot;:&quot;'user'|'newUser'|'guest'&quot;},&quot;createEntry&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;choice&quot;,&quot;direct&quot;],&quot;default&quot;:&quot;choice&quot;,&quot;tsType&quot;:&quot;'choice'|'direct'&quot;}}">
 const LI = (name, size = 20, sw = '1.75') => React.createElement('lucide-icon', { name, size: String(size), 'stroke-width': sw });
+const CFG = (() => { try { return JSON.parse(sessionStorage.getItem('wsux_cfg') || '{}'); } catch (e) { return {}; } })();
+const ev = (name, params) => { // 화면 동작 기록: 가이드 진행 표시용 저장 + GA 용 이벤트(개인정보·입력한 글은 싣지 않는다)
+  try { const k = 'wsux_ev:' + (CFG.flow === 'demo' ? CFG.sc : 'new'), s = JSON.parse(sessionStorage.getItem(k) || '{}'); s[name] = 1; if (name === 'create_save' && params && params.plan) s.plan_memory_saved = 1; sessionStorage.setItem(k, JSON.stringify(s)); } catch (e) {}
+  try { window.dispatchEvent(new CustomEvent('ws:event', { detail: { name, params: params || {} } })); } catch (e) {}
+};
 const U = id => id && /^(blob:|data:)/.test(id) ? id : id ? 'https://images.unsplash.com/photo-' + id + '?w=900&q=75&auto=format&fit=crop' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-const ME = '서연';
+const ME = (CFG.flow === 'new' && CFG.name) ? CFG.name : '서연';
 const PEOPLE = ['민지', '지호', '하은', '도윤', '유나', '준서'];
 const REGIONS = ['서울', '부산', '대구', '인천', '광주', '대전', '울산', '세종', '경기', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주'];
+const REGION_POS = { 서울:[34,13], 인천:[17,12], 경기:[49,16], 강원:[61,9], 충북:[50,28], 세종:[36,31], 충남:[29,33], 대전:[40,38], 경북:[67,38], 대구:[65,49], 전북:[36,50], 광주:[27,62], 전남:[32,70], 경남:[58,61], 부산:[74,68], 울산:[77,57], 제주:[30,93] };
+const SEOUL_DISTRICT = { 망원한강공원:'마포구', 연남동:'마포구', 망원동:'마포구', 합정:'마포구', 성수동:'성동구', 서울숲:'성동구', 종로:'종로구', 연희동:'서대문구', 반포한강공원:'서초구', 남산:'중구', 을지로:'중구' };
+const districtOf = m => m.r === '서울' ? (SEOUL_DISTRICT[m.p] || (/구$/.test(m.p) ? m.p : m.p || '세부 지역 미지정')) : (m.p || '세부 지역 미지정');
 const J = { cover: '1628411848698-e3b3249a272a', fall: '1610997999027-681b320cee66', flower: '1717947464554-54d935c2155f', sea: '1612977423916-8e4bb45b5233', house: '1584263570952-bcff471c3b0a', light: '1609766418178-cc976c0fa435', sky: '1612977512598-3b8d6a498bbb', cliff: '1562680802-9cf8b15f419d' };
 const SEED = [
   { id: 'han', t: '가을 끝 한강, 돗자리 위에서 노을까지', d: '2026. 11. 08', r: '서울', p: '망원한강공원', w: ['민지', '지호', '하은'], img: '1758892591932-64a3d2203a3a', ph: 14, st: 5, nw: '하은님이 어제 사진 3장을 더했어요', note: '해 지는 걸 보려고 다섯 시부터 자리 잡았다.' },
@@ -953,6 +1243,9 @@ const PLANS = [
   { id: 'pl-board', t: '망원 보드게임 카페', d: '2026. 11. 01', time: '15:00', place: '망원동 보드게임 카페', host: ME, inv: { 민지: 'yes', 지호: 'yes', 도윤: 'no' }, memo: '지는 사람이 음료 사기' },
   { id: 'pl-han', t: '한강 노을 피크닉', d: '2026. 11. 08', time: '17:00', place: '망원한강공원', host: '하은', inv: { 서연: 'yes', 민지: 'yes', 지호: 'yes' }, memo: '', memId: 'han' }
 ];
+const TKL = { am: '오전쯤', pm: '오후쯤', tbd: '시간 미정' };
+const tkText = p => !p.tk || p.tk === 'exact' ? ft(p.time) : TKL[p.tk];
+const sortKey = p => !p.tk || p.tk === 'exact' ? p.time : { am: '~1', pm: '~2', tbd: '~3' }[p.tk];
 const ft = t => { if (!t) return '시간 미정'; const [hh, mm] = t.split(':').map(Number); return (hh < 12 ? '오전 ' : '오후 ') + ((hh % 12) || 12) + (mm ? ':' + String(mm).padStart(2, '0') : '시'); };
 const isoToKey = v => v ? v.slice(0, 4) + '. ' + v.slice(5, 7) + '. ' + v.slice(8, 10) : '';
 const keyToIso = k => k ? k.slice(0, 4) + '-' + k.slice(6, 8) + '-' + k.slice(10, 12) : '';
@@ -974,36 +1267,138 @@ const photosOf = m => {
 const wa = s => { const c = s.charCodeAt(s.length - 1) - 0xAC00; return s + ((c >= 0 && c % 28) ? '과' : '와'); };
 const pd = s => ({ y: +s.slice(0, 4), m: +s.slice(6, 8), d: +s.slice(10, 12) });
 const key = (y, m, d) => y + '. ' + String(m).padStart(2, '0') + '. ' + String(d).padStart(2, '0');
+// ── 테스트 빌드 전용 코드(원본에는 없음). build.mjs 가 원본 <script> 안, class Component 바로 앞에 끼워 넣는다. ──
+// 시나리오별 시작 데이터. 사진·친구·추억·약속은 모두 원본(SEED/PLANS/INVITED/POOL)의 것을 그대로 쓴다.
+const SC_FRIEND_NOTE = {
+  민지: '초대 고마워. 협재 노을 사진도 같이 올려 둘게.', 지호: '나도 이제야 합류! 그날 아침 바다가 제일 좋았어.', 하은: '사진 정리하다가 생각나서 몇 장 더했어.',
+  도윤: '늦게 들어왔지만 같이 남기고 싶어서 올려.', 유나: '이런 건 같이 모아 두는 게 좋네.', 준서: '뒤늦게 합류했어요. 몇 장 보탭니다.'
+};
+const makeSeeds = cfg => {
+  const flow = cfg.flow, sc = +cfg.sc || 0;
+  const cl = p => ({ ...p, inv: { ...p.inv } });
+  const ids = list => SEED.filter(m => list.includes(m.id)).map(materialize);
+  const link = (list, id, spaceId) => list.map(m => m.id === id ? { ...m, space: spaceId } : m);
+  if (flow === 'new') return { mems: [], plans: [], invite: false, friends: [], spaces: [] };
+  if (flow === 'demo' && sc === 1) return { mems: link(ids(['han', 'jeju']), 'jeju', 'sp1'), plans: [], invite: true, friends: ['민지', '지호', '하은'], spaces: [{ id: 'sp1', name: '제주 친구들', members: ['민지', '지호', '하은'] }] };
+  if (flow === 'demo' && sc === 2) return { mems: link(ids(['han', 'cafe', 'first']), 'han', 'sp1'), plans: PLANS.filter(p => ['pl-move', 'pl-kimjang', 'pl-party', 'pl-board', 'pl-han'].includes(p.id)).map(cl), invite: false, friends: [...PEOPLE], spaces: [{ id: 'sp1', name: '망원 모임', members: ['민지', '지호', '하은'] }] };
+  if (flow === 'demo' && sc === 3) return { mems: link(link(SEED.map(materialize), 'jeju', 'sp1'), 'cafe', 'sp2'), plans: PLANS.map(cl), invite: false, friends: [...PEOPLE], spaces: [{ id: 'sp1', name: '제주 친구들', members: ['민지', '지호', '하은'] }, { id: 'sp2', name: '성수 사람들', members: ['유나', '하은'] }] };
+  return { mems: SEED.map(materialize), plans: PLANS.map(cl), invite: true, friends: [...PEOPLE], spaces: [] }; // 설정이 없으면 원본 기본 상태
+};
+const SEEDS = { ...makeSeeds(CFG), threads: {} };
+const SKEY = 'wsux_state:' + [CFG.flow || 'orig', CFG.sc || 0, CFG.name || ''].join(':');
+const shrink = f => new Promise(res => { // 기기 사진: EXIF(위치 포함)가 사라지도록 다시 그리고, 새로고침 뒤에도 남도록 작게 저장
+  const r = new FileReader();
+  r.onload = () => { const im = new Image(); im.onload = () => { const k = Math.min(1, 720 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL('image/jpeg', .72)); }; im.onerror = () => res(URL.createObjectURL(f)); im.src = r.result; };
+  r.onerror = () => res(URL.createObjectURL(f)); r.readAsDataURL(f);
+});
 
 class Component extends DCLogic {
   state = {
-    auth: this.props.startAs === 'guest' ? 'guest' : 'user', tab: 'home', stack: [],
-    mems: this.props.startAs === 'newUser' ? [] : SEED.map(materialize), invite: true, gIdx: {}, viewer: null,
-    plans: this.props.startAs === 'newUser' ? [] : PLANS.map(p => ({ ...p, inv: { ...p.inv } })), planAs: null, pf: null, pfTried: false, calF: 'all', devPics: [],
+    auth: (this.props.startAs === 'guest' || CFG.flow === 'guest') ? 'guest' : 'user', tab: 'home', stack: [],
+    mems: SEEDS.mems, invite: SEEDS.invite, friends: SEEDS.friends, spaces: SEEDS.spaces, spf: null, spTried: false, gIdx: {}, viewer: null,
+    plans: SEEDS.plans, planAs: null, pf: null, pfTried: false, calF: 'all', devPics: [],
     mView: 'feed', fDim: 'all', fPeople: [], fMode: 'or', fMonth: null, fRegion: null,
     calY: 2026, calM: 11, calD: 8, footMode: 'mine', footWith: '민지',
     overlay: null, promptKind: 'create', intent: null,
     c: null, cTried: false, saving: false, kPics: [], kText: '',
-    toast: null, toastTone: 'neutral', compact: false
+    toast: null, toastTone: 'neutral', compact: false, footScope: 'domestic', footDistrict: '', footFriendDraft: '', footFriendQuery: '', threads: SEEDS.threads || {}, threadPhotoId: '', threadReactionPhotoId: '', threadDraft: '', threadPhoto: '', threadParent: null, threadReplyName: '', peekRegion: ''
   };
   scrollRef = React.createRef();
   componentDidMount() {
     this._r = () => this.setState({ compact: window.innerWidth < 440 }); this._r(); window.addEventListener('resize', this._r);
     this._imgErr = e => { const t = e.target; if (t && t.tagName === 'IMG' && /images\.unsplash\.com/.test(t.src)) t.style.display = 'none'; };
     document.addEventListener('error', this._imgErr, true);
+    this._createPeopleEsc = e => { if (e.key === 'Escape' && this.state.overlay === 'createPeople') { this.setState({ overlay:null }); setTimeout(() => { const el=document.getElementById('create-people-trigger'); if (el) el.focus(); }, 0); } }; window.addEventListener('keydown', this._createPeopleEsc);
+    try { const sv = CFG.flow && sessionStorage.getItem(SKEY); if (sv) this.setState(JSON.parse(sv)); } catch (e) {}
     const sm = /shot=([\w-]+)/.exec(location.hash); if (sm) this.applyShot(sm[1]);
   }
-  componentWillUnmount() { window.removeEventListener('resize', this._r); document.removeEventListener('error', this._imgErr, true); clearTimeout(this._t); clearTimeout(this._s); }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); window.removeEventListener('keydown', this._createPeopleEsc); document.removeEventListener('error', this._imgErr, true); clearTimeout(this._t); clearTimeout(this._s); }
   viewKey() { const s = this.state, top = s.stack[s.stack.length - 1]; return [s.auth, s.tab, s.mView, top && (top.t + (top.id || ''))].join('|'); }
   componentDidUpdate() {
     const k = this.viewKey(); if (k !== this._k) { this._k = k; if (this.scrollRef.current) this.scrollRef.current.scrollTop = 0; }
     if (this._vInit && this.state.viewer) { const el = document.querySelector('[data-gal="viewer"]'); if (el) { this.scrollGal(el, this.state.viewer.idx); this._vInit = false; } }
+    if (this._pvInit && this.state.pv) { const el = document.querySelector('[data-gal="pv"]'); if (el) { el.scrollLeft = this.state.pv.i * el.clientWidth; this._pvInit = false; } }
     if (this._restore) { const r = this._restore; const el = document.querySelector('[data-gal="' + r.key + '"]'); if (el) this.scrollGal(el, r.idx); this._restore = null; }
+    this.persist();
+  }
+  persist() {
+    if (!CFG.flow) return; // 설정이 없으면 원본과 똑같이(저장하지 않음) 동작
+    const s = this.state;
+    try { sessionStorage.setItem(SKEY, JSON.stringify({ mems: s.mems, plans: s.plans, invite: s.invite, friends: s.friends, spaces: s.spaces, devPics: s.devPics.filter(x => !/^blob:/.test(x)), threads: s.threads })); } catch (e) { /* 저장 공간이 모자라도 동작에는 문제 없음 */ }
+  }
+  goTab(t, top) { if (top && top.t === 'create') ev('create_abandon'); if (t === 'foot') ev('foot_view'); this.setState({ stack: [], tab: t, overlay: null }); }
+  focusThreadInput() { setTimeout(() => { const el = document.querySelector('[data-thread-input]'); if (el) el.focus({ preventScroll: true }); }, 80); }
+  openThread(photoId, focusComposer) {
+    const id = String(photoId || '');
+    if (!id) return;
+    this.setState({ overlay: 'thread', threadPhotoId: id, threadReactionPhotoId: '', threadDraft: '', threadPhoto: '', threadParent: null, threadReplyName: '' }, () => { if (focusComposer) this.focusThreadInput(); });
+  }
+  threadReact(photoId, emoji) {
+    const id = String(photoId || '');
+    if (!id) return;
+    this.setState(st => {
+      const all = { ...(st.threads || {}) }, cur = { comments: [], reactions: {}, mine: '', ...(all[id] || {}) }, previous = cur.mine || '', reactions = { ...(cur.reactions || {}) };
+      if (previous) reactions[previous] = Math.max(0, +(reactions[previous] || 0) - 1);
+      if (previous === emoji) cur.mine = '';
+      else { reactions[emoji] = +(reactions[emoji] || 0) + 1; cur.mine = emoji; }
+      cur.reactions = reactions; all[id] = cur;
+      return { threads: all, threadReactionPhotoId: '' };
+    });
+  }
+  threadReply(id, name) { this.setState({ threadParent: id, threadReplyName: name }, () => this.focusThreadInput()); }
+  threadDelete(id) {
+    const photoId = this.state.threadPhotoId;
+    if (!photoId) return;
+    this.setState(st => {
+      const all = { ...(st.threads || {}) }, cur = { comments: [], reactions: {}, mine: '', ...(all[photoId] || {}) }, target = cur.comments.find(c => c.id === id);
+      if (!target || target.by !== ME) return null;
+      cur.comments = cur.comments.filter(c => c.id !== id && c.parent !== id); all[photoId] = cur;
+      return { threads: all, threadParent: st.threadParent === id ? null : st.threadParent, threadReplyName: st.threadParent === id ? '' : st.threadReplyName };
+    }, () => this.say('댓글을 삭제했어요.'));
+  }
+  threadFile(e) {
+    const f = e.target.files && e.target.files[0]; e.target.value = '';
+    if (!f) return;
+    shrink(f).then(photo => this.setState({ threadPhoto: photo }));
+  }
+  threadSubmit() {
+    const s = this.state, text = String(s.threadDraft || '').trim();
+    if (!text && !s.threadPhoto) { this.say('짧은 기억을 남겨 주세요.', 'warning'); return; }
+    const photoId = String(s.threadPhotoId || '');
+    if (!photoId) { this.say('사진을 다시 선택해 주세요.', 'warning'); return; }
+    const row = { id: 'tc' + Date.now(), by: ME, at: '방금', text: text || '사진을 남겼어요.', photo: s.threadPhoto || '', parent: s.threadParent || null };
+    this.setState(st => { const all = { ...(st.threads || {}) }, cur = { comments: [], reactions: {}, mine: '', ...(all[photoId] || {}) }; cur.comments = [...cur.comments, row]; all[photoId] = cur; return { threads: all, threadDraft: '', threadPhoto: '', threadParent: null, threadReplyName: '' }; }, () => this.say('댓글을 남겼어요.', 'success'));
+  }
+  // 친구 초대 시뮬레이션: 초대 링크를 복사하면 잠시 뒤 친구가 수락하고 사진 2장과 이야기를 더한다(서버 없음)
+  simInvite(m) {
+    const fr = this.state.friends, order = [...PEOPLE.filter(n => !fr.includes(n)), ...PEOPLE], cand = order.find(n => !m.w.includes(n));
+    if (!cand) return;
+    const t = setTimeout(() => {
+      const base = m.w.length * 2, pics = [POOL[base % POOL.length], POOL[(base + 1) % POOL.length]];
+      this.setState(st => ({
+        friends: st.friends.includes(cand) ? st.friends : [...st.friends, cand],
+        mems: st.mems.map(x => x.id !== m.id ? x : { ...x, w: [...x.w, cand], ph: x.ph + 2, st: x.st + 1, nw: cand + '님이 초대를 수락하고 사진 2장을 더했어요', contribs: [...x.contribs, { by: cand, at: '방금', ph: 2, st: 1, pics, text: SC_FRIEND_NOTE[cand] || '같이 기록하게 돼서 좋아요.' }] })
+      }));
+      this.say(cand + '님이 초대를 수락했어요(데모). 사진 2장과 이야기를 더했어요.', 'success');
+      ev('invite_complete', { friends: new Set([...this.state.friends, cand]).size });
+    }, 2400);
+    (this._sim = this._sim || []).push(t);
+  }
+  // 약속 참석 응답 시뮬레이션: 초대한 친구들이 차례로 답한다
+  simPlan(id, names) {
+    const ans = ['yes', 'maybe', 'yes', 'no', 'yes', 'maybe'], ko = { yes: '참석', maybe: '미정', no: '불참' };
+    names.forEach((n, i) => {
+      const t = setTimeout(() => {
+        this.setState(st => ({ plans: st.plans.map(p => p.id === id ? { ...p, inv: { ...p.inv, [n]: ans[i % ans.length] } } : p) }));
+        if (i === 0) this.say(n + '님이 ' + ko[ans[0]] + '으로 답했어요(데모).');
+      }, 2200 + i * 1400);
+      (this._sim = this._sim || []).push(t);
+    });
   }
   scrollGal(el, idx) { const items = el.querySelectorAll('[data-ph]'); if (items[idx]) el.scrollLeft = items[idx].offsetLeft - items[0].offsetLeft; }
   galIndex(el) { const items = el.querySelectorAll('[data-ph]'); if (items.length < 2) return 0; const step = items[1].offsetLeft - items[0].offsetLeft; return Math.max(0, Math.min(items.length - 1, Math.round(el.scrollLeft / step))); }
   galScroll(key) { return e => { const i = this.galIndex(e.currentTarget); if ((this.state.gIdx[key] || 0) !== i) this.setState(st => ({ gIdx: { ...st.gIdx, [key]: i } })); }; }
-  openViewer(mid, key, idx) { this._vInit = true; this.setState({ viewer: { mid, key, idx, scale: 1, tx: 0, ty: 0, live: false } }); }
+  openViewer(mid, key, idx) { ev('photo_view'); this._vInit = true; this.setState({ viewer: { mid, key, idx, scale: 1, tx: 0, ty: 0, live: false } }); }
   setV(p) { this.setState(st => st.viewer ? { viewer: { ...st.viewer, ...p } } : null); }
   clampPan(sc, tx, ty) { const lx = (sc - 1) * 170, ly = (sc - 1) * 240; return { tx: Math.max(-lx, Math.min(lx, tx)), ty: Math.max(-ly, Math.min(ly, ty)) }; }
   applyShot(id) {
@@ -1023,12 +1418,15 @@ class Component extends DCLogic {
       members: () => S({ tab: 'memory', stack: [{ t: 'detail', id: 'jeju' }], overlay: 'members' }),
       createChoice: () => this.openCreate(),
       createPhoto: () => { this.openCreate(); S(st => ({ c: { ...st.c, mode: 'photo', title: '비 그친 뒤 걸었던 길', pics: POOL.slice(0, 3), with: ['민지'] } })); },
+      createPeople: () => { this.openCreate(); S(st => ({ c:{ ...st.c, mode:'photo', with:['민지','하은'], withIds:['friend-0','friend-2'] }, overlay:'createPeople', cPeopleDraft:['friend-0','friend-2'], cPeopleQuery:'' })); },
+      createPeopleEmpty: () => { this.openCreate(); S(st => ({ friends:[], c:{ ...st.c, mode:'photo', with:[], withIds:[] } })); },
+      createPeopleMany: () => { const friends=Array.from({length:100},(_,i) => '친구 ' + (i + 1)); this.openCreate(); S(st => ({ friends, c:{ ...st.c, mode:'photo', with:[], withIds:[] }, overlay:'createPeople', cPeopleDraft:[], cPeopleQuery:'' })); },
       createStory: () => { this.openCreate(); S(st => ({ c: { ...st.c, mode: 'story', title: '퇴근길에 만난 민지', story: '우연히 같은 버스를 탔다.' } })); },
       fromPlan: () => fromPlan('pl-board'),
       planNew: () => this.openPlanForm(null, '2026. 11. 21'),
       planPending: () => P('pl-kimjang'), planChanged: () => P('pl-move'), planHost: () => P('pl-party'),
       planAs: () => P('pl-party', { planAs: '유나' }), planPast: () => P('pl-board'), planLinked: () => P('pl-han'), planCancel: () => P('pl-busan'),
-      foot: () => S({ tab: 'foot' }), footWith: () => S({ tab: 'foot', footMode: 'with' }),
+      foot: () => S({ tab: 'foot' }), footWith: () => S({ tab: 'foot', footMode: 'with' }), footFriend:()=>S({tab:'foot',footMode:'with',overlay:'footFriend',footFriendDraft:'민지'}), footRegions:()=>S({tab:'foot',stack:[{t:'footRegions'}]}), footMems:()=>S({tab:'foot',stack:[{t:'footMems'}]}),
       region: () => S({ tab: 'foot', stack: [{ t: 'region', id: '서울' }] }),
       me: () => S({ tab: 'me' })
     };
@@ -1037,11 +1435,12 @@ class Component extends DCLogic {
   say(text, tone = 'neutral') { clearTimeout(this._t); this.setState({ toast: text, toastTone: tone }); this._t = setTimeout(() => this.setState({ toast: null }), 2600); }
   push(e) { this.setState(s => ({ stack: [...s.stack, e], overlay: null })); }
   gate(kind, intent) { this.setState({ overlay: 'auth', promptKind: kind, intent }); }
-  openCreate(date, pre) { this.setState(s => ({ stack: [...s.stack, { t: 'create' }], overlay: null, c: { mode: this.props.createEntry === 'direct' ? 'photo' : null, title: '', date: date || TODAY, story: '', pics: [], with: [], region: null, place: '', fromPlan: null, ...(pre || {}) }, cTried: false })); }
+  openCreate(date, pre) { ev('create_start', { entry: pre && pre.fromPlan ? 'plan' : pre && pre.space ? 'space' : date ? 'calendar' : 'tab', first: this.state.mems.length === 0 }); this.setState(s => ({ stack: [...s.stack, { t: 'create' }], overlay: null, c: { mode: this.props.createEntry === 'direct' ? 'photo' : null, title: '', date: date || TODAY, story: '', pics: [], with: [], region: null, place: '', fromPlan: null, ...(pre || {}) }, cTried: false })); }
   openPlanForm(id, date) {
+    if (!id) ev('plan_create_start');
     const p = id && this.state.plans.find(x => x.id === id);
     this.setState(st => ({ stack: [...st.stack, { t: 'planForm', id: id || 'new' }], overlay: null, pfTried: false,
-      pf: p ? { id, title: p.t, date: keyToIso(p.d), time: p.time, place: p.place || '', inv: Object.keys(p.inv), memo: p.memo || '' } : { title: '', date: date ? keyToIso(date) : '', time: '', place: '', inv: [], memo: '' } }));
+      pf: p ? { id, title: p.t, date: keyToIso(p.d), time: p.time, tk: p.tk || 'exact', pk: p.pk || (p.place ? 'exact' : 'tbd'), place: p.place || '', inv: Object.keys(p.inv), memo: p.memo || '' } : { title: '', date: date ? keyToIso(date) : '', time: '', tk: 'exact', pk: 'tbd', place: '', inv: [], memo: '' } }));
   }
   resume(intent) {
     if (!intent) { this.setState({ stack: [], tab: 'home' }); return; }
@@ -1065,16 +1464,16 @@ class Component extends DCLogic {
       const st = pd(m.d), en = m.d2 ? pd(m.d2) : st;
       const people = m.w.map(nm);
       return {
-        ...m, title: guest && m.id === 'jeju' ? '친구 넷이 떠난 제주 2박 3일' : m.t, img: U(m.img), people,
+        ...m, district: districtOf(m), title: guest && m.id === 'jeju' ? '친구 넷이 떠난 제주 2박 3일' : m.t, img: U(m.img), people,
         names: [nm(ME), ...people], hasNew: !!m.nw && !guest,
         meta: (m.d2 ? m.d + ' – ' + m.d2.slice(6) : m.d) + ' · ' + m.r + ' ' + m.p,
         range: m.d2 ? m.d + ' – ' + m.d2.slice(6) : m.d,
         rangeShort: m.d2 ? st.m + '월 ' + st.d + '일 – ' + en.d + '일' : st.m + '월 ' + st.d + '일',
         dateShort: st.m + '월 ' + st.d + '일', ym: st.y * 100 + st.m, start: st, end: en,
-        withShort: people.length === 1 ? wa(people[0]) + ' 함께' : people[0] + ' 외 ' + (people.length - 1) + '명',
-        withFull: wa(people.join(', ')) + ' 함께', counts: '사진 ' + m.ph + ' · 이야기 ' + m.st,
+        withShort: people.length === 0 ? '혼자 남긴 추억' : people.length === 1 ? wa(people[0]) + ' 함께' : people[0] + ' 외 ' + (people.length - 1) + '명',
+        withFull: people.length === 0 ? '혼자 남긴 추억' : wa(people.join(', ')) + ' 함께', counts: '사진 ' + m.ph + ' · 이야기 ' + m.st,
         scopeLabel: guest ? '예시 추억' : '초대된 사람만',
-        open: () => this.push({ t: 'detail', id: m.id })
+        open: () => { ev('memory_view', { year: st.y }); this.push({ t: 'detail', id: m.id }); }
       };
     };
     const all = src.map(dec);
@@ -1096,7 +1495,7 @@ class Component extends DCLogic {
       pick: () => k === 'all' ? this.setState({ fDim: 'all', fPeople: [], fMonth: null, fRegion: null }) : this.setState({ fDim: s.fDim === k ? 'all' : k })
     }));
     let optChips = [];
-    if (s.fDim === 'people') optChips = PEOPLE.map(p => ({ label: nm(p), selected: s.fPeople.includes(p), toggle: () => this.setState(st => ({ fPeople: st.fPeople.includes(p) ? st.fPeople.filter(x => x !== p) : [...st.fPeople, p] })) }));
+    if (s.fDim === 'people') optChips = s.friends.map(p => ({ label: nm(p), selected: s.fPeople.includes(p), toggle: () => this.setState(st => ({ fPeople: st.fPeople.includes(p) ? st.fPeople.filter(x => x !== p) : [...st.fPeople, p] })) }));
     if (s.fDim === 'month') optChips = months.map(ym => ({ label: Math.floor(ym / 100) + '년 ' + (ym % 100) + '월', selected: s.fMonth === ym, toggle: () => this.setState({ fMonth: s.fMonth === ym ? null : ym }) }));
     if (s.fDim === 'region') optChips = usedRegions.map(r => ({ label: r, selected: s.fRegion === r, toggle: () => this.setState({ fRegion: s.fRegion === r ? null : r }) }));
 
@@ -1111,17 +1510,18 @@ class Component extends DCLogic {
       const SL = { upcoming: '다가오는 약속', past: '지난 약속', linked: '추억으로 남긴 약속', cancelled: '취소된 약속' }[state];
       const goingText = '참석 ' + going.length + (cnt('maybe') ? ' · 미정 ' + cnt('maybe') : '') + (cnt('pending') ? ' · 대기 ' + cnt('pending') : '');
       return { ...p, title: p.t, start: dt, state, isUpcoming: state === 'upcoming', isPast: state === 'past', isLinked: state === 'linked', isCancelled: state === 'cancelled',
-        monthLabel: dt.m + '월', dayNum: dt.d, dateText: dt.y + '년 ' + dt.m + '월 ' + dt.d + '일 ' + wd + '요일', timeText: ft(p.time),
-        placeText: p.place || '장소 미정', placeColor: p.place ? 'inherit' : 'var(--ws-color-fg-tertiary)',
+        monthLabel: dt.m + '월', dayNum: dt.d, dateText: dt.y + '년 ' + dt.m + '월 ' + dt.d + '일 ' + wd + '요일', timeText: tkText(p),
+        placeText: p.place ? p.place + (p.pk === 'area' ? ' (지역만)' : '') : '장소 미정', placeColor: p.place ? 'inherit' : 'var(--ws-color-fg-tertiary)',
         goingNames: going, goingText,
         summary: ['참석 ' + going.length, cnt('maybe') && '미정 ' + cnt('maybe'), cnt('pending') && '초대 대기 ' + cnt('pending'), cnt('no') && '불참 ' + cnt('no')].filter(Boolean).join(' · '),
+        isHost: p.host === ME, showResp: p.host !== ME || state === 'cancelled', changeTitle: p.changed ? (/^장소가 .+에서 .+으로 바뀌었어요/.test(String(p.changed)) ? '장소가 변경되었어요' : String(p.changed).split(' · ')[0]) : '', changeDetail: p.changed && /^장소가 (.+)에서 (.+)으로 바뀌었어요/.test(String(p.changed)) ? String(p.changed).match(/^장소가 (.+)에서 (.+)으로 바뀌었어요/).slice(1).join(' → ') : '', hasChangeDetail: !!(p.changed && /^장소가 (.+)에서 (.+)으로 바뀌었어요/.test(String(p.changed))),
         myLabel: state === 'cancelled' ? '취소됨' : MY[0], myBg: state === 'cancelled' ? 'var(--ws-badge-danger-bg)' : MY[1], myFg: state === 'cancelled' ? 'var(--ws-badge-danger-fg)' : MY[2], hasChanged: !!p.changed && state === 'upcoming',
         stateLabel: SL, badgeTone: { upcoming: 'brand', past: 'info', linked: 'success', cancelled: 'danger' }[state], strike: state === 'cancelled' ? 'line-through' : 'none',
         icon: state === 'cancelled' ? 'calendar-x' : state === 'linked' ? 'images' : 'calendar-days', kindLabel: '약속 · ' + (state === 'upcoming' ? MY[0] : SL.replace(' 약속', '')),
-        aria: '약속, ' + p.t + ', ' + dt.m + '월 ' + dt.d + '일 ' + ft(p.time) + ', ' + (state === 'cancelled' ? '취소됨' : MY[0]),
-        open: () => this.setState(st => ({ stack: [...st.stack, { t: 'plan', id: p.id }], overlay: null, planAs: null })) };
+        aria: '약속, ' + p.t + ', ' + dt.m + '월 ' + dt.d + '일 ' + tkText(p) + ', ' + (state === 'cancelled' ? '취소됨' : MY[0]),
+        open: () => { ev('plan_view'); this.setState(st => ({ stack: [...st.stack, { t: 'plan', id: p.id }], overlay: null, planAs: null })); } };
     };
-    const plans = (guest ? [] : s.plans).map(decPlan).sort((a, b) => (a.d + a.time).localeCompare(b.d + b.time));
+    const plans = (guest ? [] : s.plans).map(decPlan).sort((a, b) => (a.d + sortKey(a)).localeCompare(b.d + sortKey(b)));
     const upPlans = plans.filter(p => p.isUpcoming).slice(0, 3);
     const pastNudge = plans.filter(p => p.isPast).slice(-1)[0];
 
@@ -1157,13 +1557,16 @@ class Component extends DCLogic {
     const shiftMonth = k => this.setState(st => { const dt = new Date(st.calY, st.calM - 1 + k, 1); return { calY: dt.getFullYear(), calM: dt.getMonth() + 1, calD: 1 }; });
 
     // footprints
-    const footBase = s.footMode === 'mine' ? all : all.filter(m => m.w.includes(s.footWith));
+    const footBase = s.footMode === 'mine' ? all : all.filter(m => s.footWith && m.w.includes(s.footWith));
+    const footVisible = s.footScope === 'domestic' ? footBase : [];
     const rc = {}, rcover = {};
-    footBase.forEach(m => { rc[m.r] = (rc[m.r] || 0) + 1; if (!rcover[m.r]) rcover[m.r] = m.img; });
+    footVisible.forEach(m => { rc[m.r] = (rc[m.r] || 0) + 1; if (!rcover[m.r]) rcover[m.r] = m.img; });
     const allCover = {}; all.forEach(m => { if (!allCover[m.r]) allCover[m.r] = m.img; });
     const stamps = REGIONS.map(r => rc[r]
-      ? { has: true, initial: '', img: rcover[r], border: '2px solid var(--ws-color-border-brand)', bg: 'var(--ws-color-bg-brand-subtle)', cap: r + ' ' + rc[r], capColor: 'var(--ws-color-fg-strong)', aria: r + ', 추억 ' + rc[r] + '개', pick: () => this.push({ t: 'region', id: r }) }
-      : { has: false, initial: r, img: '', border: '1.5px dashed var(--ws-color-border-default)', bg: 'transparent', cap: ' ', capColor: 'transparent', aria: r + ', 아직 발자국 없음', pick: () => this.say(r + '에는 아직 남긴 발자국이 없어요.') });
+      ? { has: true, initial: '', img: rcover[r], border: '2px solid var(--ws-color-border-brand)', bg: 'var(--ws-color-bg-brand-subtle)', cap: r + ' ' + rc[r], capColor: 'var(--ws-color-fg-strong)', aria: r + ', 추억 ' + rc[r] + '개, 눌러서 보기', pick: () => { this.setState({ overlay: 'regionPeek', peekRegion: r }); } }
+      : { has: false, initial: r, img: '', border: '1.5px dashed var(--ws-color-border-subtle)', bg: 'transparent', cap: ' ', capColor: 'transparent', aria: r + ', 아직 발자국 없음', pick: () => this.say(r + '에는 아직 남긴 발자국이 없어요.') });
+    const mapMarkers = REGIONS.map((r, i) => ({ ...stamps[i], name: r, x: REGION_POS[r][0], y: REGION_POS[r][1], count: rc[r] || 0, size: 52, cursor: 'pointer', shadow: '0 0 0 2px var(--ws-color-border-brand),0 4px 12px rgba(86,107,92,.2)' })).filter(r => r.has);
+    const footRegionRows = REGIONS.filter(r => rc[r]).map(r => ({ name:r, img:rcover[r], count:rc[r], open:()=>{ ev('region_view'); this.setState(st => ({ stack:[...st.stack,{t:'region',id:r}], footDistrict:'' })); } })), footMemRows = footVisible;
 
     // detail
     const curRaw = top && top.t === 'detail' ? src.find(m => m.id === top.id) : null;
@@ -1171,21 +1574,23 @@ class Component extends DCLogic {
     if (curRaw) {
       const d = dec(curRaw);
       const groups = photosOf(curRaw), flat = groups.flat();
-      const mk = (list, key) => list.map((p, i) => ({ src: U(p.id), alt: nm(p.by) + '님이 남긴 사진 ' + (i + 1), aria: '사진 ' + (i + 1) + ' / ' + list.length + ', 크게 보기', view: () => this.openViewer(curRaw.id, key, i) }));
+      const mk = (list, key) => list.map((p, i) => ({ id: String(p.id), src: U(p.id), alt: nm(p.by) + '님이 남긴 사진 ' + (i + 1), aria: '사진 ' + (i + 1) + ' / ' + list.length + ', 크게 보기', view: () => this.openViewer(curRaw.id, key, i) }));
       const topKey = curRaw.id + ':top';
       const contribs = curRaw.contribs.map((c, ci) => {
         const list = groups[ci], key = curRaw.id + ':c' + ci, idx = Math.min(s.gIdx[key] || 0, Math.max(0, list.length - 1));
         return {
           name: nm(c.by), mine: c.by === ME && !guest, at: c.at, ph: list.length, text: c.text, hasText: !!c.text,
           hasPhotos: list.length > 0, multi: list.length > 1, photos: mk(list, key), key, pos: idx + 1, count: list.length,
-          itemW: list.length > 1 ? '86%' : '100%', onScroll: this.galScroll(key), galLabel: nm(c.by) + '님이 남긴 사진'
+          itemW: list.length > 1 ? '86%' : '100%', restW: '14%', onScroll: this.galScroll(key), galLabel: nm(c.by) + '님이 남긴 사진'
         };
       });
       const topIdx = Math.min(s.gIdx[topKey] || 0, Math.max(0, flat.length - 1));
+      const focusPhoto = flat[topIdx], focusId = focusPhoto ? String(focusPhoto.id) : '', focusContrib = focusPhoto ? curRaw.contribs[focusPhoto.ci] : null, threadRaw = { comments: [], reactions: {}, mine: '', ...((s.threads || {})[focusId] || {}) };
+      const topComments = threadRaw.comments.filter(c => !c.parent), preview = topComments.slice(-1).map(c => ({ by: c.by, text: c.text || '사진을 남겼어요.' })), reactionCount = Object.values(threadRaw.reactions || {}).reduce((n, v) => n + (+v || 0), 0), reactionText = Object.entries(threadRaw.reactions || {}).filter(([,n]) => +n > 0).map(([e,n]) => e + ' ' + n).join(' · ');
       cur = {
         ...d, contribs, contribCount: new Set(curRaw.contribs.map(c => c.by)).size, counts: '사진 ' + flat.length + ' · 이야기 ' + curRaw.st,
-        all: mk(flat, topKey), topKey, topMulti: flat.length > 1, topPos: topIdx + 1, allCount: flat.length, topScroll: this.galScroll(topKey),
-        openRegion: () => this.push({ t: 'region', id: curRaw.r }),
+        all: mk(flat, topKey), topKey, topMulti: flat.length > 1, topPos: topIdx + 1, allCount: flat.length, topScroll: this.galScroll(topKey), hasFocusPhoto: !!focusId, focusAuthor: focusPhoto ? nm(focusPhoto.by) : '', focusStory: focusContrib ? focusContrib.text : '', focusHasStory: !!(focusContrib && focusContrib.text), focusStoryEmpty: !(focusContrib && focusContrib.text), threadCommentCount: threadRaw.comments.length, threadReactionCount: reactionCount, threadHasReaction: reactionCount > 0, threadReactionText: reactionText, threadPreview: preview, threadHasPreview: preview.length > 0, threadEmpty: threadRaw.comments.length === 0, threadShowAll: threadRaw.comments.length > 1, threadReactionOpen: s.threadReactionPhotoId === focusId, threadReactions: ['❤️','😊','😂','🥹','👏'].map(e => { const n = +(threadRaw.reactions[e] || 0), on = threadRaw.mine === e; return { emoji:e, on, aria:e + (on ? ' 반응 취소' : ' 반응 남기기') + ', 현재 ' + n + '개', border:on ? '1px solid #566B5C' : '1px solid transparent', bg:on ? '#EEF2EC' : '#fff', toggle:() => this.threadReact(focusId, e) }; }), toggleReaction: () => guest ? this.gate('contrib', { do:'contrib', id:curRaw.id }) : this.setState(st => ({ threadReactionPhotoId: st.threadReactionPhotoId === focusId ? '' : focusId })), openThread: () => guest ? this.gate('contrib', { do: 'contrib', id: curRaw.id }) : this.openThread(focusId, false), startThread: () => guest ? this.gate('contrib', { do: 'contrib', id: curRaw.id }) : this.openThread(focusId, true),
+        openRegion: () => { ev('region_view'); this.push({ t: 'region', id: curRaw.r }); },
         memberRows: [{ nick: nm(ME), role: '관리자 · 볼 수 있어요' }, ...curRaw.w.map(p => ({ nick: nm(p), role: '참여 중 · 볼 수 있어요' }))]
       };
     }
@@ -1193,24 +1598,29 @@ class Component extends DCLogic {
     // region
     let region = {};
     if (top && top.t === 'region') {
-      const list = all.filter(m => m.r === top.id);
+      const list = footVisible.filter(m => m.r === top.id);
       const ppl = [...new Set(list.flatMap(m => m.w))];
       const firstM = list[list.length - 1];
-      region = { name: top.id, list, img: allCover[top.id], names: [nm(ME), ...ppl.map(nm)].slice(0, 5), withText: ppl.length ? ppl.slice(0, 3).map(nm).join(', ') + (ppl.length > 3 ? ' 외 ' + (ppl.length - 3) + '명' : '') + '과 함께' : '혼자 남긴 발자국', sub: '추억 ' + list.length + '개' + (firstM ? ' · ' + firstM.start.m + '월에 처음' : '') };
+      const districtNames = [...new Set(list.map(m => m.district))], pickedDistrict = districtNames.includes(s.footDistrict) ? s.footDistrict : '', shown = pickedDistrict ? list.filter(m => m.district === pickedDistrict) : list;
+      region = { name: top.id, path: pickedDistrict ? top.id + ' > ' + pickedDistrict : top.id + '의 발자국', districts: [{ name:'전체', count:list.length, on:!pickedDistrict, pick:()=>this.setState({footDistrict:''}) }, ...districtNames.map(name => ({ name, count:list.filter(m => m.district === name).length, on:pickedDistrict === name, pick:()=>this.setState({footDistrict:name}) }))].map(d => ({ ...d, border:d.on ? '1px solid var(--ws-color-border-brand)' : '1px solid var(--ws-color-border-default)', bg:d.on ? 'var(--ws-color-bg-brand-subtle)' : 'var(--ws-color-bg-surface)', fg:d.on ? 'var(--ws-color-fg-brand)' : 'var(--ws-color-fg-secondary)' })), list:shown, img:allCover[top.id], names:[nm(ME), ...ppl.map(nm)].slice(0,5), withText:ppl.length ? ppl.slice(0,3).map(nm).join(', ') + (ppl.length > 3 ? ' 외 ' + (ppl.length - 3) + '명' : '') + '과 함께' : '혼자 남긴 발자국', sub:'추억 ' + shown.length + '개' + (firstM ? ' · ' + firstM.start.m + '월에 처음' : '') };
     }
+    const peekList = s.peekRegion ? footVisible.filter(m => m.r === s.peekRegion).map(m => ({ ...m, open: () => this.setState(st => ({ overlay: null, stack: [...st.stack, { t: 'detail', id: m.id }] })) })) : [];
+    const regionPeek = { name: s.peekRegion, count: peekList.length, list: peekList.slice(0, 2), openAll: () => { ev('region_view'); this.setState(st => ({ overlay: null, footDistrict: '', stack: [...st.stack, { t: 'region', id: s.peekRegion }] })); } };
 
     // create
     const c = s.c || {};
     const isCreate = !!(top && top.t === 'create');
-    const saveMemory = () => {
+    const saveMemory = skip => {
       if (!c.title.trim()) { this.setState({ cTried: true }); this.say('제목을 입력해 주세요.', 'warning'); return; }
       if (!c.region) { this.setState({ cTried: true }); this.say('지역을 골라 주세요. 발자국에 쓰여요.', 'warning'); return; }
+      if (skip !== true) { this.setState({ overlay: 'confirm' }); return; }
       this.setState({ saving: true });
       this._s = setTimeout(() => {
         const id = 'n' + Date.now();
         const pics = c.pics;
+        ev('create_save', { first: this.state.mems.length === 0, photos: pics.length, story: !!c.story.trim(), people: c.with.length, plan: !!c.fromPlan });
         const isNew = !this.state.mems.some(m => m.r === c.region);
-        const m = { id, t: c.title.trim(), d: c.date, r: c.region, p: c.place.trim() || c.region, w: c.with.length ? c.with : [], img: pics[0] || '', ph: pics.length, st: c.story.trim() ? 1 : 0, nw: '방금 남긴 추억이에요',
+        const m = { id, space: c.space || null, memberIds: Array.isArray(c.withIds) ? c.withIds.slice() : [], t: c.title.trim(), d: c.date, r: c.region, p: c.place.trim() || c.region, w: c.with.length ? c.with : [], img: pics[0] || '', ph: pics.length, st: c.story.trim() ? 1 : 0, nw: '방금 남긴 추억이에요',
           contribs: [{ by: ME, at: '방금', ph: pics.length, st: c.story.trim() ? 1 : 0, pics, text: c.story.trim() }] };
         if (!m.w.length) m.w = [];
         this.setState(st => ({ mems: [m, ...st.mems], plans: c.fromPlan ? st.plans.map(p => p.id === c.fromPlan ? { ...p, memId: id } : p) : st.plans, saving: false, tab: 'memory', mView: 'feed', fDim: 'all', fPeople: [], fMonth: null, fRegion: null, stack: [{ t: 'detail', id }] }));
@@ -1223,6 +1633,7 @@ class Component extends DCLogic {
     const kSubmit = () => {
       if (!curRaw) return;
       const add = { ph: s.kPics.length, text: s.kText.trim() };
+      ev('contrib_add', { photos: add.ph, story: !!add.text });
       this.setState(st => ({
         mems: st.mems.map(m => {
           if (m.id !== curRaw.id) return m;
@@ -1278,6 +1689,34 @@ class Component extends DCLogic {
       this.say('사진을 삭제했어요. 사진 수와 순서를 다시 맞췄어요.');
     };
 
+    // 우리 공간(P1): 목록·상세·만들기/수정. 공간은 권한을 주지 않는다(추억 열람은 추억별 참여자만).
+    const spaces = guest ? [] : s.spaces, isSpace = !!(top && top.t === 'space'), isSpaceForm = !!(top && top.t === 'spaceForm');
+    const spRaw = isSpace ? s.spaces.find(x => x.id === top.id) : null, spf = s.spf || { id: null, name: '', members: []};
+    const spaceOf = id => s.spaces.find(x => x.id === id), linkedOf = id => all.filter(m => m.space === id);
+    const spaceRest = (c.space && spaceOf(c.space)) ? spaceOf(c.space).members.filter(n => !(c.with || []).includes(n)) : [];
+    const spaceCards = spaces.map(x => ({ name: x.name, names: [ME, ...x.members], meta: '멤버 ' + (x.members.length + 1) + '명 · 볼 수 있는 추억 ' + linkedOf(x.id).length + '개', aria: '우리 공간, ' + x.name, open: () => { ev('space_view'); this.push({ t: 'space', id: x.id }); } }));
+    const sp = spRaw ? (() => { const L = linkedOf(spRaw.id); return { name: spRaw.name, count: spRaw.members.length + 1, rows: [{ nick: ME, role: '소유자' }, ...spRaw.members.map(n => ({ nick: n, role: '멤버' }))], memCount: L.length, noMems: L.length === 0, mems: L.map(m => ({ title: m.title, img: m.img, meta: m.dateShort + ' · ' + m.withShort, open: m.open })) }; })() : {};
+    const setSpf = p => this.setState(st => ({ spf: { ...st.spf, ...p } }));
+    const openSpaceForm = x => this.setState(st => ({ stack: [...st.stack, { t: 'spaceForm', id: x ? x.id : 'new' }], overlay: null, spTried: false, spf: x ? { id: x.id, name: x.name, members: [...x.members] } : { id: null, name: '', members: [] } }));
+    const saveSpace = () => {
+      if (!spf.name.trim()) { this.setState({ spTried: true }); this.say('공간 이름을 입력해 주세요.', 'warning'); return; }
+      if (spf.id) { this.setState(st => ({ spaces: st.spaces.map(x => x.id === spf.id ? { ...x, name: spf.name.trim(), members: spf.members } : x), stack: st.stack.slice(0, -1) })); ev('space_update', { members: spf.members.length }); this.say('우리 공간을 저장했어요.', 'success'); return; }
+      const id = 'sp' + Date.now();
+      this.setState(st => ({ spaces: [...st.spaces, { id, name: spf.name.trim(), members: spf.members }], stack: [...st.stack.slice(0, -1), { t: 'space', id }], spTried: false }));
+      ev('space_create', { members: spf.members.length }); this.say('우리 공간을 만들었어요. 공간 멤버를 추억에 자동으로 초대하지는 않아요.', 'success');
+    };
+    // shortcut: 프로토타입 친구 데이터가 이름 문자열이라 연결 순서 기반 ID를 쓴다, 실제 API 연결 시 사용자 ID로 교체한다.
+    const createFriendOptions = (s.friends || []).map((name, index) => ({ id: 'friend-' + index, name }));
+    const cConfirmedIds = Array.isArray(c.withIds) ? c.withIds : createFriendOptions.filter(f => (c.with || []).includes(f.name)).map(f => f.id);
+    const cSelectedFriends = createFriendOptions.filter(f => cConfirmedIds.includes(f.id));
+    const cSelectedNames = cSelectedFriends.map(f => f.name), cPeopleCount = cSelectedFriends.length;
+    const cPeopleSummary = cPeopleCount ? cSelectedNames.slice(0, 3).join(' · ') + (cPeopleCount > 3 ? ' 외 ' + (cPeopleCount - 3) + '명' : '') : '함께한 친구 선택';
+    const cPeopleDraftIds = Array.isArray(s.cPeopleDraft) ? s.cPeopleDraft : [], cPeopleQuery = String(s.cPeopleQuery || '').trim().toLocaleLowerCase('ko-KR');
+    const cPeopleRows = createFriendOptions.filter(f => !cPeopleQuery || f.name.toLocaleLowerCase('ko-KR').includes(cPeopleQuery)).map(f => {
+      const selected = cPeopleDraftIds.includes(f.id), inSpace = !!(c.space && spaceOf(c.space) && spaceOf(c.space).members.includes(f.name));
+      return { id:f.id, name:f.name, inSpace, selected, aria:f.name + (selected ? ', 선택됨' : ', 선택 안 됨'), bg:selected ? '#EEF2EC' : '#FFFFFF', border:selected ? '1.5px solid #566B5C' : '1px solid #D7DAD5', fg:selected ? '#405B48' : '#242622', weight:selected ? 600 : 500, avatarBg:selected ? '#FFFFFF' : '#F3F4F1', checkBorder:selected ? '1.5px solid #566B5C' : '1.5px solid #A8ADA6', checkBg:selected ? '#566B5C' : '#FFFFFF', check:selected ? LI('check', 16, '2.25') : '', toggle:() => this.setState(st => ({ cPeopleDraft:(st.cPeopleDraft || []).includes(f.id) ? st.cPeopleDraft.filter(id => id !== f.id) : [...(st.cPeopleDraft || []), f.id] })) };
+    });
+
     // plan detail & form
     const isPlan = !!(top && top.t === 'plan'), isPlanForm = !!(top && top.t === 'planForm');
     const pRaw = isPlan ? s.plans.find(p => p.id === top.id) : null;
@@ -1290,6 +1729,7 @@ class Component extends DCLogic {
       const SI = { host: ['circle-check', '주최 · 참석', 'brand'], yes: ['circle-check', '참석', 'success'], maybe: ['circle-dot', '미정', 'warning'], pending: ['clock', '초대 대기', 'info'], no: ['circle-x', '불참', 'neutral'] };
       const rows = [[pRaw.host, 'host'], ...Object.entries(pRaw.inv).sort((a, b) => ord[a[1]] - ord[b[1]])].map(([n, v], i) => ({ nick: n, isMe: n === who, icon: SI[v][0], label: SI[v][1], color: 'var(--ws-badge-' + SI[v][2] + '-fg)', bg: 'var(--ws-badge-' + SI[v][2] + '-bg)', border: i ? '1px solid var(--ws-color-border-subtle)' : '0' }));
       const setR = v => {
+        ev('plan_rsvp', { answer: v });
         this.setState(st => ({ plans: st.plans.map(p => p.id === pRaw.id ? { ...p, inv: { ...p.inv, [who]: v } } : p) }));
         this.say(v === 'yes' ? '참석으로 답했어요. ' + pRaw.host + '님에게 알려요(데모).' : v === 'maybe' ? '미정으로 답했어요. 나중에 바꿀 수 있어요.' : '불참으로 답했어요.', v === 'yes' ? 'success' : 'neutral');
       };
@@ -1305,34 +1745,39 @@ class Component extends DCLogic {
         edit: () => this.openPlanForm(pRaw.id), askCancel: () => this.setState({ overlay: 'cancelPlan' }) };
     }
     const toMemory = () => {
-      const cand = [pRaw.host, ...Object.keys(pRaw.inv).filter(n => pRaw.inv[n] === 'yes')].filter(n => n !== ME && PEOPLE.includes(n));
+      ev('plan_to_memory');
+      const cand = [pRaw.host, ...Object.keys(pRaw.inv).filter(n => pRaw.inv[n] === 'yes')].filter(n => n !== ME && s.friends.includes(n));
       this.openCreate(pRaw.d, { mode: 'photo', title: pRaw.t, place: pRaw.place || '', with: cand, fromPlan: pRaw.id, fromPlanTitle: pRaw.t });
     };
-    const pf = s.pf || { title: '', date: '', time: '', place: '', inv: [], memo: '' };
+    const pf = s.pf || { title: '', date: '', time: '', tk: 'exact', pk: 'tbd', place: '', inv: [], memo: '' };
     const savePlan = () => {
-      if (!pf.title.trim() || !pf.date || !pf.time) { this.setState({ pfTried: true }); this.say('제목, 날짜, 시간을 입력해 주세요.', 'warning'); return; }
-      const d = isoToKey(pf.date), dt = pd(d), place = pf.place.trim();
+      const tk = pf.tk || 'exact', pk = pf.pk || 'tbd';
+      if (!pf.title.trim() || !pf.date || (tk === 'exact' && !pf.time) || (pk !== 'tbd' && !pf.place.trim())) { this.setState({ pfTried: true }); this.say('제목, 날짜, 시간·장소를 확인해 주세요.', 'warning'); return; }
+      const d = isoToKey(pf.date), dt = pd(d), place = pk === 'tbd' ? '' : pf.place.trim(), time = tk === 'exact' ? pf.time : '';
       if (pf.id) {
         const old = s.plans.find(p => p.id === pf.id);
-        const tc = old.d !== d || old.time !== pf.time, pc = (old.place || '') !== place;
+        const tc = old.d !== d || old.time !== time || (old.tk || 'exact') !== tk, pc = (old.place || '') !== place;
         const msg = tc && pc ? '일정과 장소가' : tc ? '일정이' : pc ? '장소가' : '';
         const inv = {}; pf.inv.forEach(n => { inv[n] = old.inv[n] || 'pending'; });
-        this.setState(st => ({ plans: st.plans.map(p => p.id === pf.id ? { ...p, t: pf.title.trim(), d, time: pf.time, place, memo: pf.memo.trim(), inv, changed: msg ? msg + ' 바뀌었어요 · 방금 내가 수정' : p.changed } : p), stack: st.stack.slice(0, -1), calY: dt.y, calM: dt.m, calD: dt.d }));
+        this.setState(st => ({ plans: st.plans.map(p => p.id === pf.id ? { ...p, t: pf.title.trim(), d, time, tk, pk, place, memo: pf.memo.trim(), inv, changed: msg ? msg + ' 바뀌었어요 · 방금 내가 수정' : p.changed } : p), stack: st.stack.slice(0, -1), calY: dt.y, calM: dt.m, calD: dt.d }));
         this.say(msg ? '참석자에게 ' + msg.replace(/[이가]$/, '') + ' 변경을 알렸어요(데모).' : '약속을 저장했어요.', 'success');
       } else {
         const id = 'pl' + Date.now(), inv = {}; pf.inv.forEach(n => { inv[n] = 'pending'; });
-        this.setState(st => ({ plans: [...st.plans, { id, t: pf.title.trim(), d, time: pf.time, place, host: ME, inv, memo: pf.memo.trim() }], stack: [...st.stack.slice(0, -1), { t: 'plan', id }], calY: dt.y, calM: dt.m, calD: dt.d, planAs: null }));
+        ev('plan_create', { invited: pf.inv.length, past: d < TODAY }); this.simPlan(id, pf.inv.slice());
+        this.setState(st => ({ plans: [...st.plans, { id, t: pf.title.trim(), d, time, tk, pk, place, host: ME, inv, memo: pf.memo.trim() }], stack: [...st.stack.slice(0, -1), { t: 'plan', id }], calY: dt.y, calM: dt.m, calD: dt.d, planAs: null }));
         this.say('약속을 만들었어요.' + (pf.inv.length ? ' ' + pf.inv.length + '명에게 초대를 보냈어요(데모).' : ''), 'success');
       }
     };
     const setPf = p => this.setState(st => ({ pf: { ...st.pf, ...p } }));
 
     let bar = null;
-    if (isPlanForm) bar = { label: pf.id ? '변경 사항 저장' : '약속 만들기', icon: LI(pf.id ? 'check' : 'calendar-plus', 20), action: savePlan };
+    if (isSpaceForm) bar = { label: spf.id ? '저장하기' : '우리 공간 만들기', action: saveSpace };
+    else if (isSpace && spRaw) bar = { label: '이 공간에 추억 만들기', action: () => this.openCreate(undefined, { space: spRaw.id }) };
+    else if (isPlanForm) bar = { label: pf.id ? '변경 사항 저장' : '약속 만들기', icon: LI(pf.id ? 'check' : 'calendar-plus', 20), action: savePlan };
     else if (pRaw && pl.isPast) bar = { label: '이 약속을 추억으로 남기기', icon: LI('images', 20), action: toMemory };
-    else if (pRaw && pl.isLinked) bar = { label: '함께한 추억 보기', icon: LI('images', 20), action: () => this.push({ t: 'detail', id: pRaw.memId }) };
+    else if (pRaw && pl.isLinked) bar = { label: '함께한 추억 보기', icon: LI('images', 20), action: () => { ev('plan_memory_view'); this.push({ t: 'detail', id: pRaw.memId }); } };
     else if (isCreate && c.mode) bar = { label: '추억 만들기', icon: LI('square-pen', 20), loading: s.saving, action: saveMemory };
-    else if (curRaw) bar = { label: '내 사진과 이야기 더하기', icon: LI('image-plus', 20), action: () => guest ? this.gate('contrib', { do: 'contrib', id: curRaw.id }) : this.setState({ overlay: 'contrib', kPics: [], kText: '' }) };
+    else if (curRaw) bar = { label: '내 사진 추가하기', icon: LI('image-plus', 20), action: () => guest ? this.gate('contrib', { do: 'contrib', id: curRaw.id }) : this.setState({ overlay: 'contrib', kPics: [], kText: '' }) };
 
     const isLogin = !!(top && top.t === 'login');
     const tabView = !top;
@@ -1349,15 +1794,15 @@ class Component extends DCLogic {
       showGuestBar: guest && tabView,
       navItems: [{ key: 'home', label: '홈', icon: 'IconHome' }, { key: 'memory', label: '추억', icon: 'IconMemory' }, { key: 'create', label: '기록', icon: 'IconPlus' }, { key: 'foot', label: '발자국', icon: 'IconMapPin' }, { key: 'me', label: '나', icon: 'IconProfile' }],
       tab: s.tab, showNav,
-      setTab: t => t === 'create' ? (guest ? this.gate('create', { do: 'create' }) : this.openCreate()) : this.setState({ tab: t, stack: [], overlay: null }),
-      back: () => this.setState(st => ({ stack: st.stack.slice(0, -1), overlay: null, planAs: null })),
-      toMe: () => this.setState({ tab: 'me' }), toFoot: () => this.setState({ tab: 'foot' }),
+      setTab: t => t === 'create' ? (guest ? this.gate('create', { do: 'create' }) : this.openCreate()) : this.goTab(t, top),
+      back: () => { if (top && top.t === 'create') ev('create_abandon'); this.setState(st => ({ stack: st.stack.slice(0, -1), overlay: null, planAs: null })); },
+      toMe: () => this.setState({ tab: 'me' }), toFoot: () => { ev('foot_view'); this.setState({ tab: 'foot' }); },
       isHome: tabView && s.tab === 'home' && !guest, isGuestHome: tabView && s.tab === 'home' && guest,
       isMemory: tabView && s.tab === 'memory', isFoot: tabView && s.tab === 'foot',
       isMe: tabView && s.tab === 'me' && !guest, isMeGuest: tabView && s.tab === 'me' && guest,
-      isDetail: !!curRaw, isRegion: !!(top && top.t === 'region'), isLogin, isCreate,
+      isDetail: !!curRaw, isRegion: !!(top && top.t === 'region'), isFootRegions: !!(top && top.t === 'footRegions'), isFootMems: !!(top && top.t === 'footMems'), isLogin, isCreate,
       meName: ME, hero: hero || {}, homeRows: all.slice(1, 3), hasInvite: s.invite && !guest,
-      acceptInvite: () => { this.setState(st => ({ invite: false, mems: [INVITED, ...st.mems].sort((a, b) => b.d.localeCompare(a.d)) })); this.say('초대를 수락했어요. 추억 목록에 더했어요.', 'success'); },
+      acceptInvite: () => { ev('invite_complete', { via: 'card' }); this.setState(st => ({ invite: false, mems: [INVITED, ...st.mems].sort((a, b) => b.d.localeCompare(a.d)) })); this.say('초대를 수락했어요. 추억 목록에 더했어요.', 'success'); },
       laterInvite: () => { this.setState({ invite: false }); this.say('초대는 7일 동안 유지돼요.'); },
       footSummary, footMini: usedRegions.slice(0, 5).map(name => ({ name, img: allCover[name] })),
       guestThumbs: [[J.sea, '친구 A'], [J.fall, '친구 B'], [J.flower, '친구 C'], [J.house, '나']].map(([id, by]) => ({ img: U(id), by })),
@@ -1369,8 +1814,8 @@ class Component extends DCLogic {
       tryCreate: () => this.gate('create', { do: 'create' }),
       goLogin: () => this.setState(st => ({ intent: null, overlay: null, stack: [...st.stack, { t: 'login' }] })),
       // memory
-      viewOptions: [{ value: 'feed', label: '피드' }, { value: 'cal', label: '달력' }], mView: s.mView, setView: v => this.setState({ mView: v }),
-      viewFeed: s.mView === 'feed', viewCal: s.mView === 'cal',
+      viewOptions: [{ value: 'feed', label: '피드' }, { value: 'cal', label: '달력' }, { value: 'space', label: '우리 공간' }], mView: s.mView, setView: v => { if (v === 'cal') ev('cal_view'); this.setState({ mView: v }); },
+      viewFeed: s.mView === 'feed', viewCal: s.mView === 'cal', viewSpace: s.mView === 'space',
       dimChips, optChips, showOpt: s.fDim !== 'all' && optChips.length > 0, showAndOr: s.fDim === 'people' && s.fPeople.length > 1,
       modeOptions: [{ value: 'or', label: '한 명이라도' }, { value: 'and', label: '모두 함께' }], fMode: s.fMode, setMode: v => this.setState({ fMode: v }),
       anyFilter, clearFilters: () => this.setState({ fDim: 'all', fPeople: [], fMonth: null, fRegion: null }),
@@ -1390,67 +1835,94 @@ class Component extends DCLogic {
       footOptions: [{ value: 'mine', label: '내 발자국' }, { value: 'with', label: '함께한 발자국' }], footMode: s.footMode,
       setFootMode: v => guest && v === 'with' ? this.gate('foot', { do: 'foot' }) : this.setState({ footMode: v }),
       footWithMode: s.footMode === 'with' && !guest,
-      footPeople: PEOPLE.map(p => ({ nick: p, selected: s.footWith === p, pick: () => this.setState({ footWith: p }) })),
-      stamps, footRegionCount: Object.keys(rc).length, footMemCount: footBase.length, footEmpty: footBase.length === 0,
+      footFriendName: s.footWith || '친구를 선택해 주세요', openFootFriend:()=>this.setState({overlay:'footFriend',footFriendDraft:s.footWith || '',footFriendQuery:''}), footFriendQuery:s.footFriendQuery, footFriendSearch:e=>this.setState({footFriendQuery:e.target.value}), footFriendRows:s.friends.filter(p=>p.includes(String(s.footFriendQuery || '').trim())).map(p=>{ const selected=s.footFriendDraft===p; return {nick:p,count:all.filter(m=>m.w.includes(p)).length,selected,border:selected?'1px solid var(--ws-color-border-brand)':'1px solid transparent',bg:selected?'var(--ws-color-bg-brand-subtle)':'var(--ws-color-bg-surface)',check:selected?LI('check',20):'',pick:()=>this.setState({footFriendDraft:p})};}), footFriendNone:!s.friends.some(p=>p.includes(String(s.footFriendQuery || '').trim())), footFriendDisabled:!s.footFriendDraft, applyFootFriend:()=>this.setState({footWith:s.footFriendDraft,overlay:null}),
+      stamps, footRegionCount:Object.keys(rc).length, footRegionStat:s.footScope==='domestic' ? Object.keys(rc).length + '곳' : Object.keys(rc).length + '개국', footMemCount:footVisible.length, footEmpty:footVisible.length===0, footRegionRows, footMemRows, footListEmpty:footVisible.length===0, footListSummary:(s.footMode==='with' && s.footWith ? s.footWith + '님과 함께한 ' : '') + (s.footScope==='domestic' ? '국내 발자국' : '해외 발자국'), openFootRegions:()=>this.push({t:'footRegions'}), openFootMems:()=>this.push({t:'footMems'}),
       footEmptyText: s.footWith + '님과 함께 남긴 발자국이 아직 없어요.',
       // me
-      meStats: [{ label: '추억', value: all.length }, { label: '함께한 사람', value: PEOPLE.length }, { label: '지역', value: usedRegions.length }],
-      peopleRows: PEOPLE.map((p, i) => ({ nick: p, count: all.filter(m => m.w.includes(p)).length, border: i ? '1px solid var(--ws-color-border-subtle)' : '0' })),
-      logout: () => { this.setState({ auth: 'guest', tab: 'home', stack: [], footMode: 'mine', fPeople: [], fMonth: null, fRegion: null, fDim: 'all' }); this.say('둘러보기 모드로 바뀌었어요.'); },
+      meStats: [{ label: '추억', value: all.length }, { label: '함께한 사람', value: s.friends.length }, { label: '지역', value: usedRegions.length }],
+      peopleRows: s.friends.map((p, i) => ({ nick: p, count: all.filter(m => m.w.includes(p)).length, border: i ? '1px solid var(--ws-color-border-subtle)' : '0' })),
+      logout: () => { ev('logout'); location.href = '/#/login'; },
       // detail
-      cur, region,
+      cur, region, regionPeek, mapMarkers, footDomestic: s.footScope === 'domestic', footOverseas: s.footScope === 'overseas', showDomestic: () => this.setState({ footScope: 'domestic' }), showOverseas: () => this.setState({ footScope: 'overseas' }), domesticBg: s.footScope === 'domestic' ? 'var(--ws-color-bg-surface)' : 'transparent', domesticFg: s.footScope === 'domestic' ? 'var(--ws-color-fg-brand)' : 'var(--ws-color-fg-secondary)', overseasBg: s.footScope === 'overseas' ? 'var(--ws-color-bg-surface)' : 'transparent', overseasFg: s.footScope === 'overseas' ? 'var(--ws-color-fg-brand)' : 'var(--ws-color-fg-secondary)', mapRegionCount: mapMarkers.length,
       openMore: () => this.say(guest ? '예시 추억에서는 볼 수만 있어요.' : '대표 사진 바꾸기 · 내 기록 삭제 · 신고는 다음 단계에서 연결돼요.'),
       openMembers: () => guest ? this.gate('members', { do: 'members', id: curRaw && curRaw.id }) : this.setState({ overlay: 'members' }),
-      invitePeople: () => { this.setState({ overlay: null }); this.say('초대 링크를 복사했어요. 수락 전에는 제목만 보여요.', 'success'); },
+      invitePeople: () => { this.setState({ overlay: null }); this.say('초대 링크를 복사했어요. 수락 전에는 제목만 보여요.', 'success'); ev('invite_start'); if (curRaw) this.simInvite(curRaw); },
       kPool: kPoolIds.map(id => { const on = s.kPics.includes(id); return { img: U(id), aria: on ? '선택 해제' : '사진 선택', ring: on ? '3px solid var(--ws-color-bg-brand)' : 'none', op: on ? 1 : .85, toggle: () => this.setState(st => ({ kPics: st.kPics.includes(id) ? st.kPics.filter(x => x !== id) : [...st.kPics, id] })) }; }),
       kText: s.kText, onKText: e => this.setState({ kText: e.target.value }), kEmpty: !s.kPics.length && !s.kText.trim(), kSubmit,
+      threadRows: (((s.threads || {})[s.threadPhotoId] || {}).comments || []).map(c => ({ ...c, indent:c.parent ? 20 : 0, border:c.parent ? '2px solid var(--ws-color-border-brand)' : '0', hasPhoto:!!c.photo, canRemove:c.by === ME, remove:()=>this.threadDelete(c.id), reply:()=>this.threadReply(c.parent || c.id, c.by) })), threadCommentCount:(((s.threads || {})[s.threadPhotoId] || {}).comments || []).length, threadEmpty:!(((s.threads || {})[s.threadPhotoId] || {}).comments || []).length, threadDraft:s.threadDraft, threadDraftChange:e=>this.setState({threadDraft:e.target.value}), threadFile:e=>this.threadFile(e), threadHasPhoto:!!s.threadPhoto, threadPhoto:s.threadPhoto, threadPhotoRemove:()=>this.setState({threadPhoto:''}), threadReplying:!!s.threadParent, threadReplyCancel:()=>this.setState({threadParent:null,threadReplyName:''}), threadInputLabel:s.threadParent ? (s.threadReplyName + '님에게 답글 남기는 중') : '', threadSubmitDisabled:!String(s.threadDraft || '').trim() && !s.threadPhoto, threadSubmitBg:(!String(s.threadDraft || '').trim() && !s.threadPhoto) ? 'var(--ws-color-bg-disabled)' : 'var(--ws-color-bg-brand)', threadSubmitCursor:(!String(s.threadDraft || '').trim() && !s.threadPhoto) ? 'default' : 'pointer', threadSubmit:()=>this.threadSubmit(),
       // login
       loginTitle: lc[0], loginBody: lc[1],
       doLogin: () => { const intent = s.intent; this.setState({ auth: 'user', intent: null, overlay: null, stack: [], fPeople: [], fMonth: null, fRegion: null, fDim: 'all' }); this.say('서연님, 다시 만나서 반가워요.'); setTimeout(() => this.resume(intent), 0); },
       // create
       c, draftNote: c.title ? '임시 저장됨' : '',
       pickNote: c.pics ? (c.pics.length ? c.pics.length + '장 · 첫 사진이 대표 사진' : '여러 장 고를 수 있어요') : '',
-      pool: [...s.devPics, ...POOL].map(id => { const i = (c.pics || []).indexOf(id); return { img: U(id), selected: i >= 0, order: i + 1, aria: i >= 0 ? '선택 해제' : '사진 선택', ring: i >= 0 ? '3px solid var(--ws-color-bg-brand)' : 'none', op: i >= 0 ? 1 : .85, toggle: () => this.setState(st => ({ c: { ...st.c, pics: st.c.pics.includes(id) ? st.c.pics.filter(x => x !== id) : [...st.c.pics, id] } })) }; }),
+      pool: [...s.devPics, ...POOL].map(id => { const i = (c.pics || []).indexOf(id); return { img: U(id), selected: i >= 0, order: i + 1, aria: i >= 0 ? '선택 해제' : '사진 선택', chipBg: i >= 0 ? 'var(--ws-color-bg-brand)' : 'rgba(36,38,34,.32)', chipText: i >= 0 ? String(i + 1) : '', viewAria: '사진 크게 보기', view: () => { const ids = [...this.state.devPics, ...POOL]; this._pvInit = true; this.setState({ pv: { ids, i: ids.indexOf(id) } }); }, ring: i >= 0 ? '3px solid var(--ws-color-bg-brand)' : 'none', op: i >= 0 ? 1 : .85, toggle: () => this.setState(st => ({ c: { ...st.c, pics: st.c.pics.includes(id) ? st.c.pics.filter(x => x !== id) : [...st.c.pics, id] } })) }; }),
       onTitle: e => this.setState(st => ({ c: { ...st.c, title: e.target.value } })), titleError: s.cTried && !(c.title || '').trim() ? '제목을 입력해 주세요.' : undefined,
       onDate: e => this.setState(st => ({ c: { ...st.c, date: e.target.value } })),
       onStory: e => this.setState(st => ({ c: { ...st.c, story: e.target.value } })),
       onPlace: e => this.setState(st => ({ c: { ...st.c, place: e.target.value } })),
-      cPeople: PEOPLE.map(p => ({ nick: p, selected: (c.with || []).includes(p), toggle: () => this.setState(st => ({ c: { ...st.c, with: st.c.with.includes(p) ? st.c.with.filter(x => x !== p) : [...st.c.with, p] } })) })),
+      cPeople: s.friends.map(p => ({ nick: p + ((spaceOf(c.space) || { members: [] }).members.includes(p) ? ' · 공간' : ''), selected: (c.with || []).includes(p), toggle: () => this.setState(st => ({ c: { ...st.c, with: st.c.with.includes(p) ? st.c.with.filter(x => x !== p) : [...st.c.with, p] } })) })),
+      cPeopleCount, cPeopleHasSelection:cPeopleCount > 0, cPeopleNoSelection:cPeopleCount === 0, cPeopleCanPick:createFriendOptions.length > 0, cPeopleNoFriends:createFriendOptions.length === 0, cPeopleSummary, cPeopleAction:cPeopleCount ? '변경' : '선택', cPeopleTriggerAria:cPeopleCount ? '함께한 친구 ' + cPeopleCount + '명, 변경' : '함께한 친구 선택',
+      openCreatePeople:() => { this.setState({ overlay:'createPeople', cPeopleDraft:cConfirmedIds.slice(), cPeopleQuery:'' }); setTimeout(() => { const el=document.querySelector('[data-create-people-search]'); if (el) el.focus(); }, 0); },
+      cPeopleQuery:s.cPeopleQuery || '', cPeopleSearch:e => this.setState({ cPeopleQuery:e.target.value }), cPeopleRows, cPeopleDraftCount:cPeopleDraftIds.length, cPeopleNoResult:createFriendOptions.length > 0 && cPeopleRows.length === 0, cPeopleApplyLabel:'선택 완료 (' + cPeopleDraftIds.length + '명)',
+      applyCreatePeople:() => { this.setState(st => { const selected=createFriendOptions.filter(f => (st.cPeopleDraft || []).includes(f.id)); return { c:{ ...st.c, with:selected.map(f => f.name), withIds:selected.map(f => f.id) }, overlay:null }; }); setTimeout(() => { const el=document.getElementById('create-people-trigger'); if (el) el.focus(); }, 0); },
       cRegions: REGIONS.map(r => ({ name: r, selected: c.region === r, pick: () => this.setState(st => ({ c: { ...st.c, region: st.c.region === r ? null : r } })) })),
       cHasRegion: !!c.region,
-      scopeNote: (c.with || []).length ? (c.with.join(', ') + '에게 초대를 보내요. 수락한 사람만 볼 수 있어요.') : '아직 초대한 사람이 없어요. 저장하면 나만 볼 수 있고, 나중에 초대할 수 있어요.',
+      scopeNote: (c.space && spaceOf(c.space) ? '‘' + spaceOf(c.space).name + '’ 공간에 연결돼요. 공간 멤버를 자동으로 초대하지 않아요. ' : '') + ((c.with || []).length ? (c.with.join(', ') + '에게 초대를 보내요. 수락한 사람만 볼 수 있어요.') : '아직 초대한 사람이 없어요. 저장하면 나만 볼 수 있고, 나중에 초대할 수 있어요.'),
       // bar & overlays
-      hasBar: !!bar, barLabel: bar ? bar.label : '', barIcon: bar && bar.icon, barDisabled: false, barLoading: !!(bar && bar.loading), barAction: bar ? bar.action : null,
-      hasOverlay: !!s.overlay, closeOverlay: () => this.setState({ overlay: null }),
-      sheetAuth: s.overlay === 'auth', sheetMembers: s.overlay === 'members' && !!curRaw, sheetContrib: s.overlay === 'contrib' && !!curRaw,
+      hasBar: !!bar, barLabel: bar ? bar.label : '', barIcon: undefined, barDisabled: false, barLoading: !!(bar && bar.loading), barAction: bar ? bar.action : null,
+      hasOverlay: !!s.overlay, closeOverlay: () => { const restore=s.overlay === 'createPeople'; this.setState({ overlay:null }); if (restore) setTimeout(() => { const el=document.getElementById('create-people-trigger'); if (el) el.focus(); }, 0); },
+      sheetCreatePeople:s.overlay === 'createPeople' && isCreate, sheetAuth: s.overlay === 'auth', sheetMembers: s.overlay === 'members' && !!curRaw, sheetContrib: s.overlay === 'contrib' && !!curRaw, sheetThread: s.overlay === 'thread', sheetRegionPeek: s.overlay === 'regionPeek' && !!s.peekRegion, sheetFootFriend:s.overlay==='footFriend',
       prompt: ({ create: { title: '첫 추억을 남겨볼까요?', body: '로그인하면 사진과 이야기를 안전하게 보관하고, 함께한 사람을 초대할 수 있어요.', cta: '로그인하고 추억 남기기' }, contrib: { title: '함께 기록하려면 로그인이 필요해요', body: '로그인하면 이 추억에 내 사진과 이야기를 더할 수 있어요.', cta: '로그인하고 기록하기' }, members: { title: '초대하려면 로그인이 필요해요', body: '로그인하면 친구를 초대하고 서로의 기록을 안전하게 모을 수 있어요.', cta: '로그인하고 초대하기' }, foot: { title: '우리의 발자국을 함께 모아볼까요?', body: '로그인하면 친구와 함께 남긴 지역별 추억을 연결할 수 있어요.', cta: '로그인하고 연결하기' } })[s.promptKind],
       promptGo: () => this.setState(st => ({ overlay: null, stack: [...st.stack, { t: 'login' }] })),
       hasViewer, viewer, vDelete,
       hasPlanSection: !guest, upPlans, noUpcoming: upPlans.length === 0, pastNudge: pastNudge || {}, hasPastNudge: !!pastNudge,
       newPlan: () => this.openPlanForm(), isPlan: !!pRaw, isPlanForm, pl, planAsMe: () => this.setState({ planAs: null }),
       sheetCancel: s.overlay === 'cancelPlan' && !!pRaw,
+      hasSpaces: spaces.length > 0, noSpaces: spaces.length === 0, spaceCards, isSpace, isSpaceForm, sp, spf, spHeading: spf.id ? '공간 수정' : '우리 공간 만들기',
+      newSpace: () => guest ? this.gate('create', { do: 'create' }) : (ev('space_create_start'), openSpaceForm(null)),
+      editSpace: () => openSpaceForm(spRaw), openSpaceSet: () => this.setState({ overlay: 'spaceSet' }), sheetSpaceSet: s.overlay === 'spaceSet' && !!spRaw,
+      spaceDelete: () => { const id = spRaw.id; this.setState(st => ({ spaces: st.spaces.filter(x => x.id !== id), mems: st.mems.map(m => m.space === id ? { ...m, space: null } : m), overlay: null, stack: st.stack.slice(0, -1) })); ev('space_delete'); this.say('우리 공간을 삭제했어요. 연결된 추억은 그대로예요.'); },
+      spfName: e => setSpf({ name: e.target.value }), spfNameErr: s.spTried && !spf.name.trim() ? '공간 이름을 입력해 주세요.' : undefined,
+      spfPeople: s.friends.map(p => ({ nick: p, selected: spf.members.includes(p), toggle: () => this.setState(st => ({ spf: { ...st.spf, members: st.spf.members.includes(p) ? st.spf.members.filter(x => x !== p) : [...st.spf.members, p] } })) })),
+      spNote: spf.id ? '멤버를 바꿔도 이미 만든 추억의 참여자는 바뀌지 않아요.' : '공간은 친구를 묶어 두는 곳이에요. 공간에 연결해도 추억은 직접 고른 사람만 볼 수 있어요.',
+      sheetConfirm: s.overlay === 'confirm' && isCreate, confirmTitle: '이 추억을 볼 수 있는 사람 ' + ((c.with || []).length + 1) + '명',
+      confirmRows: [{ nick: ME, role: '관리자 · 볼 수 있어요' }, ...(c.with || []).map(n => ({ nick: n, role: '초대 · 수락하면 볼 수 있어요' }))],
+      confirmNote: ((c.space && spaceOf(c.space)) ? '‘' + spaceOf(c.space).name + '’에 연결돼요.' + (spaceRest.length ? ' 공간 멤버 ' + spaceRest.join(', ') + '님은 초대하지 않아서 볼 수 없어요. ' : ' ') : '') + ((c.with || []).length ? '위에 적힌 사람만 볼 수 있어요. 초대받은 사람이 수락하면 사진과 글을 함께 남길 수 있어요.' : '지금은 나만 볼 수 있어요. 저장한 뒤 참여자에서 친구를 초대할 수 있어요.'),
+      confirmSave: () => { this.setState({ overlay: null }); saveMemory(true); },
       confirmCancel: () => { this.setState(st => ({ plans: st.plans.map(p => p.id === top.id ? { ...p, cancelled: true } : p), overlay: null })); this.say('약속을 취소했어요. 초대한 사람에게 알려요(데모).'); },
       pf, pfHeading: pf.id ? '약속 수정' : '새 약속 만들기',
       pfNote: pf.id ? '일정이나 장소를 바꾸면 참석자에게 ‘변경됨’으로 안내돼요.' : '초대한 사람이 답하기 전까지는 ‘초대 대기’로 보여요. 약속만으로 추억이나 발자국은 생기지 않아요.',
       pfTitle: e => setPf({ title: e.target.value }), pfDate: e => setPf({ date: e.target.value }), pfTime: e => setPf({ time: e.target.value }),
-      pfPlace: e => setPf({ place: e.target.value }), pfMemo: e => setPf({ memo: e.target.value }),
+      pfPlace: e => setPf({ place: e.target.value }),
+      pfTimeExact: (pf.tk || 'exact') === 'exact',
+      pfTimeKinds: [['exact', '정확한 시간'], ['am', '오전쯤'], ['pm', '오후쯤'], ['tbd', '아직 미정']].map(([k, label]) => ({ label, selected: (pf.tk || 'exact') === k, pick: () => setPf({ tk: k }) })),
+      pfPlaceKinds: [['exact', '정확한 장소'], ['area', '지역만'], ['tbd', '아직 미정']].map(([k, label]) => ({ label, selected: (pf.pk || 'tbd') === k, pick: () => setPf({ pk: k }) })),
+      pfPlaceOn: (pf.pk || 'tbd') !== 'tbd', pfPlaceLabel: pf.pk === 'area' ? '지역' : '장소 이름', pfPlacePh: pf.pk === 'area' ? '예: 성수, 홍대' : '예: 카페 이름',
+      pfPlaceErr: s.pfTried && (pf.pk || 'tbd') !== 'tbd' && !pf.place.trim() ? (pf.pk === 'area' ? '지역을 입력해 주세요.' : '장소를 입력해 주세요.') : undefined, pfMemo: e => setPf({ memo: e.target.value }),
       pfTitleErr: s.pfTried && !pf.title.trim() ? '약속 제목을 입력해 주세요.' : undefined,
       pfDateErr: s.pfTried && !pf.date, pfTimeErr: s.pfTried && !pf.time,
       pfDateInvalid: s.pfTried && !pf.date ? 'true' : 'false', pfTimeInvalid: s.pfTried && !pf.time ? 'true' : 'false',
       pfDateBorder: s.pfTried && !pf.date ? '1.5px solid var(--ws-color-fg-danger)' : '1px solid var(--ws-color-border-default)',
       pfTimeBorder: s.pfTried && !pf.time ? '1.5px solid var(--ws-color-fg-danger)' : '1px solid var(--ws-color-border-default)',
-      pfPeople: PEOPLE.map(p => ({ nick: p, selected: pf.inv.includes(p), toggle: () => this.setState(st => ({ pf: { ...st.pf, inv: st.pf.inv.includes(p) ? st.pf.inv.filter(x => x !== p) : [...st.pf.inv, p] } })) })),
+      pfPeople: s.friends.map(p => ({ nick: p, selected: pf.inv.includes(p), toggle: () => this.setState(st => ({ pf: { ...st.pf, inv: st.pf.inv.includes(p) ? st.pf.inv.filter(x => x !== p) : [...st.pf.inv, p] } })) })),
       hasFromPlan: isCreate && !!c.fromPlan,
       fromPlanNote: '‘' + (c.fromPlanTitle || '') + '’ 약속에서 제목·날짜·장소·사람을 가져왔어요. 실제로 함께한 사람만 남겨 주세요. 추억은 초대한 사람만 볼 수 있고, 지역은 직접 골라 주세요.',
       hasPicked: (c.pics || []).length > 0,
+      pvOpen: !!s.pv, pvCount: s.pv ? (s.pv.i + 1) + ' / ' + s.pv.ids.length : '', pvList: s.pv ? s.pv.ids.map(id => ({ img: U(id) })) : [],
+      pvLabel: s.pv && (c.pics || []).includes(s.pv.ids[s.pv.i]) ? '선택 해제' : '선택하기',
+      pvNote: s.pv ? ((c.pics || []).indexOf(s.pv.ids[s.pv.i]) >= 0 ? (c.pics.indexOf(s.pv.ids[s.pv.i]) + 1) + '번째로 선택한 사진이에요 · 총 ' + c.pics.length + '장' : '아직 고르지 않은 사진이에요 · 지금 ' + (c.pics || []).length + '장 선택') : '',
+      pvScroll: e => { const el = e.currentTarget, n = Math.round(el.scrollLeft / el.clientWidth); if (this.state.pv && n !== this.state.pv.i) this.setState(st => ({ pv: { ...st.pv, i: n } })); },
+      pvToggle: () => this.setState(st => { const id = st.pv.ids[st.pv.i], ps = st.c.pics || []; return { c: { ...st.c, pics: ps.includes(id) ? ps.filter(x => x !== id) : [...ps, id] } }; }),
+      pvClose: () => this.setState({ pv: null }),
       picked: (c.pics || []).map((id, i) => ({ img: U(id), cover: i === 0, remove: () => this.setState(st => ({ c: { ...st.c, pics: st.c.pics.filter(x => x !== id) } })) })),
-      onFiles: e => { const fs = Array.from(e.target.files || []).map(f => URL.createObjectURL(f)); e.target.value = ''; if (!fs.length) return; this.setState(st => ({ devPics: [...fs, ...st.devPics], c: { ...st.c, pics: [...st.c.pics, ...fs] } })); this.say(fs.length + '장을 가져왔어요. 위치 정보(EXIF)는 저장하지 않아요.'); },
+      onFiles: e => { const files = Array.from(e.target.files || []); e.target.value = ''; if (!files.length) return; Promise.all(files.map(shrink)).then(fs => { this.setState(st => ({ devPics: [...fs, ...st.devPics], c: { ...st.c, pics: [...st.c.pics, ...fs] } })); this.say(fs.length + '장을 가져왔어요. 위치 정보(EXIF)는 저장하지 않아요.'); }); },
       hasMems: all.length > 0, noMems: !guest && all.length === 0,
       startCreate: () => guest ? this.gate('create', { do: 'create' }) : this.openCreate(),
       showChooser: isCreate && !c.mode, showForm: isCreate && !!c.mode, storyFirst: c.mode === 'story', storyLater: c.mode !== 'story',
       startModes: [{ icon: 'image-plus', title: '사진으로 시작하기', body: '사진을 고르고 제목만 적으면 돼요.', pick: () => this.setState(st => ({ c: { ...st.c, mode: 'photo' } })) }, { icon: 'message-square-plus', title: '이야기로 시작하기', body: '사진 없이 짧은 글로 먼저 남겨요.', pick: () => this.setState(st => ({ c: { ...st.c, mode: 'story' } })) }],
-      ic: { create: LI('square-pen', 20), planAdd: LI('calendar-plus', 20), edit: LI('pencil', 20), cancelPlan: LI('calendar-x', 20), calSmall: LI('calendar-days', 16), chevronLeft: LI('chevron-left', 24), chevronRight: LI('chevron-right', 24), more: LI('ellipsis', 24), close: LI('x', 24), lock: LI('lock-keyhole', 16), plus: LI('plus', 20), invite: LI('user-round-plus', 20), users: LI('users-round', 20), reset: LI('rotate-ccw', 20), login: LI('log-in', 20) },
-      navTabs: [['home', '홈', 'house'], ['memory', '추억', 'images'], ['create', '만들기', 'square-pen'], ['foot', '발자국', 'map-pinned'], ['me', '나', 'user-round']].map(([k, l, i]) => { const on = s.tab === k && !top; return { label: l, icon: i, current: on ? 'page' : undefined, aria: on ? l + ', 현재 화면' : l, weight: on ? 700 : 500, sw: on ? '2' : '1.75', go: () => (k === 'create' ? (guest ? this.gate('create', { do: 'create' }) : this.openCreate()) : this.setState({ tab: k, stack: [], overlay: null })) }; }),
+      ic: { create: undefined, planAdd: undefined, edit: undefined, cancelPlan: undefined, calSmall: undefined, chevronLeft: LI('chevron-left', 24), chevronRight: LI('chevron-right', 24), more: LI('ellipsis', 24), close: LI('x', 24), lock: LI('lock-keyhole', 16), plus: LI('plus', 20), invite: undefined, users: undefined, reset: undefined, login: undefined },
+      navTabs: [['home', '홈', 'house'], ['memory', '추억', 'images'], ['create', '만들기', 'square-pen'], ['foot', '발자국', 'map-pinned'], ['me', '나', 'user-round']].map(([k, l, i]) => { const on = s.tab === k && !top; return { label: l, icon: i, current: on ? 'page' : undefined, aria: on ? l + ', 현재 화면' : l, weight: on ? 700 : 500, sw: on ? '2' : '1.75', go: () => (k === 'create' ? (guest ? this.gate('create', { do: 'create' }) : this.openCreate()) : this.goTab(k, top)) }; }),
       toastProps: { style: { width: '100%', maxWidth: 'none' }, children: React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 10 } }, s.toastTone === 'success' ? React.createElement('span', { style: { display: 'flex', color: 'var(--ws-toast-icon-success)' } }, LI('circle-check', 20)) : s.toastTone === 'warning' ? React.createElement('span', { style: { display: 'flex', color: 'var(--ws-toast-icon-warning)' } }, LI('circle-alert', 20)) : React.createElement('span', { style: { display: 'flex', opacity: .8 } }, LI('info', 20)), React.createElement('span', null, s.toast)) },
       closeViewer: () => { const v = this.state.viewer; if (!v) return; this._restore = { key: v.key, idx: v.idx }; this.setState(st => ({ viewer: null, gIdx: { ...st.gIdx, [v.key]: v.idx } })); },
       viewerScroll: e => { const v = this.state.viewer; if (!v || v.scale > 1) return; const i = this.galIndex(e.currentTarget); if (i !== v.idx) this.setV({ idx: i, scale: 1, tx: 0, ty: 0 }); },

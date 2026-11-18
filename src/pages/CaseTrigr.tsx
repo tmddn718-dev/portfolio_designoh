@@ -8,7 +8,7 @@ import { Zoomable } from '../components/Modal'
 import { owner } from '../components/Mockup'
 import Compose from '../components/Compose'
 import ScrollPhone from '../components/ScrollPhone'
-import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, CaseSummary, ProjectIndex } from '../components/case'
+import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, CaseSummary, ProjectIndex, AppIcon } from '../components/case'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -67,6 +67,7 @@ export default function CaseTrigr() {
           <Link to="/#work" className="inline-block py-2 text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
           <div className="mt-6 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5">
+              <AppIcon src="/images/trigr/icon.svg" name="trigr" className="mb-5" />
               <p className="eyebrow" style={{ color: S }}>Launched Product · 출시 프로젝트</p>
               <h1 className="mt-4 text-[96px] md:text-[168px] font-extrabold tracking-[-0.06em] leading-[0.9]">trigr</h1>
               <p className="mt-6 text-[24px] md:text-[28px] leading-snug font-bold">처음부터 만든<br />미션·리워드 앱</p>

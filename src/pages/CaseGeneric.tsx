@@ -7,7 +7,7 @@ import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
-import { onBrand, CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
+import { AppIcon, onBrand, CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
 import Strip from '../components/Strip'
 import CompareSection, { type CompareData } from '../components/Compare'
 import NotFound from './NotFound'
@@ -38,6 +38,7 @@ function Hero({ c, kicker, title, lead, children, size = 'md' }: { c: Ctx; kicke
         <Link to="/#work" className="inline-block py-2 text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
         <div className="mt-6 md:grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-5">
+            <AppIcon src={`/images/${p.slug}/icon.webp`} name={p.name} className="mb-5" />
             <p className="eyebrow" style={{ color: S }}>Personal Case Study · {p.category}</p>
             <h1 className={`mt-4 font-extrabold tracking-[-0.045em] leading-[1.02] ${size === 'xl' ? 'text-[64px] md:text-[104px]' : 'text-[44px] md:text-[72px]'}`}>{title}</h1>
             <p className="mt-6 text-[24px] md:text-[28px] font-bold leading-snug max-w-[20ch]">{lead}</p>
@@ -439,7 +440,8 @@ function Woorisai({ c }: { c: Ctx }) {
       <section id="c1" className="overflow-hidden" style={{ background: '#FAF9F6' }}>
         <div className="wrap gutter pt-10 md:pt-16 pb-14 text-center">
           <Link to="/#work" className="inline-block py-2 text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
-          <p className="eyebrow mt-6" style={{ color: S }}>Personal Case Study · {p.category}</p>
+          <AppIcon src="/images/woorisai/icon.svg" name={p.name} className="mx-auto mt-6" />
+          <p className="eyebrow mt-5" style={{ color: S }}>Personal Case Study · {p.category}</p>
           <h1 className="mt-4 text-[72px] md:text-[168px] font-extrabold tracking-[-0.05em] leading-[0.95]" style={{ color: '#242622' }}>우리사이</h1>
           <p className="mt-6 mx-auto text-[22px] md:text-[28px] font-bold leading-snug max-w-[28ch]">흩어진 사진과 기억을 하나의 추억으로 연결하고, 기록이 다시 대화로 이어지는 경험을 설계했습니다.</p>
           <div className="mx-auto max-w-xl"><dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] text-left rule pt-4" style={{ borderColor: T(40) }}>

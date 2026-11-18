@@ -151,3 +151,8 @@ export function ProjectIndex({ current }: { current: string }) {
     </section>
   )
 }
+
+// 상세 히어로의 앱 아이콘: 둥근 사각형, 그림자 없이 얇은 테두리만
+export function AppIcon({ src, name, className = '' }: { src: string; name: string; className?: string }) {
+  return <img src={src} alt={`${name} 앱 아이콘`} width={72} height={72} className={`block w-[60px] h-[60px] md:w-[76px] md:h-[76px] object-cover rounded-[22.5%] border border-black/10 bg-white ${className}`} />
+}

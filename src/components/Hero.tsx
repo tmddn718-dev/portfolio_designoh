@@ -23,7 +23,7 @@ export function HeroUI() {
           <li key={p.slug}>
             <Link to={`/work/${p.slug}`} className="group flex flex-col h-full rounded-[20px] overflow-hidden border border-grid bg-white">
               <div className="relative h-[170px] md:h-[210px] overflow-hidden" style={{ background: `color-mix(in srgb, ${launched ? '#DE5DE2' : p.accent} 16%, white)` }}>
-                {(launched || p.slug === 'nodi') && <span className="absolute left-3 top-3 z-10 px-2.5 py-1 rounded-full bg-ink text-white text-[12px] font-semibold">{launched ? '먼저 보기' : '2순위'}</span>}
+                {(launched || p.slug === 'nodi') && <span className="absolute left-3 top-3 z-10 px-2.5 py-1 rounded-full bg-ink text-white text-[13px] font-semibold">{launched ? '먼저 보기' : '2순위'}</span>}
                 <img src={src} alt="" loading="lazy" className="w-[60%] mx-auto mt-10 rounded-t-[12px] object-cover object-top transition-transform duration-500 group-hover:-translate-y-1" />
               </div>
               <div className="p-4 flex-1 flex flex-col">

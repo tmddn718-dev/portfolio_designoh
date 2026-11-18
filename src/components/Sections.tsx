@@ -212,8 +212,8 @@ export function AboutContact() {
         <Reveal>
           <p className="eyebrow text-bluetext">Contact</p>
           <p className="mt-3 text-[32px] md:text-[64px] font-extrabold tracking-tight leading-[1.05]">함께 <span className="text-blue">명확한</span> 경험을<br />만들어요.</p>
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-[17px]">
-            {profile.email && <><a className="py-2 underline underline-offset-4" href={`mailto:${profile.email}`}>{profile.email}</a><CopyEmail email={profile.email} /></>}
+          <div className="mt-8 flex flex-wrap items-start gap-x-10 gap-y-4 text-[17px]">
+            {profile.email && <div className="flex flex-col items-start gap-3"><a className="py-2 underline underline-offset-4" href={`mailto:${profile.email}`}>{profile.email}</a><CopyEmail email={profile.email} /></div>}
             {profile.phone && <a className="py-2 underline underline-offset-4" href={`tel:${profile.phone.replace(/-/g, '')}`}>{profile.phone}</a>}
             {profile.resume && <a className="py-2 underline underline-offset-4" href={profile.resume} target="_blank" rel="noreferrer">이력서 PDF</a>}
           </div>

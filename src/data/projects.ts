@@ -130,7 +130,7 @@ export const projects: Project[] = [
     },
     beforeAfter: [
       {
-        before: '/images/karrot-large-furniture/asis-desc.webp', after: '/images/karrot-large-furniture/f-b1.webp',
+        before: '/images/karrot-large-furniture/asis-desc.webp', after: '/images/karrot-large-furniture/L-b1.webp',
         beforeAlt: '기존 당근 상품 상세 본문: 크기가 자유 텍스트 문장 속에 있다', afterAlt: '개선 상품 상세 본문 아래: 크기 및 분해, 가져가는 조건을 거래 정보 카드로 정리',
         marks: [
           { side: 'before', n: 1, x: 3, y: 53, w: 94, h: 16 },
@@ -144,7 +144,7 @@ export const projects: Project[] = [
         points: ['※ Before는 실제 당근 앱 화면 캡처이며 판매자 닉네임, 거래 장소 주소·지도, 캡처한 사람의 정보는 가렸습니다'],
       },
       {
-        before: '/images/karrot-large-furniture/asis-loc.webp', after: '/images/karrot-large-furniture/k-info-partial.webp',
+        before: '/images/karrot-large-furniture/asis-loc.webp', after: '/images/karrot-large-furniture/L-b2.webp',
         beforeAlt: '기존 당근 상품 상세 하단: 거래 장소와 용달비 안내, 채팅·관심 수', afterAlt: '개선 상품 상세: 미입력과 판매자도 모름을 구분해 표시한 거래 정보 카드',
         marks: [
           { side: 'before', n: 1, x: 3, y: 37, w: 94, h: 9 },
@@ -161,21 +161,21 @@ export const projects: Project[] = [
     proto: { url: '/proto/karrot/index.html?sc=detail-partial', w: 390, h: 844 },
     gallery: [
       { src: '/images/karrot-large-furniture/f-home.webp', alt: '동네 홈 목록: 원목 4인용 식탁 등 가구 판매글과 글쓰기 버튼', caption: '동네 홈' },
-      { src: '/images/karrot-large-furniture/f-s2.webp', alt: '판매글 작성 화면: 제목, 카테고리, 가격, 자세한 설명 아래에 선택 입력인 가구 정보', caption: '판매자 · 글 작성' },
-      { src: '/images/karrot-large-furniture/f-s3.webp', alt: '가구 정보 입력: 크기와 분해 여부, 가져가는 조건을 선택해서 입력', caption: '가구 정보 입력' },
+      { src: '/images/karrot-large-furniture/L-s2.webp', alt: '판매글 작성을 아래로 스크롤하면 나오는 선택 입력 가구 정보 섹션', caption: '판매자 · 글 작성' },
+      { src: '/images/karrot-large-furniture/L-s3.webp', alt: '가구 정보 입력: 크기와 분해 여부, 가져가는 조건을 선택해서 입력', caption: '가구 정보 입력' },
       { src: '/images/karrot-large-furniture/f-confirm.webp', alt: '입력 정보 확인: 구매자에게 보이는 모습을 미리 보고 등록', caption: '입력 정보 확인' },
       { src: '/images/karrot-large-furniture/f-confirm-empty.webp', alt: '입력 정보 확인: 가구 정보를 입력하지 않으면 아직 입력되지 않았어요로 표시', caption: '입력 정보 확인 · 미입력' },
-      { src: '/images/karrot-large-furniture/f-posted.webp', alt: '판매글을 올린 직후 판매자 상세 화면', caption: '등록 직후 상세' },
-      { src: '/images/karrot-large-furniture/f-b1.webp', alt: '상품 상세: 거래 정보 카드에 크기와 분해, 가져가는 조건이 정리됨', caption: '구매자 · 상세' },
+      { src: '/images/karrot-large-furniture/L-s9.webp', alt: '판매글을 올린 직후 판매자 상세 화면', caption: '등록 직후 상세' },
+      { src: '/images/karrot-large-furniture/L-b1.webp', alt: '상품 상세를 스크롤하면 나오는 거래 정보 카드: 크기 및 분해, 가져가는 조건이 정리됨', caption: '구매자 · 상세(스크롤)' },
       { src: '/images/karrot-large-furniture/f-b3.webp', alt: '어떤 정보가 궁금하세요? 질문 고르기 바텀시트', caption: '질문 고르기' },
       { src: '/images/karrot-large-furniture/f-b4.webp', alt: '고른 질문이 채팅 입력창 초안으로 추가된 화면', caption: '채팅 질문 초안' },
-      { src: '/images/karrot-large-furniture/f-edit.webp', alt: '판매자가 게시글 수정 화면에서 가격과 설명을 고치는 화면', caption: '판매자 · 게시글 수정' },
+      { src: '/images/karrot-large-furniture/L-c1.webp', alt: '판매자가 게시글 수정 화면에서 가격과 설명을 고치는 화면', caption: '판매자 · 게시글 수정' },
       { src: '/images/karrot-large-furniture/f-c3.webp', alt: '상세 상단에 판매자가 상품 정보를 수정했다는 안내와 이전 가격이 보이는 화면', caption: '상세 · 변경 안내' },
       { src: '/images/karrot-large-furniture/f-c2.webp', alt: '채팅방에 판매자가 상품 정보를 수정했다는 시스템 메시지가 남은 화면', caption: '채팅 · 변경 알림' },
       { src: '/images/karrot-large-furniture/k-changed.webp', alt: '판매자가 수정한 가격·분해 여부를 비교하는 바텀시트', caption: '변경 내용 비교' },
-      { src: '/images/karrot-large-furniture/f-recheck.webp', alt: '비정상적으로 큰 크기 값을 입력했을 때 재확인을 요청하는 화면', caption: '큰 값 재확인' },
-      { src: '/images/karrot-large-furniture/k-partial.webp', alt: '일부만 입력된 상품 상세: 미입력과 모름을 구분해 표시', caption: '상세 · 일부 입력' },
-      { src: '/images/karrot-large-furniture/k-fail.webp', alt: '정보 조회에 실패했을 때의 상세 화면', caption: '정보 조회 실패' },
+      { src: '/images/karrot-large-furniture/L-s5.webp', alt: '비정상적으로 큰 크기 값을 입력했을 때 재확인을 요청하는 화면', caption: '큰 값 재확인' },
+      { src: '/images/karrot-large-furniture/L-b2.webp', alt: '일부만 입력된 상품 상세: 미입력과 모름을 구분해 표시', caption: '상세 · 일부 입력' },
+      { src: '/images/karrot-large-furniture/L-e1.webp', alt: '정보 조회에 실패했을 때의 상세 화면', caption: '정보 조회 실패' },
       { src: '/images/karrot-large-furniture/f-done.webp', alt: '거래가 완료된 상품 상세: 거래완료 안내와 비활성 버튼', caption: '거래 완료' },
     ],
     sections: [

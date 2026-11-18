@@ -29,18 +29,20 @@ export function ChapterNav({ active, list = chapters, title, onCta }: { active: 
   // 애플 로컬 내비: 제품명(좌) · 챕터 링크 + 파란 필(우), 글로벌 내비 바로 아래에 반투명으로 고정
   const w = useProgress()
   return (
-    <nav aria-label="챕터" className="sticky top-12 z-30 glass border-b border-black/10">
-      <div aria-hidden className="absolute left-0 bottom-0 h-[2px] bg-ink" style={{ width: `${w}%` }} />
-      <div className="wrap gutter flex items-center justify-between gap-4 h-[52px]">
+    <nav aria-label="챕터" className="sticky top-14 z-30 pointer-events-none">
+    <div className="wrap gutter"><div className="pointer-events-auto relative rounded-[18px] bg-[rgba(29,29,31,.95)] text-white backdrop-blur-xl overflow-hidden shadow-[0_10px_30px_-12px_rgba(0,0,0,.5)]">
+      <div aria-hidden className="absolute left-0 bottom-0 h-[2px] bg-[#2997ff]" style={{ width: `${w}%` }} />
+      <div className="px-5 flex items-center justify-between gap-4 h-[52px]">
         {title && <p className="hidden sm:block text-[19px] font-semibold tracking-tight shrink-0">{title}</p>}
         <ol className="flex items-center gap-5 overflow-x-auto text-[13px] min-w-0 flex-1 sm:flex-none">
           {list.map(([id, label]) => (
             <li key={id}><a href={`#${id}`} aria-current={active === id ? 'true' : undefined}
-              className={`block py-3 whitespace-nowrap ${active === id ? 'text-ink font-semibold' : 'text-ink/60 hover:text-ink'}`}>{label}</a></li>
+              className={`block py-3 whitespace-nowrap ${active === id ? 'text-white font-semibold' : 'text-white/60 hover:text-white'}`}>{label}</a></li>
           ))}
         </ol>
         {onCta && <button onClick={onCta} className="pill shrink-0">프로토타입</button>}
       </div>
+    </div></div>
     </nav>
   )
 }

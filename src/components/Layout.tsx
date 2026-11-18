@@ -34,8 +34,9 @@ export default function Layout() {
 
   const link = 'px-3 py-3 text-[14px] text-ink/85 hover:text-ink'
   const on = (c: boolean) => `${link} ${c ? 'text-ink font-semibold' : ''}`
+  const [dark, setDark] = useState(false)
   const [top, setTop] = useState(false)
-  useEffect(() => { const f = () => setTop(scrollY > 900); f(); addEventListener('scroll', f, { passive: true }); return () => removeEventListener('scroll', f) }, [])
+  useEffect(() => { const f = () => { setTop(scrollY > 900); setDark([...document.querySelectorAll('[data-dark]')].some(e => { const r = e.getBoundingClientRect(); return r.top <= 50 && r.bottom > 50 })) }; f(); addEventListener('scroll', f, { passive: true }); return () => removeEventListener('scroll', f) }, [])
   const items = (
     <>
       <Link className={on(pathname.startsWith('/work'))} aria-current={pathname.startsWith('/work') ? 'page' : undefined} to="/#work">Work</Link>
@@ -48,7 +49,7 @@ export default function Layout() {
   return (
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2">본문으로 건너뛰기</a>
-      <header className="sticky top-0 z-40 glass border-b border-black/10">
+      <header data-dark={dark ? 1 : 0} className="sticky top-0 z-40 glass border-b border-black/10">
         <div className="wrap gutter flex items-center justify-between h-12">
           <Link to="/" className="inline-flex items-center min-h-[44px] text-[14px] font-semibold tracking-tight text-ink">디자이너 {profile.name}</Link>
           <nav aria-label="주 메뉴" className="hidden md:flex items-center -mr-3">{items}</nav>

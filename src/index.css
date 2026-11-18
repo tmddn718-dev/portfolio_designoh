@@ -31,6 +31,8 @@ body { font-family: var(--font-sans); color: var(--color-ink); background: #fff;
   background-size: clamp(60px, 6.25vw, 125px) clamp(60px, 6.25vw, 125px);
 }
 @media (max-width: 767px) { .grid-bg { background-size: 60px 60px; } }
+.grid-bg-dark { background-image: linear-gradient(to right, #161616 1px, transparent 1px), linear-gradient(to bottom, #161616 1px, transparent 1px); }
+.outline-dark .outline-text { -webkit-text-stroke-color: #6b6b70; }
 
 /* 외곽선 글자는 겹치는 윤곽이 없는 정적 Inter 800으로(가변 폰트는 획이 겹쳐 선이 깨져 보임) */
 @font-face { font-family: 'Inter Outline'; font-weight: 800; font-style: normal; font-display: swap; src: url('/fonts/inter-800.woff2') format('woff2'); }
@@ -73,6 +75,9 @@ a, button { transition: color .15s cubic-bezier(.4,0,.2,1), background-color .15
 .glass { background: rgba(255,255,255,.78); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
 @supports not (backdrop-filter: blur(1px)) { .glass { background: rgba(255,255,255,.96); } }
 .apple-h { letter-spacing: -.035em; line-height: 1.06; font-weight: 700; }
+/* 어두운 구간 위에서는 글로벌 내비도 어둡게(애플 글로벌 내비) */
+header[data-dark="1"] { background: rgba(22,22,23,.72); border-color: rgba(255,255,255,.12); }
+header[data-dark="1"] a, header[data-dark="1"] button { color: #f5f5f7; }
 .pill { display: inline-flex; align-items: center; min-height: 28px; padding: 0 14px; border-radius: 99px; background: var(--color-blue); color: #fff; font-size: 13px; font-weight: 600; }
 .pill:hover { background: #2a5dd6; }
 

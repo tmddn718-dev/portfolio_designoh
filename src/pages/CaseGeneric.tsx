@@ -156,7 +156,10 @@ function Karrot({ c }: { c: Ctx }) {
         <ChapterHead color={S} n="01" label="The Challenge" title="대형 가구는 정보가 빠지면 판단이 멈춘다" />
         <Reveal><blockquote className="mt-10 text-[28px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]" style={{ borderLeft: `6px solid ${A}`, paddingLeft: 24 }}>{p.problem}</blockquote></Reveal>
         <ul className="mt-12 grid md:grid-cols-3 gap-5">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
-        <p className="mt-6 text-[13px] text-sub max-w-3xl">앱 리뷰·블로그 VOC와 인터뷰를 근거로 PRD 문제를 정의했습니다. 원자료가 없어 표본 수와 수치는 싣지 않았고, 발생 빈도와 영향은 사용성 테스트로 검증해야 하는 디자인 가설입니다.</p>
+        <div className="mt-14"><p className="eyebrow text-sub">실제 당근 앱 · AS-IS 캡처</p>
+          <ul className="mt-5 grid grid-cols-3 gap-4 md:gap-8 max-w-3xl">{[['asis-search', '대형가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul>
+          <p className="mt-4 text-[13px] text-sub max-w-3xl">실제 앱 화면 캡처이며 판매자 닉네임, 거래 장소 주소·지도, 캡처한 사람의 정보는 가렸습니다.</p></div>
+        <p className="mt-10 text-[13px] text-sub max-w-3xl">앱 리뷰·블로그 VOC와 인터뷰를 근거로 PRD 문제를 정의했습니다. 원자료가 없어 표본 수와 수치는 싣지 않았고, 발생 빈도와 영향은 사용성 테스트로 검증해야 하는 디자인 가설입니다.</p>
       </section>
 
       <section id="c3" className="scroll-mt-20 md:mt-24" style={{ background: '#F7F8FA' }}>
@@ -169,11 +172,15 @@ function Karrot({ c }: { c: Ctx }) {
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6"><Fig src={I('k-partial')} alt="미입력과 모름을 구분한 상세" cap="일부 입력 · 미입력/모름 구분" /><Fig src={I('k-fail')} alt="정보 조회 실패 화면" cap="조회 실패 · 재시도" className="md:mt-12" /></div>
           </div>
 
+          {p.beforeAfter?.[0] && <div className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 상품 상세</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">본문 속 크기를 거래 정보 카드로</h3><p className="mt-4 text-[16px] leading-relaxed text-sub">가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[0]} /></div></div>}
+
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5 md:order-2"><Num n="02" t="분해 가능과 전달 상태를 분리" />
               <ul className="mt-8 space-y-5"><Ann color={S} n="A" t="분해 가능 · 분해 불가 · 잘 모르겠어요" d="‘분해 가능’을 고른 경우에만 전달 상태를 묻습니다." /><Ann color={S} n="B" t="조립된 상태 · 분해된 상태 · 협의" d="‘분해 가능’이 실제 전달 상태와 혼동되지 않게 했습니다." /><Ann color={S} n="C" t="큰 크기 값은 막지 않고 재확인" d="0 이하만 거절하고, 비정상적으로 큰 값은 다시 확인하게 합니다." /></ul></div>
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6 md:order-1"><Fig src={I('k-form')} alt="가구 정보 입력" cap="선택형 가구 정보 입력" /><Fig src={I('k-recheck')} alt="큰 값 재확인" cap="큰 값 재확인" className="md:mt-12" /></div>
           </Reveal>
+
+          {p.beforeAfter?.[1] && <div className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 확인되지 않은 정보</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">알려주는 영역이 없던 곳에, 상태를 구분해서</h3></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[1]} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5"><Num n="03" t="질문은 초안으로만, 보내는 건 사용자" />

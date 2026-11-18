@@ -3,9 +3,13 @@
  * 지원 문법: <sc-if value>, <sc-for list as>, {{이름}} 바인딩, onClick. 상태가 바뀌면 화면을 다시 그려요. */
 (function () {
   'use strict';
+  // 기본은 상세 화면에서 바로 시작. 주소 뒤에 ?scenarios 를 붙이면 시나리오(Flow A~G)·옵션 방식 선택 화면에서 시작해요.
+  const SCENARIOS = /[?&]scenarios(?:[=&]|$)/.test(location.search);
+  const START = SCENARIOS ? 'home' : 'detail';
   class DCLogic {
     constructor(props) { this.props = props || {}; this.state = {}; this._queued = false; this._render = null; }
     setState(patch) {
+      if (typeof patch === 'object' && patch && patch.screen === 'checkout' && patch.method === 'today' && this.state.intent === 'cart' && patch.intent !== 'buy' && this.state.screen !== 'cart') patch = Object.assign({}, patch, { screen: 'cart' });
       Object.assign(this.state, typeof patch === 'function' ? patch(this.state) : patch);
       if (this._queued) return;
       this._queued = true;
@@ -41,7 +45,7 @@
       Array.prototype.forEach.call(child.attributes, (a) => {
         const name = a.name;
         if (name.indexOf('hint-') === 0) return;
-        if (name === 'onclick') { const fn = evalBind(a.value, scope); if (typeof fn === 'function') el.addEventListener('click', fn); return; }
+        if (name.indexOf('on') === 0 && name.length > 2) { const fn = evalBind(a.value, scope); if (typeof fn === 'function') el.addEventListener(name.slice(2), fn); return; }
         el.setAttribute(name, interp(a.value, scope));
       });
       build(child, scope, el);
@@ -56,10 +60,10 @@ class Component extends DCLogic {
   constructor(props) {
     super(props);
     this.timers = []; this.altTok = 0;
-    this.state = this.fresh('home', 'A');
+    this.state = this.fresh(START, 'A');
   }
   fresh(screen, flow) {
-    return { screen: screen, flow: flow, panelOpen: false, recv: 'today', altStage: 'checking', altSel: null, stdTry: 0, stores: {}, dTried: false, pickStore: null, method: 'today', slot: 's1', recs: {}, g1Open: false, benefitsOpen: false, teaStage: 'fail', stdInfoOpen: false, optSel: null, qty: 1, optMode: 'A', usePoint: false, agree: false, triedPay: false, stockHit: false, restocked: false, returnTo: 'alt' };
+    return { screen: screen, flow: flow, panelOpen: false, recv: 'today', altStage: 'checking', altSel: null, stdTry: 0, stores: { E: 'fail', F: 'closed' }, query: '서울 구로구', intent: 'buy', dTried: false, pickStore: null, method: 'today', slot: 's1', recs: {}, g1Open: false, benefitsOpen: false, teaStage: 'fail', stdInfoOpen: false, optSel: null, qty: 1, optMode: 'A', usePoint: false, agree: false, triedPay: false, stockHit: false, restocked: false, returnTo: 'alt' };
   }
   componentWillUnmount() { this.timers.forEach(function (t) { clearTimeout(t); }); }
   later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
@@ -86,7 +90,7 @@ class Component extends DCLogic {
     this.later(() => {
       const r = Object.assign({}, this.state.stores);
       const flow = this.state.flow;
-      const table = { A: (flow === 'D' ? 'no' : 'ok'), B: 'stockNoOrder', C: 'no', D: 'no' };
+      const table = { A: (flow === 'D' ? 'no' : 'ok'), B: 'stockNoOrder', C: 'no', D: 'no', E: 'no' };
       if (id === 'D' && !this.state.dTried) { r[id] = 'fail'; this.setState({ stores: r, dTried: true }); return; }
       r[id] = table[id];
       this.setState({ stores: r });
@@ -112,11 +116,11 @@ class Component extends DCLogic {
     const rDis = 'display:block;width:20px;height:20px;border-radius:50%;background:#E4E6E9';
     const sc = st.screen;
     const flow = st.flow;
-    const sNames = { A: '올리브영 구로역점', B: '올리브영 신도림점', C: '올리브영 영등포점', D: '올리브영 가산디지털점' };
-    const sAddr = { A: '서울 구로구 구로중앙로 152 · 0.4km', B: '서울 구로구 새말로 97 · 0.9km', C: '서울 영등포구 영중로 15 · 1.3km', D: '서울 금천구 가산디지털1로 168 · 2.1km' };
+    const sNames = { A: '올리브영 구로역점', B: '올리브영 신도림점', C: '올리브영 영등포점', D: '올리브영 가산디지털점', E: '올리브영 관악점', F: '올리브영 신길점' };
+    const sAddr = { A: '서울 구로구 구로중앙로 152 · 0.4km', B: '서울 구로구 새말로 97 · 0.9km', C: '서울 영등포구 영중로 15 · 1.3km', D: '서울 금천구 가산디지털1로 168 · 2.1km' , E: '서울 관악구 관악로 163 · 3.4km', F: '서울 영등포구 신길로 28 · 3.8km'};
     const storeName = st.pickStore ? sNames[st.pickStore] : '';
-    const ids = ['A', 'B', 'C', 'D'];
-    const bad = (v) => v === 'no' || v === 'stockNoOrder';
+    const ids = ['A', 'B', 'C', 'D', 'E', 'F'];
+    const bad = (v) => v === 'no' || v === 'stockNoOrder' || v === 'closed';
     const storeAllFailed = ids.every((id) => bad(st.stores[id]));
     const qtyOver = st.qty > 2;
     const pickOkRaw = !!st.pickStore && st.stores[st.pickStore] === 'ok';
@@ -163,15 +167,18 @@ class Component extends DCLogic {
     const btnBase = 'flex:none;width:96px;height:44px;padding:0;border-radius:8px;font-size:14px;font-family:inherit;';
     const secBlack = btnBase + 'border:0;background:none;color:#131518;font-weight:600;text-decoration:underline;text-underline-offset:3px';
     const offBtn = 'flex:none;width:96px;height:44px;padding:0;border:0;background:none;font-size:13px;font-family:inherit;color:#A5A9AF';
-    const stores = ids.map((id) => {
+    const q = (st.query || '').trim(), toks = q.split(/\s+/).filter(Boolean);
+    const shown = ids.filter((id) => q === '' || q === '서울 구로구' || toks.every((t) => (sNames[id] + ' ' + sAddr[id]).indexOf(t) >= 0));
+    const stores = shown.map((id) => {
       const s = st.stores[id] || 'none';
       const map = {
-        none: ['재고 확인 전', PENDING, '확인', secBlack, false, ''],
+        none: ['확인 필요', PENDING, '확인', secBlack, false, ''],
         checking: ['확인 중…', GRAY, '확인 중', offBtn, true, ''],
         ok: ['픽업 주문 가능', OK, '선택', btnBase + 'border:1px solid #131518;background:#131518;color:#FFFFFF;font-weight:600', false, ''],
         stockNoOrder: ['픽업 주문 불가', GRAY, '선택 불가', offBtn, true, ' · 매장 재고는 있어요'],
         no: ['재고 없음', GRAY, '선택 불가', offBtn, true, ''],
-        fail: ['조회 실패', WARN, '다시 확인', secBlack, false, '']
+        fail: ['조회 실패', WARN, '다시 확인', secBlack, false, ''],
+        closed: ['픽업 접수 종료', GRAY, '선택 불가', offBtn, true, '']
       }[s];
       return {
         name: sNames[id], addr: sAddr[id], chip: map[0], chipStyle: map[1], btnText: map[2], btnStyle: map[3], disabled: map[4], chipDesc: map[5],
@@ -208,8 +215,9 @@ class Component extends DCLogic {
     const instantMet = subtotal >= 31000;
     return {
       GRAYCHIP: GRAY,
-      isHome: sc === 'home', notHome: sc !== 'home',
-      flowLabel: sc === 'home' ? '프로토타입 · 시뮬레이션' : 'Flow ' + (flow === 'S' ? 'G' : flow) + ' · 시뮬레이션',
+      isHome: sc === 'home', notHome: sc !== START,
+      restartLabel: SCENARIOS ? '← 시나리오 선택' : '처음부터',
+      flowLabel: !SCENARIOS ? '' : sc === 'home' ? '프로토타입 · 시뮬레이션' : 'Flow ' + (flow === 'S' ? 'G' : flow) + ' · 시뮬레이션',
       showDetail: ['detail', 'options', 'alt', 'restock', 'restockDone'].indexOf(sc) >= 0,
       isOptions: sc === 'options', isAlt: sc === 'alt', isRestock: sc === 'restock', isRestockDone: sc === 'restockDone',
       isStore: sc === 'store', isCart: sc === 'cart', isCheckout: sc === 'checkout' || sc === 'stockChanged', isStockChanged: sc === 'stockChanged', isDone: sc === 'done',
@@ -245,7 +253,7 @@ class Component extends DCLogic {
       teaFail: st.teaStage === 'fail', teaChecking: st.teaStage === 'checking', teaOk: st.teaStage === 'ok',
       teaRecheck: () => { if (this.state.teaStage !== 'fail') return; this.setState({ teaStage: 'checking' }); this.later(() => this.setState({ teaStage: 'ok' }), 900); },
       stdInfoOpen: st.stdInfoOpen, toggleStdInfo: () => this.setState({ stdInfoOpen: !this.state.stdInfoOpen }),
-      restart: () => this.setState(this.fresh('home', 'A')),
+      restart: () => { this.altTok++; this.timers.forEach(function (t) { clearTimeout(t); }); this.timers = []; this.setState(this.fresh(START, 'A')); },
       panelOpen: st.panelOpen, panelClosed: !st.panelOpen,
       togglePanel: () => this.setState({ panelOpen: !this.state.panelOpen }),
       recvToday: st.recv === 'today', recvPickup: st.recv === 'pickup',
@@ -259,7 +267,8 @@ class Component extends DCLogic {
       storeFromCart: () => this.setState({ screen: 'store', returnTo: 'cart' }),
       storeFromCheckout: () => this.setState({ screen: 'store', returnTo: 'checkout' }),
       storeBack: () => this.setState({ screen: this.state.returnTo }),
-      openOptions: () => this.setState({ screen: 'options' }),
+      openOptions: () => this.setState({ screen: 'options', intent: 'buy' }),
+      openOptionsCart: () => this.setState({ screen: 'options', intent: 'cart' }),
       closeSheet: () => this.setState({ screen: 'detail' }),
       openAlt: () => this.openAlt(),
       openRestock: () => this.setState({ screen: 'restock' }),
@@ -292,7 +301,10 @@ class Component extends DCLogic {
       ctaStyle: 'width:100%;height:52px;border-radius:8px;font-size:17px;font-weight:700;font-family:inherit;' + (canBuy ? 'border:1.5px solid #131518;background:#131518;color:#FFFFFF' : 'border:0;background:#DCDFE3;color:#5E636B'),
       ctaNote: pickSel,
       ctaTap: () => { if (stdSel) this.setState({ method: 'standard', screen: 'checkout' }); else if (pickSel) this.setState({ method: 'pickup', screen: 'checkout' }); },
-      stores: stores, storeAllFailed: storeAllFailed,
+      stores: stores, storeAllFailed: storeAllFailed, hasStores: stores.length > 0, noResults: stores.length === 0, query: st.query,
+      searchKey: (e) => { if (e.key === 'Enter') { e.preventDefault(); this.setState({ query: e.target.value.trim() }); e.target.blur(); } },
+      searchChange: (e) => { this.setState({ query: e.target.value.trim() }); },
+      clearQuery: () => this.setState({ query: '' }),
       productName: productName, productImg: isC ? IMG.made : IMG.roseS,
       freeShip: free, notFree: !free,
       remainText: fmt(Math.max(0, 30000 - subtotal)),
@@ -301,7 +313,7 @@ class Component extends DCLogic {
       cartFeeText: free ? '무료' : '배송 시간에 따라 2,500~5,000원',
       recs: recs, addedItems: addedItems,
       scrollRecs: () => { const n = Object.assign({}, this.state.recs); if (!n.r1) n.r1 = true; else n.r2 = true; this.setState({ recs: n }); },
-      goCheckout: () => this.setState({ method: 'today', screen: 'checkout' }),
+      goCheckout: () => this.setState({ method: 'today', screen: 'checkout', intent: 'buy' }),
       checkoutBack: () => this.setState({ screen: isC ? 'cart' : 'alt' }),
       showMethodToggle: isC || st.method === 'today', showMethodLabel: !(isC || st.method === 'today'), methodLabel: st.method === 'pickup' ? '매장 픽업' : '일반배송', isToday: st.method === 'today', isPickup: st.method === 'pickup', isStandard: st.method === 'standard',
       pillToday: st.method === 'today' ? pillOn : pillOff, pillPickup: st.method === 'pickup' ? pillOn : pillOff,

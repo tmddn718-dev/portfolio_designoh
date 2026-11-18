@@ -79,9 +79,8 @@ function Olive({ c }: { c: Ctx }) {
     <>
       <Hero c={c} title="올리브영 오늘드림" lead="품절은 구매 여정의 끝이어야 할까?" kicker="비공식 개인 UX 개선 제안 · 소속 회사와 무관 · 재고·매장 데이터는 가상">
         <div className="flex items-end justify-center gap-5 md:gap-8">
-          <figure className="w-[44%]"><p className="text-[13px] font-semibold mb-2 text-sub">AS-IS · 기존 앱 캡처</p><Screen src={I('ba-before')} alt="기존 옵션 선택 화면" /></figure>
-          <span aria-hidden className="pb-[40%] text-[28px]" style={{ color: S }}>→</span>
-          <figure className="w-[44%]"><p className="text-[13px] font-semibold mb-2" style={{ color: S }}>TO-BE · 개선안</p><Screen src={I('ba-after')} alt="개선 옵션 선택 화면" /></figure>
+          <figure className="w-[44%]"><p className="text-[13px] font-semibold mb-2" style={{ color: S }}>TO-BE · 품절 옵션 선택</p><Screen src={I('n-optC')} alt="개선 화면: 오늘드림 품절 옵션을 고르면 다른 구매 방법 확인이 주요 행동으로 나온다" /></figure>
+          <figure className="w-[44%] md:mt-12"><p className="text-[13px] font-semibold mb-2" style={{ color: S }}>TO-BE · 다른 구매 방법</p><Screen src={I('n-altMethods')} alt="개선 화면: 일반배송으로 구매할 수 있는 경우" /></figure>
         </div>
       </Hero>
 
@@ -102,7 +101,7 @@ function Olive({ c }: { c: Ctx }) {
           <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-start">
             <div className="md:col-span-5"><Num n="01" t="품절의 범위를 구분하고, 다음 행동을 하나로" />
               <ul className="mt-8 space-y-5"><Ann color={S} n="A" t="오늘드림 품절과 전체 품절을 구분" d="재고가 확인된 경우에만 구분해 안내합니다." /><Ann color={S} n="B" t="주요 CTA는 ‘구매 방법’ 하나" d="일반배송·픽업·알림 버튼을 늘어놓지 않아 복잡도를 낮췄습니다." /><Ann color={S} n="C" t="재입고 알림은 보조 행동으로 유지" d="모든 방법이 품절이면 주요 행동으로 올립니다." /></ul></div>
-            <div className="mt-10 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter!} /></div>
+            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('n-optA')} alt="옵션 미선택 상태" cap="옵션 미선택" /><Fig src={I('n-optC')} alt="오늘드림 품절 옵션 선택" cap="오늘드림 품절" className="md:mt-10" /><Fig src={I('n-optFail')} alt="재고 확인 실패 상태" cap="재고 확인 실패" /></div>
           </div>
 
           <Reveal className="mt-20 md:mt-24">
@@ -110,9 +109,11 @@ function Olive({ c }: { c: Ctx }) {
             <p className="mt-4 text-[17px] leading-[1.8] max-w-2xl">오늘드림은 배송지, 픽업은 선택한 매장 기준으로 재고를 확인합니다. 필요한 정보가 달라 대체 구매 과정의 확인 경로를 구분했습니다. 선택한 옵션과 수량은 유지합니다.</p>
             <div className="mt-10 grid md:grid-cols-12 gap-8 items-start">
               <ul className="md:col-span-5 space-y-3" aria-label="재고 상태별 흐름">{cases.map(([k, a, b]) => <li key={k} className="rounded-[20px] bg-white border border-grid p-5"><p className="text-[13px] font-bold" style={{ color: S }}>Case {k} · {a}</p><p className="mt-1 text-[16px] leading-snug">→ {b}</p></li>)}</ul>
-              <div className="md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('compare')} alt="수령 방법 확인" cap="수령 방법 비교" /><Fig src={I('pickup')} alt="픽업 매장 재고" cap="픽업 매장" className="md:mt-10" /><Fig src={I('restock')} alt="재입고 알림 신청" cap="재입고 알림" /></div>
+              <div className="md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('n-altMethods')} alt="수령 방법 확인" cap="수령 방법 비교" /><Fig src={I('n-pickup')} alt="픽업 매장 재고" cap="픽업 매장" className="md:mt-10" /><Fig src={I('n-restock')} alt="재입고 알림 신청" cap="재입고 알림" /></div>
             </div>
           </Reveal>
+
+          {p.beforeAfter?.[0] && <div className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 상품 상세</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">수령 방법을 먼저 고르는 구매 패널</h3><p className="mt-4 text-[16px] leading-relaxed text-sub">가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[0]} /></div></div>}
 
           {p.extra && (
             <Reveal className="mt-20 md:mt-24">
@@ -121,6 +122,9 @@ function Olive({ c }: { c: Ctx }) {
               <div className="mt-10 grid md:grid-cols-12 gap-8 items-start">
                 <ul className="md:col-span-4 space-y-3">{p.extra.bullets.map(b => <li key={b} className="pl-4 border-l-2 text-[16px] leading-relaxed" style={{ borderColor: A }}>{b}</li>)}</ul>
                 <div className="md:col-span-8 grid grid-cols-3 gap-4 md:gap-6">{p.extra.images.slice(1).map(im => <Fig key={im.src} src={im.src} alt={im.alt} cap={im.caption} />)}</div>
+              </div>
+              {p.beforeAfter?.[1] && <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 주문/결제</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">길게 이어지던 결제를 3그룹으로</h3></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[1]} /></div></div>}
+              <div className="hidden">
               </div>
             </Reveal>
           )}

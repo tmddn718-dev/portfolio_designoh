@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Project } from '../data/projects'
 
 // 실제 전/후 시안이 있을 때만 사용. 네이티브 range 라 드래그·터치·키보드(←→) 모두 지원, 버튼으로 전/후 전환도 가능.
-export default function BeforeAfter({ data }: { data: NonNullable<Project['beforeAfter']> }) {
+export default function BeforeAfter({ data }: { data: NonNullable<Project['beforeAfter']>[number] }) {
   const [pos, setPos] = useState(50)
   return (
     <figure className="border border-grid rounded-[20px] bg-white p-4 md:p-6 max-w-[460px] mx-auto">

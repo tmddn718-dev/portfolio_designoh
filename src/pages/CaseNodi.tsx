@@ -172,7 +172,7 @@ export default function CaseNodi() {
               <div className="mt-5 grid grid-cols-3 gap-4 md:gap-6">{[['aiFail', 'AI 해석 실패'], ['recError', '추천 계산 오류'], ['recNone', '추천 후보 없음']].map(([n, l]) => <Shot key={n} n={n} cap={l} />)}</div>
             </div>
           </Reveal>
-          {p.beforeAfter && <div className="mt-24"><BeforeAfter data={p.beforeAfter} /></div>}
+          {p.beforeAfter?.map(b => <div key={b.before} className="mt-24"><BeforeAfter data={b} /></div>)}
         </div>
       </section>
 

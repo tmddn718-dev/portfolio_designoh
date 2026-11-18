@@ -19,7 +19,7 @@ export interface Project {
   extra?: { eyebrow: string; title: string; intro: string; bullets: string[]; images: { src: string; alt: string; caption: string; tall?: boolean }[] }
   gallery?: { src: string; alt: string; caption: string }[] // 앱 화면 (세로형)
   // 실제 제작된 전/후 시안이 있을 때만 채운다. 없으면 모듈이 렌더되지 않는다.
-  beforeAfter?: { before: string; after: string; beforeAlt: string; afterAlt: string; points: string[] }
+  beforeAfter?: { before: string; after: string; beforeAlt: string; afterAlt: string; points: string[] }[]
   sections: { id: string; title: string; body: string }[]
 }
 
@@ -36,7 +36,7 @@ export const projects: Project[] = [
     period: '약 1~2주',
     tags: ['상태 표현', '구매 흐름', '예외 처리'],
     accent: '#82DC28',
-    mock: { srcs: ['/images/oliveyoung-todaydream/compare.webp', '/images/oliveyoung-todaydream/options.webp', '/images/oliveyoung-todaydream/restock.webp'], framed: true },
+    mock: { srcs: ['/images/oliveyoung-todaydream/n-altMethods.webp', '/images/oliveyoung-todaydream/n-optC.webp', '/images/oliveyoung-todaydream/n-restock.webp'], framed: true },
     proto: { url: '/proto/oliveyoung/index.html', w: 390, h: 844 },
     extra: {
       eyebrow: 'Commerce flow',
@@ -49,28 +49,33 @@ export const projects: Project[] = [
         '상품 상세 하단: 오늘드림과 매장 픽업 중 수령 방법을 고르는 패널로 정리했습니다.',
       ],
       images: [
-        { src: '/images/oliveyoung-todaydream/c-asis-checkout.webp', alt: '기존 주문 결제 화면: 모든 정보가 한 페이지에 길게 이어진다', caption: 'AS-IS 주문/결제 (전체 스크롤)', tall: true },
-        { src: '/images/oliveyoung-todaydream/c-checkout.webp', alt: '개선 주문 결제 화면: 배송·수령 정보, 할인·혜택, 최종 결제의 3그룹', caption: '주문/결제 3그룹' },
-        { src: '/images/oliveyoung-todaydream/c-shipping.webp', alt: '배송 날짜와 시간대별 배송비, 무료배송까지 남은 금액 안내', caption: '시간대별 배송비' },
-        { src: '/images/oliveyoung-todaydream/c-cart.webp', alt: '장바구니: 무료배송까지 남은 금액과 함께 담기 좋은 상품', caption: '장바구니 무료배송 안내' },
+        { src: '/images/oliveyoung-todaydream/n-checkoutAsis.webp', alt: '기존 주문 결제 화면(실제 앱 캡처)', caption: 'AS-IS 주문/결제' },
+        { src: '/images/oliveyoung-todaydream/n-checkoutTobe.webp', alt: '개선 주문 결제 화면: 배송·수령 정보, 할인·혜택, 최종 결제 3그룹', caption: '주문/결제 3그룹' },
+        { src: '/images/oliveyoung-todaydream/n-slot.webp', alt: '배송 날짜와 시간대별 배송비, 무료배송까지 남은 금액 안내', caption: '시간대별 배송비' },
+        { src: '/images/oliveyoung-todaydream/n-cart.webp', alt: '장바구니: 무료배송까지 남은 금액과 함께 담기 좋은 상품', caption: '장바구니 무료배송 안내' },
       ],
     },
-    beforeAfter: {
-      before: '/images/oliveyoung-todaydream/ba-before.webp',
-      after: '/images/oliveyoung-todaydream/ba-after.webp',
-      beforeAlt: '기존 옵션 선택 화면: 품절 옵션에 일시품절 표시와 재입고 알림 버튼만 있다',
-      afterAlt: '개선 옵션 선택 화면: 오늘드림 품절 상태를 안내하고 다른 구매 방법 확인 버튼을 주요 행동으로 제공한다',
-      points: [
-        'Before: 품절 옵션에 일시품절 표시와 재입고 알림만 있어 품절 범위가 불명확하고, 다른 구매 방법을 찾기 어렵다',
-        'After: 오늘드림 품절 상태를 안내하고, "다른 구매 방법 확인"을 주요 행동으로 두며 재입고 알림은 보조 행동으로 유지한다',
-        '※ Before는 기존 앱 화면을 직접 캡처한 이미지이며, 상품 이미지와 주소 등 일부는 시안 표시로 대체했습니다',
-      ],
-    },
+    beforeAfter: [
+      {
+        before: '/images/oliveyoung-todaydream/n-detailAsis.webp', after: '/images/oliveyoung-todaydream/n-detailExpanded.webp',
+        beforeAlt: '기존 상품 상세 하단: 오늘드림 선택 시 배송지와 장바구니·바로구매 버튼이 나온다', afterAlt: '개선 상품 상세 하단: 오늘드림·매장 픽업 중 수령 방법을 고르는 패널',
+        points: ['Before: 오늘드림을 고르면 배송지 확인과 장바구니·바로구매가 함께 나온다', 'After: 수령 방법(오늘드림 · 매장 픽업)을 패널에서 먼저 고르고, 매장 픽업이면 매장과 재고를 확인한다', '※ Before는 실제 앱 화면을 직접 캡처한 이미지이며 주소 등 개인정보는 가렸습니다'],
+      },
+      {
+        before: '/images/oliveyoung-todaydream/n-checkoutAsis.webp', after: '/images/oliveyoung-todaydream/n-checkoutTobe.webp',
+        beforeAlt: '기존 주문/결제: 배송 방법, 요청사항, 주문상품, 쿠폰이 세로로 이어진다', afterAlt: '개선 주문/결제: 배송·수령 정보, 할인·혜택, 최종 결제 3그룹',
+        points: ['Before: 배송 시간 선택, 요청사항, 주문상품, 쿠폰 등이 한 화면에 길게 이어진다', 'After: 배송·수령 정보 / 할인·혜택 / 최종 결제 3그룹으로 묶고 접고 펼칠 수 있다', '※ Before는 실제 앱 화면을 직접 캡처한 이미지이며 주소 등 개인정보는 가렸습니다'],
+      },
+    ],
     gallery: [
-      { src: '/images/oliveyoung-todaydream/options.webp', alt: '옵션 선택 바텀시트: 상품별 재고 상태와 구매 방법', caption: '옵션 목록' },
-      { src: '/images/oliveyoung-todaydream/compare.webp', alt: '다른 수령 방법: 오늘드림 품절, 일반배송·매장 픽업 선택', caption: '수령 방법 비교' },
-      { src: '/images/oliveyoung-todaydream/pickup.webp', alt: '픽업 매장 선택: 매장별 재고와 픽업 가능 시간', caption: '픽업 매장' },
-      { src: '/images/oliveyoung-todaydream/restock.webp', alt: '재입고 알림 신청: 오늘드림 재고 또는 모든 수령 방법 재고', caption: '재입고 알림' },
+      { src: '/images/oliveyoung-todaydream/n-optA.webp', alt: '옵션 선택 바텀시트: 재고 상태별 구매 방법 표시', caption: '옵션 선택' },
+      { src: '/images/oliveyoung-todaydream/n-optC.webp', alt: '오늘드림 품절 옵션: 다른 구매 방법 확인이 주요 행동', caption: '품절 옵션 선택' },
+      { src: '/images/oliveyoung-todaydream/n-altMethods.webp', alt: '다른 수령 방법: 일반배송 구매 가능', caption: '일반배송 구매 가능' },
+      { src: '/images/oliveyoung-todaydream/n-altPickup.webp', alt: '다른 수령 방법: 픽업 주문 가능', caption: '픽업 주문 가능' },
+      { src: '/images/oliveyoung-todaydream/n-pickup.webp', alt: '픽업 매장 선택: 매장별 재고와 픽업 가능 여부', caption: '픽업 매장 선택' },
+      { src: '/images/oliveyoung-todaydream/n-stockChanged.webp', alt: '주문 직전 픽업 재고가 바뀐 경우의 안내', caption: '주문 직전 재고 변동' },
+      { src: '/images/oliveyoung-todaydream/n-restock.webp', alt: '재입고 알림 신청', caption: '재입고 알림 신청' },
+      { src: '/images/oliveyoung-todaydream/n-restockDone.webp', alt: '재입고 알림 신청 완료', caption: '재입고 알림 완료' },
     ],
     sections: [
       { id: 'overview', title: 'Overview', body: '올리브영 오늘드림 품절 이후 구매 결정 UX/UI 개선. 오늘드림으로 구매하려던 옵션이 품절됐을 때, 사용자가 다른 구매 방법을 확인하거나 재입고를 기다리는 등 자신의 목적에 맞는 다음 행동을 고를 수 있게 하는 비공식 UX 개선 프로젝트입니다. 품절 이후 경험과 함께, 매출과 연결될 수 있는 구매 구간(장바구니, 배송 시간, 주문·결제)도 개선했습니다.\n\n기획, 디자인, 프로토타입 구현을 혼자 진행했습니다.' },

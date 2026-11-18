@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { karrotFull } from '../data/karrotBig'
 
 // 네이티브 <dialog>: 포커스 가두기·Esc·배경 클릭 닫기, 닫히면 트리거로 포커스 복귀.
 export function Modal({ open, onClose, label, children }: { open: boolean; onClose: () => void; label: string; children: ReactNode }) {
@@ -22,6 +23,9 @@ export function Modal({ open, onClose, label, children }: { open: boolean; onClo
 // 이미지를 누르면 크게 보는 버튼형 이미지
 export function Zoomable({ src, alt, caption, className = '', imgClass = '', big }: { src: string; alt: string; caption?: string; className?: string; imgClass?: string; big?: string }) {
   const [open, setOpen] = useState(false)
+  const kf = big ? undefined : karrotFull(src)
+  const full = big ?? (kf && 'big' in kf ? kf.big : undefined)
+  const wrap = 'mx-auto max-h-[74vh] w-[min(390px,92vw)] overflow-y-auto overscroll-contain rounded-[20px] bg-white'
   return (
     <>
       <button type="button" className={`zoomable ${className}`} onClick={() => setOpen(true)} aria-label={`${alt}: 크게 보기`}>
@@ -29,9 +33,11 @@ export function Zoomable({ src, alt, caption, className = '', imgClass = '', big
       </button>
       <Modal open={open} onClose={() => setOpen(false)} label={alt}>
         <figure className="text-white text-center">
-          {big
-            ? <div className="mx-auto max-h-[74vh] w-[min(390px,92vw)] overflow-y-auto overscroll-contain rounded-[20px] bg-white"><img src={big} alt={alt} className="block w-full" /></div>
-            : <img src={src} alt={alt} className="mx-auto max-h-[82vh] w-auto max-w-[92vw] rounded-[20px]" />}
+          {kf && 'parts' in kf
+            ? <div className={`${wrap} relative`}><img src={kf.parts.top} alt="" aria-hidden className="sticky top-0 z-10 block w-full bg-white" /><img src={kf.parts.body} alt={alt} className="block w-full" /><img src={kf.parts.cta} alt="" aria-hidden className="sticky bottom-0 z-10 block w-full" style={{ boxShadow: '0 -8px 14px -8px rgba(0,0,0,.18)' }} /></div>
+            : full
+              ? <div className={wrap}><img src={full} alt={alt} className="block w-full" /></div>
+              : <img src={src} alt={alt} className="mx-auto max-h-[82vh] w-auto max-w-[92vw] rounded-[20px]" />}
           {caption && <figcaption className="mt-3 text-[14px]">{caption}</figcaption>}
         </figure>
       </Modal>

@@ -362,7 +362,7 @@ function Olive({ c }: { c: Ctx }) {
 const I2 = (n: string) => `/images/karrot-large-furniture/${n}.webp`
 const karrotCompare: CompareData[] = [
   { n: '01', title: '판매글 작성 · 가구 정보를 따로 받아요', sub: '판매자가 크기·분해 여부·운반 조건을 자유 서술에 의존하지 않고 선택 입력 섹션으로 정리해 남길 수 있어요.',
-    before: { src: '', alt: '', label: '현재 당근 앱' },
+    before: { src: I2('asis-write'), alt: '현재 당근 앱 판매글 작성: 사진, 제목, 자세한 설명, 가격 입력만 있고 대형 가구 거래 조건을 입력하는 칸이 없음', label: '현재 당근 앱' },
     afters: [{ src: I2('L-s2'), alt: '개선 판매글 작성: 자세한 설명 아래에 선택 입력 가구 정보 섹션', tag: 'S2', label: '판매글 작성 · 아래로 스크롤' }, { src: I2('L-s3'), alt: '개선 가구 정보 입력: 크기와 분해 여부, 가져가는 조건 입력', tag: 'S3', label: '가구 정보 입력 · 펼친 상태' }],
     current: ['크기·분해 여부·운반 조건을 ‘자세한 설명’ 자유 입력란에 쓸 수 있어요. 판매자마다 쓰는 정보의 양과 형식이 달라져요.', '거래 방식·가격 외에 대형 가구 거래에 필요한 조건(층수, 엘리베이터, 운반 도움)을 입력하는 칸이 없어요.'],
     improved: ['S2 · 판매글 작성에 ‘가구 정보’ 섹션을 선택 입력으로 추가했어요. 상품 정보(크기, 분해 여부)와 가져가는 조건(층수, 엘리베이터, 운반 도움)으로 나뉘어요.', 'S3 · 아는 항목만 입력해도 되고 섹션별 입력 진행도(4/4 입력, 3/3 입력)를 바로 보여줘요.'] },
@@ -443,8 +443,8 @@ function Karrot({ c }: { c: Ctx }) {
         <Reveal><blockquote className="mt-10 text-[28px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]" style={{ borderLeft: `6px solid ${A}`, paddingLeft: 24 }}>{p.problem}</blockquote></Reveal>
         <ul className="mt-12 grid md:grid-cols-3 gap-5">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
         <div className="mt-14"><p className="eyebrow text-sub">실제 당근 앱 · AS-IS 캡처</p>
-          <ul className="mt-5 grid grid-cols-3 gap-4 md:gap-8 max-w-3xl">{[['asis-search', '대형가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul>
-          <p className="mt-4 text-[13px] text-sub max-w-3xl">실제 앱 화면 캡처이며 판매자 닉네임, 거래 장소 주소·지도, 캡처한 사람의 정보는 가렸습니다.</p></div>
+          <ul className="mt-5 grid grid-cols-3 gap-4 md:grid-cols-5 md:gap-6 max-w-5xl">{[['asis-write', '판매글 작성: 제목·설명·가격만 입력'], ['asis-write-ai', '사진 분석 중(AI 작성)'], ['asis-search', '대형가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul>
+          <p className="mt-4 text-[13px] text-sub max-w-3xl">실제 앱 화면 캡처이며 판매자 닉네임, 거래 장소 주소·지도, 캡처한 사람의 정보는 가렸습니다. 판매글 작성 화면 두 장은 동네 이름과 거래 희망 장소를 가리지 않았습니다.</p></div>
         <p className="mt-10 text-[13px] text-sub max-w-3xl">앱 리뷰·블로그 VOC와 인터뷰를 근거로 PRD 문제를 정의했습니다. 원자료가 없어 표본 수와 수치는 싣지 않았고, 발생 빈도와 영향은 사용성 테스트로 검증해야 하는 디자인 가설입니다.</p>
       </section>
 
@@ -469,7 +469,7 @@ function Karrot({ c }: { c: Ctx }) {
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5"><Num n="03" t="질문은 초안으로만, 보내는 건 사용자" />
               <ul className="mt-8 space-y-5"><Ann color={A} n="A" t="궁금한 항목만 골라 채팅 초안 생성" /><Ann color={A} n="B" t="자동 전송하지 않고 기존 입력을 보존" d="사용자가 고치고 직접 보냅니다." /><Ann color={A} n="C" t="정보가 바뀌면 변경 항목만 비교" d="이전 값이 실제로 있을 때만 전후를 보여줍니다." /></ul></div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('f-b3')} alt="질문 고르기" cap="질문 고르기" /><Fig src={I('k-chat')} alt="채팅 질문 초안" cap="채팅 초안" className="md:mt-10" /><Fig src={I('k-changed')} alt="변경 내용 비교" cap="변경 비교" /></div>
+            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('f-b3')} alt="질문 고르기" cap="질문 고르기" /><Fig src={I('f-b4')} alt="채팅 질문 초안" cap="채팅 초안" className="md:mt-10" /><Fig src={I('f-c4')} alt="변경 내용 비교" cap="변경 비교" /></div>
           </Reveal>
         </div>
       </section>

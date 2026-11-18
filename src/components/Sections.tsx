@@ -77,7 +77,7 @@ export function Work() {
 
 const approach = [
   { key: 'Structure', title: '이해할 수 있는 구조', text: '복잡한 정보를 사용자가 이해할 수 있는 구조로 정리합니다.', shot: { src: '/images/oliveyoung-todaydream/n-altMethods.webp', alt: '올리브영 수령 방법 비교 화면', cap: '수령 방법 비교' } },
-  { key: 'Decision', title: '스스로 내리는 판단', text: '필요한 정보를 바탕으로 사용자가 스스로 판단할 수 있도록 설계합니다.', shot: { src: '/images/karrot-large-furniture/k-partial.webp', alt: '당근 정보 상태 구분 화면', cap: '정보 상태 구분' } },
+  { key: 'Decision', title: '스스로 내리는 판단', text: '필요한 정보를 바탕으로 사용자가 스스로 판단할 수 있도록 설계합니다.', shot: { src: '/images/karrot-large-furniture/L-b2.webp', alt: '당근 정보 상태 구분 화면', cap: '정보 상태 구분' } },
   { key: 'Craft', title: '동작하는 경험', text: '아이디어를 실제 동작하는 경험으로 구현하고 피드백을 바탕으로 개선합니다.', shot: { src: '/images/trigr/tr-reward-2.webp', alt: 'trigr 남은 상금 계산 화면', cap: '결과 확인' } },
 ]
 

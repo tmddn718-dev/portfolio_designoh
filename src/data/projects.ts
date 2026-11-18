@@ -130,7 +130,7 @@ export const projects: Project[] = [
     },
     beforeAfter: [
       {
-        before: '/images/karrot-large-furniture/bf-detail.webp', after: '/images/karrot-large-furniture/f-b1.webp',
+        before: '/images/karrot-large-furniture/asis-desc.webp', after: '/images/karrot-large-furniture/f-b1.webp',
         beforeAlt: '기존 당근 상품 상세 본문: 크기가 자유 텍스트 문장 속에 있다', afterAlt: '개선 상품 상세 본문 아래: 크기 및 분해, 가져가는 조건을 거래 정보 카드로 정리',
         marks: [
           { side: 'before', n: 1, x: 3, y: 53, w: 94, h: 16 },
@@ -144,7 +144,7 @@ export const projects: Project[] = [
         points: ['※ Before는 실제 당근 앱 화면 캡처이며 판매자 닉네임, 거래 장소 주소·지도, 캡처한 사람의 정보는 가렸습니다'],
       },
       {
-        before: '/images/karrot-large-furniture/bf-detail.webp', after: '/images/karrot-large-furniture/k-info-partial.webp',
+        before: '/images/karrot-large-furniture/asis-loc.webp', after: '/images/karrot-large-furniture/k-info-partial.webp',
         beforeAlt: '기존 당근 상품 상세 하단: 거래 장소와 용달비 안내, 채팅·관심 수', afterAlt: '개선 상품 상세: 미입력과 판매자도 모름을 구분해 표시한 거래 정보 카드',
         marks: [
           { side: 'before', n: 1, x: 3, y: 37, w: 94, h: 9 },

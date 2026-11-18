@@ -517,9 +517,9 @@ function Woorisai({ c }: { c: Ctx }) {
             <p className="mt-5 max-w-[56ch] text-[17px] leading-[1.8] text-ink/80">약속부터 사진 공유와 정산 그리고 추억 회상까지 따로 쓰던 흐름을 우리사이 하나로 이었어요. 모임을 관리하는 앱이 아니라 지난 추억을 다시 꺼내며 친구와 이야기하는 데 집중해요.</p>
             <ol aria-label="문제와 해결의 연결" className="mt-8 grid md:grid-cols-2 gap-3">
               {[['약속은 메신저에서', '약속은 추억을 만드는 계기로 두고 약속에서 바로 추억을 만들 수 있어요.'], ['사진은 각자의 갤러리에', '함께한 사람이 사진과 이야기를 한 추억에 같이 모아요.'], ['정산은 정산 앱에서', '약속·정산은 추억을 돕는 보조 기능으로 둬요.'], ['추억은 사진 앱에서 찾기', '사람·장소·시간으로 다시 찾고 사진마다 반응과 댓글로 이야기를 이어가요.']].map(([p, r]) => (
-                <li key={p} className="rounded-[18px] bg-white p-5 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center gap-5">
-                  <p className="text-[15px] font-semibold text-sub md:text-right">{p}</p><span aria-hidden className="hidden md:block text-[20px]" style={{ color: S }}>→</span>
-                  <p className="mt-2 md:mt-0 text-[15px] leading-[1.6]">{r}</p>
+                <li key={p} className="rounded-[18px] bg-white p-5 md:flex md:items-center">
+                  <p className="text-[15px] font-semibold text-sub shrink-0">{p}</p><span aria-hidden className="hidden md:block flex-1 text-center text-[20px]" style={{ color: S }}>→</span>
+                  <p className="mt-2 md:mt-0 text-[15px] leading-[1.6] md:w-[56%] md:shrink-0">{r}</p>
                 </li>
               ))}
             </ol>

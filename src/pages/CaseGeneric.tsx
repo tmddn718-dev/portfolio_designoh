@@ -522,7 +522,7 @@ function Woorisai({ c }: { c: Ctx }) {
             <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div><div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div><div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div></dl></div>
           {c.proto && <button onClick={() => c.setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
           <ul data-scale className="mt-14 flex items-end justify-center gap-4 md:gap-8 max-w-[860px] mx-auto">
-            {[['feed', '추억 피드', 'w-[28%]'], ['ph-after-top', '사진 상세', 'w-[34%]'], ['foot-after', '발자국', 'w-[28%]']].map(([n, a, w], i) => <li key={n} className={`${w} ${i !== 1 ? 'md:translate-y-8' : ''}`}><div className="phone-light"><img src={I(n)} alt={`우리사이 ${a} 화면`} className="screen" /></div></li>)}
+            {[['feed', '추억 피드', 'w-[28%]'], ['ph-after-top', '사진 상세', 'w-[34%]'], ['foot-after', '발자국', 'w-[28%]']].map(([n, a, w], i) => <li key={n} className={`${w} ${i !== 1 ? 'md:translate-y-8' : ''}`}><Screen src={I(n)} alt={`우리사이 ${a} 화면`} cap={a} /></li>)}
           </ul>
         </div>
       </section>

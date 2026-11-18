@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Zoomable } from './Modal'
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import { projects } from '../data/projects'
@@ -95,13 +96,14 @@ export function PinnedPhone({ steps, color, label }: { steps: Step[]; color: str
             <p className="eyebrow" style={{ color }}>0{i + 1}</p>
             <h3 className="mt-3 apple-h text-[28px] md:text-[44px] max-w-[16ch]">{s.title}</h3>
             <p className="mt-4 text-[17px] md:text-[19px] leading-[1.6] text-ink/70 max-w-[32ch]">{s.body}</p>
-            <div className="md:hidden mt-8 max-w-[260px]"><div className="phone-light"><img src={s.src} alt={s.alt} loading="lazy" className="screen" /></div></div>
+            <div className="md:hidden mt-8 max-w-[260px]"><Zoomable src={s.src} alt={s.alt} caption={s.title} className="phone-light w-full" imgClass="screen" /></div>
           </li>
         ))}
       </ol>
-      <div aria-hidden className="hidden md:block md:order-2">
+      <div className="hidden md:block md:order-2">
         <div className="sticky top-[calc(50vh-300px)] mx-auto w-[280px]">
-          <div className="phone-light"><div className="relative w-full h-full">{steps.map((s, i) => <img key={s.src} src={s.src} alt="" loading="lazy" className={`screen stage-screen ${on === i ? 'on' : ''}`} />)}</div></div>
+          <div className="phone-light relative"><div aria-hidden className="relative w-full h-full">{steps.map((s, i) => <img key={s.src} src={s.src} alt="" loading="lazy" className={`screen stage-screen ${on === i ? 'on' : ''}`} />)}</div>
+            <Zoomable src={steps[on].src} alt={steps[on].alt} caption={steps[on].title} className="absolute inset-0 z-10 rounded-[14%/6.5%]" imgClass="hidden" /></div>
         </div>
       </div>
     </div>

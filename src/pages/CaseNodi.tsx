@@ -82,13 +82,13 @@ export default function CaseNodi() {
             </div>
             <div className="mt-14 md:mt-0 md:col-span-6 relative flex justify-center md:justify-end gap-4 md:gap-0">
               <div data-rise className="relative w-[58%] md:w-[62%] z-10">
-                <div className="phone-pro"><img src="/images/nodi/hero-conds.webp" alt="NODI 조건 확인 화면: AI가 정리한 회의 조건" className="screen" /><span className="glare" /></div>
+                <Zoomable src="/images/nodi/hero-conds.webp" alt="NODI 조건 확인 화면: AI가 정리한 회의 조건" caption="조건 확인" className="phone-pro w-full" imgClass="screen" />
                 <ul className="hidden md:block absolute -left-40 top-[22%] w-36 space-y-24 text-[13px] leading-snug">
                   <li className="rounded-[12px] bg-white p-3 shadow-sm border border-grid"><b style={{ color: S }}>① AI가 정리</b><br />자연어를 회의 조건 카드로</li>
                   <li className="rounded-[12px] bg-white p-3 shadow-sm border border-grid"><b style={{ color: S }}>② 사용자가 수정</b><br />조건 항목별 수정·직접 입력</li>
                 </ul>
               </div>
-              <div data-rise className="w-[38%] md:w-[34%] mt-16 md:mt-24 md:-ml-8"><div className="phone-pro"><img src="/images/nodi/hero-review.webp" alt="NODI 최종 검토 화면: 사용자가 일정을 확정" className="screen" /><span className="glare" /></div></div>
+              <div data-rise className="w-[38%] md:w-[34%] mt-16 md:mt-24 md:-ml-8"><Zoomable src="/images/nodi/hero-review.webp" alt="NODI 최종 검토 화면: 사용자가 일정을 확정" caption="최종 검토" className="phone-pro w-full" imgClass="screen" /></div>
             </div>
           </div>
           {/* 모바일용 주석 */}
@@ -148,7 +148,7 @@ export default function CaseNodi() {
                 <span className="text-[48px] font-extrabold leading-none num-brand">0{i + 1}</span>
                 <p className="mt-4 text-[18px] font-semibold leading-snug">{x.pain}</p>
                 <div className="mt-6 pt-4 border-t border-grid"><p className="text-[13px] text-sub">NODI의 대응</p><p className="mt-1 text-[16px] font-semibold" style={{ color: S }}>{x.fix}</p></div>
-                <div className="mt-5 mx-auto w-[44%] mt-auto pt-5"><img src={img(x.shot)} alt={`${x.fix} 화면`} loading="lazy" className="phone-bare" /></div>
+                <div className="mt-5 mx-auto w-[44%] mt-auto pt-5"><Zoomable src={img(x.shot)} alt={`${x.fix} 화면`} caption={x.fix} className="w-full" imgClass="phone-bare" /></div>
               </div>
             </Reveal></li>
           ))}
@@ -290,7 +290,7 @@ export default function CaseNodi() {
               </tbody></table>
               <p className="mt-4 text-[13px] text-sub">반응형 정책 문서(승인본)의 기준이에요. 모바일을 먼저 정의하고 태블릿·PC로 확장했어요.</p>
             </div>
-            <div className="mt-8 md:mt-0 md:col-span-6 flex justify-center"><div className="w-full max-w-[340px] rounded-[14px] overflow-hidden border border-black/15 bg-white"><img src="/images/nodi/tablet-start.webp" alt="NODI 태블릿 폭(820px) 화면: 아이콘 레일 내비게이션과 대화 영역" loading="lazy" className="block w-full" /></div></div>
+            <div className="mt-8 md:mt-0 md:col-span-6 flex justify-center"><div className="w-full max-w-[340px] rounded-[14px] overflow-hidden border border-black/15 bg-white"><Zoomable src="/images/nodi/tablet-start.webp" alt="NODI 태블릿 폭(820px) 화면: 아이콘 레일 내비게이션과 대화 영역" caption="태블릿 폭(820px)" className="w-full" imgClass="block w-full" /></div></div>
           </div>
           <p className="mt-4 text-[13px] text-sub max-w-3xl">웹 화면은 체험용 데모(가상 데이터)를 1440px와 820px 폭에서 캡처한 거예요. 실제 일정은 등록되지 않아요.</p>
         </div>

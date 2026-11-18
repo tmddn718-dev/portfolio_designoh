@@ -35,9 +35,9 @@ export default function CompareSection({ d, color }: { d: CompareData; color: st
         </div>
         <div className="mt-6 md:mt-0 md:col-span-4 rounded-[20px] bg-[#f3f4f6] p-5 md:p-6">
           <p className="text-[14px] font-bold text-[#e5352b]">현재 당근 앱</p>
-          <ol className="mt-3 space-y-3">{d.current.map((t, i) => <li key={t} className="flex gap-2.5 text-[14px] leading-[1.55]"><span className="grid place-items-center shrink-0 w-6 h-6 rounded-full text-[12px] font-bold text-white bg-[#e5352b]">{i + 1}</span><span>{t}</span></li>)}</ol>
+          <ol className="mt-3 space-y-3">{d.current.map((t, i) => <li key={t} className="flex gap-2.5 text-[14px] leading-[1.55]"><span className="grid place-items-center shrink-0 w-6 h-6 rounded-full text-[13px] font-bold text-white bg-[#e5352b]">{i + 1}</span><span>{t}</span></li>)}</ol>
           <p className="mt-6 pt-5 border-t border-black/10 text-[14px] font-bold" style={{ color }}>개선안</p>
-          <ol className="mt-3 space-y-3">{d.improved.map((t, i) => <li key={t} className="flex gap-2.5 text-[14px] leading-[1.55]"><span className="grid place-items-center shrink-0 w-6 h-6 rounded-full text-[12px] font-bold text-white" style={{ background: color }}>{i + 1}</span><span>{t}</span></li>)}</ol>
+          <ol className="mt-3 space-y-3">{d.improved.map((t, i) => <li key={t} className="flex gap-2.5 text-[14px] leading-[1.55]"><span className="grid place-items-center shrink-0 w-6 h-6 rounded-full text-[13px] font-bold text-white" style={{ background: color }}>{i + 1}</span><span>{t}</span></li>)}</ol>
         </div>
       </div>
     </section>

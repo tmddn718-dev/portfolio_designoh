@@ -6,7 +6,7 @@ import { onBrand } from './case'
 // marks 가 있으면 화면 위에 바뀐 영역을 번호 박스로 표시하고, changes 표에서 번호별로 무엇이 어떻게 바뀌었는지 설명한다.
 type Data = NonNullable<Project['beforeAfter']>[number]
 const strip = (s: string, k: string) => s.replace(new RegExp(`^${k}\\s*:\\s*`), '')
-export default function BeforeAfter({ data, color = '#3975f6' }: { data: Data; color?: string }) {
+export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'BEFORE', afterLabel = 'AFTER' }: { data: Data; color?: string; beforeLabel?: string; afterLabel?: string }) {
   const hasChanges = !!data.changes?.length
   const bef = hasChanges ? [] : data.points.filter(p => p.startsWith('Before')).map(p => strip(p, 'Before'))
   const aft = hasChanges ? [] : data.points.filter(p => p.startsWith('After')).map(p => strip(p, 'After'))
@@ -30,17 +30,17 @@ export default function BeforeAfter({ data, color = '#3975f6' }: { data: Data; c
   return (
     <figure className="rounded-[28px] border border-grid p-4 md:p-8 bg-white">
       <div className="grid grid-cols-2 gap-3 md:gap-8 items-start relative">
-        <Col src={data.before} alt={data.beforeAlt} tag="BEFORE" list={bef} />
+        <Col src={data.before} alt={data.beforeAlt} tag={beforeLabel} list={bef} />
         <span aria-hidden className="absolute left-1/2 top-[38%] -translate-x-1/2 z-10 hidden md:grid place-items-center w-11 h-11 rounded-full bg-white border border-grid text-[18px] shadow-sm">→</span>
-        <Col src={data.after} alt={data.afterAlt} tag="AFTER" list={aft} after />
+        <Col src={data.after} alt={data.afterAlt} tag={afterLabel} list={aft} after />
       </div>
       {hasChanges && (
         <ol aria-label="바뀐 부분" className="mt-6 md:mt-8 space-y-3">
           {data.changes!.map(c => (
             <li key={c.n} className="rounded-[18px] bg-[#f5f5f7] p-4 md:p-5 md:grid md:grid-cols-[40px_1fr_1fr] gap-4 items-start">
               <span className="grid place-items-center w-8 h-8 rounded-full text-[14px] font-bold text-white" style={{ background: color }}>{c.n}</span>
-              <p className="mt-3 md:mt-0 text-[15px] leading-[1.6]"><b className="block text-[13px] text-sub">BEFORE</b>{c.before}</p>
-              <p className="mt-3 md:mt-0 text-[15px] leading-[1.6]"><b className="block text-[13px]" style={{ color }}>AFTER</b>{c.after}</p>
+              <p className="mt-3 md:mt-0 text-[15px] leading-[1.6]"><b className="block text-[13px] text-sub">{beforeLabel}</b>{c.before}</p>
+              <p className="mt-3 md:mt-0 text-[15px] leading-[1.6]"><b className="block text-[13px]" style={{ color }}>{afterLabel}</b>{c.after}</p>
             </li>
           ))}
         </ol>

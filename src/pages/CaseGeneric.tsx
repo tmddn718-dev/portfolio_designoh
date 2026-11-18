@@ -524,7 +524,7 @@ function Woorisai({ c }: { c: Ctx }) {
 
       <section id="c3" className="scroll-mt-20 md:mt-24">
         <div className="wrap gutter py-20 md:py-28">
-          <ChapterHead color={S} n="02" label="Solutions" title="기록, 대화, 발자국 — 세 가지 해결" />
+          <ChapterHead color={S} n="02" label="Solutions" title="기록, 대화, 발자국 — 처음부터 설계한 세 가지 경험" />
 
           <Reveal className="mt-14 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5"><Num n="01" t="추억 하나부터, 함께 기록한다" />
@@ -535,9 +535,9 @@ function Woorisai({ c }: { c: Ctx }) {
 
           <Reveal className="mt-24 md:mt-32 rounded-[28px] p-6 md:p-12 bg-[#F4F2EC]">
             <div className="max-w-[60ch]"><Tag t="Solution 02 · 핵심" /><h3 className="mt-4 text-[32px] md:text-[48px] font-extrabold tracking-tight leading-tight">사진 아래에서 바로 반응하고, 대화한다</h3>
-              <p className="mt-4 text-[17px] leading-[1.8]">사진 상세에서 이어지는 기록(‘기억 이어가기’)이 사진과 분리된 별도 카드에 있었습니다. 같은 프로토타입의 이전 버전과 현재 버전을 비교합니다.</p></div>
+              <p className="mt-4 text-[17px] leading-[1.8]">우리사이는 기존 서비스가 없는 신규 서비스라 비교 대상은 제가 처음 만든 프로토타입이에요. 첫 버전에서는 기록(‘기억 이어가기’)이 사진과 떨어진 별도 카드에 있었어요. 직접 써 보며 발견한 문제를 고친 과정을 초기 버전과 개선 버전으로 보여줘요.</p></div>
             <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
-              <div className="md:col-span-4"><p className="eyebrow text-sub">Before</p><div className="mt-3 max-w-[300px]"><Screen src={I('ph-before')} alt="이전 버전 사진 상세: 사진 아래 별도 기억 이어가기 카드" cap="Before · 사진 상세" /></div></div>
+              <div className="md:col-span-4"><p className="eyebrow text-sub">초기 버전</p><div className="mt-3 max-w-[300px]"><Screen src={I('ph-before')} alt="초기 버전 사진 상세: 사진 아래 별도 기억 이어가기 카드" cap="초기 버전 · 사진 상세" /></div></div>
               <div className="mt-10 md:mt-0 md:col-span-8">
                 <p className="eyebrow text-sub">발견한 문제 (제 점검)</p>
                 <ul className="mt-4 space-y-5"><Ann color={A} n="1" t="‘기억 이어가기’ 카드가 사진에서 떨어져 있다" d="사진을 보다가 바로 반응하기 어렵습니다." /><Ann color={A} n="2" t="반응·댓글 수가 ‘0’으로 표시된 카드에 묻혀 있다" d="사진에 대한 가벼운 참여와 함께 기록하기가 구분되지 않습니다." /><Ann color={A} n="3" t="‘이어진 기억이 아직 없어요’ 문구가 비어 있다는 인상만 준다" d="다음에 할 행동이 버튼 하나뿐입니다." /></ul>
@@ -546,21 +546,21 @@ function Woorisai({ c }: { c: Ctx }) {
                 <p className="mt-3 text-[14px] text-sub">※ 가설이며 사용자 검증 전입니다.</p>
               </div>
             </div>
-            <div className="mt-14"><p className="eyebrow text-sub">After</p>
+            <div className="mt-14"><p className="eyebrow text-sub">개선 버전</p>
               <div className="mt-3 md:grid md:grid-cols-12 gap-10 items-start">
                 <div className="md:col-span-7 grid grid-cols-2 gap-4 md:gap-6"><Fig src={I('ph-after-top')} alt="현재 버전: 사진 바로 아래 반응·댓글" cap="사진 바로 아래 반응·댓글" /><Fig src={I('ph-after-mid')} alt="현재 버전: 최근 댓글 미리보기와 함께 남기는 추억" cap="최근 댓글 · 함께 남기는 추억" className="md:mt-10" /></div>
                 <ul className="mt-8 md:mt-0 md:col-span-5 space-y-5"><Ann color={A} n="A" t="반응·댓글을 사진 바로 아래로" d="사진을 본 자리에서 바로 남깁니다." /><Ann color={A} n="B" t="최근 댓글 미리보기 + ‘이 사진에 댓글 남기기’" d="대화가 있는지 한눈에 보입니다." /><Ann color={A} n="C" t="가벼운 반응과 ‘함께 남기는 추억’ 분리" d="반응은 가볍게, 함께 기록은 별도 카드로." /></ul>
               </div>
               <div className="mt-6"><Need t="전체 댓글·답글 바텀시트 화면 캡처" /></div>
             </div>
-            <div className="mt-12 rounded-[20px] bg-white border border-grid p-6"><p className="eyebrow text-sub">검증 계획 (미수행)</p><ul className="mt-3 text-[16px] leading-[1.8] list-disc pl-5"><li>사진 단위 반응·댓글 사용 비율을 Before/After로 비교</li><li>‘함께 남기는 추억’과 ‘반응’을 구분해 이해하는지 과제 기반 관찰</li></ul><p className="mt-3 text-[13px] text-sub">아직 수행하지 않았고, 결과는 없습니다.</p></div>
+            <div className="mt-12 rounded-[20px] bg-white border border-grid p-6"><p className="eyebrow text-sub">검증 계획 (미수행)</p><ul className="mt-3 text-[16px] leading-[1.8] list-disc pl-5"><li>사진 단위 반응·댓글 사용 비율을 초기·개선 버전으로 비교</li><li>‘함께 남기는 추억’과 ‘반응’을 구분해 이해하는지 과제 기반 관찰</li></ul><p className="mt-3 text-[13px] text-sub">아직 수행하지 않았고, 결과는 없습니다.</p></div>
           </Reveal>
 
           <Reveal className="mt-24 md:mt-32">
             <div className="md:grid md:grid-cols-12 gap-10 items-start">
               <div className="md:col-span-5"><Num n="03" t="발자국으로 다녀온 곳을 다시 발견한다" />
-                <ul className="mt-8 space-y-5"><Ann color={A} n="1" t="전체 시도 라벨 → 기록된 지역만 사진 마커로" d="이전 버전은 17개 라벨이 지도 위에서 겹치거나 잘렸습니다." /><Ann color={A} n="2" t="지역별 추억 개수와 국내/해외 구분" d="기록된 지역 수와 연결된 추억 수를 요약합니다." /><Ann color={A} n="3" t="내 발자국 / 함께한 발자국" d="지역을 열면 그 지역의 추억 목록으로 이어집니다. GPS는 필요하지 않습니다." /></ul></div>
-              <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('foot-before')} alt="이전 버전 발자국: 지도 형태가 부정확하고 라벨이 겹침" cap="Before" /><Fig src={I('foot-after')} alt="현재 버전 발자국: 기록된 지역 사진 마커" cap="After" className="md:mt-12" /><Fig src={I('region')} alt="지역별 추억" cap="지역별 추억" /></div>
+                <ul className="mt-8 space-y-5"><Ann color={A} n="1" t="전체 시도 라벨 → 기록된 지역만 사진 마커로" d="초기 버전은 17개 라벨이 지도 위에서 겹치거나 잘렸습니다." /><Ann color={A} n="2" t="지역별 추억 개수와 국내/해외 구분" d="기록된 지역 수와 연결된 추억 수를 요약합니다." /><Ann color={A} n="3" t="내 발자국 / 함께한 발자국" d="지역을 열면 그 지역의 추억 목록으로 이어집니다. GPS는 필요하지 않습니다." /></ul></div>
+              <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('foot-before')} alt="초기 버전 발자국: 지도 형태가 부정확하고 라벨이 겹침" cap="초기 버전" /><Fig src={I('foot-after')} alt="개선 버전 발자국: 기록된 지역 사진 마커" cap="개선 버전" className="md:mt-12" /><Fig src={I('region')} alt="지역별 추억" cap="지역별 추억" /></div>
             </div>
           </Reveal>
         </div>

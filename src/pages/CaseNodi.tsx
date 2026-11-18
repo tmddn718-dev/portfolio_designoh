@@ -96,6 +96,43 @@ export default function CaseNodi() {
       </section>
       <CaseSummary p={p} />
 
+      <section aria-label="프로젝트 이해하기" className="wrap gutter pt-20 md:pt-28">
+        <p className="eyebrow" style={{ color: S }}>새로 만든 서비스 · 0→1</p>
+        <h2 className="mt-3 apple-h text-[30px] md:text-[48px] max-w-[22ch]">비교할 기존 앱이 없어서 회의 조율 경험을 처음부터 설계했어요</h2>
+
+        <Reveal stagger className="mt-10 grid md:grid-cols-3 gap-3 md:gap-5">
+          {[['01', 'NODI는 어떤 서비스인가요?', '회의 조건을 말로 입력하면 AI가 조건을 정리하고 참석자의 일정을 확인해 알맞은 시간을 추천해 주는 서비스예요. 확정은 사용자가 직접 해요.'],
+            ['02', '왜 만들었나요?', '직장인 6명을 인터뷰하니 회의를 잡을 때 세 가지가 스트레스였어요. 답 없는 사람에게 계속 물어야 하고 조건을 직접 분석해야 하고 확정한 뒤 바뀌면 처음부터 다시 맞춰야 해요.'],
+            ['03', '어떻게 설계했나요?', 'AI가 하는 일과 사용자가 정하는 일을 나눴어요. AI는 이해하고 설명하고 사용자는 참석자·날짜·후보를 직접 고르고 확정해요.']].map(([n, t, d]) => (
+            <div key={n} className="rounded-[24px] p-6 md:p-7" style={{ background: tintOf(p.accent, 14) }}><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.75] text-ink/80">{d}</p></div>
+          ))}
+        </Reveal>
+
+        <div className="mt-6 md:mt-8 grid md:grid-cols-2 gap-4 md:gap-6">
+          <div className="rounded-[24px] border border-grid p-6 md:p-8">
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-[#e8e8e8]">지금 사람들이 하는 방식</span>
+            <ol aria-label="지금의 회의 조율 방식" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
+              <li className="px-4 py-2 rounded-full bg-[#f5f5f7]">메신저로 일정 묻기</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-[#fdeaea] text-[#a12a2a] font-semibold">답 없는 사람 재촉</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-[#f5f5f7]">조건 직접 분석</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-[#fdeaea] text-[#a12a2a] font-semibold">변경되면 처음부터</li>
+            </ol>
+            <p className="mt-4 text-[15px] leading-[1.7] text-sub">인터뷰에서 나온 스트레스를 이어 그린 흐름이에요. 특정 앱을 가리키는 것이 아니에요.</p>
+          </div>
+          <div className="rounded-[24px] p-6 md:p-8" style={{ background: tintOf(p.accent, 16), border: `1px solid ${tintOf(p.accent, 36)}` }}>
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold text-white" style={{ background: p.accent }}>NODI</span>
+            <ol aria-label="NODI의 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
+              <li className="px-4 py-2 rounded-full bg-white">말로 조건 입력</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-white">응답 현황·리마인드</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full text-white font-semibold" style={{ background: p.accent }}>추천 시간과 이유</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-white">사용자가 확정</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-white">바뀌면 재조율</li>
+            </ol>
+            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">세 가지 스트레스를 각각 기능으로 풀었어요. 이 설계안은 아직 사용성 테스트를 하지 않았어요.</p>
+          </div>
+        </div>
+      </section>
+
       {/* 01 Challenge */}
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="01" label="The Challenge" title="회의를 잡는 사람의 세 가지 스트레스" />
@@ -190,7 +227,7 @@ export default function CaseNodi() {
                 <ul className="mt-3 text-[15px] leading-relaxed list-disc pl-5">{['아이콘·중복 설명 제거, 텍스트 중심으로(3D 일러스트 → 2D 상태 아이콘)', '핵심 정보를 먼저 보이고 상세는 단계적으로(추천 이유 바텀시트, 알고리즘 설명 접기)', '화면마다 주요 버튼 하나를 강조하고 보조는 텍스트 링크로', '조건 확인 카드를 압축(날짜·시간 2열, 참석자 중복 안내 제거)'].map(x => <li key={x}>{x}</li>)}</ul></div>
             </div>
           </Reveal>
-          {p.beforeAfter?.map((b, i) => <div key={b.before} className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · {['조건 확인', '추천 시간', '저장 완료'][i]}</p><p className="mt-4 text-[15px] text-sub">왼쪽(Before)은 초기 시안(v5.2), 오른쪽(After)은 개선 시안이에요.</p></div><div className="mt-6"><BeforeAfter data={b} color={S} /></div></div>)}
+          {p.beforeAfter?.map((b, i) => <div key={b.before} className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">초기 시안 → 개선 시안 · {['조건 확인', '추천 시간', '저장 완료'][i]}</p><p className="mt-4 text-[15px] text-sub">NODI는 기존 서비스가 없는 신규 서비스라 비교 대상은 제가 처음 만든 시안이에요. 왼쪽은 초기 시안(v5.2) 오른쪽은 개선 시안이에요.</p></div><div className="mt-6"><BeforeAfter data={b} color={S} beforeLabel="초기 시안" afterLabel="개선 시안" /></div></div>)}
           <p className="mt-10 text-[15px] leading-relaxed text-sub max-w-3xl">변경이 사용자의 이해와 행동에 미친 영향은 아직 확인하지 못했어요. 대신 터치 영역 44px·글자 13px 기준과 클릭 시나리오 19개로 구현 품질을 점검했고, 이해도 검증은 아래 계획으로 진행해요.</p>
         </div>
       </section>
@@ -232,7 +269,7 @@ export default function CaseNodi() {
             <p className="inline-flex px-3 py-1.5 rounded-full bg-ink text-white text-[13px] font-semibold">검증 계획 · 아직 수행하지 않음</p>
             <h3 className="mt-4 text-[24px] md:text-[32px] font-extrabold tracking-tight leading-tight max-w-[24ch]">프로토타입으로 확인할 일곱 가지</h3>
             <ol className="mt-6 grid sm:grid-cols-2 gap-3 text-[15px] leading-snug">{['조건 확인 정확도', '조건 수정 성공률', '필수 참석자 설정 성공 여부', '추천 후보 비교 성공률', '후보 선택 소요 시간', '저장 상태 이해 정확도(저장·캘린더·알림 구분)', '오류 상황에서 다음 행동 선택 여부'].map((x, i) => <li key={x} className="rounded-[20px] bg-white p-4"><span className="text-[13px] font-semibold" style={{ color: S }}>0{i + 1}</span> {x}</li>)}</ol>
-            <p className="mt-5 text-[15px] leading-relaxed text-sub max-w-3xl">방법: 과제를 주고 프로토타입 조작을 관찰하며, 혼란이 생긴 지점과 발화를 기록한 뒤 개선 전후 행동을 비교하고 재설계해요. 수행 전이라 수치나 인용문은 싣지 않았어요.</p>
+            <p className="mt-5 text-[15px] leading-relaxed text-sub max-w-3xl">방법: 과제를 주고 프로토타입 조작을 관찰하며, 혼란이 생긴 지점과 발화를 기록한 뒤 초기·개선 시안의 행동을 비교하고 재설계해요. 수행 전이라 수치나 인용문은 싣지 않았어요.</p>
           </div>
         </div>
       </section>

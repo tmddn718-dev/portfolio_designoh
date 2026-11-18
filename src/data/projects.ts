@@ -10,7 +10,7 @@ export interface Project {
   role: string
   period: string
   tags: string[]
-  summary: { short: string; decision: string; status: string; kind: 'launched' | 'design' | 'evidence' } // 채용 담당자용 30초 요약(원문 근거 내 표현만)
+  summary: { concept: [string, string][]; short: string; decision: string; status: string; kind: 'launched' | 'design' | 'evidence' } // 채용 담당자용 30초 요약(원문 근거 내 표현만)
   thumbnail?: string // public/images/<slug>/thumb.png 가 준비되면 지정
   thumbAlt?: string
   accent: string // 프로젝트 서브컬러(Hero 틴트·마커 전용) // 썸네일 placeholder 에서만 사용하는 프로젝트 색
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '1주',
     tags: ['상태 표현', '구매 흐름', '예외 처리'],
-    summary: { short: '품절 이후에도 구매를 이어가는 옵션 선택 흐름', decision: '옵션별 행동을 찾는 방식에서, 선택한 옵션의 다음 행동을 확인하는 방식으로. 옵션 목록 + 하단 고정 CTA, 수령 방법별 재고 확인 분리.', status: '설계안 · 시뮬레이션 데이터로 점검(실제 사용성 테스트 아님)', kind: 'design' },
+    summary: { concept: [['비교', '옵션 목록은 비교하는 영역으로'], ['행동', '선택한 옵션의 다음 행동을 하단 CTA로'], ['분리', '수령 방법별로 재고 확인 경로 분리'], ['그룹', '주문·결제를 3그룹으로 정리']], short: '품절 이후에도 구매를 이어가는 옵션 선택 흐름', decision: '옵션별 행동을 찾는 방식에서, 선택한 옵션의 다음 행동을 확인하는 방식으로. 옵션 목록 + 하단 고정 CTA, 수령 방법별 재고 확인 분리.', status: '설계안 · 시뮬레이션 데이터로 점검(실제 사용성 테스트 아님)', kind: 'design' },
     accent: '#82DC28',
     mock: { srcs: ['/images/oliveyoung-todaydream/n-altMethods.webp', '/images/oliveyoung-todaydream/n-optC.webp', '/images/oliveyoung-todaydream/n-restock.webp'], framed: true },
     proto: { url: '/proto/oliveyoung/index.html', w: 390, h: 844 },
@@ -120,7 +120,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '2주',
     tags: ['정보 구조화', '구매 판단 지원', '리서치'],
-    summary: { short: '채팅 전에 거래 조건을 구조화해 확인', decision: '거래 조건을 자유 서술이 아닌 구조화된 카드로. 미입력·판매자도 모름·불러오지 못함을 구분하고, 질문 초안은 사용자가 편집해서 보낸다.', status: '설계안 · 사용성 테스트 미수행(예측 지표는 ‘예상’으로 별도 표기)', kind: 'design' },
+    summary: { concept: [['구조화', '거래 조건을 카드로 정리'], ['구분', '미입력·모름·불러오지 못함을 구분'], ['초안', '편집 가능한 질문 초안 제공'], ['비교', '바뀐 정보는 변경 항목만 비교']], short: '채팅 전에 거래 조건을 구조화해 확인', decision: '거래 조건을 자유 서술이 아닌 구조화된 카드로. 미입력·판매자도 모름·불러오지 못함을 구분하고, 질문 초안은 사용자가 편집해서 보낸다.', status: '설계안 · 사용성 테스트 미수행(예측 지표는 ‘예상’으로 별도 표기)', kind: 'design' },
     accent: '#FF6F0F',
     mock: { srcs: ['/images/karrot-large-furniture/k-questions.webp', '/images/karrot-large-furniture/k-detail.webp', '/images/karrot-large-furniture/k-form.webp'], framed: true },
     forecast: {
@@ -172,7 +172,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '2주',
     tags: ['신규 제품 설계', '규칙·예외 정책', '일정 추천'],
-    summary: { short: 'AI는 이해하고, 사용자는 결정한다', decision: 'AI는 자연어 이해와 설명을, 사용자는 참석자·날짜·후보를 구조화된 UI로 결정한다. 확정은 명시적 행동으로만.', status: '설계안 · 직장인 6명 인터뷰 기반 · 클릭 시나리오 19개 점검 통과(사용성 테스트 미수행)', kind: 'design' },
+    summary: { concept: [['이해', 'AI는 자연어를 이해하고 설명'], ['결정', '사용자가 후보를 고르고 확정'], ['구분', '일정 가능·참석 수락·캘린더·알림을 분리'], ['예외', '실패·없음·계산 중 상태까지 설계']], short: 'AI는 이해하고, 사용자는 결정한다', decision: 'AI는 자연어 이해와 설명을, 사용자는 참석자·날짜·후보를 구조화된 UI로 결정한다. 확정은 명시적 행동으로만.', status: '설계안 · 직장인 6명 인터뷰 기반 · 클릭 시나리오 19개 점검 통과(사용성 테스트 미수행)', kind: 'design' },
     accent: '#3654D4',
     mock: { srcs: ['/images/nodi/m-home.webp', '/images/nodi/m-recs.webp', '/images/nodi/m-review.webp'], framed: false },
     beforeAfter: [
@@ -222,7 +222,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '1주',
     tags: ['서비스 기획', '협업·권한', '상호작용'],
-    summary: { short: '흩어진 기억을 하나의 추억으로', decision: '추억 하나부터 함께 기록하고, 사진 아래에서 바로 반응·대화하고, 발자국으로 다시 발견한다.', status: '설문 7명 · 권한 서버 테스트 통과 · 사진 상호작용·발자국 검증은 미수행', kind: 'evidence' },
+    summary: { concept: [['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자별 사진과 이야기를 한 추억에'], ['다시 발견', '사람·장소·시간으로 되찾기'], ['대화', '사진 아래에서 바로 반응·댓글']], short: '흩어진 기억을 하나의 추억으로', decision: '추억 하나부터 함께 기록하고, 사진 아래에서 바로 반응·대화하고, 발자국으로 다시 발견한다.', status: '설문 7명 · 권한 서버 테스트 통과 · 사진 상호작용·발자국 검증은 미수행', kind: 'evidence' },
     accent: '#566B5C',
     mock: { srcs: ['/images/woorisai/feed.webp', '/images/woorisai/home.webp', '/images/woorisai/new.webp'], framed: true },
     proto: { url: '/proto/woorisai/index.html', w: 390, h: 844 },
@@ -258,7 +258,7 @@ export const projects: Project[] = [
     role: 'UX/UI 총괄 · 디자인 시스템 구축',
     period: '2025.05 – 2026.06',
     tags: ['미션 플랫폼', 'UX/UI 설계', '디자인 시스템', '출시'],
-    summary: { short: '디자인 시스템 구축부터 태국 출시까지', decision: 'Figma Variables 기반 디자인 시스템을 처음부터 구축하고, 세 차례 개편을 거쳐 태국 시장에 출시.', status: '출시 완료 · 서비스는 현재 운영되지 않음', kind: 'launched' },
+    summary: { concept: [['시스템', 'Figma Variables 디자인 시스템 구축'], ['협업', '정해진 답이 없는 환경에서 함께 설계'], ['지속가능성', '생성자가 계속 만들 이유를 설계'], ['출시', '세 차례 개편, 태국 시장 출시']], short: '디자인 시스템 구축부터 태국 출시까지', decision: 'Figma Variables 기반 디자인 시스템을 처음부터 구축하고, 세 차례 개편을 거쳐 태국 시장에 출시.', status: '출시 완료 · 서비스는 현재 운영되지 않음', kind: 'launched' },
     accent: '#DD5BE0',
     mock: { srcs: ['/images/trigr/mission-create.webp', '/images/trigr/home-map.webp', '/images/trigr/t-proof-detail.webp'], framed: true },
     gallery: [

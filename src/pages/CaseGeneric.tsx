@@ -7,7 +7,7 @@ import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
-import { CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive } from '../components/case'
+import { CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
 import Strip from '../components/Strip'
 import NotFound from './NotFound'
 
@@ -447,6 +447,7 @@ export default function CaseGeneric() {
     <article ref={root}>
       <ChapterNav active={active} list={list} title={p.name} onCta={p.proto ? () => setOpen(true) : undefined} />
       {View ? <View c={c} /> : <NotFound />}
+      <ProjectIndex current={p.slug} />
       <Link to={`/work/${next.slug}`} className="group block rule">
         <div className="wrap gutter py-14 md:py-20 flex items-end justify-between gap-6">
           <div><p className="eyebrow text-sub">다음 프로젝트</p><p className="mt-3 text-[32px] md:text-[56px] font-extrabold tracking-tight leading-none group-hover:text-blue">{next.name}</p></div>

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
+import { projects } from '../data/projects'
 
 export const chapters = [['c1', '개요'], ['c2', '문제'], ['c3', '핵심 결정'], ['c4', '최종 화면'], ['c5', '검증']]
 export const tintOf = (c: string, n: number) => `color-mix(in srgb, ${c} ${n}%, white)`
@@ -118,7 +120,31 @@ export function CaseSummary({ p }: { p: Project }) {
           <div className={`${cell} md:col-span-4`}><p className={h}>내 역할</p><p className="mt-2 text-[17px] font-semibold leading-snug">{p.role}</p><p className="mt-1 text-[14px] text-sub">{p.period}</p><ul className="mt-3 flex flex-wrap gap-1.5">{p.tags.map(t => <li key={t} className="text-[13px] px-2.5 py-1 rounded-full bg-[#f5f5f7]">{t}</li>)}</ul></div>
           <div className={`${cell} md:col-span-3`}><p className={h}>검증 상태</p><span className="mt-2 inline-block px-3 py-1 rounded-full text-[13px] font-bold text-white" style={{ background: p.summary.kind === 'launched' ? '#111' : S }}>{kindLabel[p.summary.kind]}</span><p className="mt-3 text-[15px] leading-snug">{p.summary.status}</p></div>
           <div className={`${cell} md:col-span-12`}><p className={h}>핵심 결정</p><p className="mt-2 text-[20px] md:text-[26px] font-bold tracking-tight leading-snug max-w-[40ch]">{p.summary.decision}</p></div>
+          <ul aria-label="컨셉 키워드" className="md:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">{p.summary.concept.map(([k, d], i) => <li key={k} className="rounded-[20px] p-5 md:p-6 text-white" style={{ background: `linear-gradient(160deg, color-mix(in srgb, ${p.accent} 45%, #111), #111 80%)` }}><p className="text-[13px] text-white/60">CONCEPT 0{i + 1}</p><p className="mt-3 apple-h text-[24px] md:text-[30px]">{k}</p><p className="mt-2 text-[14px] leading-snug text-white/75">{d}</p></li>)}</ul>
         </Reveal>
+      </div>
+    </section>
+  )
+}
+
+
+// Behance 상위 포트폴리오의 INDEX 목록: 전체 작업을 이름·유형·기간으로 훑고 바로 이동
+export function ProjectIndex({ current }: { current: string }) {
+  return (
+    <section aria-label="작업 목록" className="rule">
+      <div className="wrap gutter py-14 md:py-20 md:grid md:grid-cols-12 gap-8">
+        <h2 className="md:col-span-4 apple-h text-[32px] md:text-[48px]">INDEX.</h2>
+        <ul className="mt-8 md:mt-0 md:col-span-8">
+          {projects.map(p => (
+            <li key={p.slug} className="rule">
+              <Link to={`/work/${p.slug}`} aria-current={p.slug === current ? 'page' : undefined} className={`group flex items-baseline justify-between gap-4 py-5 ${p.slug === current ? 'text-ink' : 'text-ink/70 hover:text-ink'}`}>
+                <span className="text-[20px] md:text-[26px] font-bold tracking-tight">{p.name}{p.slug === current && <span className="ml-3 text-[13px] font-semibold text-bluetext align-middle">현재 보는 작업</span>}</span>
+                <span className="text-[13px] md:text-[14px] text-sub text-right">{p.slug === 'trigr' ? '출시 서비스' : p.kind} · {p.period}</span>
+              </Link>
+            </li>
+          ))}
+          <li className="rule" />
+        </ul>
       </div>
     </section>
   )

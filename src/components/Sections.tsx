@@ -41,10 +41,10 @@ function FeatureTrigr({ p }: { p: Project }) {
     <article>
       <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="group relative block overflow-hidden rounded-[28px] px-6 pt-20 pb-10 md:px-16 md:pt-24 md:pb-14" style={{ background: `linear-gradient(135deg, ${tint(p.accent, 12)}, ${tint('#9B6BFF', 26)})` }}>
         <span className="absolute left-6 top-6 md:left-10 md:top-10"><Label launched /></span>
-        <Compose className="aspect-[16/10] md:aspect-[16/7] mt-6" items={[
-          { src: shots[0][0], kind: 'light', x: 17, y: 20, w: 19, r: -9, z: 1 },
-          { src: shots[2][0], kind: 'light', x: 64, y: 18, w: 19, r: 9, z: 1 },
-          { src: shots[1][0], kind: 'light', x: 37, y: 9, w: 26, z: 2, lift: 14 }]} />
+        <Compose ghost="TRIGR" ghostColor="#9B3FA0" className="aspect-[16/10] md:aspect-[16/7] mt-6" items={[
+          { src: shots[0][0], kind: 'pro', x: 17, y: 20, w: 19, r: -9, z: 1 },
+          { src: shots[2][0], kind: 'pro', x: 64, y: 18, w: 19, r: 9, z: 1 },
+          { src: shots[1][0], kind: 'pro', x: 37, y: 9, w: 26, z: 2, lift: 14 }]} />
       </Link>
       <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
         <div className="md:col-span-6">
@@ -65,7 +65,7 @@ function FeatureTrigr({ p }: { p: Project }) {
 // Featured 2 — NODI: Split Editorial (AI 제안 → 사용자 확인 → 확정)
 function FeatureNodi({ p }: { p: Project }) {
   const [open, setOpen] = useState(false)
-  const steps: [string, string, string][] = [['hi-conds', 'AI가 조건을 정리', 'AI 제안'], ['hi-recs', '추천 이유를 확인', '사용자 확인'], ['hi-review', '사용자가 확정', '사용자 결정']]
+  const steps: [string, string, string][] = [['s-conds', 'AI가 조건을 정리', 'AI 제안'], ['s-recs', '추천 이유를 확인', '사용자 확인'], ['s-review', '사용자가 확정', '사용자 결정']]
   return (
     <article className="grid md:grid-cols-12 gap-8 md:gap-12 items-stretch">
       <div className="md:col-span-4 flex flex-col">
@@ -79,7 +79,7 @@ function FeatureNodi({ p }: { p: Project }) {
         </div>
       </div>
       <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="group md:col-span-8 block overflow-hidden rounded-[28px] px-5 py-8 md:px-10 md:py-12" style={{ background: tint('#6F8BFF', 14) }}>
-        <Compose className="aspect-[16/11] md:aspect-[16/9]" persp={1600} items={steps.map(([n], i) => ({ src: `/images/nodi/${n}.webp`, kind: 'bare' as const, x: 8 + i * 27, y: 30 - i * 14, w: 24, ry: -18, rx: 4, r: 4, z: i + 1, lift: 12 }))} />
+        <Compose className="aspect-[16/11] md:aspect-[16/9]" persp={1600} items={steps.map(([n], i) => ({ src: `/images/nodi/${n}.webp`, kind: 'pro' as const, x: 8 + i * 27, y: 30 - i * 14, w: 24, ry: -18, rx: 4, r: 4, z: i + 1, lift: 12 }))} ghost="NODI" ghostColor="#3654D4" />
         <ol className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-[13px] font-semibold" style={{ color: strongOf(p.accent) }}>{steps.map(([, cap, tag], i) => <li key={tag}>0{i + 1} · {tag} <span className="font-normal text-ink/70">{cap}</span></li>)}</ol>
       </Link>
       <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>
@@ -88,17 +88,18 @@ function FeatureNodi({ p }: { p: Project }) {
 }
 
 // 프로젝트마다 다른 구도: 부채꼴(올리브영) · 3D 사선(우리사이) · 엇갈린 기울기(당근)
+const ghosts: Record<string, string> = { 'oliveyoung-todaydream': 'OLIVE YOUNG', woorisai: 'WOORISAI', 'karrot-large-furniture': 'DANGN' }
 const comps: Record<string, { ratio: string; items: (m: string[]) => Dev[] }> = {
   'oliveyoung-todaydream': { ratio: 'aspect-[4/3]', items: m => [
-    { src: m[2], kind: 'dark', x: 5, y: 16, w: 23, r: -10, z: 1 },
-    { src: m[1], kind: 'dark', x: 35, y: 15, w: 30, z: 3, lift: 14 },
-    { src: m[0], kind: 'dark', x: 72, y: 6, w: 23, r: 9, z: 2 }] },
+    { src: m[2], kind: 'pro', x: 5, y: 16, w: 23, r: -10, z: 1 },
+    { src: m[1], kind: 'pro', x: 35, y: 15, w: 30, z: 3, lift: 14 },
+    { src: m[0], kind: 'pro', x: 72, y: 6, w: 23, r: 9, z: 2 }] },
   woorisai: { ratio: 'aspect-square', items: m => [
-    { src: m[1], kind: 'dark', x: 6, y: 9, w: 40, ry: -24, rx: 5, r: 3, z: 2, lift: 12 },
-    { src: m[0], kind: 'dark', x: 56, y: 30, w: 36, ry: -24, rx: 5, r: 3, z: 1 }] },
+    { src: m[1], kind: 'pro', x: 6, y: 9, w: 40, ry: -24, rx: 5, r: 3, z: 2, lift: 12 },
+    { src: m[0], kind: 'pro', x: 56, y: 30, w: 36, ry: -24, rx: 5, r: 3, z: 1 }] },
   'karrot-large-furniture': { ratio: 'aspect-square', items: m => [
-    { src: m[1], kind: 'dark', x: 8, y: 24, w: 38, r: -9, z: 1 },
-    { src: m[0], kind: 'dark', x: 55, y: 5, w: 36, r: 8, z: 2, lift: 14 }] },
+    { src: m[1], kind: 'pro', x: 8, y: 24, w: 38, r: -9, z: 1 },
+    { src: m[0], kind: 'pro', x: 55, y: 5, w: 36, r: 8, z: 2, lift: 14 }] },
 }
 
 function Compact({ p, big = false }: { p: Project; big?: boolean }) {
@@ -106,7 +107,7 @@ function Compact({ p, big = false }: { p: Project; big?: boolean }) {
   return (
     <Reveal>
       <Link to={`/work/${p.slug}`} className="group block">
-        <Compose items={c.items(p.mock.srcs)} className={`rounded-[20px] ${big ? 'aspect-[4/3]' : c.ratio}`} style={{ background: `linear-gradient(160deg, ${tint(p.accent, 12)}, ${tint(p.accent, 30)})` }} />
+        <Compose items={c.items(p.mock.srcs)} ghost={ghosts[p.slug]} ghostColor={strongOf(p.accent)} className={`rounded-[20px] ${big ? 'aspect-[4/3]' : c.ratio}`} style={{ background: `linear-gradient(160deg, ${tint(p.accent, 12)}, ${tint(p.accent, 30)})` }} />
         <div className="mt-6">
           <div className="flex items-center gap-3 flex-wrap"><Label color={p.accent} /><span className="eyebrow text-sub">{p.category}</span></div>
           <h3 className="mt-3 text-[28px] font-bold tracking-tight group-hover:text-blue">{p.name}</h3>

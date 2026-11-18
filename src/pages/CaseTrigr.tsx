@@ -6,7 +6,7 @@ import { projects } from '../data/projects'
 import Reveal from '../components/Reveal'
 import { Zoomable } from '../components/Modal'
 import { owner } from '../components/Mockup'
-import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, CaseSummary } from '../components/case'
+import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, CaseSummary, ProjectIndex } from '../components/case'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -232,6 +232,7 @@ export default function CaseTrigr() {
         </div>
       </section>
 
+      <ProjectIndex current={'trigr'} />
       <Link to={`/work/${next.slug}`} className="group block rule">
         <div className="wrap gutter py-14 md:py-20 flex items-end justify-between gap-6">
           <div><p className="eyebrow text-sub">다음 프로젝트</p><p className="mt-3 text-[32px] md:text-[56px] font-extrabold tracking-tight leading-none group-hover:text-blue">{next.name}</p></div>

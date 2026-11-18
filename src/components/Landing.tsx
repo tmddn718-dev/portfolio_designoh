@@ -15,11 +15,11 @@ const shot = (slug: string, src: string) => (slug === 'nodi' ? '/images/nodi/s-r
 export function Showcase() {
   const m = Object.fromEntries(projects.map(p => [p.slug, shot(p.slug, p.mock.srcs[1])]))
   const items: Dev[] = [
-    { src: m['oliveyoung-todaydream'], kind: 'light', x: 3, y: 34, w: 17, r: -10, z: 1 },
-    { src: m['karrot-large-furniture'], kind: 'light', x: 21, y: 18, w: 18, r: -5, z: 2 },
-    { src: m['nodi'], kind: 'light', x: 40, y: 6, w: 20, z: 4, lift: 12 },
-    { src: m['woorisai'], kind: 'light', x: 61, y: 18, w: 18, r: 5, z: 2 },
-    { src: m['trigr'], kind: 'light', x: 80, y: 34, w: 17, r: 10, z: 1 },
+    { src: m['oliveyoung-todaydream'], kind: 'pro', x: 3, y: 34, w: 17, r: -10, z: 1 },
+    { src: m['karrot-large-furniture'], kind: 'pro', x: 21, y: 18, w: 18, r: -5, z: 2 },
+    { src: m['nodi'], kind: 'pro', x: 40, y: 6, w: 20, z: 4, lift: 12 },
+    { src: m['woorisai'], kind: 'pro', x: 61, y: 18, w: 18, r: 5, z: 2 },
+    { src: m['trigr'], kind: 'pro', x: 80, y: 34, w: 17, r: 10, z: 1 },
   ]
   return (
     <section data-dark aria-label="작업 화면 모음" className="bg-black overflow-hidden">
@@ -47,7 +47,7 @@ export function Highlights() {
                   <h3 className="mt-2 apple-h text-[30px] md:text-[34px]">{p.name}</h3>
                   <p className="mt-2 text-[16px] leading-snug text-white/75 max-w-[22ch]">{p.summary.short}</p>
                 </div>
-                <img src={shot(p.slug, p.mock.srcs[1])} alt="" loading="lazy" className="absolute left-1/2 -translate-x-1/2 top-[40%] w-[64%] rounded-t-[22px] object-cover object-top shadow-[0_30px_60px_-20px_rgba(0,0,0,.6)] transition-transform duration-700 ease-out group-hover:-translate-y-3" />
+                <div className="absolute left-1/2 -translate-x-1/2 top-[40%] w-[62%] transition-transform duration-700 ease-out group-hover:-translate-y-3"><div className="phone-pro"><img src={shot(p.slug, p.mock.srcs[1])} alt="" loading="lazy" className="screen" /><span className="glare" /></div></div>
                 <span className="absolute left-7 bottom-6 z-10 px-4 py-2 rounded-full bg-white text-black text-[14px] font-semibold">자세히 보기</span>
               </Link>
             ))}

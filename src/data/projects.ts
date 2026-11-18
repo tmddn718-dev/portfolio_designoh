@@ -10,7 +10,7 @@ export interface Project {
   role: string
   period: string
   tags: string[]
-  summary: { concept: [string, string][]; short: string; decision: string; status: string; kind: 'launched' | 'design' | 'evidence' } // 채용 담당자용 30초 요약(원문 근거 내 표현만)
+  summary: { concept: [string, string][]; short: string; about: string; decision: string; status: string; kind: 'launched' | 'design' | 'evidence' } // 채용 담당자용 30초 요약(원문 근거 내 표현만)
   thumbnail?: string // public/images/<slug>/thumb.png 가 준비되면 지정
   thumbAlt?: string
   accent: string // 프로젝트 서브컬러(Hero 틴트·마커 전용) // 썸네일 placeholder 에서만 사용하는 프로젝트 색
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '1주',
     tags: ['상태 표현', '구매 흐름', '예외 처리'],
-    summary: { concept: [['비교', '옵션 목록은 비교하는 곳으로 둬요'], ['행동', '고른 옵션의 다음 행동은 하단 버튼으로'], ['분리', '수령 방법마다 재고 확인을 따로'], ['그룹', '주문·결제를 3묶음으로 정리']], short: '품절돼도 구매를 이어갈 수 있는 옵션 선택', decision: '옵션마다 행동 버튼을 두는 대신, 고른 옵션에 맞는 다음 행동을 하단 버튼 하나로 안내해요. 오늘드림과 매장 픽업은 재고를 확인하는 기준이 달라서 나눠서 보여줘요.', status: '설계안이에요. 가상 데이터로 점검했고, 실제 사용성 테스트는 아니에요.', kind: 'design' },
+    summary: { concept: [['비교', '옵션 목록은 비교하는 곳으로 둬요'], ['행동', '고른 옵션의 다음 행동은 하단 버튼으로'], ['분리', '수령 방법마다 재고 확인을 따로'], ['그룹', '주문·결제를 3묶음으로 정리']], short: '품절돼도 구매를 이어갈 수 있는 옵션 선택', about: '품절된 상품도 다른 방법으로 살 수 있다는 걸 쉽게 알도록, 옵션 선택부터 수령 방법 확인까지의 흐름을 다시 설계했어요.', decision: '옵션마다 행동 버튼을 두는 대신, 고른 옵션에 맞는 다음 행동을 하단 버튼 하나로 안내해요. 오늘드림과 매장 픽업은 재고를 확인하는 기준이 달라서 나눠서 보여줘요.', status: '설계안이에요. 가상 데이터로 점검했고, 실제 사용성 테스트는 아니에요.', kind: 'design' },
     accent: '#82DC28',
     mock: { srcs: ['/images/oliveyoung-todaydream/n-altMethods.webp', '/images/oliveyoung-todaydream/n-optC.webp', '/images/oliveyoung-todaydream/n-restock.webp'], framed: true },
     proto: { url: '/proto/oliveyoung/index.html', w: 390, h: 844 },
@@ -120,7 +120,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '2주',
     tags: ['정보 구조화', '구매 판단 지원', '리서치'],
-    summary: { concept: [['구조화', '거래 조건을 카드로 정리'], ['구분', '입력 안 함·모름·불러오기 실패를 구분'], ['초안', '고쳐 쓸 수 있는 질문 초안'], ['비교', '바뀐 정보만 골라 비교']], short: '채팅 전에 거래 조건을 한눈에 확인', decision: '거래 조건을 글 속에 섞어 두지 않고 카드로 정리해요. ‘입력 안 함’, ‘판매자도 모름’, ‘불러오지 못함’을 구분해서 보여주고, 질문 초안은 사용자가 고쳐서 보내요.', status: '설계안이에요. 사용성 테스트는 아직 하지 않았고, 예상 수치는 ‘예상’이라고 따로 표시했어요.', kind: 'design' },
+    summary: { concept: [['구조화', '거래 조건을 카드로 정리'], ['구분', '입력 안 함·모름·불러오기 실패를 구분'], ['초안', '고쳐 쓸 수 있는 질문 초안'], ['비교', '바뀐 정보만 골라 비교']], short: '채팅 전에 거래 조건을 한눈에 확인', about: '채팅 전에 대형 가구의 거래 가능 여부를 판단할 수 있게, 크기·분해·가져가는 방법 같은 거래 조건을 카드로 정리했어요.', decision: '거래 조건을 글 속에 섞어 두지 않고 카드로 정리해요. ‘입력 안 함’, ‘판매자도 모름’, ‘불러오지 못함’을 구분해서 보여주고, 질문 초안은 사용자가 고쳐서 보내요.', status: '설계안이에요. 사용성 테스트는 아직 하지 않았고, 예상 수치는 ‘예상’이라고 따로 표시했어요.', kind: 'design' },
     accent: '#FF6F0F',
     mock: { srcs: ['/images/karrot-large-furniture/k-questions.webp', '/images/karrot-large-furniture/k-detail.webp', '/images/karrot-large-furniture/k-form.webp'], framed: true },
     forecast: {
@@ -172,7 +172,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '2주',
     tags: ['신규 제품 설계', '규칙·예외 정책', '일정 추천'],
-    summary: { concept: [['이해', 'AI는 말을 이해하고 설명'], ['결정', '후보는 사용자가 고르고 확정'], ['구분', '일정 가능·참석 수락·캘린더·알림을 따로 표시'], ['예외', '실패·후보 없음·계산 중 화면까지 설계']], short: 'AI는 이해하고, 사용자는 결정한다', decision: 'AI는 말을 이해하고 이유를 설명하는 일만 해요. 참석자, 날짜, 시간 후보는 사용자가 직접 고르고, 확정도 사용자가 눌러야만 돼요.', status: '설계안이에요. 직장인 6명 인터뷰를 바탕으로 했고, 클릭 시나리오 19개를 점검했어요. 사용성 테스트는 아직 하지 않았어요.', kind: 'design' },
+    summary: { concept: [['이해', 'AI는 말을 이해하고 설명'], ['결정', '후보는 사용자가 고르고 확정'], ['구분', '일정 가능·참석 수락·캘린더·알림을 따로 표시'], ['예외', '실패·후보 없음·계산 중 화면까지 설계']], short: 'AI는 이해하고, 사용자는 결정한다', about: '여러 사람의 일정을 맞춰 회의 시간을 잡아 주는 AI 앱이에요. AI는 조건을 이해하고, 사용자가 후보를 골라 확정해요.', decision: 'AI는 말을 이해하고 이유를 설명하는 일만 해요. 참석자, 날짜, 시간 후보는 사용자가 직접 고르고, 확정도 사용자가 눌러야만 돼요.', status: '설계안이에요. 직장인 6명 인터뷰를 바탕으로 했고, 클릭 시나리오 19개를 점검했어요. 사용성 테스트는 아직 하지 않았어요.', kind: 'design' },
     accent: '#3654D4',
     mock: { srcs: ['/images/nodi/m-home.webp', '/images/nodi/m-recs.webp', '/images/nodi/m-review.webp'], framed: false },
     beforeAfter: [
@@ -222,7 +222,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '1주',
     tags: ['서비스 기획', '협업·권한', '상호작용'],
-    summary: { concept: [['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자마다 사진과 이야기를 한 추억에'], ['다시 발견', '사람·장소·시간으로 다시 찾기'], ['대화', '사진 아래에서 바로 반응·댓글']], short: '흩어진 기억을 하나의 추억으로', decision: '추억 하나부터 가볍게 시작하고, 사진마다 바로 반응하고 대화하고, 발자국으로 다시 찾아볼 수 있게 했어요.', status: '설문 7명과 권한 서버 테스트까지 확인했어요. 사진 반응과 발자국은 아직 사용자 검증 전이에요.', kind: 'evidence' },
+    summary: { concept: [['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자마다 사진과 이야기를 한 추억에'], ['다시 발견', '사람·장소·시간으로 다시 찾기'], ['대화', '사진 아래에서 바로 반응·댓글']], short: '흩어진 기억을 하나의 추억으로', about: '함께한 사람만 초대해 사진과 이야기를 한 추억에 모으고, 사람·장소·시간으로 다시 찾아보는 공동 추억 기록 서비스예요.', decision: '추억 하나부터 가볍게 시작하고, 사진마다 바로 반응하고 대화하고, 발자국으로 다시 찾아볼 수 있게 했어요.', status: '설문 7명과 권한 서버 테스트까지 확인했어요. 사진 반응과 발자국은 아직 사용자 검증 전이에요.', kind: 'evidence' },
     accent: '#566B5C',
     mock: { srcs: ['/images/woorisai/feed.webp', '/images/woorisai/home.webp', '/images/woorisai/new.webp'], framed: true },
     proto: { url: '/proto/woorisai/index.html', w: 390, h: 844 },
@@ -258,7 +258,7 @@ export const projects: Project[] = [
     role: 'UX/UI 총괄 · 디자인 시스템 구축',
     period: '2025.05 – 2026.06',
     tags: ['미션 플랫폼', 'UX/UI 설계', '디자인 시스템', '출시'],
-    summary: { concept: [['시스템', 'Figma Variables로 디자인 시스템 구축'], ['협업', '정해진 답이 없는 상황에서 함께 설계'], ['지속가능성', '미션을 만드는 사람이 계속 만들 이유 설계'], ['출시', '세 번의 개편 후 태국 출시']], short: '디자인 시스템 구축부터 태국 출시까지', decision: '디자인 시스템을 처음부터 만들고, 세 번의 개편을 거쳐 태국 시장에 출시했어요.', status: '출시를 마쳤어요. 서비스는 현재 운영하지 않아요.', kind: 'launched' },
+    summary: { concept: [['시스템', 'Figma Variables로 디자인 시스템 구축'], ['협업', '정해진 답이 없는 상황에서 함께 설계'], ['지속가능성', '미션을 만드는 사람이 계속 만들 이유 설계'], ['출시', '세 번의 개편 후 태국 출시']], short: '디자인 시스템 구축부터 태국 출시까지', about: '미션을 만들고 수행하면 보상을 받는 앱이에요. 디자인 시스템을 처음부터 만들며 UX/UI를 총괄했고, 태국에 출시했어요.', decision: '디자인 시스템을 처음부터 만들고, 세 번의 개편을 거쳐 태국 시장에 출시했어요.', status: '출시를 마쳤어요. 서비스는 현재 운영하지 않아요.', kind: 'launched' },
     accent: '#DD5BE0',
     mock: { srcs: ['/images/trigr/mission-create.webp', '/images/trigr/home-map.webp', '/images/trigr/t-proof-detail.webp'], framed: true },
     gallery: [

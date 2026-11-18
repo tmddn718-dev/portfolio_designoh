@@ -45,9 +45,9 @@ export function Highlights() {
                 <div className="absolute inset-x-0 top-0 p-7 z-10">
                   <p className="text-[14px] text-white/60">{p.slug === 'trigr' ? '출시 서비스' : p.kind}</p>
                   <h3 className="mt-2 apple-h text-[30px] md:text-[34px]">{p.name}</h3>
-                  <p className="mt-2 text-[16px] leading-snug text-white/75 max-w-[22ch]">{p.summary.short}</p>
+                  <p className="mt-3 text-[15px] leading-[1.6] text-white/75">{p.summary.about}</p>
                 </div>
-                <div className="absolute left-1/2 -translate-x-1/2 top-[40%] w-[62%] transition-transform duration-700 ease-out group-hover:-translate-y-3"><div className="phone-pro"><img src={shot(p.slug, p.mock.srcs[1])} alt="" loading="lazy" className="screen" /><span className="glare" /></div></div>
+                <div className="absolute left-1/2 -translate-x-1/2 top-[46%] w-[60%] transition-transform duration-700 ease-out group-hover:-translate-y-3"><div className="phone-pro"><img src={shot(p.slug, p.mock.srcs[1])} alt="" loading="lazy" className="screen" /><span className="glare" /></div></div>
                 <span className="absolute left-7 bottom-6 z-10 px-4 py-2 rounded-full bg-white text-black text-[14px] font-semibold">자세히 보기</span>
               </Link>
             ))}

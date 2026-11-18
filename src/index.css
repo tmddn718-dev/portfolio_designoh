@@ -103,6 +103,8 @@ dialog.modal::backdrop { background: rgba(11,11,12,.72); }
 /* 가로 스크롤 스트립 */
 .strip { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 16px; }
 .strip > * { scroll-snap-align: start; flex: 0 0 auto; }
+.strip.no-bar { scrollbar-width: none; }
+.strip.no-bar::-webkit-scrollbar { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

@@ -454,6 +454,42 @@ function Woorisai({ c }: { c: Ctx }) {
       <p className="wrap gutter pt-8 text-[13px] text-sub text-center">실제 프로토타입 화면 캡처 · 사진은 Unsplash 예시 이미지, 이름과 내용은 예시 데이터</p>
       <CaseSummary p={p} />
 
+      <section aria-label="프로젝트 이해하기" className="wrap gutter pt-20 md:pt-28">
+        <p className="eyebrow" style={{ color: S }}>이 서비스를 쉽게 이해하기</p>
+        <h2 className="mt-3 apple-h text-[30px] md:text-[48px] max-w-[22ch]">모임을 관리하는 앱이 아니라 추억을 남기고 다시 꺼내보는 앱이에요</h2>
+
+        <Reveal stagger className="mt-10 grid md:grid-cols-3 gap-3 md:gap-5">
+          {[['01', '우리사이는 어떤 서비스인가요?', '친구들과 약속을 잡고 그날 있었던 일을 사진과 이야기로 남기는 추억 아카이빙 서비스예요. 함께한 사람만 초대해서 하나의 추억을 같이 완성해요.'],
+            ['02', '다른 모임 앱과 무엇이 다른가요?', '모임 앱은 일정과 멤버를 관리하는 데 집중해요. 우리사이는 관리가 아니라 지난 추억을 중심에 두고 친구와 이야기를 이어가는 데 집중해요.'],
+            ['03', '어떻게 상호작용하나요?', '지난 추억을 다시 보다가 사진마다 바로 반응하고 댓글을 남겨요. 기록이 다시 친구와의 대화로 이어져요.']].map(([n, t, d]) => (
+            <div key={n} className="rounded-[24px] p-6 md:p-7" style={{ background: T(14) }}><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.75] text-ink/80">{d}</p></div>
+          ))}
+        </Reveal>
+
+        <div className="mt-6 md:mt-8 grid md:grid-cols-2 gap-4 md:gap-6">
+          <div className="rounded-[24px] border border-grid p-6 md:p-8">
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-[#e8e8e8]">모임 관리 앱</span>
+            <ol aria-label="모임 관리 앱의 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
+              <li className="px-4 py-2 rounded-full bg-[#f5f5f7]">모임 만들기</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-[#f5f5f7]">멤버·일정 관리</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-[#f5f5f7] font-semibold">모임이 끝나면 끝</li>
+            </ol>
+            <p className="mt-4 text-[15px] leading-[1.7] text-sub">모임을 운영하는 일이 중심이라 지나간 날의 이야기는 남지 않아요.</p>
+          </div>
+          <div className="rounded-[24px] p-6 md:p-8" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: A, color: onBrand(A) }}>우리사이</span>
+            <ol aria-label="우리사이의 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
+              <li className="px-4 py-2 rounded-full bg-white">친구와 약속</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-white">그날의 추억 남기기</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full font-semibold" style={{ background: A, color: onBrand(A) }}>다시 꺼내보기</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-white">사진마다 반응·대화</li>
+            </ol>
+            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">약속은 추억을 만드는 계기예요. 쌓인 추억을 다시 보면서 친구와 이야기를 이어가는 것이 서비스의 중심이에요.</p>
+          </div>
+        </div>
+      </section>
+
+
       <section className="wrap gutter py-16 md:py-24 md:grid md:grid-cols-12 gap-10">
         <div className="md:col-span-4"><p className="eyebrow text-sub">Overview</p><h2 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">함께한 사람만 초대해, 하나의 추억을 같이 완성한다</h2></div>
         <div className="mt-6 md:mt-0 md:col-span-8 text-[17px] leading-[1.8] space-y-4">{c.body('overview').map(t => <p key={t}>{t}</p>)}</div>

@@ -15,7 +15,7 @@ export interface Project {
   thumbAlt?: string
   accent: string // 프로젝트 서브컬러(Hero 틴트·마커 전용) // 썸네일 placeholder 에서만 사용하는 프로젝트 색
   mock: { srcs: [string, string, string]; framed: boolean } // 섬네일 목업(가운데가 메인)
-  proto?: { url: string; w: number; h: number; bare?: boolean }
+  proto?: { url: string; w: number; h: number; bare?: boolean; pro?: boolean }
   // 포트폴리오 제작용 가상(시뮬레이션) 사용성 테스트 데이터. 실제 리서치 결과가 아니며 화면에 항상 그렇게 표기한다. 실측 후 교체.
   // 테스트 수행 전에 작성한 예측 시나리오(실제 결과 아님). 화면에 항상 '예상 결과'로 표기한다.
   forecast?: { buyer: string[][]; question: string[][]; seller: string[][] }
@@ -249,10 +249,10 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '1주',
     tags: ['서비스 기획', '협업·권한', '상호작용'],
-    summary: { concept: [['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자마다 사진과 이야기를 한 추억에'], ['다시 발견', '사람·장소·시간으로 다시 찾기'], ['대화', '사진 아래에서 바로 반응·댓글']], short: '흩어진 기억을 하나의 추억으로', about: '함께한 사람만 초대해 사진과 이야기를 한 추억에 모아요. 사람·장소·시간으로 다시 찾아볼 수 있는 공동 추억 기록 서비스예요.', decision: '추억 하나부터 가볍게 시작해요. 사진마다 바로 반응하고 대화하며 발자국으로 다시 찾아볼 수 있어요.', status: '설문 7명과 권한 서버 테스트까지 확인했어요. 사진 반응과 발자국은 아직 사용자 검증 전이에요.', kind: 'evidence' },
+    summary: { concept: [['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자마다 사진과 이야기를 한 추억에'], ['다시 발견', '사람·장소·시간으로 다시 찾기'], ['대화', '사진 아래에서 바로 반응·댓글']], short: '흩어진 기억을 하나의 추억으로', about: '친구와 약속을 잡고 그날의 추억을 남기는 추억 아카이빙 서비스예요. 모임 관리가 아니라 지난 추억을 다시 꺼내며 서로 이야기하는 데 집중해요.', decision: '추억 하나부터 가볍게 시작해요. 사진마다 바로 반응하고 대화하며 발자국으로 다시 찾아볼 수 있어요.', status: '설문 7명과 권한 서버 테스트까지 확인했어요. 사진 반응과 발자국은 아직 사용자 검증 전이에요.', kind: 'evidence' },
     accent: '#566B5C',
     mock: { srcs: ['/images/woorisai/feed.webp', '/images/woorisai/home.webp', '/images/woorisai/new.webp'], framed: true },
-    proto: { url: '/proto/woorisai/index.html', w: 390, h: 844 },
+    proto: { url: '/proto/woorisai/index.html', w: 390, h: 844, pro: true },
     gallery: [
       { src: '/images/woorisai/home.webp', alt: '홈: 최근 함께한 추억, 다가오는 약속, 우리의 발자국', caption: '홈' },
       { src: '/images/woorisai/feed.webp', alt: '추억 피드: 초대된 사람만 보는 공동 게시물', caption: '추억 피드' },

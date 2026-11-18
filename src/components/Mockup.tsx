@@ -26,6 +26,23 @@ export function ProtoFrame({ p, width = 300 }: { p: Project; width?: number }) {
       </div>
     )
   }
+  if (p.proto.pro) {
+    // 프로토타입이 390x844 전체 화면(상태바·아일랜드 포함)을 직접 그리는 경우: 사이트의 프로 목업 프레임에 비율을 정확히 맞춰 끼운다
+    const B = width * 0.025, inner = width - 2 * B, k = inner / p.proto.w, ih = p.proto.h * k
+    return (
+      <div>
+        <div className="phone-pro no-island" style={{ width, height: ih + 2 * B, aspectRatio: 'auto', padding: B, borderRadius: width * 0.14 }}>
+          <div className="overflow-hidden bg-white" style={{ width: inner, height: ih, borderRadius: width * 0.115 }}>
+            <iframe key={p.slug} title={`${p.name} 프로토타입`} src={p.proto.url} loading="lazy" style={{ width: p.proto.w, height: p.proto.h, transform: `scale(${k})`, transformOrigin: 'top left', border: 0, display: 'block' }} />
+          </div>
+        </div>
+        <p className="mt-4 text-[13px] text-sub flex items-center justify-between" style={{ width }}>
+          <span>{p.name} · 직접 눌러보세요</span>
+          <a className="text-bluetext underline underline-offset-4 py-1" href={p.proto.url} target="_blank" rel="noreferrer">새 탭에서 열기</a>
+        </p>
+      </div>
+    )
+  }
   const bare = !!p.proto.bare // 프로토타입이 자체 기기 베젤을 가진 경우 바깥 프레임을 또 씌우지 않는다
   const inner = bare ? width : width - 20, k = inner / p.proto.w
   const frame = (

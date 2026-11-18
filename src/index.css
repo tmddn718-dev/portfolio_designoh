@@ -12,14 +12,29 @@
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif;
 }
 
+:root {
+  --content-max: 1200px;
+  --space-section: clamp(72px, 8vw, 120px);
+  --type-section: clamp(28px, 3.2vw, 44px);
+  --type-body: clamp(15px, 1.2vw, 18px);
+}
+
 html { scroll-behavior: smooth; }
-body { font-family: var(--font-sans); color: var(--color-ink); background: #fff; -webkit-font-smoothing: antialiased; word-break: keep-all; }
+body { font-family: var(--font-sans); color: var(--color-ink); background: #fdfdfb; -webkit-font-smoothing: antialiased; word-break: keep-all; }
 :focus-visible { outline: 2px solid var(--color-blue); outline-offset: 3px; border-radius: 4px; }
 
-@layer base { main p { max-width: 70ch; } }
+@layer base {
+  main p { max-width: 68ch; text-wrap: pretty; }
+  main h1, main h2, main h3 { text-wrap: balance; }
+}
 .gutter { padding-inline: 20px; }
-@media (min-width: 768px) { .gutter { padding-inline: clamp(24px, 5vw, 64px); } }
-.wrap { max-width: 1200px; margin-inline: auto; }
+@media (min-width: 768px) { .gutter { padding-inline: 32px; } }
+@media (min-width: 1200px) { .gutter { padding-inline: 48px; } }
+.wrap { width: 100%; max-width: calc(var(--content-max) + 96px); margin-inline: auto; }
+.home-section { padding-top: var(--space-section); }
+.section-title { font-size: var(--type-section); font-weight: 700; line-height: 1.18; letter-spacing: -.035em; }
+.body-copy { max-width: 62ch; font-size: var(--type-body); line-height: 1.7; color: var(--color-sub); }
+.tabular-nums { font-variant-numeric: tabular-nums; }
 .eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
 .rule { border-top: 1px solid var(--color-grid); }
 
@@ -49,7 +64,8 @@ body { font-family: var(--font-sans); color: var(--color-ink); background: #fff;
 .stagger > :nth-child(2) { --i: 1 } .stagger > :nth-child(3) { --i: 2 } .stagger > :nth-child(4) { --i: 3 } .stagger > :nth-child(5) { --i: 4 } .stagger > :nth-child(6) { --i: 5 } .stagger > :nth-child(7) { --i: 6 } .stagger > :nth-child(n+8) { --i: 7 }
 
 /* 빠른 반응: 링크·버튼 색 전환 150ms (Brian Lovin) */
-a, button { transition: color .15s cubic-bezier(.4,0,.2,1), background-color .15s cubic-bezier(.4,0,.2,1), border-color .15s cubic-bezier(.4,0,.2,1); }
+a, button { transition: color .2s cubic-bezier(.4,0,.2,1), background-color .2s cubic-bezier(.4,0,.2,1), border-color .2s cubic-bezier(.4,0,.2,1), transform .2s cubic-bezier(.4,0,.2,1); }
+a:active, button:active { transform: translateY(1px); }
 
 /* 페이지 전환 */
 @keyframes pageIn { from { opacity: 0 } to { opacity: 1 } }

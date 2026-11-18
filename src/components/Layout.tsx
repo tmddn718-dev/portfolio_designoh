@@ -33,7 +33,7 @@ export default function Layout() {
   }, [pathname])
 
   const link = 'px-3 py-3 text-[14px] text-ink/85 hover:text-ink'
-  const on = (c: boolean) => `${link} ${c ? 'text-ink font-semibold' : ''}`
+  const on = (c: boolean) => `${link} ${c ? 'text-ink font-semibold underline decoration-2 underline-offset-4' : ''}`
   const [dark, setDark] = useState(false)
   const [top, setTop] = useState(false)
   useEffect(() => { const f = () => { setTop(scrollY > 900); setDark([...document.querySelectorAll('[data-dark]')].some(e => { const r = e.getBoundingClientRect(); return r.top <= 50 && r.bottom > 50 })) }; f(); addEventListener('scroll', f, { passive: true }); return () => removeEventListener('scroll', f) }, [])

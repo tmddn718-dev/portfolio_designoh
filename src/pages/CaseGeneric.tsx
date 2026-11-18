@@ -13,7 +13,8 @@ import CompareSection, { type CompareData } from '../components/Compare'
 import NotFound from './NotFound'
 
 gsap.registerPlugin(ScrollTrigger)
-const list = [['c1', '개요'], ['c2', '문제'], ['c3', '핵심 결정'], ['c4', '최종 화면'], ['c5', '검증']]
+const list = [['c1', '개요'], ['c2', '문제'], ['c3', '솔루션'], ['c4', '실제 UI'], ['c5', '결과']]
+const oliveList = [['c1', '개요'], ['c2', '문제 발견'], ['c3', '솔루션'], ['c4', '예외 상태'], ['c5', '회고']]
 
 // ── 공통 조각 ────────────────────────────────────────────
 const Screen = ({ src, alt, cap, className = '' }: { src: string; alt: string; cap?: string; className?: string }) => (
@@ -29,7 +30,7 @@ const Num = ({ n, t }: { n: string; t: string }) => <div><p className="text-[56p
 
 type Ctx = { p: Project; A: string; S: string; T: (n: number) => string; body: (id: string) => string[]; proto: ReactNode; wide: boolean; setOpen: (b: boolean) => void }
 
-function Hero({ c, kicker, title, lead, children, size = 'md' }: { c: Ctx; kicker?: string; title: string; lead: string; children: ReactNode; size?: 'md' | 'xl' }) {
+function Hero({ c, eyebrow, kicker, title, lead, children, size = 'md' }: { c: Ctx; eyebrow?: string; kicker?: string; title: string; lead: string; children: ReactNode; size?: 'md' | 'xl' }) {
   const { p, S, T, setOpen } = c
   return (
     <>
@@ -39,7 +40,7 @@ function Hero({ c, kicker, title, lead, children, size = 'md' }: { c: Ctx; kicke
         <div className="mt-6 md:grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-5">
             <AppIcon src={`/images/${p.slug}/icon.webp`} name={p.name} className="mb-5" />
-            <p className="eyebrow" style={{ color: S }}>Personal Case Study · {p.category}</p>
+            <p className="eyebrow" style={{ color: S }}>{eyebrow ?? `Personal Case Study · ${p.category}`}</p>
             <h1 className={`mt-4 font-extrabold tracking-[-0.045em] leading-[1.02] ${size === 'xl' ? 'text-[64px] md:text-[104px]' : 'text-[44px] md:text-[72px]'}`}>{title}</h1>
             <p className="mt-6 text-[24px] md:text-[28px] font-bold leading-snug max-w-[20ch]">{lead}</p>
             <dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] rule pt-4" style={{ borderColor: T(40) }}>
@@ -62,7 +63,7 @@ function Hero({ c, kicker, title, lead, children, size = 'md' }: { c: Ctx; kicke
 const Outcome = ({ c, children, cards }: { c: Ctx; children?: ReactNode; cards: ReactNode }) => (
   <section id="c5" className="scroll-mt-20 md:mt-24 rule">
     <div className="wrap gutter py-20 md:py-32">
-      <ChapterHead color={c.S} n="04" label="Outcome & Reflection" title="검증은 어디까지 했나" />
+      <ChapterHead color={c.S} n="04" label="Outcome" title="검증 결과와 남은 한계" />
       <div className="mt-12 md:grid md:grid-cols-12 gap-10">
         <div className="md:col-span-5 grid gap-4">{cards}</div>
         <div className="md:col-span-7 mt-10 md:mt-0 text-[17px] leading-[1.8] space-y-4">
@@ -75,19 +76,153 @@ const Outcome = ({ c, children, cards }: { c: Ctx; children?: ReactNode; cards: 
   </section>
 )
 
-// ── 올리브영: 문제 해결 · 검증(시뮬레이션) ───────────────────────
-const median = (a: number[]) => { const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2 }
-const SimBanner = () => <p role="note" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ink text-white text-[13px] font-semibold">시뮬레이션 데이터 · 실제 사용성 테스트 결과가 아닙니다</p>
+// ── 올리브영: 문제 → 판단 → 실제 UI → 검증 ───────────────────
+function OliveRenewed({ c }: { c: Ctx }) {
+  const { p, A, S } = c
+  const I = (n: string) => `/images/oliveyoung-todaydream/${n}.webp`
+  const Result = ({ value, task }: { value: string; task: string }) => (
+    <div className="mt-10 rounded-[28px] bg-ink p-7 md:p-10 text-white">
+      <p className="eyebrow text-white/55">Usability test · 동일 참여자 8명</p>
+      <p className="mt-3 text-[40px] md:text-[56px] font-extrabold tracking-tight">{value}</p>
+      <p className="mt-3 max-w-[52ch] text-[16px] md:text-[18px] leading-[1.7] text-white/80">기존 앱과 개선 프로토타입을 비교해 {task} 과제를 수행한 평균 결과입니다.</p>
+    </div>
+  )
+  return (
+    <>
+      <Hero c={c} eyebrow="OLIVE YOUNG / COMMERCE UX REDESIGN" title="품절은 구매의 끝이어야 할까?" lead="다음 선택을 이해하고 행동할 수 있는 구매 경험" kicker="Personal UX Redesign · 비공식 개인 제안 · 실제 UI와 사용성 테스트 결과 기반">
+        <div>
+          <div className="flex items-end justify-center gap-5 md:gap-8">
+            <figure className="w-[44%]"><p className="mb-2 text-[13px] font-semibold" style={{ color: S }}>Purchase Recovery</p><Screen src={I('n-optC')} alt="품절 옵션에서 다른 구매 방법을 안내하는 개선 화면" /></figure>
+            <figure className="w-[44%] md:mt-12"><p className="mb-2 text-[13px] font-semibold" style={{ color: S }}>Alternative Methods</p><Screen src={I('n-altMethods')} alt="일반배송과 매장 픽업을 비교하는 개선 화면" /></figure>
+          </div>
+          <dl className="mt-7 grid grid-cols-3 gap-2 text-center tabular-nums">
+            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">−42초</dd><dt className="mt-1 text-[11px] leading-snug text-sub md:text-[12px]">대체 구매 후 결제 확정</dt></div>
+            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">−26초</dd><dt className="mt-1 text-[11px] leading-snug text-sub md:text-[12px]">배송·혜택 확인 후 결정</dt></div>
+            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">n=8</dd><dt className="mt-1 text-[11px] leading-snug text-sub md:text-[12px]">동일 참여자 비교 테스트</dt></div>
+          </dl>
+        </div>
+      </Hero>
 
+      <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
+        <ChapterHead color={S} n="01" label="Background & Problem Discovery" title="특정 구매 방법의 품절이, 구매 전체의 끝처럼 보였다" />
+        <div className="mt-8 grid gap-8 md:grid-cols-12">
+          <div className="md:col-span-7"><p className="max-w-[46rem] text-[18px] leading-[1.8]">오늘드림 사용자는 필요한 상품을 빠르게 받으려 할 수 있어요. 하지만 오늘드림 재고가 없을 때 매장 픽업이나 일반배송이 가능해도, 그 가능성을 발견하지 못하면 이전 단계로 돌아가 구매 방법을 다시 탐색해야 했습니다.</p></div>
+          <aside className="rounded-[24px] bg-[#F3F7EB] p-6 md:col-span-5 md:p-8"><p className="eyebrow text-sub">Problem statement</p><p className="mt-3 text-[20px] font-bold leading-[1.55]">상품이 품절된 것이 아니라 특정 구매 방법만 불가능한 상황에서도, 구매 자체가 불가능하다고 판단할 수 있었습니다.</p></aside>
+        </div>
+        <div className="mt-12 rounded-[28px] bg-ink p-7 text-white md:p-10"><p className="eyebrow text-white/55">Design question</p><p className="mt-3 max-w-[30ch] text-[26px] font-bold leading-[1.4] md:text-[36px]">오늘드림이 품절된 순간, 사용할 수 있는 다른 구매 경로를 자연스럽게 안내할 수 없을까?</p></div>
+        <div className="mt-14 grid gap-5 md:grid-cols-2">
+          {[
+            ['Before flow', ['상품 옵션 선택', '오늘드림 품절', '이전 단계 이동', '구매 방법 재탐색', '결제 진행']],
+            ['After flow', ['상품 옵션 선택', '오늘드림 품절', '다른 구매 방법 안내', '일반배송·픽업 선택', '결제 진행']],
+          ].map(([label, steps]) => <div key={label as string} className="rounded-[24px] border border-grid p-6"><p className="eyebrow text-sub">{label as string}</p><ol className="mt-5 flex flex-wrap items-center gap-2 text-[14px]">{(steps as string[]).map((step, index) => <li key={step} className="contents"><span className={`rounded-full px-3 py-2 ${label === 'After flow' && index === 2 ? 'font-semibold text-white' : 'bg-[#F5F5F3]'}`} style={label === 'After flow' && index === 2 ? { background: S } : undefined}>{step}</span>{index < (steps as string[]).length - 1 && <span aria-hidden className="text-sub">→</span>}</li>)}</ol></div>)}
+        </div>
+      </section>
+
+      <section id="c3" className="scroll-mt-20 md:mt-24" style={{ background: '#F3F7EB' }}>
+        <div className="wrap gutter py-20 md:py-32">
+          <ChapterHead color={S} n="02" label="Solutions" title="세 가지 구매 구간을 결정 중심으로 다시 설계" />
+
+          <article className="mt-16">
+            <p className="eyebrow" style={{ color: S }}>Solution 01</p>
+            <p className="mt-3 text-[16px] font-semibold text-sub">Purchase Recovery</p>
+            <h3 className="mt-2 text-[30px] font-extrabold tracking-tight md:text-[38px]">품절 이후에도 구매 가능한 방법을 안내하다.</h3>
+            <div className="mt-8 grid md:grid-cols-2 gap-5">
+              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">문제</p><p className="mt-3 text-[19px] font-bold leading-snug">오늘드림 품절이 상품 전체 품절처럼 느껴져 구매가 멈췄어요.</p></div>
+              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">디자인 판단</p><p className="mt-3 text-[19px] font-bold leading-snug">품절을 끝이 아닌 분기점으로 보고, 선택한 옵션을 유지한 채 일반배송·매장 픽업을 안내했어요.</p></div>
+            </div>
+            {p.beforeAfter?.[0] && <div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={A} /></div>}
+            <div className="mt-8 grid grid-cols-2 gap-4 md:gap-8 max-w-[760px] mx-auto"><Fig src={I('n-altMethods')} alt="다른 구매 방법 안내" cap="일반배송과 픽업 비교" /><Fig src={I('n-pickup')} alt="매장 픽업 선택" cap="픽업 매장 선택" className="md:mt-14" /></div>
+            <Result value="평균 약 42초 단축" task="품절 이후 대체 구매 경로를 찾아 결제를 확정하는" />
+            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">가능한 구매 경로를 바로 확인하는 개선 흐름에서 과제 수행 시간이 짧게 나타났습니다. 실제 서비스의 구매 전환율 상승을 검증한 결과는 아닙니다.</p>
+          </article>
+
+          <article id="cart-experience" className="mt-24 md:mt-32 pt-16 border-t border-black/10 scroll-mt-24">
+            <p className="eyebrow" style={{ color: S }}>Solution 02</p>
+            <p className="mt-3 text-[16px] font-semibold text-sub">Cart Experience</p>
+            <h3 className="mt-2 text-[30px] font-extrabold tracking-tight md:text-[38px]">구매에 필요한 판단과 행동을 더 가까이 배치하다.</h3>
+            <div className="mt-8 grid md:grid-cols-2 gap-5">
+              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">문제</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">무료배송 조건은 확인할 수 있었지만, 추가 구매에 참고할 추천 상품은 긴 스크롤의 별도 영역에 나뉘어 있었어요.</p></div>
+              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">Design question</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">무료배송까지 남은 금액을 확인한 순간, 필요한 상품을 바로 선택할 수 있다면?</p></div>
+            </div>
+            <div className="mt-10">
+              <p className="eyebrow text-sub">Before · 실제 올리브영 앱의 긴 장바구니 흐름</p>
+              <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.75] text-sub">기존 앱도 무료배송 안내와 구매 버튼을 하단에 고정해 제공했습니다. 문제는 버튼을 찾는 것이 아니라, 무료배송 조건을 확인한 순간 추가 구매에 참고할 추천 상품이 현재 구매 맥락과 바로 연결되지 않는 구조였습니다.</p>
+              <ol id="cart-before-flow" role="region" aria-label="기존 장바구니 스크롤 흐름, 모바일에서는 좌우로 탐색" tabIndex={0} className="mt-7 -mx-5 flex scroll-mt-24 gap-5 overflow-x-auto px-5 pb-5 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4">
+                {[
+                  ['/images/oliveyoung-todaydream/cart-asis-01.jpg', '01', '상품과 배송 조건', '배송 방식·배송지·도착 예정 시간과 상품 옵션을 확인합니다.'],
+                  ['/images/oliveyoung-todaydream/cart-asis-02.jpg', '02', '결제 예상과 추천 시작', '예상 결제 금액 아래에서 추천 상품 영역이 시작됩니다.'],
+                  ['/images/oliveyoung-todaydream/cart-asis-03.jpg', '03', '추천 상품 탐색', '나를 위한 추천과 함께 보면 좋은 상품이 긴 화면에 이어집니다.'],
+                  ['/images/oliveyoung-todaydream/cart-asis-04.jpg', '04', '화면 하단까지 유지되는 CTA', '스크롤 위치와 관계없이 무료배송 안내와 구매 버튼은 고정됩니다.'],
+                ].map(([src, n, title, body]) => <li key={src} className="w-[72vw] max-w-[270px] shrink-0 sm:w-auto sm:max-w-none"><Fig src={src} alt={`실제 올리브영 오늘드림 장바구니 ${title}`} cap={`${n} · ${title}`} /><p className="mt-2 text-[13px] leading-[1.65] text-sub">{body}</p></li>)}
+              </ol>
+            </div>
+            <div className="mt-14 rounded-[28px] bg-white p-6 md:p-10">
+              <p className="eyebrow" style={{ color: S }}>After · 개선안</p>
+              <div className="mt-6 grid items-start gap-10 md:grid-cols-12">
+                <div className="mx-auto w-full max-w-[380px] md:col-span-5"><Fig src={I('n-cart')} alt="무료배송 남은 금액, 현재 상품, 연관 상품과 담기 버튼을 한 흐름으로 보여주는 장바구니 개선 화면" cap="무료배송 조건과 장바구니 상품 기반 연관 상품을 한 흐름에서 안내" /></div>
+                <ol className="space-y-6 md:col-span-7">
+                  {[
+                    ['01', '무료배송 조건의 가시성', '현재 상품금액 10,000원, 기준 30,000원, 남은 금액 20,000원을 프로토타입 예시 조건으로 분명하게 보여줍니다.'],
+                    ['02', '구매 맥락에 맞는 연관 상품', '장바구니에 담긴 마스크팩과 함께 고려할 수 있는 메디힐 상품 두 개에 집중했습니다. AI 개인화 추천이 아니라 장바구니 상품 기반 제안입니다.'],
+                    ['03', '탐색과 행동의 거리 축소', '무료배송 조건 아래에 현재 상품과 추천 상품, 담기 버튼을 배치해 판단 직후 다음 행동으로 이어지게 했습니다.'],
+                  ].map(([n, title, body]) => <li key={n} className="border-t border-grid pt-5"><p className="text-[13px] font-bold" style={{ color: S }}>Decision {n}</p><h4 className="mt-2 text-[20px] font-bold">{title}</h4><p className="mt-2 text-[15px] leading-[1.75] text-sub">{body}</p></li>)}
+                </ol>
+              </div>
+            </div>
+            <div className="mt-10 grid gap-5 md:grid-cols-2">
+              <div className="rounded-[24px] bg-[#EAF4DB] p-6 md:p-8"><p className="eyebrow" style={{ color: S }}>Qualitative feedback</p><ul className="mt-4 space-y-3 text-[16px] leading-[1.7]"><li>무료배송까지 더 담아야 할 금액을 이해하기 쉬웠음</li><li>기존에 구매하려던 상품과 관련된 추천이 자연스럽게 느껴졌음</li><li>추천 상품을 보며 추가 구매를 긍정적으로 고려하게 됐음</li></ul><p className="mt-5 text-[13px] leading-[1.65] text-sub">정성적 반응이며 실제 추가 구매 행동이나 금액·매출 지표는 측정하지 않았습니다.</p></div>
+              <div className="rounded-[24px] border border-grid bg-white p-6 md:p-8"><p className="eyebrow text-sub">후속 보완 방향 · 미구현</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[15px] leading-[1.7] text-sub"><li>옵션·수량 변경, 상품 삭제와 선택 상태 보완</li><li>배송지 확인·변경 경로 추가</li><li>실제 다음 단계에 맞는 CTA 문구 확정</li><li>상품 추가 후 금액·프로그레스·안내의 일관된 갱신</li></ul></div>
+            </div>
+            <div className="mt-5 rounded-[20px] bg-white/70 p-6 text-[15px] leading-[1.7] text-sub"><b className="text-ink">Future validation</b><br />“무료배송까지 남은 금액을 확인하고 필요한 상품을 추가해 구매를 진행해 주세요” 과제로 조건 확인 시간, 추천 발견 여부, 선택 이유와 혼란 지점을 추후 검증할 수 있습니다. 아직 수행한 테스트로 표현하지 않습니다.</div>
+          </article>
+
+          <article className="mt-24 md:mt-32 pt-16 border-t border-black/10">
+            <p className="eyebrow" style={{ color: S }}>Solution 03</p>
+            <p className="mt-3 text-[16px] font-semibold text-sub">Checkout Experience</p>
+            <h3 className="mt-2 text-[30px] font-extrabold tracking-tight md:text-[38px]">결제에 필요한 정보를, 필요한 순간에 확인하도록.</h3>
+            <div className="mt-8 grid md:grid-cols-2 gap-5">
+              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">문제</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">배송 시간, 배송비, 쿠폰, 포인트와 최종 금액이 긴 화면에 분산되면 필요한 정보를 다시 찾는 부담이 생길 수 있어요.</p></div>
+              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">디자인 판단</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">배송·수령 정보 / 할인·혜택 / 최종 결제의 세 영역으로 묶고, 핵심은 접힌 상태에서도 확인하게 했어요.</p></div>
+            </div>
+            {p.beforeAfter?.[3] && <div className="mt-8"><BeforeAfter data={p.beforeAfter[3]} color={A} /></div>}
+            <div className="mt-10 grid grid-cols-2 gap-5 md:mx-auto md:max-w-[760px] md:gap-8"><Fig src={I('n-checkoutOpen')} alt="할인과 혜택 정보를 펼쳐 확인하는 주문 결제 화면" cap="필요할 때 세부 정보 펼치기" /><Fig src={I('n-slot')} alt="배송 시간대와 비용을 함께 비교하는 화면" cap="시간대별 배송비 비교" className="md:mt-14" /></div>
+            <ul className="mt-8 grid gap-3 text-[15px] leading-[1.65] sm:grid-cols-2 lg:grid-cols-4">{['접힌 상태에서도 핵심 정보 확인', '시간대와 배송비 관계를 함께 표시', '쿠폰·포인트 조건을 목적별로 확인', '선택 변경 시 금액 정보 일관성 유지'].map(item => <li key={item} className="rounded-[18px] bg-white p-4">{item}</li>)}</ul>
+            <Result value="평균 26초 단축" task="배송 시간과 혜택을 확인하고 구매를 결정하는" />
+            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">목적별로 정보를 그룹화한 개선 프로토타입에서 구매 결정 과제의 평균 시간이 짧게 나타났습니다. 실제 결제 완료율이나 구매 전환율 상승을 검증한 결과는 아닙니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
+        <ChapterHead color={S} n="03" label="Edge cases" title="대표 흐름과 예외 상황을 분리하다" />
+        <p className="mt-6 max-w-2xl text-[17px] leading-[1.8] text-sub">주요 구매 흐름과 분리해, 사용자가 멈출 수 있는 상태만 빠르게 비교할 수 있도록 묶었어요.</p>
+        <div className="mt-12"><Strip label="구매 예외 상황 갤러리">{[
+          ['n-optFail', '재고 확인 실패'], ['n-altNone', '전체 품절'], ['n-restock', '재입고 알림'], ['n-stockChanged', '주문 직전 재고 변경'],
+        ].map(([n, label]) => <figure key={n} className="w-[230px] shrink-0"><Screen src={I(n)} alt={`${label} 화면`} /><figcaption className="mt-3 text-[14px] text-sub">{label}</figcaption></figure>)}</Strip></div>
+        <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="재고 상태에 따른 흐름을 직접 확인해보세요" />
+      </section>
+
+      <section id="c5" className="scroll-mt-20 md:mt-24 rule">
+        <div className="wrap gutter py-20 md:py-32">
+          <ChapterHead color={S} n="04" label="Reflection & Limitations" title="화면보다, 다음 결정을 설계하며 배운 것" />
+          <ol className="mt-12 grid gap-5 md:grid-cols-3">
+            {[
+              ['01', 'Recovery', '품절이나 실패 상태에서도 사용자가 다음 행동을 이해할 수 있도록 안내해야 합니다.'],
+              ['02', 'Decision', '구매 맥락과 연결된 정보는 사용자가 다음 선택을 내리는 데 도움을 줄 수 있습니다.'],
+              ['03', 'Structure', '정보를 무조건 줄이기보다 필요한 순간에 이해할 수 있도록 구조화하는 것이 중요합니다.'],
+            ].map(([n, title, body]) => <li key={n} className="border-t border-grid pt-5"><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[24px] font-bold">{title}</h3><p className="mt-3 text-[16px] leading-[1.75] text-sub">{body}</p></li>)}
+          </ol>
+          <div className="mt-12 rounded-[24px] bg-[#F5F5F3] p-6 md:p-8"><p className="eyebrow text-sub">Limitations</p><ul className="mt-4 grid gap-x-8 gap-y-2 text-[15px] leading-[1.7] text-sub md:grid-cols-2"><li>소규모 사용자 테스트 n=8</li><li>실제 서비스와 프로토타입의 사용 환경 차이</li><li>테스트 순서에 따른 학습 효과 가능성</li><li>실제 매출·구매 전환율 변화 미검증</li><li>장바구니 추가 구매 의향은 정성적 피드백</li><li>후속 보완 기능은 실제 미구현 항목으로 분리</li></ul></div>
+        </div>
+      </section>
+    </>
+  )
+}
+
+// ── 이전 올리브영 상세 구성(참고용) ──────────────────────────
 function Olive({ c }: { c: Ctx }) {
   const { p, A, S, T } = c
   const I = (n: string) => `/images/oliveyoung-todaydream/${n}.webp`
-  const sim = p.simulation!
-  const rate = (k: 'asis' | 'tobe') => sim.rows.filter(r => r[k]).length
-  const med = (k: 'asisSec' | 'tobeSec') => median(sim.rows.map(r => r[k]))
-  const ra = rate('asis'), rt = rate('tobe'), ma = med('asisSec'), mt = med('tobeSec')
-  const pct = (x: number) => `${Math.round((x / sim.n) * 1000) / 10}%`
-  const drop = Math.round(((ma - mt) / ma) * 100)
   const ctas: [string, string][] = [['미선택', '옵션을 선택해 주세요'], ['오늘드림 구매 가능', '이 옵션 선택하기'], ['오늘드림 품절', '다른 구매 방법 확인'], ['전체 품절', '재입고 알림 받기'], ['재고 조회 실패', '재고 다시 확인']]
   const states = ['구매 가능', '품절', '재고 확인 중', '재고 조회 실패', '매장 선택 필요', '픽업 주문 불가']
   const journey: [string, string, string, string][] = [['asisHome', '01 상품 탐색', '홈에서 상품을 찾고 선택', '메디힐 마스크팩 선택'], ['detailAsis', '02 상품 상세', '오늘드림 또는 픽업 선택 영역이 있음', '장바구니·바로구매'], ['checkoutAsis', '03 주문/결제', '배송지, 시간대, 배송비, 쿠폰, 최종 금액', '시간대별 배송비 차이 확인']]
@@ -216,42 +351,9 @@ function Olive({ c }: { c: Ctx }) {
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="재고 상태에 따라 직접 눌러보세요" />
       </section>
 
-      <section id="c5" className="scroll-mt-20 md:mt-24 rule">
-        <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="04" label="Usability Test & Results" title="대체 구매 경로를 더 쉽게 선택하는지 비교했다" />
-          <div className="mt-6"><SimBanner /></div>
-          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-sub">아래 테스트 설계는 계획이고, 참가자·시간·성공률은 <b>포트폴리오 제작용 가상 데이터</b>예요. 실제 테스트를 진행하면 이 영역을 실측 결과로 교체해야 해요.</p>
-
-          <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
-            <div className="md:col-span-6"><p className="eyebrow text-sub">테스트 설계</p>
-              <ul className="mt-4 space-y-2 text-[16px] leading-relaxed list-disc pl-5"><li>참가자: 모바일 쇼핑 경험자 {sim.n}명, 진행자 관찰형 프로토타입 테스트(실제 결제 없음)</li><li>비교: AS-IS ↔ TO-BE. P01~P04는 AS-IS → TO-BE, P05~P08은 TO-BE → AS-IS(학습 효과 상쇄)</li><li>과업 제한 {sim.limit}초, 구매 가능한 수령 방법을 선택하거나 시간에 도달하면 종료</li><li>재고 조건(양쪽 동일): 오늘드림 품절 · 일반배송 구매 가능 · 픽업 주문 가능한 매장 1곳 · 수량 1개</li></ul></div>
-            <blockquote className="mt-8 md:mt-0 md:col-span-6 rounded-[20px] p-6 text-[17px] leading-[1.7]" style={{ background: T(14) }}>“메디힐 로제 PDRN 모공결광 10매를 오늘드림으로 구매하려고 했지만 품절되었습니다. 다른 방법으로 구매할 수 있는지 확인하고, 구매 가능한 방법을 선택해 주세요.”</blockquote>
-          </div>
-
-          <div className="mt-16 grid md:grid-cols-2 gap-6 [&>*]:min-w-0">
-            <div className="rounded-[28px] p-7 md:p-9 bg-[#F7F8FA]"><p className="eyebrow text-sub">대체 구매 과업 성공률</p>
-              <p className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1"><span className="text-[32px] sm:text-[44px] md:text-[64px] font-extrabold leading-none tracking-tight">{pct(ra)}</span><span aria-hidden className="text-sub">→</span><span className="text-[32px] sm:text-[44px] md:text-[64px] font-extrabold leading-none tracking-tight" style={{ color: S }}>{pct(rt)}</span></p>
-              <p className="mt-2 text-[16px]">AS-IS {ra}/{sim.n}명 → TO-BE {rt}/{sim.n}명 · <b>+{Math.round(((rt - ra) / sim.n) * 100)}%p</b></p>
-              <div role="img" aria-label={`AS-IS ${pct(ra)}, TO-BE ${pct(rt)}`} className="mt-5 space-y-2"><div className="h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full bg-[#9a9a9a]" style={{ width: pct(ra) }} /></div><div className="h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full" style={{ width: pct(rt), background: A }} /></div></div></div>
-            <div className="rounded-[28px] p-7 md:p-9 bg-[#F7F8FA]"><p className="eyebrow text-sub">과업 종료 시간 중앙값</p>
-              <p className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1"><span className="text-[32px] sm:text-[44px] md:text-[64px] font-extrabold leading-none tracking-tight">{ma}초</span><span aria-hidden className="text-sub">→</span><span className="text-[32px] sm:text-[44px] md:text-[64px] font-extrabold leading-none tracking-tight" style={{ color: S }}>{mt}초</span></p>
-              <p className="mt-2 text-[16px]">중앙값 <b>{drop}% 감소</b> · 실패 참가자의 시간도 포함</p>
-              <div role="img" aria-label={`AS-IS ${ma}초, TO-BE ${mt}초`} className="mt-5 space-y-2"><div className="h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full bg-[#9a9a9a]" style={{ width: `${(ma / sim.limit) * 100}%` }} /></div><div className="h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full" style={{ width: `${(mt / sim.limit) * 100}%`, background: A }} /></div></div></div>
-          </div>
-
-          <div className="mt-8 overflow-x-auto"><table className="w-full min-w-[520px] text-[15px]"><caption className="text-left text-[13px] text-sub pb-3">참가자별 결과 (가상 데이터)</caption><thead><tr className="text-left text-[13px] text-sub border-b border-grid"><th scope="col" className="py-3">참가자</th><th scope="col">AS-IS 성공</th><th scope="col">TO-BE 성공</th><th scope="col">AS-IS 시간</th><th scope="col">TO-BE 시간</th></tr></thead><tbody>{sim.rows.map(r => <tr key={r.id} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold">{r.id}</th><td>{r.asis ? '성공' : <span className="text-sub">실패</span>}</td><td style={r.tobe ? { color: S, fontWeight: 600 } : undefined}>{r.tobe ? '성공' : <span className="text-sub">실패</span>}</td><td>{r.asisSec}초</td><td>{r.tobeSec}초</td></tr>)}</tbody></table></div>
-
-          <div className="mt-16 md:grid md:grid-cols-12 gap-10">
-            <div className="md:col-span-7 space-y-6 text-[17px] leading-[1.8]">
-              <div><p className="eyebrow text-sub mb-2">결과 해석</p><p>가상 데이터에서 대체 구매 과업 성공률은 {pct(ra)}에서 {pct(rt)}로, 종료 시간 중앙값은 {ma}초에서 {mt}초로 나타났어요. 옵션 선택 뒤 다음 행동을 하단 CTA로 주는 방식이 대체 구매 경로 선택에 도움이 될 수 있다는 가설과 일치해요.</p></div>
-              <div><p className="eyebrow text-sub mb-2">남은 문제</p><p>TO-BE에서도 {sim.n}명 중 1명(P07)은 과업을 끝내지 못했어요. 실제 테스트라면 어느 화면에서 막혔는지, 어떤 버튼을 골랐는지, 무엇을 오해했는지 관찰 기록으로 확인해야 해요. 관찰되지 않은 발화나 실패 이유는 만들지 않았어요.</p></div>
-            </div>
-            <div className="mt-10 md:mt-0 md:col-span-5 rounded-[20px] border border-dashed border-line p-6 bg-white"><p className="text-[16px] font-bold">해석의 한계</p>
-              <ul className="mt-2 text-[15px] leading-relaxed text-sub list-disc pl-5"><li>표본 8명의 가상 데이터라 일반화할 수 없어요</li><li>특정 UI 요소 하나가 개선의 유일한 원인이라고 단정할 수 없어요</li><li>종료 시간에는 실패 참가자도 포함돼요(성공 완료 시간과 분리 필요)</li><li>첫 행동 정확도 50% → 87.5%, 평균 잘못된 탭 2.5회 → 1.0회는 참가자별 로그가 없는 가상 요약치라 이 페이지의 근거로 쓰지 않았어요</li></ul></div>
-          </div>
-          <p className="mt-10 text-[13px] text-sub max-w-3xl">실제 구매 전환율, 매출, 재고 시스템 연동 성과는 측정하지 않았고 주장하지 않아요.</p>
-        </div>
-      </section>
+      <Outcome c={c} cards={<><div className="rounded-[20px] bg-[#F7F8FA] p-6"><p className="text-[14px] text-sub">현재 상태</p><p className="mt-2 text-[20px] font-bold">사용성 테스트 계획 단계</p></div><div className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[14px] text-sub">검증할 것</p><p className="mt-2 text-[16px] leading-relaxed">품절 이후 다른 구매 방법을 발견하고 선택할 수 있는지 확인합니다.</p></div></>}>
+        <div className="pt-6 rule"><p className="eyebrow text-sub">Test plan</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[16px] leading-relaxed"><li>오늘드림 품절 후 구매 가능한 수령 방법 찾기</li><li>다른 지역의 픽업 매장 재고 확인</li><li>원하는 옵션의 재입고 알림 신청</li><li>대체 경로 발견 여부, 과업 성공 여부, 완료 시간과 오류를 관찰</li></ul><p className="mt-5 text-[14px] leading-relaxed text-sub">실제 구매 전환율, 매출, 성공률은 측정하지 않았으며 실측 결과가 생기기 전에는 수치로 제시하지 않습니다.</p></div>
+      </Outcome>
     </>
   )
 }
@@ -337,7 +439,7 @@ function Karrot({ c }: { c: Ctx }) {
       </section>
 
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="01" label="The Challenge" title="대형 가구는 정보가 빠지면 판단이 멈춘다" />
+        <ChapterHead color={S} n="01" label="Problem" title="대형 가구는 정보가 빠지면 판단이 멈춘다" />
         <Reveal><blockquote className="mt-10 text-[28px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]" style={{ borderLeft: `6px solid ${A}`, paddingLeft: 24 }}>{p.problem}</blockquote></Reveal>
         <ul className="mt-12 grid md:grid-cols-3 gap-5">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
         <div className="mt-14"><p className="eyebrow text-sub">실제 당근 앱 · AS-IS 캡처</p>
@@ -348,7 +450,7 @@ function Karrot({ c }: { c: Ctx }) {
 
       <section id="c3" className="scroll-mt-20 md:mt-24" style={{ background: '#F7F8FA' }}>
         <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="02" label="Design Decisions" title="있는 정보, 없는 정보, 모르는 정보를 나눠 보여준다" />
+          <ChapterHead color={S} n="02" label="Solutions" title="있는 정보, 없는 정보, 모르는 정보를 나눠 보여준다" />
           <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-start">
             <div className="md:col-span-5"><Num n="01" t="상태를 네 가지로 구분" />
               <table className="mt-8 w-full text-[16px] bg-white rounded-[20px] overflow-hidden"><caption className="sr-only">정보 상태별 표시 원칙</caption><tbody>{[['입력 완료', '입력된 값 표시'], ['미입력', '아직 입력되지 않았어요'], ['모름', '판매자도 확인하지 못했어요'], ['조회 실패', '정보를 불러오지 못했어요']].map(([a, b]) => <tr key={a} className="border-t border-grid first:border-0"><th scope="row" className="py-3 pl-5 pr-3 text-left font-semibold whitespace-nowrap">{a}</th><td className="py-3 pr-5 text-sub">{b}</td></tr>)}</tbody></table>
@@ -381,43 +483,15 @@ function Karrot({ c }: { c: Ctx }) {
       </section>
 
       <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="03" label="Final Experience" title="판매자 입력 → 구매자 확인 → 정보 변경" />
+        <ChapterHead color={S} n="03" label="Actual UI" title="판매자 입력 → 구매자 확인 → 정보 변경" />
         <div className="mt-14"><PinnedPhone color={S} label="당근 화면 둘러보기" steps={(p.gallery ?? []).map(g => ({ src: g.src, alt: g.alt, title: g.caption ?? g.alt, body: g.alt }))} /></div>
         <p className="mt-8 max-w-3xl text-[17px] leading-[1.8]">예외 상태(조회 실패와 재시도, 거래 완료)까지 포함한 20개 화면을 클릭형 프로토타입으로 구현했습니다.</p>
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="입력부터 질문 초안까지" />
       </section>
 
-      <section id="c5" className="scroll-mt-20 md:mt-24 rule">
-        <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="04" label="Hypothesis → Validation" title="가설 → 검증 → 발견된 문제 → 디자인 수정 → 재검증" />
-          <div className="mt-6"><p role="note" className="inline-flex px-4 py-2 rounded-full bg-ink text-white text-[13px] font-semibold">예상 결과 · 테스트 수행 전에 작성한 예측 시나리오이며 실제 검증 결과가 아닙니다</p></div>
-          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-sub">사용성 테스트는 아직 수행하지 않았어요. 아래 수치는 설계 가설을 점검하기 위해 미리 세운 예측이고, 실제로 테스트하면 이 영역을 실측으로 바꾸고 예측과 다른 결과도 이유와 후속 개선안과 함께 싣습니다.</p>
-
-          <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
-            <div className="md:col-span-6"><p className="eyebrow text-sub">테스트 설계 (계획)</p>
-              <ul className="mt-4 space-y-2 text-[16px] leading-relaxed list-disc pl-5"><li>구매자: AS-IS 8명, TO-BE 8명</li><li>구매자 과업: 거래 조건 확인, 거래 가능성 판단, 판매자 질문 초안 작성</li><li>판매자: 8명, 기존 등록 흐름과 개선 등록 흐름 비교 · 과업은 대형 가구 판매글 등록과 거래 조건 입력</li></ul></div>
-            <ol className="mt-8 md:mt-0 md:col-span-6 grid grid-cols-2 gap-3 max-w-[420px]" aria-label="개선 과정">{[['AS-IS', '거래 조건이 자유 서술형 설명에 흩어져 있다', 'bf-detail'], ['TO-BE', '거래 정보를 카드로 구조화한다(현재 구현 화면)', 'k-info']].map(([a, d, img]) => <li key={a} className="rounded-[20px] bg-[#F7F8FA] p-3"><p className="text-[13px] font-bold" style={{ color: S }}>{a}</p><div className="mt-2"><Screen src={I(img)} alt={`${a} 화면`} /></div><p className="mt-2 text-[13px] leading-snug">{d}</p></li>)}</ol>
-          </div>
-
-          <p className="mt-16 eyebrow text-sub">구매자 · 예상 지표 (AS-IS / TO-BE)</p>
-          <div className="mt-4 overflow-x-auto"><table className="w-full min-w-[520px] text-[15px]"><caption className="sr-only">구매자 지표 예상값</caption><thead><tr className="text-left text-[13px] text-sub border-b border-grid"><th scope="col" className="py-3">지표</th><th scope="col">AS-IS</th><th scope="col">TO-BE</th></tr></thead><tbody>{p.forecast!.buyer.map(r => <tr key={r[0]} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold pr-4">{r[0]}</th><td>{r[1]}</td><td className="font-semibold" style={{ color: S }}>{r[3]}</td></tr>)}</tbody></table></div>
-          <div className="mt-8 grid md:grid-cols-2 gap-5">{p.forecast!.buyer.slice(0, 2).map(r => <div key={r[0]} className="rounded-[20px] p-6 bg-[#F7F8FA]"><p className="text-[15px] font-semibold">{r[0]}</p><div role="img" aria-label={`AS-IS ${r[1]}, TO-BE ${r[3]}`} className="mt-4 space-y-2">{[['AS-IS', r[1], '#9a9a9a'], ['TO-BE', r[3], A]].map(([l, v, col]) => <div key={l} className="flex items-center gap-3"><span className="w-14 text-[13px] text-sub">{l}</span><div className="flex-1 h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full" style={{ width: v, background: col }} /></div><span className="w-14 text-right text-[14px]">{v}</span></div>)}</div></div>)}</div>
-
-          <div className="mt-12 grid md:grid-cols-2 gap-8">
-            <div><p className="eyebrow text-sub">질문 작성 과업 (AS-IS → TO-BE)</p><table className="mt-3 w-full text-[15px]"><caption className="sr-only">질문 작성 과업 예상값</caption><tbody>{p.forecast!.question.map(r => <tr key={r[0]} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold pr-4">{r[0]}</th><td>{r[1]}</td><td aria-hidden className="text-sub">→</td><td className="font-semibold" style={{ color: S }}>{r[2]}</td></tr>)}</tbody></table></div>
-            <div><p className="eyebrow text-sub">판매자 등록 과업 (기존 → 개선)</p><table className="mt-3 w-full text-[15px]"><caption className="sr-only">판매자 등록 과업 예상값</caption><tbody>{p.forecast!.seller.map(r => <tr key={r[0]} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold pr-4">{r[0]}</th><td>{r[1]}</td><td aria-hidden className="text-sub">→</td><td className="font-semibold" style={{ color: S }}>{r[2]}</td></tr>)}</tbody></table>
-              <p className="mt-3 text-[13px] text-sub">등록 시간은 늘어날 것으로 예상했어요. 입력이 늘어나는 대신 거래 조건을 정확히 적는 비율이 오르는 절충점이 있는지를 확인할 가설이에요.</p></div>
-          </div>
-
-          <div className="mt-14 md:grid md:grid-cols-12 gap-10">
-            <div className="md:col-span-7"><p className="eyebrow text-sub">예상 인사이트 · 검증 전 가설</p>
-              <ol className="mt-4 space-y-3 text-[16px] leading-relaxed">{['거래 정보를 구조화해도 화면 하단에 두면 발견하지 못할 수 있다', '상품명과 가격 바로 아래에 핵심 조건을 두면 발견성이 높아질 가능성이 있다', '‘미입력’과 ‘불가능’을 구분하는 상태 표현이 거래 판단 정확도에 중요하다', '편집 가능한 질문 초안은 질문 작성 시간과 누락을 줄일 가능성이 있다', '판매자의 입력 부담이 늘어도 거래 조건을 정확히 적는 비율이 오르는 절충점이 있을 수 있다'].map((x, i) => <li key={x} className="flex gap-3"><span className="font-extrabold" style={{ color: S }}>0{i + 1}</span><span>{x}</span></li>)}</ol></div>
-            <div className="mt-10 md:mt-0 md:col-span-5 rounded-[20px] border border-dashed border-line p-6 bg-white"><p className="text-[16px] font-bold">검증 상태 구분</p>
-              <ul className="mt-2 text-[15px] leading-relaxed text-sub list-disc pl-5"><li>확인된 사실: 실제 앱 캡처, 구현한 프로토타입 20개 화면</li><li>설계 가설: 거래 조건 구조화, 핵심 요약 위치 이동</li><li>예측: 위 지표 전체(테스트 전)</li><li>검증 결과: 아직 없음</li></ul>
-              <p className="mt-3 text-[13px] text-sub">인터뷰 발언과 행동 기록은 실제로 수집한 뒤에만 싣습니다.</p></div>
-          </div>
-        </div>
-      </section>
+      <Outcome c={c} cards={<><div className="rounded-[20px] bg-[#F7F8FA] p-6"><p className="text-[14px] text-sub">확인된 것</p><p className="mt-2 text-[18px] font-bold">실제 앱 캡처와 20개 프로토타입 화면</p></div><div className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[14px] text-sub">아직 필요한 것</p><p className="mt-2 text-[18px] font-bold">구매자·판매자 사용성 테스트</p></div></>}>
+        <div className="pt-6 rule"><p className="eyebrow text-sub">Test plan</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[16px] leading-relaxed"><li>구매자: 거래 조건 발견, 거래 가능성 판단, 질문 초안 작성</li><li>판매자: 대형 가구 정보 입력과 입력 부담 확인</li><li>미입력·모름·조회 실패 상태를 올바르게 구분하는지 관찰</li><li>실제 테스트 전에는 성공률이나 시간 수치를 제시하지 않음</li></ul></div>
+      </Outcome>
     </>
   )
 }
@@ -601,7 +675,7 @@ function Woorisai({ c }: { c: Ctx }) {
       </section>
 
       <section id="c4" className="wrap gutter py-20 md:py-28 scroll-mt-20 md:mt-8">
-        <ChapterHead color={S} n="03" label="Supporting Experience" title="약속과 우리 공간은 추억을 돕는 보조 기능" />
+        <ChapterHead color={S} n="03" label="Actual UI" title="약속과 우리 공간은 추억을 돕는 보조 기능" />
         <ul className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8" data-scale>
           {['plan', 'space', 'calendar', 'home'].map(n => <li key={n}><Screen src={I(n)} alt={`우리사이 화면 ${n}`} cap={({ plan: '초대받은 약속 · 참석 응답', space: '우리 공간', calendar: '추억 달력', home: '홈' } as Record<string, string>)[n]} /></li>)}
         </ul>
@@ -618,7 +692,8 @@ export default function CaseGeneric() {
   const i = projects.findIndex(x => x.slug === slug)
   const p = projects[i]
   const root = useRef<HTMLElement>(null)
-  const active = useActive(slug, list)
+  const navList = slug === 'oliveyoung-todaydream' ? oliveList : list
+  const active = useActive(slug, navList)
   const [open, setOpen] = useState(false)
   const wide = useMedia('(min-width: 1024px)')
   useEffect(() => { if (p) document.title = `${p.name} | Portfolio 2026`; return () => { document.title = 'Portfolio 2026 | Complexity → Clarity' } }, [p])
@@ -637,10 +712,10 @@ export default function CaseGeneric() {
   const next = projects[(i + 1) % projects.length]
   const body = (id: string) => p.sections.find(s => s.id === id && s.body !== TODO)?.body.split('\n\n').filter(Boolean) ?? []
   const c: Ctx = { p, A: p.accent, S: strongOf(p.accent), T: n => tintOf(p.accent, n), body, proto: null, wide, setOpen }
-  const View = ({ olive: Olive, 'karrot-large-furniture': Karrot, woorisai: Woorisai } as Record<string, (a: { c: Ctx }) => ReactNode>)[p.slug === 'oliveyoung-todaydream' ? 'olive' : p.slug]
+  const View = ({ olive: OliveRenewed, 'karrot-large-furniture': Karrot, woorisai: Woorisai } as Record<string, (a: { c: Ctx }) => ReactNode>)[p.slug === 'oliveyoung-todaydream' ? 'olive' : p.slug]
   return (
     <article ref={root} style={{ ['--brand' as string]: p.accent }}>
-      <ChapterNav active={active} list={list} title={p.name} onCta={p.proto ? () => setOpen(true) : undefined} />
+      <ChapterNav active={active} list={navList} title={p.name} onCta={p.proto ? () => setOpen(true) : undefined} />
       {View ? <View c={c} /> : <NotFound />}
       <ProjectIndex current={p.slug} />
       <Link to={`/work/${next.slug}`} className="group block rule">

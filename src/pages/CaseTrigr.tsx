@@ -17,7 +17,7 @@ const PINK = '#DE5DE2', TEAL = '#2FD1CD' // 출시 화면에서 추출한 색
 const T = (n: number) => tintOf(PINK, n)
 const S = strongOf(PINK)
 const I = (n: string) => `/images/trigr/tr-${n}.webp`
-const list = [['c1', '개요'], ['c2', '문제'], ['c3', '핵심 결정'], ['c4', '최종 화면'], ['c5', '검증']]
+const list = [['c1', '개요'], ['c2', '문제'], ['c3', '솔루션'], ['c4', '실제 UI'], ['c5', '결과']]
 
 // 실제 화면 하나를 밝은 폰 프레임에 넣고 클릭하면 확대
 function Screen({ src, alt, caption, className = '' }: { src: string; alt: string; caption?: string; className?: string }) {
@@ -93,7 +93,7 @@ export default function CaseTrigr() {
 
       {/* 01 Challenge */}
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="01" label="The Challenge" title="미션의 생성부터 보상까지, 두 사용자의 경험을 하나로 잇기" />
+        <ChapterHead color={S} n="01" label="Problem" title="미션의 생성부터 보상까지, 두 사용자의 경험을 하나로 잇기" />
         <p className="mt-6 max-w-2xl text-[17px] leading-[1.8] text-sub">생성자가 쉽게 미션을 만들고, 참여자가 주변 미션을 발견해 부담 없이 수행·인증하도록 핵심 흐름을 구체화했습니다. PG사 연동이 확정되지 않은 상태에서 MVP 출시를 목표로 진행했습니다.</p>
         <div className="mt-14 space-y-8">
           {lanes.map(l => (
@@ -117,7 +117,7 @@ export default function CaseTrigr() {
       {/* 02 Design Decisions (Evolution + Decisions) */}
       <section id="c3" className="scroll-mt-20 md:mt-24" style={{ background: '#F7F8FB' }}>
         <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="02" label="Design Decisions" title="3번의 개편을 거치며 내린 세 가지 설계 결정" />
+          <ChapterHead color={S} n="02" label="Solutions" title="3번의 개편을 거치며 내린 세 가지 설계 결정" />
 
           <p className="mt-16 eyebrow text-sub">Product Evolution · 1년, 3번의 시안</p>
           <div role="region" aria-label="서비스 변화 타임라인 (좌우로 스크롤)" tabIndex={0} className="mt-6 -mx-5 px-5 md:mx-0 md:px-0 flex gap-5 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:overflow-visible">
@@ -190,7 +190,7 @@ export default function CaseTrigr() {
 
       {/* 03 Final UI */}
       <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="03" label="Final Experience" title="출시 버전의 핵심 화면" />
+        <ChapterHead color={S} n="03" label="Actual UI" title="출시 버전의 핵심 화면" />
         <div className="mt-14 grid md:grid-cols-12 gap-8 items-start">
           <figure className="md:col-span-5"><Screen src="/images/trigr/home-map.webp" alt="출시 버전 홈: 지도 위 미션 탐색" caption="홈: 지도 위 미션 탐색" /><figcaption className="mt-3 text-[16px] text-sub">홈 · 지도 위 미션 탐색</figcaption></figure>
           <figure className="md:col-span-4 md:mt-20"><Screen src={I('proof-detail')} alt="출시 버전 인증 상세" caption="인증 상세" /><figcaption className="mt-3 text-[16px] text-sub">인증 상세 · 상금 지급 진입</figcaption></figure>
@@ -213,7 +213,7 @@ export default function CaseTrigr() {
       {/* 04 Reflection */}
       <section id="c5" className="scroll-mt-20 md:mt-24 rule">
         <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="04" label="Outcome & Reflection" title="출시 이후 다시 바라본 미션 생성" />
+          <ChapterHead color={S} n="04" label="Outcome" title="출시 이후 다시 바라본 미션 생성" />
           <p className="mt-6 inline-block px-4 py-2 rounded-full text-[13px] font-semibold" style={{ background: T(14), color: S }}>사후 개선 제안 · 샘플 작업, 출시된 기능이 아닙니다</p>
           <div className="mt-8 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-12 grid sm:grid-cols-2 gap-5 max-w-[860px]">

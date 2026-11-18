@@ -19,6 +19,7 @@ const S = strongOf(p.accent)
 const body = (id: string) => p.sections.find(s => s.id === id && s.body !== TODO)?.body ?? ''
 const paras = (id: string) => body(id).split('\n\n').filter(Boolean)
 const img = (n: string) => `/images/nodi/hi-${n}.webp`
+const list = [['c1', '개요'], ['c2', '문제'], ['c3', '솔루션'], ['c4', '실제 UI'], ['c5', '결과']]
 
 const pains = [
   { pain: '시간을 물었는데 응답이 없어, 같은 사람에게 계속 리마인드해야 한다', fix: '응답 현황 · 리마인드', shot: 'progress' },
@@ -57,7 +58,7 @@ export default function CaseNodi() {
 
   return (
     <article ref={root} style={{ ['--brand' as string]: p.accent }}>
-      <ChapterNav active={active} title="NODI" />
+      <ChapterNav active={active} list={list} title="NODI" />
 
       {/* Hero */}
       <section id="c1" className="overflow-hidden" style={{ background: T(9) }}>
@@ -136,7 +137,7 @@ export default function CaseNodi() {
 
       {/* 01 Challenge */}
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="01" label="The Challenge" title="회의를 잡는 사람의 세 가지 스트레스" />
+        <ChapterHead color={S} n="01" label="Problem" title="회의를 잡는 사람의 세 가지 스트레스" />
         <p className="mt-5 text-[16px] inline-block px-4 py-2 rounded-full font-semibold" style={{ background: T(14), color: S }}>직장인 6명 · 카카오톡 인터뷰</p>
         <ol className="mt-10 grid md:grid-cols-3 gap-5">
           {pains.map((x, i) => (
@@ -163,7 +164,7 @@ export default function CaseNodi() {
       {/* 02 Design Decisions */}
       <section id="c3" className="scroll-mt-20 md:mt-24" style={{ background: '#F7F8FB' }}>
         <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="02" label="Design Decisions" title="AI가 하는 일과 사용자가 정하는 일을 나눴다" />
+          <ChapterHead color={S} n="02" label="Solutions" title="AI가 하는 일과 사용자가 정하는 일을 나눴다" />
 
           {/* 01 role board */}
           <div className="mt-14 grid md:grid-cols-2 gap-6">
@@ -235,7 +236,7 @@ export default function CaseNodi() {
 
       {/* 03 Final Experience */}
       <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="03" label="Final Experience" title="입력부터 확정까지, 하나의 흐름" />
+        <ChapterHead color={S} n="03" label="Actual UI" title="입력부터 확정까지, 하나의 흐름" />
         <div className="mt-14"><Strip label="NODI 사용 흐름 화면">
           {flow.map(([n, l], i) => (
             <figure key={n} className="w-[210px] md:w-[250px]">
@@ -251,7 +252,7 @@ export default function CaseNodi() {
       {/* 04 Outcome */}
       <section id="c5" className="scroll-mt-20 md:mt-24 rule">
         <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="04" label="Outcome & Reflection" title="점검한 것과 아직 확인하지 못한 것" />
+          <ChapterHead color={S} n="04" label="Outcome" title="점검한 것과 아직 확인하지 못한 것" />
           <div className="mt-14 md:grid md:grid-cols-12 gap-10">
             <ul className="md:col-span-5 grid grid-cols-3 md:grid-cols-1 gap-4">
               {[['0', '44px 미만 터치 영역'], ['0', '13px 미만 글자'], ['19', '클릭 시나리오 통과']].map(([n, l]) => (

@@ -16,10 +16,6 @@ export interface Project {
   accent: string // 프로젝트 서브컬러(Hero 틴트·마커 전용) // 썸네일 placeholder 에서만 사용하는 프로젝트 색
   mock: { srcs: [string, string, string]; framed: boolean } // 섬네일 목업(가운데가 메인)
   proto?: { url: string; w: number; h: number; bare?: boolean; pro?: boolean }
-  // 포트폴리오 제작용 가상(시뮬레이션) 사용성 테스트 데이터. 실제 리서치 결과가 아니며 화면에 항상 그렇게 표기한다. 실측 후 교체.
-  // 테스트 수행 전에 작성한 예측 시나리오(실제 결과 아님). 화면에 항상 '예상 결과'로 표기한다.
-  forecast?: { buyer: string[][]; question: string[][]; seller: string[][] }
-  simulation?: { n: number; rows: { id: string; asis: boolean; tobe: boolean; asisSec: number; tobeSec: number }[]; limit: number } // public/proto 에 담긴 실행 가능한 프로토타입
   // 본 흐름 밖의 연관 개선(예: 매출과 연결되는 구매 구간). 있을 때만 상세 Exploration 챕터에 나타난다.
   extra?: { eyebrow: string; title: string; intro: string; bullets: string[]; images: { src: string; alt: string; caption: string; tall?: boolean }[] }
   gallery?: { src: string; alt: string; caption: string }[] // 앱 화면 (세로형)
@@ -40,7 +36,7 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '1주',
     tags: ['상태 표현', '구매 흐름', '예외 처리'],
-    summary: { concept: [['비교', '옵션 목록은 비교하는 곳으로 둬요'], ['행동', '고른 옵션의 다음 행동은 하단 버튼으로'], ['분리', '수령 방법마다 재고 확인을 따로'], ['그룹', '주문·결제를 3묶음으로 정리']], short: '품절돼도 구매를 이어가는 옵션 선택', about: '오늘드림이 품절이면 보통 주문을 포기하거나 재입고 알림만 눌러요. 다른 방법으로 구매를 이어가게 해서 잠재 매출을 지키는 흐름을 설계했어요.', decision: '오늘드림이 품절이어도 구매를 포기시키지 않고 일반배송·매장 픽업으로 이어줘요. 고른 옵션에 맞는 다음 행동을 하단 버튼 하나로 안내하고 재고는 수령 방법마다 따로 확인해요. 목표는 잠재 매출 보호예요.', status: '설계안이에요. 가상 데이터로 점검했고 실제 사용성 테스트는 아니에요.', kind: 'design' },
+    summary: { concept: [['회복', '품절 이후 다른 구매 방법으로 연결'], ['판단', '무료배송 조건과 연관 상품을 가까이 배치'], ['구조', '결제 정보를 목적별로 3그룹화'], ['검증', '두 과제의 평균 소요 시간 단축 확인']], short: '품절 이후에도 구매를 이어가는 경험', about: '오늘드림 품절 이후 다른 구매 방법을 발견하고, 장바구니와 주문·결제까지 자연스럽게 이어갈 수 있도록 구매 경험을 재설계했어요.', decision: '품절은 대체 구매 경로로 연결하고, 장바구니는 무료배송 조건과 연관 상품을 가까이 배치하며, 주문·결제는 목적별 정보 구조로 정리했어요.', status: '동일 참여자 8명이 기존 앱과 개선 프로토타입을 비교했습니다. 과제별 평균 소요 시간은 각각 약 42초와 26초 줄었습니다.', kind: 'evidence' },
     accent: '#82DC28',
     mock: { srcs: ['/images/oliveyoung-todaydream/n-altMethods.webp', '/images/oliveyoung-todaydream/n-optC.webp', '/images/oliveyoung-todaydream/n-restock.webp'], framed: true },
     proto: { url: '/proto/oliveyoung/index.html', w: 390, h: 844, pro: true },
@@ -61,12 +57,6 @@ export const projects: Project[] = [
         { src: '/images/oliveyoung-todaydream/n-cart.webp', alt: '장바구니: 무료배송까지 남은 금액과 함께 담기 좋은 상품', caption: '장바구니 무료배송 안내' },
       ],
     },
-    simulation: { n: 8, limit: 120, rows: [
-      { id: 'P01', asis: true, tobe: true, asisSec: 55, tobeSec: 38 }, { id: 'P02', asis: false, tobe: true, asisSec: 90, tobeSec: 45 },
-      { id: 'P03', asis: false, tobe: true, asisSec: 120, tobeSec: 48 }, { id: 'P04', asis: true, tobe: true, asisSec: 62, tobeSec: 50 },
-      { id: 'P05', asis: false, tobe: true, asisSec: 110, tobeSec: 54 }, { id: 'P06', asis: true, tobe: true, asisSec: 70, tobeSec: 58 },
-      { id: 'P07', asis: false, tobe: false, asisSec: 90, tobeSec: 95 }, { id: 'P08', asis: false, tobe: true, asisSec: 65, tobeSec: 60 },
-    ] },
     beforeAfter: [
       {
         before: '/images/oliveyoung-todaydream/n-optMain.webp', after: '/images/oliveyoung-todaydream/n-optC.webp',
@@ -107,7 +97,7 @@ export const projects: Project[] = [
       { id: 'insight', title: 'Insight', body: '핵심 질문은 "오늘드림 품절은 사용자의 구매 여정이 끝나는 순간이어야 할까?"였습니다. 사용자가 원하는 것은 품절 여부를 아는 것이 아니라 상품을 살 수 있는 다음 방법을 찾는 것이라고 정리했습니다.' },
       { id: 'decisions', title: 'Design Decisions', body: 'UX 설계 원칙 4가지: 옵션 목록의 주요 CTA는 하나로 유지 / 선택한 옵션과 수량을 유지 / 재고를 확인하기 전에는 구매 가능 여부를 단정하지 않음 / 기존 재입고 알림 접근성을 유지.\n\n옵션이 많은 상품에서 일반배송, 픽업, 재입고 알림 버튼을 모두 늘어놓지 않고 주요 CTA 하나로 줄여 복잡도를 낮췄습니다.\n\n오늘드림은 배송지, 픽업은 선택한 매장을 기준으로 재고를 확인하므로 대체 구매 과정에서 두 확인 경로를 구분했습니다.' },
       { id: 'solution', title: 'Solution', body: '1. 품절 상태 명확화: 재고 정보가 확인된 경우 오늘드림 품절과 전체 품절을 구분해 안내합니다.\n\n2. 다른 구매 방법 확인: 품절 옵션에 구매 방법 CTA를 제공하고, 재고 상태에 따라 일반배송 또는 매장 픽업 확인 경로로 연결합니다.\n\n3. 재입고 알림 유지: 오늘드림 재입고 알림은 보조 행동으로 유지하고, 모든 방법이 품절이면 주요 행동으로 제공합니다.\n\n프로토타입에는 일반배송 가능, 매장 픽업, 모든 방법 품절, 재고 조회 실패 후 재시도, 주문 중 픽업 재고 소진 후 다른 매장 선택까지 담았습니다.' },
-      { id: 'validation', title: 'Validation', body: '사용성 테스트는 계획 단계이며 아직 결과가 없습니다(저장 문서 기준). 실제 서비스의 구매 전환 데이터를 확보할 수 없어, 기존 UI와 개선 프로토타입을 비교하는 테스트를 계획했습니다.\n\n과업: 오늘드림 품절 후 다른 구매 방법 찾기 / 다른 지역의 픽업 매장 재고 확인 / 원하는 옵션의 재입고 알림 신청 / 옵션이 많은 목록에서 구매 방법 찾기. 지표: 대체 경로 발견률, 과업 성공률, 알림 신청 성공률, 완료 시간·오류 횟수.\n\n※ 기대 효과는 가설입니다. 비용·수익·경쟁 우위는 내부 데이터가 아닌 기획 가설입니다.' },
+      { id: 'validation', title: 'Validation', body: '동일한 참여자 8명이 기존 올리브영 앱과 개선 프로토타입을 비교했습니다. 품절 이후 대체 구매 방법을 찾아 결제를 확정하는 과제는 평균 약 42초, 배송 시간과 혜택을 확인하고 구매를 결정하는 과제는 평균 26초 짧게 나타났습니다.\n\n원본 평균 시간과 개별 기록은 제공되지 않아 성공률이나 임의 그래프를 제시하지 않습니다. 실제 서비스의 매출, 구매 전환율, 결제 완료율 변화도 검증하지 않았습니다.' },
       pending('reflection', 'Reflection'),
     ],
   },
@@ -120,14 +110,9 @@ export const projects: Project[] = [
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '2주',
     tags: ['정보 구조화', '구매 판단 지원', '리서치'],
-    summary: { concept: [['구조화', '거래 조건을 카드로 정리'], ['구분', '입력 안 함·모름·불러오기 실패를 구분'], ['초안', '고쳐 쓸 수 있는 질문 초안'], ['비교', '바뀐 정보만 골라 비교']], short: '채팅 전에 거래 조건을 한눈에 확인', about: '채팅 전에 대형 가구의 거래 가능 여부를 판단할 수 있어요. 크기·분해·가져가는 방법 같은 거래 조건을 카드로 정리했어요.', decision: '거래 조건을 글 속에 섞어 두지 않고 카드로 정리해요. ‘입력 안 함’ ‘판매자도 모름’ ‘불러오지 못함’을 구분해서 보여주고 질문 초안은 사용자가 고쳐서 보내요.', status: '설계안이에요. 사용성 테스트는 아직 하지 않았고 예상 수치는 ‘예상’이라고 따로 표시했어요.', kind: 'design' },
+    summary: { concept: [['구조화', '거래 조건을 카드로 정리'], ['구분', '입력 안 함·모름·불러오기 실패를 구분'], ['초안', '고쳐 쓸 수 있는 질문 초안'], ['비교', '바뀐 정보만 골라 비교']], short: '채팅 전에 거래 조건을 한눈에 확인', about: '채팅 전에 대형 가구의 거래 가능 여부를 판단할 수 있어요. 크기·분해·가져가는 방법 같은 거래 조건을 카드로 정리했어요.', decision: '거래 조건을 글 속에 섞어 두지 않고 카드로 정리해요. ‘입력 안 함’ ‘판매자도 모름’ ‘불러오지 못함’을 구분해서 보여주고 질문 초안은 사용자가 고쳐서 보내요.', status: '설계안이며 사용성 테스트는 아직 진행하지 않았어요.', kind: 'design' },
     accent: '#FF6F0F',
     mock: { srcs: ['/images/karrot-large-furniture/f-b3.webp', '/images/karrot-large-furniture/f-b1.webp', '/images/karrot-large-furniture/f-s2.webp'], framed: true },
-    forecast: {
-      buyer: [['거래 정보 발견 성공률', '37.5%', '62.5%', '87.5%'], ['거래 조건 판단 정확도', '50%', '75%', '87.5%'], ['첫 유효 정보 발견 시간(중앙값)', '55초', '38초', '18초'], ['탐색 용이성(7점)', '3.1', '4.8', '6.0']],
-      question: [['질문 작성 시간', '52초', '27초'], ['두 필수 질문 포함률', '62.5%', '87.5%']],
-      seller: [['등록 시간', '2분 45초', '3분 10초'], ['거래 조건 정확 기재율', '50%', '87.5%'], ['입력 부담(7점, 높을수록 부담)', '2.8', '3.4']],
-    },
     beforeAfter: [
       {
         before: '/images/karrot-large-furniture/bf-detail.webp', after: '/images/karrot-large-furniture/f-b1.webp',

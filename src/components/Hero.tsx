@@ -1,10 +1,9 @@
 import { useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
-import { projects, profile } from '../data/projects'
-import Reveal from './Reveal'
+import { profile } from '../data/projects'
 
-// 표지 그대로: outline Complexity → 화살표 → 파란 Clarity. 애플 미디어 히어로처럼 블랙 풀블리드로 시작한다.
+// 포트폴리오의 핵심 메시지는 한 장면에만 집중시킨다.
 export default function Hero() {
   const root = useRef<HTMLElement>(null)
   useLayoutEffect(() => {
@@ -27,10 +26,10 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={root} id="hero" data-dark className="relative overflow-hidden min-h-[100svh] -mt-12 pt-12 flex bg-black text-white">
+    <section ref={root} id="hero" data-dark className="relative -mt-12 flex min-h-[100dvh] overflow-hidden bg-[#10110F] pt-12 text-white">
       <div aria-hidden className="grid-bg grid-bg-dark absolute inset-0" />
-      <div className="relative w-full px-5 md:px-[6.25vw] flex flex-col justify-center py-14 md:py-20">
-        <h1 aria-label="Complexity → Clarity" className="font-extrabold leading-[0.98] tracking-[-0.05em] text-[clamp(52px,17.5vw,96px)] md:text-[11.6vw]">
+      <div className="wrap gutter relative flex w-full flex-col justify-center py-14 md:py-20">
+        <h1 aria-label="Complexity → Clarity" className="text-[clamp(52px,15vw,64px)] font-extrabold leading-[0.98] tracking-[-0.05em] md:text-[clamp(88px,8.5vw,112px)]">
           <span data-cx aria-hidden className="outline-text block">Complexity</span>
           <span aria-hidden className="flex items-center gap-[0.1em]">
             <svg data-arrow viewBox="0 0 170 170" style={{ overflow: 'visible' }} className="h-[0.74em] w-auto shrink-0 text-white" fill="none" stroke="currentColor" strokeWidth="30" strokeLinejoin="miter" strokeMiterlimit="10"><path d="M0 85H146M66 5L146 85L66 165" /></svg>
@@ -40,14 +39,14 @@ export default function Hero() {
             </span>
           </span>
         </h1>
-        <div className="mt-12 md:mt-[7vw] flex items-end justify-between gap-6 flex-wrap">
-          <p data-copy className="text-[24px] md:text-[2.3vw] leading-[1.4] font-normal">
-            복잡한 정보를<br />사용자가 <span className="text-[#2997ff] font-bold">판단할 수 있는</span> 경험으로.
+        <div className="mt-12 flex flex-col gap-8 md:mt-20 md:flex-row md:items-end md:justify-between">
+          <p data-copy className="max-w-[26ch] text-[18px] font-normal leading-[1.6] md:text-[20px]">
+            복잡한 정보를 사용자가 <span className="font-semibold text-[#2997ff]">판단할 수 있는</span> 경험으로.
           </p>
-          <div data-copy className="max-w-[34ch] md:text-right">
-            <p className="text-[15px] font-bold tracking-wide">{profile.name} · Product Designer / UX·UI Designer</p>
-            <p className="mt-2 text-[16px] leading-relaxed text-white/60">복잡한 문제를 쉽게 이해되는 경험과 완성도 높은 화면으로 풀어요.</p>
-            <Link to="/#highlights" className="pill mt-5 !min-h-[40px] !px-5 text-[15px]">작업 보기</Link>
+          <div data-copy className="max-w-[36ch] md:text-right">
+            <p className="text-[14px] font-semibold tracking-wide text-white/85">{profile.name} · Product Designer / UX·UI Designer</p>
+            <p className="mt-2 text-[15px] leading-[1.65] text-white/65">문제를 구조로 정리하고, 판단에 필요한 정보의 우선순위를 설계합니다.</p>
+            <Link to="/#work" className="pill mt-5 !min-h-12 !px-6 text-[15px]">프로젝트 보기 ↓</Link>
           </div>
         </div>
       </div>

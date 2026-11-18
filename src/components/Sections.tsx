@@ -3,223 +3,102 @@ import { Link } from 'react-router-dom'
 import { projects, profile, type Project } from '../data/projects'
 import Reveal from './Reveal'
 import { Modal, Zoomable } from './Modal'
-import { ProtoFrame, owner } from './Mockup'
-import Compose, { type Dev } from './Compose'
+import { ProtoFrame } from './Mockup'
+import Compose from './Compose'
 import { strongOf } from './case'
 
-const PINK = '#DE5DE2'
-
 const by = (slug: string) => projects.find(p => p.slug === slug)!
-const tint = (c: string, n: number) => `color-mix(in srgb, ${c} ${n}%, white)`
+const tint = (color: string, amount: number) => `color-mix(in srgb, ${color} ${amount}%, white)`
 
-function Meta({ p }: { p: Project }) {
-  return (
-    <dl className="mt-8 grid grid-cols-3 gap-4 rule pt-4 text-[14px]">
-      <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div>
-      <div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div>
-      <div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div>
-    </dl>
-  )
+function ProjectLabel({ p }: { p: Project }) {
+  const launched = p.slug === 'trigr'
+  return <span className="inline-flex items-center gap-2 text-[13px] font-semibold"><span aria-hidden className="h-2 w-2 rounded-full" style={{ background: launched ? '#DE5DE2' : p.accent }} />{launched ? 'Launched Product' : 'Personal Case Study'}</span>
 }
 
-export function Label({ launched = false, color }: { launched?: boolean; color?: string }) {
-  return <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[13px] font-semibold" style={launched ? { background: '#111', color: '#fff' } : { background: color ? tint(color, 16) : '#f3f3f3', color: '#111' }}>
-    {launched && <span aria-hidden className="w-1.5 h-1.5 rounded-full" style={{ background: '#DE5DE2' }} />}{launched ? 'Launched Product' : 'Personal Case Study'}
-  </span>
-}
-
-const Skills = ({ items }: { items: string[] }) => <ul className="mt-5 flex flex-wrap gap-2">{items.map(t => <li key={t} className="text-[13px] px-3 py-1 rounded-full bg-[#f3f3f3] text-sub">{t}</li>)}</ul>
-
-const LightPhone = ({ src, className = '', style }: { src: string; className?: string; style?: React.CSSProperties }) => <div className={`phone-light absolute ${className}`} style={style}><img src={src} alt="" loading="lazy" className="screen" /></div>
-
-const Chips = ({ items, color }: { items: string[]; color?: string }) => <ul className="flex flex-wrap items-center gap-2">{items.map((t, i) => <li key={t} className="flex items-center gap-2"><span className="px-3 py-1.5 rounded-full bg-white border border-grid text-[13px]">{t}</span>{i < items.length - 1 && <span aria-hidden className="text-sub" style={{ color }}>→</span>}</li>)}</ul>
-
-// Featured 1 — trigr: Full-width Visual Showcase (중앙 화면을 크게)
-function FeatureTrigr({ p }: { p: Project }) {
-  const shots: [string, string, string][] = [['/images/trigr/tr-p-method.webp', '인증 방식 선택', '참여자 · 인증'], ['/images/trigr/tr-proof-detail.webp', '인증 상세와 상금 지급 진입', '생성자 · 인증 확인'], ['/images/trigr/tr-reward-2.webp', '지급 후 남은 상금 계산', '생성자 · 보상 지급']]
-  return (
-    <article>
-      <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="group relative block overflow-hidden rounded-[28px] px-6 pt-20 pb-10 md:px-16 md:pt-24 md:pb-14" style={{ background: `linear-gradient(135deg, ${tint(p.accent, 12)}, ${tint('#9B6BFF', 26)})` }}>
-        <span className="absolute left-6 top-6 md:left-10 md:top-10"><Label launched /></span>
-        <Compose ghost="TRIGR" ghostColor="#9B3FA0" className="aspect-[16/10] md:aspect-[16/7] mt-6" items={[
-          { src: shots[0][0], kind: 'pro', x: 17, y: 20, w: 19, r: -9, z: 1 },
-          { src: shots[2][0], kind: 'pro', x: 64, y: 18, w: 19, r: 9, z: 1 },
-          { src: shots[1][0], kind: 'pro', x: 37, y: 9, w: 26, z: 2, lift: 14 }]} />
-      </Link>
-      <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
-        <div className="md:col-span-6">
-          <h3 className="text-[48px] md:text-[88px] font-extrabold tracking-[-0.05em] leading-[0.95]">{p.name}</h3>
-          <p className="mt-5 text-[18px] md:text-[24px] leading-snug max-w-[26ch]">기획 단계부터 세 번의 개편을 거쳐 출시까지 함께한 미션 앱.</p>
-        </div>
-        <div className="md:col-span-6 mt-8 md:mt-3 space-y-4">
-          <Chips items={['미션 생성', '운영', '인증 확인', '보상 지급']} color={PINK} />
-          <Chips items={['미션 탐색', '참여', '인증', '보상 확인']} color="#16A19D" />
-          <p className="text-[13px] text-sub">미션을 만드는 사람과 참여하는 사람의 흐름이에요 · 서비스는 지금 운영하지 않아요</p>
-          <Link to={`/work/${p.slug}`} className="inline-block mt-2 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">케이스 스터디 보기</Link>
-        </div>
-      </div>
-    </article>
-  )
-}
-
-// Featured 2 — NODI: Split Editorial (AI 제안 → 사용자 확인 → 확정)
-function FeatureNodi({ p }: { p: Project }) {
+function FeaturedOlive() {
+  const p = by('oliveyoung-todaydream')
   const [open, setOpen] = useState(false)
-  const steps: [string, string, string][] = [['s-conds', 'AI가 조건을 정리', 'AI 제안'], ['s-recs', '추천 이유를 확인', '사용자 확인'], ['s-review', '사용자가 확정', '사용자 결정']]
   return (
-    <article className="grid md:grid-cols-12 gap-8 md:gap-12 items-stretch">
-      <div className="md:col-span-4 flex flex-col">
-        <div className="flex items-center gap-3 flex-wrap"><Label color={p.accent} /><span className="eyebrow text-sub">{p.category}</span></div>
-        <h3 className="mt-6 text-[44px] md:text-[72px] font-extrabold tracking-tight leading-[1]">{p.name}</h3>
-        <p className="mt-5 text-[24px] md:text-[28px] font-bold leading-snug">AI는 이해하고<br />사용자는 결정한다.</p>
-        <p className="mt-4 text-[16px] leading-relaxed text-sub">{p.problem}</p>
-        <div className="mt-auto pt-10 grid w-fit gap-3">
-          <Link to={`/work/${p.slug}`} className="px-6 py-3 rounded-full border border-ink bg-ink text-white text-[16px] font-semibold text-center">케이스 스터디 보기</Link>
-          {p.proto && <button onClick={() => setOpen(true)} className="px-6 py-3 rounded-full border border-ink text-[16px] font-semibold text-center">프로토타입 실행</button>}
+    <article className="overflow-hidden rounded-[28px] bg-[#F1F6E8]">
+      <div className="grid md:grid-cols-12">
+        <div className="flex flex-col p-7 md:col-span-5 md:p-10 lg:p-12">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sub"><span className="eyebrow text-ink">Featured project / 01</span><span className="text-[13px] font-medium">Commerce UX Redesign</span></div>
+          <h3 className="mt-7 max-w-[12ch] text-[30px] font-bold leading-[1.2] tracking-[-0.035em] md:text-[38px]">품절은 구매의 끝이어야 할까?</h3>
+          <p className="mt-5 max-w-[38ch] text-[16px] leading-[1.75] text-ink/75 md:text-[17px]">오늘드림 품절 이후에도 다른 구매 방법을 자연스럽게 찾고 결제까지 이어갈 수 있도록 구매 경험을 재설계했습니다.</p>
+          <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-[#CEDBB7] py-5 tabular-nums">
+            <div><dt className="text-[13px] leading-[1.5] text-sub">품절 후 결제 확정</dt><dd className="mt-1 text-[22px] font-bold tracking-tight">평균 약 42초 단축</dd></div>
+            <div><dt className="text-[13px] leading-[1.5] text-sub">배송·혜택 확인 후 결정</dt><dd className="mt-1 text-[22px] font-bold tracking-tight">평균 26초 단축</dd></div>
+            <p className="col-span-2 text-[12px] leading-[1.5] text-sub">동일 참여자 8명 · 기존 앱과 개선 프로토타입 비교</p>
+          </dl>
+          <div className="mt-8 flex flex-wrap gap-3"><Link to={`/work/${p.slug}`} className="inline-flex min-h-12 items-center rounded-full bg-ink px-6 text-[15px] font-semibold text-white hover:-translate-y-0.5">케이스 스터디 보기</Link>{p.proto && <button onClick={() => setOpen(true)} className="min-h-12 rounded-full border border-ink px-6 text-[15px] font-semibold hover:bg-white">프로토타입 실행</button>}</div>
         </div>
+        <Link to={`/work/${p.slug}`} aria-label="올리브영 오늘드림 케이스 스터디 보기" className="relative min-h-[420px] overflow-hidden bg-[#E5F1CE] md:col-span-7 md:min-h-[580px]">
+          <span aria-hidden className="absolute -right-5 top-7 text-[clamp(64px,9vw,128px)] font-extrabold leading-none tracking-[-0.07em] text-[#789646]/10">OLIVE<br />YOUNG</span>
+          <div className="absolute bottom-[-8%] left-[4%] w-[38%] -rotate-6"><div className="phone-pro"><img src="/images/oliveyoung-todaydream/n-optC.webp" alt="" className="screen" /><span className="glare" /></div></div>
+          <div className="absolute bottom-[-2%] left-[33%] z-10 w-[42%]"><div className="phone-pro"><img src="/images/oliveyoung-todaydream/n-altMethods.webp" alt="" className="screen" /><span className="glare" /></div></div>
+          <div className="absolute bottom-[-10%] right-[-2%] w-[36%] rotate-6"><div className="phone-pro"><img src="/images/oliveyoung-todaydream/n-pickup.webp" alt="" className="screen" /><span className="glare" /></div></div>
+        </Link>
       </div>
-      <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="group md:col-span-8 block overflow-hidden rounded-[28px] px-5 py-8 md:px-10 md:py-12" style={{ background: tint('#6F8BFF', 14) }}>
-        <Compose className="aspect-[16/11] md:aspect-[16/9]" persp={1600} items={steps.map(([n], i) => ({ src: `/images/nodi/${n}.webp`, kind: 'pro' as const, x: 8 + i * 27, y: 30 - i * 14, w: 24, ry: -18, rx: 4, r: 4, z: i + 1, lift: 12 }))} ghost="NODI" ghostColor="#3654D4" />
-        <ol className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-[13px] font-semibold" style={{ color: strongOf(p.accent) }}>{steps.map(([, cap, tag], i) => <li key={tag}>0{i + 1} · {tag} <span className="font-normal text-ink/70">{cap}</span></li>)}</ol>
-      </Link>
       <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>
     </article>
   )
 }
 
-// 프로젝트마다 다른 구도: 부채꼴(올리브영) · 3D 사선(우리사이) · 엇갈린 기울기(당근)
-const ghosts: Record<string, string> = { 'oliveyoung-todaydream': 'OLIVE YOUNG', woorisai: 'WOORISAI', 'karrot-large-furniture': 'DANGN' }
-const comps: Record<string, { ratio: string; items: (m: string[]) => Dev[] }> = {
-  'oliveyoung-todaydream': { ratio: 'aspect-[4/3]', items: m => [
-    { src: m[2], kind: 'pro', x: 5, y: 16, w: 23, r: -10, z: 1 },
-    { src: m[1], kind: 'pro', x: 35, y: 15, w: 30, z: 3, lift: 14 },
-    { src: m[0], kind: 'pro', x: 72, y: 6, w: 23, r: 9, z: 2 }] },
-  woorisai: { ratio: 'aspect-square', items: m => [
-    { src: m[1], kind: 'pro', x: 6, y: 9, w: 40, ry: -24, rx: 5, r: 3, z: 2, lift: 12 },
-    { src: m[0], kind: 'pro', x: 56, y: 30, w: 36, ry: -24, rx: 5, r: 3, z: 1 }] },
-  'karrot-large-furniture': { ratio: 'aspect-square', items: m => [
-    { src: m[1], kind: 'pro', x: 8, y: 24, w: 38, r: -9, z: 1 },
-    { src: m[0], kind: 'pro', x: 55, y: 5, w: 36, r: 8, z: 2, lift: 14 }] },
+const projectOrder = ['karrot-large-furniture', 'nodi', 'woorisai', 'trigr']
+const cardCopy: Record<string, string> = {
+  'karrot-large-furniture': '채팅하기 전에 크기·분해·운반 조건을 확인하고 거래 가능성을 판단하도록 정보를 구조화했습니다.',
+  nodi: 'AI는 복잡한 조건을 이해하고 설명하되, 후보 선택과 최종 확정은 사용자가 직접 하도록 설계했습니다.',
+  woorisai: '흩어진 사진과 이야기를 함께 쌓고 사람·장소·시간으로 다시 발견하는 공동 기록 경험입니다.',
+  trigr: '디자인 시스템이 없던 초기 단계부터 세 차례의 개편과 태국 출시까지 참여한 제품 회고입니다.',
 }
 
-function Compact({ p, big = false }: { p: Project; big?: boolean }) {
-  const c = comps[p.slug]
+function ProjectCard({ p }: { p: Project }) {
+  const shots = p.mock.srcs.map((src, i) => ({ src, kind: 'pro' as const, x: 10 + i * 26, y: 20 - (i === 1 ? 8 : 0), w: i === 1 ? 29 : 24, r: (i - 1) * 7, z: i === 1 ? 2 : 1, lift: i === 1 ? 10 : 0 }))
   return (
-    <Reveal>
-      <Link to={`/work/${p.slug}`} className="group block">
-        <Compose items={c.items(p.mock.srcs)} ghost={ghosts[p.slug]} ghostColor={strongOf(p.accent)} className={`rounded-[20px] ${big ? 'aspect-[4/3]' : c.ratio}`} style={{ background: `linear-gradient(160deg, ${tint(p.accent, 12)}, ${tint(p.accent, 30)})` }} />
-        <div className="mt-6">
-          <div className="flex items-center gap-3 flex-wrap"><Label color={p.accent} /><span className="eyebrow text-sub">{p.category}</span></div>
-          <h3 className="mt-3 text-[28px] font-bold tracking-tight group-hover:text-blue">{p.name}</h3>
-          <p className="mt-2 text-[16px] leading-relaxed max-w-[34ch]">{p.problem}</p>
-        </div>
+    <article className="group h-full">
+      <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="flex h-full flex-col rounded-[24px] focus-visible:outline-offset-4">
+        <div className="overflow-hidden rounded-[24px]" style={{ background: tint(p.accent, 14) }}><Compose items={shots} ghost={p.name.toUpperCase()} ghostColor={strongOf(p.accent)} className="aspect-[4/3] transition-transform duration-300 group-hover:scale-[1.015]" /></div>
+        <div className="mt-5 flex flex-1 items-start justify-between gap-5"><div><ProjectLabel p={p} /><h3 className="mt-3 text-[22px] font-bold tracking-[-0.025em] group-hover:text-blue md:text-[26px]">{p.name}</h3><p className="mt-2 max-w-[44ch] text-[16px] leading-[1.7] text-ink/70">{cardCopy[p.slug]}</p></div><span aria-hidden className="mt-7 text-[24px] transition-transform group-hover:translate-x-1">↗</span></div>
       </Link>
-    </Reveal>
+    </article>
   )
 }
 
 export function Work() {
-  const [a, b, c] = ['oliveyoung-todaydream', 'woorisai', 'karrot-large-furniture'].map(by)
+  const selected = projectOrder.map(by)
   return (
-    <section id="work" className="wrap gutter pt-24 md:pt-36 scroll-mt-16">
-      <Reveal>
-        <p className="eyebrow text-bluetext">Featured Work</p>
-        <h2 className="mt-3 text-[32px] md:text-[48px] font-bold tracking-tight leading-tight">출시한 프로젝트와 직접 설계한 프로젝트</h2>
-      </Reveal>
-      <div className="mt-16 space-y-28 md:space-y-40">
-        <Reveal><FeatureTrigr p={by('trigr')} /></Reveal>
-        <Reveal><FeatureNodi p={by('nodi')} /></Reveal>
-        <div>
-          <p className="eyebrow text-sub rule pt-4">Selected Work</p>
-          <div className="mt-10 grid md:grid-cols-12 gap-x-12 gap-y-20">
-            <div className="md:col-span-7"><Compact p={a} big /></div>
-            <div className="md:col-span-5 md:mt-24"><Compact p={b} /></div>
-            <div className="md:col-span-5 md:col-start-2"><Compact p={c} /></div>
-          </div>
-        </div>
-      </div>
+    <section id="work" className="home-section wrap gutter scroll-mt-16">
+      <Reveal className="grid gap-6 md:grid-cols-12 md:items-end"><div className="md:col-span-7"><p className="eyebrow text-bluetext">Selected work</p><h2 className="section-title mt-3 max-w-[18ch]">문제를 이해하고, 판단할 수 있는 구조로 바꿉니다.</h2></div><p className="body-copy md:col-span-4 md:col-start-9">대표 케이스부터 출시 경험까지, 결과 화면과 그 안의 설계 판단을 함께 보여드립니다.</p></Reveal>
+      <Reveal className="mt-12 md:mt-14"><FeaturedOlive /></Reveal>
+      <div className="mt-24 md:mt-28"><div className="flex items-end justify-between gap-6 border-t border-grid pt-5"><div><p className="eyebrow text-sub">More projects</p><h2 className="mt-3 text-[28px] font-bold tracking-tight md:text-[36px]">이어지는 작업</h2></div><p className="hidden text-[14px] text-sub md:block">당근 → NODI → 우리사이 → trigr</p></div><div className="mt-10 grid gap-x-8 gap-y-16 md:grid-cols-2">{selected.map(p => <ProjectCard key={p.slug} p={p} />)}</div></div>
     </section>
   )
 }
 
-type Row = { key: string; kicker: string; title: string; text: string; shots: { src: string; alt: string; cap: string; bare?: boolean }[] }
-const approach: Row[] = [
-  { key: 'Structure', kicker: '복잡한 정보를 이해하기 쉬운 구조로', title: '올리브영 오늘드림 — 오늘드림과 매장 픽업의 재고 확인을 따로 보여줘요', text: '재고는 오늘드림이면 내 배송지 기준으로 확인하고 매장 픽업이면 고른 매장 기준으로 확인해요. 그래서 확인하는 길을 둘로 나눴어요. 주문·결제 화면은 3묶음으로 정리했어요.',
-    shots: [{ src: '/images/oliveyoung-todaydream/n-altMethods.webp', alt: '올리브영 다른 수령 방법 확인 화면', cap: '수령 방법 비교' }, { src: '/images/oliveyoung-todaydream/n-checkoutTobe.webp', alt: '올리브영 주문 결제 3그룹 화면', cap: '주문/결제 3그룹' }] },
-  { key: 'Decision', kicker: '중요한 선택을 돕는 정보 순서', title: 'NODI · 당근 — 확정된 것과 아직 모르는 것을 나눠서 보여줘요', text: 'NODI는 일정 가능·참석 수락·캘린더·알림을 서로 다른 상태로 나눠 보여줘요. 당근은 입력하지 않은 건지 판매자도 모르는 건지 불러오지 못한 건지를 구분해서 알려줘요.',
-    shots: [{ src: '/images/nodi/s-recs.webp', alt: 'NODI 추천 시간 화면', cap: 'NODI · 추천 시간' }, { src: '/images/karrot-large-furniture/k-partial.webp', alt: '당근 상세: 미입력과 모름을 구분한 화면', cap: '당근 · 정보 상태 구분' }] },
-  { key: 'Craft', kicker: '쓰기 쉬운 화면을 꼼꼼하게', title: 'trigr — 상금 지급을 한 화면에서 확인하는 시트', text: '상금을 입력하면 지급하고 남는 금액이 바로 계산돼요. 지급을 마치면 결과를 한 번 더 확인할 수 있어요.',
-    shots: [{ src: '/images/trigr/tr-reward-1.webp', alt: 'trigr 상금 입력 시트', cap: '상금 입력' }, { src: '/images/trigr/tr-reward-2.webp', alt: 'trigr 지급 후 남은 상금 계산', cap: '남은 상금 계산' }, { src: '/images/trigr/tr-reward-3.webp', alt: 'trigr 상금 지급 완료', cap: '지급 완료' }] },
+const approach = [
+  { key: 'Structure', title: '이해할 수 있는 구조', text: '복잡한 정보를 사용자가 이해할 수 있는 구조로 정리합니다.', shot: { src: '/images/oliveyoung-todaydream/n-altMethods.webp', alt: '올리브영 수령 방법 비교 화면', cap: '수령 방법 비교' } },
+  { key: 'Decision', title: '스스로 내리는 판단', text: '필요한 정보를 바탕으로 사용자가 스스로 판단할 수 있도록 설계합니다.', shot: { src: '/images/karrot-large-furniture/k-partial.webp', alt: '당근 정보 상태 구분 화면', cap: '정보 상태 구분' } },
+  { key: 'Craft', title: '동작하는 경험', text: '아이디어를 실제 동작하는 경험으로 구현하고 피드백을 바탕으로 개선합니다.', shot: { src: '/images/trigr/tr-reward-2.webp', alt: 'trigr 남은 상금 계산 화면', cap: '결과 확인' } },
 ]
 
 export function Philosophy() {
   return (
-    <section id="approach" className="wrap gutter pt-28 md:pt-44 scroll-mt-16">
-      <Reveal className="md:grid md:grid-cols-12 gap-6">
-        <div className="md:col-span-5">
-          <p className="eyebrow text-bluetext">Design Approach</p>
-          <h2 className="mt-3 text-[40px] md:text-[64px] font-extrabold tracking-tight leading-none">Soft Clarity</h2>
-        </div>
-        <p className="mt-6 md:mt-12 md:col-span-6 md:col-start-7 text-[18px] leading-relaxed text-sub">정보를 구조로 정리하고 우선순위를 정해서 사용자가 쉽게 판단하게 해요.</p>
-      </Reveal>
-      <ul className="mt-14">
-        {approach.map((r, i) => (
-          <li key={r.key} className="rule">
-            <Reveal className="py-12 md:grid md:grid-cols-12 gap-8 items-start">
-              <div className={`md:col-span-6 ${i === 1 ? 'md:order-2' : ''}`}>
-                <p className="text-[13px] text-sub">0{i + 1} · {r.kicker}</p>
-                <h3 className="mt-2 text-[32px] md:text-[48px] font-extrabold tracking-tight leading-none">{r.key}</h3>
-                <p className="mt-6 text-[18px] md:text-[24px] font-semibold leading-snug">{r.title}</p>
-                <p className="mt-4 text-[16px] leading-[1.8] text-sub">{r.text}</p>
-              </div>
-              <ul className={`mt-8 md:mt-0 md:col-span-6 flex gap-4 ${i === 1 ? 'md:order-1' : ''}`}>
-                {r.shots.map(s => <li key={s.src} className="flex-1 min-w-0"><Zoomable src={s.src} alt={s.alt} caption={s.cap} className="w-full" imgClass={s.bare ? 'phone-bare' : 'w-full rounded-[20px] border border-grid'} /><p className="mt-2 text-[13px] text-sub">{s.cap}</p></li>)}
-              </ul>
-            </Reveal>
-          </li>
-        ))}
-        <li className="rule" />
-      </ul>
+    <section id="approach" className="home-section wrap gutter scroll-mt-16">
+      <Reveal className="grid gap-5 md:grid-cols-12"><div className="md:col-span-5"><p className="eyebrow text-bluetext">Design approach</p><h2 className="section-title mt-3">Soft Clarity</h2></div><p className="body-copy md:col-span-5 md:col-start-8 md:mt-8">복잡한 경험을 명확한 선택으로 바꾸기 위해 세 가지 원칙을 적용합니다.</p></Reveal>
+      <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{approach.map((item, index) => <li key={item.key} className="border-t border-grid pt-5"><Reveal><p className="text-[13px] font-medium text-sub">0{index + 1}</p><h3 className="mt-2 text-[26px] font-bold tracking-tight">{item.key}</h3><p className="mt-4 text-[19px] font-semibold leading-[1.45]">{item.title}</p><p className="mt-3 text-[16px] leading-[1.7] text-sub">{item.text}</p><Zoomable src={item.shot.src} alt={item.shot.alt} caption={item.shot.cap} className="mt-6 w-full overflow-hidden rounded-[18px] bg-apple" imgClass="aspect-[4/3] w-full object-contain p-4" /><p className="mt-2 text-[13px] text-sub">{item.shot.cap}</p></Reveal></li>)}</ol>
     </section>
   )
 }
 
 function CopyEmail({ email }: { email: string }) {
-  const [done, setDone] = useState(false)
-  const copy = () => { navigator.clipboard?.writeText(email).then(() => { setDone(true); setTimeout(() => setDone(false), 1600) }).catch(() => {}) }
-  return <button onClick={copy} className="px-4 py-2 rounded-full border border-ink text-[15px] font-semibold" aria-live="polite">{done ? '복사됨 ✓' : '이메일 복사'}</button>
+  const [copied, setCopied] = useState(false)
+  const copy = () => navigator.clipboard?.writeText(email).then(() => { setCopied(true); setTimeout(() => setCopied(false), 1600) }).catch(() => {})
+  return <button onClick={copy} className="min-h-11 rounded-full border border-ink px-5 text-[15px] font-semibold hover:bg-white" aria-live="polite">{copied ? '복사됨' : '이메일 복사'}</button>
 }
 
 export function AboutContact() {
+  const skills = [['출시 경험', 'trigr의 초기 설계부터 세 차례의 개편과 출시까지 참여'], ['정보 구조화', '복잡한 상태와 선택지를 사용자의 판단 순서에 맞게 정리'], ['프로토타이핑', '설계안을 직접 눌러보고 검토할 수 있는 형태로 구현'], ['개발 협업', '구현 조건을 확인하고 제품 제약 안에서 화면을 조정']]
   return (
-    <>
-      <section id="about" className="wrap gutter pt-28 md:pt-44 scroll-mt-16">
-        <Reveal className="md:grid md:grid-cols-12 gap-6">
-          <p className="eyebrow text-bluetext md:col-span-4">About</p>
-          <div className="md:col-span-8">
-            <p className="text-[28px] md:text-[36px] font-semibold leading-snug tracking-tight">복잡한 정보를 사용자가 쉽게 판단할 수 있는 경험으로 바꾸는 프로덕트 디자이너 {profile.name}입니다.</p>
-            <p className="mt-6 text-[17px] font-semibold">{profile.name}{profile.phone && <> · <a className="py-1 text-bluetext underline underline-offset-4" href={`tel:${profile.phone.replace(/-/g, '')}`}>{profile.phone}</a></>}</p>
-            <ul className="mt-8 grid sm:grid-cols-2 gap-3">{[['실제 서비스 출시', 'trigr — 기획 단계부터 세 번의 개편을 거쳐 출시까지 참여'], ['UX/UI 설계·디자인 시스템', 'Figma Variables로 컴포넌트 디자인 시스템을 구축'], ['프로토타이핑', 'Claude Code·Figma Make로 HTML 프로토타입을 직접 구현'], ['개발 협업', '개발자와 구현 가능한지 확인하며 화면을 조정']].map(([a, b]) => <li key={a} className="rounded-[20px] bg-[#F7F8FA] p-5"><p className="text-[16px] font-bold">{a}</p><p className="mt-1 text-[14px] leading-snug text-sub">{b}</p></li>)}</ul>
-            <ul className="mt-8 text-[16px]">
-              {profile.experience.map(e => (
-                <li key={e.org} className="rule py-3 flex flex-wrap justify-between gap-x-6"><span className="font-semibold">{e.org} <span className="font-normal text-sub">· {e.role}</span></span><span className="text-sub">{e.period}</span></li>
-              ))}
-            </ul>
-            <Link to="/about" className="inline-block mt-6 py-2 text-[16px] font-semibold text-bluetext border-b border-bluetext">About 자세히 보기</Link>
-          </div>
-        </Reveal>
-      </section>
-      <section id="contact" className="wrap gutter pt-28 md:pt-44 scroll-mt-16">
-        <Reveal>
-          <p className="eyebrow text-bluetext">Contact</p>
-          <p className="mt-3 text-[32px] md:text-[64px] font-extrabold tracking-tight leading-[1.05]">함께 <span className="text-blue">명확한</span> 경험을<br />만들어요.</p>
-          <div className="mt-8 flex flex-wrap items-start gap-x-10 gap-y-4 text-[17px]">
-            {profile.email && <div className="flex flex-col items-start gap-3"><a className="py-2 underline underline-offset-4" href={`mailto:${profile.email}`}>{profile.email}</a><CopyEmail email={profile.email} /></div>}
-            {profile.phone && <a className="py-2 underline underline-offset-4" href={`tel:${profile.phone.replace(/-/g, '')}`}>{profile.phone}</a>}
-            {profile.resume && <a className="py-2 underline underline-offset-4" href={profile.resume} target="_blank" rel="noreferrer">이력서 PDF</a>}
-          </div>
-        </Reveal>
-      </section>
-    </>
+    <><section id="about" className="home-section wrap gutter scroll-mt-16"><Reveal className="grid gap-8 md:grid-cols-12"><div className="md:col-span-4"><p className="eyebrow text-bluetext">About</p><h2 className="section-title mt-3">{profile.name}</h2></div><div className="md:col-span-8"><p className="max-w-[30ch] text-[24px] font-semibold leading-[1.5] tracking-[-0.02em] md:text-[32px]">복잡한 정보를 사용자가 쉽게 이해하고 판단할 수 있는 경험으로 바꾸는 프로덕트 디자이너입니다.</p><p className="mt-5 max-w-[60ch] text-[16px] leading-[1.75] text-sub">실제 경험에서 문제를 발견하고, 눌러볼 수 있는 프로토타입으로 구체화한 뒤 사용자 피드백을 통해 개선합니다.</p><ul className="mt-9 grid gap-x-8 gap-y-6 sm:grid-cols-2">{skills.map(([title, body]) => <li key={title} className="border-t border-grid pt-4"><p className="font-semibold">{title}</p><p className="mt-2 text-[15px] leading-[1.65] text-sub">{body}</p></li>)}</ul><Link to="/about" className="mt-8 inline-flex min-h-11 items-center border-b border-ink text-[15px] font-semibold">경력과 작업 방식 더 보기 ↗</Link></div></Reveal></section><section id="contact" className="mt-[var(--space-section)] scroll-mt-24 bg-[#F0F2EC]"><Reveal className="wrap gutter py-20 md:py-28"><p className="eyebrow text-bluetext">Contact</p><p className="section-title mt-4 max-w-[18ch]">함께 명확한 경험을 만들어요.</p><div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"><a className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 text-[15px] font-semibold text-white hover:-translate-y-0.5" href={`mailto:${profile.email}`}>이메일로 연락하기</a><CopyEmail email={profile.email} />{profile.resume && <a className="inline-flex min-h-12 items-center justify-center rounded-full px-5 text-[15px] font-semibold hover:bg-white/70" href={profile.resume} target="_blank" rel="noreferrer">이력서 보기 ↗</a>}</div></Reveal></section></>
   )
 }

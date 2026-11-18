@@ -49,12 +49,12 @@ function FeatureTrigr({ p }: { p: Project }) {
       <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
         <div className="md:col-span-6">
           <h3 className="text-[48px] md:text-[88px] font-extrabold tracking-[-0.05em] leading-[0.95]">{p.name}</h3>
-          <p className="mt-5 text-[18px] md:text-[24px] leading-snug max-w-[26ch]">초기 기획부터 세 차례의 개편, 출시까지 참여한 미션 플랫폼.</p>
+          <p className="mt-5 text-[18px] md:text-[24px] leading-snug max-w-[26ch]">기획 단계부터 세 번의 개편을 거쳐 출시까지 함께한 미션 앱.</p>
         </div>
         <div className="md:col-span-6 mt-8 md:mt-3 space-y-4">
           <Chips items={['미션 생성', '운영', '인증 확인', '보상 지급']} color={PINK} />
           <Chips items={['미션 탐색', '참여', '인증', '보상 확인']} color="#16A19D" />
-          <p className="text-[13px] text-sub">생성자 · 참여자 흐름 · 서비스는 현재 운영되지 않습니다</p>
+          <p className="text-[13px] text-sub">미션을 만드는 사람과 참여하는 사람의 흐름이에요 · 서비스는 지금 운영하지 않아요</p>
           <Link to={`/work/${p.slug}`} className="inline-block mt-2 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">케이스 스터디 보기</Link>
         </div>
       </div>
@@ -144,11 +144,11 @@ export function Work() {
 
 type Row = { key: string; kicker: string; title: string; text: string; shots: { src: string; alt: string; cap: string; bare?: boolean }[] }
 const approach: Row[] = [
-  { key: 'Structure', kicker: '복잡한 정보를 이해하기 쉬운 구조로', title: '올리브영 오늘드림 — 수령 방법별 확인 기준을 나눴어요', text: '오늘드림은 배송지, 픽업은 선택한 매장 기준으로 재고를 확인해서 두 확인 경로를 나눴어요. 주문·결제는 3그룹으로 묶었어요.',
+  { key: 'Structure', kicker: '복잡한 정보를 이해하기 쉬운 구조로', title: '올리브영 오늘드림 — 오늘드림과 매장 픽업의 재고 확인을 따로 보여줘요', text: '오늘드림은 내 배송지 기준으로, 매장 픽업은 고른 매장 기준으로 재고를 확인해요. 그래서 확인하는 길을 둘로 나눴고, 주문·결제 화면은 3묶음으로 정리했어요.',
     shots: [{ src: '/images/oliveyoung-todaydream/n-altMethods.webp', alt: '올리브영 다른 수령 방법 확인 화면', cap: '수령 방법 비교' }, { src: '/images/oliveyoung-todaydream/n-checkoutTobe.webp', alt: '올리브영 주문 결제 3그룹 화면', cap: '주문/결제 3그룹' }] },
-  { key: 'Decision', kicker: '중요한 선택을 위한 정보 우선순위', title: 'NODI · 당근 — 확정된 것과 아닌 것을 구분해서 보여줘요', text: 'NODI는 일정 가능·참석 수락·캘린더·알림을 다른 개념으로 나눴고, 당근은 입력하지 않음·판매자도 모름·불러오지 못함을 구분해 보여줘요.',
+  { key: 'Decision', kicker: '중요한 선택을 돕는 정보 순서', title: 'NODI · 당근 — 확정된 것과 아직 모르는 것을 나눠서 보여줘요', text: 'NODI는 일정 가능, 참석 수락, 캘린더, 알림을 서로 다른 상태로 나눠 보여줘요. 당근은 값을 입력하지 않은 건지, 판매자도 모르는 건지, 불러오지 못한 건지를 구분해서 알려줘요.',
     shots: [{ src: '/images/nodi/s-recs.webp', alt: 'NODI 추천 시간 화면', cap: 'NODI · 추천 시간' }, { src: '/images/karrot-large-furniture/k-partial.webp', alt: '당근 상세: 미입력과 모름을 구분한 화면', cap: '당근 · 정보 상태 구분' }] },
-  { key: 'Craft', kicker: '사용성을 정교한 인터페이스로', title: 'trigr — 상금 지급을 한 번에 확인하는 시트', text: '상금을 입력하면 지급 후 남은 상금이 바로 계산돼요. 지급이 끝나면 결과를 한 번 더 확인해요.',
+  { key: 'Craft', kicker: '쓰기 쉬운 화면을 꼼꼼하게', title: 'trigr — 상금 지급을 한 화면에서 확인하는 시트', text: '상금을 입력하면 지급하고 남는 금액이 바로 계산돼요. 지급을 마치면 결과를 한 번 더 확인할 수 있어요.',
     shots: [{ src: '/images/trigr/tr-reward-1.webp', alt: 'trigr 상금 입력 시트', cap: '상금 입력' }, { src: '/images/trigr/tr-reward-2.webp', alt: 'trigr 지급 후 남은 상금 계산', cap: '남은 상금 계산' }, { src: '/images/trigr/tr-reward-3.webp', alt: 'trigr 상금 지급 완료', cap: '지급 완료' }] },
 ]
 
@@ -160,7 +160,7 @@ export function Philosophy() {
           <p className="eyebrow text-bluetext">Design Approach</p>
           <h2 className="mt-3 text-[40px] md:text-[64px] font-extrabold tracking-tight leading-none">Soft Clarity</h2>
         </div>
-        <p className="mt-6 md:mt-12 md:col-span-6 md:col-start-7 text-[18px] leading-relaxed text-sub">구조와 우선순위를 설계해서 사용자가 판단하게 해요.</p>
+        <p className="mt-6 md:mt-12 md:col-span-6 md:col-start-7 text-[18px] leading-relaxed text-sub">정보를 구조로 정리하고 우선순위를 정해서, 사용자가 쉽게 판단하게 해요.</p>
       </Reveal>
       <ul className="mt-14">
         {approach.map((r, i) => (
@@ -197,9 +197,9 @@ export function AboutContact() {
         <Reveal className="md:grid md:grid-cols-12 gap-6">
           <p className="eyebrow text-bluetext md:col-span-4">About</p>
           <div className="md:col-span-8">
-            <p className="text-[28px] md:text-[36px] font-semibold leading-snug tracking-tight">복잡한 정보를 사용자가 판단할 수 있는 경험으로 바꾸는 프로덕트 디자이너, {profile.name}입니다.</p>
+            <p className="text-[28px] md:text-[36px] font-semibold leading-snug tracking-tight">복잡한 정보를 사용자가 쉽게 판단할 수 있는 경험으로 바꾸는 프로덕트 디자이너, {profile.name}입니다.</p>
             <p className="mt-6 text-[17px] font-semibold">{profile.name}{profile.phone && <> · <a className="py-1 text-bluetext underline underline-offset-4" href={`tel:${profile.phone.replace(/-/g, '')}`}>{profile.phone}</a></>}</p>
-            <ul className="mt-8 grid sm:grid-cols-2 gap-3">{[['실제 서비스 출시', 'trigr — 초기 기획부터 세 차례 개편, 출시까지 참여'], ['UX/UI 설계·디자인 시스템', 'Figma Variables 기반 컴포넌트 디자인 시스템 구축'], ['프로토타이핑', 'Claude Code, Figma Make로 HTML 기반 프로토타입 구현'], ['개발 협업', '개발 과정에서 구현 가능성을 확인하며 화면 조정']].map(([a, b]) => <li key={a} className="rounded-[20px] bg-[#F7F8FA] p-5"><p className="text-[16px] font-bold">{a}</p><p className="mt-1 text-[14px] leading-snug text-sub">{b}</p></li>)}</ul>
+            <ul className="mt-8 grid sm:grid-cols-2 gap-3">{[['실제 서비스 출시', 'trigr — 기획 단계부터 세 번의 개편을 거쳐 출시까지 참여'], ['UX/UI 설계·디자인 시스템', 'Figma Variables로 컴포넌트 디자인 시스템을 구축'], ['프로토타이핑', 'Claude Code, Figma Make로 HTML 프로토타입을 직접 구현'], ['개발 협업', '개발자와 구현 가능한지 확인하며 화면을 조정']].map(([a, b]) => <li key={a} className="rounded-[20px] bg-[#F7F8FA] p-5"><p className="text-[16px] font-bold">{a}</p><p className="mt-1 text-[14px] leading-snug text-sub">{b}</p></li>)}</ul>
             <ul className="mt-8 text-[16px]">
               {profile.experience.map(e => (
                 <li key={e.org} className="rule py-3 flex flex-wrap justify-between gap-x-6"><span className="font-semibold">{e.org} <span className="font-normal text-sub">· {e.role}</span></span><span className="text-sub">{e.period}</span></li>

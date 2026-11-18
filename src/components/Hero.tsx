@@ -46,7 +46,7 @@ export default function Hero() {
           </p>
           <div data-copy className="max-w-[34ch] md:text-right">
             <p className="text-[15px] font-bold tracking-wide">{profile.name} · Product Designer / UX·UI Designer</p>
-            <p className="mt-2 text-[16px] leading-relaxed text-white/60">복잡한 문제를 명확한 사용자 경험과 완성도 높은 인터페이스로 해결합니다.</p>
+            <p className="mt-2 text-[16px] leading-relaxed text-white/60">복잡한 문제를 쉽게 이해되는 경험과 완성도 높은 화면으로 풀어요.</p>
             <Link to="/#highlights" className="pill mt-5 !min-h-[40px] !px-5 text-[15px]">작업 보기</Link>
           </div>
         </div>

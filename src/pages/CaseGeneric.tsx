@@ -91,7 +91,7 @@ function Olive({ c }: { c: Ctx }) {
   const journey: [string, string, string, string][] = [['asisHome', '01 상품 탐색', '홈에서 상품을 찾고 선택', '메디힐 마스크팩 선택'], ['detailAsis', '02 상품 상세', '오늘드림 또는 픽업 선택 영역이 있음', '장바구니·바로구매'], ['checkoutAsis', '03 주문/결제', '배송지, 시간대, 배송비, 쿠폰, 최종 금액', '시간대별 배송비 차이 확인']]
   return (
     <>
-      <Hero c={c} title="품절 이후에도 구매를 이어갈 수 있도록" lead="올리브영 오늘드림 품절 이후 대체 구매 경로 발견성 개선" kicker="비공식 개인 UX 개선 제안 · 소속 회사와 무관 · 재고·매장 데이터는 가상" size="md">
+      <Hero c={c} title="품절 이후에도 구매를 이어갈 수 있도록" lead="품절된 뒤에도 살 수 있는 다른 방법을 더 쉽게 찾게 했어요" kicker="비공식 개인 UX 개선 제안 · 소속 회사와 무관 · 재고·매장 데이터는 가상" size="md">
         <div className="flex items-end justify-center gap-5 md:gap-8">
           <figure className="w-[44%]"><p className="text-[13px] font-semibold mb-2" style={{ color: S }}>TO-BE · 품절 옵션 선택</p><Screen src={I('n-optC')} alt="개선 화면: 오늘드림 품절 옵션을 고르면 다른 구매 방법 확인이 주요 행동으로 나온다" /></figure>
           <figure className="w-[44%] md:mt-12"><p className="text-[13px] font-semibold mb-2" style={{ color: S }}>TO-BE · 다른 구매 방법</p><Screen src={I('n-altMethods')} alt="개선 화면: 일반배송으로 구매할 수 있는 경우" /></figure>
@@ -212,7 +212,7 @@ function Karrot({ c }: { c: Ctx }) {
   const I = (n: string) => `/images/karrot-large-furniture/${n}.webp`
   return (
     <>
-      <Hero c={c} title="당근 대형 가구 중고거래" lead="채팅하기 전에 알아야 할 정보." kicker="비공식 개인 UX 개선 제안 · 소속 회사와 무관 · 당근 SEED Design 공개 토큰 기반 · 상품 정보는 예시">
+      <Hero c={c} title="당근 대형 가구 중고거래" lead="채팅하기 전에 먼저 확인해야 할 정보" kicker="비공식 개인 UX 개선 제안 · 소속 회사와 무관 · 당근 SEED Design 공개 토큰 기반 · 상품 정보는 예시">
         <div className="flex items-end justify-center gap-5 md:gap-8"><div className="w-[44%] md:w-[42%]"><Screen src={I('k-detail')} alt="상품 상세: 거래 정보 영역" /></div><div className="w-[44%] md:w-[42%] md:mt-12"><Screen src={I('k-questions')} alt="질문 고르기 바텀시트" /></div></div>
       </Hero>
 

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { profile } from '../data/projects'
 import Reveal from '../components/Reveal'
 
-const skills = [['실제 서비스 출시', 'trigr — 초기 기획부터 세 차례 개편, 출시까지 참여'], ['UX/UI 설계 · 디자인 시스템', 'Figma Variables 기반 컴포넌트 디자인 시스템 구축'], ['프로토타이핑', 'Claude Code, Figma Make로 HTML 기반 프로토타입 구현'], ['개발 협업', '개발 과정에서 구현 가능성을 확인하며 화면 조정']]
+const skills = [['실제 서비스 출시', 'trigr — 기획 단계부터 세 번의 개편을 거쳐 출시까지 참여'], ['UX/UI 설계 · 디자인 시스템', 'Figma Variables로 컴포넌트 디자인 시스템을 구축'], ['프로토타이핑', 'Claude Code, Figma Make로 HTML 프로토타입을 직접 구현'], ['개발 협업', '개발자와 구현 가능한지 확인하며 화면을 조정']]
 
 const Row = ({ t, children }: { t: string; children: React.ReactNode }) => (
   <section className="rule py-10 md:py-14 md:grid md:grid-cols-12 gap-6">

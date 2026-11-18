@@ -68,7 +68,7 @@ export default function CaseNodi() {
               <p className="eyebrow" style={{ color: S }}>Personal Case Study · {p.category}</p>
               <h1 className="mt-4 text-[88px] md:text-[168px] font-extrabold tracking-[-0.055em] leading-[0.88]">NODI</h1>
               <p className="mt-8 text-[28px] md:text-[40px] font-extrabold leading-[1.2] tracking-tight">AI는 이해하고,<br />사용자는 결정한다.</p>
-              <p className="mt-5 text-[17px] leading-[1.7] text-sub max-w-[24ch] md:max-w-[22ch]">복잡한 회의 조율 과정을 사용자가 이해하고 결정할 수 있는 경험으로 설계했습니다.</p>
+              <p className="mt-5 text-[17px] leading-[1.7] text-sub max-w-[24ch] md:max-w-[22ch]">복잡한 회의 조율 과정을, 사용자가 이해하고 직접 결정할 수 있게 설계했어요.</p>
               <dl className="mt-8 grid grid-cols-3 gap-5 max-w-lg text-[16px] rule pt-4" style={{ borderColor: T(30) }}>
                 <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div>
                 <div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div>

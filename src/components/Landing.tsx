@@ -61,7 +61,7 @@ export function Highlights() {
 // 애플의 문장 하이라이트: 스크롤하면 단어가 차례로 밝아진다
 export function Statement() {
   const ref = useRef<HTMLParagraphElement>(null)
-  const text = '복잡한 정보를 사용자가 판단할 수 있는 경험으로. 출시한 서비스와 직접 설계한 서비스, 두 방향 모두 만들어 왔습니다.'
+  const text = '복잡한 정보도 사용자가 스스로 판단할 수 있게. 출시한 서비스도, 직접 기획한 서비스도 만들어 봤어요.'
   useLayoutEffect(() => {
     const el = ref.current!
     const mm = gsap.matchMedia()

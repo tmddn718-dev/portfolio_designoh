@@ -68,7 +68,7 @@ export default function CaseNodi() {
               <p className="eyebrow" style={{ color: S }}>Personal Case Study · {p.category}</p>
               <h1 className="mt-4 text-[88px] md:text-[168px] font-extrabold tracking-[-0.055em] leading-[0.88]">NODI</h1>
               <p className="mt-8 text-[28px] md:text-[40px] font-extrabold leading-[1.2] tracking-tight">AI는 이해하고,<br />사용자는 결정한다.</p>
-              <p className="mt-5 text-[17px] leading-[1.7] text-sub max-w-[24ch] md:max-w-[22ch]">회의 조건은 AI가 정리하고, 참석자 선택과 최종 확정은 사용자가 합니다.</p>
+              <p className="mt-5 text-[17px] leading-[1.7] text-sub max-w-[24ch] md:max-w-[22ch]">복잡한 회의 조율 과정을 사용자가 이해하고 결정할 수 있는 경험으로 설계했습니다.</p>
               <dl className="mt-8 grid grid-cols-3 gap-5 max-w-lg text-[16px] rule pt-4" style={{ borderColor: T(30) }}>
                 <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div>
                 <div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div>
@@ -111,6 +111,13 @@ export default function CaseNodi() {
             </Reveal></li>
           ))}
         </ol>
+        <div className="mt-16 rounded-[28px] p-7 md:p-10" style={{ background: T(9) }}>
+          <p className="eyebrow" style={{ color: S }}>Core Insight</p>
+          <p className="mt-4 text-[24px] md:text-[32px] font-extrabold leading-[1.3] tracking-tight max-w-[28ch]">정보를 많이 주는 것보다, 지금 결정에 필요한 정보를 알맞은 순서로 주는 것이 중요하다.</p>
+          <p className="mt-4 text-[15px] leading-relaxed text-sub max-w-2xl">인터뷰에서 나온 세 가지 스트레스(반복 확인, 직접 분석, 처음부터 다시 조율)와 설계 점검에서 발견한 정보 과밀 문제를 함께 보고 정리한 설계 가설이에요. 아직 사용자 테스트로 검증하지 않았어요.</p>
+        </div>
+        <p className="mt-14 eyebrow text-sub">Design Strategy · 4 principles → 실제 UI 결정</p>
+        <ul className="mt-5 grid md:grid-cols-2 gap-4">{[['Text-first', '배지·상태 칩·CTA에는 아이콘 없이 텍스트만 쓴다. 아이콘은 하단 내비게이션(아이콘+문구)에만 둔다.'], ['Clear Hierarchy', '화면 제목, 현재 단계(1/5…5/5)와 다음 단계를 항상 같은 자리에 둔다. 글자 크기는 13·14·16·18·24·28 스케일.'], ['Progressive Disclosure', '추천 이유는 바텀시트로, 알고리즘 설명은 접어 둔다. 항목별 수정은 시트에서 한다.'], ['Action-focused', '화면마다 파란 주요 버튼은 하나, 보조 행동은 텍스트 링크로 둔다(예: 회의 확정하기 / 다른 시간 보기).']].map(([a, b], i) => <li key={a} className="rounded-[20px] bg-white border border-grid p-5"><p className="text-[13px] font-semibold" style={{ color: S }}>0{i + 1}</p><p className="mt-1 text-[18px] font-bold">{a}</p><p className="mt-2 text-[15px] leading-snug text-sub">{b}</p></li>)}</ul>
         <p className="mt-6 text-[13px] text-sub">※ 인터뷰 원자료와 구체적 응답은 확인 필요. 웹 조사와 Codex 정리는 AI가 정리한 보조 자료입니다.</p>
       </section>
 
@@ -172,7 +179,18 @@ export default function CaseNodi() {
               <div className="mt-5 grid grid-cols-3 gap-4 md:gap-6">{[['aiFail', 'AI 해석 실패'], ['recError', '추천 계산 오류'], ['recNone', '추천 후보 없음']].map(([n, l]) => <Shot key={n} n={n} cap={l} />)}</div>
             </div>
           </Reveal>
-          {p.beforeAfter?.map(b => <div key={b.before} className="mt-24"><BeforeAfter data={b} /></div>)}
+          <Reveal className="mt-24">
+            <p className="eyebrow rule pt-4" style={{ color: S }}>Iteration · 정보 과밀 문제 해결</p>
+            <h3 className="mt-4 text-[28px] md:text-[40px] font-extrabold tracking-tight leading-[1.15] max-w-[22ch]">정보를 빠짐없이 보여주려다, 정작 중요한 정보가 읽히지 않았다</h3>
+            <div className="mt-8 md:grid md:grid-cols-12 gap-8">
+              <div className="md:col-span-6"><p className="text-[13px] font-semibold text-sub">무엇이 문제였나 · 설계 점검에서 확인</p>
+                <ul className="mt-3 text-[15px] leading-relaxed list-disc pl-5">{['카드 안에 카드가 중첩되고, 배지·상태 칩이 많았다(알약 모양 46곳)', '같은 정보가 여러 곳에 반복됐다(조율 진행의 응답 수 4곳 등)', '큰 3D 일러스트와 비슷한 비중의 버튼, 항상 보이는 비활성 버튼', '파란색 신호가 서로 부딪히고, 헤더 규칙과 카드 모서리(12/14/16/20/24)가 제각각이었다'].map(x => <li key={x}>{x}</li>)}</ul></div>
+              <div className="mt-8 md:mt-0 md:col-span-6"><p className="text-[13px] font-semibold text-sub">어떤 기준으로 바꿨나</p>
+                <ul className="mt-3 text-[15px] leading-relaxed list-disc pl-5">{['아이콘·중복 설명 제거, 텍스트 중심으로(3D 일러스트 → 2D 상태 아이콘)', '핵심 정보를 먼저 보이고 상세는 단계적으로(추천 이유 바텀시트, 알고리즘 설명 접기)', '화면마다 주요 버튼 하나를 강조하고 보조는 텍스트 링크로', '조건 확인 카드를 압축(날짜·시간 2열, 참석자 중복 안내 제거)'].map(x => <li key={x}>{x}</li>)}</ul></div>
+            </div>
+          </Reveal>
+          {p.beforeAfter?.map((b, i) => <div key={b.before} className="mt-14 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · {['조건 확인', '추천 시간', '저장 완료'][i]}</p><p className="mt-4 text-[15px] text-sub">왼쪽(Before)은 초기 시안(v5.2), 오른쪽(After)은 개선 시안이에요. 가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-6 md:mt-0 md:col-span-7"><BeforeAfter data={b} /></div></div>)}
+          <p className="mt-10 text-[15px] leading-relaxed text-sub max-w-3xl">변경이 사용자의 이해와 행동에 미친 영향은 아직 확인하지 못했어요. 대신 터치 영역 44px·글자 13px 기준과 클릭 시나리오 19개로 구현 품질을 점검했고, 이해도 검증은 아래 계획으로 진행해요.</p>
         </div>
       </section>
 
@@ -208,6 +226,12 @@ export default function CaseNodi() {
             <div className="md:col-span-7 mt-10 md:mt-0 text-[17px] leading-[1.8] space-y-4">
               {validation.map(t => <p key={t} className={t.startsWith('확인 필요') ? 'text-sub' : ''}>{t}</p>)}
             </div>
+          </div>
+          <div className="mt-16 rounded-[28px] p-7 md:p-10 bg-[#F7F8FA]">
+            <p className="inline-flex px-3 py-1.5 rounded-full bg-ink text-white text-[13px] font-semibold">검증 계획 · 아직 수행하지 않음</p>
+            <h3 className="mt-4 text-[24px] md:text-[32px] font-extrabold tracking-tight leading-tight max-w-[24ch]">프로토타입으로 확인할 일곱 가지</h3>
+            <ol className="mt-6 grid sm:grid-cols-2 gap-3 text-[15px] leading-snug">{['조건 확인 정확도', '조건 수정 성공률', '필수 참석자 설정 성공 여부', '추천 후보 비교 성공률', '후보 선택 소요 시간', '저장 상태 이해 정확도(저장·캘린더·알림 구분)', '오류 상황에서 다음 행동 선택 여부'].map((x, i) => <li key={x} className="rounded-[20px] bg-white p-4"><span className="text-[13px] font-semibold" style={{ color: S }}>0{i + 1}</span> {x}</li>)}</ol>
+            <p className="mt-5 text-[15px] leading-relaxed text-sub max-w-3xl">방법: 과제를 주고 프로토타입 조작을 관찰하며, 혼란이 생긴 지점과 발화를 기록한 뒤 개선 전후 행동을 비교하고 재설계해요. 수행 전이라 수치나 인용문은 싣지 않았어요.</p>
           </div>
         </div>
       </section>

@@ -16,6 +16,8 @@ export interface Project {
   mock: { srcs: [string, string, string]; framed: boolean } // 섬네일 목업(가운데가 메인)
   proto?: { url: string; w: number; h: number; bare?: boolean }
   // 포트폴리오 제작용 가상(시뮬레이션) 사용성 테스트 데이터. 실제 리서치 결과가 아니며 화면에 항상 그렇게 표기한다. 실측 후 교체.
+  // 테스트 수행 전에 작성한 예측 시나리오(실제 결과 아님). 화면에 항상 '예상 결과'로 표기한다.
+  forecast?: { buyer: string[][]; question: string[][]; seller: string[][] }
   simulation?: { n: number; rows: { id: string; asis: boolean; tobe: boolean; asisSec: number; tobeSec: number }[]; limit: number } // public/proto 에 담긴 실행 가능한 프로토타입
   // 본 흐름 밖의 연관 개선(예: 매출과 연결되는 구매 구간). 있을 때만 상세 Exploration 챕터에 나타난다.
   extra?: { eyebrow: string; title: string; intro: string; bullets: string[]; images: { src: string; alt: string; caption: string; tall?: boolean }[] }
@@ -118,6 +120,11 @@ export const projects: Project[] = [
     tags: ['정보 구조화', '구매 판단 지원', '리서치'],
     accent: '#FF6F0F',
     mock: { srcs: ['/images/karrot-large-furniture/k-questions.webp', '/images/karrot-large-furniture/k-detail.webp', '/images/karrot-large-furniture/k-form.webp'], framed: true },
+    forecast: {
+      buyer: [['거래 정보 발견 성공률', '37.5%', '62.5%', '87.5%'], ['거래 조건 판단 정확도', '50%', '75%', '87.5%'], ['첫 유효 정보 발견 시간(중앙값)', '55초', '38초', '18초'], ['탐색 용이성(7점)', '3.1', '4.8', '6.0']],
+      question: [['질문 작성 시간', '52초', '27초'], ['두 필수 질문 포함률', '62.5%', '87.5%']],
+      seller: [['등록 시간', '2분 45초', '3분 10초'], ['거래 조건 정확 기재율', '50%', '87.5%'], ['입력 부담(7점, 높을수록 부담)', '2.8', '3.4']],
+    },
     beforeAfter: [
       {
         before: '/images/karrot-large-furniture/asis-desc.webp', after: '/images/karrot-large-furniture/k-info.webp',
@@ -164,6 +171,23 @@ export const projects: Project[] = [
     tags: ['신규 제품 설계', '규칙·예외 정책', '일정 추천'],
     accent: '#3654D4',
     mock: { srcs: ['/images/nodi/m-home.webp', '/images/nodi/m-recs.webp', '/images/nodi/m-review.webp'], framed: false },
+    beforeAfter: [
+      {
+        before: '/images/nodi/it-init-conds.webp', after: '/images/nodi/it-final-conds.webp',
+        beforeAlt: '초기 시안(v5.2) 조건 확인: 6개 항목이 같은 비중의 행으로 나열되고 확인 전·미정 배지가 붙는다', afterAlt: '개선 시안 조건 확인: 사용자의 말과 AI 정리 결과가 대화로 이어지고 제목과 날짜·시간이 카드에 먼저 나온다',
+        points: ['Before: 회의 제목·길이·날짜·선호 시간대·방식·참석자 6개 항목이 같은 비중의 행으로 나열되고 "확인 전", "미정" 배지가 붙는다', 'After: 사용자가 말한 문장과 AI가 정리한 결과를 대화로 이어 보여주고, 제목과 날짜·시간을 카드 앞쪽에 둔다', '※ 초기 시안은 저장소의 v5.2 커밋(2026-11-16), 개선 시안은 현재 버전을 같은 도구로 렌더링한 화면입니다'],
+      },
+      {
+        before: '/images/nodi/it-init-recs.webp', after: '/images/nodi/it-final-recs.webp',
+        beforeAlt: '초기 시안 추천 시간: 추천 후보 3개 카드가 필수 조건 충족 칩과 함께 나열된다', afterAlt: '개선 시안 추천 시간: 오후 2시를 추천해요, NODI 추천 1순위 카드와 추천 이유 확인',
+        points: ['Before: 후보 3개를 한꺼번에 카드로 나열하고, 후보마다 상태 칩과 안내 문구가 붙는다', 'After: 추천 1순위를 앞세우고 카드/후보 비교로 나눠 보며, 추천 이유는 바텀시트에서 확인한다', '※ 사용자가 두 화면을 어떻게 이해하는지는 아직 테스트하지 않았습니다'],
+      },
+      {
+        before: '/images/nodi/it-init-done.webp', after: '/images/nodi/it-final-done.webp',
+        beforeAlt: '초기 시안 저장 완료: 큰 3D 달력 일러스트와 두 개의 버튼', afterAlt: '개선 시안 저장 완료: 2D 체크 아이콘, 후속 처리 현황, 확인이 필요한 항목, 버튼 하나',
+        points: ['Before: 큰 3D 달력 일러스트가 화면 위쪽을 차지하고 하단에 비슷한 비중의 버튼 두 개가 있다', 'After: 상태 아이콘을 2D 체크로 줄이고, 후속 처리 현황과 "확인이 필요한 항목 1건"을 먼저 보여준다', '※ 일러스트 교체는 저장소 커밋(63a8411 "3D 일러스트를 Lucide 2D 상태 아이콘으로 교체")에 기록돼 있습니다'],
+      },
+    ],
     proto: { url: '/proto/nodi/index.html', w: 414, h: 868, bare: true },
     gallery: [
       { src: '/images/nodi/hi-home.webp', alt: 'NODI 홈: 자연어 입력, 빠른 선택, 작성 중 회의', caption: '홈' },

@@ -258,7 +258,37 @@ function Karrot({ c }: { c: Ctx }) {
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="입력부터 질문 초안까지" />
       </section>
 
-      <Outcome c={c} cards={<>{[['테스트 A', '판매자 입력'], ['테스트 B', '구매자 정보 확인'], ['테스트 C', '정보 변경']].map(([a, b]) => <div key={a} className="rounded-[20px] p-6" style={{ background: T(16) }}><p className="eyebrow text-sub">{a} · 계획</p><p className="mt-2 text-[24px] font-bold">{b}</p></div>)}<p className="text-[13px] text-sub">현재 상태: 테스트 미진행.</p></>} />
+      <section id="c5" className="scroll-mt-20 md:mt-24 rule">
+        <div className="wrap gutter py-20 md:py-32">
+          <ChapterHead color={S} n="04" label="Hypothesis → Validation" title="가설 → 검증 → 발견된 문제 → 디자인 수정 → 재검증" />
+          <div className="mt-6"><p role="note" className="inline-flex px-4 py-2 rounded-full bg-ink text-white text-[13px] font-semibold">예상 결과 · 테스트 수행 전에 작성한 예측 시나리오이며 실제 검증 결과가 아닙니다</p></div>
+          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-sub">사용성 테스트는 아직 수행하지 않았어요. 아래 수치는 설계 가설을 점검하기 위해 미리 세운 예측이고, 실제로 테스트하면 이 영역을 실측으로 바꾸고 예측과 다른 결과도 이유와 후속 개선안과 함께 싣습니다.</p>
+
+          <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
+            <div className="md:col-span-6"><p className="eyebrow text-sub">테스트 설계 (계획)</p>
+              <ul className="mt-4 space-y-2 text-[16px] leading-relaxed list-disc pl-5"><li>구매자: AS-IS 8명, TO-BE v1 8명, TO-BE v2 8명</li><li>구매자 과업: 거래 조건 확인, 거래 가능성 판단, 판매자 질문 초안 작성</li><li>판매자: 8명, 기존 등록 흐름과 개선 등록 흐름 비교 · 과업은 대형 가구 판매글 등록과 거래 조건 입력</li></ul></div>
+            <ol className="mt-8 md:mt-0 md:col-span-6 grid grid-cols-3 gap-3" aria-label="개선 과정">{[['AS-IS', '거래 조건이 자유 서술형 설명에 흩어져 있다', 'asis-desc'], ['TO-BE v1', '거래 정보를 구조화했지만 화면 하단에 둔다(현재 구현 화면)', 'k-info'], ['TO-BE v2', '핵심 거래 조건 요약을 상품명·가격 바로 아래로 옮긴다', '']].map(([a, d, img]) => <li key={a} className="rounded-[20px] bg-[#F7F8FA] p-3"><p className="text-[13px] font-bold" style={{ color: S }}>{a}</p>{img ? <div className="mt-2"><Screen src={I(img)} alt={`${a} 화면`} /></div> : <div className="mt-2 aspect-[390/844] rounded-[16px] border border-dashed border-line grid place-items-center text-center text-[13px] text-sub p-2">시안 화면<br />추가 자료 필요</div>}<p className="mt-2 text-[13px] leading-snug">{d}</p></li>)}</ol>
+          </div>
+
+          <p className="mt-16 eyebrow text-sub">구매자 · 예상 지표 (AS-IS / v1 / v2)</p>
+          <div className="mt-4 overflow-x-auto"><table className="w-full min-w-[520px] text-[15px]"><caption className="sr-only">구매자 지표 예상값</caption><thead><tr className="text-left text-[13px] text-sub border-b border-grid"><th scope="col" className="py-3">지표</th><th scope="col">AS-IS</th><th scope="col">TO-BE v1</th><th scope="col">TO-BE v2</th></tr></thead><tbody>{p.forecast!.buyer.map(r => <tr key={r[0]} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold pr-4">{r[0]}</th><td>{r[1]}</td><td>{r[2]}</td><td className="font-semibold" style={{ color: S }}>{r[3]}</td></tr>)}</tbody></table></div>
+          <div className="mt-8 grid md:grid-cols-2 gap-5">{p.forecast!.buyer.slice(0, 2).map(r => <div key={r[0]} className="rounded-[20px] p-6 bg-[#F7F8FA]"><p className="text-[15px] font-semibold">{r[0]}</p><div role="img" aria-label={`AS-IS ${r[1]}, v1 ${r[2]}, v2 ${r[3]}`} className="mt-4 space-y-2">{[['AS-IS', r[1], '#9a9a9a'], ['v1', r[2], tintOf(A, 55)], ['v2', r[3], A]].map(([l, v, col]) => <div key={l} className="flex items-center gap-3"><span className="w-12 text-[13px] text-sub">{l}</span><div className="flex-1 h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full" style={{ width: v, background: col }} /></div><span className="w-14 text-right text-[14px]">{v}</span></div>)}</div></div>)}</div>
+
+          <div className="mt-12 grid md:grid-cols-2 gap-8">
+            <div><p className="eyebrow text-sub">질문 작성 과업 (AS-IS → v2)</p><table className="mt-3 w-full text-[15px]"><caption className="sr-only">질문 작성 과업 예상값</caption><tbody>{p.forecast!.question.map(r => <tr key={r[0]} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold pr-4">{r[0]}</th><td>{r[1]}</td><td aria-hidden className="text-sub">→</td><td className="font-semibold" style={{ color: S }}>{r[2]}</td></tr>)}</tbody></table></div>
+            <div><p className="eyebrow text-sub">판매자 등록 과업 (기존 → 개선)</p><table className="mt-3 w-full text-[15px]"><caption className="sr-only">판매자 등록 과업 예상값</caption><tbody>{p.forecast!.seller.map(r => <tr key={r[0]} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold pr-4">{r[0]}</th><td>{r[1]}</td><td aria-hidden className="text-sub">→</td><td className="font-semibold" style={{ color: S }}>{r[2]}</td></tr>)}</tbody></table>
+              <p className="mt-3 text-[13px] text-sub">등록 시간은 늘어날 것으로 예상했어요. 입력이 늘어나는 대신 거래 조건을 정확히 적는 비율이 오르는 절충점이 있는지를 확인할 가설이에요.</p></div>
+          </div>
+
+          <div className="mt-14 md:grid md:grid-cols-12 gap-10">
+            <div className="md:col-span-7"><p className="eyebrow text-sub">예상 인사이트 · 검증 전 가설</p>
+              <ol className="mt-4 space-y-3 text-[16px] leading-relaxed">{['거래 정보를 구조화해도 화면 하단에 두면 발견하지 못할 수 있다', '상품명과 가격 바로 아래에 핵심 조건을 두면 발견성이 높아질 가능성이 있다', '‘미입력’과 ‘불가능’을 구분하는 상태 표현이 거래 판단 정확도에 중요하다', '편집 가능한 질문 초안은 질문 작성 시간과 누락을 줄일 가능성이 있다', '판매자의 입력 부담이 늘어도 거래 조건을 정확히 적는 비율이 오르는 절충점이 있을 수 있다'].map((x, i) => <li key={x} className="flex gap-3"><span className="font-extrabold" style={{ color: S }}>0{i + 1}</span><span>{x}</span></li>)}</ol></div>
+            <div className="mt-10 md:mt-0 md:col-span-5 rounded-[20px] border border-dashed border-line p-6 bg-white"><p className="text-[16px] font-bold">검증 상태 구분</p>
+              <ul className="mt-2 text-[15px] leading-relaxed text-sub list-disc pl-5"><li>확인된 사실: 실제 앱 캡처, 구현한 프로토타입 20개 화면</li><li>설계 가설: 거래 조건 구조화, 핵심 요약 위치 이동</li><li>예측: 위 지표 전체(테스트 전)</li><li>검증 결과: 아직 없음</li></ul>
+              <p className="mt-3 text-[13px] text-sub">인터뷰 발언과 행동 기록은 실제로 수집한 뒤에만 싣습니다.</p></div>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

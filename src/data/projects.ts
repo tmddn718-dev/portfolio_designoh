@@ -14,7 +14,9 @@ export interface Project {
   thumbAlt?: string
   accent: string // 프로젝트 서브컬러(Hero 틴트·마커 전용) // 썸네일 placeholder 에서만 사용하는 프로젝트 색
   mock: { srcs: [string, string, string]; framed: boolean } // 섬네일 목업(가운데가 메인)
-  proto?: { url: string; w: number; h: number; bare?: boolean } // public/proto 에 담긴 실행 가능한 프로토타입
+  proto?: { url: string; w: number; h: number; bare?: boolean }
+  // 포트폴리오 제작용 가상(시뮬레이션) 사용성 테스트 데이터. 실제 리서치 결과가 아니며 화면에 항상 그렇게 표기한다. 실측 후 교체.
+  simulation?: { n: number; rows: { id: string; asis: boolean; tobe: boolean; asisSec: number; tobeSec: number }[]; limit: number } // public/proto 에 담긴 실행 가능한 프로토타입
   // 본 흐름 밖의 연관 개선(예: 매출과 연결되는 구매 구간). 있을 때만 상세 Exploration 챕터에 나타난다.
   extra?: { eyebrow: string; title: string; intro: string; bullets: string[]; images: { src: string; alt: string; caption: string; tall?: boolean }[] }
   gallery?: { src: string; alt: string; caption: string }[] // 앱 화면 (세로형)
@@ -31,7 +33,7 @@ export const projects: Project[] = [
     name: '올리브영 오늘드림',
     category: '기존 서비스 UX 개선 · 커머스',
     kind: '기존 서비스 UX 개선',
-    problem: '오늘드림이 품절되면 품절 범위가 불명확하고, 지금 살 수 있는 대체 구매 경로를 찾기 어렵다.',
+    problem: '오늘드림이 품절돼도 다른 구매 방법을 발견하고 구매를 이어갈 수 있도록, 옵션 선택부터 수령 방법 확인까지의 흐름을 재설계했습니다.',
     role: '기획 · 디자인 · 프로토타입 구현 (1인)',
     period: '약 1~2주',
     tags: ['상태 표현', '구매 흐름', '예외 처리'],
@@ -55,11 +57,22 @@ export const projects: Project[] = [
         { src: '/images/oliveyoung-todaydream/n-cart.webp', alt: '장바구니: 무료배송까지 남은 금액과 함께 담기 좋은 상품', caption: '장바구니 무료배송 안내' },
       ],
     },
+    simulation: { n: 8, limit: 120, rows: [
+      { id: 'P01', asis: true, tobe: true, asisSec: 55, tobeSec: 38 }, { id: 'P02', asis: false, tobe: true, asisSec: 90, tobeSec: 45 },
+      { id: 'P03', asis: false, tobe: true, asisSec: 120, tobeSec: 48 }, { id: 'P04', asis: true, tobe: true, asisSec: 62, tobeSec: 50 },
+      { id: 'P05', asis: false, tobe: true, asisSec: 110, tobeSec: 54 }, { id: 'P06', asis: true, tobe: true, asisSec: 70, tobeSec: 58 },
+      { id: 'P07', asis: false, tobe: false, asisSec: 90, tobeSec: 95 }, { id: 'P08', asis: false, tobe: true, asisSec: 65, tobeSec: 60 },
+    ] },
     beforeAfter: [
       {
         before: '/images/oliveyoung-todaydream/n-detailAsis.webp', after: '/images/oliveyoung-todaydream/n-detailExpanded.webp',
         beforeAlt: '기존 상품 상세 하단: 오늘드림 선택 시 배송지와 장바구니·바로구매 버튼이 나온다', afterAlt: '개선 상품 상세 하단: 오늘드림·매장 픽업 중 수령 방법을 고르는 패널',
         points: ['Before: 오늘드림을 고르면 배송지 확인과 장바구니·바로구매가 함께 나온다', 'After: 수령 방법(오늘드림 · 매장 픽업)을 패널에서 먼저 고르고, 매장 픽업이면 매장과 재고를 확인한다', '※ Before는 실제 앱 화면을 직접 캡처한 이미지이며 주소 등 개인정보는 가렸습니다'],
+      },
+      {
+        before: '/images/oliveyoung-todaydream/n-checkoutAsis.webp', after: '/images/oliveyoung-todaydream/n-slot.webp',
+        beforeAlt: '기존 주문/결제: 배송 시간대를 고른 뒤 아래에 배송비가 한 번 표시된다', afterAlt: '개선 배송 시간 선택: 시간대마다 배송비를 함께 표시',
+        points: ['Before: 배송 시간대를 선택한 뒤 별도 영역에서 배송비를 확인한다(12:45~13:45 선택 시 5,000원)', 'After: 12:45~13:45는 5,000원, 15:00~16:00과 22:00~24:00은 2,500원처럼 시간대마다 배송비를 함께 표시한다', '※ Before는 실제 앱 화면을 직접 캡처한 이미지이며 개인정보는 가렸습니다'],
       },
       {
         before: '/images/oliveyoung-todaydream/n-checkoutAsis.webp', after: '/images/oliveyoung-todaydream/n-checkoutTobe.webp',

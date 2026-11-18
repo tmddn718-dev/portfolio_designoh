@@ -70,14 +70,25 @@ const Outcome = ({ c, children, cards }: { c: Ctx; children?: ReactNode; cards: 
   </section>
 )
 
-// ── 올리브영: 정보 비교 · 선택 흐름 ─────────────────────────────
+// ── 올리브영: 문제 해결 · 검증(시뮬레이션) ───────────────────────
+const median = (a: number[]) => { const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2 }
+const SimBanner = () => <p role="note" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ink text-white text-[13px] font-semibold">시뮬레이션 데이터 · 실제 사용성 테스트 결과가 아닙니다</p>
+
 function Olive({ c }: { c: Ctx }) {
   const { p, A, S, T } = c
   const I = (n: string) => `/images/oliveyoung-todaydream/${n}.webp`
-  const cases = [['A', '일반배송 가능', '일반배송으로 구매'], ['B', '매장 픽업 확인', '매장 선택 → 옵션별 재고 확인 → 픽업 구매'], ['C', '모든 방법 품절', '재입고 알림 신청'], ['D', '재고 조회 실패', '다시 확인 (구매 가능 여부를 임의로 표시하지 않음)']]
+  const sim = p.simulation!
+  const rate = (k: 'asis' | 'tobe') => sim.rows.filter(r => r[k]).length
+  const med = (k: 'asisSec' | 'tobeSec') => median(sim.rows.map(r => r[k]))
+  const ra = rate('asis'), rt = rate('tobe'), ma = med('asisSec'), mt = med('tobeSec')
+  const pct = (x: number) => `${Math.round((x / sim.n) * 1000) / 10}%`
+  const drop = Math.round(((ma - mt) / ma) * 100)
+  const ctas: [string, string][] = [['미선택', '옵션을 선택해 주세요'], ['오늘드림 구매 가능', '이 옵션 선택하기'], ['오늘드림 품절', '다른 구매 방법 확인'], ['전체 품절', '재입고 알림 받기'], ['재고 조회 실패', '재고 다시 확인']]
+  const states = ['구매 가능', '품절', '재고 확인 중', '재고 조회 실패', '매장 선택 필요', '픽업 주문 불가']
+  const journey: [string, string, string, string][] = [['asisHome', '01 상품 탐색', '홈에서 상품을 찾고 선택', '메디힐 마스크팩 선택'], ['detailAsis', '02 상품 상세', '오늘드림 또는 픽업 선택 영역이 있음', '장바구니·바로구매'], ['checkoutAsis', '03 주문/결제', '배송지, 시간대, 배송비, 쿠폰, 최종 금액', '시간대별 배송비 차이 확인']]
   return (
     <>
-      <Hero c={c} title="올리브영 오늘드림" lead="품절은 구매 여정의 끝이어야 할까?" kicker="비공식 개인 UX 개선 제안 · 소속 회사와 무관 · 재고·매장 데이터는 가상">
+      <Hero c={c} title="품절 이후에도 구매를 이어갈 수 있도록" lead="올리브영 오늘드림 품절 이후 대체 구매 경로 발견성 개선" kicker="비공식 개인 UX 개선 제안 · 소속 회사와 무관 · 재고·매장 데이터는 가상" size="md">
         <div className="flex items-end justify-center gap-5 md:gap-8">
           <figure className="w-[44%]"><p className="text-[13px] font-semibold mb-2" style={{ color: S }}>TO-BE · 품절 옵션 선택</p><Screen src={I('n-optC')} alt="개선 화면: 오늘드림 품절 옵션을 고르면 다른 구매 방법 확인이 주요 행동으로 나온다" /></figure>
           <figure className="w-[44%] md:mt-12"><p className="text-[13px] font-semibold mb-2" style={{ color: S }}>TO-BE · 다른 구매 방법</p><Screen src={I('n-altMethods')} alt="개선 화면: 일반배송으로 구매할 수 있는 경우" /></figure>
@@ -85,47 +96,62 @@ function Olive({ c }: { c: Ctx }) {
       </Hero>
 
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="01" label="The Challenge" title="품절 옵션에는 ‘일시품절’과 재입고 알림뿐" />
-        <ol className="mt-10 flex flex-wrap items-center gap-2" aria-label="사용자 시나리오">{['상품 검색', '오늘드림 탐색', '상품 상세', '옵션 선택', '품절 확인', '다음 행동 탐색'].map((s, k, a) => <li key={s} className="flex items-center gap-2"><span className="px-4 py-2 rounded-full text-[14px]" style={k >= 4 ? { background: '#111', color: '#fff' } : { background: '#fff', border: '1px solid #e8e8e8' }}>{s}</span>{k < a.length - 1 && <span aria-hidden className="text-sub">→</span>}</li>)}</ol>
-        <div className="mt-10 grid md:grid-cols-2 gap-5">
-          {[['“오늘드림만 안 되는 걸까? 일반배송도 품절인 걸까?”', '품절 상태의 범위가 불명확'], ['“지금 사고 싶은데, 다른 방법으로 살 수 없을까?”', '대체 구매 경로를 찾기 어려움']].map(([q, t], i) => (
-            <Reveal key={t} delay={i * 60}><div className="rounded-[20px] p-7 h-full" style={{ background: T(16) }}><p className="text-[13px] font-semibold" style={{ color: S }}>문제 0{i + 1}</p><p className="mt-3 text-[24px] font-bold leading-snug">{t}</p><p className="mt-4 text-[16px] text-sub">{q}</p></div></Reveal>
-          ))}
+        <ChapterHead color={S} n="01" label="The Challenge" title="품절은 구매 여정의 끝이어야 할까?" />
+        <p className="mt-6 max-w-2xl text-[18px] leading-[1.7]">오늘드림에서 원하는 옵션이 품절됐을 때, 일반배송이나 매장 픽업이 가능한지 쉽게 확인하지 못하면 구매를 멈출 수 있어요. 품절을 <b>끝</b>이 아니라 <b>다른 구매 방법을 탐색하는 지점</b>으로 다시 설계했어요.</p>
+
+        <p className="mt-16 eyebrow text-sub">AS-IS 구매 여정 · 실제 앱 캡처</p>
+        <ol className="mt-5 grid md:grid-cols-3 gap-6 md:gap-10">{journey.map(([n, l, d, e]) => <li key={n}><Fig src={I('n-' + n)} alt={`실제 올리브영 앱 ${l}`} cap={l} /><p className="mt-1 text-[16px] leading-snug">{d}</p><p className="mt-1 text-[14px] text-sub">{e}</p></li>)}</ol>
+        <div className="mt-8 rounded-[20px] p-6 md:p-8" style={{ background: T(14) }}>
+          <p className="eyebrow text-sub">실제 화면에서 확인한 사실</p>
+          <ul className="mt-3 text-[16px] leading-[1.8] list-disc pl-5"><li>상품 상세에 오늘드림 또는 픽업 이용 영역이 있다</li><li>주문/결제에서 배송 시간대에 따라 배송비가 다르다: 12:45~13:45 5,000원 · 15:00~16:00 2,500원 · 22:00~24:00 2,500원</li><li>최종 결제금액 12,500원 화면이 확인된다</li></ul>
+          <p className="mt-3 text-[13px] text-sub">품절 옵션을 선택한 실제 AS-IS 화면은 확보하지 못해, 그 화면의 기존 동작은 단정하지 않았어요. 이하는 검증할 가설이에요.</p>
         </div>
-        <p className="mt-6 text-[13px] text-sub max-w-3xl">앱 리뷰·블로그 VOC 수집과 인터뷰, 실제 앱 UI 관찰에 기반한 문제 가설입니다. 원자료가 없어 표본 수와 수치는 싣지 않았고, 불편의 크기는 사용성 테스트로 검증이 필요합니다.</p>
+
+        <div className="mt-20 md:grid md:grid-cols-12 gap-10">
+          <div className="md:col-span-5"><p className="eyebrow text-sub rule pt-4">Problem Definition</p><h3 className="mt-4 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">품절 이후 다른 수령 방법을 발견하고 고르는 과정의 불확실성</h3></div>
+          <ol className="mt-8 md:mt-0 md:col-span-7 space-y-3">{[['다음 행동의 발견성', '재입고 알림 외에 다른 구매 방법을 탐색할 수 있는지 이해해야 한다'], ['재고 상태의 명확성', '오늘드림 품절, 일반배송 품절, 픽업 주문 불가, 재고 조회 실패는 서로 다른 상태다'], ['구매 여정의 연속성', '다른 방법으로 이동해도 선택한 옵션, 수량, 배송 조건이 유지되어야 한다']].map(([a, b], i) => <li key={a} className="rounded-[20px] bg-white border border-grid p-5 flex gap-4"><span className="text-[28px] font-extrabold leading-none" style={{ color: S }}>0{i + 1}</span><div><p className="text-[17px] font-bold">{a}</p><p className="mt-1 text-[15px] leading-snug text-sub">{b}</p></div></li>)}</ol>
+        </div>
+
+        <div className="mt-16 rounded-[28px] p-7 md:p-10" style={{ background: '#F7F8FA' }}>
+          <p className="eyebrow text-sub">Design Hypothesis</p>
+          <p className="mt-4 text-[22px] md:text-[28px] font-bold leading-snug max-w-[34ch]">품절 옵션을 선택했을 때 다음 행동을 하단 고정 CTA로 보여주면, 대체 구매 경로 발견과 수령 방법 선택 성공률이 높아질 것이다.</p>
+          <ul className="mt-6 grid md:grid-cols-3 gap-4 text-[15px] leading-snug">{['옵션 선택과 행동 영역을 분리하면 복잡도가 줄어들 것이다', '일반배송과 픽업의 구매 가능 상태를 구분하면 잘못된 선택이 줄어들 것이다', '시간대별 배송비를 선택 전에 보여주면 비용 비교 시간이 줄어들 것이다'].map((h, i) => <li key={h} className="rounded-[20px] bg-white p-5"><span className="text-[13px] font-semibold" style={{ color: S }}>Sub 0{i + 1}</span><p className="mt-1">{h}</p></li>)}</ul>
+        </div>
+        <p className="mt-8 text-[13px] text-sub max-w-3xl">앱 리뷰·블로그 VOC 수집과 인터뷰를 근거로 문제를 정리했어요. 원자료가 없어 표본 수와 수치는 싣지 않았고, 불편의 크기는 사용성 테스트로 검증이 필요한 가설이에요.</p>
       </section>
 
       <section id="c3" className="scroll-mt-20 md:mt-24" style={{ background: '#F7F8FA' }}>
         <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="02" label="Design Decisions" title="‘다른 구매 방법’을 주요 행동으로 올렸다" />
+          <ChapterHead color={S} n="02" label="Design Decisions" title="옵션 선택에서 수령 방법 확인까지의 흐름을 다시 짰다" />
+
           <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-start">
-            <div className="md:col-span-5"><Num n="01" t="품절의 범위를 구분하고, 다음 행동을 하나로" />
-              <ul className="mt-8 space-y-5"><Ann color={S} n="A" t="오늘드림 품절과 전체 품절을 구분" d="재고가 확인된 경우에만 구분해 안내합니다." /><Ann color={S} n="B" t="주요 CTA는 ‘구매 방법’ 하나" d="일반배송·픽업·알림 버튼을 늘어놓지 않아 복잡도를 낮췄습니다." /><Ann color={S} n="C" t="재입고 알림은 보조 행동으로 유지" d="모든 방법이 품절이면 주요 행동으로 올립니다." /></ul></div>
+            <div className="md:col-span-5"><Num n="01" t="옵션 선택형 리스트 + 하단 고정 CTA" />
+              <p className="mt-4 text-[16px] leading-[1.7] text-sub">옵션 목록은 상품·재고를 비교하는 영역으로, 하단에는 선택한 옵션에 맞는 주요 CTA 하나를 고정했어요. 보조 행동은 텍스트 링크예요.</p>
+              <table className="mt-6 w-full text-[15px] bg-white rounded-[20px] overflow-hidden"><caption className="sr-only">옵션 상태별 하단 CTA</caption><thead><tr className="text-left text-[13px] text-sub"><th scope="col" className="py-3 pl-5">옵션 상태</th><th scope="col" className="py-3 pr-5">하단 CTA</th></tr></thead><tbody>{ctas.map(([a, b]) => <tr key={a} className="border-t border-grid"><th scope="row" className="py-3 pl-5 pr-3 text-left font-semibold">{a}</th><td className="py-3 pr-5" style={{ color: S }}>{b}</td></tr>)}</tbody></table></div>
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('n-optA')} alt="옵션 미선택 상태" cap="옵션 미선택" /><Fig src={I('n-optC')} alt="오늘드림 품절 옵션 선택" cap="오늘드림 품절" className="md:mt-10" /><Fig src={I('n-optFail')} alt="재고 확인 실패 상태" cap="재고 확인 실패" /></div>
           </div>
+          <p className="mt-6 text-[13px] text-sub">TO-BE 화면입니다. 품절 옵션의 실제 AS-IS 화면이 없어 이 화면은 Before/After 비교 없이 보여드려요.</p>
 
           <Reveal className="mt-20 md:mt-24">
-            <Num n="02" t="수령 방법별로 확인 기준을 나눴다" />
-            <p className="mt-4 text-[17px] leading-[1.8] max-w-2xl">오늘드림은 배송지, 픽업은 선택한 매장 기준으로 재고를 확인합니다. 필요한 정보가 달라 대체 구매 과정의 확인 경로를 구분했습니다. 선택한 옵션과 수량은 유지합니다.</p>
-            <div className="mt-10 grid md:grid-cols-12 gap-8 items-start">
-              <ul className="md:col-span-5 space-y-3" aria-label="재고 상태별 흐름">{cases.map(([k, a, b]) => <li key={k} className="rounded-[20px] bg-white border border-grid p-5"><p className="text-[13px] font-bold" style={{ color: S }}>Case {k} · {a}</p><p className="mt-1 text-[16px] leading-snug">→ {b}</p></li>)}</ul>
-              <div className="md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('n-altMethods')} alt="수령 방법 확인" cap="수령 방법 비교" /><Fig src={I('n-pickup')} alt="픽업 매장 재고" cap="픽업 매장" className="md:mt-10" /><Fig src={I('n-restock')} alt="재입고 알림 신청" cap="재입고 알림" /></div>
-            </div>
+            <Num n="02" t="수령 방법별로 재고와 주문 가능 상태를 구분" />
+            <p className="mt-4 text-[17px] leading-[1.8] max-w-2xl">오늘드림 품절을 상품 전체 품절로 읽지 않도록, 오늘드림은 배송지 · 일반배송은 동일 옵션 · 매장 픽업은 선택한 매장 기준으로 따로 확인해요. <b>재고 조회 실패는 품절로 표시하지 않아요.</b></p>
+            <ul className="mt-5 flex flex-wrap gap-2" aria-label="재고 상태">{states.map(s => <li key={s} className="px-4 py-2 rounded-full bg-white border border-grid text-[14px]">{s}</li>)}</ul>
+            <div className="mt-10 grid grid-cols-3 gap-4 md:gap-6 md:max-w-3xl"><Fig src={I('n-altMethods')} alt="일반배송 구매 가능" cap="일반배송 구매 가능" /><Fig src={I('n-pickup')} alt="픽업 매장 선택" cap="픽업 매장 선택" className="md:mt-10" /><Fig src={I('n-stockChanged')} alt="주문 직전 재고 변동" cap="주문 직전 재고 변동" /></div>
+            <p className="mt-4 text-[15px] leading-relaxed text-sub max-w-2xl">옵션·수량·배송지·매장이 바뀌면 그 조건으로 재고를 다시 확인하고, 주문 직전에 재고가 소진되면 상품 정보를 유지한 채 다른 구매 방법을 다시 고르게 해요.</p>
           </Reveal>
+          {p.beforeAfter?.[0] && <div className="mt-16 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 수령 방법 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">수령 방법의 존재 확인에서, 구매 가능한 방법을 비교·선택으로</h3><p className="mt-4 text-[15px] text-sub">가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[0]} /></div></div>}
 
-          {p.beforeAfter?.[0] && <div className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 상품 상세</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">수령 방법을 먼저 고르는 구매 패널</h3><p className="mt-4 text-[16px] leading-relaxed text-sub">가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[0]} /></div></div>}
+          <Reveal className="mt-20 md:mt-24">
+            <Num n="03" t="배송 시간대별 배송비를 선택 전에 비교" />
+            <p className="mt-4 text-[17px] leading-[1.8] max-w-2xl">시간대를 고른 뒤 배송비를 확인하는 구조를, 각 시간대 항목에 배송비를 함께 보여주는 구조로 바꿨어요. 시간대를 바꾸면 최종 결제금액도 바로 갱신돼요.</p>
+          </Reveal>
+          {p.beforeAfter?.[1] && <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 배송비</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">시간 선택 뒤 비용 확인에서, 시간과 비용을 함께 비교로</h3></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[1]} /></div></div>}
 
-          {p.extra && (
+          {p.extra && p.beforeAfter?.[2] && (
             <Reveal className="mt-20 md:mt-24">
-              <Num n="03" t="매출과 연결되는 구매 구간도 정리" />
+              <p className="eyebrow text-sub rule pt-4">함께 정리한 구매 구간</p>
               <p className="mt-4 text-[16px] leading-[1.8] text-sub max-w-2xl">{p.extra.intro}</p>
-              <div className="mt-10 grid md:grid-cols-12 gap-8 items-start">
-                <ul className="md:col-span-4 space-y-3">{p.extra.bullets.map(b => <li key={b} className="pl-4 border-l-2 text-[16px] leading-relaxed" style={{ borderColor: A }}>{b}</li>)}</ul>
-                <div className="md:col-span-8 grid grid-cols-3 gap-4 md:gap-6">{p.extra.images.slice(1).map(im => <Fig key={im.src} src={im.src} alt={im.alt} cap={im.caption} />)}</div>
-              </div>
-              {p.beforeAfter?.[1] && <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 주문/결제</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">길게 이어지던 결제를 3그룹으로</h3></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[1]} /></div></div>}
-              <div className="hidden">
-              </div>
+              <div className="mt-8 md:grid md:grid-cols-12 gap-10 items-start"><ul className="md:col-span-5 space-y-3">{p.extra.bullets.map(b => <li key={b} className="pl-4 border-l-2 text-[15px] leading-relaxed" style={{ borderColor: A }}>{b}</li>)}</ul><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[2]} /></div></div>
             </Reveal>
           )}
         </div>
@@ -137,7 +163,42 @@ function Olive({ c }: { c: Ctx }) {
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="재고 상태에 따라 직접 눌러보세요" />
       </section>
 
-      <Outcome c={c} cards={<><div className="rounded-[20px] p-6" style={{ background: T(16) }}><p className="eyebrow text-sub">계획한 테스트 과업</p><ul className="mt-3 text-[16px] leading-relaxed list-disc pl-5"><li>오늘드림 품절 후 다른 구매 방법 찾기</li><li>다른 지역의 픽업 매장 재고 확인</li><li>원하는 옵션의 재입고 알림 신청</li><li>옵션이 많은 목록에서 구매 방법 찾기</li></ul></div><div className="rounded-[20px] p-6" style={{ background: T(16) }}><p className="eyebrow text-sub">핵심 지표</p><p className="mt-3 text-[16px] leading-relaxed">대체 경로 발견률 · 과업 성공률 · 알림 신청 성공률 · 완료 시간과 오류 횟수</p></div></>} />
+      <section id="c5" className="scroll-mt-20 md:mt-24 rule">
+        <div className="wrap gutter py-20 md:py-32">
+          <ChapterHead color={S} n="04" label="Usability Test & Results" title="대체 구매 경로를 더 쉽게 선택하는지 비교했다" />
+          <div className="mt-6"><SimBanner /></div>
+          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-sub">아래 테스트 설계는 계획이고, 참가자·시간·성공률은 <b>포트폴리오 제작용 가상 데이터</b>예요. 실제 테스트를 진행하면 이 영역을 실측 결과로 교체해야 해요.</p>
+
+          <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
+            <div className="md:col-span-6"><p className="eyebrow text-sub">테스트 설계</p>
+              <ul className="mt-4 space-y-2 text-[16px] leading-relaxed list-disc pl-5"><li>참가자: 모바일 쇼핑 경험자 {sim.n}명, 진행자 관찰형 프로토타입 테스트(실제 결제 없음)</li><li>비교: AS-IS ↔ TO-BE. P01~P04는 AS-IS → TO-BE, P05~P08은 TO-BE → AS-IS(학습 효과 상쇄)</li><li>과업 제한 {sim.limit}초, 구매 가능한 수령 방법을 선택하거나 시간에 도달하면 종료</li><li>재고 조건(양쪽 동일): 오늘드림 품절 · 일반배송 구매 가능 · 픽업 주문 가능한 매장 1곳 · 수량 1개</li></ul></div>
+            <blockquote className="mt-8 md:mt-0 md:col-span-6 rounded-[20px] p-6 text-[17px] leading-[1.7]" style={{ background: T(14) }}>“메디힐 로제 PDRN 모공결광 10매를 오늘드림으로 구매하려고 했지만 품절되었습니다. 다른 방법으로 구매할 수 있는지 확인하고, 구매 가능한 방법을 선택해 주세요.”</blockquote>
+          </div>
+
+          <div className="mt-16 grid md:grid-cols-2 gap-6 [&>*]:min-w-0">
+            <div className="rounded-[28px] p-7 md:p-9 bg-[#F7F8FA]"><p className="eyebrow text-sub">대체 구매 과업 성공률</p>
+              <p className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1"><span className="text-[32px] sm:text-[44px] md:text-[64px] font-extrabold leading-none tracking-tight">{pct(ra)}</span><span aria-hidden className="text-sub">→</span><span className="text-[32px] sm:text-[44px] md:text-[64px] font-extrabold leading-none tracking-tight" style={{ color: S }}>{pct(rt)}</span></p>
+              <p className="mt-2 text-[16px]">AS-IS {ra}/{sim.n}명 → TO-BE {rt}/{sim.n}명 · <b>+{Math.round(((rt - ra) / sim.n) * 100)}%p</b></p>
+              <div role="img" aria-label={`AS-IS ${pct(ra)}, TO-BE ${pct(rt)}`} className="mt-5 space-y-2"><div className="h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full bg-[#9a9a9a]" style={{ width: pct(ra) }} /></div><div className="h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full" style={{ width: pct(rt), background: A }} /></div></div></div>
+            <div className="rounded-[28px] p-7 md:p-9 bg-[#F7F8FA]"><p className="eyebrow text-sub">과업 종료 시간 중앙값</p>
+              <p className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1"><span className="text-[32px] sm:text-[44px] md:text-[64px] font-extrabold leading-none tracking-tight">{ma}초</span><span aria-hidden className="text-sub">→</span><span className="text-[32px] sm:text-[44px] md:text-[64px] font-extrabold leading-none tracking-tight" style={{ color: S }}>{mt}초</span></p>
+              <p className="mt-2 text-[16px]">중앙값 <b>{drop}% 감소</b> · 실패 참가자의 시간도 포함</p>
+              <div role="img" aria-label={`AS-IS ${ma}초, TO-BE ${mt}초`} className="mt-5 space-y-2"><div className="h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full bg-[#9a9a9a]" style={{ width: `${(ma / sim.limit) * 100}%` }} /></div><div className="h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full" style={{ width: `${(mt / sim.limit) * 100}%`, background: A }} /></div></div></div>
+          </div>
+
+          <div className="mt-8 overflow-x-auto"><table className="w-full min-w-[520px] text-[15px]"><caption className="text-left text-[13px] text-sub pb-3">참가자별 결과 (가상 데이터)</caption><thead><tr className="text-left text-[13px] text-sub border-b border-grid"><th scope="col" className="py-3">참가자</th><th scope="col">AS-IS 성공</th><th scope="col">TO-BE 성공</th><th scope="col">AS-IS 시간</th><th scope="col">TO-BE 시간</th></tr></thead><tbody>{sim.rows.map(r => <tr key={r.id} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold">{r.id}</th><td>{r.asis ? '성공' : <span className="text-sub">실패</span>}</td><td style={r.tobe ? { color: S, fontWeight: 600 } : undefined}>{r.tobe ? '성공' : <span className="text-sub">실패</span>}</td><td>{r.asisSec}초</td><td>{r.tobeSec}초</td></tr>)}</tbody></table></div>
+
+          <div className="mt-16 md:grid md:grid-cols-12 gap-10">
+            <div className="md:col-span-7 space-y-6 text-[17px] leading-[1.8]">
+              <div><p className="eyebrow text-sub mb-2">결과 해석</p><p>가상 데이터에서 대체 구매 과업 성공률은 {pct(ra)}에서 {pct(rt)}로, 종료 시간 중앙값은 {ma}초에서 {mt}초로 나타났어요. 옵션 선택 뒤 다음 행동을 하단 CTA로 주는 방식이 대체 구매 경로 선택에 도움이 될 수 있다는 가설과 일치해요.</p></div>
+              <div><p className="eyebrow text-sub mb-2">남은 문제</p><p>TO-BE에서도 {sim.n}명 중 1명(P07)은 과업을 끝내지 못했어요. 실제 테스트라면 어느 화면에서 막혔는지, 어떤 버튼을 골랐는지, 무엇을 오해했는지 관찰 기록으로 확인해야 해요. 관찰되지 않은 발화나 실패 이유는 만들지 않았어요.</p></div>
+            </div>
+            <div className="mt-10 md:mt-0 md:col-span-5 rounded-[20px] border border-dashed border-line p-6 bg-white"><p className="text-[16px] font-bold">해석의 한계</p>
+              <ul className="mt-2 text-[15px] leading-relaxed text-sub list-disc pl-5"><li>표본 8명의 가상 데이터라 일반화할 수 없어요</li><li>특정 UI 요소 하나가 개선의 유일한 원인이라고 단정할 수 없어요</li><li>종료 시간에는 실패 참가자도 포함돼요(성공 완료 시간과 분리 필요)</li><li>첫 행동 정확도 50% → 87.5%, 평균 잘못된 탭 2.5회 → 1.0회는 참가자별 로그가 없는 가상 요약치라 이 페이지의 근거로 쓰지 않았어요</li></ul></div>
+          </div>
+          <p className="mt-10 text-[13px] text-sub max-w-3xl">실제 구매 전환율, 매출, 재고 시스템 연동 성과는 측정하지 않았고 주장하지 않아요.</p>
+        </div>
+      </section>
     </>
   )
 }

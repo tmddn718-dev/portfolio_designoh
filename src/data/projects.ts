@@ -190,7 +190,7 @@ export const projects: Project[] = [
     ],
     proto: { url: '/proto/nodi/index.html', w: 414, h: 868, bare: true },
     gallery: [
-      { src: '/images/nodi/hi-aiFail.webp', alt: '자연어 입력을 해석하지 못했을 때: 빠른 선택으로 이어가기', caption: 'AI 해석 실패' },
+      { src: '/images/nodi/hi-home.webp', alt: 'NODI 홈: 자연어 입력, 빠른 선택, 작성 중 회의', caption: '홈' },
       { src: '/images/nodi/hi-conds.webp', alt: 'AI가 정리한 회의 조건 확인 카드', caption: '조건 확인' },
       { src: '/images/nodi/hi-progress.webp', alt: '참석자 응답 현황과 리마인드', caption: '조율 현황' },
       { src: '/images/nodi/hi-recs.webp', alt: '추천 시간 카드와 추천 이유', caption: '추천 시간' },

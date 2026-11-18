@@ -57,7 +57,7 @@ export default function CaseNodi() {
 
   return (
     <article ref={root}>
-      <ChapterNav active={active} />
+      <ChapterNav active={active} title="NODI" />
 
       {/* Hero */}
       <section id="c1" className="overflow-hidden" style={{ background: T(9) }}>

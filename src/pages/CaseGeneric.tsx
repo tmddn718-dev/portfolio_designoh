@@ -7,7 +7,7 @@ import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
-import { ChapterHead, ChapterNav, InteractionPreview, strongOf, tintOf, useActive } from '../components/case'
+import { ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive } from '../components/case'
 import Strip from '../components/Strip'
 import NotFound from './NotFound'
 
@@ -47,7 +47,7 @@ function Hero({ c, kicker, title, lead, children, size = 'md' }: { c: Ctx; kicke
             {p.proto && <button onClick={() => setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
             <p className="mt-6 text-[13px] text-sub max-w-[40ch]">{kicker}</p>
           </div>
-          <div className="mt-12 md:mt-0 md:col-span-7">{children}</div>
+          <div data-scale className="mt-12 md:mt-0 md:col-span-7">{children}</div>
         </div>
       </div>
     </section>
@@ -159,7 +159,7 @@ function Olive({ c }: { c: Ctx }) {
 
       <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="03" label="Final Experience" title="옵션 선택에서 구매·알림까지" />
-        <Strip label="올리브영 화면">{(p.gallery ?? []).map((g, i) => <figure key={g.src} className="w-[210px] md:w-[250px]"><p className="text-[14px] mb-3"><b style={{ color: S }}>0{i + 1}</b> <span className="text-sub">{g.caption}</span></p><Screen src={g.src} alt={g.alt} cap={g.caption} /></figure>)}</Strip>
+        <div className="mt-14"><PinnedPhone color={S} label="올리브영 화면 둘러보기" steps={(p.gallery ?? []).map(g => ({ src: g.src, alt: g.alt, title: g.caption ?? g.alt, body: g.alt }))} /></div>
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="재고 상태에 따라 직접 눌러보세요" />
       </section>
 
@@ -253,7 +253,7 @@ function Karrot({ c }: { c: Ctx }) {
 
       <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="03" label="Final Experience" title="판매자 입력 → 구매자 확인 → 정보 변경" />
-        <Strip label="당근 화면">{(p.gallery ?? []).map((g, i) => <figure key={g.src} className="w-[210px] md:w-[250px]"><p className="text-[14px] mb-3"><b style={{ color: S }}>0{i + 1}</b> <span className="text-sub">{g.caption}</span></p><Screen src={g.src} alt={g.alt} cap={g.caption} /></figure>)}</Strip>
+        <div className="mt-14"><PinnedPhone color={S} label="당근 화면 둘러보기" steps={(p.gallery ?? []).map(g => ({ src: g.src, alt: g.alt, title: g.caption ?? g.alt, body: g.alt }))} /></div>
         <p className="mt-8 max-w-3xl text-[17px] leading-[1.8]">예외 상태(조회 실패와 재시도, 거래 완료)까지 포함한 20개 화면을 클릭형 프로토타입으로 구현했습니다.</p>
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="입력부터 질문 초안까지" />
       </section>
@@ -266,16 +266,16 @@ function Karrot({ c }: { c: Ctx }) {
 
           <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
             <div className="md:col-span-6"><p className="eyebrow text-sub">테스트 설계 (계획)</p>
-              <ul className="mt-4 space-y-2 text-[16px] leading-relaxed list-disc pl-5"><li>구매자: AS-IS 8명, TO-BE v1 8명, TO-BE v2 8명</li><li>구매자 과업: 거래 조건 확인, 거래 가능성 판단, 판매자 질문 초안 작성</li><li>판매자: 8명, 기존 등록 흐름과 개선 등록 흐름 비교 · 과업은 대형 가구 판매글 등록과 거래 조건 입력</li></ul></div>
-            <ol className="mt-8 md:mt-0 md:col-span-6 grid grid-cols-3 gap-3" aria-label="개선 과정">{[['AS-IS', '거래 조건이 자유 서술형 설명에 흩어져 있다', 'asis-desc'], ['TO-BE v1', '거래 정보를 구조화했지만 화면 하단에 둔다(현재 구현 화면)', 'k-info'], ['TO-BE v2', '핵심 거래 조건 요약을 상품명·가격 바로 아래로 옮긴다', '']].map(([a, d, img]) => <li key={a} className="rounded-[20px] bg-[#F7F8FA] p-3"><p className="text-[13px] font-bold" style={{ color: S }}>{a}</p>{img ? <div className="mt-2"><Screen src={I(img)} alt={`${a} 화면`} /></div> : <div className="mt-2 aspect-[390/844] rounded-[16px] border border-dashed border-line grid place-items-center text-center text-[13px] text-sub p-2">시안 화면<br />추가 자료 필요</div>}<p className="mt-2 text-[13px] leading-snug">{d}</p></li>)}</ol>
+              <ul className="mt-4 space-y-2 text-[16px] leading-relaxed list-disc pl-5"><li>구매자: AS-IS 8명, TO-BE 8명</li><li>구매자 과업: 거래 조건 확인, 거래 가능성 판단, 판매자 질문 초안 작성</li><li>판매자: 8명, 기존 등록 흐름과 개선 등록 흐름 비교 · 과업은 대형 가구 판매글 등록과 거래 조건 입력</li></ul></div>
+            <ol className="mt-8 md:mt-0 md:col-span-6 grid grid-cols-2 gap-3 max-w-[420px]" aria-label="개선 과정">{[['AS-IS', '거래 조건이 자유 서술형 설명에 흩어져 있다', 'asis-desc'], ['TO-BE', '거래 정보를 카드로 구조화한다(현재 구현 화면)', 'k-info']].map(([a, d, img]) => <li key={a} className="rounded-[20px] bg-[#F7F8FA] p-3"><p className="text-[13px] font-bold" style={{ color: S }}>{a}</p><div className="mt-2"><Screen src={I(img)} alt={`${a} 화면`} /></div><p className="mt-2 text-[13px] leading-snug">{d}</p></li>)}</ol>
           </div>
 
-          <p className="mt-16 eyebrow text-sub">구매자 · 예상 지표 (AS-IS / v1 / v2)</p>
-          <div className="mt-4 overflow-x-auto"><table className="w-full min-w-[520px] text-[15px]"><caption className="sr-only">구매자 지표 예상값</caption><thead><tr className="text-left text-[13px] text-sub border-b border-grid"><th scope="col" className="py-3">지표</th><th scope="col">AS-IS</th><th scope="col">TO-BE v1</th><th scope="col">TO-BE v2</th></tr></thead><tbody>{p.forecast!.buyer.map(r => <tr key={r[0]} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold pr-4">{r[0]}</th><td>{r[1]}</td><td>{r[2]}</td><td className="font-semibold" style={{ color: S }}>{r[3]}</td></tr>)}</tbody></table></div>
-          <div className="mt-8 grid md:grid-cols-2 gap-5">{p.forecast!.buyer.slice(0, 2).map(r => <div key={r[0]} className="rounded-[20px] p-6 bg-[#F7F8FA]"><p className="text-[15px] font-semibold">{r[0]}</p><div role="img" aria-label={`AS-IS ${r[1]}, v1 ${r[2]}, v2 ${r[3]}`} className="mt-4 space-y-2">{[['AS-IS', r[1], '#9a9a9a'], ['v1', r[2], tintOf(A, 55)], ['v2', r[3], A]].map(([l, v, col]) => <div key={l} className="flex items-center gap-3"><span className="w-12 text-[13px] text-sub">{l}</span><div className="flex-1 h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full" style={{ width: v, background: col }} /></div><span className="w-14 text-right text-[14px]">{v}</span></div>)}</div></div>)}</div>
+          <p className="mt-16 eyebrow text-sub">구매자 · 예상 지표 (AS-IS / TO-BE)</p>
+          <div className="mt-4 overflow-x-auto"><table className="w-full min-w-[520px] text-[15px]"><caption className="sr-only">구매자 지표 예상값</caption><thead><tr className="text-left text-[13px] text-sub border-b border-grid"><th scope="col" className="py-3">지표</th><th scope="col">AS-IS</th><th scope="col">TO-BE</th></tr></thead><tbody>{p.forecast!.buyer.map(r => <tr key={r[0]} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold pr-4">{r[0]}</th><td>{r[1]}</td><td className="font-semibold" style={{ color: S }}>{r[3]}</td></tr>)}</tbody></table></div>
+          <div className="mt-8 grid md:grid-cols-2 gap-5">{p.forecast!.buyer.slice(0, 2).map(r => <div key={r[0]} className="rounded-[20px] p-6 bg-[#F7F8FA]"><p className="text-[15px] font-semibold">{r[0]}</p><div role="img" aria-label={`AS-IS ${r[1]}, TO-BE ${r[3]}`} className="mt-4 space-y-2">{[['AS-IS', r[1], '#9a9a9a'], ['TO-BE', r[3], A]].map(([l, v, col]) => <div key={l} className="flex items-center gap-3"><span className="w-14 text-[13px] text-sub">{l}</span><div className="flex-1 h-3 rounded-full bg-[#e8e8e8]"><div className="h-3 rounded-full" style={{ width: v, background: col }} /></div><span className="w-14 text-right text-[14px]">{v}</span></div>)}</div></div>)}</div>
 
           <div className="mt-12 grid md:grid-cols-2 gap-8">
-            <div><p className="eyebrow text-sub">질문 작성 과업 (AS-IS → v2)</p><table className="mt-3 w-full text-[15px]"><caption className="sr-only">질문 작성 과업 예상값</caption><tbody>{p.forecast!.question.map(r => <tr key={r[0]} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold pr-4">{r[0]}</th><td>{r[1]}</td><td aria-hidden className="text-sub">→</td><td className="font-semibold" style={{ color: S }}>{r[2]}</td></tr>)}</tbody></table></div>
+            <div><p className="eyebrow text-sub">질문 작성 과업 (AS-IS → TO-BE)</p><table className="mt-3 w-full text-[15px]"><caption className="sr-only">질문 작성 과업 예상값</caption><tbody>{p.forecast!.question.map(r => <tr key={r[0]} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold pr-4">{r[0]}</th><td>{r[1]}</td><td aria-hidden className="text-sub">→</td><td className="font-semibold" style={{ color: S }}>{r[2]}</td></tr>)}</tbody></table></div>
             <div><p className="eyebrow text-sub">판매자 등록 과업 (기존 → 개선)</p><table className="mt-3 w-full text-[15px]"><caption className="sr-only">판매자 등록 과업 예상값</caption><tbody>{p.forecast!.seller.map(r => <tr key={r[0]} className="border-b border-grid"><th scope="row" className="py-3 text-left font-semibold pr-4">{r[0]}</th><td>{r[1]}</td><td aria-hidden className="text-sub">→</td><td className="font-semibold" style={{ color: S }}>{r[2]}</td></tr>)}</tbody></table>
               <p className="mt-3 text-[13px] text-sub">등록 시간은 늘어날 것으로 예상했어요. 입력이 늘어나는 대신 거래 조건을 정확히 적는 비율이 오르는 절충점이 있는지를 확인할 가설이에요.</p></div>
           </div>
@@ -318,7 +318,7 @@ function Woorisai({ c }: { c: Ctx }) {
           <div className="mx-auto max-w-xl"><dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] text-left rule pt-4" style={{ borderColor: T(40) }}>
             <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div><div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div><div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div></dl></div>
           {c.proto && <button onClick={() => c.setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
-          <ul className="mt-14 flex items-end justify-center gap-4 md:gap-8 max-w-[860px] mx-auto">
+          <ul data-scale className="mt-14 flex items-end justify-center gap-4 md:gap-8 max-w-[860px] mx-auto">
             {[['feed', '추억 피드', 'w-[28%]'], ['ph-after-top', '사진 상세', 'w-[34%]'], ['foot-after', '발자국', 'w-[28%]']].map(([n, a, w], i) => <li key={n} className={`${w} ${i !== 1 ? 'md:translate-y-8' : ''}`}><div className="phone-light"><img src={I(n)} alt={`우리사이 ${a} 화면`} className="screen" /></div></li>)}
           </ul>
         </div>
@@ -346,6 +346,14 @@ function Woorisai({ c }: { c: Ctx }) {
             <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">기록 → 함께 쌓기 → 다시 발견하기 → 대화로 이어지기</h3>
             <ol className="mt-8 grid md:grid-cols-4 gap-4">{[['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자별 사진과 이야기를 한 추억에'], ['다시 발견하기', '사람·장소·시간으로 되찾기'], ['대화로 이어지기', '사진 단위 반응과 댓글']].map(([t, d], i) => <li key={t} className="rounded-[20px] bg-white border border-grid p-5"><span className="text-[24px] font-extrabold" style={{ color: S }}>0{i + 1}</span><p className="mt-2 text-[18px] font-bold">{t}</p><p className="mt-1 text-[14px] text-sub leading-snug">{d}</p></li>)}</ol>
           </div>
+        </div>
+      </section>
+
+      <section aria-label="화면 둘러보기" className="bg-[#f5f5f7] mt-8">
+        <div className="wrap gutter py-20 md:py-28">
+          <p className="eyebrow text-sub">Walkthrough</p>
+          <h2 className="mt-3 apple-h text-[32px] md:text-[56px] max-w-[18ch]">추억이 쌓이고, 다시 이어지는 흐름</h2>
+          <div className="mt-14"><PinnedPhone color={S} label="우리사이 화면 둘러보기" steps={[0, 1, 2, 5, 7].map(i => p.gallery![i]).map(g => ({ src: g.src, alt: g.alt, title: g.caption ?? g.alt, body: g.alt }))} /></div>
         </div>
       </section>
 
@@ -395,7 +403,7 @@ function Woorisai({ c }: { c: Ctx }) {
 
       <section id="c4" className="wrap gutter py-20 md:py-28 scroll-mt-20 md:mt-8">
         <ChapterHead color={S} n="03" label="Supporting Experience" title="약속과 우리 공간은 추억을 돕는 보조 기능" />
-        <ul className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
+        <ul className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8" data-scale>
           {['plan', 'space', 'calendar', 'home'].map(n => <li key={n}><Screen src={I(n)} alt={`우리사이 화면 ${n}`} cap={({ plan: '초대받은 약속 · 참석 응답', space: '우리 공간', calendar: '추억 달력', home: '홈' } as Record<string, string>)[n]} /></li>)}
         </ul>
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="이전 버전 프로토타입" note="현재 화면 시안과 세부가 다를 수 있습니다." />
@@ -433,7 +441,7 @@ export default function CaseGeneric() {
   const View = ({ olive: Olive, 'karrot-large-furniture': Karrot, woorisai: Woorisai } as Record<string, (a: { c: Ctx }) => ReactNode>)[p.slug === 'oliveyoung-todaydream' ? 'olive' : p.slug]
   return (
     <article ref={root}>
-      <ChapterNav active={active} list={list} />
+      <ChapterNav active={active} list={list} title={p.name} onCta={p.proto ? () => setOpen(true) : undefined} />
       {View ? <View c={c} /> : <NotFound />}
       <Link to={`/work/${next.slug}`} className="group block rule">
         <div className="wrap gutter py-14 md:py-20 flex items-end justify-between gap-6">

@@ -50,7 +50,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={root} id="hero" className="relative overflow-hidden min-h-[calc(100svh-64px)] flex">
+    <section ref={root} id="hero" className="relative overflow-hidden min-h-[calc(100svh-48px)] flex">
       <div aria-hidden className="grid-bg absolute inset-0" />
       <div className="relative w-full px-5 md:px-[6.25vw] flex flex-col justify-center py-14 md:py-20">
         <h1 aria-label="Complexity → Clarity" className="font-extrabold leading-[0.98] tracking-[-0.05em] text-[clamp(52px,17.5vw,96px)] md:text-[11.6vw]">

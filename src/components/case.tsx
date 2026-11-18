@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal'
 
 export const chapters = [['c1', 'Hero'], ['c2', 'Challenge'], ['c3', 'Decisions'], ['c4', 'Experience'], ['c5', 'Outcome']]
@@ -15,15 +15,20 @@ export function useActive(dep: unknown, list: string[][] = chapters) {
   return active
 }
 
-export function ChapterNav({ active, list = chapters }: { active: string; list?: string[][] }) {
+export function ChapterNav({ active, list = chapters, title, onCta }: { active: string; list?: string[][]; title?: string; onCta?: () => void }) {
+  // 애플 로컬 내비: 제품명(좌) · 챕터 링크 + 파란 필(우), 글로벌 내비 바로 아래에 반투명으로 고정
   return (
-    <nav aria-label="챕터" className="sticky top-16 z-30 bg-white/95 border-b border-grid">
-      <ol className="wrap gutter flex gap-6 overflow-x-auto text-[13px]">
-        {list.map(([id, label], i) => (
-          <li key={id}><a href={`#${id}`} aria-current={active === id ? 'true' : undefined}
-            className={`block py-3 whitespace-nowrap border-b-2 ${active === id ? 'border-ink text-ink font-semibold' : 'border-transparent text-sub hover:text-ink'}`}>0{i + 1} {label}</a></li>
-        ))}
-      </ol>
+    <nav aria-label="챕터" className="sticky top-12 z-30 glass border-b border-black/10">
+      <div className="wrap gutter flex items-center justify-between gap-4 h-[52px]">
+        {title && <p className="hidden sm:block text-[19px] font-semibold tracking-tight shrink-0">{title}</p>}
+        <ol className="flex items-center gap-5 overflow-x-auto text-[13px] min-w-0 flex-1 sm:flex-none">
+          {list.map(([id, label]) => (
+            <li key={id}><a href={`#${id}`} aria-current={active === id ? 'true' : undefined}
+              className={`block py-3 whitespace-nowrap ${active === id ? 'text-ink font-semibold' : 'text-ink/60 hover:text-ink'}`}>{label}</a></li>
+          ))}
+        </ol>
+        {onCta && <button onClick={onCta} className="pill shrink-0">프로토타입</button>}
+      </div>
     </nav>
   )
 }
@@ -32,7 +37,7 @@ export function ChapterHead({ n, label, title, color }: { n: string; label: stri
   return (
     <Reveal>
       <div className="rule pt-4" style={{ borderColor: `color-mix(in srgb, ${color} 35%, white)` }}><span className="sr-only">챕터 {n}: {label}</span></div>
-      <h2 className="mt-4 text-[32px] md:text-[56px] font-extrabold tracking-tight leading-[1.08] max-w-[22ch]">{title}</h2>
+      <h2 className="mt-4 apple-h text-[32px] md:text-[56px] max-w-[22ch]">{title}</h2>
     </Reveal>
   )
 }
@@ -47,6 +52,38 @@ export function InteractionPreview({ p, title, note, wide, onOpen }: { p: Projec
     <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-center rounded-[28px] p-6 md:p-10" style={{ background: T(14) }}>
       <div className="md:col-span-6"><p className="eyebrow" style={{ color: S }}>Interaction preview</p><p className="mt-3 text-[28px] md:text-[32px] font-extrabold leading-tight tracking-tight">{title}</p>{note && <p className="mt-3 text-[16px] leading-relaxed text-sub">{note}</p>}</div>
       <div className="mt-8 md:mt-0 md:col-span-6 flex justify-center md:justify-end">{wide ? <ProtoFrame p={p} width={320} /> : <button onClick={onOpen} className="px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}</div>
+    </div>
+  )
+}
+
+
+// 스크롤하면 폰은 고정되고 화면만 바뀐다(애플 제품 스토리 방식). 모바일은 순서대로 쌓는다.
+export type Step = { src: string; alt: string; title: string; body: string }
+export function PinnedPhone({ steps, color, label }: { steps: Step[]; color: string; label: string }) {
+  const [on, setOn] = useState(0)
+  const refs = useRef<(HTMLLIElement | null)[]>([])
+  useEffect(() => {
+    const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setOn(Number((e.target as HTMLElement).dataset.i))), { rootMargin: '-45% 0px -45% 0px' })
+    refs.current.forEach(el => el && io.observe(el))
+    return () => io.disconnect()
+  }, [steps])
+  return (
+    <div className="md:grid md:grid-cols-2 md:gap-16" role="group" aria-label={label}>
+      <ol className="md:order-1">
+        {steps.map((s, i) => (
+          <li key={s.title} ref={el => { refs.current[i] = el }} data-i={i} className={`stage-step md:min-h-[85vh] flex flex-col justify-center py-10 md:py-0 ${on === i ? 'on' : ''}`}>
+            <p className="eyebrow" style={{ color }}>0{i + 1}</p>
+            <h3 className="mt-3 apple-h text-[28px] md:text-[44px] max-w-[16ch]">{s.title}</h3>
+            <p className="mt-4 text-[17px] md:text-[19px] leading-[1.6] text-ink/70 max-w-[32ch]">{s.body}</p>
+            <div className="md:hidden mt-8 max-w-[260px]"><div className="phone-light"><img src={s.src} alt={s.alt} loading="lazy" className="screen" /></div></div>
+          </li>
+        ))}
+      </ol>
+      <div aria-hidden className="hidden md:block md:order-2">
+        <div className="sticky top-[calc(50vh-300px)] mx-auto w-[280px]">
+          <div className="phone-light"><div className="relative w-full h-full">{steps.map((s, i) => <img key={s.src} src={s.src} alt="" loading="lazy" className={`screen stage-screen ${on === i ? 'on' : ''}`} />)}</div></div>
+        </div>
+      </div>
     </div>
   )
 }

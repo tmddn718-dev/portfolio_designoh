@@ -57,7 +57,7 @@ export default function CaseTrigr() {
 
   return (
     <article ref={root}>
-      <ChapterNav active={active} list={list} />
+      <ChapterNav active={active} list={list} title="trigr" />
 
       {/* Hero */}
       <section id="c1" className="overflow-hidden" style={{ background: T(9) }}>

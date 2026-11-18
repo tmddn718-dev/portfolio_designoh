@@ -40,7 +40,7 @@ function FeatureTrigr({ p }: { p: Project }) {
     <article>
       <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="group relative block overflow-hidden rounded-[28px] px-6 pt-20 pb-10 md:px-16 md:pt-24 md:pb-14" style={{ background: `linear-gradient(135deg, ${tint(p.accent, 12)}, ${tint('#9B6BFF', 26)})` }}>
         <span className="absolute left-6 top-6 md:left-10 md:top-10"><Label launched /></span>
-        <ul className="flex items-end justify-center gap-4 md:gap-10">
+        <ul data-scale className="flex items-end justify-center gap-4 md:gap-10">
           {shots.map(([src, alt, cap], i) => (
             <li key={src} className={`${i === 1 ? 'w-[40%] md:w-[30%]' : 'w-[28%] md:w-[22%]'} transition-transform duration-500 group-hover:-translate-y-2`}>
               <div className="phone-light"><img src={src} alt={alt} loading="lazy" className="screen" /></div>

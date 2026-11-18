@@ -29,7 +29,9 @@ export function Zoomable({ src, alt, caption, className = '', imgClass = '', big
       </button>
       <Modal open={open} onClose={() => setOpen(false)} label={alt}>
         <figure className="text-white text-center">
-          <img src={big ?? src} alt={alt} className="mx-auto max-h-[82vh] w-auto max-w-[92vw] rounded-[20px]" />
+          {big
+            ? <div className="mx-auto max-h-[74vh] w-[min(390px,92vw)] overflow-y-auto overscroll-contain rounded-[20px] bg-white"><img src={big} alt={alt} className="block w-full" /></div>
+            : <img src={src} alt={alt} className="mx-auto max-h-[82vh] w-auto max-w-[92vw] rounded-[20px]" />}
           {caption && <figcaption className="mt-3 text-[14px]">{caption}</figcaption>}
         </figure>
       </Modal>

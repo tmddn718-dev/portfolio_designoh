@@ -20,6 +20,7 @@ const S = strongOf(p.accent)
 const body = (id: string) => p.sections.find(s => s.id === id && s.body !== TODO)?.body ?? ''
 const paras = (id: string) => body(id).split('\n\n').filter(Boolean)
 const img = (n: string) => `/images/nodi/hi-${n}.webp`
+const full = (n: string) => `/images/nodi/full-${n}.webp` // 스크롤되는 전체 화면(원본 비율)
 const list = [['c1', '개요'], ['c2', '문제'], ['c3', '솔루션'], ['c4', '실제 UI'], ['c5', '결과']]
 
 const pains = [
@@ -32,7 +33,7 @@ const swatches: [string, string][] = [['Primary', '#3654D4'], ['Navy', '#18243A'
 
 const Shot = ({ n, cap, className = '' }: { n: string; cap: string; className?: string }) => (
   <figure className={className}>
-    <Zoomable src={img(n)} alt={`NODI ${cap} 화면`} caption={cap} className="w-full" imgClass="phone-bare" />
+    <Zoomable src={img(n)} big={full(n)} alt={`NODI ${cap} 화면`} caption={cap} className="w-full" imgClass="phone-bare" />
     <figcaption className="mt-3 text-[14px] text-sub">{cap}</figcaption>
   </figure>
 )
@@ -242,11 +243,26 @@ export default function CaseNodi() {
           {flow.map(([n, l], i) => (
             <figure key={n} className="w-[210px] md:w-[250px]">
               <p className="text-[14px] mb-3"><b style={{ color: S }}>0{i + 1}</b> <span className="text-sub">{l}</span></p>
-              <Zoomable src={img(n)} alt={`NODI ${l} 화면`} caption={l} imgClass="phone-bare" />
+              <Zoomable src={img(n)} big={full(n)} alt={`NODI ${l} 화면`} caption={l} imgClass="phone-bare" />
             </figure>
           ))}
         </Strip></div>
         <p className="mt-8 max-w-3xl text-[17px] leading-[1.8]">재조율, 받은 요청과 응답, 이전 회의 재사용, 작성 중 이어하기까지 포함해 26개 아트보드로 구현했습니다.</p>
+        <div className="mt-16">
+          <p className="eyebrow rule pt-4" style={{ color: S }}>Long screens · 끝까지 스크롤</p>
+          <h3 className="mt-4 text-[28px] md:text-[40px] font-extrabold tracking-tight leading-[1.15] max-w-[22ch]">긴 화면도 끝까지 이어서 볼 수 있어요</h3>
+          <p className="mt-5 max-w-[60ch] text-[17px] leading-[1.8]">응답 현황과 추천 시간과 회의 상세와 새 시간 조율은 한 화면을 넘는 긴 화면이에요. 화면 안에서 스크롤해서 끝까지 확인해 보세요. 눌러서 크게 볼 수도 있어요.</p>
+          <div className="mt-10"><Strip label="NODI 긴 화면 전체 스크롤">
+            {[['progress', '조율 진행 현황'], ['recs', '추천 회의 시간'], ['detail', '회의 상세'], ['resched', '새 시간 조율']].map(([n, l]) => (
+              <figure key={n} className="w-[250px] md:w-[280px]">
+                <div className="phone-bare overflow-y-auto overscroll-contain bg-white rounded-[28px] border border-[#E2E8F0]" style={{ height: 560, aspectRatio: 'auto' }} tabIndex={0} role="region" aria-label={`${l} 전체 화면 스크롤`}>
+                  <img src={full(n)} alt={`NODI ${l} 전체 화면`} loading="lazy" className="block w-full" />
+                </div>
+                <figcaption className="mt-3 text-[14px] text-sub">{l}</figcaption>
+              </figure>
+            ))}
+          </Strip></div>
+        </div>
         <div className="mt-24" id="nodi-web">
           <p className="eyebrow rule pt-4" style={{ color: S }}>Web · Responsive</p>
           <h3 className="mt-4 text-[28px] md:text-[40px] font-extrabold tracking-tight max-w-[22ch]">모바일 앱이면서 PC 웹에서도 그대로 쓰는 서비스</h3>

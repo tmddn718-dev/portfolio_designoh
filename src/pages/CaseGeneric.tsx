@@ -340,7 +340,7 @@ function Karrot({ c }: { c: Ctx }) {
         <Reveal><blockquote className="mt-10 text-[28px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]" style={{ borderLeft: `6px solid ${A}`, paddingLeft: 24 }}>{p.problem}</blockquote></Reveal>
         <ul className="mt-12 grid md:grid-cols-3 gap-5">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
         <div className="mt-14"><p className="eyebrow text-sub">실제 당근 앱 · AS-IS 캡처</p>
-          <ul className="mt-5 grid grid-cols-3 gap-4 md:gap-8 max-w-3xl">{[['asis-search', '대형가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul>
+          <ul className="mt-5 grid grid-cols-3 gap-4 md:gap-8 max-w-3xl">{[['bf-write', '판매글 작성: 설명 입력란에 자유롭게'], ['bf-detail', '상품 본문: 크기가 문장 속에'], ['bf-chat', '채팅: 첫 메시지를 직접 작성']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul>
           <p className="mt-4 text-[13px] text-sub max-w-3xl">실제 앱 화면 캡처이며 판매자 닉네임, 거래 장소 주소·지도, 캡처한 사람의 정보는 가렸습니다.</p></div>
         <p className="mt-10 text-[13px] text-sub max-w-3xl">앱 리뷰·블로그 VOC와 인터뷰를 근거로 PRD 문제를 정의했습니다. 원자료가 없어 표본 수와 수치는 싣지 않았고, 발생 빈도와 영향은 사용성 테스트로 검증해야 하는 디자인 가설입니다.</p>
       </section>
@@ -395,7 +395,7 @@ function Karrot({ c }: { c: Ctx }) {
           <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
             <div className="md:col-span-6"><p className="eyebrow text-sub">테스트 설계 (계획)</p>
               <ul className="mt-4 space-y-2 text-[16px] leading-relaxed list-disc pl-5"><li>구매자: AS-IS 8명, TO-BE 8명</li><li>구매자 과업: 거래 조건 확인, 거래 가능성 판단, 판매자 질문 초안 작성</li><li>판매자: 8명, 기존 등록 흐름과 개선 등록 흐름 비교 · 과업은 대형 가구 판매글 등록과 거래 조건 입력</li></ul></div>
-            <ol className="mt-8 md:mt-0 md:col-span-6 grid grid-cols-2 gap-3 max-w-[420px]" aria-label="개선 과정">{[['AS-IS', '거래 조건이 자유 서술형 설명에 흩어져 있다', 'asis-desc'], ['TO-BE', '거래 정보를 카드로 구조화한다(현재 구현 화면)', 'k-info']].map(([a, d, img]) => <li key={a} className="rounded-[20px] bg-[#F7F8FA] p-3"><p className="text-[13px] font-bold" style={{ color: S }}>{a}</p><div className="mt-2"><Screen src={I(img)} alt={`${a} 화면`} /></div><p className="mt-2 text-[13px] leading-snug">{d}</p></li>)}</ol>
+            <ol className="mt-8 md:mt-0 md:col-span-6 grid grid-cols-2 gap-3 max-w-[420px]" aria-label="개선 과정">{[['AS-IS', '거래 조건이 자유 서술형 설명에 흩어져 있다', 'bf-detail'], ['TO-BE', '거래 정보를 카드로 구조화한다(현재 구현 화면)', 'k-info']].map(([a, d, img]) => <li key={a} className="rounded-[20px] bg-[#F7F8FA] p-3"><p className="text-[13px] font-bold" style={{ color: S }}>{a}</p><div className="mt-2"><Screen src={I(img)} alt={`${a} 화면`} /></div><p className="mt-2 text-[13px] leading-snug">{d}</p></li>)}</ol>
           </div>
 
           <p className="mt-16 eyebrow text-sub">구매자 · 예상 지표 (AS-IS / TO-BE)</p>

@@ -130,7 +130,7 @@ export const projects: Project[] = [
     },
     beforeAfter: [
       {
-        before: '/images/karrot-large-furniture/asis-desc.webp', after: '/images/karrot-large-furniture/f-b1.webp',
+        before: '/images/karrot-large-furniture/bf-detail.webp', after: '/images/karrot-large-furniture/f-b1.webp',
         beforeAlt: '기존 당근 상품 상세 본문: 크기가 자유 텍스트 문장 속에 있다', afterAlt: '개선 상품 상세 본문 아래: 크기 및 분해, 가져가는 조건을 거래 정보 카드로 정리',
         marks: [
           { side: 'before', n: 1, x: 3, y: 53, w: 94, h: 16 },
@@ -144,7 +144,7 @@ export const projects: Project[] = [
         points: ['※ Before는 실제 당근 앱 화면 캡처이며 판매자 닉네임, 거래 장소 주소·지도, 캡처한 사람의 정보는 가렸습니다'],
       },
       {
-        before: '/images/karrot-large-furniture/asis-loc.webp', after: '/images/karrot-large-furniture/k-info-partial.webp',
+        before: '/images/karrot-large-furniture/bf-detail.webp', after: '/images/karrot-large-furniture/k-info-partial.webp',
         beforeAlt: '기존 당근 상품 상세 하단: 거래 장소와 용달비 안내, 채팅·관심 수', afterAlt: '개선 상품 상세: 미입력과 판매자도 모름을 구분해 표시한 거래 정보 카드',
         marks: [
           { side: 'before', n: 1, x: 3, y: 37, w: 94, h: 9 },
@@ -169,12 +169,14 @@ export const projects: Project[] = [
       { src: '/images/karrot-large-furniture/f-b1.webp', alt: '상품 상세: 거래 정보 카드에 크기와 분해, 가져가는 조건이 정리됨', caption: '구매자 · 상세' },
       { src: '/images/karrot-large-furniture/f-b3.webp', alt: '어떤 정보가 궁금하세요? 질문 고르기 바텀시트', caption: '질문 고르기' },
       { src: '/images/karrot-large-furniture/f-b4.webp', alt: '고른 질문이 채팅 입력창 초안으로 추가된 화면', caption: '채팅 질문 초안' },
+      { src: '/images/karrot-large-furniture/f-edit.webp', alt: '판매자가 게시글 수정 화면에서 가격과 설명을 고치는 화면', caption: '판매자 · 게시글 수정' },
       { src: '/images/karrot-large-furniture/f-c3.webp', alt: '상세 상단에 판매자가 상품 정보를 수정했다는 안내와 이전 가격이 보이는 화면', caption: '상세 · 변경 안내' },
       { src: '/images/karrot-large-furniture/f-c2.webp', alt: '채팅방에 판매자가 상품 정보를 수정했다는 시스템 메시지가 남은 화면', caption: '채팅 · 변경 알림' },
       { src: '/images/karrot-large-furniture/k-changed.webp', alt: '판매자가 수정한 가격·분해 여부를 비교하는 바텀시트', caption: '변경 내용 비교' },
       { src: '/images/karrot-large-furniture/f-recheck.webp', alt: '비정상적으로 큰 크기 값을 입력했을 때 재확인을 요청하는 화면', caption: '큰 값 재확인' },
       { src: '/images/karrot-large-furniture/k-partial.webp', alt: '일부만 입력된 상품 상세: 미입력과 모름을 구분해 표시', caption: '상세 · 일부 입력' },
       { src: '/images/karrot-large-furniture/k-fail.webp', alt: '정보 조회에 실패했을 때의 상세 화면', caption: '정보 조회 실패' },
+      { src: '/images/karrot-large-furniture/f-done.webp', alt: '거래가 완료된 상품 상세: 거래완료 안내와 비활성 버튼', caption: '거래 완료' },
     ],
     sections: [
       { id: 'overview', title: 'Overview', body: '질문하기 전에 알 수 있는 당근 상품 정보. 대형 가구 중고거래에서 판매자가 거래 조건을 쉽게 입력하고, 구매자가 채팅 전에 필요한 정보를 확인하도록 설계한 비공식 UX 개선 프로젝트입니다(PRD v2.1).\n\n기획, 디자인, 프로토타입 구현을 혼자 진행했습니다.' },
@@ -285,11 +287,10 @@ export const projects: Project[] = [
     tags: ['미션 플랫폼', 'UX/UI 설계', '디자인 시스템', '출시'],
     summary: { concept: [['시스템', 'Figma Variables로 디자인 시스템 구축'], ['협업', '정해진 답이 없는 상황에서 함께 설계'], ['지속가능성', '미션을 만드는 사람이 계속 만들 이유 설계'], ['출시', '세 번의 개편 후 태국 출시']], short: '디자인 시스템 구축부터 태국 출시까지', about: '미션을 만들고 수행하면 보상을 받는 앱이에요. 디자인 시스템을 처음부터 만들며 UX/UI를 총괄했고 태국에 출시했어요.', decision: '디자인 시스템을 처음부터 만들었어요. 세 번의 개편을 거쳐 태국 시장에 출시했어요.', status: '출시를 마쳤어요. 서비스는 현재 운영하지 않아요.', kind: 'launched' },
     accent: '#DD5BE0',
-    mock: { srcs: ['/images/trigr/mission-create.webp', '/images/trigr/home-map.webp', '/images/trigr/t-proof-detail.webp'], framed: true },
+    mock: { srcs: ['/images/trigr/tr-p-method.webp', '/images/trigr/home-map.webp', '/images/trigr/t-proof-detail.webp'], framed: true },
     gallery: [
       { src: '/images/trigr/home-map.webp', alt: 'trigr 홈: 지도 위에 미션 핀이 표시된 화면', caption: '홈 — 지도 위 미션 탐색' },
       { src: '/images/trigr/t-list.webp', alt: '미션 리스트: 카테고리 필터와 미션 목록', caption: '미션 리스트' },
-      { src: '/images/trigr/mission-create.webp', alt: '미션 만들기: 제목, 미션 종류, 태그, 상금 설정', caption: '미션 만들기' },
       { src: '/images/trigr/t-proof-write.webp', alt: '사진/동영상으로 인증하는 작성 화면', caption: '챌린저 · 인증 작성' },
       { src: '/images/trigr/t-proof-done.webp', alt: '인증 등록 완료 안내', caption: '인증 등록 완료' },
       { src: '/images/trigr/t-chat-card.webp', alt: '미션 채팅방에 공유된 인증 카드', caption: '채팅 속 인증 카드' },

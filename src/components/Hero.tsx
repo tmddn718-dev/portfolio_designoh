@@ -28,8 +28,8 @@ export function HeroUI() {
               <div className="p-4 flex-1 flex flex-col">
                 <p className="text-[13px] text-sub">{launched ? '출시 서비스' : p.kind}</p>
                 <p className="mt-1 text-[17px] font-bold leading-tight">{p.name}</p>
-                <p className="mt-2 text-[13px] leading-snug text-sub line-clamp-3">{p.summary.decision}</p>
-                <p className="mt-auto pt-3 text-[13px] font-semibold text-bluetext">{p.role.replace(' (1인)', '')} →</p>
+                <p className="mt-2 text-[13px] leading-snug text-sub ">{p.summary.short}</p>
+                <p className="mt-auto pt-3 text-[13px] font-semibold text-bluetext">자세히 보기 →</p>
               </div>
             </Link>
           </li>

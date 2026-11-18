@@ -8,4 +8,4 @@
 | `before-after/` | 유아이볼의 실제 당근 화면(글쓰기·상세·채팅)과 개선안을 짝지은 비교. Figma 🔍 Before · After 페이지 요약 이미지 포함. |
 | `to-be-full-scroll/` | 개선안 20개 화면의 전체 스크롤 PNG(780px 폭, 2x). iOS 상태 바·노치·홈 인디케이터 포함. |
 
-프로토타입은 `public/proto/karrot/`에 있어요. `?sc=<시나리오>`(예: `?sc=detail-partial`)는 화면 하나만, 주소만 열면 20개 화면 전체, `#full`을 붙이면 전체 스크롤 보기로 열려요.
+프로토타입은 `public/proto/karrot/`에 있어요. `?sc=<시나리오>`(예: `?sc=detail-partial`, 구매자 흐름 처음부터는 `?sc=home`)는 화면 하나만, 주소만 열면 20개 화면 전체, `#full`을 붙이면 전체 스크롤 보기로 열려요.

@@ -25,7 +25,9 @@ export function Zoomable({ src, alt, caption, className = '', imgClass = '', big
   const [open, setOpen] = useState(false)
   const kf = big ? undefined : karrotFull(src)
   const full = big ?? (kf && 'big' in kf ? kf.big : undefined)
-  const wrap = 'mx-auto max-h-[74vh] w-[min(390px,92vw)] overflow-y-auto overscroll-contain rounded-[20px] bg-white'
+  // 휴대폰 한 대 크기(화면 높이에 맞춰 줄여서 위아래가 잘리지 않게)에 상단·본문·하단을 따로 올려, 본문은 가운데에서만 스크롤한다
+  const box = { width: 'min(390px, 92vw, calc(78vh * 780 / 1688))', aspectRatio: '780 / 1688', containerType: 'inline-size' as const }
+  const scroller = 'absolute left-0 right-0 overflow-y-auto overscroll-contain [scrollbar-width:thin]'
   return (
     <>
       <button type="button" className={`zoomable ${className}`} onClick={() => setOpen(true)} aria-label={`${alt}: 크게 보기`}>
@@ -34,9 +36,13 @@ export function Zoomable({ src, alt, caption, className = '', imgClass = '', big
       <Modal open={open} onClose={() => setOpen(false)} label={alt}>
         <figure className="text-white text-center">
           {kf && 'parts' in kf
-            ? <div className={`${wrap} relative`}><img src={kf.parts.top} alt="" aria-hidden className="sticky top-0 z-10 block w-full bg-white" /><img src={kf.parts.body} alt={alt} className="block w-full" /><img src={kf.parts.cta} alt="" aria-hidden className="sticky bottom-0 z-10 block w-full" style={{ boxShadow: '0 -8px 14px -8px rgba(0,0,0,.18)' }} /></div>
+            ? <div className="relative mx-auto overflow-hidden rounded-[24px] bg-white" style={box}>
+                <img src={kf.parts.top} alt="" aria-hidden className="absolute left-0 top-0 block w-full bg-white" />
+                <div tabIndex={0} className={scroller} style={{ top: '26.41cqw', bottom: '28.46cqw' }}><img src={kf.parts.body} alt={alt} className="block w-full" /></div>
+                <img src={kf.parts.cta} alt="" aria-hidden className="absolute bottom-0 left-0 block w-full bg-white" style={{ boxShadow: '0 -6px 12px -8px rgba(0,0,0,.16)' }} />
+              </div>
             : full
-              ? <div className={wrap}><img src={full} alt={alt} className="block w-full" /></div>
+              ? <div className="relative mx-auto overflow-hidden rounded-[24px] bg-white" style={box}><div tabIndex={0} className={`${scroller} inset-y-0`}><img src={full} alt={alt} className="block w-full" /></div></div>
               : <img src={src} alt={alt} className="mx-auto max-h-[82vh] w-auto max-w-[92vw] rounded-[20px]" />}
           {caption && <figcaption className="mt-3 text-[14px]">{caption}</figcaption>}
         </figure>

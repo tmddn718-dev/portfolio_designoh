@@ -66,9 +66,9 @@ function ThumbnailVisual({ p }: { p: Project }) {
     <div className="relative aspect-[4/3] overflow-hidden bg-[#DFE4FF] transition-transform duration-300 group-hover:scale-[1.015]">
       <span aria-hidden className="absolute -right-4 -top-8 text-[clamp(88px,13vw,170px)] font-black leading-none tracking-[-.08em] text-[#3D5ADA]/[.08]">NODI</span>
       <div className="absolute left-[6%] top-[8%] z-20 max-w-[52%] text-[clamp(23px,2.7vw,41px)] font-black leading-[.94] tracking-[-.055em] text-[#17224C]">AI UNDERSTANDS.<br />YOU DECIDE.</div>
-      <div className="absolute -bottom-[26%] left-[7%] h-[72%] w-[34%] -rotate-6 overflow-hidden rounded-[18px] border border-white/80 bg-white shadow-[0_24px_60px_rgba(53,73,164,.18)]"><img src="/images/nodi/hi-conds.webp" alt="" className="h-full w-full object-cover object-top" /></div>
-      <div className="absolute bottom-[-25%] left-[36%] z-10 h-[82%] w-[38%] overflow-hidden rounded-[20px] border border-white/90 bg-white shadow-[0_28px_70px_rgba(53,73,164,.24)] transition-transform duration-300 group-hover:-translate-y-2"><img src="/images/nodi/hi-recs.webp" alt="" className="h-full w-full object-cover object-top" /></div>
-      <div className="absolute -bottom-[22%] right-[-7%] h-[68%] w-[35%] rotate-6 overflow-hidden rounded-[18px] border border-white/80 bg-white shadow-[0_24px_60px_rgba(53,73,164,.18)]"><img src="/images/nodi/hi-review.webp" alt="" className="h-full w-full object-cover object-top" /></div>
+      <div className="absolute -bottom-[30%] left-[4%] z-10 w-[29%] -rotate-[6deg] drop-shadow-[0_24px_36px_rgba(53,73,164,.22)] transition-transform duration-300 group-hover:-translate-y-1"><div className="phone-pro"><img src="/images/nodi/full-conds.webp" alt="" className="screen" /><span className="glare" /></div></div>
+      <div className="absolute -bottom-[34%] left-[35.5%] z-20 w-[30%] drop-shadow-[0_28px_44px_rgba(53,73,164,.28)] transition-transform duration-300 group-hover:-translate-y-2"><div className="phone-pro"><img src="/images/nodi/full-sheetEdit.webp" alt="" className="screen" /><span className="glare" /></div></div>
+      <div className="absolute -bottom-[30%] right-[4%] z-10 w-[29%] rotate-[6deg] drop-shadow-[0_24px_36px_rgba(53,73,164,.22)] transition-transform duration-300 group-hover:-translate-y-1"><div className="phone-pro"><img src="/images/nodi/full-sheetPick.webp" alt="" className="screen" /><span className="glare" /></div></div>
     </div>
   )
 

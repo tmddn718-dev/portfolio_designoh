@@ -146,7 +146,7 @@ const approach: Row[] = [
   { key: 'Structure', kicker: '복잡한 정보를 이해하기 쉬운 구조로', title: '올리브영 오늘드림 — 수령 방법별 확인 기준을 나눴어요', text: '오늘드림은 배송지, 픽업은 선택한 매장 기준으로 재고를 확인해서 두 확인 경로를 나눴어요. 주문·결제는 3그룹으로 묶었어요.',
     shots: [{ src: '/images/oliveyoung-todaydream/n-altMethods.webp', alt: '올리브영 다른 수령 방법 확인 화면', cap: '수령 방법 비교' }, { src: '/images/oliveyoung-todaydream/n-checkoutTobe.webp', alt: '올리브영 주문 결제 3그룹 화면', cap: '주문/결제 3그룹' }] },
   { key: 'Decision', kicker: '중요한 선택을 위한 정보 우선순위', title: 'NODI · 당근 — 확정된 것과 아닌 것을 구분해서 보여줘요', text: 'NODI는 일정 가능·참석 수락·캘린더·알림을 다른 개념으로 나눴고, 당근은 입력하지 않음·판매자도 모름·불러오지 못함을 구분해 보여줘요.',
-    shots: [{ src: '/images/nodi/hi-recs.webp', alt: 'NODI 추천 시간 화면', cap: 'NODI · 추천 시간', bare: true }, { src: '/images/karrot-large-furniture/k-partial.webp', alt: '당근 상세: 미입력과 모름을 구분한 화면', cap: '당근 · 정보 상태 구분' }] },
+    shots: [{ src: '/images/nodi/s-recs.webp', alt: 'NODI 추천 시간 화면', cap: 'NODI · 추천 시간' }, { src: '/images/karrot-large-furniture/k-partial.webp', alt: '당근 상세: 미입력과 모름을 구분한 화면', cap: '당근 · 정보 상태 구분' }] },
   { key: 'Craft', kicker: '사용성을 정교한 인터페이스로', title: 'trigr — 상금 지급을 한 번에 확인하는 시트', text: '상금을 입력하면 지급 후 남은 상금이 바로 계산돼요. 지급이 끝나면 결과를 한 번 더 확인해요.',
     shots: [{ src: '/images/trigr/tr-reward-1.webp', alt: 'trigr 상금 입력 시트', cap: '상금 입력' }, { src: '/images/trigr/tr-reward-2.webp', alt: 'trigr 지급 후 남은 상금 계산', cap: '남은 상금 계산' }, { src: '/images/trigr/tr-reward-3.webp', alt: 'trigr 상금 지급 완료', cap: '지급 완료' }] },
 ]

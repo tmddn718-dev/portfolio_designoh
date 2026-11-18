@@ -73,7 +73,7 @@ export function Statement() {
   return (
     <section data-dark aria-label="소개 문장" className="bg-black text-white">
       <div className="wrap gutter py-24 md:py-40">
-        <p ref={ref} className="apple-h text-[30px] md:text-[56px] max-w-[24ch]">{text.split(' ').map((w, i) => <span key={i} className="inline-block mr-[0.28em]">{w}</span>)}</p>
+        <p ref={ref} className="apple-h text-[30px] md:text-[56px] max-w-[24ch]" style={{ lineHeight: 1.4 }}>{text.split(' ').map((w, i) => <span key={i} className="inline-block mr-[0.28em]">{w}</span>)}</p>
       </div>
     </section>
   )

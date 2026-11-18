@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { projects, profile, type Project } from '../data/projects'
 import Reveal from './Reveal'
 import { Modal, Zoomable } from './Modal'
-import { Phone, ProtoFrame, owner } from './Mockup'
+import { ProtoFrame, owner } from './Mockup'
+import Compose, { type Dev } from './Compose'
 import { strongOf } from './case'
 
 const PINK = '#DE5DE2'
@@ -40,14 +41,10 @@ function FeatureTrigr({ p }: { p: Project }) {
     <article>
       <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="group relative block overflow-hidden rounded-[28px] px-6 pt-20 pb-10 md:px-16 md:pt-24 md:pb-14" style={{ background: `linear-gradient(135deg, ${tint(p.accent, 12)}, ${tint('#9B6BFF', 26)})` }}>
         <span className="absolute left-6 top-6 md:left-10 md:top-10"><Label launched /></span>
-        <ul data-scale className="flex items-end justify-center gap-4 md:gap-10">
-          {shots.map(([src, alt, cap], i) => (
-            <li key={src} className={`${i === 1 ? 'w-[40%] md:w-[30%]' : 'w-[28%] md:w-[22%]'} transition-transform duration-500 group-hover:-translate-y-2`}>
-              <div className="phone-light"><img src={src} alt={alt} loading="lazy" className="screen" /></div>
-              <p className="mt-3 text-[13px] text-center text-ink/70">{cap}</p>
-            </li>
-          ))}
-        </ul>
+        <Compose className="aspect-[16/10] md:aspect-[16/7] mt-6" items={[
+          { src: shots[0][0], kind: 'light', x: 17, y: 20, w: 19, r: -9, z: 1 },
+          { src: shots[2][0], kind: 'light', x: 64, y: 18, w: 19, r: 9, z: 1 },
+          { src: shots[1][0], kind: 'light', x: 37, y: 9, w: 26, z: 2, lift: 14 }]} />
       </Link>
       <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
         <div className="md:col-span-6">
@@ -82,31 +79,34 @@ function FeatureNodi({ p }: { p: Project }) {
         </div>
       </div>
       <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="group md:col-span-8 block overflow-hidden rounded-[28px] px-5 py-8 md:px-10 md:py-12" style={{ background: tint('#6F8BFF', 14) }}>
-        <ol className="flex items-start gap-3 md:gap-6">
-          {steps.map(([n, cap, tag], i) => (
-            <li key={n} className="flex-1 min-w-0 relative">
-              <p className="text-[13px] font-semibold mb-3" style={{ color: strongOf(p.accent) }}>0{i + 1} · {tag}</p>
-              <img src={`/images/nodi/${n}.webp`} alt={`NODI ${cap} 화면`} loading="lazy" className="phone-bare transition-transform duration-500 group-hover:-translate-y-2" />
-              <p className="mt-3 text-[13px] text-ink/70">{cap}</p>
-            </li>
-          ))}
-        </ol>
+        <Compose className="aspect-[16/11] md:aspect-[16/9]" persp={1600} items={steps.map(([n], i) => ({ src: `/images/nodi/${n}.webp`, kind: 'bare' as const, x: 8 + i * 27, y: 30 - i * 14, w: 24, ry: -18, rx: 4, r: 4, z: i + 1, lift: 12 }))} />
+        <ol className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-[13px] font-semibold" style={{ color: strongOf(p.accent) }}>{steps.map(([, cap, tag], i) => <li key={tag}>0{i + 1} · {tag} <span className="font-normal text-ink/70">{cap}</span></li>)}</ol>
       </Link>
       <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>
     </article>
   )
 }
 
+// 프로젝트마다 다른 구도: 부채꼴(올리브영) · 3D 사선(우리사이) · 엇갈린 기울기(당근)
+const comps: Record<string, { ratio: string; items: (m: string[]) => Dev[] }> = {
+  'oliveyoung-todaydream': { ratio: 'aspect-[4/3]', items: m => [
+    { src: m[2], kind: 'dark', x: 5, y: 16, w: 23, r: -10, z: 1 },
+    { src: m[1], kind: 'dark', x: 35, y: 15, w: 30, z: 3, lift: 14 },
+    { src: m[0], kind: 'dark', x: 72, y: 6, w: 23, r: 9, z: 2 }] },
+  woorisai: { ratio: 'aspect-square', items: m => [
+    { src: m[1], kind: 'dark', x: 6, y: 9, w: 40, ry: -24, rx: 5, r: 3, z: 2, lift: 12 },
+    { src: m[0], kind: 'dark', x: 56, y: 30, w: 36, ry: -24, rx: 5, r: 3, z: 1 }] },
+  'karrot-large-furniture': { ratio: 'aspect-square', items: m => [
+    { src: m[1], kind: 'dark', x: 8, y: 24, w: 38, r: -9, z: 1 },
+    { src: m[0], kind: 'dark', x: 55, y: 5, w: 36, r: 8, z: 2, lift: 14 }] },
+}
+
 function Compact({ p, big = false }: { p: Project; big?: boolean }) {
-  const imgs = p.mock.srcs
+  const c = comps[p.slug]
   return (
     <Reveal>
       <Link to={`/work/${p.slug}`} className="group block">
-        <div className={`relative overflow-hidden rounded-[20px] ${big ? 'aspect-[4/3]' : 'aspect-square'}`} style={{ background: tint(p.accent, 18) }}>
-          {[imgs[1], imgs[0]].map((s, k) => (
-            <div key={s} className={`absolute transition-transform duration-500 ${big ? 'w-[26%]' : 'w-[32%]'} ${k === 0 ? 'left-[18%] top-[6%] group-hover:-translate-y-2' : 'left-[50%] top-[16%] group-hover:-translate-y-1'}`}><Phone src={s} framed={p.mock.framed} /></div>
-          ))}
-        </div>
+        <Compose items={c.items(p.mock.srcs)} className={`rounded-[20px] ${big ? 'aspect-[4/3]' : c.ratio}`} style={{ background: `linear-gradient(160deg, ${tint(p.accent, 12)}, ${tint(p.accent, 30)})` }} />
         <div className="mt-6">
           <div className="flex items-center gap-3 flex-wrap"><Label color={p.accent} /><span className="eyebrow text-sub">{p.category}</span></div>
           <h3 className="mt-3 text-[28px] font-bold tracking-tight group-hover:text-blue">{p.name}</h3>
@@ -141,12 +141,12 @@ export function Work() {
   )
 }
 
-type Row = { key: string; kicker: string; title: string; text: string; shots: { src: string; alt: string; cap: string }[] }
+type Row = { key: string; kicker: string; title: string; text: string; shots: { src: string; alt: string; cap: string; bare?: boolean }[] }
 const approach: Row[] = [
   { key: 'Structure', kicker: '복잡한 정보를 이해하기 쉬운 구조로', title: '올리브영 오늘드림 — 수령 방법별 확인 기준을 나눴어요', text: '오늘드림은 배송지, 픽업은 선택한 매장 기준으로 재고를 확인해서 두 확인 경로를 나눴어요. 주문·결제는 3그룹으로 묶었어요.',
     shots: [{ src: '/images/oliveyoung-todaydream/n-altMethods.webp', alt: '올리브영 다른 수령 방법 확인 화면', cap: '수령 방법 비교' }, { src: '/images/oliveyoung-todaydream/n-checkoutTobe.webp', alt: '올리브영 주문 결제 3그룹 화면', cap: '주문/결제 3그룹' }] },
   { key: 'Decision', kicker: '중요한 선택을 위한 정보 우선순위', title: 'NODI · 당근 — 확정된 것과 아닌 것을 구분해서 보여줘요', text: 'NODI는 일정 가능·참석 수락·캘린더·알림을 다른 개념으로 나눴고, 당근은 입력하지 않음·판매자도 모름·불러오지 못함을 구분해 보여줘요.',
-    shots: [{ src: '/images/nodi/hi-recs.webp', alt: 'NODI 추천 시간 화면', cap: 'NODI · 추천 시간' }, { src: '/images/karrot-large-furniture/k-partial.webp', alt: '당근 상세: 미입력과 모름을 구분한 화면', cap: '당근 · 정보 상태 구분' }] },
+    shots: [{ src: '/images/nodi/hi-recs.webp', alt: 'NODI 추천 시간 화면', cap: 'NODI · 추천 시간', bare: true }, { src: '/images/karrot-large-furniture/k-partial.webp', alt: '당근 상세: 미입력과 모름을 구분한 화면', cap: '당근 · 정보 상태 구분' }] },
   { key: 'Craft', kicker: '사용성을 정교한 인터페이스로', title: 'trigr — 상금 지급을 한 번에 확인하는 시트', text: '상금을 입력하면 지급 후 남은 상금이 바로 계산돼요. 지급이 끝나면 결과를 한 번 더 확인해요.',
     shots: [{ src: '/images/trigr/tr-reward-1.webp', alt: 'trigr 상금 입력 시트', cap: '상금 입력' }, { src: '/images/trigr/tr-reward-2.webp', alt: 'trigr 지급 후 남은 상금 계산', cap: '남은 상금 계산' }, { src: '/images/trigr/tr-reward-3.webp', alt: 'trigr 상금 지급 완료', cap: '지급 완료' }] },
 ]
@@ -172,7 +172,7 @@ export function Philosophy() {
                 <p className="mt-4 text-[16px] leading-[1.8] text-sub">{r.text}</p>
               </div>
               <ul className={`mt-8 md:mt-0 md:col-span-6 flex gap-4 ${i === 1 ? 'md:order-1' : ''}`}>
-                {r.shots.map(s => <li key={s.src} className="flex-1 min-w-0"><Zoomable src={s.src} alt={s.alt} caption={s.cap} className="w-full" imgClass="w-full rounded-[20px] border border-grid" /><p className="mt-2 text-[13px] text-sub">{s.cap}</p></li>)}
+                {r.shots.map(s => <li key={s.src} className="flex-1 min-w-0"><Zoomable src={s.src} alt={s.alt} caption={s.cap} className="w-full" imgClass={s.bare ? 'phone-bare' : 'w-full rounded-[20px] border border-grid'} /><p className="mt-2 text-[13px] text-sub">{s.cap}</p></li>)}
               </ul>
             </Reveal>
           </li>

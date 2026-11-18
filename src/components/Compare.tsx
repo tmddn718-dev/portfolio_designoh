@@ -1,4 +1,5 @@
 import { Zoomable } from './Modal'
+import { onBrand } from './case'
 
 // 한 장면(섹션)의 기존 vs 개선 비교: 왼쪽 기존 화면(빨간 박스=문제 위치) → 개선 화면들 → 오른쪽 변경 설명.
 export type CompareData = {
@@ -27,7 +28,7 @@ export default function CompareSection({ d, color }: { d: CompareData; color: st
           </figure>
           {d.afters.map(a => (
             <figure key={a.src} className="min-w-0 shrink-0 w-[58%] sm:w-[40%] md:w-auto snap-start">
-              <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold text-white" style={{ background: color }}>AFTER · {a.tag}</span>
+              <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: color, color: onBrand(color) }}>AFTER · {a.tag}</span>
               <p className="mt-2 text-[14px] font-semibold">{a.label}</p>
               <div className="mt-3 rounded-[18px] bg-[#f5f5f7] p-2 md:p-3"><Phone src={a.src} alt={a.alt} caption={`AFTER ${a.tag} · ${a.label}`} /></div>
             </figure>
@@ -36,8 +37,8 @@ export default function CompareSection({ d, color }: { d: CompareData; color: st
         <div className="mt-6 md:mt-0 md:col-span-4 rounded-[20px] bg-[#f3f4f6] p-5 md:p-6">
           <p className="text-[14px] font-bold text-[#e5352b]">현재 당근 앱</p>
           <ol className="mt-3 space-y-3">{d.current.map((t, i) => <li key={t} className="flex gap-2.5 text-[14px] leading-[1.55]"><span className="grid place-items-center shrink-0 w-6 h-6 rounded-full text-[13px] font-bold text-white bg-[#e5352b]">{i + 1}</span><span>{t}</span></li>)}</ol>
-          <p className="mt-6 pt-5 border-t border-black/10 text-[14px] font-bold" style={{ color }}>개선안</p>
-          <ol className="mt-3 space-y-3">{d.improved.map((t, i) => <li key={t} className="flex gap-2.5 text-[14px] leading-[1.55]"><span className="grid place-items-center shrink-0 w-6 h-6 rounded-full text-[13px] font-bold text-white" style={{ background: color }}>{i + 1}</span><span>{t}</span></li>)}</ol>
+          <p className="mt-6 pt-5 border-t border-black/10 text-[14px] font-bold" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>개선안</p>
+          <ol className="mt-3 space-y-3">{d.improved.map((t, i) => <li key={t} className="flex gap-2.5 text-[14px] leading-[1.55]"><span className="grid place-items-center shrink-0 w-6 h-6 rounded-full text-[13px] font-bold" style={{ background: color, color: onBrand(color) }}>{i + 1}</span><span>{t}</span></li>)}</ol>
         </div>
       </div>
     </section>

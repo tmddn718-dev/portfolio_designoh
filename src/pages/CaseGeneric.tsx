@@ -7,7 +7,7 @@ import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
-import { CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
+import { onBrand, CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
 import Strip from '../components/Strip'
 import CompareSection, { type CompareData } from '../components/Compare'
 import NotFound from './NotFound'
@@ -23,7 +23,7 @@ const Fig = ({ src, alt, cap, className = '' }: { src: string; alt: string; cap:
   <figure className={className}><Screen src={src} alt={alt} cap={cap} /><figcaption className="mt-3 text-[14px] text-sub">{cap}</figcaption></figure>
 )
 const Ann = ({ n, t, d, color }: { n: string; t: string; d?: string; color: string }) => (
-  <li className="flex gap-3"><span className="shrink-0 grid place-items-center w-7 h-7 rounded-full text-[13px] font-bold text-white" style={{ background: color }}>{n}</span><div><p className="text-[16px] font-bold leading-snug">{t}</p>{d && <p className="mt-0.5 text-[14px] leading-snug text-sub">{d}</p>}</div></li>
+  <li className="flex gap-3"><span className="shrink-0 grid place-items-center w-7 h-7 rounded-full text-[13px] font-bold" style={{ background: color, color: onBrand(color) }}>{n}</span><div><p className="text-[16px] font-bold leading-snug">{t}</p>{d && <p className="mt-0.5 text-[14px] leading-snug text-sub">{d}</p>}</div></li>
 )
 const Num = ({ n, t }: { n: string; t: string }) => <div><p className="text-[56px] font-extrabold leading-none outline-text">{n}</p><h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight max-w-[18ch]">{t}</h3></div>
 
@@ -122,11 +122,11 @@ function Olive({ c }: { c: Ctx }) {
             <p className="mt-4 text-[15px] leading-[1.7] text-sub">구매가 여기서 멈춰요. 다른 방법으로 살 수 있는지는 알려주지 않아요.</p>
           </div>
           <div className="rounded-[24px] p-6 md:p-8" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
-            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold text-white" style={{ background: S }}>개선</span>
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: A, color: onBrand(A) }}>개선</span>
             <ol aria-label="개선 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
               <li className="px-4 py-2 rounded-full bg-white">오늘드림 옵션 선택</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-white">품절</li><li aria-hidden className="text-sub">→</li>
-              <li className="px-4 py-2 rounded-full text-white font-semibold" style={{ background: S }}>다른 구매 방법 확인</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full font-semibold" style={{ background: A, color: onBrand(A) }}>다른 구매 방법 확인</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-white">일반배송 · 매장 픽업</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-white">구매 이어짐</li>
             </ol>
@@ -182,7 +182,7 @@ function Olive({ c }: { c: Ctx }) {
               <table className="mt-6 w-full text-[15px] bg-white rounded-[20px] overflow-hidden"><caption className="sr-only">옵션 상태별 하단 CTA</caption><thead><tr className="text-left text-[13px] text-sub"><th scope="col" className="py-3 pl-5">옵션 상태</th><th scope="col" className="py-3 pr-5">하단 CTA</th></tr></thead><tbody>{ctas.map(([a, b]) => <tr key={a} className="border-t border-grid"><th scope="row" className="py-3 pl-5 pr-3 text-left font-semibold">{a}</th><td className="py-3 pr-5" style={{ color: S }}>{b}</td></tr>)}</tbody></table></div>
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('n-optA')} alt="옵션 미선택 상태" cap="옵션 미선택" /><Fig src={I('n-optC')} alt="오늘드림 품절 옵션 선택" cap="오늘드림 품절" className="md:mt-10" /><Fig src={I('n-optFail')} alt="재고 확인 실패 상태" cap="재고 확인 실패" /></div>
           </div>
-          {p.beforeAfter?.[0] && <div className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 품절 옵션 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">옵션별 행동을 찾는 방식에서, 선택한 옵션의 다음 행동을 확인하는 방식으로</h3><p className="mt-4 text-[15px] text-sub">Before는 실제 앱의 옵션 시트를 관찰해 <b>재현한 화면</b>이에요(실제 캡처 아님).</p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={S} /></div></div>}
+          {p.beforeAfter?.[0] && <div className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 품절 옵션 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">옵션별 행동을 찾는 방식에서, 선택한 옵션의 다음 행동을 확인하는 방식으로</h3><p className="mt-4 text-[15px] text-sub">Before는 실제 앱의 옵션 시트를 관찰해 <b>재현한 화면</b>이에요(실제 캡처 아님).</p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={A} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24">
             <Num n="02" t="수령 방법별로 재고와 주문 가능 상태를 구분" />
@@ -191,19 +191,19 @@ function Olive({ c }: { c: Ctx }) {
             <div className="mt-10 grid grid-cols-3 gap-4 md:gap-6 md:max-w-3xl"><Fig src={I('n-altMethods')} alt="일반배송 구매 가능" cap="일반배송 구매 가능" /><Fig src={I('n-pickup')} alt="픽업 매장 선택" cap="픽업 매장 선택" className="md:mt-10" /><Fig src={I('n-stockChanged')} alt="주문 직전 재고 변동" cap="주문 직전 재고 변동" /></div>
             <p className="mt-4 text-[15px] leading-relaxed text-sub max-w-2xl">옵션·수량·배송지·매장이 바뀌면 그 조건으로 재고를 다시 확인하고, 주문 직전에 재고가 소진되면 상품 정보를 유지한 채 다른 구매 방법을 다시 고르게 해요.</p>
           </Reveal>
-          {p.beforeAfter?.[1] && <div className="mt-16"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 수령 방법 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">수령 방법의 존재 확인에서, 구매 가능한 방법을 비교·선택으로</h3><p className="mt-4 text-[15px] text-sub"></p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[1]} color={S} /></div></div>}
+          {p.beforeAfter?.[1] && <div className="mt-16"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 수령 방법 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">수령 방법의 존재 확인에서, 구매 가능한 방법을 비교·선택으로</h3><p className="mt-4 text-[15px] text-sub"></p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[1]} color={A} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24">
             <Num n="03" t="배송 시간대별 배송비를 선택 전에 비교" />
             <p className="mt-4 text-[17px] leading-[1.8] max-w-2xl">시간대를 고른 뒤 배송비를 확인하는 구조를, 각 시간대 항목에 배송비를 함께 보여주는 구조로 바꿨어요. 시간대를 바꾸면 최종 결제금액도 바로 갱신돼요.</p>
           </Reveal>
-          {p.beforeAfter?.[2] && <div className="mt-10"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 배송비</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">시간 선택 뒤 비용 확인에서, 시간과 비용을 함께 비교로</h3></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[2]} color={S} /></div></div>}
+          {p.beforeAfter?.[2] && <div className="mt-10"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 배송비</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">시간 선택 뒤 비용 확인에서, 시간과 비용을 함께 비교로</h3></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[2]} color={A} /></div></div>}
 
           {p.extra && p.beforeAfter?.[3] && (
             <Reveal className="mt-20 md:mt-24">
               <p className="eyebrow text-sub rule pt-4">함께 정리한 구매 구간</p>
               <p className="mt-4 text-[16px] leading-[1.8] text-sub max-w-2xl">{p.extra.intro}</p>
-              <div className="mt-8"><ul className="md:col-span-5 space-y-3">{p.extra.bullets.map(b => <li key={b} className="pl-4 border-l-2 text-[15px] leading-relaxed" style={{ borderColor: A }}>{b}</li>)}</ul><div className="mt-8"><BeforeAfter data={p.beforeAfter[3]} color={S} /></div></div>
+              <div className="mt-8"><ul className="md:col-span-5 space-y-3">{p.extra.bullets.map(b => <li key={b} className="pl-4 border-l-2 text-[15px] leading-relaxed" style={{ borderColor: A }}>{b}</li>)}</ul><div className="mt-8"><BeforeAfter data={p.beforeAfter[3]} color={A} /></div></div>
             </Reveal>
           )}
         </div>
@@ -312,10 +312,10 @@ function Karrot({ c }: { c: Ctx }) {
             <p className="mt-4 text-[15px] leading-[1.7] text-sub">채팅을 시작해야 거래할 수 있는지 알 수 있어요.</p>
           </div>
           <div className="rounded-[24px] p-6 md:p-8" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
-            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold text-white" style={{ background: S }}>개선</span>
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: A, color: onBrand(A) }}>개선</span>
             <ol aria-label="개선 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
               <li className="px-4 py-2 rounded-full bg-white">판매글 읽기</li><li aria-hidden className="text-sub">→</li>
-              <li className="px-4 py-2 rounded-full text-white font-semibold" style={{ background: S }}>거래 정보 카드로 한눈에 확인</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full font-semibold" style={{ background: A, color: onBrand(A) }}>거래 정보 카드로 한눈에 확인</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-white">궁금한 것만 질문 초안으로</li>
             </ol>
             <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">크기·분해·가져가는 조건을 채팅 전에 보고 판단해요. 입력되지 않은 정보도 이유를 구분해서 알려줘요.</p>
@@ -358,14 +358,14 @@ function Karrot({ c }: { c: Ctx }) {
 
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5 md:order-2"><Num n="02" t="분해 가능과 전달 상태를 분리" />
-              <ul className="mt-8 space-y-5"><Ann color={S} n="A" t="분해 가능 · 분해 불가 · 잘 모르겠어요" d="‘분해 가능’을 고른 경우에만 전달 상태를 묻습니다." /><Ann color={S} n="B" t="조립된 상태 · 분해된 상태 · 협의" d="‘분해 가능’이 실제 전달 상태와 혼동되지 않게 했습니다." /><Ann color={S} n="C" t="큰 크기 값은 막지 않고 재확인" d="0 이하만 거절하고, 비정상적으로 큰 값은 다시 확인하게 합니다." /></ul></div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6 md:order-1"><Fig src={I('f-s2')} alt="가구 정보 입력" cap="선택형 가구 정보 입력" /><Fig src={I('k-recheck')} alt="큰 값 재확인" cap="큰 값 재확인" className="md:mt-12" /></div>
+              <ul className="mt-8 space-y-5"><Ann color={A} n="A" t="분해 가능 · 분해 불가 · 잘 모르겠어요" d="‘분해 가능’을 고른 경우에만 전달 상태를 묻습니다." /><Ann color={A} n="B" t="조립된 상태 · 분해된 상태 · 협의" d="‘분해 가능’이 실제 전달 상태와 혼동되지 않게 했습니다." /><Ann color={A} n="C" t="큰 크기 값은 막지 않고 재확인" d="0 이하만 거절하고, 비정상적으로 큰 값은 다시 확인하게 합니다." /></ul></div>
+            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6 md:order-1"><Fig src={I('f-s2')} alt="가구 정보 입력" cap="선택형 가구 정보 입력" /><Fig src={I('f-recheck')} alt="큰 값 재확인" cap="큰 값 재확인" className="md:mt-12" /></div>
           </Reveal>
 
 
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5"><Num n="03" t="질문은 초안으로만, 보내는 건 사용자" />
-              <ul className="mt-8 space-y-5"><Ann color={S} n="A" t="궁금한 항목만 골라 채팅 초안 생성" /><Ann color={S} n="B" t="자동 전송하지 않고 기존 입력을 보존" d="사용자가 고치고 직접 보냅니다." /><Ann color={S} n="C" t="정보가 바뀌면 변경 항목만 비교" d="이전 값이 실제로 있을 때만 전후를 보여줍니다." /></ul></div>
+              <ul className="mt-8 space-y-5"><Ann color={A} n="A" t="궁금한 항목만 골라 채팅 초안 생성" /><Ann color={A} n="B" t="자동 전송하지 않고 기존 입력을 보존" d="사용자가 고치고 직접 보냅니다." /><Ann color={A} n="C" t="정보가 바뀌면 변경 항목만 비교" d="이전 값이 실제로 있을 때만 전후를 보여줍니다." /></ul></div>
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('f-b3')} alt="질문 고르기" cap="질문 고르기" /><Fig src={I('k-chat')} alt="채팅 질문 초안" cap="채팅 초안" className="md:mt-10" /><Fig src={I('k-changed')} alt="변경 내용 비교" cap="변경 비교" /></div>
           </Reveal>
         </div>
@@ -375,7 +375,7 @@ function Karrot({ c }: { c: Ctx }) {
         <p className="eyebrow rule pt-4 text-sub">Before / After</p>
         <h3 className="mt-4 text-[28px] md:text-[40px] font-bold tracking-tight">실제 당근 앱 vs 대형 가구 거래 개선안</h3>
         <p className="mt-3 text-[16px] text-sub max-w-[62ch]">같은 장면의 현재 화면(BEFORE)과 개선안(AFTER)을 나란히 놓았어요. 빨간 박스와 번호가 기존 앱의 문제 위치이고 오른쪽 표에서 번호별로 설명해요.</p>
-        <div className="mt-10 space-y-6 md:space-y-10">{karrotCompare.map(d => <CompareSection key={d.n} d={d} color={S} />)}</div>
+        <div className="mt-10 space-y-6 md:space-y-10">{karrotCompare.map(d => <CompareSection key={d.n} d={d} color={A} />)}</div>
         <p className="mt-6 text-[13px] text-sub max-w-3xl">※ Before는 유아이볼(uibowl.io)에 수집된 실제 당근 앱 화면이에요. After는 제가 설계한 개선안으로 상품 정보는 예시예요.</p>
       </section>
 
@@ -434,7 +434,7 @@ function Woorisai({ c }: { c: Ctx }) {
   const I = (n: string) => `/images/woorisai/${n}.webp`
   const col = [A, tintOf(A, 45), '#d9d9d9', '#ececec']
   const Need = ({ t }: { t: string }) => <p className="rounded-[16px] border border-dashed border-grid p-4 text-[14px] text-sub">[추가 자료 필요] {t}</p>
-  const Tag = ({ t }: { t: string }) => <span className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold text-white" style={{ background: S }}>{t}</span>
+  const Tag = ({ t }: { t: string }) => <span className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold" style={{ background: A, color: onBrand(A) }}>{t}</span>
   return (
     <>
       <section id="c1" className="overflow-hidden" style={{ background: '#FAF9F6' }}>
@@ -492,7 +492,7 @@ function Woorisai({ c }: { c: Ctx }) {
 
           <Reveal className="mt-14 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5"><Num n="01" t="추억 하나부터, 함께 기록한다" />
-              <ul className="mt-8 space-y-5"><Ann color={S} n="A" t="첫 CTA는 ‘그룹 만들기’가 아니라 ‘추억 만들기’" d="그룹 없이 사람을 골라 바로 시작합니다." /><Ann color={S} n="B" t="친구 선택 · 검색과 여러 명 선택" d="검색해서 여러 친구를 한 번에 고르는 선택기를 구현했습니다." /><Ann color={S} n="C" t="참여자별 기록 유지" d="각자의 사진과 이야기가 사라지지 않고 한 추억에 모입니다." /></ul></div>
+              <ul className="mt-8 space-y-5"><Ann color={A} n="A" t="첫 CTA는 ‘그룹 만들기’가 아니라 ‘추억 만들기’" d="그룹 없이 사람을 골라 바로 시작합니다." /><Ann color={A} n="B" t="친구 선택 · 검색과 여러 명 선택" d="검색해서 여러 친구를 한 번에 고르는 선택기를 구현했습니다." /><Ann color={A} n="C" t="참여자별 기록 유지" d="각자의 사진과 이야기가 사라지지 않고 한 추억에 모입니다." /></ul></div>
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('new')} alt="새 추억 만들기" cap="새 추억 만들기" /><Fig src={I('people')} alt="볼 수 있는 사람 확인" cap="참여자" className="md:mt-12" /><Fig src={I('add')} alt="내 사진과 이야기 더하기" cap="사진·이야기 더하기" /></div>
           </Reveal>
           <div className="mt-6"><Need t="친구 검색·다중 선택 화면 캡처" /></div>
@@ -504,7 +504,7 @@ function Woorisai({ c }: { c: Ctx }) {
               <div className="md:col-span-4"><p className="eyebrow text-sub">Before</p><div className="mt-3 max-w-[300px]"><Screen src={I('ph-before')} alt="이전 버전 사진 상세: 사진 아래 별도 기억 이어가기 카드" cap="Before · 사진 상세" /></div></div>
               <div className="mt-10 md:mt-0 md:col-span-8">
                 <p className="eyebrow text-sub">발견한 문제 (제 점검)</p>
-                <ul className="mt-4 space-y-5"><Ann color={S} n="1" t="‘기억 이어가기’ 카드가 사진에서 떨어져 있다" d="사진을 보다가 바로 반응하기 어렵습니다." /><Ann color={S} n="2" t="반응·댓글 수가 ‘0’으로 표시된 카드에 묻혀 있다" d="사진에 대한 가벼운 참여와 함께 기록하기가 구분되지 않습니다." /><Ann color={S} n="3" t="‘이어진 기억이 아직 없어요’ 문구가 비어 있다는 인상만 준다" d="다음에 할 행동이 버튼 하나뿐입니다." /></ul>
+                <ul className="mt-4 space-y-5"><Ann color={A} n="1" t="‘기억 이어가기’ 카드가 사진에서 떨어져 있다" d="사진을 보다가 바로 반응하기 어렵습니다." /><Ann color={A} n="2" t="반응·댓글 수가 ‘0’으로 표시된 카드에 묻혀 있다" d="사진에 대한 가벼운 참여와 함께 기록하기가 구분되지 않습니다." /><Ann color={A} n="3" t="‘이어진 기억이 아직 없어요’ 문구가 비어 있다는 인상만 준다" d="다음에 할 행동이 버튼 하나뿐입니다." /></ul>
                 <p className="mt-10 eyebrow text-sub">개선 가설</p>
                 <p className="mt-3 text-[20px] md:text-[24px] font-bold leading-snug max-w-[28ch]">반응·댓글이 사진 바로 아래에 있으면, 가벼운 참여가 먼저 일어나고 대화로 이어질 것이다.</p>
                 <p className="mt-3 text-[14px] text-sub">※ 가설이며 사용자 검증 전입니다.</p>
@@ -513,7 +513,7 @@ function Woorisai({ c }: { c: Ctx }) {
             <div className="mt-14"><p className="eyebrow text-sub">After</p>
               <div className="mt-3 md:grid md:grid-cols-12 gap-10 items-start">
                 <div className="md:col-span-7 grid grid-cols-2 gap-4 md:gap-6"><Fig src={I('ph-after-top')} alt="현재 버전: 사진 바로 아래 반응·댓글" cap="사진 바로 아래 반응·댓글" /><Fig src={I('ph-after-mid')} alt="현재 버전: 최근 댓글 미리보기와 함께 남기는 추억" cap="최근 댓글 · 함께 남기는 추억" className="md:mt-10" /></div>
-                <ul className="mt-8 md:mt-0 md:col-span-5 space-y-5"><Ann color={S} n="A" t="반응·댓글을 사진 바로 아래로" d="사진을 본 자리에서 바로 남깁니다." /><Ann color={S} n="B" t="최근 댓글 미리보기 + ‘이 사진에 댓글 남기기’" d="대화가 있는지 한눈에 보입니다." /><Ann color={S} n="C" t="가벼운 반응과 ‘함께 남기는 추억’ 분리" d="반응은 가볍게, 함께 기록은 별도 카드로." /></ul>
+                <ul className="mt-8 md:mt-0 md:col-span-5 space-y-5"><Ann color={A} n="A" t="반응·댓글을 사진 바로 아래로" d="사진을 본 자리에서 바로 남깁니다." /><Ann color={A} n="B" t="최근 댓글 미리보기 + ‘이 사진에 댓글 남기기’" d="대화가 있는지 한눈에 보입니다." /><Ann color={A} n="C" t="가벼운 반응과 ‘함께 남기는 추억’ 분리" d="반응은 가볍게, 함께 기록은 별도 카드로." /></ul>
               </div>
               <div className="mt-6"><Need t="전체 댓글·답글 바텀시트 화면 캡처" /></div>
             </div>
@@ -523,7 +523,7 @@ function Woorisai({ c }: { c: Ctx }) {
           <Reveal className="mt-24 md:mt-32">
             <div className="md:grid md:grid-cols-12 gap-10 items-start">
               <div className="md:col-span-5"><Num n="03" t="발자국으로 다녀온 곳을 다시 발견한다" />
-                <ul className="mt-8 space-y-5"><Ann color={S} n="1" t="전체 시도 라벨 → 기록된 지역만 사진 마커로" d="이전 버전은 17개 라벨이 지도 위에서 겹치거나 잘렸습니다." /><Ann color={S} n="2" t="지역별 추억 개수와 국내/해외 구분" d="기록된 지역 수와 연결된 추억 수를 요약합니다." /><Ann color={S} n="3" t="내 발자국 / 함께한 발자국" d="지역을 열면 그 지역의 추억 목록으로 이어집니다. GPS는 필요하지 않습니다." /></ul></div>
+                <ul className="mt-8 space-y-5"><Ann color={A} n="1" t="전체 시도 라벨 → 기록된 지역만 사진 마커로" d="이전 버전은 17개 라벨이 지도 위에서 겹치거나 잘렸습니다." /><Ann color={A} n="2" t="지역별 추억 개수와 국내/해외 구분" d="기록된 지역 수와 연결된 추억 수를 요약합니다." /><Ann color={A} n="3" t="내 발자국 / 함께한 발자국" d="지역을 열면 그 지역의 추억 목록으로 이어집니다. GPS는 필요하지 않습니다." /></ul></div>
               <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('foot-before')} alt="이전 버전 발자국: 지도 형태가 부정확하고 라벨이 겹침" cap="Before" /><Fig src={I('foot-after')} alt="현재 버전 발자국: 기록된 지역 사진 마커" cap="After" className="md:mt-12" /><Fig src={I('region')} alt="지역별 추억" cap="지역별 추억" /></div>
             </div>
           </Reveal>

@@ -4,6 +4,8 @@ import Reveal from './Reveal'
 import { projects } from '../data/projects'
 
 export const chapters = [['c1', '개요'], ['c2', '문제'], ['c3', '핵심 결정'], ['c4', '최종 화면'], ['c5', '검증']]
+// 브랜드 메인 컬러 위의 글자색: 밝은 색(올리브영 연두)은 검정, 나머지는 흰색
+export const onBrand = (hex: string) => { const n = parseInt(hex.slice(1), 16), r = n >> 16 & 255, g = n >> 8 & 255, b = n & 255; return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 > 0.62 ? '#111' : '#fff' }
 export const tintOf = (c: string, n: number) => `color-mix(in srgb, ${c} ${n}%, white)`
 export const strongOf = (c: string) => `color-mix(in srgb, ${c} 62%, black)` // 밝은 서브컬러를 글자색으로 쓸 때
 

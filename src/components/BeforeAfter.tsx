@@ -1,5 +1,6 @@
 import type { Project } from '../data/projects'
 import { Zoomable } from './Modal'
+import { onBrand } from './case'
 
 // 슬라이더 없이 Before / After 를 같은 크기로 나란히 놓는 비교 보드.
 // marks 가 있으면 화면 위에 바뀐 영역을 번호 박스로 표시하고, changes 표에서 번호별로 무엇이 어떻게 바뀌었는지 설명한다.
@@ -12,7 +13,7 @@ export default function BeforeAfter({ data, color = '#3975f6' }: { data: Data; c
   const note = data.points.filter(p => !p.startsWith('Before') && !p.startsWith('After'))
   const Col = ({ src, alt, tag, list, after }: { src: string; alt: string; tag: string; list: string[]; after?: boolean }) => (
     <div className="min-w-0">
-      <span className={`inline-block px-3 py-1 rounded-full text-[13px] font-bold ${after ? 'text-white' : 'bg-[#e8e8e8] text-ink'}`} style={after ? { background: color } : undefined}>{tag}</span>
+      <span className={`inline-block px-3 py-1 rounded-full text-[13px] font-bold ${after ? '' : 'bg-[#e8e8e8] text-ink'}`} style={after ? { background: color, color: onBrand(color) } : undefined}>{tag}</span>
       <div className="mt-3 rounded-[22px] bg-[#f5f5f7] p-3 md:p-5">
         <div className="relative max-w-[320px] mx-auto">
           <Zoomable src={src} alt={alt} caption={`${tag} · ${alt}`} className="w-full" imgClass="w-full rounded-[14px] border border-grid bg-white" />

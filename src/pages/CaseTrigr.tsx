@@ -7,6 +7,7 @@ import Reveal from '../components/Reveal'
 import { Zoomable } from '../components/Modal'
 import { owner } from '../components/Mockup'
 import Compose from '../components/Compose'
+import ScrollPhone from '../components/ScrollPhone'
 import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, CaseSummary, ProjectIndex } from '../components/case'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -221,7 +222,7 @@ export default function CaseTrigr() {
               ))}
               <p className="sm:col-span-2 text-[17px] leading-[1.8]">미션의 수행 방식(종류)을 먼저 정한 뒤 보상을 설정하는 흐름이 더 자연스러울 가능성이 있다고 판단해, 새 페이지로 전환하는 구성을 제안했습니다.</p>
             </div>
-            <div className="mt-10 md:mt-0 md:col-span-5 max-w-[340px] md:ml-auto"><Zoomable src="/images/trigr/pdf/proposed.webp" alt="개선 제안 샘플: 미션 종류가 먼저 나오는 미션 만들기 화면" caption="Proposed Flow 샘플" className="w-full" imgClass="w-full" /><p className="mt-2 text-[13px] text-sub">회고하며 바라본 흐름대로 진행한 샘플 작업</p></div>
+            <div className="mt-10 md:mt-0 md:col-span-5 max-w-[300px] md:ml-auto w-full"><ScrollPhone body="/images/trigr/create-sample-body.webp" top="/images/trigr/create-sample-top.webp" cta="/images/trigr/create-sample-cta.webp" w={715} ctaH={195} topH={176} alt="미션 만들기: 제목, 미션 종류, 태그, 상금을 한 화면에서 설정하고 하단 고정 버튼으로 생성" /><p className="mt-1 text-[13px] text-sub">회고하며 바라본 흐름대로 진행한 샘플 작업</p></div>
           </div>
           <div className="mt-20 rounded-[28px] p-8 md:p-12" style={{ background: T(8) }}>
             <p className="eyebrow" style={{ color: S }}>What I Learned</p>

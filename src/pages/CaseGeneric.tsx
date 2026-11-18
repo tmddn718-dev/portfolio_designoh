@@ -104,7 +104,7 @@ function Olive({ c }: { c: Ctx }) {
         <div className="mt-8 rounded-[20px] p-6 md:p-8" style={{ background: T(14) }}>
           <p className="eyebrow text-sub">실제 화면에서 확인한 사실</p>
           <ul className="mt-3 text-[16px] leading-[1.8] list-disc pl-5"><li>상품 상세에 오늘드림 또는 픽업 이용 영역이 있다</li><li>주문/결제에서 배송 시간대에 따라 배송비가 다르다: 12:45~13:45 5,000원 · 15:00~16:00 2,500원 · 22:00~24:00 2,500원</li><li>최종 결제금액 12,500원 화면이 확인된다</li></ul>
-          <p className="mt-3 text-[13px] text-sub">품절 옵션을 선택한 실제 AS-IS 화면은 확보하지 못해, 그 화면의 기존 동작은 단정하지 않았어요. 이하는 검증할 가설이에요.</p>
+          <p className="mt-3 text-[13px] text-sub">품절 옵션 선택 화면은 실제 캡처가 아니라, 관찰한 구조(옵션 바텀시트, 일시품절 표시, 재입고 알림)를 재현한 거예요. 그 이후의 기존 동작은 단정하지 않고 검증할 가설로 뒀어요.</p>
         </div>
 
         <div className="mt-20 md:grid md:grid-cols-12 gap-10">
@@ -130,7 +130,7 @@ function Olive({ c }: { c: Ctx }) {
               <table className="mt-6 w-full text-[15px] bg-white rounded-[20px] overflow-hidden"><caption className="sr-only">옵션 상태별 하단 CTA</caption><thead><tr className="text-left text-[13px] text-sub"><th scope="col" className="py-3 pl-5">옵션 상태</th><th scope="col" className="py-3 pr-5">하단 CTA</th></tr></thead><tbody>{ctas.map(([a, b]) => <tr key={a} className="border-t border-grid"><th scope="row" className="py-3 pl-5 pr-3 text-left font-semibold">{a}</th><td className="py-3 pr-5" style={{ color: S }}>{b}</td></tr>)}</tbody></table></div>
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('n-optA')} alt="옵션 미선택 상태" cap="옵션 미선택" /><Fig src={I('n-optC')} alt="오늘드림 품절 옵션 선택" cap="오늘드림 품절" className="md:mt-10" /><Fig src={I('n-optFail')} alt="재고 확인 실패 상태" cap="재고 확인 실패" /></div>
           </div>
-          <p className="mt-6 text-[13px] text-sub">TO-BE 화면입니다. 품절 옵션의 실제 AS-IS 화면이 없어 이 화면은 Before/After 비교 없이 보여드려요.</p>
+          {p.beforeAfter?.[0] && <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 품절 옵션 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">옵션별 행동을 찾는 방식에서, 선택한 옵션의 다음 행동을 확인하는 방식으로</h3><p className="mt-4 text-[15px] text-sub">Before는 실제 앱의 옵션 시트를 관찰해 <b>재현한 화면</b>이에요(실제 캡처 아님). 가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[0]} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24">
             <Num n="02" t="수령 방법별로 재고와 주문 가능 상태를 구분" />
@@ -139,19 +139,19 @@ function Olive({ c }: { c: Ctx }) {
             <div className="mt-10 grid grid-cols-3 gap-4 md:gap-6 md:max-w-3xl"><Fig src={I('n-altMethods')} alt="일반배송 구매 가능" cap="일반배송 구매 가능" /><Fig src={I('n-pickup')} alt="픽업 매장 선택" cap="픽업 매장 선택" className="md:mt-10" /><Fig src={I('n-stockChanged')} alt="주문 직전 재고 변동" cap="주문 직전 재고 변동" /></div>
             <p className="mt-4 text-[15px] leading-relaxed text-sub max-w-2xl">옵션·수량·배송지·매장이 바뀌면 그 조건으로 재고를 다시 확인하고, 주문 직전에 재고가 소진되면 상품 정보를 유지한 채 다른 구매 방법을 다시 고르게 해요.</p>
           </Reveal>
-          {p.beforeAfter?.[0] && <div className="mt-16 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 수령 방법 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">수령 방법의 존재 확인에서, 구매 가능한 방법을 비교·선택으로</h3><p className="mt-4 text-[15px] text-sub">가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[0]} /></div></div>}
+          {p.beforeAfter?.[1] && <div className="mt-16 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 수령 방법 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">수령 방법의 존재 확인에서, 구매 가능한 방법을 비교·선택으로</h3><p className="mt-4 text-[15px] text-sub">가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[1]} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24">
             <Num n="03" t="배송 시간대별 배송비를 선택 전에 비교" />
             <p className="mt-4 text-[17px] leading-[1.8] max-w-2xl">시간대를 고른 뒤 배송비를 확인하는 구조를, 각 시간대 항목에 배송비를 함께 보여주는 구조로 바꿨어요. 시간대를 바꾸면 최종 결제금액도 바로 갱신돼요.</p>
           </Reveal>
-          {p.beforeAfter?.[1] && <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 배송비</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">시간 선택 뒤 비용 확인에서, 시간과 비용을 함께 비교로</h3></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[1]} /></div></div>}
+          {p.beforeAfter?.[2] && <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 배송비</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">시간 선택 뒤 비용 확인에서, 시간과 비용을 함께 비교로</h3></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[2]} /></div></div>}
 
-          {p.extra && p.beforeAfter?.[2] && (
+          {p.extra && p.beforeAfter?.[3] && (
             <Reveal className="mt-20 md:mt-24">
               <p className="eyebrow text-sub rule pt-4">함께 정리한 구매 구간</p>
               <p className="mt-4 text-[16px] leading-[1.8] text-sub max-w-2xl">{p.extra.intro}</p>
-              <div className="mt-8 md:grid md:grid-cols-12 gap-10 items-start"><ul className="md:col-span-5 space-y-3">{p.extra.bullets.map(b => <li key={b} className="pl-4 border-l-2 text-[15px] leading-relaxed" style={{ borderColor: A }}>{b}</li>)}</ul><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[2]} /></div></div>
+              <div className="mt-8 md:grid md:grid-cols-12 gap-10 items-start"><ul className="md:col-span-5 space-y-3">{p.extra.bullets.map(b => <li key={b} className="pl-4 border-l-2 text-[15px] leading-relaxed" style={{ borderColor: A }}>{b}</li>)}</ul><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[3]} /></div></div>
             </Reveal>
           )}
         </div>

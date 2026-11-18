@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -10,9 +10,9 @@ export default function Layout() {
   const { pathname, hash } = useLocation()
   const [open, setOpen] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setOpen(false)
-    if (!hash) { window.scrollTo(0, 0); return }
+    if (!hash) { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); return } // 전역 smooth 스크롤 때문에 맨 아래에서 위로 길게 올라가지 않게 즉시 이동
     // 지연 로딩 이미지로 위치가 밀릴 수 있어 한 번 더 맞춘다
     const go = () => document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'instant' })
     requestAnimationFrame(go)

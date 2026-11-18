@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { projects, profile } from '../data/projects'
+import Reveal from './Reveal'
 
 // 표지 그대로: 얇은 그리드 위 outline Complexity → 검정 화살표 → 파란 Clarity, 하단 국문 카피.
 // 첫 진입 때만 Complexity 가 나타나고 Clarity 가 outline 에서 파랑으로 채워진다.
@@ -11,17 +12,17 @@ export function HeroUI() {
   const proof: [string, string][] = [['약 29개월', '실무 UX/UI 경력'], ['1건', '출시한 서비스(trigr, 태국)'], ['Figma Variables', '디자인 시스템 직접 구축'], ['직접 구현', 'Claude Code로 프로토타입 제작']]
   return (
     <section aria-label="프로젝트 한눈에 보기" className="wrap gutter pt-10 md:pt-14 relative z-10">
-      <dl className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5 rule pt-6">
+      <Reveal as="dl" stagger className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5 rule pt-6">
         {proof.map(([k, v]) => <div key={k}><dt className="text-[22px] md:text-[28px] font-bold tracking-tight leading-none">{k}</dt><dd className="mt-2 text-[14px] text-sub leading-snug">{v}</dd></div>)}
-      </dl>
+      </Reveal>
       <div className="mt-12 flex items-end justify-between gap-4 flex-wrap">
         <h2 className="text-[24px] md:text-[32px] font-bold tracking-tight">작업 5개, 한눈에</h2>
         <p className="text-[14px] text-sub">시간이 없다면 <b className="text-ink">trigr → NODI</b> 순서로 보시길 권해요.</p>
       </div>
-      <ul className="mt-5 grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-5">
+      <Reveal as="ul" stagger className="mt-5 grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-5">
         {items.map(({ p, src, launched }) => (
           <li key={p.slug}>
-            <Link to={`/work/${p.slug}`} className="group flex flex-col h-full rounded-[20px] overflow-hidden border border-grid bg-white">
+            <Link to={`/work/${p.slug}`} data-cursor="보기" className="group flex flex-col h-full rounded-[20px] overflow-hidden border border-grid bg-white">
               <div className="relative h-[170px] md:h-[210px] overflow-hidden" style={{ background: `color-mix(in srgb, ${launched ? '#DE5DE2' : p.accent} 16%, white)` }}>
                 {(launched || p.slug === 'nodi') && <span className="absolute left-3 top-3 z-10 px-2.5 py-1 rounded-full bg-ink text-white text-[13px] font-semibold">{launched ? '먼저 보기' : '2순위'}</span>}
                 <img src={src} alt="" loading="lazy" className="w-[60%] mx-auto mt-10 rounded-t-[12px] object-cover object-top transition-transform duration-500 group-hover:-translate-y-1" />
@@ -35,7 +36,7 @@ export function HeroUI() {
             </Link>
           </li>
         ))}
-      </ul>
+      </Reveal>
     </section>
   )
 }

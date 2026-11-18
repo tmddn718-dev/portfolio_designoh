@@ -40,6 +40,22 @@ body { font-family: var(--font-sans); color: var(--color-ink); background: #fff;
 
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease-apple), transform .9s var(--ease-apple); }
 .reveal.in { opacity: 1; transform: none; }
+/* 줄·카드가 차례로 나타난다(Rauno 방식): 부모에 stagger 를 주면 자식이 70ms 간격으로 등장 */
+.reveal.stagger { opacity: 1; transform: none; transition: none; }
+.stagger > * { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease-apple), transform .8s var(--ease-apple); transition-delay: calc(var(--i, 0) * 70ms); }
+.stagger.in > * { opacity: 1; transform: none; }
+.stagger > :nth-child(2) { --i: 1 } .stagger > :nth-child(3) { --i: 2 } .stagger > :nth-child(4) { --i: 3 } .stagger > :nth-child(5) { --i: 4 } .stagger > :nth-child(6) { --i: 5 } .stagger > :nth-child(7) { --i: 6 } .stagger > :nth-child(n+8) { --i: 7 }
+
+/* 빠른 반응: 링크·버튼 색 전환 150ms (Brian Lovin) */
+a, button { transition: color .15s cubic-bezier(.4,0,.2,1), background-color .15s cubic-bezier(.4,0,.2,1), border-color .15s cubic-bezier(.4,0,.2,1); }
+
+/* 페이지 전환 */
+@keyframes pageIn { from { opacity: 0 } to { opacity: 1 } }
+.page-in { animation: pageIn .35s var(--ease-apple); }
+
+/* 마우스를 따라다니는 라벨(Awwwards 수상작 방식): data-cursor 가 있는 카드 위에서만 보인다 */
+.cursor-chip { position: fixed; top: 0; left: 0; z-index: 60; pointer-events: none; padding: 7px 14px; border-radius: 99px; background: var(--color-ink); color: #fff; font-size: 13px; font-weight: 600; opacity: 0; scale: .8; transition: opacity .2s var(--ease-apple), scale .2s var(--ease-apple); }
+.cursor-chip[data-on="1"] { opacity: 1; scale: 1; }
 
 /* 클릭 확대 버튼(폰 프레임보다 먼저 선언) */
 .zoomable { display: block; cursor: zoom-in; background: none; border: 0; padding: 0; text-align: inherit; }
@@ -82,6 +98,8 @@ dialog.modal::backdrop { background: rgba(11,11,12,.72); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .stage-screen, .stage-step { transition: none; }
+  .stagger > * { opacity: 1; transform: none; transition: none; }
+  .page-in { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   * { animation: none !important; }
 }

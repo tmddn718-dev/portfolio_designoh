@@ -39,7 +39,7 @@ function FeatureTrigr({ p }: { p: Project }) {
   const shots: [string, string, string][] = [['/images/trigr/tr-p-method.webp', '인증 방식 선택', '참여자 · 인증'], ['/images/trigr/tr-proof-detail.webp', '인증 상세와 상금 지급 진입', '생성자 · 인증 확인'], ['/images/trigr/tr-reward-2.webp', '지급 후 남은 상금 계산', '생성자 · 보상 지급']]
   return (
     <article>
-      <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="group relative block overflow-hidden rounded-[28px] px-6 pt-20 pb-10 md:px-16 md:pt-24 md:pb-14" style={{ background: `linear-gradient(135deg, ${tint(p.accent, 12)}, ${tint('#9B6BFF', 26)})` }}>
+      <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} data-cursor="보기" className="group relative block overflow-hidden rounded-[28px] px-6 pt-20 pb-10 md:px-16 md:pt-24 md:pb-14" style={{ background: `linear-gradient(135deg, ${tint(p.accent, 12)}, ${tint('#9B6BFF', 26)})` }}>
         <span className="absolute left-6 top-6 md:left-10 md:top-10"><Label launched /></span>
         <Compose className="aspect-[16/10] md:aspect-[16/7] mt-6" items={[
           { src: shots[0][0], kind: 'light', x: 17, y: 20, w: 19, r: -9, z: 1 },
@@ -78,7 +78,7 @@ function FeatureNodi({ p }: { p: Project }) {
           {p.proto && <button onClick={() => setOpen(true)} className="px-6 py-3 rounded-full border border-ink text-[16px] font-semibold">프로토타입 실행</button>}
         </div>
       </div>
-      <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="group md:col-span-8 block overflow-hidden rounded-[28px] px-5 py-8 md:px-10 md:py-12" style={{ background: tint('#6F8BFF', 14) }}>
+      <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} data-cursor="보기" className="group md:col-span-8 block overflow-hidden rounded-[28px] px-5 py-8 md:px-10 md:py-12" style={{ background: tint('#6F8BFF', 14) }}>
         <Compose className="aspect-[16/11] md:aspect-[16/9]" persp={1600} items={steps.map(([n], i) => ({ src: `/images/nodi/${n}.webp`, kind: 'bare' as const, x: 8 + i * 27, y: 30 - i * 14, w: 24, ry: -18, rx: 4, r: 4, z: i + 1, lift: 12 }))} />
         <ol className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-[13px] font-semibold" style={{ color: strongOf(p.accent) }}>{steps.map(([, cap, tag], i) => <li key={tag}>0{i + 1} · {tag} <span className="font-normal text-ink/70">{cap}</span></li>)}</ol>
       </Link>
@@ -105,7 +105,7 @@ function Compact({ p, big = false }: { p: Project; big?: boolean }) {
   const c = comps[p.slug]
   return (
     <Reveal>
-      <Link to={`/work/${p.slug}`} className="group block">
+      <Link to={`/work/${p.slug}`} data-cursor="보기" className="group block">
         <Compose items={c.items(p.mock.srcs)} className={`rounded-[20px] ${big ? 'aspect-[4/3]' : c.ratio}`} style={{ background: `linear-gradient(160deg, ${tint(p.accent, 12)}, ${tint(p.accent, 30)})` }} />
         <div className="mt-6">
           <div className="flex items-center gap-3 flex-wrap"><Label color={p.accent} /><span className="eyebrow text-sub">{p.category}</span></div>
@@ -183,6 +183,12 @@ export function Philosophy() {
   )
 }
 
+function CopyEmail({ email }: { email: string }) {
+  const [done, setDone] = useState(false)
+  const copy = () => { navigator.clipboard?.writeText(email).then(() => { setDone(true); setTimeout(() => setDone(false), 1600) }).catch(() => {}) }
+  return <button onClick={copy} className="px-4 py-2 rounded-full border border-ink text-[15px] font-semibold" aria-live="polite">{done ? '복사됨 ✓' : '이메일 복사'}</button>
+}
+
 export function AboutContact() {
   return (
     <>
@@ -206,7 +212,7 @@ export function AboutContact() {
           <p className="eyebrow text-bluetext">Contact</p>
           <p className="mt-3 text-[32px] md:text-[64px] font-extrabold tracking-tight leading-[1.05]">함께 <span className="text-blue">명확한</span> 경험을<br />만들어요.</p>
           <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-[17px]">
-            {profile.email && <a className="py-2 underline underline-offset-4" href={`mailto:${profile.email}`}>{profile.email}</a>}
+            {profile.email && <><a className="py-2 underline underline-offset-4" href={`mailto:${profile.email}`}>{profile.email}</a><CopyEmail email={profile.email} /></>}
             {profile.resume && <a className="py-2 underline underline-offset-4" href={profile.resume} target="_blank" rel="noreferrer">이력서 PDF</a>}
           </div>
         </Reveal>

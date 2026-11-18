@@ -15,10 +15,22 @@ export function useActive(dep: unknown, list: string[][] = chapters) {
   return active
 }
 
+function useProgress() {
+  const [w, setW] = useState(0)
+  useEffect(() => {
+    const f = () => { const h = document.documentElement.scrollHeight - innerHeight; setW(h > 0 ? Math.min(100, (scrollY / h) * 100) : 0) }
+    f(); addEventListener('scroll', f, { passive: true }); addEventListener('resize', f)
+    return () => { removeEventListener('scroll', f); removeEventListener('resize', f) }
+  }, [])
+  return w
+}
+
 export function ChapterNav({ active, list = chapters, title, onCta }: { active: string; list?: string[][]; title?: string; onCta?: () => void }) {
   // 애플 로컬 내비: 제품명(좌) · 챕터 링크 + 파란 필(우), 글로벌 내비 바로 아래에 반투명으로 고정
+  const w = useProgress()
   return (
     <nav aria-label="챕터" className="sticky top-12 z-30 glass border-b border-black/10">
+      <div aria-hidden className="absolute left-0 bottom-0 h-[2px] bg-ink" style={{ width: `${w}%` }} />
       <div className="wrap gutter flex items-center justify-between gap-4 h-[52px]">
         {title && <p className="hidden sm:block text-[19px] font-semibold tracking-tight shrink-0">{title}</p>}
         <ol className="flex items-center gap-5 overflow-x-auto text-[13px] min-w-0 flex-1 sm:flex-none">
@@ -99,12 +111,12 @@ export function CaseSummary({ p }: { p: Project }) {
     <section aria-label="30초 요약" className="bg-[#f5f5f7]">
       <div className="wrap gutter py-10 md:py-14">
         <p className="eyebrow" style={{ color: S }}>30초 요약</p>
-        <div className="mt-5 grid md:grid-cols-12 gap-3 md:gap-4">
+        <Reveal stagger className="mt-5 grid md:grid-cols-12 gap-3 md:gap-4">
           <div className={`${cell} md:col-span-5`}><p className={h}>해결한 문제</p><p className="mt-2 text-[18px] md:text-[20px] font-bold leading-snug">{p.problem}</p></div>
           <div className={`${cell} md:col-span-4`}><p className={h}>내 역할</p><p className="mt-2 text-[17px] font-semibold leading-snug">{p.role}</p><p className="mt-1 text-[14px] text-sub">{p.period}</p><ul className="mt-3 flex flex-wrap gap-1.5">{p.tags.map(t => <li key={t} className="text-[13px] px-2.5 py-1 rounded-full bg-[#f5f5f7]">{t}</li>)}</ul></div>
           <div className={`${cell} md:col-span-3`}><p className={h}>검증 상태</p><span className="mt-2 inline-block px-3 py-1 rounded-full text-[13px] font-bold text-white" style={{ background: p.summary.kind === 'launched' ? '#111' : S }}>{kindLabel[p.summary.kind]}</span><p className="mt-3 text-[15px] leading-snug">{p.summary.status}</p></div>
           <div className={`${cell} md:col-span-12`}><p className={h}>핵심 결정</p><p className="mt-2 text-[20px] md:text-[26px] font-bold tracking-tight leading-snug max-w-[40ch]">{p.summary.decision}</p></div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

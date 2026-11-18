@@ -1,8 +1,8 @@
-import { useEffect, useRef, type ReactNode } from 'react'
+import { useEffect, useRef, type ElementType, type ReactNode } from 'react'
 
-// 진입 시 opacity + translateY. IntersectionObserver 미지원/JS 실패 시 CSS 쪽에서 reduced-motion 이면 즉시 표시.
-export default function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null)
+// 진입 시 opacity + translateY. stagger 면 자식이 차례로 등장한다. IntersectionObserver 미지원이면 즉시 표시.
+export default function Reveal({ children, className = '', delay = 0, stagger = false, as: Tag = 'div' }: { children: ReactNode; className?: string; delay?: number; stagger?: boolean; as?: ElementType }) {
+  const ref = useRef<HTMLElement>(null)
   useEffect(() => {
     const el = ref.current!
     if (!('IntersectionObserver' in window)) return el.classList.add('in')
@@ -12,5 +12,5 @@ export default function Reveal({ children, className = '', delay = 0 }: { childr
     io.observe(el)
     return () => io.disconnect()
   }, [])
-  return <div ref={ref} className={`reveal ${className}`} style={{ transitionDelay: `${delay}ms` }}>{children}</div>
+  return <Tag ref={ref} className={`reveal ${stagger ? 'stagger' : ''} ${className}`} style={{ transitionDelay: `${delay}ms` }}>{children}</Tag>
 }

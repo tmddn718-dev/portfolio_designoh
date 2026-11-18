@@ -6,6 +6,7 @@ import { projects } from '../data/projects'
 import Reveal from '../components/Reveal'
 import { Zoomable } from '../components/Modal'
 import { owner } from '../components/Mockup'
+import Compose from '../components/Compose'
 import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, CaseSummary, ProjectIndex } from '../components/case'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -77,7 +78,11 @@ export default function CaseTrigr() {
               </dl>
             </div>
             <div data-hero-img className="mt-10 md:mt-0 md:col-span-7">
-              <Zoomable src="/images/trigr/pdf/hero.webp" alt="trigr 출시 버전의 홈 지도와 상품 교환 화면" caption="trigr 출시 버전" className="w-full" imgClass="w-full rounded-[28px]" />
+              <div role="img" aria-label="trigr 출시 버전의 홈 지도와 미션 목록 화면">
+                <Compose persp={1600} className="aspect-square rounded-[28px]" style={{ background: tintOf(PINK, 14) }} ghost="TRIGR" ghostColor="#9B3FA0" items={[
+                  { src: '/images/trigr/t-list.webp', kind: 'pro', x: 10, y: 14, w: 34, ry: 14, rx: 3, r: -6, z: 1 },
+                  { src: '/images/trigr/home-map.webp', kind: 'pro', x: 50, y: 20, w: 36, ry: -12, rx: 3, r: 5, z: 2, lift: 14 }]} />
+              </div>
             </div>
           </div>
         </div>

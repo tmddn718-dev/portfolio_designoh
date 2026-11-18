@@ -122,7 +122,7 @@ export const projects: Project[] = [
     tags: ['정보 구조화', '구매 판단 지원', '리서치'],
     summary: { concept: [['구조화', '거래 조건을 카드로 정리'], ['구분', '입력 안 함·모름·불러오기 실패를 구분'], ['초안', '고쳐 쓸 수 있는 질문 초안'], ['비교', '바뀐 정보만 골라 비교']], short: '채팅 전에 거래 조건을 한눈에 확인', about: '채팅 전에 대형 가구의 거래 가능 여부를 판단할 수 있어요. 크기·분해·가져가는 방법 같은 거래 조건을 카드로 정리했어요.', decision: '거래 조건을 글 속에 섞어 두지 않고 카드로 정리해요. ‘입력 안 함’ ‘판매자도 모름’ ‘불러오지 못함’을 구분해서 보여주고 질문 초안은 사용자가 고쳐서 보내요.', status: '설계안이에요. 사용성 테스트는 아직 하지 않았고 예상 수치는 ‘예상’이라고 따로 표시했어요.', kind: 'design' },
     accent: '#FF6F0F',
-    mock: { srcs: ['/images/karrot-large-furniture/k-questions.webp', '/images/karrot-large-furniture/k-detail.webp', '/images/karrot-large-furniture/k-form.webp'], framed: true },
+    mock: { srcs: ['/images/karrot-large-furniture/f-b3.webp', '/images/karrot-large-furniture/f-b1.webp', '/images/karrot-large-furniture/f-s2.webp'], framed: true },
     forecast: {
       buyer: [['거래 정보 발견 성공률', '37.5%', '62.5%', '87.5%'], ['거래 조건 판단 정확도', '50%', '75%', '87.5%'], ['첫 유효 정보 발견 시간(중앙값)', '55초', '38초', '18초'], ['탐색 용이성(7점)', '3.1', '4.8', '6.0']],
       question: [['질문 작성 시간', '52초', '27초'], ['두 필수 질문 포함률', '62.5%', '87.5%']],
@@ -130,7 +130,7 @@ export const projects: Project[] = [
     },
     beforeAfter: [
       {
-        before: '/images/karrot-large-furniture/asis-desc.webp', after: '/images/karrot-large-furniture/k-info.webp',
+        before: '/images/karrot-large-furniture/asis-desc.webp', after: '/images/karrot-large-furniture/f-b1.webp',
         beforeAlt: '기존 당근 상품 상세 본문: 크기가 자유 텍스트 문장 속에 있다', afterAlt: '개선 상품 상세 본문 아래: 크기 및 분해, 가져가는 조건을 거래 정보 카드로 정리',
         marks: [
           { side: 'before', n: 1, x: 3, y: 53, w: 94, h: 16 },
@@ -160,10 +160,13 @@ export const projects: Project[] = [
     ],
     proto: { url: '/proto/karrot/index.html?sc=detail-partial', w: 390, h: 844 },
     gallery: [
-      { src: '/images/karrot-large-furniture/k-form.webp', alt: '판매글 작성 화면: 제목, 카테고리, 가격, 선택형 가구 정보', caption: '판매자 · 글 작성' },
-      { src: '/images/karrot-large-furniture/k-detail.webp', alt: '상품 상세: 거래 정보 영역', caption: '구매자 · 상세' },
-      { src: '/images/karrot-large-furniture/k-questions.webp', alt: '어떤 정보가 궁금하세요? 질문 고르기 바텀시트', caption: '질문 고르기' },
-      { src: '/images/karrot-large-furniture/k-chat.webp', alt: '고른 질문이 채팅 입력창 초안으로 추가된 화면', caption: '채팅 질문 초안' },
+      { src: '/images/karrot-large-furniture/f-s2.webp', alt: '판매글 작성 화면: 제목, 카테고리, 가격, 자세한 설명 아래에 선택 입력인 가구 정보', caption: '판매자 · 글 작성' },
+      { src: '/images/karrot-large-furniture/f-s3.webp', alt: '가구 정보 입력: 크기와 분해 여부, 가져가는 조건을 선택해서 입력', caption: '가구 정보 입력' },
+      { src: '/images/karrot-large-furniture/f-b1.webp', alt: '상품 상세: 거래 정보 카드에 크기와 분해, 가져가는 조건이 정리됨', caption: '구매자 · 상세' },
+      { src: '/images/karrot-large-furniture/f-b3.webp', alt: '어떤 정보가 궁금하세요? 질문 고르기 바텀시트', caption: '질문 고르기' },
+      { src: '/images/karrot-large-furniture/f-b4.webp', alt: '고른 질문이 채팅 입력창 초안으로 추가된 화면', caption: '채팅 질문 초안' },
+      { src: '/images/karrot-large-furniture/f-c3.webp', alt: '상세 상단에 판매자가 상품 정보를 수정했다는 안내와 이전 가격이 보이는 화면', caption: '상세 · 변경 안내' },
+      { src: '/images/karrot-large-furniture/f-c2.webp', alt: '채팅방에 판매자가 상품 정보를 수정했다는 시스템 메시지가 남은 화면', caption: '채팅 · 변경 알림' },
       { src: '/images/karrot-large-furniture/k-changed.webp', alt: '판매자가 수정한 가격·분해 여부를 비교하는 바텀시트', caption: '변경 내용 비교' },
       { src: '/images/karrot-large-furniture/k-recheck.webp', alt: '비정상적으로 큰 크기 값을 입력했을 때 재확인을 요청하는 화면', caption: '큰 값 재확인' },
       { src: '/images/karrot-large-furniture/k-partial.webp', alt: '일부만 입력된 상품 상세: 미입력과 모름을 구분해 표시', caption: '상세 · 일부 입력' },

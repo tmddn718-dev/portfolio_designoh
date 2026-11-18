@@ -9,6 +9,7 @@ import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
 import { CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
 import Strip from '../components/Strip'
+import CompareSection, { type CompareData } from '../components/Compare'
 import NotFound from './NotFound'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -255,13 +256,37 @@ function Olive({ c }: { c: Ctx }) {
 }
 
 // ── 당근: 거래 정보 · 구매 판단 ──────────────────────────────
+const I2 = (n: string) => `/images/karrot-large-furniture/${n}.webp`
+const karrotCompare: CompareData[] = [
+  { n: '01', title: '판매글 작성 · 가구 정보를 따로 받아요', sub: '판매자가 크기·분해 여부·운반 조건을 자유 서술에 의존하지 않고 선택 입력 섹션으로 정리해 남길 수 있어요.',
+    before: { src: I2('bf-write'), alt: '현재 당근 앱 내 물건 팔기 화면: 거래 방식·가격과 자세한 설명 입력란', label: '현재 당근 앱' },
+    afters: [{ src: I2('f-s2'), alt: '개선 판매글 작성: 자세한 설명 아래에 선택 입력 가구 정보 섹션', tag: 'S2', label: '판매글 작성' }, { src: I2('f-s3'), alt: '개선 가구 정보 입력: 크기와 분해 여부, 가져가는 조건 입력', tag: 'S3', label: '가구 정보 입력' }],
+    current: ['크기·분해 여부·운반 조건을 ‘자세한 설명’ 자유 입력란에 쓸 수 있어요. 판매자마다 쓰는 정보의 양과 형식이 달라져요.', '거래 방식·가격 외에 대형 가구 거래에 필요한 조건(층수, 엘리베이터, 운반 도움)을 입력하는 칸이 없어요.'],
+    improved: ['S2 · 판매글 작성에 ‘가구 정보’ 섹션을 선택 입력으로 추가했어요. 상품 정보(크기, 분해 여부)와 가져가는 조건(층수, 엘리베이터, 운반 도움)으로 나뉘어요.', 'S3 · 아는 항목만 입력해도 되고 섹션별 입력 진행도(4/4 입력, 3/3 입력)를 바로 보여줘요.'] },
+  { n: '02', title: '상품 상세 · 채팅 전에 거래 조건을 확인해요', sub: '구매자가 채팅을 열기 전에 크기와 가져가는 조건을 확인하고 확인되지 않은 정보가 무엇인지도 알 수 있어요.',
+    before: { src: I2('bf-detail'), alt: '현재 당근 앱 상품 상세: 본문 텍스트와 하단 가격 제안 영역', label: '현재 당근 앱' },
+    afters: [{ src: I2('f-b1'), alt: '개선 상품 상세: 거래 정보 카드에 크기·분해와 가져가는 조건이 모두 입력됨', tag: 'B1', label: '상세 · 모두 입력' }, { src: I2('f-b2'), alt: '개선 상품 상세: 일부만 입력되어 확인되지 않은 정보 3개를 알려줌', tag: 'B2', label: '상세 · 일부 입력' }],
+    current: ['상품 정보가 본문 자유 텍스트에만 있어서 크기, 분해 여부, 운반 조건을 상세 화면에서 알 수 없어요.', '궁금한 점을 확인하는 방법이 채팅뿐이라 기본적인 질문까지 모두 채팅으로 물려요.'],
+    improved: ['B1 · ‘거래 정보’ 카드에 판매자가 직접 입력한 크기·분해, 가져가는 조건을 정리해 보여줘요.', 'B2 · ‘아직 미입력’과 ‘판매자도 모름’을 구분해 ‘확인되지 않은 정보 3개’로 알려줘요.'] },
+  { n: '03', title: '채팅 문의 · 질문을 골라서 보내요', sub: '확인되지 않은 정보를 바탕으로 질문을 고르면 채팅 입력창에 초안으로 들어가요. 처음 말 걸기가 쉬워지고 질문이 구체적이 돼요.',
+    before: { src: I2('bf-chat'), alt: '현재 당근 앱 채팅: 첫 메시지를 직접 쓰고 상단 상품 요약에는 가격만 보임', label: '현재 당근 앱' },
+    afters: [{ src: I2('f-b3'), alt: '개선 질문 고르기: 확인되지 않은 정보에서 물어볼 질문을 선택', tag: 'B3', label: '질문 고르기' }, { src: I2('f-b4'), alt: '개선 채팅 질문 초안: 고른 질문이 입력창에 초안으로 들어감', tag: 'B4', label: '채팅 질문 초안' }],
+    current: ['첫 메시지를 직접 써야 해서 ‘구매 가능할까요?’ 같은 일반적인 질문에 그치고 필요한 조건은 대화를 여러 번 주고받으며 확인해요.', '상단 상품 요약에는 가격만 있어서 대화 중에 거래 조건을 보려면 상세 화면으로 다시 돌아가야 해요.'],
+    improved: ['B3 · 상세의 확인되지 않은 정보에서 물어볼 질문을 골라요.', 'B4 · 고른 질문이 채팅 입력창에 초안으로 들어가요. 확인하고 고친 뒤 보낼 수 있어요.'] },
+  { n: '04', title: '정보 변경 · 바뀐 내용을 알려줘요', sub: '판매자가 가격이나 거래 조건을 수정하면 대화 중인 구매자와 상세 화면을 보는 구매자 모두 최신 정보를 확인할 수 있어요.',
+    before: { src: I2('bf-change'), alt: '현재 당근 앱 상품 상세: 게시글이 수정돼도 무엇이 바뀌었는지 표시되지 않음', label: '현재 당근 앱' },
+    afters: [{ src: I2('f-c2'), alt: '개선 채팅 변경 알림: 판매자가 상품 정보를 수정했다는 시스템 메시지', tag: 'C2', label: '채팅 · 변경 알림' }, { src: I2('f-c3'), alt: '개선 상세 변경 안내: 변경된 항목 안내와 이전 가격 표시', tag: 'C3', label: '상세 · 변경 안내' }],
+    current: ['게시글이 수정돼도 상세 화면에 무엇이 바뀌었는지 표시되지 않아요.', '이미 대화 중인 구매자에게 가격이나 조건 변경이 전달되지 않아 예전 정보로 거래를 진행할 수 있어요.'],
+    improved: ['C3 · 상세 상단에 ‘판매자가 상품 정보를 수정했어요 · 변경된 항목’ 안내와 ‘변경 내용 보기’를 보여줘요. 가격에는 이전 가격을 함께 표시해요.', 'C2 · 채팅방에 변경 알림을 시스템 메시지로 남겨 대화 중인 구매자가 바로 알 수 있어요.'] },
+]
+
 function Karrot({ c }: { c: Ctx }) {
   const { p, A, S, T } = c
   const I = (n: string) => `/images/karrot-large-furniture/${n}.webp`
   return (
     <>
       <Hero c={c} title="당근 대형 가구 중고거래" lead="채팅하기 전에 먼저 확인해야 할 정보" kicker="비공식 개인 UX 개선 제안 · 소속 회사와 무관 · 당근 SEED Design 공개 토큰 기반 · 상품 정보는 예시">
-        <div className="flex items-end justify-center gap-5 md:gap-8"><div className="w-[44%] md:w-[42%]"><Screen src={I('k-detail')} alt="상품 상세: 거래 정보 영역" /></div><div className="w-[44%] md:w-[42%] md:mt-12"><Screen src={I('k-questions')} alt="질문 고르기 바텀시트" /></div></div>
+        <div className="flex items-end justify-center gap-5 md:gap-8"><div className="w-[44%] md:w-[42%]"><Screen src={I('f-b1')} alt="상품 상세: 거래 정보 영역" /></div><div className="w-[44%] md:w-[42%] md:mt-12"><Screen src={I('f-b3')} alt="질문 고르기 바텀시트" /></div></div>
       </Hero>
 
       <section aria-label="프로젝트 이해하기" className="wrap gutter pt-20 md:pt-28">
@@ -330,22 +355,28 @@ function Karrot({ c }: { c: Ctx }) {
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6"><Fig src={I('k-partial')} alt="미입력과 모름을 구분한 상세" cap="일부 입력 · 미입력/모름 구분" /><Fig src={I('k-fail')} alt="정보 조회 실패 화면" cap="조회 실패 · 재시도" className="md:mt-12" /></div>
           </div>
 
-          {p.beforeAfter?.[0] && <div className="mt-20 md:mt-24"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 상품 상세</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">본문 속 크기를 거래 정보 카드로</h3><p className="mt-4 text-[16px] leading-relaxed text-sub">번호 박스가 있는 곳이 바뀐 UI예요. 아래 표에서 번호별로 기존과 개선을 비교해 보세요.</p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={S} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5 md:order-2"><Num n="02" t="분해 가능과 전달 상태를 분리" />
               <ul className="mt-8 space-y-5"><Ann color={S} n="A" t="분해 가능 · 분해 불가 · 잘 모르겠어요" d="‘분해 가능’을 고른 경우에만 전달 상태를 묻습니다." /><Ann color={S} n="B" t="조립된 상태 · 분해된 상태 · 협의" d="‘분해 가능’이 실제 전달 상태와 혼동되지 않게 했습니다." /><Ann color={S} n="C" t="큰 크기 값은 막지 않고 재확인" d="0 이하만 거절하고, 비정상적으로 큰 값은 다시 확인하게 합니다." /></ul></div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6 md:order-1"><Fig src={I('k-form')} alt="가구 정보 입력" cap="선택형 가구 정보 입력" /><Fig src={I('k-recheck')} alt="큰 값 재확인" cap="큰 값 재확인" className="md:mt-12" /></div>
+            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6 md:order-1"><Fig src={I('f-s2')} alt="가구 정보 입력" cap="선택형 가구 정보 입력" /><Fig src={I('k-recheck')} alt="큰 값 재확인" cap="큰 값 재확인" className="md:mt-12" /></div>
           </Reveal>
 
-          {p.beforeAfter?.[1] && <div className="mt-20 md:mt-24"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 확인되지 않은 정보</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">알려주는 영역이 없던 곳에 상태를 구분해서</h3><p className="mt-4 text-[16px] leading-relaxed text-sub">번호 박스가 있는 곳이 바뀐 UI예요. 기존에는 없던 영역은 표에서 설명해요.</p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[1]} color={S} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5"><Num n="03" t="질문은 초안으로만, 보내는 건 사용자" />
               <ul className="mt-8 space-y-5"><Ann color={S} n="A" t="궁금한 항목만 골라 채팅 초안 생성" /><Ann color={S} n="B" t="자동 전송하지 않고 기존 입력을 보존" d="사용자가 고치고 직접 보냅니다." /><Ann color={S} n="C" t="정보가 바뀌면 변경 항목만 비교" d="이전 값이 실제로 있을 때만 전후를 보여줍니다." /></ul></div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('k-questions')} alt="질문 고르기" cap="질문 고르기" /><Fig src={I('k-chat')} alt="채팅 질문 초안" cap="채팅 초안" className="md:mt-10" /><Fig src={I('k-changed')} alt="변경 내용 비교" cap="변경 비교" /></div>
+            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('f-b3')} alt="질문 고르기" cap="질문 고르기" /><Fig src={I('k-chat')} alt="채팅 질문 초안" cap="채팅 초안" className="md:mt-10" /><Fig src={I('k-changed')} alt="변경 내용 비교" cap="변경 비교" /></div>
           </Reveal>
         </div>
+      </section>
+
+      <section aria-label="기존 앱과 개선안 비교" className="wrap gutter pb-8 md:pb-16">
+        <p className="eyebrow rule pt-4 text-sub">Before / After</p>
+        <h3 className="mt-4 text-[28px] md:text-[40px] font-bold tracking-tight">실제 당근 앱 vs 대형 가구 거래 개선안</h3>
+        <p className="mt-3 text-[16px] text-sub max-w-[62ch]">같은 장면의 현재 화면(BEFORE)과 개선안(AFTER)을 나란히 놓았어요. 빨간 박스와 번호가 기존 앱의 문제 위치이고 오른쪽 표에서 번호별로 설명해요.</p>
+        <div className="mt-10 space-y-6 md:space-y-10">{karrotCompare.map(d => <CompareSection key={d.n} d={d} color={S} />)}</div>
+        <p className="mt-6 text-[13px] text-sub max-w-3xl">※ Before는 유아이볼(uibowl.io)에 수집된 실제 당근 앱 화면이에요. After는 제가 설계한 개선안으로 상품 정보는 예시예요.</p>
       </section>
 
       <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">

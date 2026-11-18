@@ -122,3 +122,6 @@ main p[class*="font-bold"][class*="text-[2"]:not([class*="leading-none"]), main 
 main p[class*="font-semibold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-semibold"][class*="text-[3"]:not([class*="leading-none"]),
 main p[class*="font-extrabold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-extrabold"][class*="text-[3"]:not([class*="leading-none"]),
 main blockquote, .apple-h { line-height: 1.4; }
+
+/* 상세 섹션 번호(01·02·03): 프로젝트 브랜드 컬러로 채운 글자 */
+.num-brand { color: var(--brand, var(--color-ink)); }

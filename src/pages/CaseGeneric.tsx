@@ -25,7 +25,7 @@ const Fig = ({ src, alt, cap, className = '' }: { src: string; alt: string; cap:
 const Ann = ({ n, t, d, color }: { n: string; t: string; d?: string; color: string }) => (
   <li className="flex gap-3"><span className="shrink-0 grid place-items-center w-7 h-7 rounded-full text-[13px] font-bold" style={{ background: color, color: onBrand(color) }}>{n}</span><div><p className="text-[16px] font-bold leading-snug">{t}</p>{d && <p className="mt-0.5 text-[14px] leading-snug text-sub">{d}</p>}</div></li>
 )
-const Num = ({ n, t }: { n: string; t: string }) => <div><p className="text-[56px] font-extrabold leading-none outline-text">{n}</p><h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight max-w-[18ch]">{t}</h3></div>
+const Num = ({ n, t }: { n: string; t: string }) => <div><p className="text-[56px] font-extrabold leading-none num-brand">{n}</p><h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight max-w-[18ch]">{t}</h3></div>
 
 type Ctx = { p: Project; A: string; S: string; T: (n: number) => string; body: (id: string) => string[]; proto: ReactNode; wide: boolean; setOpen: (b: boolean) => void }
 
@@ -518,8 +518,8 @@ function Woorisai({ c }: { c: Ctx }) {
             <p className="mt-5 max-w-[56ch] text-[17px] leading-[1.8] text-ink/80">약속부터 사진 공유와 정산 그리고 추억 회상까지 따로 쓰던 흐름을 우리사이 하나로 이었어요. 모임을 관리하는 앱이 아니라 지난 추억을 다시 꺼내며 친구와 이야기하는 데 집중해요.</p>
             <ol aria-label="문제와 해결의 연결" className="mt-8 grid md:grid-cols-2 gap-3">
               {[['약속은 메신저에서', '약속은 추억을 만드는 계기로 두고 약속에서 바로 추억을 만들 수 있어요.'], ['사진은 각자의 갤러리에', '함께한 사람이 사진과 이야기를 한 추억에 같이 모아요.'], ['정산은 정산 앱에서', '약속·정산은 추억을 돕는 보조 기능으로 둬요.'], ['추억은 사진 앱에서 찾기', '사람·장소·시간으로 다시 찾고 사진마다 반응과 댓글로 이야기를 이어가요.']].map(([p, r]) => (
-                <li key={p} className="rounded-[18px] bg-white p-5 md:grid md:grid-cols-[1fr_auto_1.4fr] md:items-center gap-4">
-                  <p className="text-[15px] font-semibold text-sub">{p}</p><span aria-hidden className="hidden md:block text-[20px]" style={{ color: S }}>→</span>
+                <li key={p} className="rounded-[18px] bg-white p-5 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center gap-5">
+                  <p className="text-[15px] font-semibold text-sub md:text-right">{p}</p><span aria-hidden className="hidden md:block text-[20px]" style={{ color: S }}>→</span>
                   <p className="mt-2 md:mt-0 text-[15px] leading-[1.6]">{r}</p>
                 </li>
               ))}
@@ -532,15 +532,15 @@ function Woorisai({ c }: { c: Ctx }) {
             <ol className="mt-8 grid md:grid-cols-4 gap-4">{[['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자별 사진과 이야기를 한 추억에'], ['다시 발견하기', '사람·장소·시간으로 되찾기'], ['대화로 이어지기', '사진 단위 반응과 댓글']].map(([t, d], i) => <li key={t} className="rounded-[20px] bg-white border border-grid p-5"><span className="text-[24px] font-extrabold" style={{ color: S }}>0{i + 1}</span><p className="mt-2 text-[18px] font-bold">{t}</p><p className="mt-1 text-[14px] text-sub leading-snug">{d}</p></li>)}</ol>
           </div>
 
-          <div className="mt-16 rounded-[24px] bg-white border border-grid p-6 md:p-8 md:grid md:grid-cols-12 gap-8 items-start">
-            <div className="md:col-span-7">
+          <div className="relative mt-16 rounded-[24px] bg-white border border-grid p-6 md:p-8">
+            <div className="md:pr-52 max-w-[820px]">
               <p className="eyebrow text-sub">프로토타입 설문 · 응답 7명 (2026.11.12-16)</p>
               <p className="mt-3 text-[22px] md:text-[26px] font-bold tracking-tight">만든 프로토타입을 써 본 사람들의 의견으로 앱을 계속 고쳤어요</p>
               <p className="mt-3 text-[15px] leading-[1.7] text-ink/75">직접 만든 프로토타입을 사용해 본 7명에게 설문을 받았고 초대와 기능 이동처럼 막히는 부분을 확인해 화면을 개선해 나갔어요. 20대 여성 중심의 소규모 표본이라 방향을 확인하는 데만 썼어요.</p>
             </div>
-            <details className="mt-5 md:mt-0 md:col-span-5">
-              <summary className="cursor-pointer inline-flex items-center min-h-[44px] px-4 rounded-full border border-grid text-[14px] font-semibold">설문 결과 보기</summary>
-              <div className="mt-4 space-y-5">
+            <details className="mt-5 md:mt-0 md:static group">
+              <summary className="cursor-pointer list-none inline-flex items-center min-h-[44px] px-4 rounded-full border border-grid text-[14px] font-semibold md:absolute md:top-6 md:right-8 bg-white">설문 결과 보기</summary>
+              <div className="mt-6 grid md:grid-cols-2 gap-x-10 gap-y-5">
                 {survey.map(([q, seg]) => <div key={q}><p className="text-[14px] font-semibold">{q}</p><div role="img" aria-label={seg.map(([l, n]) => `${l} ${n}명`).join(', ')} className="mt-2 flex h-2.5 rounded-full overflow-hidden gap-[2px]">{seg.map(([l, n], i) => <span key={l} style={{ flex: n, background: col[i] }} />)}</div><p className="mt-1.5 text-[13px] text-sub">{seg.map(([l, n]) => `${l} ${n}`).join(' · ')}</p></div>)}
               </div>
             </details>
@@ -638,7 +638,7 @@ export default function CaseGeneric() {
   const c: Ctx = { p, A: p.accent, S: strongOf(p.accent), T: n => tintOf(p.accent, n), body, proto: null, wide, setOpen }
   const View = ({ olive: Olive, 'karrot-large-furniture': Karrot, woorisai: Woorisai } as Record<string, (a: { c: Ctx }) => ReactNode>)[p.slug === 'oliveyoung-todaydream' ? 'olive' : p.slug]
   return (
-    <article ref={root}>
+    <article ref={root} style={{ ['--brand' as string]: p.accent }}>
       <ChapterNav active={active} list={list} title={p.name} onCta={p.proto ? () => setOpen(true) : undefined} />
       {View ? <View c={c} /> : <NotFound />}
       <ProjectIndex current={p.slug} />

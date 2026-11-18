@@ -58,7 +58,7 @@ export default function CaseTrigr() {
   const next = projects[(projects.indexOf(p) + 1) % projects.length]
 
   return (
-    <article ref={root}>
+    <article ref={root} style={{ ['--brand' as string]: PINK }}>
       <ChapterNav active={active} list={list} title="trigr" />
 
       {/* Hero */}
@@ -140,7 +140,7 @@ export default function CaseTrigr() {
           <Reveal className="mt-20 md:mt-24">
             <div className="md:grid md:grid-cols-12 gap-10 lg:gap-16 items-center">
               <div className="md:col-span-6">
-                <p className="text-[56px] font-extrabold leading-none outline-text">01</p>
+                <p className="text-[56px] font-extrabold leading-none num-brand">01</p>
                 <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight max-w-[16ch]">미션 생성을 한 화면에서 끝낸다</h3>
                 <ul className="mt-8 space-y-4"><Ann n="A" t="제목 → 미션 종류 → 태그 → 상금" d="미션 생성부터 모집 조건 설정까지 한 화면에서 완료되도록 입력 순서를 정리했습니다." /></ul>
                 <ol aria-label="입력 항목" className="mt-8 grid grid-cols-2 gap-3 max-w-[460px]">{[['01', '미션 제목'], ['02', '미션 종류'], ['03', '태그 설정'], ['04', '상금 설정']].map(([n, t]) => <li key={n} className="rounded-[16px] px-4 py-3 text-[16px] font-semibold flex gap-3" style={{ background: T(14) }}><b style={{ color: S }}>{n}</b>{t}</li>)}</ol>
@@ -155,7 +155,7 @@ export default function CaseTrigr() {
           {/* Decision 2 */}
           <Reveal className="mt-20 md:mt-24">
             <div className="md:grid md:grid-cols-12 gap-10 items-end">
-              <div className="md:col-span-5"><p className="text-[56px] font-extrabold leading-none outline-text">02</p><h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">상황에 따라 고르는 두 가지 탐색 경로</h3></div>
+              <div className="md:col-span-5"><p className="text-[56px] font-extrabold leading-none num-brand">02</p><h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">상황에 따라 고르는 두 가지 탐색 경로</h3></div>
               <ul className="md:col-span-7 mt-6 md:mt-0 grid sm:grid-cols-2 gap-5"><Ann n="A" t="지도 탐색" d="주변 미션을 빠르게 발견. 지도 → 핀 선택 → 미리보기 → 참여." /><Ann n="B" t="리스트 탐색" d="원하는 미션을 찾아봄. 미션 탭 → 검색 → 선택 → 참여." /></ul>
             </div>
             <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
@@ -168,7 +168,7 @@ export default function CaseTrigr() {
           {/* Decision 3 */}
           <Reveal className="mt-20 md:mt-24">
             <div className="md:grid md:grid-cols-12 gap-10 items-start">
-              <div className="md:col-span-5"><p className="text-[56px] font-extrabold leading-none outline-text">03</p><h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">인증 방식은 달라도 흐름은 하나, 보상은 한 번에 확인</h3>
+              <div className="md:col-span-5"><p className="text-[56px] font-extrabold leading-none num-brand">03</p><h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">인증 방식은 달라도 흐름은 하나, 보상은 한 번에 확인</h3>
                 <ul className="mt-8 space-y-6">
                   <Ann n="A" t="4가지 인증 방식, 같은 흐름" d="QR · 사진/동영상 · 내 위치 · 직접 인증. 참여자는 동일한 흐름으로 인증을 마칩니다." />
                   <Ann n="B" t="놓친 인증은 별도 관리 화면" d="실시간 채팅 운영과 인증 확인을 분리했습니다." />

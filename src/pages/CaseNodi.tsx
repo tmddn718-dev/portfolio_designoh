@@ -56,7 +56,7 @@ export default function CaseNodi() {
   const validation = paras('validation')
 
   return (
-    <article ref={root}>
+    <article ref={root} style={{ ['--brand' as string]: p.accent }}>
       <ChapterNav active={active} title="NODI" />
 
       {/* Hero */}
@@ -141,7 +141,7 @@ export default function CaseNodi() {
           {pains.map((x, i) => (
             <li key={i}><Reveal delay={i * 60}>
               <div className="rounded-[20px] border border-grid p-6 h-full flex flex-col">
-                <span className="text-[48px] font-extrabold leading-none outline-text">0{i + 1}</span>
+                <span className="text-[48px] font-extrabold leading-none num-brand">0{i + 1}</span>
                 <p className="mt-4 text-[18px] font-semibold leading-snug">{x.pain}</p>
                 <div className="mt-6 pt-4 border-t border-grid"><p className="text-[13px] text-sub">NODI의 대응</p><p className="mt-1 text-[16px] font-semibold" style={{ color: S }}>{x.fix}</p></div>
                 <div className="mt-5 mx-auto w-[44%] mt-auto pt-5"><img src={img(x.shot)} alt={`${x.fix} 화면`} loading="lazy" className="phone-bare" /></div>
@@ -181,7 +181,7 @@ export default function CaseNodi() {
           {/* 02 */}
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5">
-              <p className="text-[56px] font-extrabold leading-none outline-text">02</p>
+              <p className="text-[56px] font-extrabold leading-none num-brand">02</p>
               <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">참석자 선택과 필수 지정은 다른 의미</h3>
               <ul className="mt-8 space-y-5">
                 <Callout n="A" t="선택 = 회의에 포함할 사람" d="다중 선택, 검색, 팀 필터를 지원합니다." />
@@ -194,7 +194,7 @@ export default function CaseNodi() {
           {/* 03 */}
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5 md:order-2">
-              <p className="text-[56px] font-extrabold leading-none outline-text">03</p>
+              <p className="text-[56px] font-extrabold leading-none num-brand">03</p>
               <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">성공처럼 보이는 것과 실제 처리를 구분</h3>
               <ul className="mt-8 space-y-5">
                 <Callout n="A" t="일정 가능 · 참석 수락 · 캘린더 · 알림을 분리" d="서로 다른 개념으로 따로 표시합니다." />

@@ -7,7 +7,7 @@ import Reveal from './Reveal'
 // 표지 그대로: 얇은 그리드 위 outline Complexity → 검정 화살표 → 파란 Clarity, 하단 국문 카피.
 // 첫 진입 때만 Complexity 가 나타나고 Clarity 가 outline 에서 파랑으로 채워진다.
 export function HeroUI() {
-  const items = projects.map(p => ({ p, src: p.mock.srcs[1], launched: p.slug === 'trigr' }))
+  const items = projects.map(p => ({ p, src: p.slug === 'nodi' ? '/images/nodi/s-recs.webp' : p.mock.srcs[1], launched: p.slug === 'trigr' }))
   // 채용 담당자가 10초 안에 읽을 근거만. 수치는 이력서·프로젝트 문서에 있는 것만 쓴다.
   const proof: [string, string][] = [['1건', '출시한 서비스(trigr, 태국)'], ['Figma Variables', '디자인 시스템 직접 구축'], ['직접 구현', 'Claude Code로 프로토타입 제작']]
   return (

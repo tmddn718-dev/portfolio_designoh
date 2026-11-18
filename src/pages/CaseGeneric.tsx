@@ -121,16 +121,16 @@ function Olive({ c }: { c: Ctx }) {
             </ol>
             <p className="mt-4 text-[15px] leading-[1.7] text-sub">구매가 여기서 멈춰요. 다른 방법으로 살 수 있는지는 알려주지 않아요.</p>
           </div>
-          <div className="rounded-[24px] p-6 md:p-8 text-white" style={{ background: `linear-gradient(160deg, color-mix(in srgb, ${A} 45%, #111), #111 80%)` }}>
-            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-white text-black">개선</span>
+          <div className="rounded-[24px] p-6 md:p-8" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold text-white" style={{ background: S }}>개선</span>
             <ol aria-label="개선 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
-              <li className="px-4 py-2 rounded-full bg-white/15">오늘드림 옵션 선택</li><li aria-hidden className="text-white/60">→</li>
-              <li className="px-4 py-2 rounded-full bg-white/15">품절</li><li aria-hidden className="text-white/60">→</li>
-              <li className="px-4 py-2 rounded-full bg-white text-black font-semibold">다른 구매 방법 확인</li><li aria-hidden className="text-white/60">→</li>
-              <li className="px-4 py-2 rounded-full bg-white/15">일반배송 · 매장 픽업</li><li aria-hidden className="text-white/60">→</li>
-              <li className="px-4 py-2 rounded-full bg-white/15">구매 이어짐</li>
+              <li className="px-4 py-2 rounded-full bg-white">오늘드림 옵션 선택</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-white">품절</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full text-white font-semibold" style={{ background: S }}>다른 구매 방법 확인</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-white">일반배송 · 매장 픽업</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-white">구매 이어짐</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-white/80">품절 옵션을 고르면 ‘다른 구매 방법 확인’ 버튼이 먼저 나와요. 고른 옵션을 그대로 가지고 일반배송이나 매장 픽업으로 이어가요.</p>
+            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">품절 옵션을 고르면 ‘다른 구매 방법 확인’ 버튼이 먼저 나와요. 고른 옵션을 그대로 가지고 일반배송이나 매장 픽업으로 이어가요.</p>
           </div>
         </div>
 
@@ -311,14 +311,14 @@ function Karrot({ c }: { c: Ctx }) {
             </ol>
             <p className="mt-4 text-[15px] leading-[1.7] text-sub">채팅을 시작해야 거래할 수 있는지 알 수 있어요.</p>
           </div>
-          <div className="rounded-[24px] p-6 md:p-8 text-white" style={{ background: `color-mix(in srgb, ${A} 48%, #000)` }}>
-            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-white text-black">개선</span>
+          <div className="rounded-[24px] p-6 md:p-8" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold text-white" style={{ background: S }}>개선</span>
             <ol aria-label="개선 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
-              <li className="px-4 py-2 rounded-full bg-white/15">판매글 읽기</li><li aria-hidden className="text-white/70">→</li>
-              <li className="px-4 py-2 rounded-full bg-white text-black font-semibold">거래 정보 카드로 한눈에 확인</li><li aria-hidden className="text-white/70">→</li>
-              <li className="px-4 py-2 rounded-full bg-white/15">궁금한 것만 질문 초안으로</li>
+              <li className="px-4 py-2 rounded-full bg-white">판매글 읽기</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full text-white font-semibold" style={{ background: S }}>거래 정보 카드로 한눈에 확인</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-white">궁금한 것만 질문 초안으로</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-white">크기·분해·가져가는 조건을 채팅 전에 보고 판단해요. 입력되지 않은 정보도 이유를 구분해서 알려줘요.</p>
+            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">크기·분해·가져가는 조건을 채팅 전에 보고 판단해요. 입력되지 않은 정보도 이유를 구분해서 알려줘요.</p>
           </div>
         </div>
 

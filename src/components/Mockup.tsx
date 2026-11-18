@@ -53,7 +53,7 @@ export function ProtoFrame({ p, width = 300 }: { p: Project; width?: number }) {
     <div>
       {bare
         ? <div className="overflow-hidden" style={{ width: inner, height: p.proto.h * k, borderRadius: 62 * k }}>{frame}</div>
-        : <div className="rounded-[28px] bg-[#111] p-[10px] shadow-[0_30px_60px_-20px_rgba(0,0,0,.45)]" style={{ width }}>
+        : <div className="rounded-[28px] bg-[#111] p-[10px]" style={{ width }}>
             <div className="overflow-hidden rounded-[28px] bg-white" style={{ width: inner, height: p.proto.h * k }}>{frame}</div>
           </div>}
       <p className="mt-3 text-[13px] text-sub flex items-center justify-between" style={{ width }}>

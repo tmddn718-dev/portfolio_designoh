@@ -43,7 +43,7 @@ export const projects: Project[] = [
     summary: { concept: [['비교', '옵션 목록은 비교하는 곳으로 둬요'], ['행동', '고른 옵션의 다음 행동은 하단 버튼으로'], ['분리', '수령 방법마다 재고 확인을 따로'], ['그룹', '주문·결제를 3묶음으로 정리']], short: '품절돼도 구매를 이어가는 옵션 선택', about: '오늘드림이 품절이면 보통 주문을 포기하거나 재입고 알림만 눌러요. 다른 방법으로 구매를 이어가게 해서 잠재 매출을 지키는 흐름을 설계했어요.', decision: '오늘드림이 품절이어도 구매를 포기시키지 않고 일반배송·매장 픽업으로 이어줘요. 고른 옵션에 맞는 다음 행동을 하단 버튼 하나로 안내하고 재고는 수령 방법마다 따로 확인해요. 목표는 잠재 매출 보호예요.', status: '설계안이에요. 가상 데이터로 점검했고 실제 사용성 테스트는 아니에요.', kind: 'design' },
     accent: '#82DC28',
     mock: { srcs: ['/images/oliveyoung-todaydream/n-altMethods.webp', '/images/oliveyoung-todaydream/n-optC.webp', '/images/oliveyoung-todaydream/n-restock.webp'], framed: true },
-    proto: { url: '/proto/oliveyoung/index.html', w: 390, h: 844 },
+    proto: { url: '/proto/oliveyoung/index.html', w: 390, h: 844, pro: true },
     extra: {
       eyebrow: 'Commerce flow',
       title: '매출과 연결되는 구매 구간도 함께 개선',

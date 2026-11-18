@@ -65,7 +65,7 @@ export default function CaseNodi() {
           <Link to="/#work" className="inline-block py-2 text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
           <div className="mt-6 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-6">
-              <AppIcon src="/images/nodi/icon.webp" name="NODI" className="mb-5" />
+              <AppIcon src="/images/nodi/icon.svg" name="NODI" className="mb-5" />
               <p className="eyebrow" style={{ color: S }}>Personal Case Study · {p.category}</p>
               <h1 className="mt-4 text-[88px] md:text-[168px] font-extrabold tracking-[-0.055em] leading-[0.88]">NODI</h1>
               <p className="mt-8 text-[28px] md:text-[40px] font-extrabold leading-[1.2] tracking-tight">AI는 이해하고<br />사용자는 결정한다.</p>

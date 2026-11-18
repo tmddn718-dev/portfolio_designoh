@@ -497,19 +497,53 @@ function Woorisai({ c }: { c: Ctx }) {
 
       <section id="c2" className="scroll-mt-20 md:mt-8" style={{ background: '#F4F2EC' }}>
         <div className="wrap gutter py-20 md:py-28">
-          <ChapterHead color={S} n="01" label="Problem Framing" title="한 번의 만남이 여러 서비스로 흩어진다" />
-          <ol className="mt-10 flex flex-wrap items-center gap-2" aria-label="흩어지는 서비스">{['약속 → 메신저', '사진 → 각자의 갤러리', '정산 → 정산 앱', '과거 찾기 → 사진 앱'].map((s, i, a) => <li key={s} className="flex items-center gap-2"><span className="px-4 py-2 rounded-full bg-white border border-grid text-[14px]">{s}</span>{i < a.length - 1 && <span aria-hidden className="text-sub">·</span>}</li>)}</ol>
-          <p className="mt-6 text-[14px] text-sub max-w-[60ch]">※ 위 흐름은 PRD에서 세운 문제 가설이며, 검증된 사용자 문제가 아닙니다.</p>
-          <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-start">
-            <div className="md:col-span-5"><p className="eyebrow text-sub">설문 · 응답 7명 (2026.11.12-16)</p><p className="mt-3 text-[28px] font-extrabold leading-tight tracking-tight">쉽다는 답이 많았고, 초대와 기능 이동에서 막혔다</p><p className="mt-4 text-[16px] text-sub leading-relaxed">서술 의견: 친구 초대 기능을 못 찾음 · 일정 미응답자 재촉 버튼 제안 · 장소가 “서울 서울”로 표시 · 기능 구분이 불분명. 20대 여성 중심 소규모 표본이라 방향 확인용입니다.</p></div>
-            <div className="mt-8 md:mt-0 md:col-span-7 rounded-[20px] p-6 md:p-8 space-y-6 bg-white">
-              {survey.map(([q, seg]) => <div key={q}><p className="text-[16px] font-semibold">{q}</p><div role="img" aria-label={seg.map(([l, n]) => `${l} ${n}명`).join(', ')} className="mt-2 flex h-3 rounded-full overflow-hidden gap-[2px]">{seg.map(([l, n], i) => <span key={l} style={{ flex: n, background: col[i] }} />)}</div><p className="mt-2 text-[13px] text-sub">{seg.map(([l, n]) => `${l} ${n}`).join(' · ')}</p></div>)}
-            </div>
+          <ChapterHead color={S} n="01" label="Problem" title="친구와 보낸 하루가 여러 앱에 흩어진다" />
+          <p className="mt-6 max-w-[60ch] text-[18px] leading-[1.8]">친구와 약속을 잡고 만나서 사진을 찍고 비용을 나누고 나중에 그날을 떠올릴 때까지 사람들은 서로 다른 앱과 기능을 오가요. 그래서 하루의 사진과 이야기가 한곳에 남지 않아요.</p>
+
+          <ol aria-label="친구와의 하루에서 쓰는 앱" className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            {[['01', '약속 잡기', '메신저', '대화방에서 일정과 장소를 정해요'], ['02', '사진 공유', '각자의 갤러리', '사진이 각자의 휴대폰에 따로 남아요'], ['03', '정산', '정산 앱', '비용은 또 다른 앱에서 나눠요'], ['04', '추억 회상', '사진 앱', '나중에 그날을 사진 앱에서 찾아야 해요']].map(([n, t, app, d]) => (
+              <li key={n} className="rounded-[24px] bg-white border border-grid p-6 flex flex-col">
+                <span className="text-[13px] font-bold" style={{ color: S }}>{n}</span>
+                <p className="mt-2 text-[22px] font-bold tracking-tight">{t}</p>
+                <p className="mt-4 inline-flex w-fit px-3 py-1.5 rounded-full text-[14px] font-semibold" style={{ background: T(16) }}>{app}</p>
+                <p className="mt-4 text-[15px] leading-[1.65] text-ink/75">{d}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-5 text-[14px] text-sub max-w-[60ch]">※ 이 흐름은 PRD에서 세운 문제 가설이에요. 검증된 사용자 문제가 아니에요.</p>
+
+          <div className="mt-16 rounded-[28px] p-7 md:p-12" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
+            <p className="eyebrow" style={{ color: S }}>그래서 잡은 컨셉</p>
+            <h3 className="mt-3 text-[28px] md:text-[44px] font-extrabold tracking-tight max-w-[22ch]">흩어진 하루를 한곳에 남기는 ‘추억 아카이빙 서비스’</h3>
+            <p className="mt-5 max-w-[56ch] text-[17px] leading-[1.8] text-ink/80">약속부터 사진 공유와 정산 그리고 추억 회상까지 따로 쓰던 흐름을 우리사이 하나로 이었어요. 모임을 관리하는 앱이 아니라 지난 추억을 다시 꺼내며 친구와 이야기하는 데 집중해요.</p>
+            <ol aria-label="문제와 해결의 연결" className="mt-8 grid md:grid-cols-2 gap-3">
+              {[['약속은 메신저에서', '약속은 추억을 만드는 계기로 두고 약속에서 바로 추억을 만들 수 있어요.'], ['사진은 각자의 갤러리에', '함께한 사람이 사진과 이야기를 한 추억에 같이 모아요.'], ['정산은 정산 앱에서', '약속·정산은 추억을 돕는 보조 기능으로 둬요.'], ['추억은 사진 앱에서 찾기', '사람·장소·시간으로 다시 찾고 사진마다 반응과 댓글로 이야기를 이어가요.']].map(([p, r]) => (
+                <li key={p} className="rounded-[18px] bg-white p-5 md:grid md:grid-cols-[1fr_auto_1.4fr] md:items-center gap-4">
+                  <p className="text-[15px] font-semibold text-sub">{p}</p><span aria-hidden className="hidden md:block text-[20px]" style={{ color: S }}>→</span>
+                  <p className="mt-2 md:mt-0 text-[15px] leading-[1.6]">{r}</p>
+                </li>
+              ))}
+            </ol>
           </div>
+
           <div className="mt-20">
             <p className="eyebrow text-sub">Design Strategy</p>
-            <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">기록 → 함께 쌓기 → 다시 발견하기 → 대화로 이어지기</h3>
+            <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight">기록 → 함께 쌓기 → 다시 발견하기 → 대화로 이어지기</h3>
             <ol className="mt-8 grid md:grid-cols-4 gap-4">{[['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자별 사진과 이야기를 한 추억에'], ['다시 발견하기', '사람·장소·시간으로 되찾기'], ['대화로 이어지기', '사진 단위 반응과 댓글']].map(([t, d], i) => <li key={t} className="rounded-[20px] bg-white border border-grid p-5"><span className="text-[24px] font-extrabold" style={{ color: S }}>0{i + 1}</span><p className="mt-2 text-[18px] font-bold">{t}</p><p className="mt-1 text-[14px] text-sub leading-snug">{d}</p></li>)}</ol>
+          </div>
+
+          <div className="mt-16 rounded-[24px] bg-white border border-grid p-6 md:p-8 md:grid md:grid-cols-12 gap-8 items-start">
+            <div className="md:col-span-7">
+              <p className="eyebrow text-sub">프로토타입 설문 · 응답 7명 (2026.11.12-16)</p>
+              <p className="mt-3 text-[22px] md:text-[26px] font-bold tracking-tight">만든 프로토타입을 써 본 사람들의 의견으로 앱을 계속 고쳤어요</p>
+              <p className="mt-3 text-[15px] leading-[1.7] text-ink/75">직접 만든 프로토타입을 사용해 본 7명에게 설문을 받았고 초대와 기능 이동처럼 막히는 부분을 확인해 화면을 개선해 나갔어요. 20대 여성 중심의 소규모 표본이라 방향을 확인하는 데만 썼어요.</p>
+            </div>
+            <details className="mt-5 md:mt-0 md:col-span-5">
+              <summary className="cursor-pointer inline-flex items-center min-h-[44px] px-4 rounded-full border border-grid text-[14px] font-semibold">설문 결과 보기</summary>
+              <div className="mt-4 space-y-5">
+                {survey.map(([q, seg]) => <div key={q}><p className="text-[14px] font-semibold">{q}</p><div role="img" aria-label={seg.map(([l, n]) => `${l} ${n}명`).join(', ')} className="mt-2 flex h-2.5 rounded-full overflow-hidden gap-[2px]">{seg.map(([l, n], i) => <span key={l} style={{ flex: n, background: col[i] }} />)}</div><p className="mt-1.5 text-[13px] text-sub">{seg.map(([l, n]) => `${l} ${n}`).join(' · ')}</p></div>)}
+              </div>
+            </details>
           </div>
         </div>
       </section>

@@ -9,6 +9,7 @@ import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
 import { ChapterHead, ChapterNav, InteractionPreview, tintOf, strongOf, useActive, CaseSummary, ProjectIndex, AppIcon } from '../components/case'
 import Strip from '../components/Strip'
+import BrowserFrame from '../components/BrowserFrame'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -246,6 +247,37 @@ export default function CaseNodi() {
           ))}
         </Strip></div>
         <p className="mt-8 max-w-3xl text-[17px] leading-[1.8]">재조율, 받은 요청과 응답, 이전 회의 재사용, 작성 중 이어하기까지 포함해 26개 아트보드로 구현했습니다.</p>
+        <div className="mt-24" id="nodi-web">
+          <p className="eyebrow rule pt-4" style={{ color: S }}>Web · Responsive</p>
+          <h3 className="mt-4 text-[28px] md:text-[40px] font-extrabold tracking-tight max-w-[22ch]">모바일 앱이면서 PC 웹에서도 그대로 쓰는 서비스</h3>
+          <p className="mt-5 max-w-[60ch] text-[17px] leading-[1.8]">NODI는 모바일과 웹이 함께 동작하는 반응형 서비스예요. 같은 정보와 같은 우선순위를 화면 폭에 맞게 다르게 배치했어요. 위의 모바일 화면은 같은 흐름의 좁은 화면 버전이에요.</p>
+
+          <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
+            <BrowserFrame className="md:col-span-8" src="/images/nodi/web-understand.webp" alt="NODI 웹 화면: 왼쪽 내비게이션, 가운데 대화, 오른쪽 요약 패널의 3열 구성" label="PC 웹 (1200px 이상) · 내비게이션 · 대화 · 요약 패널 3열" />
+            <div className="mt-8 md:mt-0 md:col-span-4">
+              <p className="text-[13px] font-semibold text-sub">3열 구성</p>
+              <ul className="mt-4 space-y-5">{[['A', '좌측 내비게이션', '새 회의 · 내 회의 · 받은 요청(배지) · 캘린더 연결'], ['B', '가운데 대화', 'AI와 대화하며 조건을 입력하고 선택지로 답해요'], ['C', '우측 요약 패널', '확정된 조건과 확인이 필요한 항목을 항상 보여줘요']].map(([n, t, d]) => <li key={n} className="flex gap-3"><span className="shrink-0 grid place-items-center w-7 h-7 rounded-full text-[13px] font-bold text-white" style={{ background: p.accent }}>{n}</span><div><p className="text-[16px] font-bold leading-snug">{t}</p><p className="mt-0.5 text-[14px] leading-snug text-sub">{d}</p></div></li>)}</ul>
+            </div>
+          </div>
+
+          <div className="mt-10 grid md:grid-cols-2 gap-6 md:gap-8">
+            <BrowserFrame src="/images/nodi/web-start.webp" alt="NODI 웹 시작 화면: 회의 종류를 고르는 선택지와 우측 확인 필요 항목" label="처음에는 선택지로 시작하고 우측에서 부족한 조건을 확인해요" />
+            <BrowserFrame src="/images/nodi/web-reco.webp" alt="NODI 웹 추천 카드: 확정 검토 가능 후보와 추천하는 이유" label="추천 시간은 이유와 함께 보여주고 확정은 사용자가 눌러요" />
+          </div>
+
+          <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-center rounded-[28px] p-6 md:p-10" style={{ background: T(14) }}>
+            <div className="md:col-span-6">
+              <p className="eyebrow" style={{ color: S }}>화면 폭에 따른 배치</p>
+              <h4 className="mt-3 text-[24px] md:text-[30px] font-bold tracking-tight">같은 정보 다른 배치</h4>
+              <table className="mt-6 w-full text-[15px] bg-white rounded-[18px] overflow-hidden"><caption className="sr-only">화면 폭별 레이아웃</caption><thead><tr className="text-left text-[13px] text-sub"><th scope="col" className="py-3 pl-5">구간</th><th scope="col">내비게이션</th><th scope="col" className="pr-5">요약</th></tr></thead><tbody>
+                {[['1200px 이상', '좌측 내비', '우측 고정 패널'], ['768~1199px', '아이콘 레일', '서랍(시트)'], ['767px 이하', '하단 탭', '바텀시트']].map(([a, b, c]) => <tr key={a} className="border-t border-grid"><th scope="row" className="py-3 pl-5 text-left font-semibold">{a}</th><td>{b}</td><td className="pr-5">{c}</td></tr>)}
+              </tbody></table>
+              <p className="mt-4 text-[13px] text-sub">반응형 정책 문서(승인본)의 기준이에요. 모바일을 먼저 정의하고 태블릿·PC로 확장했어요.</p>
+            </div>
+            <div className="mt-8 md:mt-0 md:col-span-6 flex justify-center"><div className="w-full max-w-[340px] rounded-[14px] overflow-hidden border border-black/15 bg-white"><img src="/images/nodi/tablet-start.webp" alt="NODI 태블릿 폭(820px) 화면: 아이콘 레일 내비게이션과 대화 영역" loading="lazy" className="block w-full" /></div></div>
+          </div>
+          <p className="mt-4 text-[13px] text-sub max-w-3xl">웹 화면은 체험용 데모(가상 데이터)를 1440px와 820px 폭에서 캡처한 거예요. 실제 일정은 등록되지 않아요.</p>
+        </div>
         <InteractionPreview p={p} wide={wide} onOpen={() => setOpen(true)} title="직접 눌러보세요" note="화면 이미지는 v6 시안과 세부가 다를 수 있습니다." />
       </section>
 

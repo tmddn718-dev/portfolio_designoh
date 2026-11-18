@@ -362,22 +362,22 @@ function Olive({ c }: { c: Ctx }) {
 const I2 = (n: string) => `/images/karrot-large-furniture/${n}.webp`
 const karrotCompare: CompareData[] = [
   { n: '01', title: '판매글 작성 · 가구 정보를 따로 받아요', sub: '판매자가 크기·분해 여부·운반 조건을 자유 서술에 의존하지 않고 선택 입력 섹션으로 정리해 남길 수 있어요.',
-    before: { src: I2('bf-write'), alt: '현재 당근 앱 내 물건 팔기 화면: 거래 방식·가격과 자세한 설명 입력란', label: '현재 당근 앱' },
-    afters: [{ src: I2('f-s2'), alt: '개선 판매글 작성: 자세한 설명 아래에 선택 입력 가구 정보 섹션', tag: 'S2', label: '판매글 작성' }, { src: I2('f-s3'), alt: '개선 가구 정보 입력: 크기와 분해 여부, 가져가는 조건 입력', tag: 'S3', label: '가구 정보 입력' }],
+    before: { src: '', alt: '', label: '현재 당근 앱' },
+    afters: [{ src: I2('L-s2'), alt: '개선 판매글 작성: 자세한 설명 아래에 선택 입력 가구 정보 섹션', tag: 'S2', label: '판매글 작성 · 아래로 스크롤' }, { src: I2('L-s3'), alt: '개선 가구 정보 입력: 크기와 분해 여부, 가져가는 조건 입력', tag: 'S3', label: '가구 정보 입력 · 펼친 상태' }],
     current: ['크기·분해 여부·운반 조건을 ‘자세한 설명’ 자유 입력란에 쓸 수 있어요. 판매자마다 쓰는 정보의 양과 형식이 달라져요.', '거래 방식·가격 외에 대형 가구 거래에 필요한 조건(층수, 엘리베이터, 운반 도움)을 입력하는 칸이 없어요.'],
     improved: ['S2 · 판매글 작성에 ‘가구 정보’ 섹션을 선택 입력으로 추가했어요. 상품 정보(크기, 분해 여부)와 가져가는 조건(층수, 엘리베이터, 운반 도움)으로 나뉘어요.', 'S3 · 아는 항목만 입력해도 되고 섹션별 입력 진행도(4/4 입력, 3/3 입력)를 바로 보여줘요.'] },
   { n: '02', title: '상품 상세 · 채팅 전에 거래 조건을 확인해요', sub: '구매자가 채팅을 열기 전에 크기와 가져가는 조건을 확인하고 확인되지 않은 정보가 무엇인지도 알 수 있어요.',
-    before: { src: I2('bf-detail'), alt: '현재 당근 앱 상품 상세: 본문 텍스트와 하단 가격 제안 영역', label: '현재 당근 앱' },
-    afters: [{ src: I2('f-b1'), alt: '개선 상품 상세: 거래 정보 카드에 크기·분해와 가져가는 조건이 모두 입력됨', tag: 'B1', label: '상세 · 모두 입력' }, { src: I2('f-b2'), alt: '개선 상품 상세: 일부만 입력되어 확인되지 않은 정보 3개를 알려줌', tag: 'B2', label: '상세 · 일부 입력' }],
+    before: { src: I2('asis-desc'), alt: '현재 당근 앱 상품 상세 본문: 크기와 분해 정보가 문장 속에 섞여 있고 하단에 채팅하기 버튼이 있음', label: '현재 당근 앱' },
+    afters: [{ src: I2('L-b1'), alt: '개선 상품 상세: 거래 정보 카드에 크기·분해와 가져가는 조건이 모두 입력됨', tag: 'B1', label: '상세 · 거래 정보(스크롤)' }, { src: I2('L-b2'), alt: '개선 상품 상세: 일부만 입력되어 확인되지 않은 정보 3개를 알려줌', tag: 'B2', label: '상세 · 확인되지 않은 정보(스크롤)' }],
     current: ['상품 정보가 본문 자유 텍스트에만 있어서 크기, 분해 여부, 운반 조건을 상세 화면에서 알 수 없어요.', '궁금한 점을 확인하는 방법이 채팅뿐이라 기본적인 질문까지 모두 채팅으로 물려요.'],
     improved: ['B1 · ‘거래 정보’ 카드에 판매자가 직접 입력한 크기·분해, 가져가는 조건을 정리해 보여줘요.', 'B2 · ‘아직 미입력’과 ‘판매자도 모름’을 구분해 ‘확인되지 않은 정보 3개’로 알려줘요.'] },
   { n: '03', title: '채팅 문의 · 질문을 골라서 보내요', sub: '확인되지 않은 정보를 바탕으로 질문을 고르면 채팅 입력창에 초안으로 들어가요. 처음 말 걸기가 쉬워지고 질문이 구체적이 돼요.',
-    before: { src: I2('bf-chat'), alt: '현재 당근 앱 채팅: 첫 메시지를 직접 쓰고 상단 상품 요약에는 가격만 보임', label: '현재 당근 앱' },
+    before: { src: '', alt: '', label: '현재 당근 앱' },
     afters: [{ src: I2('f-b3'), alt: '개선 질문 고르기: 확인되지 않은 정보에서 물어볼 질문을 선택', tag: 'B3', label: '질문 고르기' }, { src: I2('f-b4'), alt: '개선 채팅 질문 초안: 고른 질문이 입력창에 초안으로 들어감', tag: 'B4', label: '채팅 질문 초안' }],
     current: ['첫 메시지를 직접 써야 해서 ‘구매 가능할까요?’ 같은 일반적인 질문에 그치고 필요한 조건은 대화를 여러 번 주고받으며 확인해요.', '상단 상품 요약에는 가격만 있어서 대화 중에 거래 조건을 보려면 상세 화면으로 다시 돌아가야 해요.'],
     improved: ['B3 · 상세의 확인되지 않은 정보에서 물어볼 질문을 골라요.', 'B4 · 고른 질문이 채팅 입력창에 초안으로 들어가요. 확인하고 고친 뒤 보낼 수 있어요.'] },
   { n: '04', title: '정보 변경 · 바뀐 내용을 알려줘요', sub: '판매자가 가격이나 거래 조건을 수정하면 대화 중인 구매자와 상세 화면을 보는 구매자 모두 최신 정보를 확인할 수 있어요.',
-    before: { src: I2('bf-change'), alt: '현재 당근 앱 상품 상세: 게시글이 수정돼도 무엇이 바뀌었는지 표시되지 않음', label: '현재 당근 앱' },
+    before: { src: I2('asis-top'), alt: '현재 당근 앱 상품 상세 상단: 사진과 가격 위에 수정 여부나 변경 항목 안내가 없음', label: '현재 당근 앱' },
     afters: [{ src: I2('f-c2'), alt: '개선 채팅 변경 알림: 판매자가 상품 정보를 수정했다는 시스템 메시지', tag: 'C2', label: '채팅 · 변경 알림' }, { src: I2('f-c3'), alt: '개선 상세 변경 안내: 변경된 항목 안내와 이전 가격 표시', tag: 'C3', label: '상세 · 변경 안내' }],
     current: ['게시글이 수정돼도 상세 화면에 무엇이 바뀌었는지 표시되지 않아요.', '이미 대화 중인 구매자에게 가격이나 조건 변경이 전달되지 않아 예전 정보로 거래를 진행할 수 있어요.'],
     improved: ['C3 · 상세 상단에 ‘판매자가 상품 정보를 수정했어요 · 변경된 항목’ 안내와 ‘변경 내용 보기’를 보여줘요. 가격에는 이전 가격을 함께 표시해요.', 'C2 · 채팅방에 변경 알림을 시스템 메시지로 남겨 대화 중인 구매자가 바로 알 수 있어요.'] },
@@ -443,7 +443,7 @@ function Karrot({ c }: { c: Ctx }) {
         <Reveal><blockquote className="mt-10 text-[28px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]" style={{ borderLeft: `6px solid ${A}`, paddingLeft: 24 }}>{p.problem}</blockquote></Reveal>
         <ul className="mt-12 grid md:grid-cols-3 gap-5">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
         <div className="mt-14"><p className="eyebrow text-sub">실제 당근 앱 · AS-IS 캡처</p>
-          <ul className="mt-5 grid grid-cols-3 gap-4 md:gap-8 max-w-3xl">{[['bf-write', '판매글 작성: 설명 입력란에 자유롭게'], ['bf-detail', '상품 본문: 크기가 문장 속에'], ['bf-chat', '채팅: 첫 메시지를 직접 작성']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul>
+          <ul className="mt-5 grid grid-cols-3 gap-4 md:gap-8 max-w-3xl">{[['asis-search', '대형가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul>
           <p className="mt-4 text-[13px] text-sub max-w-3xl">실제 앱 화면 캡처이며 판매자 닉네임, 거래 장소 주소·지도, 캡처한 사람의 정보는 가렸습니다.</p></div>
         <p className="mt-10 text-[13px] text-sub max-w-3xl">앱 리뷰·블로그 VOC와 인터뷰를 근거로 PRD 문제를 정의했습니다. 원자료가 없어 표본 수와 수치는 싣지 않았고, 발생 빈도와 영향은 사용성 테스트로 검증해야 하는 디자인 가설입니다.</p>
       </section>
@@ -455,14 +455,14 @@ function Karrot({ c }: { c: Ctx }) {
             <div className="md:col-span-5"><Num n="01" t="상태를 네 가지로 구분" />
               <table className="mt-8 w-full text-[16px] bg-white rounded-[20px] overflow-hidden"><caption className="sr-only">정보 상태별 표시 원칙</caption><tbody>{[['입력 완료', '입력된 값 표시'], ['미입력', '아직 입력되지 않았어요'], ['모름', '판매자도 확인하지 못했어요'], ['조회 실패', '정보를 불러오지 못했어요']].map(([a, b]) => <tr key={a} className="border-t border-grid first:border-0"><th scope="row" className="py-3 pl-5 pr-3 text-left font-semibold whitespace-nowrap">{a}</th><td className="py-3 pr-5 text-sub">{b}</td></tr>)}</tbody></table>
               <p className="mt-4 text-[16px] leading-relaxed text-sub">엘리베이터가 있다는 이유로 운반 가능하다고 단정하지 않습니다.</p></div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6"><Fig src={I('k-partial')} alt="미입력과 모름을 구분한 상세" cap="일부 입력 · 미입력/모름 구분" /><Fig src={I('k-fail')} alt="정보 조회 실패 화면" cap="조회 실패 · 재시도" className="md:mt-12" /></div>
+            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6"><Fig src={I('L-b2')} alt="미입력과 모름을 구분한 상세" cap="일부 입력 · 미입력/모름 구분(스크롤)" /><Fig src={I('L-e1')} alt="정보 조회 실패 화면" cap="조회 실패 · 재시도" className="md:mt-12" /></div>
           </div>
 
 
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5 md:order-2"><Num n="02" t="분해 가능과 전달 상태를 분리" />
               <ul className="mt-8 space-y-5"><Ann color={A} n="A" t="분해 가능 · 분해 불가 · 잘 모르겠어요" d="‘분해 가능’을 고른 경우에만 전달 상태를 묻습니다." /><Ann color={A} n="B" t="조립된 상태 · 분해된 상태 · 협의" d="‘분해 가능’이 실제 전달 상태와 혼동되지 않게 했습니다." /><Ann color={A} n="C" t="큰 크기 값은 막지 않고 재확인" d="0 이하만 거절하고, 비정상적으로 큰 값은 다시 확인하게 합니다." /></ul></div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6 md:order-1"><Fig src={I('f-s2')} alt="가구 정보 입력" cap="선택형 가구 정보 입력" /><Fig src={I('f-recheck')} alt="큰 값 재확인" cap="큰 값 재확인" className="md:mt-12" /></div>
+            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6 md:order-1"><Fig src={I('L-s3')} alt="가구 정보 입력" cap="가구 정보 입력 · 분해 가능과 전달 상태" /><Fig src={I('L-s5')} alt="큰 값 재확인" cap="큰 값 재확인(스크롤)" className="md:mt-12" /></div>
           </Reveal>
 
 

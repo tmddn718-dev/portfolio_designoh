@@ -24,7 +24,9 @@ export default function CompareSection({ d, color }: { d: CompareData; color: st
           <figure className="min-w-0 shrink-0 w-[58%] sm:w-[40%] md:w-auto snap-start">
             <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-ink text-white">BEFORE</span>
             <p className="mt-2 text-[14px] font-semibold">{d.before.label}</p>
-            <div className="mt-3 rounded-[18px] bg-[#f5f5f7] p-2 md:p-3"><Phone src={d.before.src} alt={d.before.alt} caption={`BEFORE · ${d.before.label}`} /></div>
+            {d.before.src
+              ? <div className="mt-3 rounded-[18px] bg-[#f5f5f7] p-2 md:p-3"><Phone src={d.before.src} alt={d.before.alt} caption={`BEFORE · ${d.before.label}`} /></div>
+              : <div className="mt-3 rounded-[18px] border border-dashed border-line aspect-[390/844] grid place-items-center text-center text-[13px] text-sub p-3">[추가 자료 필요]<br />고화질 AS-IS 캡처</div>}
           </figure>
           {d.afters.map(a => (
             <figure key={a.src} className="min-w-0 shrink-0 w-[58%] sm:w-[40%] md:w-auto snap-start">

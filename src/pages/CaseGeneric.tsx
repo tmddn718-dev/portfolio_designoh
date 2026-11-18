@@ -91,12 +91,60 @@ function Olive({ c }: { c: Ctx }) {
   const journey: [string, string, string, string][] = [['asisHome', '01 상품 탐색', '홈에서 상품을 찾고 선택', '메디힐 마스크팩 선택'], ['detailAsis', '02 상품 상세', '오늘드림 또는 픽업 선택 영역이 있음', '장바구니·바로구매'], ['checkoutAsis', '03 주문/결제', '배송지, 시간대, 배송비, 쿠폰, 최종 금액', '시간대별 배송비 차이 확인']]
   return (
     <>
-      <Hero c={c} title="품절 이후에도 구매를 이어갈 수 있도록" lead="품절된 뒤에도 살 수 있는 다른 방법을 더 쉽게 찾게 했어요" kicker="비공식 개인 UX 개선 제안 · 소속 회사와 무관 · 재고·매장 데이터는 가상" size="md">
+      <Hero c={c} title="품절 이후에도 구매를 이어갈 수 있도록" lead="오늘드림이 품절돼도 다른 방법으로 구매를 이어가게 했어요" kicker="비공식 개인 UX 개선 제안 · 소속 회사와 무관 · 재고·매장 데이터는 가상" size="md">
         <div className="flex items-end justify-center gap-5 md:gap-8">
           <figure className="w-[44%]"><p className="text-[13px] font-semibold mb-2" style={{ color: S }}>TO-BE · 품절 옵션 선택</p><Screen src={I('n-optC')} alt="개선 화면: 오늘드림 품절 옵션을 고르면 다른 구매 방법 확인이 주요 행동으로 나온다" /></figure>
           <figure className="w-[44%] md:mt-12"><p className="text-[13px] font-semibold mb-2" style={{ color: S }}>TO-BE · 다른 구매 방법</p><Screen src={I('n-altMethods')} alt="개선 화면: 일반배송으로 구매할 수 있는 경우" /></figure>
         </div>
       </Hero>
+
+      <section aria-label="프로젝트 이해하기" className="wrap gutter pt-20 md:pt-28">
+        <p className="eyebrow" style={{ color: S }}>이 프로젝트를 쉽게 이해하기</p>
+        <h2 className="mt-3 apple-h text-[30px] md:text-[48px] max-w-[22ch]">품절은 구매의 끝이 아니라 다른 방법으로 이어주는 순간이에요</h2>
+
+        <Reveal stagger className="mt-10 grid md:grid-cols-3 gap-3 md:gap-5">
+          {[['01', '오늘드림이 뭐예요?', '올리브영 앱에서 주문하면 내 배송지로 빠르게 받는 배송 서비스예요. 재고는 내 배송지 기준으로 확인해요. 같은 상품을 일반배송으로 받거나 매장에서 픽업할 수도 있어요.'],
+            ['02', '언제 문제가 생겼나요?', '오늘드림으로 주문하려고 옵션을 골랐는데 ‘일시품절’만 보일 때예요. 이때 화면에는 ‘재입고 알림’ 버튼만 있었어요.'],
+            ['03', '왜 문제로 봤나요?', '이 순간 사용자는 보통 주문을 포기하거나 재입고 알림만 눌러요. 하지만 같은 상품을 일반배송이나 매장 픽업으로 살 수 있다면 구매할 수 있는 사람을 놓치는 거예요. 올리브영에게는 팔 수 있었던 기회가 사라져요.']].map(([n, t, d]) => (
+            <div key={n} className="rounded-[24px] bg-[#F7F8FA] p-6 md:p-7"><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.75] text-ink/80">{d}</p></div>
+          ))}
+        </Reveal>
+
+        <div className="mt-6 md:mt-8 grid md:grid-cols-2 gap-4 md:gap-6">
+          <div className="rounded-[24px] border border-grid p-6 md:p-8">
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-[#e8e8e8]">기존</span>
+            <ol aria-label="기존 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
+              <li className="px-4 py-2 rounded-full bg-[#f5f5f7]">오늘드림 옵션 선택</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-[#f5f5f7] font-semibold">일시품절</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-[#fdeaea] text-[#a12a2a] font-semibold">주문 포기 또는 재입고 알림</li>
+            </ol>
+            <p className="mt-4 text-[15px] leading-[1.7] text-sub">구매가 여기서 멈춰요. 다른 방법으로 살 수 있는지는 알려주지 않아요.</p>
+          </div>
+          <div className="rounded-[24px] p-6 md:p-8 text-white" style={{ background: `linear-gradient(160deg, color-mix(in srgb, ${A} 45%, #111), #111 80%)` }}>
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-white text-black">개선</span>
+            <ol aria-label="개선 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
+              <li className="px-4 py-2 rounded-full bg-white/15">오늘드림 옵션 선택</li><li aria-hidden className="text-white/60">→</li>
+              <li className="px-4 py-2 rounded-full bg-white/15">품절</li><li aria-hidden className="text-white/60">→</li>
+              <li className="px-4 py-2 rounded-full bg-white text-black font-semibold">다른 구매 방법 확인</li><li aria-hidden className="text-white/60">→</li>
+              <li className="px-4 py-2 rounded-full bg-white/15">일반배송 · 매장 픽업</li><li aria-hidden className="text-white/60">→</li>
+              <li className="px-4 py-2 rounded-full bg-white/15">구매 이어짐</li>
+            </ol>
+            <p className="mt-4 text-[15px] leading-[1.7] text-white/80">품절 옵션을 고르면 ‘다른 구매 방법 확인’ 버튼이 먼저 나와요. 고른 옵션을 그대로 가지고 일반배송이나 매장 픽업으로 이어가요.</p>
+          </div>
+        </div>
+
+        <div className="mt-6 md:mt-8 md:grid md:grid-cols-12 gap-8 items-center rounded-[28px] bg-[#F7F8FA] p-6 md:p-10">
+          <div className="md:col-span-7">
+            <p className="eyebrow text-sub">프로젝트의 핵심</p>
+            <p className="mt-3 text-[24px] md:text-[34px] font-bold tracking-tight leading-snug">오늘드림이 품절됐다고 매출을 포기하지 않아요. 다른 방법으로 구매하도록 이어서 잠재 매출을 지키는 게 목표예요.</p>
+            <p className="mt-4 text-[14px] leading-[1.7] text-sub">매출이 얼마나 오를지는 측정하지 않았어요. 사용자가 구매를 이어갈 가능성을 높이는 설계 목표이고, 사용성 테스트로 검증이 필요해요.</p>
+          </div>
+          <div className="mt-8 md:mt-0 md:col-span-5 grid grid-cols-2 gap-4">
+            <figure><p className="text-[13px] font-semibold text-sub mb-2">기존 · 품절 옵션 선택</p><Screen src={p.beforeAfter![0].before} alt={p.beforeAfter![0].beforeAlt} /></figure>
+            <figure><p className="text-[13px] font-semibold mb-2" style={{ color: S }}>개선 · 품절 옵션 선택</p><Screen src={p.beforeAfter![0].after} alt={p.beforeAfter![0].afterAlt} /></figure>
+          </div>
+        </div>
+      </section>
 
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="01" label="The Challenge" title="품절은 구매 여정의 끝이어야 할까?" />

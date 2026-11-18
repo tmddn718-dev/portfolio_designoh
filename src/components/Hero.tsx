@@ -41,7 +41,7 @@ export default function Hero() {
           </span>
         </h1>
         <div className="mt-12 md:mt-[7vw] flex items-end justify-between gap-6 flex-wrap">
-          <p data-copy className="text-[24px] md:text-[2.3vw] leading-[1.5] font-normal">
+          <p data-copy className="text-[24px] md:text-[2.3vw] leading-[1.4] font-normal">
             복잡한 정보를<br />사용자가 <span className="text-[#2997ff] font-bold">판단할 수 있는</span> 경험으로.
           </p>
           <div data-copy className="max-w-[34ch] md:text-right">

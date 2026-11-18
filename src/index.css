@@ -114,3 +114,10 @@ dialog.modal::backdrop { background: rgba(11,11,12,.72); }
   .reveal { opacity: 1; transform: none; transition: none; }
   * { animation: none !important; }
 }
+
+/* 타이틀·서브타이틀 행간 140% (leading-none 으로 지정한 큰 숫자 지표는 제외, 홈 히어로 큰 제목은 디자인상 제외) */
+main h1:not(#hero h1), main h2, main h3, main h4,
+main p[class*="font-bold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-bold"][class*="text-[3"]:not([class*="leading-none"]),
+main p[class*="font-semibold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-semibold"][class*="text-[3"]:not([class*="leading-none"]),
+main p[class*="font-extrabold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-extrabold"][class*="text-[3"]:not([class*="leading-none"]),
+main blockquote, .apple-h { line-height: 1.4; }

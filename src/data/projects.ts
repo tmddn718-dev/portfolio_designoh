@@ -24,7 +24,7 @@ export interface Project {
   extra?: { eyebrow: string; title: string; intro: string; bullets: string[]; images: { src: string; alt: string; caption: string; tall?: boolean }[] }
   gallery?: { src: string; alt: string; caption: string }[] // 앱 화면 (세로형)
   // 실제 제작된 전/후 시안이 있을 때만 채운다. 없으면 모듈이 렌더되지 않는다.
-  beforeAfter?: { before: string; after: string; beforeAlt: string; afterAlt: string; points: string[] }[]
+  beforeAfter?: { before: string; after: string; beforeAlt: string; afterAlt: string; points: string[]; marks?: { side: 'before' | 'after'; n: number; x: number; y: number; w: number; h: number }[]; changes?: { n: number; before: string; after: string }[] }[]
   sections: { id: string; title: string; body: string }[]
 }
 
@@ -132,12 +132,30 @@ export const projects: Project[] = [
       {
         before: '/images/karrot-large-furniture/asis-desc.webp', after: '/images/karrot-large-furniture/k-info.webp',
         beforeAlt: '기존 당근 상품 상세 본문: 크기가 자유 텍스트 문장 속에 있다', afterAlt: '개선 상품 상세 본문 아래: 크기 및 분해, 가져가는 조건을 거래 정보 카드로 정리',
-        points: ['Before: 가로·깊이 같은 크기 정보가 본문 문장 속에 섞여 있다', 'After: 크기 및 분해, 가져가는 조건을 거래 정보 카드로 나눠 보여준다', '※ Before는 실제 당근 앱 화면 캡처이며 판매자 닉네임, 거래 장소 주소·지도, 캡처한 사람의 정보는 가렸습니다'],
+        marks: [
+          { side: 'before', n: 1, x: 3, y: 53, w: 94, h: 16 },
+          { side: 'after', n: 1, x: 4, y: 45, w: 92, h: 20 },
+          { side: 'after', n: 2, x: 4, y: 66, w: 92, h: 21 },
+        ],
+        changes: [
+          { n: 1, before: '가로·깊이가 본문 문장 속에 섞여 있어서 글을 읽으며 찾아야 해요.', after: '‘크기 및 분해’ 카드에 가로·세로·높이 칸과 분해 여부를 따로 보여줘요.' },
+          { n: 2, before: '이 글에는 층수·엘리베이터·운반 도움 정보가 보이지 않아요.', after: '‘가져가는 조건’ 카드에 층수·엘리베이터·운반 도움을 나눠서 보여줘요.' },
+        ],
+        points: ['※ Before는 실제 당근 앱 화면 캡처이며 판매자 닉네임, 거래 장소 주소·지도, 캡처한 사람의 정보는 가렸습니다'],
       },
       {
         before: '/images/karrot-large-furniture/asis-loc.webp', after: '/images/karrot-large-furniture/k-info-partial.webp',
         beforeAlt: '기존 당근 상품 상세 하단: 거래 장소와 용달비 안내, 채팅·관심 수', afterAlt: '개선 상품 상세: 미입력과 판매자도 모름을 구분해 표시한 거래 정보 카드',
-        points: ['Before: 상세 하단에는 거래 장소·용달비 안내와 조회·관심 수가 있고, 확인되지 않은 거래 조건을 알려주는 영역은 없다', 'After: 높이 미입력, 엘리베이터 모름, 운반 도움 아직 입력되지 않았어요처럼 상태를 구분해 보여준다', '※ Before는 실제 당근 앱 화면 캡처이며 개인정보는 가렸습니다'],
+        marks: [
+          { side: 'before', n: 1, x: 3, y: 37, w: 94, h: 9 },
+          { side: 'after', n: 1, x: 65, y: 50, w: 27, h: 8 },
+          { side: 'after', n: 2, x: 4, y: 76, w: 92, h: 12 },
+        ],
+        changes: [
+          { n: 1, before: '상세 하단에는 용달비 안내만 있고 크기 같은 거래 조건은 보이지 않아요.', after: '입력하지 않은 값은 ‘미입력’으로 표시해서 빈칸인지 0인지 헷갈리지 않아요.' },
+          { n: 2, before: '엘리베이터·운반 도움처럼 확인되지 않은 조건을 알려주는 곳이 없어요.', after: '‘모름 · 판매자도 확인하지 못했어요’와 ‘아직 입력되지 않았어요’를 구분해서 보여줘요.' },
+        ],
+        points: ['※ Before는 실제 당근 앱 화면 캡처이며 개인정보는 가렸습니다'],
       },
     ],
     proto: { url: '/proto/karrot/index.html?sc=detail-partial', w: 390, h: 844 },

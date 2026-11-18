@@ -264,6 +264,52 @@ function Karrot({ c }: { c: Ctx }) {
         <div className="flex items-end justify-center gap-5 md:gap-8"><div className="w-[44%] md:w-[42%]"><Screen src={I('k-detail')} alt="상품 상세: 거래 정보 영역" /></div><div className="w-[44%] md:w-[42%] md:mt-12"><Screen src={I('k-questions')} alt="질문 고르기 바텀시트" /></div></div>
       </Hero>
 
+      <section aria-label="프로젝트 이해하기" className="wrap gutter pt-20 md:pt-28">
+        <p className="eyebrow" style={{ color: S }}>이 프로젝트를 쉽게 이해하기</p>
+        <h2 className="mt-3 apple-h text-[30px] md:text-[48px] max-w-[22ch]">구매자가 채팅 전에 알고 싶은 정보를 게시글에서 바로 확인하게 했어요</h2>
+
+        <Reveal stagger className="mt-10 grid md:grid-cols-3 gap-3 md:gap-5">
+          {[['01', '무엇을 개선했나요?', '당근에서 대형 가구를 사고팔 때 쓰는 판매글을 개선했어요. 크기·분해 여부·가져가는 조건처럼 구매자가 확인하고 싶은 정보를 판매글에서 쉽게 알 수 있게 했어요.'],
+            ['02', '언제 문제가 생겼나요?', '구매자가 글을 읽고 ‘내가 사서 가져갈 수 있을까?’를 판단하는 순간이에요. 크기가 본문 문장 속에 섞여 있거나 층수·엘리베이터 정보가 없으면 글만으로는 판단하기 어려워요.'],
+            ['03', '왜 문제로 봤나요?', '대형 가구는 크기와 운반 조건이 구매를 좌우해요. 정보를 찾지 못한 구매자는 채팅으로 같은 질문을 하게 되고 판매자도 같은 답을 반복해야 해요.']].map(([n, t, d]) => (
+            <div key={n} className="rounded-[24px] bg-[#F7F8FA] p-6 md:p-7"><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.75] text-ink/80">{d}</p></div>
+          ))}
+        </Reveal>
+
+        <div className="mt-6 md:mt-8 grid md:grid-cols-2 gap-4 md:gap-6">
+          <div className="rounded-[24px] border border-grid p-6 md:p-8">
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-[#e8e8e8]">기존</span>
+            <ol aria-label="기존 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
+              <li className="px-4 py-2 rounded-full bg-[#f5f5f7]">판매글 읽기</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-[#f5f5f7] font-semibold">크기가 문장 속에 섞여 있음</li><li aria-hidden className="text-sub">→</li>
+              <li className="px-4 py-2 rounded-full bg-[#fdeaea] text-[#a12a2a] font-semibold">채팅으로 같은 질문 반복</li>
+            </ol>
+            <p className="mt-4 text-[15px] leading-[1.7] text-sub">채팅을 시작해야 거래할 수 있는지 알 수 있어요.</p>
+          </div>
+          <div className="rounded-[24px] p-6 md:p-8 text-white" style={{ background: `color-mix(in srgb, ${A} 48%, #000)` }}>
+            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-white text-black">개선</span>
+            <ol aria-label="개선 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
+              <li className="px-4 py-2 rounded-full bg-white/15">판매글 읽기</li><li aria-hidden className="text-white/70">→</li>
+              <li className="px-4 py-2 rounded-full bg-white text-black font-semibold">거래 정보 카드로 한눈에 확인</li><li aria-hidden className="text-white/70">→</li>
+              <li className="px-4 py-2 rounded-full bg-white/15">궁금한 것만 질문 초안으로</li>
+            </ol>
+            <p className="mt-4 text-[15px] leading-[1.7] text-white">크기·분해·가져가는 조건을 채팅 전에 보고 판단해요. 입력되지 않은 정보도 이유를 구분해서 알려줘요.</p>
+          </div>
+        </div>
+
+        <div className="mt-6 md:mt-8 md:grid md:grid-cols-12 gap-8 items-center rounded-[28px] bg-[#F7F8FA] p-6 md:p-10">
+          <div className="md:col-span-7">
+            <p className="eyebrow text-sub">프로젝트의 핵심</p>
+            <p className="mt-3 text-[24px] md:text-[34px] font-bold tracking-tight leading-snug">대형 가구에 대한 정보를 중심으로 구매자가 확인하고 싶은 내용을 게시글에서 쉽게 알 수 있게 한 UX 개선 프로젝트예요.</p>
+            <p className="mt-4 text-[14px] leading-[1.7] text-sub">비공식 개인 UX 개선 제안이에요. 거래가 얼마나 늘지는 측정하지 않았고 사용성 테스트로 검증이 필요해요.</p>
+          </div>
+          <div className="mt-8 md:mt-0 md:col-span-5 grid grid-cols-2 gap-4">
+            <figure><p className="text-[13px] font-semibold text-sub mb-2">기존 · 상품 상세</p><Screen src={p.beforeAfter![0].before} alt={p.beforeAfter![0].beforeAlt} /></figure>
+            <figure><p className="text-[13px] font-semibold mb-2" style={{ color: S }}>개선 · 상품 상세</p><Screen src={p.beforeAfter![0].after} alt={p.beforeAfter![0].afterAlt} /></figure>
+          </div>
+        </div>
+      </section>
+
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="01" label="The Challenge" title="대형 가구는 정보가 빠지면 판단이 멈춘다" />
         <Reveal><blockquote className="mt-10 text-[28px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]" style={{ borderLeft: `6px solid ${A}`, paddingLeft: 24 }}>{p.problem}</blockquote></Reveal>
@@ -284,7 +330,7 @@ function Karrot({ c }: { c: Ctx }) {
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6"><Fig src={I('k-partial')} alt="미입력과 모름을 구분한 상세" cap="일부 입력 · 미입력/모름 구분" /><Fig src={I('k-fail')} alt="정보 조회 실패 화면" cap="조회 실패 · 재시도" className="md:mt-12" /></div>
           </div>
 
-          {p.beforeAfter?.[0] && <div className="mt-20 md:mt-24"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 상품 상세</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">본문 속 크기를 거래 정보 카드로</h3><p className="mt-4 text-[16px] leading-relaxed text-sub"></p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={S} /></div></div>}
+          {p.beforeAfter?.[0] && <div className="mt-20 md:mt-24"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 상품 상세</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">본문 속 크기를 거래 정보 카드로</h3><p className="mt-4 text-[16px] leading-relaxed text-sub">번호 박스가 있는 곳이 바뀐 UI예요. 아래 표에서 번호별로 기존과 개선을 비교해 보세요.</p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={S} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5 md:order-2"><Num n="02" t="분해 가능과 전달 상태를 분리" />
@@ -292,7 +338,7 @@ function Karrot({ c }: { c: Ctx }) {
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6 md:order-1"><Fig src={I('k-form')} alt="가구 정보 입력" cap="선택형 가구 정보 입력" /><Fig src={I('k-recheck')} alt="큰 값 재확인" cap="큰 값 재확인" className="md:mt-12" /></div>
           </Reveal>
 
-          {p.beforeAfter?.[1] && <div className="mt-20 md:mt-24"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 확인되지 않은 정보</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">알려주는 영역이 없던 곳에, 상태를 구분해서</h3></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[1]} color={S} /></div></div>}
+          {p.beforeAfter?.[1] && <div className="mt-20 md:mt-24"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 확인되지 않은 정보</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">알려주는 영역이 없던 곳에 상태를 구분해서</h3><p className="mt-4 text-[16px] leading-relaxed text-sub">번호 박스가 있는 곳이 바뀐 UI예요. 기존에는 없던 영역은 표에서 설명해요.</p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[1]} color={S} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5"><Num n="03" t="질문은 초안으로만, 보내는 건 사용자" />

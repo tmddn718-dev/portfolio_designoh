@@ -189,7 +189,7 @@ export default function CaseNodi() {
                 <ul className="mt-3 text-[15px] leading-relaxed list-disc pl-5">{['아이콘·중복 설명 제거, 텍스트 중심으로(3D 일러스트 → 2D 상태 아이콘)', '핵심 정보를 먼저 보이고 상세는 단계적으로(추천 이유 바텀시트, 알고리즘 설명 접기)', '화면마다 주요 버튼 하나를 강조하고 보조는 텍스트 링크로', '조건 확인 카드를 압축(날짜·시간 2열, 참석자 중복 안내 제거)'].map(x => <li key={x}>{x}</li>)}</ul></div>
             </div>
           </Reveal>
-          {p.beforeAfter?.map((b, i) => <div key={b.before} className="mt-14 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · {['조건 확인', '추천 시간', '저장 완료'][i]}</p><p className="mt-4 text-[15px] text-sub">왼쪽(Before)은 초기 시안(v5.2), 오른쪽(After)은 개선 시안이에요. 가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-6 md:mt-0 md:col-span-7"><BeforeAfter data={b} /></div></div>)}
+          {p.beforeAfter?.map((b, i) => <div key={b.before} className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · {['조건 확인', '추천 시간', '저장 완료'][i]}</p><p className="mt-4 text-[15px] text-sub">왼쪽(Before)은 초기 시안(v5.2), 오른쪽(After)은 개선 시안이에요.</p></div><div className="mt-6"><BeforeAfter data={b} color={S} /></div></div>)}
           <p className="mt-10 text-[15px] leading-relaxed text-sub max-w-3xl">변경이 사용자의 이해와 행동에 미친 영향은 아직 확인하지 못했어요. 대신 터치 영역 44px·글자 13px 기준과 클릭 시나리오 19개로 구현 품질을 점검했고, 이해도 검증은 아래 계획으로 진행해요.</p>
         </div>
       </section>

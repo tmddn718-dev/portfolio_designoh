@@ -130,7 +130,7 @@ function Olive({ c }: { c: Ctx }) {
               <table className="mt-6 w-full text-[15px] bg-white rounded-[20px] overflow-hidden"><caption className="sr-only">옵션 상태별 하단 CTA</caption><thead><tr className="text-left text-[13px] text-sub"><th scope="col" className="py-3 pl-5">옵션 상태</th><th scope="col" className="py-3 pr-5">하단 CTA</th></tr></thead><tbody>{ctas.map(([a, b]) => <tr key={a} className="border-t border-grid"><th scope="row" className="py-3 pl-5 pr-3 text-left font-semibold">{a}</th><td className="py-3 pr-5" style={{ color: S }}>{b}</td></tr>)}</tbody></table></div>
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('n-optA')} alt="옵션 미선택 상태" cap="옵션 미선택" /><Fig src={I('n-optC')} alt="오늘드림 품절 옵션 선택" cap="오늘드림 품절" className="md:mt-10" /><Fig src={I('n-optFail')} alt="재고 확인 실패 상태" cap="재고 확인 실패" /></div>
           </div>
-          {p.beforeAfter?.[0] && <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 품절 옵션 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">옵션별 행동을 찾는 방식에서, 선택한 옵션의 다음 행동을 확인하는 방식으로</h3><p className="mt-4 text-[15px] text-sub">Before는 실제 앱의 옵션 시트를 관찰해 <b>재현한 화면</b>이에요(실제 캡처 아님). 가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[0]} /></div></div>}
+          {p.beforeAfter?.[0] && <div className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 품절 옵션 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">옵션별 행동을 찾는 방식에서, 선택한 옵션의 다음 행동을 확인하는 방식으로</h3><p className="mt-4 text-[15px] text-sub">Before는 실제 앱의 옵션 시트를 관찰해 <b>재현한 화면</b>이에요(실제 캡처 아님).</p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={S} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24">
             <Num n="02" t="수령 방법별로 재고와 주문 가능 상태를 구분" />
@@ -139,19 +139,19 @@ function Olive({ c }: { c: Ctx }) {
             <div className="mt-10 grid grid-cols-3 gap-4 md:gap-6 md:max-w-3xl"><Fig src={I('n-altMethods')} alt="일반배송 구매 가능" cap="일반배송 구매 가능" /><Fig src={I('n-pickup')} alt="픽업 매장 선택" cap="픽업 매장 선택" className="md:mt-10" /><Fig src={I('n-stockChanged')} alt="주문 직전 재고 변동" cap="주문 직전 재고 변동" /></div>
             <p className="mt-4 text-[15px] leading-relaxed text-sub max-w-2xl">옵션·수량·배송지·매장이 바뀌면 그 조건으로 재고를 다시 확인하고, 주문 직전에 재고가 소진되면 상품 정보를 유지한 채 다른 구매 방법을 다시 고르게 해요.</p>
           </Reveal>
-          {p.beforeAfter?.[1] && <div className="mt-16 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 수령 방법 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">수령 방법의 존재 확인에서, 구매 가능한 방법을 비교·선택으로</h3><p className="mt-4 text-[15px] text-sub">가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[1]} /></div></div>}
+          {p.beforeAfter?.[1] && <div className="mt-16"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 수령 방법 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">수령 방법의 존재 확인에서, 구매 가능한 방법을 비교·선택으로</h3><p className="mt-4 text-[15px] text-sub"></p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[1]} color={S} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24">
             <Num n="03" t="배송 시간대별 배송비를 선택 전에 비교" />
             <p className="mt-4 text-[17px] leading-[1.8] max-w-2xl">시간대를 고른 뒤 배송비를 확인하는 구조를, 각 시간대 항목에 배송비를 함께 보여주는 구조로 바꿨어요. 시간대를 바꾸면 최종 결제금액도 바로 갱신돼요.</p>
           </Reveal>
-          {p.beforeAfter?.[2] && <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 배송비</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">시간 선택 뒤 비용 확인에서, 시간과 비용을 함께 비교로</h3></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[2]} /></div></div>}
+          {p.beforeAfter?.[2] && <div className="mt-10"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 배송비</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">시간 선택 뒤 비용 확인에서, 시간과 비용을 함께 비교로</h3></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[2]} color={S} /></div></div>}
 
           {p.extra && p.beforeAfter?.[3] && (
             <Reveal className="mt-20 md:mt-24">
               <p className="eyebrow text-sub rule pt-4">함께 정리한 구매 구간</p>
               <p className="mt-4 text-[16px] leading-[1.8] text-sub max-w-2xl">{p.extra.intro}</p>
-              <div className="mt-8 md:grid md:grid-cols-12 gap-10 items-start"><ul className="md:col-span-5 space-y-3">{p.extra.bullets.map(b => <li key={b} className="pl-4 border-l-2 text-[15px] leading-relaxed" style={{ borderColor: A }}>{b}</li>)}</ul><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[3]} /></div></div>
+              <div className="mt-8"><ul className="md:col-span-5 space-y-3">{p.extra.bullets.map(b => <li key={b} className="pl-4 border-l-2 text-[15px] leading-relaxed" style={{ borderColor: A }}>{b}</li>)}</ul><div className="mt-8"><BeforeAfter data={p.beforeAfter[3]} color={S} /></div></div>
             </Reveal>
           )}
         </div>
@@ -233,7 +233,7 @@ function Karrot({ c }: { c: Ctx }) {
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6"><Fig src={I('k-partial')} alt="미입력과 모름을 구분한 상세" cap="일부 입력 · 미입력/모름 구분" /><Fig src={I('k-fail')} alt="정보 조회 실패 화면" cap="조회 실패 · 재시도" className="md:mt-12" /></div>
           </div>
 
-          {p.beforeAfter?.[0] && <div className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 상품 상세</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">본문 속 크기를 거래 정보 카드로</h3><p className="mt-4 text-[16px] leading-relaxed text-sub">가운데 핸들을 끌거나 방향키로 비교해 보세요.</p></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[0]} /></div></div>}
+          {p.beforeAfter?.[0] && <div className="mt-20 md:mt-24"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 상품 상세</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">본문 속 크기를 거래 정보 카드로</h3><p className="mt-4 text-[16px] leading-relaxed text-sub"></p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={S} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5 md:order-2"><Num n="02" t="분해 가능과 전달 상태를 분리" />
@@ -241,7 +241,7 @@ function Karrot({ c }: { c: Ctx }) {
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6 md:order-1"><Fig src={I('k-form')} alt="가구 정보 입력" cap="선택형 가구 정보 입력" /><Fig src={I('k-recheck')} alt="큰 값 재확인" cap="큰 값 재확인" className="md:mt-12" /></div>
           </Reveal>
 
-          {p.beforeAfter?.[1] && <div className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-start"><div className="md:col-span-5"><p className="eyebrow rule pt-4 text-sub">Before / After · 확인되지 않은 정보</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">알려주는 영역이 없던 곳에, 상태를 구분해서</h3></div><div className="mt-8 md:mt-0 md:col-span-7"><BeforeAfter data={p.beforeAfter[1]} /></div></div>}
+          {p.beforeAfter?.[1] && <div className="mt-20 md:mt-24"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 확인되지 않은 정보</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">알려주는 영역이 없던 곳에, 상태를 구분해서</h3></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[1]} color={S} /></div></div>}
 
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5"><Num n="03" t="질문은 초안으로만, 보내는 건 사용자" />

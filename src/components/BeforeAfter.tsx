@@ -1,24 +1,30 @@
-import { useState } from 'react'
 import type { Project } from '../data/projects'
+import { Zoomable } from './Modal'
 
-// 실제 전/후 시안이 있을 때만 사용. 네이티브 range 라 드래그·터치·키보드(←→) 모두 지원, 버튼으로 전/후 전환도 가능.
-export default function BeforeAfter({ data }: { data: NonNullable<Project['beforeAfter']>[number] }) {
-  const [pos, setPos] = useState(50)
+// 슬라이더 없이 Before / After 를 같은 크기로 나란히 놓는 비교 보드(유아이볼 갤러리 방식).
+// points 는 'Before:'·'After:' 로 시작하는 문장을 각 열 아래에 나누고, 나머지는 각주로 둔다.
+const strip = (s: string, k: string) => s.replace(new RegExp(`^${k}\\s*:\\s*`), '')
+export default function BeforeAfter({ data, color = '#3975f6' }: { data: NonNullable<Project['beforeAfter']>[number]; color?: string }) {
+  const bef = data.points.filter(p => p.startsWith('Before')).map(p => strip(p, 'Before'))
+  const aft = data.points.filter(p => p.startsWith('After')).map(p => strip(p, 'After'))
+  const note = data.points.filter(p => !p.startsWith('Before') && !p.startsWith('After'))
+  const Col = ({ src, alt, tag, list, after }: { src: string; alt: string; tag: string; list: string[]; after?: boolean }) => (
+    <div className="min-w-0">
+      <span className={`inline-block px-3 py-1 rounded-full text-[13px] font-bold ${after ? 'text-white' : 'bg-[#e8e8e8] text-ink'}`} style={after ? { background: color } : undefined}>{tag}</span>
+      <div className="mt-3 rounded-[22px] bg-[#f5f5f7] p-3 md:p-5"><div className="max-w-[320px] mx-auto">
+        <Zoomable src={src} alt={alt} caption={`${tag} · ${alt}`} className="w-full" imgClass="w-full rounded-[14px] border border-grid bg-white" /></div>
+      </div>
+      {list.length > 0 && <ul className="mt-4 space-y-2 text-[15px] leading-snug">{list.map(t => <li key={t} className="flex gap-2"><span aria-hidden className="mt-[9px] w-1.5 h-1.5 shrink-0 rounded-full" style={{ background: after ? color : '#9a9a9a' }} /><span>{t}</span></li>)}</ul>}
+    </div>
+  )
   return (
-    <figure className="border border-grid rounded-[20px] bg-white p-4 md:p-6 max-w-[460px] mx-auto">
-      <div className="relative overflow-hidden select-none focus-within:outline-2 focus-within:outline-blue">
-        <img src={data.after} alt={`After: ${data.afterAlt}`} className="block w-full" />
-        <img src={data.before} alt={`Before: ${data.beforeAlt}`} className="absolute inset-0 w-full h-full object-cover" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} />
-        <span className="absolute top-2 left-2 bg-white text-[13px] px-2 py-1">Before</span>
-        <span className="absolute top-2 right-2 bg-blue text-white text-[13px] px-2 py-1">After</span>
-        <div aria-hidden className="absolute inset-y-0 w-0.5 bg-blue" style={{ left: `${pos}%` }} />
-        <input type="range" min={0} max={100} step={2} value={pos} onChange={e => setPos(+e.target.value)} aria-label="Before/After 비교 위치" className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize" />
+    <figure className="rounded-[28px] border border-grid p-4 md:p-8 bg-white">
+      <div className="grid grid-cols-2 gap-3 md:gap-8 items-start relative">
+        <Col src={data.before} alt={data.beforeAlt} tag="BEFORE" list={bef} />
+        <span aria-hidden className="absolute left-1/2 top-[38%] -translate-x-1/2 z-10 hidden md:grid place-items-center w-11 h-11 rounded-full bg-white border border-grid text-[18px] shadow-sm">→</span>
+        <Col src={data.after} alt={data.afterAlt} tag="AFTER" list={aft} after />
       </div>
-      <div className="mt-3 flex gap-2">
-        <button className="px-4 py-3 text-[14px] border border-grid" onClick={() => setPos(100)}>Before 보기</button>
-        <button className="px-4 py-3 text-[14px] border border-grid" onClick={() => setPos(0)}>After 보기</button>
-      </div>
-      <figcaption className="mt-3 text-[14px] text-sub"><ul className="list-disc pl-5">{data.points.map(p => <li key={p}>{p}</li>)}</ul></figcaption>
+      {note.length > 0 && <figcaption className="mt-5 pt-4 rule text-[13px] text-sub">{note.join(' ')}</figcaption>}
     </figure>
   )
 }

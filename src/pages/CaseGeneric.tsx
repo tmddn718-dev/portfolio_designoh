@@ -434,7 +434,6 @@ function Woorisai({ c }: { c: Ctx }) {
   const I = (n: string) => `/images/woorisai/${n}.webp`
   const col = [A, tintOf(A, 45), '#d9d9d9', '#ececec']
   const Need = ({ t }: { t: string }) => <p className="rounded-[16px] border border-dashed border-grid p-4 text-[14px] text-sub">[추가 자료 필요] {t}</p>
-  const Tag = ({ t }: { t: string }) => <span className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold" style={{ background: A, color: onBrand(A) }}>{t}</span>
   return (
     <>
       <section id="c1" className="overflow-hidden" style={{ background: '#FAF9F6' }}>
@@ -567,7 +566,7 @@ function Woorisai({ c }: { c: Ctx }) {
           </Reveal>
 
           <Reveal className="mt-24 md:mt-32 rounded-[28px] p-6 md:p-12 bg-[#F4F2EC]">
-            <div className="max-w-[60ch]"><Tag t="Solution 02 · 핵심" /><h3 className="mt-4 text-[32px] md:text-[48px] font-extrabold tracking-tight leading-tight">사진 아래에서 바로 반응하고, 대화한다</h3>
+            <div className="max-w-[60ch]"><p className="text-[56px] font-extrabold leading-none num-brand">02</p><h3 className="mt-3 text-[32px] md:text-[48px] font-extrabold tracking-tight leading-tight">사진 아래에서 바로 반응하고, 대화한다</h3>
               <p className="mt-4 text-[17px] leading-[1.8]">우리사이는 기존 서비스가 없는 신규 서비스라 비교 대상은 제가 처음 만든 프로토타입이에요. 첫 버전에서는 기록(‘기억 이어가기’)이 사진과 떨어진 별도 카드에 있었어요. 직접 써 보며 발견한 문제를 고친 과정을 초기 버전과 개선 버전으로 보여줘요.</p></div>
             <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
               <div className="md:col-span-4"><p className="eyebrow text-sub">초기 버전</p><div className="mt-3 max-w-[300px]"><Screen src={I('ph-before')} alt="초기 버전 사진 상세: 사진 아래 별도 기억 이어가기 카드" cap="초기 버전 · 사진 상세" /></div></div>

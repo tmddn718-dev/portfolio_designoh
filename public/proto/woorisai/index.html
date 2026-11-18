@@ -27,6 +27,8 @@
   <script src="./lucide-icon.js"></script>
   <style>
     html,body{margin:0;background:#E6E4DE;font-family:var(--ws-font-product);-webkit-font-smoothing:antialiased}
+    /* 포트폴리오 사이트 안(폭 390 iframe)에서는 좌우 여백 없이 화면을 가득 채운다 */
+    @media (max-width:439px){html,body{background:var(--ws-color-bg-canvas)}[data-screen-label]{max-width:none!important}}
     a{color:var(--ws-color-fg-link)}a:hover{color:var(--ws-color-bg-brand-hover)}
     *{box-sizing:border-box}
     .ws-scroll::-webkit-scrollbar{display:none}

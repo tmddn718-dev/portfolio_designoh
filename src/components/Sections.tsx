@@ -4,11 +4,8 @@ import { projects, profile, type Project } from '../data/projects'
 import Reveal from './Reveal'
 import { Modal, Zoomable } from './Modal'
 import { ProtoFrame } from './Mockup'
-import Compose from './Compose'
-import { strongOf } from './case'
 
 const by = (slug: string) => projects.find(p => p.slug === slug)!
-const tint = (color: string, amount: number) => `color-mix(in srgb, ${color} ${amount}%, white)`
 
 function ProjectLabel({ p }: { p: Project }) {
   const launched = p.slug === 'trigr'
@@ -32,11 +29,13 @@ function FeaturedOlive() {
           </dl>
           <div className="mt-8 flex flex-wrap gap-3"><Link to={`/work/${p.slug}`} className="inline-flex min-h-12 items-center rounded-full bg-ink px-6 text-[15px] font-semibold text-white hover:-translate-y-0.5">케이스 스터디 보기</Link>{p.proto && <button onClick={() => setOpen(true)} className="min-h-12 rounded-full border border-ink px-6 text-[15px] font-semibold hover:bg-white">프로토타입 실행</button>}</div>
         </div>
-        <Link to={`/work/${p.slug}`} aria-label="올리브영 오늘드림 케이스 스터디 보기" className="relative min-h-[420px] overflow-hidden bg-[#E5F1CE] md:col-span-7 md:min-h-[580px]">
-          <span aria-hidden className="absolute -right-5 top-7 text-[clamp(64px,9vw,128px)] font-extrabold leading-none tracking-[-0.07em] text-[#789646]/10">OLIVE<br />YOUNG</span>
-          <div className="absolute bottom-[-8%] left-[4%] w-[38%] -rotate-6"><div className="phone-pro"><img src="/images/oliveyoung-todaydream/n-optC.webp" alt="" className="screen" /><span className="glare" /></div></div>
-          <div className="absolute bottom-[-2%] left-[33%] z-10 w-[42%]"><div className="phone-pro"><img src="/images/oliveyoung-todaydream/n-altMethods.webp" alt="" className="screen" /><span className="glare" /></div></div>
-          <div className="absolute bottom-[-10%] right-[-2%] w-[36%] rotate-6"><div className="phone-pro"><img src="/images/oliveyoung-todaydream/n-pickup.webp" alt="" className="screen" /><span className="glare" /></div></div>
+        <Link to={`/work/${p.slug}`} aria-label="올리브영 오늘드림 케이스 스터디 보기" className="group relative min-h-[420px] overflow-hidden bg-[#C9F45A] md:col-span-7 md:min-h-[580px]">
+          <div className="absolute left-6 top-7 z-20 max-w-[11ch] text-[clamp(30px,4vw,58px)] font-black leading-[.9] tracking-[-0.07em] text-black md:left-9 md:top-10">OUT OF STOCK.<br />MORE OPTIONS.</div>
+          <span aria-hidden className="absolute bottom-6 left-7 z-20 text-[11px] font-bold uppercase tracking-[.18em] text-black/60 md:left-10">Purchase recovery / 2026</span>
+          <img src="/proto/oliveyoung/public/assets/product-03.png" alt="" className="absolute left-[7%] top-[38%] z-10 w-[15%] -rotate-12 drop-shadow-[0_16px_20px_rgba(54,77,12,.18)] transition-transform duration-300 group-hover:-translate-y-2" />
+          <img src="/proto/oliveyoung/public/assets/product-05.png" alt="" className="absolute bottom-[13%] left-[19%] z-10 w-[16%] rotate-6 drop-shadow-[0_16px_20px_rgba(54,77,12,.18)] transition-transform duration-300 group-hover:-translate-y-1" />
+          <div className="absolute -bottom-[31%] right-[-5%] z-10 w-[58%] transition-transform duration-300 group-hover:-translate-y-2 group-hover:-rotate-1"><div className="phone-pro"><img src="/images/oliveyoung-todaydream/n-altMethods.webp" alt="" className="screen" /><span className="glare" /></div></div>
+          <div className="absolute bottom-[-22%] right-[38%] w-[26%] rotate-[-7deg] opacity-75"><div className="phone-pro"><img src="/images/oliveyoung-todaydream/n-optC.webp" alt="" className="screen" /><span className="glare" /></div></div>
         </Link>
       </div>
       <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>
@@ -52,12 +51,56 @@ const cardCopy: Record<string, string> = {
   trigr: '디자인 시스템이 없던 초기 단계부터 세 차례의 개편과 태국 출시까지 참여한 제품 회고입니다.',
 }
 
+function ThumbnailVisual({ p }: { p: Project }) {
+  if (p.slug === 'karrot-large-furniture') return (
+    <div className="relative aspect-[4/3] overflow-hidden bg-[#EFC9AA] transition-transform duration-300 group-hover:scale-[1.015]">
+      <img src="/proto/karrot/images/sofa.png" alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-95" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#F4DCC7]/95 via-[#F4DCC7]/35 to-transparent" />
+      <div className="absolute left-[6%] top-[8%] z-10 max-w-[48%] text-[clamp(23px,2.7vw,42px)] font-black leading-[.94] tracking-[-.055em] text-[#2B1D16]">BETTER DECISIONS<br />BEFORE CHAT.</div>
+      <div className="absolute bottom-[9%] left-[6%] z-10 rounded-full bg-[#FF6F0F] px-3 py-2 text-[8px] font-bold uppercase tracking-[.08em] text-white lg:px-4 lg:text-[10px] lg:tracking-[.14em]">Size · Move · Disassemble</div>
+      <div className="absolute -bottom-[35%] right-[6%] z-10 w-[34%] rotate-[4deg] drop-shadow-[0_24px_36px_rgba(55,28,14,.28)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-2"><div className="phone-pro"><img src="/images/karrot-large-furniture/f-b1.webp" alt="" className="screen" /><span className="glare" /></div></div>
+    </div>
+  )
+
+  if (p.slug === 'nodi') return (
+    <div className="relative aspect-[4/3] overflow-hidden bg-[#DFE4FF] transition-transform duration-300 group-hover:scale-[1.015]">
+      <span aria-hidden className="absolute -right-4 -top-8 text-[clamp(88px,13vw,170px)] font-black leading-none tracking-[-.08em] text-[#3D5ADA]/[.08]">NODI</span>
+      <div className="absolute left-[6%] top-[8%] z-20 max-w-[52%] text-[clamp(23px,2.7vw,41px)] font-black leading-[.94] tracking-[-.055em] text-[#17224C]">AI UNDERSTANDS.<br />YOU DECIDE.</div>
+      <div className="absolute -bottom-[26%] left-[7%] h-[72%] w-[34%] -rotate-6 overflow-hidden rounded-[18px] border border-white/80 bg-white shadow-[0_24px_60px_rgba(53,73,164,.18)]"><img src="/images/nodi/hi-conds.webp" alt="" className="h-full w-full object-cover object-top" /></div>
+      <div className="absolute bottom-[-25%] left-[36%] z-10 h-[82%] w-[38%] overflow-hidden rounded-[20px] border border-white/90 bg-white shadow-[0_28px_70px_rgba(53,73,164,.24)] transition-transform duration-300 group-hover:-translate-y-2"><img src="/images/nodi/hi-recs.webp" alt="" className="h-full w-full object-cover object-top" /></div>
+      <div className="absolute -bottom-[22%] right-[-7%] h-[68%] w-[35%] rotate-6 overflow-hidden rounded-[18px] border border-white/80 bg-white shadow-[0_24px_60px_rgba(53,73,164,.18)]"><img src="/images/nodi/hi-review.webp" alt="" className="h-full w-full object-cover object-top" /></div>
+    </div>
+  )
+
+  if (p.slug === 'woorisai') return (
+    <div className="relative aspect-[4/3] overflow-hidden bg-[#EEEDE3] transition-transform duration-300 group-hover:scale-[1.015]">
+      <div className="absolute left-[5%] top-[7%] z-20 text-[11px] font-bold uppercase tracking-[.18em] text-[#566B5C]">A shared memory archive</div>
+      <div className="absolute left-[5%] top-[16%] z-20 max-w-[48%] text-[clamp(22px,2.6vw,40px)] font-black leading-[.94] tracking-[-.055em] text-[#263B2F]">SHARED MOMENTS,<br />REDISCOVERED.</div>
+      <div className="absolute bottom-[-35%] left-[5%] h-[74%] w-[34%] -rotate-3 overflow-hidden rounded-[4px] bg-white p-2 shadow-[0_24px_50px_rgba(40,56,47,.15)]"><img src="/images/woorisai/home.webp" alt="" className="h-full w-full object-cover object-top" /></div>
+      <div className="absolute bottom-[-17%] left-[35%] z-10 h-[70%] w-[43%] rotate-2 overflow-hidden rounded-[5px] border-[8px] border-white bg-white shadow-[0_26px_60px_rgba(40,56,47,.2)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-1"><img src="/images/woorisai/detail.webp" alt="" className="h-full w-full object-cover object-top" /></div>
+      <div className="absolute bottom-[5%] right-[-6%] h-[47%] w-[29%] rotate-6 overflow-hidden rounded-[4px] border-[7px] border-white bg-white shadow-[0_20px_42px_rgba(40,56,47,.15)]"><img src="/images/woorisai/feed.webp" alt="" className="h-full w-full object-cover object-[center_18%]" /></div>
+      <span aria-hidden className="absolute bottom-[7%] left-[8%] h-2 w-2 rounded-full bg-[#718777] shadow-[18px_0_0_#B8A58C,36px_0_0_#D4CCB8]" />
+    </div>
+  )
+
+  return (
+    <div className="relative aspect-[4/3] overflow-hidden bg-[#1B1020] transition-transform duration-300 group-hover:scale-[1.015]">
+      <img src="/images/trigr/home-map.webp" alt="" className="absolute inset-0 h-full w-full object-cover object-[center_20%] opacity-90 transition-transform duration-500 group-hover:scale-[1.025]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#1A0F1F]/90 via-[#1A0F1F]/35 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-[3px] bg-[#DE5DE2]" />
+      <div className="absolute left-[6%] top-[8%] z-10 text-[10px] font-bold uppercase tracking-[.16em] text-[#F1B4F2]">Launched in Thailand</div>
+      <div className="absolute left-[6%] top-[17%] z-10 max-w-[45%] text-[clamp(29px,3.4vw,52px)] font-black leading-[.88] tracking-[-.06em] text-white">SHIPPED<br />PRODUCT.</div>
+      <div className="absolute bottom-[8%] left-[6%] z-10 flex gap-2"><span className="rounded-full border border-white/35 bg-black/25 px-3 py-2 text-[10px] font-bold uppercase tracking-[.12em] text-white backdrop-blur">Product design</span><span className="rounded-full bg-[#DE5DE2] px-3 py-2 text-[10px] font-bold uppercase tracking-[.12em] text-black">3 redesigns</span></div>
+      <div className="absolute -bottom-[37%] right-[5%] h-[102%] w-[36%] rotate-3 overflow-hidden rounded-t-[22px] border-[7px] border-b-0 border-[#222126] bg-white shadow-[0_28px_70px_rgba(0,0,0,.4)]"><img src="/images/trigr/t-list.webp" alt="" className="h-full w-full object-cover object-top" /></div>
+    </div>
+  )
+}
+
 function ProjectCard({ p }: { p: Project }) {
-  const shots = p.mock.srcs.map((src, i) => ({ src, kind: 'pro' as const, x: 10 + i * 26, y: 20 - (i === 1 ? 8 : 0), w: i === 1 ? 29 : 24, r: (i - 1) * 7, z: i === 1 ? 2 : 1, lift: i === 1 ? 10 : 0 }))
   return (
     <article className="group h-full">
       <Link to={`/work/${p.slug}`} aria-label={`${p.name} 케이스 스터디 보기`} className="flex h-full flex-col rounded-[24px] focus-visible:outline-offset-4">
-        <div className="overflow-hidden rounded-[24px]" style={{ background: tint(p.accent, 14) }}><Compose items={shots} ghost={p.name.toUpperCase()} ghostColor={strongOf(p.accent)} className="aspect-[4/3] transition-transform duration-300 group-hover:scale-[1.015]" /></div>
+        <div className="overflow-hidden rounded-[24px]"><ThumbnailVisual p={p} /></div>
         <div className="mt-5 flex flex-1 items-start justify-between gap-5"><div><ProjectLabel p={p} /><h3 className="mt-3 text-[22px] font-bold tracking-[-0.025em] group-hover:text-blue md:text-[26px]">{p.name}</h3><p className="mt-2 max-w-[44ch] text-[16px] leading-[1.7] text-ink/70">{cardCopy[p.slug]}</p></div><span aria-hidden className="mt-7 text-[24px] transition-transform group-hover:translate-x-1">↗</span></div>
       </Link>
     </article>

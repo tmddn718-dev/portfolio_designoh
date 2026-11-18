@@ -25,7 +25,7 @@ const pains = [
   { pain: '참석자들의 조건을 내가 직접 분석해 시간을 정해야 한다', fix: '자연어 조건 입력 · 추천 시간과 이유', shot: 'recs' },
   { pain: '확정한 뒤 변경이 생기면 조율을 처음부터 다시 해야 한다', fix: '재조율 · 이전 회의 재사용', shot: 'reschedAsk' },
 ]
-const flow: [string, string][] = [['home', '자연어로 입력'], ['conds', '조건 확인'], ['sheetPick', '참석자 선택'], ['required', '일정 필수 설정'], ['progress', '조율 현황'], ['recs', '추천 시간'], ['review', '최종 검토'], ['done', '저장 완료'], ['meetings', '내 회의'], ['reschedAsk', '재조율 확인'], ['resched', '재조율 후보'], ['changes', '변경 내용 검토'], ['inbox', '받은 요청']]
+const flow: [string, string][] = [['conds', '조건 확인'], ['sheetEdit', '조건 수정'], ['sheetPick', '참석자 선택'], ['pickEmpty', '검색 결과 없음'], ['required', '일정 필수 설정'], ['progress', '조율 현황'], ['recLoading', '추천 계산 중'], ['recs', '추천 시간'], ['review', '최종 검토'], ['done', '저장 완료'], ['meetings', '내 회의'], ['detail', '회의 상세'], ['reschedAsk', '재조율 확인'], ['resched', '새 시간 조율'], ['changes', '변경 내용 검토'], ['inbox', '받은 요청'], ['respond', '가능 시간 응답'], ['changedReq', '변경된 요청'], ['aiFail', 'AI 해석 실패']]
 const swatches: [string, string][] = [['Primary', '#3654D4'], ['Navy', '#18243A'], ['Canvas', '#F5F7FB'], ['Text sub', '#5B6B81'], ['Border', '#E2E8F0']]
 
 const Shot = ({ n, cap, className = '' }: { n: string; cap: string; className?: string }) => (
@@ -176,7 +176,7 @@ export default function CaseNodi() {
             </div>
             <div className="mt-10 md:mt-0 md:col-span-7">
               <p className="eyebrow text-sub">실패와 예외 상태</p>
-              <div className="mt-5 grid grid-cols-3 gap-4 md:gap-6">{[['aiFail', 'AI 해석 실패'], ['recError', '추천 계산 오류'], ['recNone', '추천 후보 없음']].map(([n, l]) => <Shot key={n} n={n} cap={l} />)}</div>
+              <div className="mt-5 grid grid-cols-3 gap-4 md:gap-6">{[['aiFail', 'AI 해석 실패'], ['pickEmpty', '검색 결과 없음'], ['recLoading', '추천 계산 중']].map(([n, l]) => <Shot key={n} n={n} cap={l} />)}</div>
             </div>
           </Reveal>
           <Reveal className="mt-24">

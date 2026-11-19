@@ -128,7 +128,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <p className="absolute left-[6%] top-[17%] z-10 max-w-[45%] text-[clamp(23px,2.7vw,42px)] font-black leading-[1.1] tracking-[-.06em] text-white">FROM GAPS<br />TO FLOWS.</p>
       <div className="absolute bottom-[8%] left-[6%] z-30 flex max-w-[54%] flex-wrap gap-2">{['Product Design', 'UX/UI Design', 'Design System', 'Product Launch'].map((m, i) => <span key={m} className={`rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[.1em] text-white shadow-[0_8px_18px_rgba(0,0,0,.18)] ${i === 3 ? 'bg-[#DE5DE2]' : 'border border-white/45 bg-[#1B1020]/80 backdrop-blur'}`}>{m}</span>)}</div>
       <Phone src="/images/trigr/home-map.webp" className="z-10 w-[29%] rotate-[-10deg] opacity-85 drop-shadow-[0_28px_54px_rgba(0,0,0,.5)]" style={{ right: '24%', bottom: '-30%' }} />
-      <Phone src="/images/trigr/t-list.webp" className="z-20 w-[37%] rotate-[7deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.58)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[4deg]" style={{ right: '-3%', bottom: '-34%' }} />
+      <Phone src="/images/trigr/mission-discovery-02.png" className="z-20 w-[36%] rotate-[4deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.58)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[2deg]" style={{ right: '-1%', bottom: '-31%' }} />
     </div>
   )
 }

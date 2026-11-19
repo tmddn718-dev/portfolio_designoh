@@ -57,7 +57,7 @@ function StoryArt({ story }: { story: Story }) {
     <span className="absolute right-[5%] top-[9%] aspect-square w-[48%] rounded-full border border-[#EE7CF0]/35" />
     <p className="absolute left-[7%] top-[8%] z-10 max-w-[9ch] text-[clamp(34px,4.1vw,64px)] font-black leading-[1.1] tracking-[-.065em]">FROM GAPS TO FLOWS.</p>
     <Phone src="/images/trigr/home-map.webp" className="bottom-[-28%] right-[28%] w-[31%] rotate-[-10deg] opacity-85 drop-shadow-[0_28px_54px_rgba(0,0,0,.5)]" />
-    <Phone src="/images/trigr/t-list.webp" className="bottom-[-28%] right-[-1%] z-10 w-[40%] rotate-[7deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.55)]" />
+    <Phone src="/images/trigr/mission-discovery-02.png" className="bottom-[-26%] right-0 z-10 w-[39%] rotate-[4deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.55)]" />
   </>
 }
 

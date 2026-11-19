@@ -159,9 +159,8 @@ html.lenis, html.lenis body { height: auto; }
 .nav-link { position: relative; }
 .nav-link::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 9px; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .45s var(--ease-apple); }
 .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
-.story-layer { transition: clip-path 1s var(--ease-apple); will-change: clip-path; }
-.card-shine { background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.28), transparent 45%); opacity: 0; transition: opacity .3s; }
-.group:hover .card-shine { opacity: 1; }
+.story-layer { opacity: 0; transform: translateY(24px) scale(.985); pointer-events: none; transition: opacity .55s var(--ease-apple), transform .7s var(--ease-apple); }
+.story-layer.is-active { opacity: 1; transform: none; pointer-events: auto; }
 @media (prefers-reduced-motion: reduce) {
   .cursor { display: none; }
   .story-layer { transition: none; }

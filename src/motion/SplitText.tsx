@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, type ElementType } from 'react'
+import { Fragment, useLayoutEffect, useRef, type ElementType } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { reducedMotion } from './useMotion'
@@ -25,10 +25,10 @@ export default function SplitText({ text, as: Tag = 'h2', className = '', delay 
     <Tag ref={ref} aria-label={text.replace(/\n/g, ' ')} className={className}>
       {lines.map((line, li) => (
         <span key={li} aria-hidden className="block">
-          {line.split(' ').map((w, wi) => (
-            <span key={wi} className="sw">
-              <span className="sw-i">{w}</span>{wi < line.split(' ').length - 1 ? ' ' : ''}
-            </span>
+          {line.split(' ').map((w, wi, arr) => (
+            <Fragment key={wi}>
+              <span className="sw"><span className="sw-i">{w}</span></span>{wi < arr.length - 1 ? ' ' : ''}
+            </Fragment>
           ))}
         </span>
       ))}

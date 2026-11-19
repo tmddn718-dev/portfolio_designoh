@@ -19,35 +19,40 @@ const stories: Story[] = [
 
 const by = (slug: string) => projects.find(p => p.slug === slug)!
 const Phone = ({ src, className }: { src: string; className: string }) => <div className={`absolute ${className}`}><div className="phone-pro"><img src={src} alt="" className="screen" loading="lazy" /></div></div>
+const Browser = ({ src, className }: { src: string; className: string }) => <div className={`absolute overflow-hidden rounded-[16px] border border-white/70 bg-white p-[5px] shadow-[0_28px_60px_rgba(35,48,112,.24)] ${className}`}><div className="flex h-5 items-center gap-1.5 rounded-t-[10px] bg-[#F4F5FA] px-2"><i className="h-1.5 w-1.5 rounded-full bg-[#FF7B75]" /><i className="h-1.5 w-1.5 rounded-full bg-[#F6C85F]" /><i className="h-1.5 w-1.5 rounded-full bg-[#69C47B]" /><span className="ml-2 h-1.5 w-[32%] rounded-full bg-[#DDE0EA]" /></div><img src={src} alt="" className="block w-full rounded-b-[10px]" loading="lazy" /></div>
 
 function StoryArt({ story }: { story: Story }) {
   if (story.slug === 'oliveyoung-todaydream') return <>
     <p className="absolute left-[7%] top-[7%] max-w-[8ch] text-[clamp(31px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MORE OPTIONS.</p>
-    <Phone src="/images/oliveyoung-todaydream/n-optC.webp" className="bottom-[-30%] left-[8%] w-[28%] rotate-[-6deg] opacity-75" />
-    <Phone src="/images/oliveyoung-todaydream/n-altMethods.webp" className="bottom-[-25%] left-[36%] z-10 w-[38%] drop-shadow-[0_28px_42px_rgba(42,65,6,.25)]" />
-    <Phone src="/images/oliveyoung-todaydream/n-restock.webp" className="bottom-[-32%] right-[-2%] w-[27%] rotate-[7deg] opacity-80" />
+    <span className="absolute -right-[16%] -top-[18%] h-[70%] w-[70%] rounded-full border-[52px] border-white/20" />
+    <Phone src="/images/oliveyoung-todaydream/n-cart.webp" className="bottom-[-28%] left-[17%] w-[30%] rotate-[-8deg] opacity-90" />
+    <Phone src="/images/oliveyoung-todaydream/n-altMethods.webp" className="bottom-[-23%] right-[5%] z-10 w-[44%] rotate-[3deg] drop-shadow-[0_28px_42px_rgba(42,65,6,.25)]" />
   </>
   if (story.slug === 'karrot-large-furniture') return <>
     <img src="/proto/karrot/images/sofa.png" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
     <div className="absolute inset-0 bg-gradient-to-r from-[#F7E8D9]/95 via-[#F7E8D9]/60 to-transparent" />
     <p className="absolute left-[7%] top-[9%] z-10 max-w-[8ch] text-[clamp(31px,4.2vw,63px)] font-black leading-[1.1] tracking-[-.06em]">DECIDE BEFORE CHAT.</p>
-    <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-seedtext" className="bottom-[-29%] right-[8%] z-10 w-[38%] drop-shadow-[0_28px_42px_rgba(55,28,14,.28)]" />
+    <Phone src="/images/karrot-large-furniture/f-home.webp?v=20261119-seedtext" className="bottom-[-28%] right-[33%] w-[27%] rotate-[-8deg] opacity-90 drop-shadow-[0_24px_38px_rgba(55,28,14,.22)]" />
+    <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-seedtext" className="bottom-[-30%] right-[3%] z-10 w-[39%] rotate-[4deg] drop-shadow-[0_30px_48px_rgba(55,28,14,.3)]" />
   </>
   if (story.slug === 'nodi') return <>
     <p className="absolute left-[7%] top-[7%] z-20 max-w-[8ch] text-[clamp(31px,4.2vw,63px)] font-black leading-[1.1] tracking-[-.06em]">REASONS, NOT JUST TIMES.</p>
-    <img src="/images/nodi/web-reco.webp" alt="" className="absolute bottom-[7%] right-[6%] w-[67%] rounded-[18px] border border-white/50 shadow-[0_28px_55px_rgba(41,57,132,.22)]" loading="lazy" />
-    <img src="/images/nodi/full-reasonB.webp" alt="" className="absolute bottom-[-10%] left-[8%] z-10 w-[23%] rounded-[16px] shadow-[0_22px_40px_rgba(41,57,132,.24)]" loading="lazy" />
+    <span className="absolute -right-[12%] -top-[18%] h-[70%] w-[64%] rounded-full border-[48px] border-white/25" />
+    <Browser src="/images/nodi/web-reco.webp" className="bottom-[7%] right-[5%] w-[72%] -rotate-2" />
+    <Phone src="/images/nodi/full-review.webp" className="bottom-[-22%] left-[7%] z-10 w-[28%] rotate-[6deg] drop-shadow-[0_24px_42px_rgba(41,57,132,.28)]" />
   </>
   if (story.slug === 'woorisai') return <>
     <p className="absolute bottom-[8%] left-[7%] z-20 max-w-[8ch] text-[clamp(32px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MEMORIES, TOGETHER.</p>
-    <Phone src="/images/woorisai/feed.webp" className="right-[24%] top-[-24%] w-[31%] rotate-[-5deg] opacity-75" />
-    <Phone src="/images/woorisai/home.webp" className="right-[-1%] top-[-19%] z-10 w-[40%] rotate-[5deg] drop-shadow-[0_30px_46px_rgba(40,56,47,.26)]" />
+    <span className="absolute -right-[12%] -top-[24%] h-[78%] w-[64%] rounded-full bg-[#D7DDC9]" />
+    <Phone src="/images/woorisai/detail.webp" className="right-[28%] top-[-14%] w-[32%] rotate-[-7deg] opacity-90 drop-shadow-[0_24px_40px_rgba(40,56,47,.22)]" />
+    <Phone src="/images/woorisai/home.webp" className="right-[-3%] top-[-17%] z-10 w-[42%] rotate-[5deg] drop-shadow-[0_30px_46px_rgba(40,56,47,.26)]" />
   </>
   return <>
-    <img src="/images/trigr/home-map.webp" alt="" className="absolute inset-0 h-full w-full object-cover object-[center_18%] opacity-75" loading="lazy" />
-    <div className="absolute inset-0 bg-gradient-to-r from-[#190C1D] via-[#190C1D]/65 to-transparent" />
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_46%,#6F276F_0%,#28142E_44%,#170B1B_78%)]" />
+    <span className="absolute right-[5%] top-[13%] h-[58%] w-[48%] rounded-full border border-[#EE7CF0]/35" />
     <p className="absolute left-[7%] top-[8%] z-10 max-w-[9ch] text-[clamp(34px,4.1vw,64px)] font-black leading-[1.1] tracking-[-.065em]">FROM GAPS TO FLOWS.</p>
-    <img src="/images/trigr/t-list.webp" alt="" className="absolute bottom-[-20%] right-[4%] z-10 w-[37%] rotate-[-6deg] rounded-[24px] shadow-[0_34px_60px_rgba(0,0,0,.5)]" loading="lazy" />
+    <Phone src="/images/trigr/home-map.webp" className="bottom-[-28%] right-[28%] w-[31%] rotate-[-10deg] opacity-85 drop-shadow-[0_28px_54px_rgba(0,0,0,.5)]" />
+    <Phone src="/images/trigr/t-list.webp" className="bottom-[-28%] right-[-1%] z-10 w-[40%] rotate-[7deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.55)]" />
   </>
 }
 

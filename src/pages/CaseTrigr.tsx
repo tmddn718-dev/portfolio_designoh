@@ -238,7 +238,7 @@ export default function CaseTrigr() {
       <section id="c7" className="scroll-mt-20 md:mt-24" style={{ background: T(9) }}>
         <div className="wrap gutter py-20 md:py-32">
           <ChapterHead color={S} n="07" label="Interactive Prototype" title="실제 사용자 흐름을 경험할 수 있는 인터랙티브 프로토타입" />
-          {p.proto && <InteractionPreview p={p} wide={vw >= 768} onOpen={() => setOpen(true)} title="홈에서 시작해 핵심 기능을 직접 경험해보세요" note="Original Design · Interactive Prototype. 실제 운영 중인 서비스가 아니라, 당시 디자인을 포트폴리오용으로 재현한 프로토타입입니다." />}
+          {p.proto && <InteractionPreview p={p} wide={vw >= 768} onOpen={() => setOpen(true)} title="홈에서 시작해 핵심 기능을 직접 경험해보세요" note="미션 탐색·참여, 인증 등록(사진·위치·직접), 인증 피드, 마이페이지·포인트·정산, 미션 관리와 상금 지급까지 시안 화면으로 이어서 눌러볼 수 있어요. Original Design · Interactive Prototype이며 실제 운영 서비스가 아닌 재현물입니다." />}
 
           <div className="mt-24 rounded-[28px] bg-white border border-grid p-6 md:p-10">
             <div className="flex flex-wrap items-center gap-3"><Tag>Validation Planned</Tag></div>

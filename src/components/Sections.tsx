@@ -33,8 +33,10 @@ function FeaturedOlive() {
         <Link to={`/work/${p.slug}`} data-cursor="보기" aria-label="올리브영 오늘드림 케이스 스터디 보기" className="group relative min-h-[420px] overflow-hidden bg-[#C9F45A] md:col-span-7 md:min-h-[580px]">
           <span aria-hidden className="absolute -right-[18%] -top-[20%] h-[72%] w-[72%] rounded-full border-[52px] border-white/20" />
           <span aria-hidden className="absolute bottom-[17%] left-[9%] h-[24%] w-[24%] rounded-full border border-black/15" />
-          <div className="absolute left-6 top-7 z-20 max-w-[11ch] text-[clamp(27px,3.6vw,52px)] font-black leading-[1.1] tracking-[-0.07em] text-black md:left-9 md:top-10">OUT OF STOCK.<br />MORE OPTIONS.</div>
-          <span className="absolute left-6 top-[34%] z-30 rounded-full bg-[#151719] px-4 py-2 text-[10px] font-bold tracking-[-.02em] text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:left-9 md:top-[32%] md:text-[11px]">오늘드림 품절</span>
+          <div className="absolute left-6 top-7 z-30 flex w-max max-w-[74%] flex-col items-start md:left-9 md:top-10">
+            <div className="max-w-[11ch] text-[clamp(27px,3.6vw,52px)] font-black leading-[1.1] tracking-[-0.07em] text-black">OUT OF STOCK.<br />MORE OPTIONS.</div>
+            <span className="mt-4 whitespace-nowrap rounded-full bg-[#151719] px-4 py-2 text-[10px] font-bold tracking-[-.02em] text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:text-[11px]">오늘드림 품절</span>
+          </div>
           <span aria-hidden className="absolute bottom-6 left-7 z-20 text-[11px] font-bold uppercase tracking-[.18em] text-black/60 md:left-10">Purchase recovery / 2026</span>
           <div data-parallax-y="9" className="pointer-events-none absolute inset-0 z-10">
           <img src="/proto/oliveyoung/public/assets/product-03.png" alt="" className="absolute left-[7%] top-[38%] z-10 w-[15%] -rotate-12 drop-shadow-[0_16px_20px_rgba(54,77,12,.18)] transition-transform duration-300 group-hover:-translate-y-2" />

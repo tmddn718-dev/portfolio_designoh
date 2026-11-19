@@ -23,8 +23,10 @@ const Browser = ({ src, className }: { src: string; className: string }) => <div
 
 function StoryArt({ story }: { story: Story }) {
   if (story.slug === 'oliveyoung-todaydream') return <>
-    <p className="absolute left-[7%] top-[7%] max-w-[8ch] text-[clamp(31px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MORE OPTIONS.</p>
-    <span className="absolute left-[7%] top-[31%] z-30 rounded-full bg-[#151719] px-4 py-2 text-[10px] font-bold text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:text-[11px]">오늘드림 품절</span>
+    <div className="absolute left-[7%] top-[7%] z-30 flex w-max max-w-[72%] flex-col items-start">
+      <p className="max-w-[8ch] text-[clamp(31px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MORE OPTIONS.</p>
+      <span className="mt-4 whitespace-nowrap rounded-full bg-[#151719] px-4 py-2 text-[10px] font-bold text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:text-[11px]">오늘드림 품절</span>
+    </div>
     <span className="absolute -right-[16%] -top-[18%] h-[70%] w-[70%] rounded-full border-[52px] border-white/20" />
     <Phone src="/images/oliveyoung-todaydream/n-altMethods.webp" className="bottom-[-23%] right-[5%] z-10 w-[44%] rotate-[3deg] drop-shadow-[0_28px_42px_rgba(42,65,6,.25)]" />
   </>

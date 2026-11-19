@@ -34,11 +34,6 @@ function FeaturedOlive() {
           <span aria-hidden className="absolute -right-[18%] -top-[20%] h-[72%] w-[72%] rounded-full border-[52px] border-white/20" />
           <span aria-hidden className="absolute bottom-[17%] left-[9%] h-[24%] w-[24%] rounded-full border border-black/15" />
           <div className="absolute left-6 top-7 z-20 max-w-[11ch] text-[clamp(27px,3.6vw,52px)] font-black leading-[1.1] tracking-[-0.07em] text-black md:left-9 md:top-10">OUT OF STOCK.<br />MORE OPTIONS.</div>
-          <div aria-hidden className="absolute left-6 top-[34%] z-30 flex flex-wrap gap-2 md:left-9 md:top-[31%]">
-            <span className="rounded-full bg-[#151719] px-3 py-2 text-[10px] font-bold tracking-[-.02em] text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:px-4 md:text-[11px]">일반배송</span>
-            <span className="rounded-full bg-[#151719] px-3 py-2 text-[10px] font-bold tracking-[-.02em] text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:px-4 md:text-[11px]">오늘드림</span>
-            <span className="rounded-full bg-[#151719] px-3 py-2 text-[10px] font-bold tracking-[-.02em] text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:px-4 md:text-[11px]">픽업</span>
-          </div>
           <span aria-hidden className="absolute bottom-6 left-7 z-20 text-[11px] font-bold uppercase tracking-[.18em] text-black/60 md:left-10">Purchase recovery / 2026</span>
           <div data-parallax-y="9" className="pointer-events-none absolute inset-0 z-10">
           <img src="/proto/oliveyoung/public/assets/product-03.png" alt="" className="absolute left-[7%] top-[38%] z-10 w-[15%] -rotate-12 drop-shadow-[0_16px_20px_rgba(54,77,12,.18)] transition-transform duration-300 group-hover:-translate-y-2" />
@@ -46,9 +41,6 @@ function FeaturedOlive() {
           </div>
           <div data-parallax-y="-3" className="pointer-events-none absolute inset-0 z-10">
           <div className="absolute -bottom-[28%] right-[-4%] z-10 w-[57%] rotate-[2deg] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0"><div className="phone-pro"><img src="/images/oliveyoung-todaydream/n-altMethods.webp" alt="" className="screen" /><span className="glare" /></div></div>
-          </div>
-          <div data-parallax-y="6" className="pointer-events-none absolute inset-0 z-[5]">
-          <div className="absolute bottom-[-20%] right-[42%] w-[29%] rotate-[-8deg] opacity-90"><div className="phone-pro"><img src="/images/oliveyoung-todaydream/n-cart.webp" alt="" className="screen" /><span className="glare" /></div></div>
           </div>
         </Link>
       </div>

@@ -122,8 +122,8 @@ function ThumbnailVisual({ p }: { p: Project }) {
   return (
     <div className={`${tile} bg-[#1B1020]`}>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_46%,#6F276F_0%,#28142E_44%,#170B1B_78%)]" />
-      <span aria-hidden className="absolute right-[7%] top-[15%] h-[58%] w-[44%] rounded-full border border-[#EE7CF0]/35" />
-      <span aria-hidden className="absolute right-[13%] top-[22%] h-[44%] w-[32%] rounded-full border border-[#EE7CF0]/20" />
+      <span aria-hidden className="absolute right-[7%] top-[10%] aspect-square w-[44%] rounded-full border border-[#EE7CF0]/35" />
+      <span aria-hidden className="absolute right-[13%] top-[19%] aspect-square w-[32%] rounded-full border border-[#EE7CF0]/20" />
       <p className="absolute left-[6%] top-[8%] z-10 text-[10px] font-bold uppercase tracking-[.16em] text-[#F1B4F2]">Trigr · Launched in Thailand</p>
       <p className="absolute left-[6%] top-[17%] z-10 max-w-[45%] text-[clamp(23px,2.7vw,42px)] font-black leading-[1.1] tracking-[-.06em] text-white">FROM GAPS<br />TO FLOWS.</p>
       <div className="absolute bottom-[8%] left-[6%] z-30 flex max-w-[54%] flex-wrap gap-2">{['Product Design', 'UX/UI Design', 'Design System', 'Product Launch'].map((m, i) => <span key={m} className={`rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[.1em] text-white shadow-[0_8px_18px_rgba(0,0,0,.18)] ${i === 3 ? 'bg-[#DE5DE2]' : 'border border-white/45 bg-[#1B1020]/80 backdrop-blur'}`}>{m}</span>)}</div>

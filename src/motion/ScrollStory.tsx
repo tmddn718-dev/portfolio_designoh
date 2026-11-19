@@ -54,7 +54,7 @@ function StoryArt({ story }: { story: Story }) {
   </>
   return <>
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_46%,#6F276F_0%,#28142E_44%,#170B1B_78%)]" />
-    <span className="absolute right-[5%] top-[13%] h-[58%] w-[48%] rounded-full border border-[#EE7CF0]/35" />
+    <span className="absolute right-[5%] top-[9%] aspect-square w-[48%] rounded-full border border-[#EE7CF0]/35" />
     <p className="absolute left-[7%] top-[8%] z-10 max-w-[9ch] text-[clamp(34px,4.1vw,64px)] font-black leading-[1.1] tracking-[-.065em]">FROM GAPS TO FLOWS.</p>
     <Phone src="/images/trigr/home-map.webp" className="bottom-[-28%] right-[28%] w-[31%] rotate-[-10deg] opacity-85 drop-shadow-[0_28px_54px_rgba(0,0,0,.5)]" />
     <Phone src="/images/trigr/t-list.webp" className="bottom-[-28%] right-[-1%] z-10 w-[40%] rotate-[7deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.55)]" />

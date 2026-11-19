@@ -7,96 +7,97 @@ import { reducedMotion } from './useMotion'
 
 gsap.registerPlugin(ScrollTrigger)
 
-type Step = { slug: string; shots: [string, string, string]; bg: string; fg: string; ghost: string }
-const I = (d: string, ...n: string[]) => n.map(x => `/images/${d}/${x}.webp`) as [string, string, string]
-const steps: Step[] = [
-  { slug: 'oliveyoung-todaydream', shots: I('oliveyoung-todaydream', 'n-optC', 'n-altMethods', 'n-restock'), bg: '#C9F45A', fg: '#10210A', ghost: 'OPTIONS' },
-  { slug: 'karrot-large-furniture', shots: I('karrot-large-furniture', 'f-b3', 'L-b1', 'f-b1').map(src => `${src}?v=20261119-seedtext`) as [string, string, string], bg: '#F5DDC8', fg: '#2B1D16', ghost: 'DECIDE' },
-  { slug: 'nodi', shots: I('nodi', 'hero-conds', 'full-scB', 'full-reasonB'), bg: '#D3DBFF', fg: '#17224C', ghost: 'NODI' },
-  { slug: 'woorisai', shots: I('woorisai', 'home', 'detail', 'feed'), bg: '#E6E5D8', fg: '#263B2F', ghost: 'MEMORY' },
-  { slug: 'trigr', shots: I('trigr', 't-reward', 't-list', 't-proof-detail'), bg: '#26142B', fg: '#FFFFFF', ghost: 'SHIPPED' },
+type Story = { slug: string; category: string; headline: string; description: string; bg: string; fg: string }
+
+const stories: Story[] = [
+  { slug: 'oliveyoung-todaydream', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '품절 이후에도 구매를 이어갈 수 있도록', description: '구매 가능 옵션을 더 쉽게 탐색하고, 결제 과정의 판단 부담을 줄이는 경험을 설계했습니다.', bg: '#C9F45A', fg: '#10210A' },
+  { slug: 'karrot-large-furniture', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '채팅에서 물어보기 전에, 게시글에서 확인하도록', description: '대형 가구의 상세 정보와 거래 조건을 미리 확인해, 거래 약속 조율에 집중할 수 있도록 개선했습니다.', bg: '#F3D7BE', fg: '#2B1D16' },
+  { slug: 'nodi', category: 'PRODUCT CONCEPT / FUNCTIONAL PROTOTYPE', headline: 'AI는 이해하고, 사용자는 결정한다', description: '복잡한 일정 조건을 구조화하고 추천 이유를 설명해, 최종 선택은 사용자가 직접 내릴 수 있도록 설계했습니다. 추천 생성은 규칙 기반 데모입니다.', bg: '#D8DFFF', fg: '#17224C' },
+  { slug: 'woorisai', category: 'PRODUCT CONCEPT / PERSONAL PROJECT', headline: '함께한 순간을 다시 발견하도록', description: '흩어진 사진과 이야기를 하나의 추억으로 쌓고, 사람과 장소, 시간의 맥락으로 다시 찾는 경험을 설계했습니다.', bg: '#E9E8DC', fg: '#263B2F' },
+  { slug: 'trigr', category: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE', headline: '실제 제품을 만들고, 반복해서 개선한 경험', description: '초기 제품 구조와 디자인 시스템을 만들고 세 차례의 주요 개편을 거쳐 태국 출시까지 참여했습니다.', bg: '#241328', fg: '#FFFFFF' },
 ]
 
-// 스크롤하면 섹션이 고정되고, 프로젝트가 위로 닦이며(clip-path) 차례로 바뀌는 장면. 데스크톱·모션 허용일 때만 보인다.
+const by = (slug: string) => projects.find(p => p.slug === slug)!
+const Phone = ({ src, className }: { src: string; className: string }) => <div className={`absolute ${className}`}><div className="phone-pro"><img src={src} alt="" className="screen" loading="lazy" /></div></div>
+
+function StoryArt({ story }: { story: Story }) {
+  if (story.slug === 'oliveyoung-todaydream') return <>
+    <p className="absolute left-[7%] top-[7%] max-w-[8ch] text-[clamp(31px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MORE OPTIONS.</p>
+    <Phone src="/images/oliveyoung-todaydream/n-optC.webp" className="bottom-[-30%] left-[8%] w-[28%] rotate-[-6deg] opacity-75" />
+    <Phone src="/images/oliveyoung-todaydream/n-altMethods.webp" className="bottom-[-25%] left-[36%] z-10 w-[38%] drop-shadow-[0_28px_42px_rgba(42,65,6,.25)]" />
+    <Phone src="/images/oliveyoung-todaydream/n-restock.webp" className="bottom-[-32%] right-[-2%] w-[27%] rotate-[7deg] opacity-80" />
+  </>
+  if (story.slug === 'karrot-large-furniture') return <>
+    <img src="/proto/karrot/images/sofa.png" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+    <div className="absolute inset-0 bg-gradient-to-r from-[#F7E8D9]/95 via-[#F7E8D9]/60 to-transparent" />
+    <p className="absolute left-[7%] top-[9%] z-10 max-w-[8ch] text-[clamp(31px,4.2vw,63px)] font-black leading-[1.1] tracking-[-.06em]">DECIDE BEFORE CHAT.</p>
+    <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-seedtext" className="bottom-[-29%] right-[8%] z-10 w-[38%] drop-shadow-[0_28px_42px_rgba(55,28,14,.28)]" />
+  </>
+  if (story.slug === 'nodi') return <>
+    <p className="absolute left-[7%] top-[7%] z-20 max-w-[8ch] text-[clamp(31px,4.2vw,63px)] font-black leading-[1.1] tracking-[-.06em]">REASONS, NOT JUST TIMES.</p>
+    <img src="/images/nodi/web-reco.webp" alt="" className="absolute bottom-[7%] right-[6%] w-[67%] rounded-[18px] border border-white/50 shadow-[0_28px_55px_rgba(41,57,132,.22)]" loading="lazy" />
+    <img src="/images/nodi/full-reasonB.webp" alt="" className="absolute bottom-[-10%] left-[8%] z-10 w-[23%] rounded-[16px] shadow-[0_22px_40px_rgba(41,57,132,.24)]" loading="lazy" />
+  </>
+  if (story.slug === 'woorisai') return <>
+    <p className="absolute bottom-[8%] left-[7%] z-20 max-w-[8ch] text-[clamp(32px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MEMORIES, TOGETHER.</p>
+    <Phone src="/images/woorisai/feed.webp" className="right-[24%] top-[-24%] w-[31%] rotate-[-5deg] opacity-75" />
+    <Phone src="/images/woorisai/home.webp" className="right-[-1%] top-[-19%] z-10 w-[40%] rotate-[5deg] drop-shadow-[0_30px_46px_rgba(40,56,47,.26)]" />
+  </>
+  return <>
+    <img src="/images/trigr/home-map.webp" alt="" className="absolute inset-0 h-full w-full object-cover object-[center_18%] opacity-75" loading="lazy" />
+    <div className="absolute inset-0 bg-gradient-to-r from-[#190C1D] via-[#190C1D]/65 to-transparent" />
+    <p className="absolute left-[7%] top-[8%] z-10 max-w-[8ch] text-[clamp(38px,4.5vw,70px)] font-black leading-[1.1] tracking-[-.065em]">SHIPPED. LEARNED. IMPROVED.</p>
+    <img src="/images/trigr/t-list.webp" alt="" className="absolute bottom-[-20%] right-[4%] z-10 w-[37%] rotate-[-6deg] rounded-[24px] shadow-[0_34px_60px_rgba(0,0,0,.5)]" loading="lazy" />
+  </>
+}
+
+function MobileStories() {
+  return <section id="story" aria-label="프로젝트 한눈에 보기" className="scroll-mt-16 bg-[#FBFBFD] py-20 md:py-24 lg:hidden">
+    <div className="wrap gutter">
+      <p className="text-[13px] font-semibold uppercase tracking-[.14em] text-bluetext">Selected projects</p>
+      <h2 className="mt-3 text-[32px] font-bold tracking-[-.04em]">다섯 프로젝트, 다섯 가지 문제</h2>
+      <div className="mt-10 space-y-14">
+        {stories.map((story, index) => <article key={story.slug}><Link to={`/work/${story.slug}`} className="group block">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[22px]" style={{ background: story.bg, color: story.fg }}><StoryArt story={story} /></div>
+          <div className="mt-5 flex gap-4"><span className="text-[13px] font-semibold tabular-nums text-sub">0{index + 1}</span><div><p className="text-[11px] font-semibold uppercase tracking-[.08em] text-sub">{story.category}</p><h3 className="mt-2 text-[24px] font-bold tracking-[-.03em]">{story.headline}</h3><p className="mt-3 text-[15px] leading-[1.7] text-sub">{story.description}</p><span className="mt-4 inline-flex border-b border-ink pb-1 text-[14px] font-semibold">프로젝트 보기 ↗</span></div></div>
+        </Link></article>)}
+      </div>
+    </div>
+  </section>
+}
+
 export default function ScrollStory() {
   const sec = useRef<HTMLElement>(null)
-  const [on, setOn] = useState(false)
+  const [desktop, setDesktop] = useState(false)
   const [active, setActive] = useState(0)
 
   useEffect(() => {
-    const mq = matchMedia('(min-width: 900px)')
-    const f = () => setOn(mq.matches && !reducedMotion())
-    f(); mq.addEventListener('change', f)
-    return () => mq.removeEventListener('change', f)
+    const mq = matchMedia('(min-width: 1024px)')
+    const update = () => setDesktop(mq.matches && !reducedMotion())
+    update(); mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
   }, [])
 
   useEffect(() => {
-    if (!on) return
-    const N = steps.length
-    const st = ScrollTrigger.create({
-      trigger: sec.current, start: 'top top+=48', end: () => `+=${Math.round(window.innerHeight * 0.85) * (N - 1) + 160}`,
-      pin: true, anticipatePin: 1, invalidateOnRefresh: true,
-      onUpdate: self => {
-        const raw = Math.min(self.progress * (N - 1), N - 1)
-        const i = Math.min(N - 1, Math.round(raw))
-        setActive(prev => (prev === i ? prev : i))
-        sec.current?.style.setProperty('--sp', String(raw - Math.floor(raw)))
-        sec.current?.style.setProperty('--bar', String(self.progress))
-      },
-    })
+    if (!desktop) return
+    const st = ScrollTrigger.create({ trigger: sec.current, start: 'top top+=48', end: () => `+=${Math.round(window.innerHeight * .82) * (stories.length - 1) + 160}`, pin: true, anticipatePin: 1, invalidateOnRefresh: true, onUpdate: self => {
+      const next = Math.min(stories.length - 1, Math.round(self.progress * (stories.length - 1)))
+      setActive(prev => prev === next ? prev : next)
+    } })
     return () => st.kill(true)
-  }, [on])
+  }, [desktop])
 
-  if (!on) return null
-  const by = (s: string) => projects.find(p => p.slug === s)!
-  // 핀 고정 때 ScrollTrigger가 section을 감싸므로, React가 지울 수 있게 바깥에 고정된 div를 둔다
-  return (
-    <div>
-    <section ref={sec} id="story" aria-label="프로젝트 한눈에 보기" className="relative h-[calc(100svh-48px)] overflow-hidden bg-[#FBFBFD]">
-      <div className="wrap gutter grid h-full grid-cols-12 items-center gap-10">
-        <div className="col-span-5">
-          <p className="eyebrow text-bluetext">Projects at a glance</p>
-          <p aria-hidden className="mt-3 text-[13px] font-semibold tabular-nums text-sub">0{active + 1} / 0{steps.length}</p>
-          <ol className="mt-5 space-y-1">
-            {steps.map((s, i) => {
-              const p = by(s.slug)
-              return (
-                <li key={s.slug}>
-                  <Link to={`/work/${p.slug}`} data-cursor="보기" className={`block text-[clamp(34px,4.3vw,68px)] font-black leading-[1.02] tracking-[-.05em] transition-[color,transform,opacity] duration-500 ease-out ${i === active ? 'translate-x-3 text-ink' : 'text-ink/20 hover:text-ink/55'}`}>
-                    {p.name.replace(' 중고거래', '').replace(' 오늘드림', '')}
-                  </Link>
-                </li>
-              )
-            })}
-          </ol>
-          <div className="relative mt-8 h-[92px] max-w-[40ch]">
-            {steps.map((s, i) => {
-              const p = by(s.slug)
-              return (
-                <p key={s.slug} className={`absolute inset-0 text-[17px] leading-[1.6] text-ink/75 transition-all duration-700 ease-out ${i === active ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'}`}>
-                  <span className="mb-1 block text-[13px] font-semibold text-sub">{p.kind} · {p.period}</span>{p.summary.short}
-                </p>
-              )
-            })}
-          </div>
-          <div className="mt-6 h-[2px] w-40 overflow-hidden bg-black/10" aria-hidden><div className="h-full origin-left bg-ink" style={{ transform: 'scaleX(var(--bar, 0))' }} /></div>
-        </div>
-
-        <div className="relative col-span-7 h-[min(74svh,720px)] overflow-hidden rounded-[32px]">
-          {steps.map((s, i) => (
-            <div key={s.slug} aria-hidden className="story-layer absolute inset-0" style={{ zIndex: i, background: s.bg, color: s.fg, clipPath: i <= active ? 'inset(0% 0% 0% 0% round 32px)' : 'inset(100% 0% 0% 0% round 32px)' }}>
-              <span className="absolute inset-x-0 bottom-[-6%] text-center text-[clamp(120px,17vw,260px)] font-black leading-none tracking-[-.07em] opacity-[.1]" style={{ transform: 'translateY(calc((0.5 - var(--sp)) * 40px))' }}>{s.ghost}</span>
-              {[{ x: '8%', w: 25, y: 16, r: -7, d: 70 }, { x: '37%', w: 30, y: 6, r: 0, d: 36 }, { x: '69%', w: 25, y: 22, r: 7, d: 90 }].map((c, k) => (
-                <div key={k} className="absolute" style={{ left: c.x, width: `${c.w}%`, top: `${c.y}%`, transform: `translateY(calc((0.5 - var(--sp)) * ${c.d}px)) rotate(${c.r}deg)` }}>
-                  <div className="phone-pro" style={{ filter: 'drop-shadow(0 26px 40px rgba(0,0,0,.25))' }}><img src={s.shots[k === 0 ? 0 : k === 1 ? 1 : 2]} alt="" loading="lazy" className="screen" /></div>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+  if (!desktop) return <MobileStories />
+  return <div><section ref={sec} id="story" aria-label="프로젝트 한눈에 보기" className="relative h-[calc(100svh-48px)] overflow-hidden bg-[#FBFBFD]">
+    <div className="wrap gutter grid h-full grid-cols-12 items-center gap-10">
+      <div className="col-span-5">
+        <p className="text-[13px] font-semibold tabular-nums text-bluetext">0{active + 1} / 0{stories.length}</p>
+        <ol className="mt-5 space-y-1">{stories.map((story, index) => <li key={story.slug}><Link to={`/work/${story.slug}`} aria-current={index === active ? 'true' : undefined} className={`block text-[clamp(34px,4.1vw,64px)] font-black leading-[1.02] tracking-[-.05em] transition-[color,transform,opacity] duration-500 ${index === active ? 'translate-x-3 text-ink' : 'text-ink/18 hover:text-ink/50'}`}>{by(story.slug).name.replace(' 중고거래', '').replace(' 오늘드림', '')}</Link></li>)}</ol>
+        <div className="relative mt-8 min-h-[190px] max-w-[44ch]">{stories.map((story, index) => <div key={story.slug} className={`absolute inset-0 transition-all duration-500 ${index === active ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'}`}>
+          <p className="text-[11px] font-semibold uppercase tracking-[.08em] text-sub">{story.category}</p><h2 className="mt-3 text-[24px] font-bold leading-[1.35] tracking-[-.03em]">{story.headline}</h2><p className="mt-3 text-[15px] leading-[1.7] text-sub">{story.description}</p><Link to={`/work/${story.slug}`} className="mt-4 inline-flex border-b border-ink pb-1 text-[14px] font-semibold">프로젝트 보기 ↗</Link>
+        </div>)}</div>
       </div>
-      <p aria-hidden className="absolute bottom-5 left-1/2 -translate-x-1/2 text-[12px] font-semibold tracking-[.2em] text-sub">SCROLL ↓</p>
-    </section>
+      <div className="relative col-span-7 h-[min(74svh,720px)] overflow-hidden rounded-[28px]">{stories.map((story, index) => <div key={story.slug} aria-hidden={index !== active} className={`story-layer absolute inset-0 overflow-hidden rounded-[28px] ${index === active ? 'is-active' : ''}`} style={{ zIndex: index, background: story.bg, color: story.fg }}><StoryArt story={story} /></div>)}</div>
     </div>
-  )
+  </section></div>
 }

@@ -2,7 +2,6 @@ import { useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { profile } from '../data/projects'
 
 // 포트폴리오의 핵심 메시지는 한 장면에만 집중시킨다.
 gsap.registerPlugin(ScrollTrigger)
@@ -35,6 +34,7 @@ export default function Hero() {
     <section ref={root} id="hero" data-dark className="relative -mt-12 flex min-h-[100dvh] overflow-hidden bg-[#10110F] pt-12 text-white">
       <div aria-hidden data-grid className="grid-bg grid-bg-dark absolute inset-0" />
       <div data-parallax className="wrap gutter relative flex w-full flex-col justify-center py-14 md:py-20">
+        <p data-copy className="mb-8 text-[12px] font-semibold uppercase tracking-[.16em] text-white/60 md:mb-10">Product Design Portfolio / 2026</p>
         <h1 aria-label="Complexity → Clarity" className="text-[clamp(52px,15vw,64px)] font-extrabold leading-[0.98] tracking-[-0.05em] md:text-[clamp(88px,8.5vw,112px)]">
           <span data-cx aria-hidden className="outline-text block">Complexity</span>
           <span aria-hidden className="flex items-center gap-[0.1em]">
@@ -45,14 +45,13 @@ export default function Hero() {
             </span>
           </span>
         </h1>
-        <div className="mt-12 flex flex-col gap-8 md:mt-20 md:flex-row md:items-end md:justify-between">
-          <p data-copy className="max-w-[26ch] text-[18px] font-normal leading-[1.6] md:text-[20px]">
-            복잡한 정보를 사용자가 <span className="font-semibold text-[#2997ff]">판단할 수 있는</span> 경험으로.
-          </p>
-          <div data-copy className="max-w-[36ch] md:text-right">
-            <p className="text-[14px] font-semibold tracking-wide text-white/85">{profile.name} · Product Designer / UX·UI Designer</p>
-            <p className="mt-2 text-[15px] leading-[1.65] text-white/65">문제를 구조로 정리하고, 판단에 필요한 정보의 우선순위를 설계합니다.</p>
-            <Link to="/#work" data-magnetic="0.35" data-cursor="이동" className="pill mt-5 !min-h-12 !px-6 text-[15px]">프로젝트 보기 ↓</Link>
+        <div className="mt-12 grid gap-7 md:mt-20 md:grid-cols-12 md:items-end">
+          <div data-copy className="md:col-span-7">
+            <p className="max-w-[27ch] text-[22px] font-semibold leading-[1.45] tracking-[-.025em] md:text-[30px]">복잡한 사용자 경험을 명확한 선택으로 바꾸는 프로덕트 디자이너</p>
+            <p className="mt-4 max-w-[54ch] text-[15px] leading-[1.75] text-white/62 md:text-[17px]">문제를 발견하고, 프로토타입으로 검증하며, 사용자가 더 쉽게 결정할 수 있는 경험을 설계합니다.</p>
+          </div>
+          <div data-copy className="md:col-span-5 md:flex md:justify-end">
+            <Link to="/#story" className="inline-flex min-h-12 items-center gap-3 border-b border-white/45 text-[15px] font-semibold text-white hover:border-[#2997ff] hover:text-[#2997ff]">Explore Selected Work <span aria-hidden>↗</span></Link>
           </div>
         </div>
       </div>

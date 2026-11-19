@@ -11,7 +11,7 @@ const ID: Record<string, string> = {
 const STICKY = new Set(['aw', 'b1', 'b2', 'c1', 'c3', 'e1', 'e2', 'e3', 's2', 's3', 's4', 's5', 's9'])
 export type KarrotFull = { big: string } | { parts: { top: string; body: string; cta: string } }
 export function karrotFull(src: string): KarrotFull | undefined {
-  const nodi = /^\/images\/nodi\/(?:hi|hero)-([A-Za-z]+)\.webp$/.exec(src) // NODI: 화면 전체를 스크롤해서 볼 수 있는 원본
+  const nodi = /^\/images\/nodi\/(?:hi|hero|full)-([A-Za-z]+)\.webp$/.exec(src) // NODI: 화면 전체를 스크롤해서 볼 수 있는 원본
   if (nodi) return { big: `/images/nodi/full-${nodi[1]}.webp` }
   if (!src.startsWith(BASE)) return undefined
   const id = ID[src.slice(BASE.length).replace(/\.webp$/, '')]

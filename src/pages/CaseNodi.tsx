@@ -21,13 +21,8 @@ const body = (id: string) => p.sections.find(s => s.id === id && s.body !== TODO
 const paras = (id: string) => body(id).split('\n\n').filter(Boolean)
 const img = (n: string) => `/images/nodi/hi-${n}.webp`
 const full = (n: string) => `/images/nodi/full-${n}.webp` // 스크롤되는 전체 화면(원본 비율)
-const list = [['c1', '개요'], ['c2', '문제'], ['c3', '솔루션'], ['c4', '실제 UI'], ['c5', '결과']]
+const list = [['c1', '개요'], ['bg', '배경'], ['sol', '솔루션'], ['impl', '구현 범위'], ['ref', '회고'], ['more', '보조 화면']]
 
-const pains = [
-  { pain: '시간을 물었는데 응답이 없어, 같은 사람에게 계속 리마인드해야 한다', fix: '응답 현황 · 리마인드', shot: 'progress' },
-  { pain: '참석자들의 조건을 내가 직접 분석해 시간을 정해야 한다', fix: '자연어 조건 입력 · 추천 시간과 이유', shot: 'recs' },
-  { pain: '확정한 뒤 변경이 생기면 조율을 처음부터 다시 해야 한다', fix: '재조율 · 이전 회의 재사용', shot: 'reschedAsk' },
-]
 const flow: [string, string][] = [['home', '자연어로 입력'], ['conds', '조건 확인'], ['sheetEdit', '조건 수정'], ['sheetPick', '참석자 선택'], ['required', '일정 필수 설정'], ['progress', '조율 현황'], ['recs', '추천 시간'], ['review', '최종 검토'], ['done', '저장 완료'], ['meetings', '내 회의'], ['detail', '회의 상세'], ['reschedAsk', '재조율 확인'], ['resched', '새 시간 조율'], ['changes', '변경 내용 검토'], ['inbox', '받은 요청'], ['respond', '가능 시간 응답'], ['changedReq', '변경된 요청'], ['reuse', '이전 회의 재사용'], ['reuseConds', '재사용 후 조건 확인']]
 const swatches: [string, string][] = [['Primary', '#3654D4'], ['Navy', '#18243A'], ['Canvas', '#F5F7FB'], ['Text sub', '#5B6B81'], ['Border', '#E2E8F0']]
 
@@ -40,6 +35,34 @@ const Shot = ({ n, cap, className = '' }: { n: string; cap: string; className?: 
 const Callout = ({ n, t, d }: { n: string; t: string; d: string }) => (
   <li className="flex gap-3"><span className="shrink-0 grid place-items-center w-7 h-7 rounded-full text-[13px] font-bold text-white" style={{ background: p.accent }}>{n}</span><div><p className="text-[16px] font-bold leading-snug">{t}</p><p className="mt-0.5 text-[14px] leading-snug text-sub">{d}</p></div></li>
 )
+
+
+const Head = ({ label, children, className = '', sm = false }: { label: string; children: React.ReactNode; className?: string; sm?: boolean }) => (
+  <Reveal className={className}>
+    <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>{label}</p>
+    <h2 className={`mt-4 apple-h ${sm ? 'text-[28px] md:text-[40px] max-w-[18ch]' : 'text-[30px] md:text-[52px] max-w-[22ch]'}`}>{children}</h2>
+  </Reveal>
+)
+const Ph = ({ n, cap, className = '' }: { n: string; cap: string; className?: string }) => (
+  <figure className={className}>
+    <Zoomable src={full(n)} alt={`NODI ${cap} 화면`} caption={cap} className="phone-pro w-full" imgClass="screen" />
+    <figcaption className="mt-3 text-[14px] text-sub">{cap}</figcaption>
+  </figure>
+)
+const Key = ({ children }: { children: React.ReactNode }) => (
+  <p className="mt-10 rounded-[20px] px-6 py-5 text-[18px] md:text-[22px] font-bold leading-snug tracking-tight max-w-[40ch]" style={{ background: T(14), color: '#18243A' }}>{children}</p>
+)
+// 배경 설명용 가상 일정표(예시). 9시~17시 시작 기준
+const HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17]
+const sample: { who: string; label: string; off: number[]; dislike: number[] }[] = [
+  { who: 'A', label: '외근', off: [13, 14, 15, 16], dislike: [] },
+  { who: 'B', label: '기존 미팅', off: [10, 15], dislike: [] },
+  { who: 'C', label: '점심 직후 비선호', off: [], dislike: [12, 13] },
+]
+const cellOf = (hr: number) => {
+  const offs = sample.filter(s => s.off.includes(hr)).length, dis = sample.filter(s => s.dislike.includes(hr)).length
+  return offs ? 'off' : dis ? 'dis' : 'ok'
+}
 
 export default function CaseNodi() {
   const root = useRef<HTMLElement>(null)
@@ -69,11 +92,12 @@ export default function CaseNodi() {
           <div className="mt-6 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-6">
               <AppIcon src="/images/nodi/icon.svg" name="NODI" className="mb-5" />
-              <p className="eyebrow" style={{ color: S }}>Personal Case Study · {p.category}</p>
+              <p className="eyebrow" style={{ color: S }}>NODI / AI SCHEDULING EXPERIENCE</p>
               <h1 className="mt-4 text-[88px] md:text-[168px] font-extrabold tracking-[-0.055em] leading-[0.88]">NODI</h1>
-              <p className="mt-8 text-[28px] md:text-[40px] font-extrabold leading-[1.2] tracking-tight">AI는 이해하고<br />사용자는 결정한다.</p>
-              <p className="mt-5 text-[17px] leading-[1.7] text-sub max-w-[24ch] md:max-w-[22ch]">복잡한 회의 조율 과정을 사용자가 이해하고 직접 결정할 수 있게 설계했어요.</p>
-              <dl className="mt-8 grid grid-cols-3 gap-5 max-w-lg text-[16px] rule pt-4" style={{ borderColor: T(30) }}>
+              <p className="mt-8 text-[28px] md:text-[40px] font-extrabold leading-[1.2] tracking-tight">AI는 이해하고,<br />사용자는 결정한다.</p>
+              <p className="mt-5 text-[17px] leading-[1.7] text-sub max-w-[30ch] md:max-w-[34ch]">여러 사람의 일정과 선호도를 비교하는 부담을 줄이기 위해, 추천 시간과 그 이유를 함께 제공하는 회의 일정 조율 경험을 설계했습니다.</p>
+              <p className="mt-6 text-[13px] text-sub">Project Type · AI Scheduling Service Concept · Functional Prototype</p>
+              <dl className="mt-6 grid grid-cols-3 gap-5 max-w-lg text-[16px] rule pt-4" style={{ borderColor: T(30) }}>
                 <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div>
                 <div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div>
                 <div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div>
@@ -98,117 +122,201 @@ export default function CaseNodi() {
           </ul>
         </div>
       </section>
+
       <CaseSummary p={p} />
 
-      <section aria-label="프로젝트 이해하기" className="wrap gutter pt-20 md:pt-28">
-        <p className="eyebrow" style={{ color: S }}>새로 만든 서비스 · 0→1</p>
-        <h2 className="mt-3 apple-h text-[30px] md:text-[48px] max-w-[22ch]">비교할 기존 앱이 없어서 회의 조율 경험을 처음부터 설계했어요</h2>
-
-        <Reveal stagger className="mt-10 grid md:grid-cols-3 gap-3 md:gap-5">
-          {[['01', 'NODI는 어떤 서비스인가요?', '회의 조건을 말로 입력하면 AI가 조건을 정리하고 참석자의 일정을 확인해 알맞은 시간을 추천해 주는 서비스예요. 확정은 사용자가 직접 해요.'],
-            ['02', '왜 만들었나요?', '직장인 6명을 인터뷰하니 회의를 잡을 때 세 가지가 스트레스였어요. 답 없는 사람에게 계속 물어야 하고 조건을 직접 분석해야 하고 확정한 뒤 바뀌면 처음부터 다시 맞춰야 해요.'],
-            ['03', '어떻게 설계했나요?', 'AI가 하는 일과 사용자가 정하는 일을 나눴어요. AI는 이해하고 설명하고 사용자는 참석자·날짜·후보를 직접 고르고 확정해요.']].map(([n, t, d]) => (
-            <div key={n} className="rounded-[24px] p-6 md:p-7" style={{ background: tintOf(p.accent, 14) }}><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.75] text-ink/80">{d}</p></div>
-          ))}
-        </Reveal>
-
-        <div className="mt-6 md:mt-8 grid md:grid-cols-2 gap-4 md:gap-6">
-          <div className="rounded-[24px] border border-grid p-6 md:p-8">
-            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-[#e8e8e8]">지금 사람들이 하는 방식</span>
-            <ol aria-label="지금의 회의 조율 방식" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
-              <li className="px-4 py-2 rounded-full bg-[#f5f5f7]">메신저로 일정 묻기</li><li aria-hidden className="text-sub">→</li>
-              <li className="px-4 py-2 rounded-full bg-[#fdeaea] text-[#a12a2a] font-semibold">답 없는 사람 재촉</li><li aria-hidden className="text-sub">→</li>
-              <li className="px-4 py-2 rounded-full bg-[#f5f5f7]">조건 직접 분석</li><li aria-hidden className="text-sub">→</li>
-              <li className="px-4 py-2 rounded-full bg-[#fdeaea] text-[#a12a2a] font-semibold">변경되면 처음부터</li>
-            </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-sub">인터뷰에서 나온 스트레스를 이어 그린 흐름이에요. 특정 앱을 가리키는 것이 아니에요.</p>
+      {/* 02 Background */}
+      <section id="bg" className="wrap gutter py-20 md:py-32 scroll-mt-20">
+        <Head label="BACKGROUND">회의 시간을 정하는 일은,<br />여러 사람의 조건을 비교하는 일이었습니다.</Head>
+        <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
+          <div className="md:col-span-5 text-[17px] leading-[1.8] space-y-4">
+            <p>여러 사람이 참여하는 회의를 잡으려면 각자의 빈 시간만 확인해서는 충분하지 않았습니다.</p>
+            <p>누군가는 외근이 있고, 누군가는 이미 다른 미팅이 잡혀 있습니다. 또 누군가는 점심 직후 회의를 선호하지 않는 등 참여자마다 고려해야 할 조건이 달랐습니다.</p>
+            <p>회의를 조율하는 사람은 이 조건들을 직접 확인하고 비교한 뒤 적절한 시간을 판단해야 했습니다.</p>
           </div>
-          <div className="rounded-[24px] p-6 md:p-8" style={{ background: tintOf(p.accent, 16), border: `1px solid ${tintOf(p.accent, 36)}` }}>
-            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold text-white" style={{ background: p.accent }}>NODI</span>
-            <ol aria-label="NODI의 흐름" className="mt-5 flex flex-wrap items-center gap-2 text-[15px]">
-              <li className="px-4 py-2 rounded-full bg-white">말로 조건 입력</li><li aria-hidden className="text-sub">→</li>
-              <li className="px-4 py-2 rounded-full bg-white">응답 현황·리마인드</li><li aria-hidden className="text-sub">→</li>
-              <li className="px-4 py-2 rounded-full text-white font-semibold" style={{ background: p.accent }}>추천 시간과 이유</li><li aria-hidden className="text-sub">→</li>
-              <li className="px-4 py-2 rounded-full bg-white">사용자가 확정</li><li aria-hidden className="text-sub">→</li>
-              <li className="px-4 py-2 rounded-full bg-white">바뀌면 재조율</li>
-            </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">세 가지 스트레스를 각각 기능으로 풀었어요. 이 설계안은 아직 사용성 테스트를 하지 않았어요.</p>
-          </div>
+          <Reveal className="mt-10 md:mt-0 md:col-span-7">
+            <div className="rounded-[24px] border border-grid bg-white p-5 md:p-7" role="group" aria-label="3명의 참여자가 서로 다른 조건을 가진 가상의 회의 상황">
+              <div><div>
+                <div className="grid gap-1" style={{ gridTemplateColumns: 'minmax(78px, 30%) repeat(9, minmax(0, 1fr))' }}>
+                  <span className="text-[13px] text-sub self-end">시작 시각</span>{HOURS.map(h => <span key={h} className="text-center text-[13px] text-sub self-end">{h}</span>)}
+                  {sample.map(s => (
+                    <div key={s.who} className="contents">
+                      <p className="pr-2 text-[13px] md:text-[14px] leading-tight self-center"><b style={{ color: S }}>{s.who}</b> <span className="text-sub">{s.label}</span></p>
+                      {HOURS.map(h => <span key={h} aria-label={`${s.who} ${h}시 ${s.off.includes(h) ? '참석 불가' : s.dislike.includes(h) ? '선호하지 않음' : '가능'}`} className="h-9 rounded-[6px]" style={s.off.includes(h) ? { background: '#E4B7BC' } : s.dislike.includes(h) ? { background: '#F6DFA8' } : { background: T(14) }} />)}
+                    </div>
+                  ))}
+                  <p className="pr-2 pt-2 text-[14px] font-bold self-center">모두 가능</p>
+                  {HOURS.map(h => { const c = cellOf(h); return <span key={h} className="mt-2 h-9 rounded-[6px] grid place-items-center text-[13px] font-bold" style={c === 'ok' ? { background: S, color: '#fff' } : c === 'dis' ? { background: '#F6DFA8', color: '#6B4A00' } : { background: '#EEF1F6', color: '#8A94A6' }}><span aria-label={c === 'ok' ? '모두 가능' : c === 'dis' ? '선호하지 않는 시간' : '참석 불가'}>{c === 'ok' ? '✓' : c === 'dis' ? '△' : '×'}</span></span> })}
+                </div>
+              </div></div>
+              <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[13px]" aria-label="범례">
+                <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-[3px]" style={{ background: '#E4B7BC' }} />참석 불가능한 시간</li>
+                <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-[3px]" style={{ background: '#F6DFA8' }} />선호하지 않는 시간</li>
+                <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-[3px]" style={{ background: T(14) }} />가능한 시간</li>
+              </ul>
+            </div>
+            <p className="mt-3 text-[13px] text-sub">※ 문제 설명을 위한 가상의 예시입니다. 실제 사용자 조사 결과가 아닙니다.</p>
+          </Reveal>
         </div>
+        <Key>문제는 빈 시간이 없다는 것이 아니라, 여러 조건을 종합해 결정하는 과정이 복잡하다는 점이었습니다.</Key>
       </section>
 
-      {/* 01 Challenge */}
-      <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="01" label="Problem" title="회의를 잡는 사람의 세 가지 스트레스" />
-        <p className="mt-5 text-[16px] inline-block px-4 py-2 rounded-full font-semibold" style={{ background: T(14), color: S }}>직장인 6명 · 카카오톡 인터뷰</p>
-        <ol className="mt-10 grid md:grid-cols-3 gap-5">
-          {pains.map((x, i) => (
-            <li key={i}><Reveal delay={i * 60}>
-              <div className="rounded-[20px] border border-grid p-6 h-full flex flex-col">
-                <span className="text-[48px] font-extrabold leading-none num-brand">0{i + 1}</span>
-                <p className="mt-4 text-[18px] font-semibold leading-snug">{x.pain}</p>
-                <div className="mt-6 pt-4 border-t border-grid"><p className="text-[13px] text-sub">NODI의 대응</p><p className="mt-1 text-[16px] font-semibold" style={{ color: S }}>{x.fix}</p></div>
-                <div className="mt-5 mx-auto w-[44%] mt-auto pt-5"><Zoomable src={img(x.shot)} alt={`${x.fix} 화면`} caption={x.fix} className="w-full" imgClass="phone-bare" /></div>
-              </div>
-            </Reveal></li>
-          ))}
-        </ol>
-        <div className="mt-16 rounded-[28px] p-7 md:p-10" style={{ background: T(9) }}>
-          <p className="eyebrow" style={{ color: S }}>Core Insight</p>
-          <p className="mt-4 text-[24px] md:text-[32px] font-extrabold leading-[1.3] tracking-tight max-w-[28ch]">정보를 많이 주는 것보다, 지금 결정에 필요한 정보를 알맞은 순서로 주는 것이 중요하다.</p>
-          <p className="mt-4 text-[15px] leading-relaxed text-sub max-w-2xl">인터뷰에서 나온 세 가지 스트레스(반복 확인, 직접 분석, 처음부터 다시 조율)와 설계 점검에서 발견한 정보 과밀 문제를 함께 보고 정리한 설계 가설이에요. 아직 사용자 테스트로 검증하지 않았어요.</p>
-        </div>
-        <p className="mt-14 eyebrow text-sub">Design Strategy · 4 principles → 실제 UI 결정</p>
-        <ul className="mt-5 grid md:grid-cols-2 gap-4">{[['Text-first', '배지·상태 칩·CTA에는 아이콘 없이 텍스트만 쓴다. 아이콘은 하단 내비게이션(아이콘+문구)에만 둔다.'], ['Clear Hierarchy', '화면 제목, 현재 단계(1/5…5/5)와 다음 단계를 항상 같은 자리에 둔다. 글자 크기는 13·14·16·18·24·28 스케일.'], ['Progressive Disclosure', '추천 이유는 바텀시트로, 알고리즘 설명은 접어 둔다. 항목별 수정은 시트에서 한다.'], ['Action-focused', '화면마다 파란 주요 버튼은 하나, 보조 행동은 텍스트 링크로 둔다(예: 회의 확정하기 / 다른 시간 보기).']].map(([a, b], i) => <li key={a} className="rounded-[20px] bg-white border border-grid p-5"><p className="text-[13px] font-semibold" style={{ color: S }}>0{i + 1}</p><p className="mt-1 text-[18px] font-bold">{a}</p><p className="mt-2 text-[15px] leading-snug text-sub">{b}</p></li>)}</ul>
-        <p className="mt-6 text-[13px] text-sub">※ 인터뷰 원자료와 구체적 응답은 확인 필요. 웹 조사와 Codex 정리는 AI가 정리한 보조 자료입니다.</p>
-      </section>
-
-      {/* 02 Design Decisions */}
-      <section id="c3" className="scroll-mt-20 md:mt-24" style={{ background: '#F7F8FB' }}>
+      {/* 03 Problem */}
+      <section id="problem" className="scroll-mt-20" style={{ background: '#F7F8FB' }}>
         <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="02" label="Solutions" title="AI가 하는 일과 사용자가 정하는 일을 나눴다" />
-
-          {/* 01 role board */}
-          <div className="mt-14 grid md:grid-cols-2 gap-6">
-            {[
-              { h: 'AI가 하는 일', c: p.accent, items: [['conds', '자연어를 조건 카드로 정리'], ['recs', '추천 시간과 이유를 설명']] },
-              { h: '사용자가 정하는 일', c: '#18243A', items: [['sheetPick', '참석자 선택 · 필수 지정'], ['review', '최종 검토 후 확정']] },
-            ].map(col => (
-              <Reveal key={col.h}><div className="rounded-[28px] bg-white border border-grid p-6 md:p-8 h-full">
-                <p className="text-[20px] font-extrabold" style={{ color: col.c }}>{col.h}</p>
-                <div className="mt-6 grid grid-cols-2 gap-5">{col.items.map(([n, c]) => <Shot key={n} n={n} cap={c} />)}</div>
-              </div></Reveal>
+          <Head label="PROBLEM">조건이 많아질수록,<br />회의 조율은 복잡한 의사결정이 됩니다.</Head>
+          <p className="mt-6 max-w-[52ch] text-[17px] leading-[1.8]">참여자별 일정과 선호도가 서로 다르기 때문에 회의 시간을 정하려면 반복적인 확인과 비교가 필요합니다.</p>
+          <ol className="mt-12 grid md:grid-cols-3 gap-4 md:gap-6">
+            {[['01', '일정 확인', '외근과 기존 미팅 등 참석할 수 없는 시간을 확인해야 합니다.'], ['02', '조건 비교', '참석 불가능한 시간과 선호하지 않는 시간을 구분해야 합니다.'], ['03', '최종 판단', '여러 조건을 종합해 적절한 회의 시간을 결정해야 합니다.']].map(([n, t, d], i) => (
+              <li key={n} className="relative"><Reveal delay={i * 60}>
+                <div className="h-full rounded-[24px] bg-white border border-grid p-6 md:p-8">
+                  <span className="text-[48px] font-extrabold leading-none num-brand">{n}</span>
+                  <h3 className="mt-5 text-[22px] font-extrabold tracking-tight">{t}</h3>
+                  <p className="mt-3 text-[16px] leading-[1.7] text-ink/80">{d}</p>
+                </div>
+                {i < 2 && <span aria-hidden className="hidden md:grid absolute -right-5 top-1/2 z-10 h-8 w-8 -translate-y-1/2 place-items-center rounded-full bg-white border border-grid text-sub">→</span>}
+              </Reveal></li>
             ))}
-          </div>
-          <p className="mt-6 max-w-3xl text-[17px] leading-[1.8]">AI는 자연어 이해와 설명을 맡고, 참석자 선택·날짜 변경·후보 선택은 구조화된 UI로 처리합니다. <b>최종 확정은 명시적인 사용자 행동으로만</b> 이뤄집니다.</p>
+          </ol>
+          <p className="mt-8 text-[13px] text-sub max-w-3xl">※ 직장인 6명을 카카오톡으로 인터뷰해 확인한 불편을 바탕으로 정리했어요. 원자료와 응답 수는 확인이 필요해서 수치로 싣지 않았습니다.</p>
+        </div>
+      </section>
 
-          {/* 02 */}
-          <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
+      {/* 04 Design Question */}
+      <section id="question" className="wrap gutter py-24 md:py-40 scroll-mt-20">
+        <Head label="DESIGN QUESTION">복잡한 조건 비교는 AI가 돕고,<br />최종 결정은 사용자가 할 수 없을까?</Head>
+        <p className="mt-8 max-w-[44ch] text-[18px] md:text-[20px] leading-[1.8] text-ink/80">반복적인 일정 비교의 부담은 줄이되, 최종 선택에 필요한 판단 근거는 사용자에게 제공하고자 했습니다.</p>
+      </section>
+
+      {/* 05-08 Solutions */}
+      <section id="sol" className="scroll-mt-20" style={{ background: T(9) }}>
+        <div className="wrap gutter py-20 md:py-32">
+          {/* Solution 01 */}
+          <div className="md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5">
-              <p className="text-[56px] font-extrabold leading-none num-brand">02</p>
-              <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">참석자 선택과 필수 지정은 다른 의미</h3>
+              <Head sm label="SOLUTION 01 / INPUT">서로 다른 일정과 선호도를<br />하나의 입력 흐름으로.</Head>
+              <p className="mt-6 text-[17px] leading-[1.8]">회의를 만드는 사람은 날짜와 길이, 선호하는 시간대, 참석자, 일정 필수 여부를 입력합니다. 참석자가 가능한 시간을 답하는 화면도 설계했습니다.</p>
+              <p className="mt-3 text-[17px] leading-[1.8]">이렇게 입력한 조건은 회의 시간 추천에 반영됩니다.</p>
               <ul className="mt-8 space-y-5">
-                <Callout n="A" t="선택 = 회의에 포함할 사람" d="다중 선택, 검색, 팀 필터를 지원합니다." />
-                <Callout n="B" t="필수 = 일정 조건을 반드시 충족할 사람" d="필수 지정은 참석 수락을 뜻하지 않습니다." />
+                <Callout n="A" t="일정 제약 · 일정 필수" d="필수 참석자가 참석할 수 없는 시간은 추천에서 제외합니다." />
+                <Callout n="B" t="개인 선호 · 선호 시간대" d="선호는 제외하지 않고, 추천 순서에 반영합니다." />
               </ul>
             </div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6"><Shot n="sheetPick" cap="참석자 선택" /><Shot n="progress" cap="조율 현황 · 응답 대기" className="md:mt-16" /></div>
-          </Reveal>
-
-          {/* 03 */}
-          <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-center">
-            <div className="md:col-span-5 md:order-2">
-              <p className="text-[56px] font-extrabold leading-none num-brand">03</p>
-              <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">성공처럼 보이는 것과 실제 처리를 구분</h3>
-              <ul className="mt-8 space-y-5">
-                <Callout n="A" t="일정 가능 · 참석 수락 · 캘린더 · 알림을 분리" d="서로 다른 개념으로 따로 표시합니다." />
-                <Callout n="B" t="데모 기능을 성공처럼 보이지 않게" d="캘린더 미연결, 알림 데모는 상태 그대로 표시합니다." />
-                <Callout n="C" t="필수 참석자가 충돌하면 충족으로 표시하지 않음" d="추천 후보의 상태 칩에 반영합니다." />
-              </ul>
+            <div className="mt-12 md:mt-0 md:col-span-7 grid grid-cols-3 gap-3 md:gap-6">
+              <Ph n="sheetEdit" cap="날짜·길이·선호 시간대" />
+              <Ph n="sheetPick" cap="참석자 선택" className="mt-6 md:mt-10" />
+              <Ph n="required" cap="일정 필수 설정" />
             </div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 gap-6 md:order-1"><Shot n="done" cap="저장 완료 · 후속 처리 현황" /><Shot n="recs" cap="추천 후보 · 상태 칩" className="md:mt-16" /></div>
-          </Reveal>
+          </div>
+          <p className="mt-8 text-[13px] text-sub max-w-3xl">프로토타입의 참석자 응답과 캘린더 상태는 시안에 넣은 예시 데이터예요.</p>
 
+          {/* Solution 02 */}
+          <div className="mt-28 md:mt-40">
+            <Head label="SOLUTION 02 / RECOMMENDATION">입력한 조건이 달라지면,<br />추천 시간도 달라집니다.</Head>
+            <p className="mt-6 max-w-[56ch] text-[17px] leading-[1.8]">NODI는 참여자별 일정과 선호도를 바탕으로 회의 시간 후보를 제안합니다. 프로토타입에서는 사용자가 입력한 조건에 따라 실제 추천 결과가 달라지도록 구현했습니다.</p>
+            <div className="mt-12 grid md:grid-cols-2 gap-5 md:gap-8">
+              {[
+                { k: 'A', pref: '오후', ino: 'scAin', outo: 'scA', res: '조건에 맞는 시간 3개를 찾았어요', sub: '참석 가능성이 비슷해서, 선호하는 시간은 사용자가 선택해요' },
+                { k: 'B', pref: '오전', ino: 'scBin', outo: 'scB', res: '오전 10시를 추천해요', sub: '오전 10:00–11:30이 NODI 추천 1순위로 올라와요' },
+              ].map(s => (
+                <Reveal key={s.k}><div className="h-full rounded-[28px] bg-white border border-grid p-5 md:p-8">
+                  <p className="text-[13px] font-bold" style={{ color: S }}>Scenario {s.k}</p>
+                  <p className="mt-2 text-[20px] md:text-[24px] font-extrabold tracking-tight">화요일 · 90분 · <mark className="rounded-[8px] px-2" style={{ background: T(22), color: '#18243A' }}>선호 {s.pref}</mark></p>
+                  <div className="mt-6 grid grid-cols-[1fr_auto_1fr] items-center gap-2 md:gap-4">
+                    <Ph n={s.ino} cap="입력 조건" />
+                    <span aria-hidden className="text-[24px] text-sub">→</span>
+                    <Ph n={s.outo} cap="추천 결과" />
+                  </div>
+                  <p className="mt-6 text-[18px] md:text-[20px] font-bold leading-snug" style={{ color: S }}>{s.res}</p>
+                  <p className="mt-1 text-[15px] text-sub">{s.sub}</p>
+                </div></Reveal>
+              ))}
+            </div>
+            <p className="mt-6 text-[13px] text-sub max-w-3xl leading-relaxed">두 화면은 프로토타입을 실행해 같은 날짜와 길이에서 선호 시간대만 바꿔 캡처했어요. 회의 길이를 바꾸면 이전 응답을 재확인 대상으로 처리하는 것은 두 시나리오가 같습니다. 추천은 참석 가능 인원, 필수 참석자 충족, 선호 시간대를 점수로 계산하는 규칙 기반 로직이고, AI 모델 호출은 아니에요.</p>
+          </div>
+
+          {/* Solution 03 */}
+          <div className="mt-28 md:mt-40 md:grid md:grid-cols-12 gap-10 items-center">
+            <div className="md:col-span-5">
+              <Head sm label="SOLUTION 03 / EXPLANATION">추천 시간뿐 아니라,<br />추천하는 이유까지.</Head>
+              <p className="mt-6 text-[17px] leading-[1.8]">추천된 시간이 왜 적절한지 이해할 수 있도록 추천 근거를 함께 제공했습니다.</p>
+              <p className="mt-3 text-[17px] leading-[1.8]">사용자는 결과를 그대로 받아들이는 대신, 추천 이유를 확인하고 자신의 판단에 활용할 수 있습니다.</p>
+              <ul className="mt-8 space-y-5">
+                <Callout n="A" t="추천 시간 카드" d="1순위 표시와 필수 일정 조건 충족 여부를 먼저 보여줘요." />
+                <Callout n="B" t="가능 응답 · 캘린더 빈 시간" d="추천이 어떤 정보에 기대는지 인원으로 보여줘요." />
+                <Callout n="C" t="참석자별 근거" d="응답 대기는 불가로 계산하지 않고, 확인이 필요하다고 알려줘요." />
+              </ul>
+              <Key>추천 결과를 보여주는 것에서 그치지 않고, 사용자가 납득할 수 있는 선택을 돕고자 했습니다.</Key>
+            </div>
+            <div className="mt-12 md:mt-0 md:col-span-7 grid grid-cols-2 gap-4 md:gap-8">
+              <Ph n="scB" cap="추천 시간 카드" />
+              <Ph n="reasonB" cap="추천 이유 확인" className="mt-8 md:mt-14" />
+            </div>
+          </div>
+
+          {/* Solution 04 */}
+          <div className="mt-28 md:mt-40">
+            <Head label="SOLUTION 04 / DECISION">최종 결정은<br />사용자에게 남겨두었습니다.</Head>
+            <p className="mt-6 max-w-[56ch] text-[17px] leading-[1.8]">NODI는 회의 시간을 자동으로 확정하는 대신, 추천 결과와 근거를 확인한 사용자가 최종 시간을 선택하도록 설계했습니다.</p>
+            <ol className="mt-12 grid grid-cols-3 gap-3 md:gap-8 max-w-4xl">
+              {[['pickB', '추천 결과 확인'], ['reasonB', '추천 이유 검토'], ['review', '최종 시간 선택']].map(([n, t], i) => (
+                <li key={n}>
+                  <p className="mb-3 text-[14px]"><b style={{ color: S }}>0{i + 1}</b> <span className="text-sub">{t}</span></p>
+                  <Ph n={n} cap={t} />
+                </li>
+              ))}
+            </ol>
+            <Key>AI는 조건 비교를 돕고, 사용자는 선택의 주체가 됩니다.</Key>
+          </div>
+        </div>
+      </section>
+
+      {/* 09 Implementation */}
+      <section id="impl" className="wrap gutter py-20 md:py-32 scroll-mt-20">
+        <Head label="IMPLEMENTATION">캘린더 연동 없이,<br />핵심 추천 경험을 구현했습니다.</Head>
+        <div className="mt-8 max-w-[58ch] text-[17px] leading-[1.8] space-y-3">
+          <p>실제 서비스에서는 외부 캘린더 연동을 전제로 설계했습니다.</p>
+          <p>이번 프로젝트에서는 캘린더 API를 연결하는 대신 사용자가 직접 입력한 일정과 선호도를 활용했습니다.</p>
+          <p>입력 조건에 따라 추천 결과가 달라지고, 추천 이유를 확인한 뒤 최종 시간을 선택하는 기능형 프로토타입을 구현했습니다.</p>
+        </div>
+        <div className="mt-12 grid md:grid-cols-2 gap-4 md:gap-6">
+          <div className="rounded-[24px] p-6 md:p-8" style={{ background: T(14), border: `1px solid ${T(36)}` }}>
+            <p className="text-[13px] font-bold" style={{ color: S }}>Implemented</p>
+            <ul className="mt-4 space-y-3 text-[17px] font-semibold">{['조건 입력 (날짜 · 길이 · 선호 시간대 · 참석자 · 일정 필수)', '입력 조건별 추천 결과', '추천 이유', '최종 시간 선택'].map(t => <li key={t} className="flex gap-3"><span aria-hidden style={{ color: S }}>✓</span>{t}</li>)}</ul>
+          </div>
+          <div className="rounded-[24px] border border-grid bg-white p-6 md:p-8">
+            <p className="text-[13px] font-bold text-sub">Not Implemented</p>
+            <ul className="mt-4 space-y-3 text-[17px] text-ink/80">{['외부 캘린더 API 연동', '실제 캘린더 데이터 자동 수집', 'AI 모델 호출 (자연어 해석과 추천은 규칙 기반)'].map(t => <li key={t} className="flex gap-3"><span aria-hidden className="text-sub">–</span>{t}</li>)}</ul>
+          </div>
+        </div>
+        <p className="mt-6 text-[13px] text-sub max-w-3xl leading-relaxed">참석자 응답과 캘린더 상태는 시안에 넣은 예시 데이터이고, 자연어 입력은 규칙으로 조건을 뽑아내는 데모예요. 알림과 캘린더 반영은 시연용이라 실제로 처리되지 않아요.</p>
+        <InteractionPreview p={p} wide={wide} onOpen={() => setOpen(true)} title="직접 눌러보세요" note="화면 이미지는 v6 시안과 세부가 다를 수 있습니다." />
+      </section>
+
+      {/* 10 Reflection */}
+      <section id="ref" className="scroll-mt-20 rule" style={{ background: '#18243A', color: '#fff' }}>
+        <div className="wrap gutter py-24 md:py-40">
+          <p className="eyebrow rule pt-4" style={{ color: '#AFC0FF', borderColor: 'rgba(255,255,255,.25)' }}>REFLECTION</p>
+          <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">좋은 추천은 답을 제시하는 것에서 끝나지 않습니다.</h2>
+          <div className="mt-8 max-w-[56ch] text-[17px] leading-[1.8] space-y-4 text-white/85">
+            <p>이번 프로젝트에서는 복잡한 조건을 정리해 추천하는 기능뿐 아니라, 사용자가 추천 결과를 이해하고 최종 선택할 수 있는 경험에 집중했습니다.</p>
+            <p>이를 통해 AI가 판단을 대신하는 것보다, 사용자의 판단을 지원하도록 설계하는 것이 중요하다는 점을 배웠습니다.</p>
+          </div>
+          <p className="mt-14 text-[26px] md:text-[44px] font-extrabold leading-[1.2] tracking-tight" style={{ color: '#AFC0FF' }}>AI는 이해하고,<br />사용자는 결정한다.</p>
+        </div>
+      </section>
+
+      {/* More: 보조 화면과 설계 기록 */}
+      <section id="more" className="scroll-mt-20">
+        <div className="wrap gutter pt-20 md:pt-28">
+          <Head label="MORE">보조 화면과 설계 기록</Head>
+          <p className="mt-6 max-w-[52ch] text-[17px] leading-[1.8] text-sub">위 흐름 밖의 화면과 예외 상태, 반응형, 설계 점검 기록을 모았어요.</p>
+        </div>
+      </section>
+
+
+      <section className="scroll-mt-20" style={{ background: '#F7F8FB' }}>
+        <div className="wrap gutter py-20 md:py-32">
           {/* tokens + states */}
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-start">
             <div className="md:col-span-5 rounded-[20px] bg-white border border-grid p-6 md:p-8">
@@ -236,9 +344,9 @@ export default function CaseNodi() {
         </div>
       </section>
 
-      {/* 03 Final Experience */}
-      <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="03" label="Actual UI" title="입력부터 확정까지, 하나의 흐름" />
+      {/* 보조: 실제 UI 흐름 · 웹 반응형 */}
+      <section className="wrap gutter py-20 md:py-32 scroll-mt-20">
+        <ChapterHead color={S} n="A2" label="Actual UI" title="입력부터 확정까지, 하나의 흐름" />
         <div className="mt-14"><Strip label="NODI 사용 흐름 화면">
           {flow.map(([n, l], i) => (
             <figure key={n} className="w-[210px] md:w-[250px]">
@@ -294,13 +402,11 @@ export default function CaseNodi() {
           </div>
           <p className="mt-4 text-[13px] text-sub max-w-3xl">웹 화면은 체험용 데모(가상 데이터)를 1440px와 820px 폭에서 캡처한 거예요. 실제 일정은 등록되지 않아요.</p>
         </div>
-        <InteractionPreview p={p} wide={wide} onOpen={() => setOpen(true)} title="직접 눌러보세요" note="화면 이미지는 v6 시안과 세부가 다를 수 있습니다." />
       </section>
-
       {/* 04 Outcome */}
-      <section id="c5" className="scroll-mt-20 md:mt-24 rule">
+      <section className="scroll-mt-20 rule">
         <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="04" label="Outcome" title="점검한 것과 아직 확인하지 못한 것" />
+          <ChapterHead color={S} n="A3" label="Outcome" title="점검한 것과 아직 확인하지 못한 것" />
           <div className="mt-14 md:grid md:grid-cols-12 gap-10">
             <ul className="md:col-span-5 grid grid-cols-3 md:grid-cols-1 gap-4">
               {[['0', '44px 미만 터치 영역'], ['0', '13px 미만 글자'], ['19', '클릭 시나리오 통과']].map(([n, l]) => (

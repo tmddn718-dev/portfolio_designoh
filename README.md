@@ -23,6 +23,8 @@ npm run build    # 타입 검사 + dist/ 빌드
 3. `vercel.json`의 rewrite 덕분에 `/work/nodi` 같은 주소를 직접 열어도 404가 나지 않습니다.
 4. 배포 후 `index.html`의 `og:image`를 `https://<내 도메인>/og.png` 절대 주소로 바꾸세요.
 
+> `localhost`와 `127.0.0.1` 개발 주소는 HTTP라 브라우저에 "보안 연결이 아님"으로 표시됩니다. 공개 Vercel 주소에는 자동 HTTPS 인증서가 적용됩니다.
+
 ## 배포 전 확인
 - [ ] 홈 Contact의 이메일 공개 여부
 - [ ] 우리사이 프로토타입(`public/proto/woorisai`)과 GitHub 링크 공개 여부 (현재 링크는 걸지 않음)

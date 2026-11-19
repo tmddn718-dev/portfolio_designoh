@@ -88,12 +88,12 @@ const flows: [string, string, string][] = [
   ['인증 피드', I('tr-proofs'), '인증 모아보기'],
   ['활동·포인트 확인', I('tr-my-1'), '마이페이지 활동과 포인트'],
 ]
-const scenarios = [['a', '상금 지급 및 잔액 확인'], ['b', '정산 신청 및 결과 확인'], ['c', '미션 탐색과 참여'], ['d', '인증 피드 확인']]
+const scenarios = [['e', '전체 앱 둘러보기'], ['a', '상금 지급 및 잔액 확인'], ['b', '정산 신청 및 결과 확인'], ['c', '미션 탐색과 참여'], ['d', '인증 피드 확인']]
 const validation = ['테스트 목적', '테스트 참여자 수', '수행 과제', '과제 성공 여부', '주요 관찰 내용', '발견한 문제', '후속 개선안']
 
 export default function CaseTrigr() {
   const root = useRef<HTMLElement>(null)
-  const [sc, setSc] = useState('a')
+  const [sc, setSc] = useState('e')
   const [vw, setVw] = useState(typeof innerWidth === 'number' ? innerWidth : 1200)
   const active = useActive('trigr', list)
   useEffect(() => { document.title = 'trigr | Portfolio 2026'; return () => { document.title = 'Portfolio 2026 | Complexity → Clarity' } }, [])

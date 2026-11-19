@@ -55,7 +55,7 @@ const cardCopy: Record<string, string> = {
   'karrot-large-furniture': '대형 가구의 상세 정보와 거래 조건을 미리 확인해, 거래 약속 조율에 집중할 수 있도록 개선했습니다.',
   nodi: '복잡한 일정 조건을 구조화하고 추천 이유를 설명해, 최종 선택은 사용자가 직접 내리도록 설계했습니다. 추천은 규칙 기반 데모입니다.',
   woorisai: '흩어진 사진과 이야기를 하나의 추억으로 쌓고, 사람과 장소, 시간의 맥락으로 다시 찾도록 설계했습니다.',
-  trigr: '초기 제품 구조와 디자인 시스템을 만들고 세 차례의 주요 개편을 거쳐 태국 출시까지 참여했습니다.',
+  trigr: '정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화하다.',
 }
 
 // 홈 카드 섬네일: 프로젝트마다 구도를 다르게 한다(애플 코리아 홈의 타일처럼: 중앙 정렬 단독 기기 · 부채꼴 겹침 · 위에서 내려오는 구도 · 크게 잘린 기울임)
@@ -107,9 +107,9 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <div className="absolute inset-0 bg-gradient-to-r from-[#1A0F1F]/95 via-[#1A0F1F]/55 to-[#1A0F1F]/10" />
       <div className="absolute inset-x-0 top-0 h-[3px] bg-[#DE5DE2]" />
       <span aria-hidden className="absolute -right-[8%] top-[6%] h-[96%] w-[62%] rounded-full bg-[#DE5DE2]/40 blur-[70px]" />
-      <p className="absolute left-[6%] top-[8%] z-10 text-[10px] font-bold uppercase tracking-[.16em] text-[#F1B4F2]">Launched in Thailand</p>
-      <p className="absolute left-[6%] top-[17%] z-10 max-w-[45%] text-[clamp(26px,3.05vw,47px)] font-black leading-[1.1] tracking-[-.06em] text-white">SHIPPED<br />PRODUCT.</p>
-      <div className="absolute bottom-[8%] left-[6%] z-10 flex gap-2"><span className="rounded-full border border-white/35 bg-black/25 px-3 py-2 text-[10px] font-bold uppercase tracking-[.12em] text-white backdrop-blur">Product design</span><span className="rounded-full bg-[#DE5DE2] px-3 py-2 text-[10px] font-bold uppercase tracking-[.12em] text-white">3 redesigns</span></div>
+      <p className="absolute left-[6%] top-[8%] z-10 text-[10px] font-bold uppercase tracking-[.16em] text-[#F1B4F2]">Trigr · Launched in Thailand</p>
+      <p className="absolute left-[6%] top-[17%] z-10 max-w-[45%] text-[clamp(23px,2.7vw,42px)] font-black leading-[1.1] tracking-[-.06em] text-white">FROM GAPS<br />TO FLOWS.</p>
+      <div className="absolute bottom-[8%] left-[6%] z-10 flex max-w-[52%] flex-wrap gap-2">{['Product Design', 'UX/UI Design', 'Design System', 'Product Launch'].map((m, i) => <span key={m} className={`rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[.1em] text-white ${i === 3 ? 'bg-[#DE5DE2]' : 'border border-white/35 bg-black/25 backdrop-blur'}`}>{m}</span>)}</div>
       <Phone src="/images/trigr/t-list.webp" className="z-10 w-[44%] rotate-[-11deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.55)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[-9deg]" style={{ right: '-6%', bottom: '-46%' }} />
     </div>
   )

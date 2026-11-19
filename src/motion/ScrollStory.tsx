@@ -14,7 +14,7 @@ const stories: Story[] = [
   { slug: 'karrot-large-furniture', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '채팅에서 물어보기 전에, 게시글에서 확인하도록', description: '대형 가구의 상세 정보와 거래 조건을 미리 확인해, 거래 약속 조율에 집중할 수 있도록 개선했습니다.', bg: '#F3D7BE', fg: '#2B1D16' },
   { slug: 'nodi', category: 'PRODUCT CONCEPT / FUNCTIONAL PROTOTYPE', headline: 'AI는 이해하고, 사용자는 결정한다', description: '복잡한 일정 조건을 구조화하고 추천 이유를 설명해, 최종 선택은 사용자가 직접 내릴 수 있도록 설계했습니다. 추천 생성은 규칙 기반 데모입니다.', bg: '#D8DFFF', fg: '#17224C' },
   { slug: 'woorisai', category: 'PRODUCT CONCEPT / PERSONAL PROJECT', headline: '함께한 순간을 다시 발견하도록', description: '흩어진 사진과 이야기를 하나의 추억으로 쌓고, 사람과 장소, 시간의 맥락으로 다시 찾는 경험을 설계했습니다.', bg: '#E9E8DC', fg: '#263B2F' },
-  { slug: 'trigr', category: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE', headline: '실제 제품을 만들고, 반복해서 개선한 경험', description: '초기 제품 구조와 디자인 시스템을 만들고 세 차례의 주요 개편을 거쳐 태국 출시까지 참여했습니다.', bg: '#241328', fg: '#FFFFFF' },
+  { slug: 'trigr', category: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE', headline: '정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화하다', description: '기획서에 없던 사용자 경험을 설계하고, 기획자·개발자와 협의해 실제 출시까지 반영했습니다. Product Design · UX/UI Design · Design System · Product Launch', bg: '#241328', fg: '#FFFFFF' },
 ]
 
 const by = (slug: string) => projects.find(p => p.slug === slug)!
@@ -46,7 +46,7 @@ function StoryArt({ story }: { story: Story }) {
   return <>
     <img src="/images/trigr/home-map.webp" alt="" className="absolute inset-0 h-full w-full object-cover object-[center_18%] opacity-75" loading="lazy" />
     <div className="absolute inset-0 bg-gradient-to-r from-[#190C1D] via-[#190C1D]/65 to-transparent" />
-    <p className="absolute left-[7%] top-[8%] z-10 max-w-[8ch] text-[clamp(38px,4.5vw,70px)] font-black leading-[1.1] tracking-[-.065em]">SHIPPED. LEARNED. IMPROVED.</p>
+    <p className="absolute left-[7%] top-[8%] z-10 max-w-[9ch] text-[clamp(34px,4.1vw,64px)] font-black leading-[1.1] tracking-[-.065em]">FROM GAPS TO FLOWS.</p>
     <img src="/images/trigr/t-list.webp" alt="" className="absolute bottom-[-20%] right-[4%] z-10 w-[37%] rotate-[-6deg] rounded-[24px] shadow-[0_34px_60px_rgba(0,0,0,.5)]" loading="lazy" />
   </>
 }

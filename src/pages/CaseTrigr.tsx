@@ -88,12 +88,10 @@ const flows: [string, string, string][] = [
   ['인증 피드', I('tr-proofs'), '인증 모아보기'],
   ['활동·포인트 확인', I('tr-my-1'), '마이페이지 활동과 포인트'],
 ]
-const scenarios = [['e', '전체 앱 둘러보기'], ['a', '상금 지급 및 잔액 확인'], ['b', '정산 신청 및 결과 확인'], ['c', '미션 탐색과 참여'], ['d', '인증 피드 확인']]
 const validation = ['테스트 목적', '테스트 참여자 수', '수행 과제', '과제 성공 여부', '주요 관찰 내용', '발견한 문제', '후속 개선안']
 
 export default function CaseTrigr() {
   const root = useRef<HTMLElement>(null)
-  const [sc, setSc] = useState('e')
   const [open, setOpen] = useState(false)
   const [vw, setVw] = useState(typeof innerWidth === 'number' ? innerWidth : 1200)
   const active = useActive('trigr', list)
@@ -108,7 +106,6 @@ export default function CaseTrigr() {
     return () => mm.revert()
   }, [])
   const next = projects[(projects.indexOf(p) + 1) % projects.length]
-  const proto = p.proto && { ...p, proto: { ...p.proto, url: `/proto/trigr/index.html?sc=${sc}` } }
   const info: [string, string][] = [['Role', 'Product Designer / UX·UI Design'], ['Team', '초기 스타트업, 1인 디자이너'], ['Period', '2025.05–2026.06'], ['Platform', 'Mobile App'], ['Market', 'Thailand'], ['Status', 'Launched / Service Discontinued']]
 
   return (
@@ -241,12 +238,7 @@ export default function CaseTrigr() {
       <section id="c7" className="scroll-mt-20 md:mt-24" style={{ background: T(9) }}>
         <div className="wrap gutter py-20 md:py-32">
           <ChapterHead color={S} n="07" label="Interactive Prototype" title="실제 사용자 흐름을 경험할 수 있는 인터랙티브 프로토타입" />
-          {proto && <InteractionPreview p={proto} wide={vw >= 768} onOpen={() => setOpen(true)} title="실제 사용자 흐름을 직접 눌러보세요" note="실제 운영 중인 서비스가 아니라, 당시 디자인을 포트폴리오용으로 재현한 프로토타입입니다.">
-            <p className="mt-5 inline-block px-3 py-1.5 rounded-full bg-white text-[13px] font-semibold" style={{ color: S }}>Original Design · Interactive Prototype</p>
-            <p className="mt-6 text-[14px] font-bold" style={{ color: S }}>시나리오</p>
-            <ul className="mt-3 space-y-2">{scenarios.map(([k, t]) => <li key={t}><button onClick={() => setSc(k)} aria-pressed={sc === k} className="w-full min-h-12 text-left rounded-[16px] px-5 py-3 text-[16px] font-semibold border" style={sc === k ? { background: PINK, color: '#fff', borderColor: PINK } : { background: '#fff', borderColor: T(40) }}>{t}</button></li>)}</ul>
-            <p className="mt-4 text-[14px] leading-snug text-sub">폰 화면을 직접 눌러 보세요. 시나리오 문구는 목표만 알려 주고, 화면 위치나 방법은 알려 주지 않습니다.</p>
-          </InteractionPreview>}
+          {p.proto && <InteractionPreview p={p} wide={vw >= 768} onOpen={() => setOpen(true)} title="홈에서 시작해 핵심 기능을 직접 경험해보세요" note="Original Design · Interactive Prototype. 실제 운영 중인 서비스가 아니라, 당시 디자인을 포트폴리오용으로 재현한 프로토타입입니다." />}
 
           <div className="mt-24 rounded-[28px] bg-white border border-grid p-6 md:p-10">
             <div className="flex flex-wrap items-center gap-3"><Tag>Validation Planned</Tag></div>

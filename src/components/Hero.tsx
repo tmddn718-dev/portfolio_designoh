@@ -27,19 +27,75 @@ export default function Hero() {
       gsap.to(q('[data-parallax]'), { yPercent: -14, opacity: 0.15, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true } })
       gsap.to(q('[data-grid]'), { yPercent: 12, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true } })
     })
+    mm.add('(prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine)', () => {
+      const section = root.current
+      const title = section?.querySelector<HTMLElement>('[data-hero-title]')
+      const complexity = section?.querySelector<HTMLElement>('[data-cx]')
+      const arrow = section?.querySelector<HTMLElement>('[data-arrow]')
+      const clarity = section?.querySelector<HTMLElement>('[data-clarity]')
+      const glow = section?.querySelector<HTMLElement>('[data-hero-glow]')
+      if (!section || !title || !complexity || !arrow || !clarity || !glow) return
+
+      const complexityX = gsap.quickTo(complexity, 'x', { duration: 0.5, ease: 'power3.out' })
+      const complexityY = gsap.quickTo(complexity, 'y', { duration: 0.5, ease: 'power3.out' })
+      const clarityX = gsap.quickTo(clarity, 'x', { duration: 0.45, ease: 'power3.out' })
+      const clarityY = gsap.quickTo(clarity, 'y', { duration: 0.45, ease: 'power3.out' })
+      const arrowX = gsap.quickTo(arrow, 'x', { duration: 0.4, ease: 'power3.out' })
+      const arrowY = gsap.quickTo(arrow, 'y', { duration: 0.4, ease: 'power3.out' })
+      const arrowRotation = gsap.quickTo(arrow, 'rotation', { duration: 0.45, ease: 'power3.out' })
+      const glowX = gsap.quickTo(glow, 'x', { duration: 0.65, ease: 'power3.out' })
+      const glowY = gsap.quickTo(glow, 'y', { duration: 0.65, ease: 'power3.out' })
+
+      const move = (event: PointerEvent) => {
+        const titleRect = title.getBoundingClientRect()
+        const sectionRect = section.getBoundingClientRect()
+        const nx = (event.clientX - titleRect.left) / titleRect.width - 0.5
+        const ny = (event.clientY - titleRect.top) / titleRect.height - 0.5
+        complexityX(nx * -20)
+        complexityY(ny * -12)
+        clarityX(nx * 24)
+        clarityY(ny * 14)
+        arrowX(nx * 10)
+        arrowY(ny * 8)
+        arrowRotation(nx * 8)
+        glowX(event.clientX - sectionRect.left)
+        glowY(event.clientY - sectionRect.top)
+      }
+      const enter = () => {
+        title.classList.add('is-active')
+        gsap.to(glow, { opacity: 0.55, scale: 1, duration: 0.35, ease: 'power2.out' })
+      }
+      const leave = () => {
+        title.classList.remove('is-active')
+        complexityX(0); complexityY(0)
+        clarityX(0); clarityY(0)
+        arrowX(0); arrowY(0); arrowRotation(0)
+        gsap.to(glow, { opacity: 0, scale: 0.78, duration: 0.45, ease: 'power2.out' })
+      }
+
+      title.addEventListener('pointerenter', enter)
+      title.addEventListener('pointermove', move)
+      title.addEventListener('pointerleave', leave)
+      return () => {
+        title.removeEventListener('pointerenter', enter)
+        title.removeEventListener('pointermove', move)
+        title.removeEventListener('pointerleave', leave)
+      }
+    })
     return () => mm.revert()
   }, [])
 
   return (
     <section ref={root} id="hero" data-dark className="relative -mt-12 flex min-h-[100dvh] overflow-hidden bg-[#10110F] pt-12 text-white">
       <div aria-hidden data-grid className="grid-bg grid-bg-dark absolute inset-0" />
+      <div aria-hidden data-hero-glow className="hero-pointer-glow" />
       <div data-parallax className="wrap gutter relative flex w-full flex-col justify-center py-14 md:py-20">
         <p data-copy className="mb-8 text-[12px] font-semibold uppercase tracking-[.16em] text-white/60 md:mb-10">Product Design Portfolio / 2026</p>
-        <h1 aria-label="Complexity → Clarity" className="text-[clamp(52px,15vw,64px)] font-extrabold leading-[0.98] tracking-[-0.05em] md:text-[clamp(88px,8.5vw,112px)]">
-          <span data-cx aria-hidden className="outline-text block">Complexity</span>
+        <h1 data-hero-title aria-label="Complexity → Clarity" className="hero-title text-[clamp(52px,15vw,64px)] font-extrabold leading-[0.98] tracking-[-0.05em] md:text-[clamp(88px,8.5vw,112px)]">
+          <span data-cx data-text="Complexity" aria-hidden className="hero-outline outline-text block">Complexity</span>
           <span aria-hidden className="flex items-center gap-[0.1em]">
             <svg data-arrow viewBox="0 0 170 170" style={{ overflow: 'visible' }} className="h-[0.74em] w-auto shrink-0 text-white" fill="none" stroke="currentColor" strokeWidth="30" strokeLinejoin="miter" strokeMiterlimit="10"><path d="M0 85H146M66 5L146 85L66 165" /></svg>
-            <span className="relative inline-block">
+            <span data-clarity className="hero-clarity relative inline-block">
               <span data-ol className="outline-text opacity-0">Clarity</span>
               <span data-fill className="absolute left-0 top-0 text-[#2997ff]">Clarity</span>
             </span>

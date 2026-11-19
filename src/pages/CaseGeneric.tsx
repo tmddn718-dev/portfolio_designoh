@@ -14,6 +14,7 @@ import NotFound from './NotFound'
 
 gsap.registerPlugin(ScrollTrigger)
 const list = [['c1', '개요'], ['c2', '문제'], ['c3', '솔루션'], ['c4', '실제 UI'], ['c5', '결과']]
+const karrotList = [['c1', '개요'], ['c2', '문제'], ['c3', '솔루션'], ['test', '사용성 테스트'], ['c4', '실제 UI'], ['c5', '결과']]
 const oliveList = [['c1', '개요'], ['c2', '문제 발견'], ['c3', '솔루션'], ['c4', '예외 상태'], ['c5', '회고']]
 
 // ── 공통 조각 ────────────────────────────────────────────
@@ -429,7 +430,7 @@ function Karrot({ c }: { c: Ctx }) {
           <div className="md:col-span-7">
             <p className="eyebrow text-sub">프로젝트의 핵심</p>
             <p className="mt-3 text-[24px] md:text-[34px] font-bold tracking-tight leading-snug">대형 가구에 대한 정보를 중심으로 구매자가 확인하고 싶은 내용을 게시글에서 쉽게 알 수 있게 한 UX 개선 프로젝트예요.</p>
-            <p className="mt-4 text-[14px] leading-[1.7] text-sub">비공식 개인 UX 개선 제안이에요. 거래가 얼마나 늘지는 측정하지 않았고 사용성 테스트로 검증이 필요해요.</p>
+            <p className="mt-4 text-[14px] leading-[1.7] text-sub">비공식 개인 UX 개선 제안이에요. 프로토타입 사용성 테스트(7명)에서는 거래 약속 확정이 빨라졌지만, 실제 서비스의 거래 성사율은 측정하지 않았어요.</p>
           </div>
           <div className="mt-8 md:mt-0 md:col-span-5 grid grid-cols-2 gap-4">
             <figure><p className="text-[13px] font-semibold text-sub mb-2">기존 · 상품 상세</p><Screen src={p.beforeAfter![0].before} alt={p.beforeAfter![0].beforeAlt} /></figure>
@@ -474,6 +475,138 @@ function Karrot({ c }: { c: Ctx }) {
         </div>
       </section>
 
+      {/* Design Decision: 정보를 확인하는 시점의 변화 */}
+      <section id="dd" className="wrap gutter py-20 md:py-32 scroll-mt-20">
+        <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>DESIGN DECISION</p>
+        <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[22ch]">채팅에서 물어봐야 했던 정보를,<br />채팅 전에 확인할 수 있도록.</h2>
+        <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
+          <div className="md:col-span-5">
+            <p className="text-[17px] leading-[1.8]">기존 거래 과정에서는 구매자가 대형가구의 상세 정보, 거래 가능 여부, 거래 방법을 채팅으로 추가 확인해야 했습니다.</p>
+            <p className="mt-3 text-[17px] leading-[1.8]">이에 거래 전에 필요한 정보를 게시글에서 먼저 확인할 수 있도록 정보 구조를 개선했습니다.</p>
+            <ul className="mt-8 space-y-5">
+              <Ann color={A} n="1" t="상세 상품 정보" d="‘크기 및 분해’ 카드에 가로·세로·높이와 분해 여부, 전달 상태를 보여줘요." />
+              <Ann color={A} n="2" t="거래 진행 방법" d="‘가져가는 조건’ 카드에 층수·엘리베이터·운반 도움을 보여줘요." />
+              <Ann color={A} n="3" t="거래 가능 여부" d="예약중·거래완료 상태를 배지와 버튼에 표시해요." />
+            </ul>
+            <p className="mt-10 rounded-[20px] px-6 py-5 text-[18px] md:text-[22px] font-bold leading-snug tracking-tight max-w-[40ch]" style={{ background: T(14) }}>정보를 더 많이 보여주는 것이 아니라, 사용자가 정보를 필요로 하는 시점을 바꾸는 데 집중했습니다.</p>
+          </div>
+          <div className="mt-12 md:mt-0 md:col-span-7 grid grid-cols-3 gap-3 md:gap-6">
+            <figure><p className="mb-2 text-[13px] font-bold text-sub">AS-IS · 기존 게시글</p><Screen src={I('asis-desc')} alt="기존 당근 상품 상세 본문: 크기와 분해 정보가 문장 속에 섞여 있음" cap="기존 게시글" /></figure>
+            <figure className="mt-6 md:mt-10"><p className="mb-2 text-[13px] font-bold" style={{ color: S }}>TO-BE · 정보 카드</p><Screen src={I('L-b1')} alt="개선 상품 상세: 크기 및 분해, 가져가는 조건 카드" cap="크기·분해·가져가는 조건" /></figure>
+            <figure><p className="mb-2 text-[13px] font-bold" style={{ color: S }}>TO-BE · 거래 상태</p><Screen src={I('f-done')} alt="개선 상품 상세: 거래완료 안내와 비활성 버튼" cap="거래 상태 표시" /></figure>
+          </div>
+        </div>
+      </section>
+
+      {/* Flow: AS-IS / TO-BE */}
+      <section id="flow" className="scroll-mt-20" style={{ background: '#F7F8FA' }}>
+        <div className="wrap gutter py-20 md:py-32">
+          <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>BEFORE &amp; AFTER</p>
+          <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">상품 정보 확인에 쓰이던 채팅을,<br />거래 약속 조율에 집중하도록.</h2>
+          <div className="mt-12 grid md:grid-cols-2 gap-4 md:gap-8">
+            <div className="rounded-[28px] bg-white border border-grid p-5 md:p-8">
+              <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-[#e8e8e8]">AS-IS · 기존 앱</span>
+              <ol aria-label="기존 거래 과정" className="mt-6">
+                {[['게시글 확인', false], ['채팅 시작', false], ['가구 상세 정보 질문', true], ['거래 가능 여부 확인', true], ['거래 방법 질문', true], ['거래 약속 조율 및 확정', false]].map(([t, ask], i, a) => (
+                  <li key={String(t)}>
+                    <div className="flex items-center gap-3 rounded-[16px] border px-4 py-3 text-[16px]" style={ask ? { background: '#FDEAEA', borderColor: '#F2BDBD', color: '#7A1F1F', fontWeight: 600 } : { background: '#fff', borderColor: '#E5E5E7' }}>
+                      <span className="text-[13px] font-bold tabular-nums opacity-60">0{i + 1}</span><span className="flex-1">{t}</span>
+                      {ask ? <span className="text-[13px] font-bold rounded-full px-2 py-0.5 bg-white/80">채팅에서 확인</span> : null}
+                    </div>
+                    {i < a.length - 1 && <p aria-hidden className="my-1 text-center text-[18px] leading-none text-sub">↓</p>}
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-5 text-[14px] leading-relaxed text-sub">상세 정보·거래 가능 여부·거래 방법을 채팅으로 물은 뒤에야 약속을 조율했어요.</p>
+            </div>
+            <div className="rounded-[28px] p-5 md:p-8" style={{ background: T(14), border: `1px solid ${T(36)}` }}>
+              <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: A, color: onBrand(A) }}>TO-BE · 개선 프로토타입</span>
+              <ol aria-label="개선된 거래 과정" className="mt-6">
+                <li><div className="rounded-[16px] border bg-white px-4 py-3 text-[16px]" style={{ borderColor: T(36) }}><span className="text-[13px] font-bold tabular-nums opacity-60 mr-3">01</span>개선 게시글 확인</div></li>
+                <li aria-hidden className="my-1 text-center text-[18px] leading-none text-sub">↓</li>
+                <li><div className="rounded-[16px] p-3" style={{ background: '#fff', border: `2px solid ${A}` }}>
+                  <p className="px-1 text-[16px] font-bold"><span className="text-[13px] tabular-nums opacity-60 mr-3">02</span>게시글에서 한 번에 확인</p>
+                  <ul className="mt-3 grid grid-cols-3 gap-2 text-[14px] font-semibold text-center">{['상세 정보', '거래 가능 여부', '거래 방법'].map(t => <li key={t} className="rounded-[12px] px-2 py-3" style={{ background: T(16) }}>{t}</li>)}</ul>
+                </div></li>
+                <li aria-hidden className="my-1 text-center text-[18px] leading-none text-sub">↓</li>
+                <li><div className="rounded-[16px] border bg-white px-4 py-3 text-[16px]" style={{ borderColor: T(36) }}><span className="text-[13px] font-bold tabular-nums opacity-60 mr-3">03</span>채팅 시작</div></li>
+                <li aria-hidden className="my-1 text-center text-[18px] leading-none text-sub">↓</li>
+                <li><div className="rounded-[16px] border bg-white px-4 py-3 text-[16px] font-semibold" style={{ borderColor: T(36) }}><span className="text-[13px] font-bold tabular-nums opacity-60 mr-3">04</span>거래 약속 조율 및 확정</div></li>
+              </ol>
+              <p className="mt-5 text-[14px] leading-relaxed text-ink/80">채팅 전에 정보를 확인하고, 채팅에서는 약속 조율에 집중해요.</p>
+            </div>
+          </div>
+          <p className="mt-6 text-[13px] text-sub max-w-3xl">테스트에서 확인한 대표적인 거래 흐름을 설명하는 그림이에요. 참가자별 채팅 횟수나 질문 개수는 측정하지 않았습니다.</p>
+        </div>
+      </section>
+
+      {/* Usability Test + Key Results */}
+      <section id="test" className="wrap gutter py-20 md:py-32 scroll-mt-20">
+        <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>USABILITY TEST / AS-IS vs. TO-BE</p>
+        <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅 전에 거래 정보를 확인하자,<br />약속 확정까지 평균 41초 빨라졌습니다.</h2>
+        <div className="mt-10 md:grid md:grid-cols-12 gap-10">
+          <div className="md:col-span-7 text-[17px] leading-[1.8] space-y-3">
+            <p>대형가구 거래에서 구매자가 게시글을 확인한 뒤 채팅으로 거래 약속을 확정하기까지의 과정을 비교했습니다.</p>
+            <p>동일한 참가자 7명이 기존 당근 앱(AS-IS)과 개선 프로토타입(TO-BE)에서 같은 과제를 수행했습니다.</p>
+            <p>7명 모두 TO-BE에서 더 빠르게 거래 약속을 확정했으며, 평균 소요 시간은 AS-IS보다 41초 짧게 측정됐습니다.</p>
+          </div>
+          <dl className="mt-8 md:mt-0 md:col-span-5 rounded-[24px] border border-grid p-6 text-[15px] grid grid-cols-[auto_1fr] gap-x-5 gap-y-3 content-start">
+            {[['Method', '동일 참가자 비교 사용성 테스트'], ['Participants', '7명'], ['Comparison', '기존 앱 AS-IS / 개선 프로토타입 TO-BE'], ['Task', '게시글 확인부터 채팅을 통한 거래 약속 확정까지'], ['Environment', '프로토타입 테스트']].map(([k, v]) => <div key={k} className="contents"><dt className="text-sub text-[13px] pt-0.5">{k}</dt><dd className="font-semibold">{v}</dd></div>)}
+          </dl>
+        </div>
+
+        <Reveal className="mt-16 md:mt-24">
+          <div className="rounded-[32px] p-7 md:p-14 text-center md:text-left" style={{ background: '#17120F', color: '#fff' }} role="group" aria-label="사용성 테스트 핵심 결과: 평균 41초 단축, 7명 중 7명 단축">
+            <div className="md:grid md:grid-cols-12 gap-10 items-end">
+            <div className="md:col-span-7">
+              <p className="text-[13px] font-bold tracking-[.14em]" style={{ color: '#FFB78A' }}>RESULT 01 · AVERAGE TIME DIFFERENCE</p>
+              <p className="mt-4 font-extrabold leading-[.9] tracking-[-.06em] text-[clamp(88px,17vw,196px)]">−41<span className="text-[.42em] tracking-[-.03em] ml-1" style={{ color: '#FF8A3D' }}>초</span></p>
+              <p className="mt-5 text-[18px] md:text-[22px] font-bold">거래 약속 확정까지의 평균 소요 시간 차이</p>
+              <p className="mt-2 text-[15px] text-white/70">TO-BE에서 AS-IS보다 평균 41초 짧게 측정</p>
+            </div>
+            <div className="mt-10 md:mt-0 md:col-span-5 pt-8 md:pt-0 md:pl-10 border-t md:border-t-0 md:border-l border-white/20">
+              <p className="text-[13px] font-bold tracking-[.14em]" style={{ color: '#FFB78A' }}>RESULT 02 · PARTICIPANT IMPROVEMENT</p>
+              <p className="mt-4 font-extrabold leading-[.95] tracking-[-.05em] text-[clamp(60px,10vw,112px)]">7/7<span className="text-[.42em] tracking-[-.03em] ml-1" style={{ color: '#FF8A3D' }}>명</span></p>
+              <p className="mt-4 text-[17px] md:text-[19px] font-bold">모든 참가자가 TO-BE에서 소요 시간 단축</p>
+              <p className="mt-2 text-[15px] text-white/70">동일한 7명이 두 조건을 모두 수행한 비교 결과</p>
+            </div>
+            </div>
+            <p className="mt-10 pt-5 border-t border-white/20 text-[13px] text-white/65 text-left">측정 조건 · 동일 참가자 7명 · 프로토타입 테스트 · 게시글 확인부터 채팅을 통한 거래 약속 확정까지의 소요 시간</p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* Feedback + Interpretation */}
+      <section id="feedback" className="scroll-mt-20" style={{ background: '#F7F8FA' }}>
+        <div className="wrap gutter py-20 md:py-32">
+          <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>USER FEEDBACK</p>
+          <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅에서는 상품 질문보다,<br />거래 약속 조율에 집중할 수 있었습니다.</h2>
+          <p className="mt-8 max-w-[58ch] text-[17px] leading-[1.8]">참가자들은 개선된 게시글에서 필요한 가구 정보와 거래 조건을 미리 확인할 수 있어, 채팅에서는 추가적인 상품 정보 질문보다 거래 약속 조율에 집중할 수 있었다고 피드백했습니다.</p>
+          <ol className="mt-10 grid md:grid-cols-3 gap-4 md:gap-6">
+            {[['01', '거래 전에 필요한 정보 확인'], ['02', '추가적인 상품 정보 질문의 필요성 감소'], ['03', '채팅에서 거래 약속 조율에 집중']].map(([n, t]) => (
+              <li key={n} className="rounded-[24px] bg-white border border-grid p-6"><span className="text-[40px] font-extrabold leading-none num-brand">{n}</span><p className="mt-4 text-[19px] font-bold leading-snug">{t}</p></li>
+            ))}
+          </ol>
+          <p className="mt-5 text-[13px] text-sub">참가자 피드백을 요약한 내용이에요. 직접 인용문이 아닙니다.</p>
+
+          <div className="mt-24 md:mt-32">
+            <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>RESULT INTERPRETATION</p>
+            <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">정보를 확인하는 시점의 변화가,<br />거래 약속 확정 과정을 단축했습니다.</h2>
+            <div className="mt-8 md:grid md:grid-cols-12 gap-10">
+              <div className="md:col-span-7 text-[17px] leading-[1.8] space-y-3">
+                <p>게시글에서 거래 정보를 미리 확인할 수 있도록 개선한 프로토타입에서 참가자 7명 모두 거래 약속을 더 빠르게 확정했습니다.</p>
+                <p>이번 결과는 거래 전에 필요한 정보를 제공하는 설계가 채팅에서의 반복적인 확인 부담을 줄이고, 거래 약속 조율을 효율적으로 진행하는 데 도움이 될 가능성을 보여줍니다.</p>
+              </div>
+              <div className="mt-8 md:mt-0 md:col-span-5 rounded-[24px] bg-white border border-grid p-6">
+                <p className="text-[13px] font-bold text-sub">Limitations</p>
+                <ul className="mt-4 space-y-3 text-[16px] leading-snug">{['참가자 7명의 소규모 테스트', '프로토타입 환경에서 측정한 결과', '테스트 순서에 따른 학습 효과 가능성', '실제 서비스의 거래 성사율 및 운영 성과 미검증'].map(t => <li key={t} className="flex gap-3"><span aria-hidden className="text-sub">–</span>{t}</li>)}</ul>
+              </div>
+            </div>
+            <p className="mt-6 text-[13px] text-sub max-w-3xl">이 결과는 프로토타입 과제에서 측정한 시간이에요. 실제 서비스 전체의 거래 시간이 41초 단축됐다는 뜻이 아닙니다.</p>
+          </div>
+        </div>
+      </section>
+
       <section aria-label="기존 앱과 개선안 비교" className="wrap gutter pb-8 md:pb-16">
         <p className="eyebrow rule pt-4 text-sub">Before / After</p>
         <h3 className="mt-4 text-[28px] md:text-[40px] font-bold tracking-tight">실제 당근 앱 vs 대형 가구 거래 개선안</h3>
@@ -489,8 +622,8 @@ function Karrot({ c }: { c: Ctx }) {
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="입력부터 질문 초안까지" />
       </section>
 
-      <Outcome c={c} cards={<><div className="rounded-[20px] bg-[#F7F8FA] p-6"><p className="text-[14px] text-sub">확인된 것</p><p className="mt-2 text-[18px] font-bold">실제 앱 캡처와 20개 프로토타입 화면</p></div><div className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[14px] text-sub">아직 필요한 것</p><p className="mt-2 text-[18px] font-bold">구매자·판매자 사용성 테스트</p></div></>}>
-        <div className="pt-6 rule"><p className="eyebrow text-sub">Test plan</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[16px] leading-relaxed"><li>구매자: 거래 조건 발견, 거래 가능성 판단, 질문 초안 작성</li><li>판매자: 대형 가구 정보 입력과 입력 부담 확인</li><li>미입력·모름·조회 실패 상태를 올바르게 구분하는지 관찰</li><li>실제 테스트 전에는 성공률이나 시간 수치를 제시하지 않음</li></ul></div>
+      <Outcome c={c} cards={<><div className="rounded-[20px] bg-[#F7F8FA] p-6"><p className="text-[14px] text-sub">확인된 것</p><p className="mt-2 text-[18px] font-bold">프로토타입 테스트 7명 전원, 거래 약속 확정이 평균 41초 빨라짐</p></div><div className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[14px] text-sub">아직 필요한 것</p><p className="mt-2 text-[18px] font-bold">더 큰 표본과 실제 서비스 환경에서의 검증</p></div></>}>
+        <div className="pt-6 rule"><p className="eyebrow text-sub">Next</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[16px] leading-relaxed"><li>판매자 입력 부담과 정보 변경 흐름은 이번 테스트에 포함되지 않았어요</li><li>더 많은 참가자와 순서를 섞은 비교로 학습 효과 줄이기</li><li>실제 서비스 환경에서 거래 성사율과 채팅 흐름 확인</li></ul></div>
       </Outcome>
     </>
   )
@@ -692,7 +825,7 @@ export default function CaseGeneric() {
   const i = projects.findIndex(x => x.slug === slug)
   const p = projects[i]
   const root = useRef<HTMLElement>(null)
-  const navList = slug === 'oliveyoung-todaydream' ? oliveList : list
+  const navList = slug === 'oliveyoung-todaydream' ? oliveList : slug === 'karrot-large-furniture' ? karrotList : list
   const active = useActive(slug, navList)
   const [open, setOpen] = useState(false)
   const wide = useMedia('(min-width: 1024px)')

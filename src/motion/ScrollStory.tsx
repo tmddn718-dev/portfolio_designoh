@@ -22,7 +22,7 @@ const Phone = ({ src, className }: { src: string; className: string }) => <div c
 
 function StoryArt({ story }: { story: Story }) {
   if (story.slug === 'oliveyoung-todaydream') return <>
-    <p className="absolute left-[7%] top-[7%] max-w-[8ch] text-[clamp(27px,4vw,61px)] font-black leading-[1.4] tracking-[-.06em]">MORE OPTIONS.</p>
+    <p className="absolute left-[7%] top-[7%] max-w-[8ch] text-[clamp(31px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MORE OPTIONS.</p>
     <Phone src="/images/oliveyoung-todaydream/n-optC.webp" className="bottom-[-30%] left-[8%] w-[28%] rotate-[-6deg] opacity-75" />
     <Phone src="/images/oliveyoung-todaydream/n-altMethods.webp" className="bottom-[-25%] left-[36%] z-10 w-[38%] drop-shadow-[0_28px_42px_rgba(42,65,6,.25)]" />
     <Phone src="/images/oliveyoung-todaydream/n-restock.webp" className="bottom-[-32%] right-[-2%] w-[27%] rotate-[7deg] opacity-80" />
@@ -30,23 +30,23 @@ function StoryArt({ story }: { story: Story }) {
   if (story.slug === 'karrot-large-furniture') return <>
     <img src="/proto/karrot/images/sofa.png" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
     <div className="absolute inset-0 bg-gradient-to-r from-[#F7E8D9]/95 via-[#F7E8D9]/60 to-transparent" />
-    <p className="absolute left-[7%] top-[9%] z-10 max-w-[8ch] text-[clamp(27px,3.75vw,56px)] font-black leading-[1.4] tracking-[-.06em]">DECIDE BEFORE CHAT.</p>
+    <p className="absolute left-[7%] top-[9%] z-10 max-w-[8ch] text-[clamp(31px,4.2vw,63px)] font-black leading-[1.1] tracking-[-.06em]">DECIDE BEFORE CHAT.</p>
     <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-safearea" className="bottom-[-29%] right-[8%] z-10 w-[38%] drop-shadow-[0_28px_42px_rgba(55,28,14,.28)]" />
   </>
   if (story.slug === 'nodi') return <>
-    <p className="absolute left-[7%] top-[7%] z-20 max-w-[8ch] text-[clamp(27px,3.75vw,56px)] font-black leading-[1.4] tracking-[-.06em]">REASONS, NOT JUST TIMES.</p>
+    <p className="absolute left-[7%] top-[7%] z-20 max-w-[8ch] text-[clamp(31px,4.2vw,63px)] font-black leading-[1.1] tracking-[-.06em]">REASONS, NOT JUST TIMES.</p>
     <img src="/images/nodi/web-reco.webp" alt="" className="absolute bottom-[7%] right-[6%] w-[67%] rounded-[18px] border border-white/50 shadow-[0_28px_55px_rgba(41,57,132,.22)]" loading="lazy" />
     <img src="/images/nodi/full-reasonB.webp" alt="" className="absolute bottom-[-10%] left-[8%] z-10 w-[23%] rounded-[16px] shadow-[0_22px_40px_rgba(41,57,132,.24)]" loading="lazy" />
   </>
   if (story.slug === 'woorisai') return <>
-    <p className="absolute bottom-[8%] left-[7%] z-20 max-w-[8ch] text-[clamp(29px,4vw,61px)] font-black leading-[1.4] tracking-[-.06em]">MEMORIES, TOGETHER.</p>
+    <p className="absolute bottom-[8%] left-[7%] z-20 max-w-[8ch] text-[clamp(32px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MEMORIES, TOGETHER.</p>
     <Phone src="/images/woorisai/feed.webp" className="right-[24%] top-[-24%] w-[31%] rotate-[-5deg] opacity-75" />
     <Phone src="/images/woorisai/home.webp" className="right-[-1%] top-[-19%] z-10 w-[40%] rotate-[5deg] drop-shadow-[0_30px_46px_rgba(40,56,47,.26)]" />
   </>
   return <>
     <img src="/images/trigr/home-map.webp" alt="" className="absolute inset-0 h-full w-full object-cover object-[center_18%] opacity-75" loading="lazy" />
     <div className="absolute inset-0 bg-gradient-to-r from-[#190C1D] via-[#190C1D]/65 to-transparent" />
-    <p className="absolute left-[7%] top-[8%] z-10 max-w-[8ch] text-[clamp(34px,4vw,62px)] font-black leading-[1.4] tracking-[-.065em]">SHIPPED. LEARNED. IMPROVED.</p>
+    <p className="absolute left-[7%] top-[8%] z-10 max-w-[8ch] text-[clamp(38px,4.5vw,70px)] font-black leading-[1.1] tracking-[-.065em]">SHIPPED. LEARNED. IMPROVED.</p>
     <img src="/images/trigr/t-list.webp" alt="" className="absolute bottom-[-20%] right-[4%] z-10 w-[37%] rotate-[-6deg] rounded-[24px] shadow-[0_34px_60px_rgba(0,0,0,.5)]" loading="lazy" />
   </>
 }

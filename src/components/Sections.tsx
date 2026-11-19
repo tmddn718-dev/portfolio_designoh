@@ -31,7 +31,7 @@ function FeaturedOlive() {
           <div className="mt-8 flex flex-wrap gap-3"><Link to={`/work/${p.slug}`} className="inline-flex min-h-12 items-center rounded-full bg-ink px-6 text-[15px] font-semibold text-white hover:-translate-y-0.5">케이스 스터디 보기</Link>{p.proto && <button onClick={() => setOpen(true)} className="min-h-12 rounded-full border border-ink px-6 text-[15px] font-semibold hover:bg-white">프로토타입 실행</button>}</div>
         </div>
         <Link to={`/work/${p.slug}`} data-cursor="보기" aria-label="올리브영 오늘드림 케이스 스터디 보기" className="group relative min-h-[420px] overflow-hidden bg-[#C9F45A] md:col-span-7 md:min-h-[580px]">
-          <div className="absolute left-6 top-7 z-20 max-w-[11ch] text-[clamp(24px,3.2vw,46px)] font-black leading-[1.4] tracking-[-0.07em] text-black md:left-9 md:top-10">OUT OF STOCK.<br />MORE OPTIONS.</div>
+          <div className="absolute left-6 top-7 z-20 max-w-[11ch] text-[clamp(27px,3.6vw,52px)] font-black leading-[1.1] tracking-[-0.07em] text-black md:left-9 md:top-10">OUT OF STOCK.<br />MORE OPTIONS.</div>
           <span aria-hidden className="absolute bottom-6 left-7 z-20 text-[11px] font-bold uppercase tracking-[.18em] text-black/60 md:left-10">Purchase recovery / 2026</span>
           <img src="/proto/oliveyoung/public/assets/product-03.png" alt="" className="absolute left-[7%] top-[38%] z-10 w-[15%] -rotate-12 drop-shadow-[0_16px_20px_rgba(54,77,12,.18)] transition-transform duration-300 group-hover:-translate-y-2" />
           <img src="/proto/oliveyoung/public/assets/product-05.png" alt="" className="absolute bottom-[13%] left-[19%] z-10 w-[16%] rotate-6 drop-shadow-[0_16px_20px_rgba(54,77,12,.18)] transition-transform duration-300 group-hover:-translate-y-1" />
@@ -65,7 +65,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <img src="/proto/karrot/images/sofa.png" alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-95" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#F6E6D6] via-[#F6E6D6]/70 to-[#F6E6D6]/10" />
       <p className="absolute inset-x-0 top-[7%] z-10 text-center text-[clamp(10px,1vw,13px)] font-bold uppercase tracking-[.18em] text-[#B5500C]">Size · Move · Disassemble</p>
-      <p className="absolute inset-x-0 top-[14%] z-10 text-center text-[clamp(18px,2.3vw,35px)] font-black leading-[1.4] tracking-[-.055em] text-[#2B1D16]">BETTER DECISIONS<br />BEFORE CHAT.</p>
+      <p className="absolute inset-x-0 top-[14%] z-10 text-center text-[clamp(21px,2.6vw,40px)] font-black leading-[1.1] tracking-[-.055em] text-[#2B1D16]">BETTER DECISIONS<br />BEFORE CHAT.</p>
       <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-safearea" className="left-1/2 z-10 w-[31%] -translate-x-1/2 drop-shadow-[0_28px_40px_rgba(55,28,14,.3)] transition-transform duration-300 group-hover:-translate-y-2" style={{ bottom: '-30%' }} />
       <span aria-hidden className="absolute left-[6%] top-[60%] z-20 rounded-full bg-white/95 px-3 py-1.5 text-[11px] lg:text-[13px] font-bold text-[#2B1D16] shadow-[0_8px_24px_rgba(55,28,14,.18)]">140 × 80 × 75cm</span>
       <span aria-hidden className="absolute right-[7%] top-[50%] z-20 rounded-full bg-white/95 px-3 py-1.5 text-[11px] lg:text-[13px] font-bold text-[#2B1D16] shadow-[0_8px_24px_rgba(55,28,14,.18)]">분해 가능</span>
@@ -77,7 +77,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
   if (p.slug === 'nodi') return (
     <div className={`${tile} bg-gradient-to-b from-[#E4E8FF] to-[#CBD4FF]`}>
       <span aria-hidden className="absolute inset-x-0 bottom-[-4%] text-center text-[clamp(110px,19vw,250px)] font-black leading-none tracking-[-.08em] text-[#3D5ADA]/[.1]">NODI</span>
-      <p className="absolute left-[6%] top-[8%] z-30 max-w-[52%] text-[clamp(18px,2.15vw,33px)] font-black leading-[1.4] tracking-[-.055em] text-[#17224C]">AI UNDERSTANDS.<br />YOU DECIDE.</p>
+      <p className="absolute left-[6%] top-[8%] z-30 max-w-[52%] text-[clamp(21px,2.4vw,37px)] font-black leading-[1.1] tracking-[-.055em] text-[#17224C]">AI UNDERSTANDS.<br />YOU DECIDE.</p>
       {[{ src: '/images/nodi/full-conds.webp', rot: -17, x: -78, w: 25, z: 10 }, { src: '/images/nodi/full-sheetPick.webp', rot: 17, x: 78, w: 25, z: 10 }, { src: '/images/nodi/full-scB.webp', rot: 0, x: 0, w: 29, z: 20 }].map(d => (
         <Phone key={d.src} src={d.src} className="drop-shadow-[0_26px_40px_rgba(53,73,164,.28)] transition-transform duration-300 group-hover:-translate-y-1" style={{ left: '50%', bottom: '-28%', width: `${d.w}%`, zIndex: d.z, transformOrigin: '50% 105%', transform: `translateX(calc(-50% + ${d.x}%)) rotate(${d.rot}deg)` }} />
       ))}
@@ -90,7 +90,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <Phone src="/images/woorisai/feed.webp" className="z-10 w-[27%] rotate-[-5deg] drop-shadow-[0_24px_40px_rgba(40,56,47,.22)] transition-transform duration-300 group-hover:translate-y-1" style={{ right: '26%', top: '-30%' }} />
       <Phone src="/images/woorisai/home.webp" className="z-20 w-[32%] rotate-[5deg] drop-shadow-[0_30px_46px_rgba(40,56,47,.28)] transition-transform duration-300 group-hover:translate-y-2" style={{ right: '-2%', top: '-38%' }} />
       <p className="absolute bottom-[41%] left-[6%] z-20 text-[10px] font-bold uppercase tracking-[.18em] text-[#566B5C]">A shared memory archive</p>
-      <p className="absolute bottom-[7%] left-[6%] z-20 max-w-[56%] text-[clamp(18px,2.1vw,32px)] font-black leading-[1.4] tracking-[-.055em] text-[#263B2F]">SHARED MOMENTS,<br />REDISCOVERED.</p>
+      <p className="absolute bottom-[7%] left-[6%] z-20 max-w-[56%] text-[clamp(20px,2.35vw,36px)] font-black leading-[1.1] tracking-[-.055em] text-[#263B2F]">SHARED MOMENTS,<br />REDISCOVERED.</p>
     </div>
   )
 
@@ -102,7 +102,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <div className="absolute inset-x-0 top-0 h-[3px] bg-[#DE5DE2]" />
       <span aria-hidden className="absolute -right-[8%] top-[6%] h-[96%] w-[62%] rounded-full bg-[#DE5DE2]/40 blur-[70px]" />
       <p className="absolute left-[6%] top-[8%] z-10 text-[10px] font-bold uppercase tracking-[.16em] text-[#F1B4F2]">Launched in Thailand</p>
-      <p className="absolute left-[6%] top-[17%] z-10 max-w-[45%] text-[clamp(23px,2.7vw,42px)] font-black leading-[1.4] tracking-[-.06em] text-white">SHIPPED<br />PRODUCT.</p>
+      <p className="absolute left-[6%] top-[17%] z-10 max-w-[45%] text-[clamp(26px,3.05vw,47px)] font-black leading-[1.1] tracking-[-.06em] text-white">SHIPPED<br />PRODUCT.</p>
       <div className="absolute bottom-[8%] left-[6%] z-10 flex gap-2"><span className="rounded-full border border-white/35 bg-black/25 px-3 py-2 text-[10px] font-bold uppercase tracking-[.12em] text-white backdrop-blur">Product design</span><span className="rounded-full bg-[#DE5DE2] px-3 py-2 text-[10px] font-bold uppercase tracking-[.12em] text-white">3 redesigns</span></div>
       <Phone src="/images/trigr/t-list.webp" className="z-10 w-[44%] rotate-[-11deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.55)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[-9deg]" style={{ right: '-6%', bottom: '-46%' }} />
     </div>

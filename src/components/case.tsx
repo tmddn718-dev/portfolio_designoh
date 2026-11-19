@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Zoomable } from './Modal'
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
@@ -64,14 +64,14 @@ export function ChapterHead({ n, label, title, color }: { n: string; label: stri
 // 4개 상세 페이지 공용: 프로토타입 실행 영역
 import type { Project } from '../data/projects'
 import { ProtoFrame } from './Mockup'
-export function InteractionPreview({ p, title, note, wide, onOpen }: { p: Project; title: string; note?: string; wide: boolean; onOpen: () => void }) {
+export function InteractionPreview({ p, title, note, wide, onOpen, children }: { p: Project; title: string; note?: string; wide: boolean; onOpen: () => void; children?: ReactNode }) {
   const S = strongOf(p.accent), T = (n: number) => tintOf(p.accent, n)
   const [vw, setVw] = useState(() => window.innerWidth) // 모바일: 카드 안쪽 폭에 맞춰 프로토타입을 줄여 바로 보여줌
   useEffect(() => { const f = () => setVw(window.innerWidth); window.addEventListener('resize', f); return () => window.removeEventListener('resize', f) }, [])
   if (!p.proto) return null
   return (
     <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-center rounded-[28px] p-6 md:p-10" style={{ background: T(14) }}>
-      <div className="md:col-span-6"><p className="eyebrow" style={{ color: S }}>Interaction preview</p><p className="mt-3 text-[28px] md:text-[32px] font-extrabold leading-tight tracking-tight">{title}</p>{note && <p className="mt-3 text-[16px] leading-relaxed text-sub">{note}</p>}</div>
+      <div className="md:col-span-6"><p className="eyebrow" style={{ color: S }}>Interaction preview</p><p className="mt-3 text-[28px] md:text-[32px] font-extrabold leading-tight tracking-tight">{title}</p>{note && <p className="mt-3 text-[16px] leading-relaxed text-sub">{note}</p>}{children}</div>
       <div className="mt-8 md:mt-0 md:col-span-6 flex justify-center md:justify-end"><ProtoFrame p={p} width={wide ? 320 : Math.max(240, Math.min(320, vw - 80))} /></div>
     </div>
   )

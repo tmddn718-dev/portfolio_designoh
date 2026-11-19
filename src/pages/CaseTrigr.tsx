@@ -4,10 +4,10 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects } from '../data/projects'
 import Reveal from '../components/Reveal'
-import { Zoomable } from '../components/Modal'
+import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame } from '../components/Mockup'
 import Compose from '../components/Compose'
-import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, ProjectIndex, AppIcon } from '../components/case'
+import { ChapterHead, ChapterNav, InteractionPreview, strongOf, tintOf, useActive, ProjectIndex, AppIcon } from '../components/case'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -94,6 +94,7 @@ const validation = ['테스트 목적', '테스트 참여자 수', '수행 과�
 export default function CaseTrigr() {
   const root = useRef<HTMLElement>(null)
   const [sc, setSc] = useState('e')
+  const [open, setOpen] = useState(false)
   const [vw, setVw] = useState(typeof innerWidth === 'number' ? innerWidth : 1200)
   const active = useActive('trigr', list)
   useEffect(() => { document.title = 'trigr | Portfolio 2026'; return () => { document.title = 'Portfolio 2026 | Complexity → Clarity' } }, [])
@@ -129,8 +130,8 @@ export default function CaseTrigr() {
                 {info.map(([k, v]) => <div key={k}><dt className="text-sub text-[13px]">{k}</dt><dd className="mt-1 font-medium">{v}</dd></div>)}
               </dl>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#c3" className="px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">핵심 사례 보기</a>
-                {p.proto && <a href="#c7" className="px-6 py-3 rounded-full border border-ink text-[16px] font-semibold">프로토타입 보기</a>}
+                {p.proto && <button onClick={() => setOpen(true)} className="px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
+                <a href="#c3" className="px-6 py-3 rounded-full border border-ink text-[16px] font-semibold">핵심 사례 보기</a>
               </div>
             </div>
             <div data-hero-img className="mt-10 md:mt-0 md:col-span-6">
@@ -240,17 +241,12 @@ export default function CaseTrigr() {
       <section id="c7" className="scroll-mt-20 md:mt-24" style={{ background: T(9) }}>
         <div className="wrap gutter py-20 md:py-32">
           <ChapterHead color={S} n="07" label="Interactive Prototype" title="실제 사용자 흐름을 경험할 수 있는 인터랙티브 프로토타입" />
-          <div className="mt-6 flex flex-wrap items-center gap-3"><Tag>Original Design · Interactive Prototype</Tag><p className="text-[14px] text-sub">실제 운영 중인 서비스가 아니라, 당시 디자인을 포트폴리오용으로 재현한 프로토타입입니다.</p></div>
-          <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
-            <div className="md:col-span-6 md:order-2 flex justify-center md:justify-end">{proto && <ProtoFrame key={sc} p={proto} width={Math.max(240, Math.min(320, vw - 80))} />}</div>
-            <div className="md:col-span-6 md:order-1 mt-8 md:mt-0">
-              <p className="text-[14px] font-bold" style={{ color: S }}>시나리오</p>
-              <ul className="mt-3 space-y-3">{scenarios.map(([k, t]) => (
-                <li key={t}>{k ? <button onClick={() => setSc(k)} aria-pressed={sc === k} className="w-full min-h-12 text-left rounded-[16px] px-5 py-3 text-[17px] font-semibold border" style={sc === k ? { background: PINK, color: '#fff', borderColor: PINK } : { background: '#fff', borderColor: T(40) }}>{t}</button>
-                  : <div className="min-h-12 rounded-[16px] px-5 py-3 text-[17px] border border-dashed text-sub flex justify-between gap-3" style={{ borderColor: T(45) }}><span>{t}</span><span className="text-[13px] self-center">준비 중</span></div>}</li>))}</ul>
-              <p className="mt-5 text-[14px] leading-snug text-sub">폰 화면을 직접 눌러 보세요. 시나리오 문구는 목표만 알려 주고, 화면 위치나 방법은 알려 주지 않습니다.</p>
-            </div>
-          </div>
+          {proto && <InteractionPreview p={proto} wide={vw >= 768} onOpen={() => setOpen(true)} title="실제 사용자 흐름을 직접 눌러보세요" note="실제 운영 중인 서비스가 아니라, 당시 디자인을 포트폴리오용으로 재현한 프로토타입입니다.">
+            <p className="mt-5 inline-block px-3 py-1.5 rounded-full bg-white text-[13px] font-semibold" style={{ color: S }}>Original Design · Interactive Prototype</p>
+            <p className="mt-6 text-[14px] font-bold" style={{ color: S }}>시나리오</p>
+            <ul className="mt-3 space-y-2">{scenarios.map(([k, t]) => <li key={t}><button onClick={() => setSc(k)} aria-pressed={sc === k} className="w-full min-h-12 text-left rounded-[16px] px-5 py-3 text-[16px] font-semibold border" style={sc === k ? { background: PINK, color: '#fff', borderColor: PINK } : { background: '#fff', borderColor: T(40) }}>{t}</button></li>)}</ul>
+            <p className="mt-4 text-[14px] leading-snug text-sub">폰 화면을 직접 눌러 보세요. 시나리오 문구는 목표만 알려 주고, 화면 위치나 방법은 알려 주지 않습니다.</p>
+          </InteractionPreview>}
 
           <div className="mt-24 rounded-[28px] bg-white border border-grid p-6 md:p-10">
             <div className="flex flex-wrap items-center gap-3"><Tag>Validation Planned</Tag></div>
@@ -306,6 +302,7 @@ export default function CaseTrigr() {
           <span className="px-5 py-3 rounded-full bg-ink text-white text-[14px] shrink-0">이어서 보기</span>
         </div>
       </Link>
+      {p.proto && <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>}
     </article>
   )
 }

@@ -112,7 +112,7 @@ export const projects: Project[] = [
     tags: ['정보 구조화', '구매 판단 지원', '리서치'],
     summary: { concept: [['구조화', '거래 조건을 카드로 정리'], ['구분', '입력 안 함·모름·불러오기 실패를 구분'], ['초안', '고쳐 쓸 수 있는 질문 초안'], ['비교', '바뀐 정보만 골라 비교']], short: '채팅 전에 거래 조건을 한눈에 확인', about: '채팅 전에 대형 가구의 거래 가능 여부를 판단할 수 있어요. 크기·분해·가져가는 방법 같은 거래 조건을 카드로 정리했어요.', decision: '거래 조건을 글 속에 섞어 두지 않고 카드로 정리해요. ‘입력 안 함’ ‘판매자도 모름’ ‘불러오지 못함’을 구분해서 보여주고 질문 초안은 사용자가 고쳐서 보내요.', status: '프로토타입 사용성 테스트(7명)에서 7명 모두 거래 약속 확정이 빨라졌어요. 실제 서비스 성과는 검증 전이에요.', kind: 'design' },
     accent: '#FF6F0F',
-    mock: { srcs: ['/images/karrot-large-furniture/f-b3.webp', '/images/karrot-large-furniture/f-b1.webp', '/images/karrot-large-furniture/f-s2.webp'], framed: true },
+    mock: { srcs: ['/images/karrot-large-furniture/f-b3.webp?v=20261119-safearea', '/images/karrot-large-furniture/f-b1.webp?v=20261119-safearea', '/images/karrot-large-furniture/f-s2.webp?v=20261119-safearea'], framed: true },
     beforeAfter: [
       {
         before: '/images/karrot-large-furniture/asis-desc.webp', after: '/images/karrot-large-furniture/L-b1.webp',

@@ -11,7 +11,7 @@ type Step = { slug: string; shots: [string, string, string]; bg: string; fg: str
 const I = (d: string, ...n: string[]) => n.map(x => `/images/${d}/${x}.webp`) as [string, string, string]
 const steps: Step[] = [
   { slug: 'oliveyoung-todaydream', shots: I('oliveyoung-todaydream', 'n-optC', 'n-altMethods', 'n-restock'), bg: '#C9F45A', fg: '#10210A', ghost: 'OPTIONS' },
-  { slug: 'karrot-large-furniture', shots: I('karrot-large-furniture', 'f-b3', 'L-b1', 'f-b1'), bg: '#F5DDC8', fg: '#2B1D16', ghost: 'DECIDE' },
+  { slug: 'karrot-large-furniture', shots: I('karrot-large-furniture', 'f-b3', 'L-b1', 'f-b1').map(src => `${src}?v=20261119-safearea`) as [string, string, string], bg: '#F5DDC8', fg: '#2B1D16', ghost: 'DECIDE' },
   { slug: 'nodi', shots: I('nodi', 'hero-conds', 'full-scB', 'full-reasonB'), bg: '#D3DBFF', fg: '#17224C', ghost: 'NODI' },
   { slug: 'woorisai', shots: I('woorisai', 'home', 'detail', 'feed'), bg: '#E6E5D8', fg: '#263B2F', ghost: 'MEMORY' },
   { slug: 'trigr', shots: I('trigr', 't-reward', 't-list', 't-proof-detail'), bg: '#26142B', fg: '#FFFFFF', ghost: 'SHIPPED' },

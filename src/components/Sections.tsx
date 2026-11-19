@@ -68,7 +68,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <div className="absolute inset-0 bg-gradient-to-b from-[#F6E6D6] via-[#F6E6D6]/70 to-[#F6E6D6]/10" />
       <p className="absolute inset-x-0 top-[7%] z-10 text-center text-[clamp(10px,1vw,13px)] font-bold uppercase tracking-[.18em] text-[#B5500C]">Size · Move · Disassemble</p>
       <p className="absolute inset-x-0 top-[14%] z-10 text-center text-[clamp(23px,2.9vw,44px)] font-black leading-[.94] tracking-[-.055em] text-[#2B1D16]">BETTER DECISIONS<br />BEFORE CHAT.</p>
-      <Phone src="/images/karrot-large-furniture/L-b1.webp" className="left-1/2 z-10 w-[31%] -translate-x-1/2 drop-shadow-[0_28px_40px_rgba(55,28,14,.3)] transition-transform duration-300 group-hover:-translate-y-2" style={{ bottom: '-30%' }} />
+      <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-safearea" className="left-1/2 z-10 w-[31%] -translate-x-1/2 drop-shadow-[0_28px_40px_rgba(55,28,14,.3)] transition-transform duration-300 group-hover:-translate-y-2" style={{ bottom: '-30%' }} />
       <span aria-hidden className="absolute left-[6%] top-[60%] z-20 rounded-full bg-white/95 px-3 py-1.5 text-[11px] lg:text-[13px] font-bold text-[#2B1D16] shadow-[0_8px_24px_rgba(55,28,14,.18)]">140 × 80 × 75cm</span>
       <span aria-hidden className="absolute right-[7%] top-[50%] z-20 rounded-full bg-white/95 px-3 py-1.5 text-[11px] lg:text-[13px] font-bold text-[#2B1D16] shadow-[0_8px_24px_rgba(55,28,14,.18)]">분해 가능</span>
       <span aria-hidden className="absolute right-[6%] top-[68%] z-20 rounded-full bg-[#FF6F0F] px-3 py-1.5 text-[11px] lg:text-[13px] font-bold text-white shadow-[0_8px_24px_rgba(255,111,15,.35)]">엘리베이터 있음</span>
@@ -152,7 +152,7 @@ export function Work() {
 
 const approach = [
   { key: 'Structure', title: '이해할 수 있는 구조', text: '복잡한 정보를 사용자가 이해할 수 있는 구조로 정리합니다.', shot: { src: '/images/oliveyoung-todaydream/n-altMethods.webp', alt: '올리브영 수령 방법 비교 화면', cap: '수령 방법 비교' } },
-  { key: 'Decision', title: '스스로 내리는 판단', text: '필요한 정보를 바탕으로 사용자가 스스로 판단할 수 있도록 설계합니다.', shot: { src: '/images/karrot-large-furniture/L-b2.webp', alt: '당근 정보 상태 구분 화면', cap: '정보 상태 구분' } },
+  { key: 'Decision', title: '스스로 내리는 판단', text: '필요한 정보를 바탕으로 사용자가 스스로 판단할 수 있도록 설계합니다.', shot: { src: '/images/karrot-large-furniture/L-b2.webp?v=20261119-safearea', alt: '당근 정보 상태 구분 화면', cap: '정보 상태 구분' } },
   { key: 'Craft', title: '동작하는 경험', text: '아이디어를 실제 동작하는 경험으로 구현하고 피드백을 바탕으로 개선합니다.', shot: { src: '/images/trigr/tr-reward-2.webp', alt: 'trigr 남은 상금 계산 화면', cap: '결과 확인' } },
 ]
 

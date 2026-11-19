@@ -275,6 +275,7 @@ export const projects: Project[] = [
     tags: ['미션 플랫폼', 'UX/UI 설계', '디자인 시스템', '출시'],
     summary: { concept: [['시스템', 'Figma Variables로 디자인 시스템 구축'], ['협업', '정해진 답이 없는 상황에서 함께 설계'], ['지속가능성', '미션을 만드는 사람이 계속 만들 이유 설계'], ['출시', '세 번의 개편 후 태국 출시']], short: '디자인 시스템 구축부터 태국 출시까지', about: '미션을 만들고 수행하면 보상을 받는 앱이에요. 디자인 시스템을 처음부터 만들며 UX/UI를 총괄했고 태국에 출시했어요.', decision: '디자인 시스템을 처음부터 만들었어요. 세 번의 개편을 거쳐 태국 시장에 출시했어요.', status: '출시를 마쳤어요. 서비스는 현재 운영하지 않아요.', kind: 'launched' },
     accent: '#DD5BE0',
+    proto: { url: '/proto/trigr/index.html?sc=a', w: 390, h: 844, pro: true },
     mock: { srcs: ['/images/trigr/tr-p-method.webp', '/images/trigr/home-map.webp', '/images/trigr/t-proof-detail.webp'], framed: true },
     gallery: [
       { src: '/images/trigr/home-map.webp', alt: 'trigr 홈: 지도 위에 미션 핀이 표시된 화면', caption: '홈 — 지도 위 미션 탐색' },

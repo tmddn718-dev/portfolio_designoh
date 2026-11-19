@@ -32,7 +32,7 @@ export function ProtoFrame({ p, width = 300 }: { p: Project; width?: number }) {
     return (
       <div>
         <div className="phone-pro no-island" style={{ width, height: ih + 2 * B, aspectRatio: 'auto', padding: B, borderRadius: width * 0.14 }}>
-          <div className="overflow-hidden bg-white" style={{ width: inner, height: ih, borderRadius: width * 0.115 }}>
+          <div className="overflow-clip bg-white" style={{ width: inner, height: ih, borderRadius: width * 0.115 }}>
             <iframe key={p.slug} title={`${p.name} 프로토타입`} src={p.proto.url} loading="lazy" style={{ width: p.proto.w, height: p.proto.h, transform: `scale(${k})`, transformOrigin: 'top left', border: 0, display: 'block' }} />
           </div>
         </div>

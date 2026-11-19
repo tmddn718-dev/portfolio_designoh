@@ -1,11 +1,11 @@
-import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects } from '../data/projects'
 import Reveal from '../components/Reveal'
-import { Zoomable } from '../components/Modal'
-import { owner } from '../components/Mockup'
+import { Modal, Zoomable } from '../components/Modal'
+import { owner, ProtoFrame } from '../components/Mockup'
 import Compose from '../components/Compose'
 import ScrollPhone from '../components/ScrollPhone'
 import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, CaseSummary, ProjectIndex, AppIcon } from '../components/case'
@@ -45,6 +45,7 @@ const lanes = [
 
 export default function CaseTrigr() {
   const root = useRef<HTMLElement>(null)
+  const [open, setOpen] = useState(false)
   const active = useActive('trigr', list)
   useEffect(() => { document.title = 'trigr | Portfolio 2026'; return () => { document.title = 'Portfolio 2026 | Complexity → Clarity' } }, [])
   useLayoutEffect(() => {
@@ -78,6 +79,7 @@ export default function CaseTrigr() {
                 <div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div>
                 <div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div>
               </dl>
+              {p.proto && <button onClick={() => setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
             </div>
             <div data-hero-img className="mt-10 md:mt-0 md:col-span-7">
               <div role="img" aria-label="trigr 출시 버전의 홈 지도와 미션 목록 화면">
@@ -248,6 +250,7 @@ export default function CaseTrigr() {
           <span className="px-5 py-3 rounded-full bg-ink text-white text-[14px] shrink-0">이어서 보기</span>
         </div>
       </Link>
+      {p.proto && <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>}
     </article>
   )
 }

@@ -163,11 +163,10 @@ export default function CaseTrigr() {
         <h3 className="mt-24 apple-h text-[28px] md:text-[44px] max-w-[24ch]">누락된 흐름을 발견하고, 설계하고, 협의해 반영하다</h3>
         <ol className="mt-10 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
           {approach.map(([k, d], i) => (
-            <li key={k} className="relative rounded-[24px] p-6 md:p-7" style={{ background: T(10), border: `1px solid ${T(38)}` }}>
+            <li key={k} className="rounded-[24px] p-6 md:p-7" style={{ background: T(10), border: `1px solid ${T(38)}` }}>
               <p className="text-[13px] font-bold" style={{ color: S }}>0{i + 1}</p>
               <p className="mt-2 text-[26px] font-extrabold tracking-tight">{k}</p>
               <p className="mt-3 text-[16px] leading-snug">{d}</p>
-              {i < 3 && <span aria-hidden className="hidden md:block absolute top-1/2 -right-[15px] z-10 text-[18px]" style={{ color: S }}>→</span>}
             </li>
           ))}
         </ol>

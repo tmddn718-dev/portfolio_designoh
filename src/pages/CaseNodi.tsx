@@ -93,7 +93,7 @@ export default function CaseNodi() {
             <div className="md:col-span-6">
               <AppIcon src="/images/nodi/icon.svg" name="NODI" className="mb-5" />
               <p className="eyebrow" style={{ color: S }}>NODI / AI SCHEDULING EXPERIENCE</p>
-              <h1 className="mt-4 text-[88px] md:text-[168px] font-extrabold tracking-[-0.055em] leading-[0.88]">NODI</h1>
+              <h1 className="mt-4 text-[70px] md:text-[134px] font-extrabold tracking-[-0.055em] leading-[0.88]">NODI</h1>
               <p className="mt-8 text-[28px] md:text-[40px] font-extrabold leading-[1.2] tracking-tight">AI는 이해하고,<br />사용자는 결정한다.</p>
               <p className="mt-5 text-[17px] leading-[1.7] text-sub max-w-[30ch] md:max-w-[34ch]">여러 사람의 일정과 선호도를 비교하는 부담을 줄이기 위해, 추천 시간과 그 이유를 함께 제공하는 회의 일정 조율 경험을 설계했습니다.</p>
               <p className="mt-6 text-[13px] text-sub">Project Type · AI Scheduling Service Concept · Functional Prototype</p>

@@ -112,7 +112,7 @@ export const projects: Project[] = [
     tags: ['정보 구조화', '구매 판단 지원', '리서치'],
     summary: { concept: [['구조화', '거래 조건을 카드로 정리'], ['구분', '입력 안 함·모름·불러오기 실패를 구분'], ['초안', '고쳐 쓸 수 있는 질문 초안'], ['비교', '바뀐 정보만 골라 비교']], short: '채팅 전에 거래 조건을 한눈에 확인', about: '채팅 전에 대형 가구의 거래 가능 여부를 판단할 수 있어요. 크기·분해·가져가는 방법 같은 거래 조건을 카드로 정리했어요.', decision: '거래 조건을 글 속에 섞어 두지 않고 카드로 정리해요. ‘입력 안 함’ ‘판매자도 모름’ ‘불러오지 못함’을 구분해서 보여주고 질문 초안은 사용자가 고쳐서 보내요.', status: '프로토타입 사용성 테스트(7명)에서 7명 모두 거래 약속 확정이 빨라졌어요. 실제 서비스 성과는 검증 전이에요.', kind: 'design' },
     accent: '#FF6F0F',
-    mock: { srcs: ['/images/karrot-large-furniture/f-b3.webp?v=20261119-safearea', '/images/karrot-large-furniture/f-b1.webp?v=20261119-safearea', '/images/karrot-large-furniture/f-s2.webp?v=20261119-safearea'], framed: true },
+    mock: { srcs: ['/images/karrot-large-furniture/f-b3.webp?v=20261119-seedtext', '/images/karrot-large-furniture/f-b1.webp?v=20261119-seedtext', '/images/karrot-large-furniture/f-s2.webp?v=20261119-seedtext'], framed: true },
     beforeAfter: [
       {
         before: '/images/karrot-large-furniture/asis-desc.webp', after: '/images/karrot-large-furniture/L-b1.webp',
@@ -143,7 +143,7 @@ export const projects: Project[] = [
         points: ['※ Before는 실제 당근 앱 화면 캡처이며 개인정보는 가렸습니다'],
       },
     ],
-    proto: { url: '/proto/karrot/index.html?sc=home&v=20261119-safearea', w: 390, h: 844, pro: true },
+    proto: { url: '/proto/karrot/index.html?sc=home&v=20261119-seedtext', w: 390, h: 844, pro: true },
     gallery: [
       { src: '/images/karrot-large-furniture/f-home.webp', alt: '동네 홈 목록: 원목 4인용 식탁 등 가구 판매글과 글쓰기 버튼', caption: '동네 홈' },
       { src: '/images/karrot-large-furniture/L-s2.webp', alt: '판매글 작성을 아래로 스크롤하면 나오는 선택 입력 가구 정보 섹션', caption: '판매자 · 글 작성' },

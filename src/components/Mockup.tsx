@@ -46,7 +46,7 @@ export function ProtoFrame({ p, width = 300 }: { p: Project; width?: number }) {
   const bare = !!p.proto.bare // 프로토타입이 자체 기기 베젤을 가진 경우 바깥 프레임을 또 씌우지 않는다
   const inner = bare ? width : width - 20, k = inner / p.proto.w
   const frame = (
-    <iframe key={p.slug} title={`${p.name} 프로토타입`} src={p.proto.url} loading="lazy" allowTransparency
+    <iframe key={p.slug} title={`${p.name} 프로토타입`} src={p.proto.url} loading="lazy"
       style={{ width: p.proto.w, height: p.proto.h, transform: `scale(${k})`, transformOrigin: 'top left', border: 0, background: 'transparent' }} />
   )
   return (

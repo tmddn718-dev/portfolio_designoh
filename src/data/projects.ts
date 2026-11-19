@@ -143,7 +143,7 @@ export const projects: Project[] = [
         points: ['※ Before는 실제 당근 앱 화면 캡처이며 개인정보는 가렸습니다'],
       },
     ],
-    proto: { url: '/proto/karrot/index.html?sc=home', w: 390, h: 844 },
+    proto: { url: '/proto/karrot/index.html?sc=home&v=20261119-safearea', w: 390, h: 844, pro: true },
     gallery: [
       { src: '/images/karrot-large-furniture/f-home.webp', alt: '동네 홈 목록: 원목 4인용 식탁 등 가구 판매글과 글쓰기 버튼', caption: '동네 홈' },
       { src: '/images/karrot-large-furniture/L-s2.webp', alt: '판매글 작성을 아래로 스크롤하면 나오는 선택 입력 가구 정보 섹션', caption: '판매자 · 글 작성' },

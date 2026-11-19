@@ -26,8 +26,8 @@ function StoryArt({ story }: { story: Story }) {
     <p className="absolute left-[7%] top-[7%] max-w-[8ch] text-[clamp(31px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MORE OPTIONS.</p>
     <div className="absolute left-[7%] top-[31%] z-30 flex flex-wrap gap-2">
       <span className="rounded-full bg-[#151719] px-3 py-2 text-[10px] font-bold text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:px-4 md:text-[11px]">일반배송</span>
-      <span className="rounded-full bg-[#E84B96] px-3 py-2 text-[10px] font-bold text-white shadow-[0_8px_20px_rgba(110,17,61,.18)] md:px-4 md:text-[11px]">오늘드림</span>
-      <span className="rounded-full bg-[#0AA8B7] px-3 py-2 text-[10px] font-bold text-white shadow-[0_8px_20px_rgba(0,92,102,.18)] md:px-4 md:text-[11px]">픽업</span>
+      <span className="rounded-full bg-[#151719] px-3 py-2 text-[10px] font-bold text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:px-4 md:text-[11px]">오늘드림</span>
+      <span className="rounded-full bg-[#151719] px-3 py-2 text-[10px] font-bold text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:px-4 md:text-[11px]">픽업</span>
     </div>
     <span className="absolute -right-[16%] -top-[18%] h-[70%] w-[70%] rounded-full border-[52px] border-white/20" />
     <Phone src="/images/oliveyoung-todaydream/n-cart.webp" className="bottom-[-28%] left-[17%] w-[30%] rotate-[-8deg] opacity-90" />

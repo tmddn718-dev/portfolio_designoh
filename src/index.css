@@ -147,6 +147,7 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: clip; }
 .sw { display: inline-block; overflow: hidden; vertical-align: top; padding: .08em 0 .14em; margin: -.08em 0 -.14em; }
+.sw + .sw, .sw ~ .sw { margin-left: .24em; } /* 공백 글자에만 기대지 않고 단어 사이를 직접 띄운다 */
 .sw-i { display: inline-block; will-change: transform; }
 .outline-text-dark { color: transparent; -webkit-text-stroke: 2px #17181a; }
 @media (max-width: 767px) { .outline-text-dark { -webkit-text-stroke-width: 1.2px; } }

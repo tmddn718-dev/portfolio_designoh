@@ -645,18 +645,23 @@ function Woorisai({ c }: { c: Ctx }) {
   return (
     <>
       <section id="c1" className="overflow-hidden" style={{ background: '#FAF9F6' }}>
-        <div className="wrap gutter pt-10 md:pt-16 pb-14 text-center">
+        <div className="wrap gutter pt-10 md:pt-16 pb-14 md:pb-20">
           <Link to="/#work" className="inline-block py-2 text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
-          <AppIcon src="/images/woorisai/icon.svg" name={p.name} className="mx-auto mt-6" />
-          <p className="eyebrow mt-5" style={{ color: S }}>Personal Case Study · {p.category}</p>
-          <h1 className="mt-4 text-[54px] md:text-[126px] font-extrabold tracking-[-0.05em] leading-[0.95]" style={{ color: '#242622' }}>우리사이</h1>
-          <p className="mt-6 mx-auto text-[22px] md:text-[28px] font-bold leading-snug max-w-[28ch]">흩어진 사진과 기억을 하나의 추억으로 연결하고, 기록이 다시 대화로 이어지는 경험을 설계했습니다.</p>
-          <div className="mx-auto max-w-xl"><dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] text-left rule pt-4" style={{ borderColor: T(40) }}>
-            <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div><div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div><div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div></dl></div>
-          {c.proto && <button onClick={() => c.setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
-          <ul data-scale className="mt-14 flex items-end justify-center gap-4 md:gap-8 max-w-[860px] mx-auto">
-            {[['feed', '추억 피드', 'w-[28%]'], ['ph-after-top', '사진 상세', 'w-[34%]'], ['foot-after', '발자국', 'w-[28%]']].map(([n, a, w], i) => <li key={n} className={`${w} ${i !== 1 ? 'md:translate-y-8' : ''}`}><Screen src={I(n)} alt={`우리사이 ${a} 화면`} cap={a} /></li>)}
-          </ul>
+          <div className="mt-6 md:grid md:grid-cols-12 gap-10 items-center">
+            <div className="md:col-span-6">
+              <AppIcon src="/images/woorisai/icon.svg" name={p.name} className="mb-5" />
+              <p className="eyebrow" style={{ color: S }}>Personal Case Study · {p.category}</p>
+              <h1 className="text-[54px] md:text-[126px] font-extrabold tracking-[-0.05em]" style={{ lineHeight: 1, marginTop: 'calc(1rem + .2em)', color: '#242622' }}>우리사이</h1>
+              <p className="mt-4 text-[22px] md:text-[28px] font-semibold leading-snug max-w-[24ch]">흩어진 사진과 기억을 하나의 추억으로 연결하고, 기록이 다시 대화로 이어지는 경험을 설계했습니다.</p>
+              <dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] rule pt-4" style={{ borderColor: T(40) }}>
+                <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div><div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div><div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div>
+              </dl>
+              {c.proto && <button onClick={() => c.setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
+            </div>
+            <ul data-scale className="mt-12 md:mt-0 md:col-span-6 flex items-end justify-center gap-4 md:gap-6">
+              {[['feed', '추억 피드', 'w-[28%]'], ['ph-after-top', '사진 상세', 'w-[34%]'], ['foot-after', '발자국', 'w-[28%]']].map(([n, a, w], i) => <li key={n} className={`${w} ${i !== 1 ? 'md:translate-y-8' : ''}`}><Screen src={I(n)} alt={`우리사이 ${a} 화면`} cap={a} /></li>)}
+            </ul>
+          </div>
         </div>
       </section>
       <p className="wrap gutter pt-8 text-[13px] text-sub text-center">실제 프로토타입 화면 캡처 · 사진은 Unsplash 예시 이미지, 이름과 내용은 예시 데이터</p>

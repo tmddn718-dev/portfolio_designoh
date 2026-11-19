@@ -69,8 +69,8 @@ export default function CaseTrigr() {
             <div className="md:col-span-5">
               <AppIcon src="/images/trigr/icon.svg" name="trigr" className="mb-5" />
               <p className="eyebrow" style={{ color: S }}>Launched Product · 출시 프로젝트</p>
-              <h1 className="mt-4 text-[72px] md:text-[126px] font-extrabold tracking-[-0.06em] leading-[0.9]">trigr</h1>
-              <p className="mt-6 text-[24px] md:text-[28px] leading-snug font-bold">처음부터 만든<br />미션·리워드 앱</p>
+              <h1 style={{ lineHeight: 1, marginTop: 'calc(1rem + .2em)' }} className="text-[72px] md:text-[126px] font-extrabold tracking-[-0.06em] leading-[0.9]">trigr</h1>
+              <p className="mt-4 text-[24px] md:text-[28px] leading-snug font-semibold">처음부터 만든<br />미션·리워드 앱</p>
               <p className="mt-3 text-[17px] text-sub">초기 기획부터 세 차례의 개편, 출시까지 참여한 UX/UI 설계 경험.</p>
               <p className="mt-6 inline-block px-4 py-2 rounded-full bg-ink text-white text-[13px] font-semibold">서비스 운영 종료 · 당시 디자인 기준</p>
               <dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] rule pt-4" style={{ borderColor: T(35) }}>

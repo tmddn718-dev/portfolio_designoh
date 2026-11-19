@@ -25,9 +25,9 @@ export default function SplitText({ text, as: Tag = 'h2', className = '', delay 
     <Tag ref={ref} aria-label={text.replace(/\n/g, ' ')} className={className}>
       {lines.map((line, li) => (
         <span key={li} aria-hidden className="block">
-          {line.split(' ').map((w, wi, arr) => (
+          {line.split(' ').map((w, wi) => (
             <Fragment key={wi}>
-              <span className="sw"><span className="sw-i">{w}</span></span>{wi < arr.length - 1 ? ' ' : ''}
+              <span className="sw"><span className="sw-i">{w}</span></span>
             </Fragment>
           ))}
         </span>

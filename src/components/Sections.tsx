@@ -131,7 +131,7 @@ export function Work() {
   const selected = projectOrder.map(by)
   return (
     <section id="work" className="home-section wrap gutter scroll-mt-16">
-      <Reveal className="grid gap-6 md:grid-cols-12 md:items-end"><div className="md:col-span-7"><p className="eyebrow text-bluetext">Selected work</p><SplitText as="h2" className="section-title mt-3 max-w-[18ch]" text={"화면보다 프로젝트의\n성격을 먼저 보여줍니다."} /></div><p className="body-copy md:col-span-4 md:col-start-9">대표 UX 개선부터 출시 경험까지, 해결한 문제와 설계 판단을 비교해 살펴볼 수 있습니다.</p></Reveal>
+      <Reveal className="grid gap-6 md:grid-cols-12 md:items-end"><div className="md:col-span-7"><p className="eyebrow text-bluetext">Selected work</p><SplitText as="h2" className="section-title mt-3 max-w-[18ch]" text={"Projects,\nbefore screens."} /></div><p className="body-copy md:col-span-4 md:col-start-9">대표 UX 개선부터 출시 경험까지, 해결한 문제와 설계 판단을 비교해 살펴볼 수 있습니다.</p></Reveal>
       <Reveal className="mt-12 md:mt-14"><FeaturedOlive /></Reveal>
       <div className="mt-24 md:mt-28"><div className="flex items-end justify-between gap-6 border-t border-grid pt-5"><h2 className="text-[28px] font-bold tracking-tight md:text-[36px]">이어지는 작업</h2><p className="hidden text-[14px] text-sub md:block">당근 / NODI / 우리사이 / trigr</p></div><div data-stagger className="mt-10 grid gap-x-8 gap-y-16 md:grid-cols-2">{selected.map(p => <ProjectCard key={p.slug} p={p} />)}</div></div>
     </section>

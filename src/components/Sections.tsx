@@ -102,7 +102,6 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <p className="absolute left-[6%] top-[8%] z-30 max-w-[52%] text-[clamp(21px,2.4vw,37px)] font-black leading-[1.1] tracking-[-.055em] text-[#17224C]">AI UNDERSTANDS.<br />YOU DECIDE.</p>
       <BrowserMockup src="/images/nodi/web-reco.webp" className="bottom-[8%] left-[7%] z-10 w-[68%] -rotate-2 transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-0" />
       <Phone src="/images/nodi/full-review.webp" className="z-20 w-[27%] rotate-[7deg] drop-shadow-[0_28px_46px_rgba(43,59,145,.3)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[4deg]" style={{ right: '3%', bottom: '-25%' }} />
-      <span className="absolute bottom-[6%] left-[8%] z-30 rounded-full bg-[#3155D9] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.12em] text-white">Recommendation rationale</span>
     </div>
   )
 
@@ -113,8 +112,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <span aria-hidden className="absolute right-[38%] top-[18%] h-24 w-24 rounded-full border border-[#829386]/40" />
       <Phone src="/images/woorisai/detail.webp" className="z-10 w-[30%] rotate-[-7deg] opacity-90 drop-shadow-[0_24px_40px_rgba(40,56,47,.22)] transition-transform duration-300 group-hover:-translate-y-1" style={{ right: '29%', top: '-14%' }} />
       <Phone src="/images/woorisai/home.webp" className="z-20 w-[38%] rotate-[5deg] drop-shadow-[0_30px_46px_rgba(40,56,47,.28)] transition-transform duration-300 group-hover:translate-y-2 group-hover:rotate-[3deg]" style={{ right: '-4%', top: '-21%' }} />
-      <p className="absolute bottom-[39%] left-[6%] z-30 text-[10px] font-bold uppercase tracking-[.18em] text-[#566B5C]">A shared memory archive</p>
-      <p className="absolute bottom-[7%] left-[6%] z-30 max-w-[56%] text-[clamp(20px,2.35vw,36px)] font-black leading-[1.1] tracking-[-.055em] text-[#263B2F]">SHARED MOMENTS,<br />REDISCOVERED.</p>
+      <div className="absolute bottom-[7%] left-[6%] z-30 max-w-[56%]"><p className="mb-3 text-[10px] font-bold uppercase tracking-[.18em] text-[#566B5C]">A shared memory archive</p><p className="text-[clamp(20px,2.35vw,36px)] font-black leading-[1.1] tracking-[-.055em] text-[#263B2F]">SHARED MOMENTS,<br />REDISCOVERED.</p></div>
     </div>
   )
 
@@ -126,7 +124,6 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <span aria-hidden className="absolute right-[13%] top-[19%] aspect-square w-[32%] rounded-full border border-[#EE7CF0]/20" />
       <p className="absolute left-[6%] top-[8%] z-10 text-[10px] font-bold uppercase tracking-[.16em] text-[#F1B4F2]">Trigr · Launched in Thailand</p>
       <p className="absolute left-[6%] top-[17%] z-10 max-w-[45%] text-[clamp(23px,2.7vw,42px)] font-black leading-[1.1] tracking-[-.06em] text-white">FROM GAPS<br />TO FLOWS.</p>
-      <div className="absolute bottom-[8%] left-[6%] z-30 flex max-w-[54%] flex-wrap gap-2">{['Product Design', 'UX/UI Design', 'Design System', 'Product Launch'].map((m, i) => <span key={m} className={`rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[.1em] text-white shadow-[0_8px_18px_rgba(0,0,0,.18)] ${i === 3 ? 'bg-[#DE5DE2]' : 'border border-white/45 bg-[#1B1020]/80 backdrop-blur'}`}>{m}</span>)}</div>
       <Phone src="/images/trigr/home-map.webp" className="z-10 w-[29%] rotate-[-10deg] opacity-85 drop-shadow-[0_28px_54px_rgba(0,0,0,.5)]" style={{ right: '24%', bottom: '-30%' }} />
       <Phone src="/images/trigr/mission-discovery-02.png" className="z-20 w-[36%] rotate-[4deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.58)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[2deg]" style={{ right: '-1%', bottom: '-31%' }} />
     </div>

@@ -1,9 +1,12 @@
 import { useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { profile } from '../data/projects'
 
 // 포트폴리오의 핵심 메시지는 한 장면에만 집중시킨다.
+gsap.registerPlugin(ScrollTrigger)
+
 export default function Hero() {
   const root = useRef<HTMLElement>(null)
   useLayoutEffect(() => {
@@ -21,14 +24,17 @@ export default function Hero() {
         .to(q('[data-fill]'), { clipPath: 'inset(-30% -10% -30% 0)', duration: 0.8, ease: 'power2.inOut' }, '-=0.2')
         .set(q('[data-ol]'), { opacity: 0 })
         .to(q('[data-copy]'), { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 }, '-=0.3')
+      // 스크롤하면 헤드라인은 천천히 위로 사라지고 배경 격자는 더 느리게 따라온다
+      gsap.to(q('[data-parallax]'), { yPercent: -14, opacity: 0.15, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true } })
+      gsap.to(q('[data-grid]'), { yPercent: 12, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true } })
     })
     return () => mm.revert()
   }, [])
 
   return (
     <section ref={root} id="hero" data-dark className="relative -mt-12 flex min-h-[100dvh] overflow-hidden bg-[#10110F] pt-12 text-white">
-      <div aria-hidden className="grid-bg grid-bg-dark absolute inset-0" />
-      <div className="wrap gutter relative flex w-full flex-col justify-center py-14 md:py-20">
+      <div aria-hidden data-grid className="grid-bg grid-bg-dark absolute inset-0" />
+      <div data-parallax className="wrap gutter relative flex w-full flex-col justify-center py-14 md:py-20">
         <h1 aria-label="Complexity → Clarity" className="text-[clamp(52px,15vw,64px)] font-extrabold leading-[0.98] tracking-[-0.05em] md:text-[clamp(88px,8.5vw,112px)]">
           <span data-cx aria-hidden className="outline-text block">Complexity</span>
           <span aria-hidden className="flex items-center gap-[0.1em]">
@@ -46,7 +52,7 @@ export default function Hero() {
           <div data-copy className="max-w-[36ch] md:text-right">
             <p className="text-[14px] font-semibold tracking-wide text-white/85">{profile.name} · Product Designer / UX·UI Designer</p>
             <p className="mt-2 text-[15px] leading-[1.65] text-white/65">문제를 구조로 정리하고, 판단에 필요한 정보의 우선순위를 설계합니다.</p>
-            <Link to="/#work" className="pill mt-5 !min-h-12 !px-6 text-[15px]">프로젝트 보기 ↓</Link>
+            <Link to="/#work" data-magnetic="0.35" data-cursor="이동" className="pill mt-5 !min-h-12 !px-6 text-[15px]">프로젝트 보기 ↓</Link>
           </div>
         </div>
       </div>

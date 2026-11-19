@@ -10,7 +10,7 @@ export function Modal({ open, onClose, label, children }: { open: boolean; onClo
     if (!open && d.open) d.close()
   }, [open])
   return (
-    <dialog ref={ref} aria-label={label} className="modal" onClose={onClose}
+    <dialog ref={ref} aria-label={label} data-lenis-prevent className="modal" onClose={onClose}
       onClick={e => { if (e.target === ref.current) onClose() }}>
       {open && <div className="relative p-4 md:p-8">
         <button onClick={onClose} className="absolute right-4 top-4 md:right-8 md:top-8 z-10 px-4 py-3 rounded-full bg-white text-ink text-[14px] font-semibold">닫기</button>

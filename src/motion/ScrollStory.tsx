@@ -80,7 +80,7 @@ export default function ScrollStory() {
 
   useEffect(() => {
     if (!desktop) return
-    const st = ScrollTrigger.create({ trigger: sec.current, start: 'top top+=48', end: () => `+=${Math.round(window.innerHeight * .82) * (stories.length - 1) + 160}`, pin: true, anticipatePin: 1, invalidateOnRefresh: true, onUpdate: self => {
+    const st = ScrollTrigger.create({ trigger: sec.current, start: 'top top+=48', end: () => `+=${Math.round(window.innerHeight * .82) * (stories.length - 1) + 160}`, pin: true, anticipatePin: 1, refreshPriority: 10, invalidateOnRefresh: true, onUpdate: self => {
       const next = Math.min(stories.length - 1, Math.round(self.progress * (stories.length - 1)))
       setActive(prev => prev === next ? prev : next)
     } })

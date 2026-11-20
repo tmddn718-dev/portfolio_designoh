@@ -10,11 +10,11 @@ gsap.registerPlugin(ScrollTrigger)
 type Story = { slug: string; category: string; headline: string; description: string; bg: string; fg: string }
 
 const stories: Story[] = [
-  { slug: 'oliveyoung-todaydream', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '오늘드림 품절 후에도 다른 방법으로 구매하도록', description: '일반배송과 매장 픽업을 바로 비교하고 결제까지 이어갈 수 있도록 구매 흐름을 재설계했습니다.', bg: '#C9F45A', fg: '#10210A' },
-  { slug: 'karrot-large-furniture', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '채팅 전에 거래 가능 여부를 판단하도록', description: '대형 가구의 크기와 운반 조건을 게시글에서 확인해, 채팅에서는 거래 약속 조율에 집중하도록 개선했습니다.', bg: '#F3D7BE', fg: '#2B1D16' },
+  { slug: 'oliveyoung-todaydream', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '품절 이후에도 구매를 이어갈 수 있도록', description: '일반배송과 매장 픽업을 바로 비교하고 결제까지 이어갈 수 있도록 구매 흐름을 재설계했습니다.', bg: '#C9F45A', fg: '#10210A' },
+  { slug: 'karrot-large-furniture', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '채팅에서 물어보기 전에, 게시글에서 확인하도록', description: '대형 가구의 크기와 운반 조건을 게시글에서 확인해, 채팅에서는 거래 약속 조율에 집중하도록 개선했습니다.', bg: '#F3D7BE', fg: '#2B1D16' },
   { slug: 'nodi', category: 'PRODUCT CONCEPT / FUNCTIONAL PROTOTYPE', headline: 'AI는 이해하고, 사용자는 결정한다', description: '여러 사람의 일정 조건과 추천 이유를 보여주되, 최종 회의 시간은 사용자가 직접 선택하도록 설계했습니다. 추천 기능은 규칙 기반 데모입니다.', bg: '#D8DFFF', fg: '#17224C' },
-  { slug: 'woorisai', category: 'PRODUCT CONCEPT / PERSONAL PROJECT', headline: '함께한 순간을 기록하고 다시 발견하도록', description: '여러 앱에 흩어진 사진과 이야기를 하나의 추억으로 모으고, 사람·장소·시간을 기준으로 다시 찾도록 설계했습니다.', bg: '#E9E8DC', fg: '#263B2F' },
-  { slug: 'trigr', category: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE', headline: '기획서에 빠진 흐름을 설계해 출시까지', description: '누락된 사용자 흐름과 예외 상태를 설계하고, 기획자·개발자와 협의해 태국 시장 출시까지 연결했습니다.', bg: '#241328', fg: '#FFFFFF' },
+  { slug: 'woorisai', category: 'PRODUCT CONCEPT / PERSONAL PROJECT', headline: '함께한 순간을 다시 발견하도록', description: '여러 앱에 흩어진 사진과 이야기를 하나의 추억으로 모으고, 사람·장소·시간을 기준으로 다시 찾도록 설계했습니다.', bg: '#E9E8DC', fg: '#263B2F' },
+  { slug: 'trigr', category: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE', headline: '실제 출시 제품을 만들고, 반복해서 개선한 경험', description: '누락된 사용자 흐름과 예외 상태를 설계하고, 기획자·개발자와 협의해 태국 시장 출시까지 연결했습니다.', bg: '#241328', fg: '#FFFFFF' },
 ]
 
 const by = (slug: string) => projects.find(p => p.slug === slug)!
@@ -59,14 +59,14 @@ function StoryArt({ story }: { story: Story }) {
 }
 
 function MobileStories() {
-  return <section id="story" aria-label="프로젝트 한눈에 보기" className="scroll-mt-16 bg-[#FBFBFD] py-20 md:py-24 lg:hidden">
+  return <section id="story" aria-label="주요 프로젝트" className="scroll-mt-16 bg-[#FBFBFD] py-20 md:py-24 lg:hidden">
     <div className="wrap gutter">
-      <p className="text-[13px] font-semibold uppercase tracking-[.14em] text-bluetext">Selected projects</p>
+      <p className="text-[13px] font-semibold uppercase tracking-[.14em] text-bluetext">Featured experience</p>
       <h2 className="mt-3 text-[32px] font-bold tracking-[-.04em]">다섯 프로젝트, 다섯 가지 문제</h2>
       <div className="mt-10 space-y-14">
         {stories.map((story, index) => <article key={story.slug}><Link to={`/work/${story.slug}`} className="group block">
           <div className="relative aspect-[4/5] overflow-hidden rounded-[22px]" style={{ background: story.bg, color: story.fg }}><StoryArt story={story} /></div>
-          <div className="mt-5 flex gap-4"><span className="text-[13px] font-semibold tabular-nums text-sub">0{index + 1}</span><div><p className="text-[12px] font-semibold uppercase tracking-[.08em] text-sub">{story.category}</p><h3 className="mt-2 text-[24px] font-bold tracking-[-.03em]">{story.headline}</h3><p className="mt-3 text-[15px] leading-[1.7] text-sub">{story.description}</p><span className="mt-4 inline-flex border-b border-ink pb-1 text-[14px] font-semibold">프로젝트 보기 ↗</span></div></div>
+          <div className="mt-5 flex gap-4"><span className="text-[13px] font-semibold tabular-nums text-sub">0{index + 1}</span><div><p className="text-[12px] font-semibold uppercase tracking-[.08em] text-sub">{story.category}</p><h3 className="mt-2 text-[28px] font-black tracking-[-.04em]">{by(story.slug).name}</h3><p className="mt-2 text-[18px] font-semibold leading-[1.5] tracking-[-.02em]">{story.headline}</p><p className="mt-3 text-[15px] leading-[1.7] text-sub">{story.description}</p><span className="mt-4 inline-flex min-h-11 items-center border-b border-ink text-[14px] font-semibold">프로젝트 보기 ↗</span></div></div>
         </Link></article>)}
       </div>
     </div>
@@ -74,7 +74,7 @@ function MobileStories() {
 }
 
 export default function ScrollStory() {
-  const sec = useRef<HTMLElement>(null)
+  const sec = useRef<HTMLDivElement>(null)
   const [desktop, setDesktop] = useState(false)
   const [active, setActive] = useState(0)
 
@@ -87,7 +87,7 @@ export default function ScrollStory() {
 
   useEffect(() => {
     if (!desktop) return
-    const st = ScrollTrigger.create({ trigger: sec.current, start: 'top top+=48', end: () => `+=${Math.round(window.innerHeight * .82) * (stories.length - 1) + 160}`, pin: true, anticipatePin: 1, refreshPriority: 10, invalidateOnRefresh: true, onUpdate: self => {
+    const st = ScrollTrigger.create({ trigger: sec.current, start: 'top top+=48', end: 'bottom bottom', invalidateOnRefresh: true, onUpdate: self => {
       const next = Math.min(stories.length - 1, Math.round(self.progress * (stories.length - 1)))
       setActive(prev => prev === next ? prev : next)
     } })
@@ -95,12 +95,13 @@ export default function ScrollStory() {
   }, [desktop])
 
   if (!desktop) return <MobileStories />
-  return <div><section ref={sec} id="story" aria-label="프로젝트 한눈에 보기" className="relative h-[calc(100svh-48px)] overflow-hidden bg-[#FBFBFD]">
+  return <div ref={sec} id="story" aria-label="주요 프로젝트" className="relative scroll-mt-12 bg-[#FBFBFD]" style={{ height: `${100 + 72 * (stories.length - 1)}svh` }}><section className="sticky top-12 h-[calc(100svh-48px)] overflow-hidden">
     <div className="wrap gutter grid h-full grid-cols-12 items-center gap-10">
       <div className="col-span-5">
         <p className="text-[13px] font-semibold tabular-nums text-bluetext">0{active + 1} / 0{stories.length}</p>
-        <ol className="mt-5 space-y-1">{stories.map((story, index) => <li key={story.slug}><Link to={`/work/${story.slug}`} aria-current={index === active ? 'true' : undefined} className={`block text-[clamp(34px,4.1vw,64px)] font-black leading-[1.02] tracking-[-.05em] transition-[color,transform,opacity] duration-500 ${index === active ? 'translate-x-3 text-ink' : 'text-ink/18 hover:text-ink/50'}`}>{by(story.slug).name.replace(' 중고거래', '').replace(' 오늘드림', '')}</Link></li>)}</ol>
-        <div className="relative mt-8 min-h-[190px] max-w-[44ch]">{stories.map((story, index) => <div key={story.slug} className={`absolute inset-0 transition-[opacity,transform] duration-500 ${index === active ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'}`}>
+        <p className="text-[12px] font-semibold uppercase tracking-[.14em] text-sub">Featured experience</p>
+        <ol className="mt-4 space-y-1">{stories.map((story, index) => <li key={story.slug}><Link to={`/work/${story.slug}`} onFocus={() => setActive(index)} onPointerEnter={() => setActive(index)} aria-current={index === active ? 'true' : undefined} className={`block text-[clamp(34px,4.1vw,64px)] font-black leading-[1.02] tracking-[-.05em] transition-[color,transform,opacity] duration-300 ${index === active ? 'translate-x-3 text-ink' : 'text-ink/18 hover:text-ink/50'}`}>{by(story.slug).name.replace(' 중고거래', '').replace(' 오늘드림', '')}</Link></li>)}</ol>
+        <div className="relative mt-8 min-h-[190px] max-w-[44ch]">{stories.map((story, index) => <div key={story.slug} className={`absolute inset-0 transition-[opacity,transform] duration-300 ${index === active ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'}`}>
           <p className="text-[12px] font-semibold uppercase tracking-[.08em] text-sub">{story.category}</p><h2 className="mt-3 text-[24px] font-bold leading-[1.35] tracking-[-.03em]">{story.headline}</h2><p className="mt-3 text-[15px] leading-[1.7] text-sub">{story.description}</p><Link to={`/work/${story.slug}`} className="mt-4 inline-flex border-b border-ink pb-1 text-[14px] font-semibold">프로젝트 보기 ↗</Link>
         </div>)}</div>
       </div>

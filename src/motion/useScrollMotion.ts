@@ -14,7 +14,10 @@ export function useScrollMotion() {
       const items = gsap.utils.toArray<HTMLElement>('[data-stagger] > *')
       gsap.set(items, { opacity: 0, y: 36 })
       // 앵커 이동처럼 한 번에 지나쳐도(onLeave) 모두 나타나게 같은 동작을 세 곳에 연결한다
-      const show = (els: Element[]) => gsap.to(els, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12, overwrite: true })
+      const show = (els: Element[]) => {
+        if (!els.length) return
+        gsap.to(els, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12, overwrite: true })
+      }
       ScrollTrigger.batch(items, { start: 'top 90%', onEnter: show, onLeave: show, onEnterBack: show })
       // 새로 계산한 뒤(refresh) 이미 지나친 곳에 숨은 채 남은 요소가 없도록 한 번 더 확인한다
       const sweep = () => show(items.filter(el => el.getBoundingClientRect().top < innerHeight * 0.9 && +getComputedStyle(el).opacity < 1))

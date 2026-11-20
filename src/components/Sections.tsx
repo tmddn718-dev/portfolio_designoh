@@ -50,14 +50,14 @@ function FeaturedOlive() {
       <div className="grid md:grid-cols-12">
         <div className="flex flex-col p-7 md:col-span-5 md:p-10 lg:p-12">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sub"><span className="text-[13px] font-semibold tabular-nums text-ink">01 / 05</span><span className="text-[12px] font-semibold uppercase tracking-[.08em]">UX REDESIGN / PERSONAL PROJECT</span></div>
-          <h3 className="mt-7 max-w-[13ch] text-[30px] font-bold leading-[1.2] tracking-[-0.035em] md:text-[38px]">오늘드림 품절 후에도 다른 방법으로 구매하도록</h3>
+          <h3 className="mt-7 max-w-[13ch] text-[30px] font-bold leading-[1.2] tracking-[-0.035em] md:text-[38px]">품절 이후에도 구매를 이어갈 수 있도록</h3>
           <p className="mt-5 max-w-[38ch] text-[16px] leading-[1.75] text-ink/75 md:text-[17px]">오늘드림 품절 시 일반배송과 매장 픽업을 바로 비교하고, 결제까지 이어갈 수 있도록 구매 흐름을 재설계했습니다.</p>
-          <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-[#CEDBB7] py-5 tabular-nums">
+          <dl className="mt-8 grid grid-cols-1 gap-4 border-y border-[#CEDBB7] py-5 tabular-nums sm:grid-cols-2">
             <div><dt className="text-[13px] leading-[1.5] text-sub">품절 후 결제 확정</dt><dd className="mt-1 text-[22px] font-bold tracking-tight">평균 약 42초 단축</dd></div>
             <div><dt className="text-[13px] leading-[1.5] text-sub">배송·혜택 확인 후 결정</dt><dd className="mt-1 text-[22px] font-bold tracking-tight">평균 26초 단축</dd></div>
-            <p className="col-span-2 text-[12px] leading-[1.5] text-sub">동일 참여자 8명 · 기존 앱과 개선 프로토타입 비교</p>
+            <p className="text-[12px] leading-[1.5] text-sub sm:col-span-2">동일 참여자 8명 · 기존 앱과 개선 프로토타입 비교</p>
           </dl>
-          <div className="mt-8 flex flex-wrap gap-3"><Link to={`/work/${p.slug}`} className="inline-flex min-h-12 items-center rounded-full bg-ink px-6 text-[15px] font-semibold text-white hover:-translate-y-0.5">케이스 스터디 보기</Link>{p.proto && <button onClick={() => setOpen(true)} className="min-h-12 rounded-full border border-ink px-6 text-[15px] font-semibold hover:bg-white">프로토타입 실행</button>}</div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"><Link to={`/work/${p.slug}`} className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 text-[15px] font-semibold text-white hover:-translate-y-0.5">케이스 스터디 보기</Link>{p.proto && <button onClick={() => setOpen(true)} className="min-h-12 rounded-full border border-ink px-6 text-[15px] font-semibold hover:bg-white">프로토타입 실행</button>}</div>
         </div>
         <Link to={`/work/${p.slug}`} data-cursor="보기" aria-label="올리브영 오늘드림 케이스 스터디 보기" className="group relative min-h-[420px] overflow-hidden bg-[#C9F45A] md:col-span-7 md:min-h-[580px]">
           <OliveShowcase />

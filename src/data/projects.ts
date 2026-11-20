@@ -74,9 +74,9 @@ export const projects: Project[] = [
         points: ['Before: 배송 시간대를 선택한 뒤 별도 영역에서 배송비를 확인한다(12:45~13:45 선택 시 5,000원)', 'After: 12:45~13:45는 5,000원, 15:00~16:00과 22:00~24:00은 2,500원처럼 시간대마다 배송비를 함께 표시한다', '※ Before는 실제 앱 화면을 직접 캡처한 이미지이며 개인정보는 가렸습니다'],
       },
       {
-        before: '/images/oliveyoung-todaydream/n-checkoutAsis.webp', after: '/images/oliveyoung-todaydream/n-checkoutTobe.webp',
-        beforeAlt: '기존 주문/결제: 배송 방법, 요청사항, 주문상품, 쿠폰이 세로로 이어진다', afterAlt: '개선 주문/결제: 배송·수령 정보, 할인·혜택, 최종 결제 3그룹',
-        points: ['Before: 배송 시간 선택, 요청사항, 주문상품, 쿠폰 등이 한 화면에 길게 이어진다', 'After: 배송·수령 정보 / 할인·혜택 / 최종 결제 3그룹으로 묶고 접고 펼칠 수 있다', '※ Before는 실제 앱 화면을 직접 캡처한 이미지이며 주소 등 개인정보는 가렸습니다'],
+        before: '/images/oliveyoung-todaydream/n-checkoutAsisPickup.webp', after: '/images/oliveyoung-todaydream/n-checkoutTobe.webp',
+        beforeAlt: '기존 주문/결제(픽업 선택): 픽업 매장 지도와 목록, 주문상품, 쿠폰, 포인트가 세로로 이어진다', afterAlt: '개선 주문/결제: 배송·수령 정보, 할인·혜택, 최종 결제 3그룹',
+        points: ['Before: 픽업 주문에서는 매장 지도와 목록, 주문상품, 쿠폰, 포인트·기프트카드, 결제수단, 약관 동의까지 한 화면에 길게 이어진다(확대하면 끝까지 스크롤)', 'After: 배송·수령 정보 / 할인·혜택 / 최종 결제 3그룹으로 묶고 접고 펼칠 수 있다', '※ Before는 실제 앱 화면을 직접 캡처한 이미지이며 계좌 번호 등 개인정보는 가렸습니다'],
       },
     ],
     gallery: [

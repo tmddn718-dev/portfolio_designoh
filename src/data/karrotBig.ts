@@ -15,6 +15,7 @@ export function karrotFull(src: string): KarrotFull | undefined {
   if (nodi) return { big: `/images/nodi/full-${nodi[1]}.webp` }
   // 올리브영 주문/결제 AS-IS: 실제 앱을 스크롤하며 캡처한 6장을 이어 붙인 긴 화면(상단 바는 고정)
   if (/^\/images\/oliveyoung-todaydream\/n-checkoutAsis\.webp$/.test(src)) return { parts: { top: '/images/oliveyoung-todaydream/sp-checkoutAsis-top.webp', body: '/images/oliveyoung-todaydream/sp-checkoutAsis-body.webp', topCq: 24.74 } }
+  if (src === '/images/oliveyoung-todaydream/n-checkoutAsisPickup.webp') return { parts: { top: '/images/oliveyoung-todaydream/sp-checkoutPickup-top.webp', body: '/images/oliveyoung-todaydream/sp-checkoutPickup-body.webp', topCq: 24.74 } }
   if (!src.startsWith(BASE)) return undefined
   const id = ID[src.slice(BASE.length).replace(/\.webp$/, '')]
   if (!id) return undefined

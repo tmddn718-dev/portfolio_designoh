@@ -64,11 +64,11 @@ body { font-family: var(--font-sans); color: var(--color-ink); background: #fdfd
   position: absolute;
   inset: 0;
   color: #fff;
-  -webkit-text-stroke: 0;
-  clip-path: inset(-30% 100% -30% 0);
+  -webkit-text-stroke: 2px #fff;
+  clip-path: inset(-30% 100% -30% -4px);
   transition: clip-path .7s cubic-bezier(.22, 1, .36, 1);
 }
-.hero-title.is-active .hero-outline::after { clip-path: inset(-30% 0 -30% 0); }
+.hero-title.is-active .hero-outline::after { clip-path: inset(-30% -4px -30% -4px); }
 .hero-title [data-arrow] { transform-origin: center; transition: filter .35s ease; }
 .hero-title.is-active [data-arrow] { filter: drop-shadow(0 0 18px rgba(41,151,255,.42)); }
 .hero-clarity { transition: filter .4s ease; }

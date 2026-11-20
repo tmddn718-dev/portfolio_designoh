@@ -177,7 +177,7 @@ export default function CaseNodi() {
               </Reveal></li>
             ))}
           </ol>
-          <p className="mt-8 text-[13px] text-sub max-w-3xl">※ 직장인 6명을 카카오톡으로 인터뷰해 확인한 불편을 바탕으로 정리했어요. 원자료와 응답 수는 확인이 필요해서 수치로 싣지 않았습니다.</p>
+          <p className="mt-8 text-[13px] text-sub max-w-3xl">※ 직장인 6명의 카카오톡 인터뷰에서 반복된 불편을 바탕으로 정리했습니다. 소규모 조사이며 구체적인 응답 원문은 공개하지 않습니다.</p>
         </div>
       </section>
 
@@ -207,7 +207,7 @@ export default function CaseNodi() {
               <Ph n="required" cap="일정 필수 설정" />
             </div>
           </div>
-          <p className="mt-8 text-[13px] text-sub max-w-3xl">프로토타입의 참석자 응답과 캘린더 상태는 시안에 넣은 예시 데이터예요.</p>
+          <p className="mt-8 text-[13px] text-sub max-w-3xl">프로토타입의 참석자 응답과 캘린더 상태는 기능 설명을 위한 예시 데이터입니다.</p>
 
           {/* Solution 02 */}
           <div className="mt-28 md:mt-40">
@@ -215,8 +215,8 @@ export default function CaseNodi() {
             <p className="mt-6 max-w-[56ch] text-[17px] leading-[1.8]">NODI는 참여자별 일정과 선호도를 바탕으로 회의 시간 후보를 제안합니다. 프로토타입에서는 사용자가 입력한 조건에 따라 실제 추천 결과가 달라지도록 구현했습니다.</p>
             <div className="mt-12 grid md:grid-cols-2 gap-5 md:gap-8">
               {[
-                { k: 'A', pref: '오후', ino: 'scAin', outo: 'scA', res: '조건에 맞는 시간 3개를 찾았어요', sub: '참석 가능성이 비슷해서, 선호하는 시간은 사용자가 선택해요' },
-                { k: 'B', pref: '오전', ino: 'scBin', outo: 'scB', res: '오전 10시를 추천해요', sub: '오전 10:00–11:30이 NODI 추천 1순위로 올라와요' },
+                { k: 'A', pref: '오후', ino: 'scAin', outo: 'scA', res: '조건에 맞는 시간 3개', sub: '참석 가능성이 비슷한 후보 중 선호 시간을 사용자가 선택합니다' },
+                { k: 'B', pref: '오전', ino: 'scBin', outo: 'scB', res: '오전 10시를 1순위로 추천', sub: '선호 조건을 반영해 오전 10:00–11:30을 우선 제안합니다' },
               ].map(s => (
                 <Reveal key={s.k}><div className="h-full rounded-[28px] bg-white border border-grid p-5 md:p-8">
                   <p className="text-[13px] font-bold" style={{ color: S }}>Scenario {s.k}</p>
@@ -231,7 +231,7 @@ export default function CaseNodi() {
                 </div></Reveal>
               ))}
             </div>
-            <p className="mt-6 text-[13px] text-sub max-w-3xl leading-relaxed">두 화면은 프로토타입을 실행해 같은 날짜와 길이에서 선호 시간대만 바꿔 캡처했어요. 회의 길이를 바꾸면 이전 응답을 재확인 대상으로 처리하는 것은 두 시나리오가 같습니다. 추천은 참석 가능 인원, 필수 참석자 충족, 선호 시간대를 점수로 계산하는 규칙 기반 로직이고, AI 모델 호출은 아니에요.</p>
+            <p className="mt-6 text-[13px] text-sub max-w-3xl leading-relaxed">두 화면은 같은 날짜와 회의 길이에서 선호 시간대만 바꿔 비교한 결과입니다. 추천은 참석 가능 인원, 필수 참석자 충족 여부, 선호 시간대를 점수화하는 규칙 기반 로직이며 실제 AI 모델을 호출하지 않습니다.</p>
           </div>
 
           {/* Solution 03 */}
@@ -241,8 +241,8 @@ export default function CaseNodi() {
               <p className="mt-6 text-[17px] leading-[1.8]">추천된 시간이 왜 적절한지 이해할 수 있도록 추천 근거를 함께 제공했습니다.</p>
               <p className="mt-3 text-[17px] leading-[1.8]">사용자는 결과를 그대로 받아들이는 대신, 추천 이유를 확인하고 자신의 판단에 활용할 수 있습니다.</p>
               <ul className="mt-8 space-y-5">
-                <Callout n="A" t="추천 시간 카드" d="1순위 표시와 필수 일정 조건 충족 여부를 먼저 보여줘요." />
-                <Callout n="B" t="가능 응답 · 캘린더 빈 시간" d="추천이 어떤 정보에 기대는지 인원으로 보여줘요." />
+                <Callout n="A" t="추천 시간 카드" d="추천 순위와 필수 일정 조건 충족 여부를 먼저 보여줍니다." />
+                <Callout n="B" t="가능 응답 · 캘린더 빈 시간" d="추천에 반영된 정보를 인원 수로 보여줍니다." />
                 <Callout n="C" t="참석자별 근거" d="응답 대기는 불가로 계산하지 않고, 확인이 필요하다고 알려줘요." />
               </ul>
               <Key>추천 결과를 보여주는 것에서 그치지 않고, 사용자가 납득할 수 있는 선택을 돕고자 했습니다.</Key>
@@ -288,7 +288,7 @@ export default function CaseNodi() {
             <ul className="mt-4 space-y-3 text-[17px] text-ink/80">{['외부 캘린더 API 연동', '실제 캘린더 데이터 자동 수집', 'AI 모델 호출 (자연어 해석과 추천은 규칙 기반)'].map(t => <li key={t} className="flex gap-3"><span aria-hidden className="text-sub">–</span>{t}</li>)}</ul>
           </div>
         </div>
-        <p className="mt-6 text-[13px] text-sub max-w-3xl leading-relaxed">참석자 응답과 캘린더 상태는 시안에 넣은 예시 데이터이고, 자연어 입력은 규칙으로 조건을 뽑아내는 데모예요. 알림과 캘린더 반영은 시연용이라 실제로 처리되지 않아요.</p>
+        <p className="mt-6 text-[13px] text-sub max-w-3xl leading-relaxed">참석자 응답과 캘린더 상태는 예시 데이터입니다. 자연어 입력은 규칙 기반 데모이며, 알림 발송과 캘린더 반영은 실제로 처리되지 않습니다.</p>
         <InteractionPreview p={p} wide={wide} onOpen={() => setOpen(true)} title="직접 눌러보세요" note="화면 이미지는 v6 시안과 세부가 다를 수 있습니다." />
       </section>
 
@@ -338,8 +338,8 @@ export default function CaseNodi() {
                 <ul className="mt-3 text-[15px] leading-relaxed list-disc pl-5">{['아이콘·중복 설명 제거, 텍스트 중심으로(3D 일러스트 → 2D 상태 아이콘)', '핵심 정보를 먼저 보이고 상세는 단계적으로(추천 이유 바텀시트, 알고리즘 설명 접기)', '화면마다 주요 버튼 하나를 강조하고 보조는 텍스트 링크로', '조건 확인 카드를 압축(날짜·시간 2열, 참석자 중복 안내 제거)'].map(x => <li key={x}>{x}</li>)}</ul></div>
             </div>
           </Reveal>
-          {p.beforeAfter?.map((b, i) => <div key={b.before} className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">초기 시안 → 개선 시안 · {['조건 확인', '추천 시간', '저장 완료'][i]}</p><p className="mt-4 text-[15px] text-sub">NODI는 기존 서비스가 없는 신규 서비스라 비교 대상은 제가 처음 만든 시안이에요. 왼쪽은 초기 시안(v5.2) 오른쪽은 개선 시안이에요.</p></div><div className="mt-6"><BeforeAfter data={b} color={S} beforeLabel="초기 시안" afterLabel="개선 시안" /></div></div>)}
-          <p className="mt-10 text-[15px] leading-relaxed text-sub max-w-3xl">변경이 사용자의 이해와 행동에 미친 영향은 아직 확인하지 못했어요. 대신 터치 영역 44px·글자 13px 기준과 클릭 시나리오 19개로 구현 품질을 점검했고, 이해도 검증은 아래 계획으로 진행해요.</p>
+          {p.beforeAfter?.map((b, i) => <div key={b.before} className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">초기 시안 → 개선 시안 · {['조건 확인', '추천 시간', '저장 완료'][i]}</p><p className="mt-4 text-[15px] text-sub">신규 서비스이므로 직접 만든 초기 시안(v5.2)을 비교 기준으로 삼았습니다. 왼쪽은 초기 시안, 오른쪽은 개선 시안입니다.</p></div><div className="mt-6"><BeforeAfter data={b} color={S} beforeLabel="초기 시안" afterLabel="개선 시안" /></div></div>)}
+          <p className="mt-10 text-[15px] leading-relaxed text-sub max-w-3xl">변경이 사용자의 이해와 행동에 미친 영향은 아직 검증하지 않았습니다. 대신 44px 이상 터치 영역, 13px 이상 글자 크기, 클릭 시나리오 19개로 구현 품질을 점검했습니다. 이해도 검증은 아래 계획에 따라 진행할 예정입니다.</p>
         </div>
       </section>
 
@@ -357,8 +357,8 @@ export default function CaseNodi() {
         <p className="mt-8 max-w-3xl text-[17px] leading-[1.8]">재조율, 받은 요청과 응답, 이전 회의 재사용, 작성 중 이어하기까지 포함해 26개 아트보드로 구현했습니다.</p>
         <div className="mt-16">
           <p className="eyebrow rule pt-4" style={{ color: S }}>Long screens · 끝까지 스크롤</p>
-          <h3 className="mt-4 text-[28px] md:text-[40px] font-extrabold tracking-tight leading-[1.15] max-w-[22ch]">긴 화면도 끝까지 이어서 볼 수 있어요</h3>
-          <p className="mt-5 max-w-[60ch] text-[17px] leading-[1.8]">응답 현황과 추천 시간과 회의 상세와 새 시간 조율은 한 화면을 넘는 긴 화면이에요. 화면 안에서 스크롤해서 끝까지 확인해 보세요. 눌러서 크게 볼 수도 있어요.</p>
+          <h3 className="mt-4 text-[28px] md:text-[40px] font-extrabold tracking-tight leading-[1.15] max-w-[22ch]">긴 화면의 전체 흐름도 확인할 수 있습니다</h3>
+          <p className="mt-5 max-w-[60ch] text-[17px] leading-[1.8]">조율 현황, 추천 시간, 회의 상세, 재조율 화면은 내부를 스크롤해 전체 흐름을 확인할 수 있습니다. 이미지를 누르면 확대해서 볼 수 있습니다.</p>
           <div className="mt-10"><Strip label="NODI 긴 화면 전체 스크롤">
             {[['progress', '조율 진행 현황'], ['recs', '추천 회의 시간'], ['detail', '회의 상세'], ['resched', '새 시간 조율']].map(([n, l]) => (
               <figure key={n} className="w-[250px] md:w-[280px]">
@@ -373,19 +373,19 @@ export default function CaseNodi() {
         <div className="mt-24" id="nodi-web">
           <p className="eyebrow rule pt-4" style={{ color: S }}>Web · Responsive</p>
           <h3 className="mt-4 text-[28px] md:text-[40px] font-extrabold tracking-tight max-w-[22ch]">모바일 앱이면서 PC 웹에서도 그대로 쓰는 서비스</h3>
-          <p className="mt-5 max-w-[60ch] text-[17px] leading-[1.8]">NODI는 모바일과 웹이 함께 동작하는 반응형 서비스예요. 같은 정보와 같은 우선순위를 화면 폭에 맞게 다르게 배치했어요. 위의 모바일 화면은 같은 흐름의 좁은 화면 버전이에요.</p>
+          <p className="mt-5 max-w-[60ch] text-[17px] leading-[1.8]">모바일과 웹에서 같은 정보 우선순위를 유지하되, 화면 폭에 맞춰 내비게이션과 요약 영역의 배치를 조정했습니다.</p>
 
           <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
             <BrowserFrame className="md:col-span-8" src="/images/nodi/web-understand.webp" alt="NODI 웹 화면: 왼쪽 내비게이션, 가운데 대화, 오른쪽 요약 패널의 3열 구성" label="PC 웹 (1200px 이상) · 내비게이션 · 대화 · 요약 패널 3열" />
             <div className="mt-8 md:mt-0 md:col-span-4">
               <p className="text-[13px] font-semibold text-sub">3열 구성</p>
-              <ul className="mt-4 space-y-5">{[['A', '좌측 내비게이션', '새 회의 · 내 회의 · 받은 요청(배지) · 캘린더 연결'], ['B', '가운데 대화', 'AI와 대화하며 조건을 입력하고 선택지로 답해요'], ['C', '우측 요약 패널', '확정된 조건과 확인이 필요한 항목을 항상 보여줘요']].map(([n, t, d]) => <li key={n} className="flex gap-3"><span className="shrink-0 grid place-items-center w-7 h-7 rounded-full text-[13px] font-bold text-white" style={{ background: p.accent }}>{n}</span><div><p className="text-[16px] font-bold leading-snug">{t}</p><p className="mt-0.5 text-[14px] leading-snug text-sub">{d}</p></div></li>)}</ul>
+              <ul className="mt-4 space-y-5">{[['A', '좌측 내비게이션', '새 회의 · 내 회의 · 받은 요청(배지) · 캘린더 연결'], ['B', '가운데 대화', 'AI와 대화하며 조건을 입력하고 선택지로 응답합니다'], ['C', '우측 요약 패널', '확정된 조건과 추가로 확인할 항목을 계속 보여줍니다']].map(([n, t, d]) => <li key={n} className="flex gap-3"><span className="shrink-0 grid place-items-center w-7 h-7 rounded-full text-[13px] font-bold text-white" style={{ background: p.accent }}>{n}</span><div><p className="text-[16px] font-bold leading-snug">{t}</p><p className="mt-0.5 text-[14px] leading-snug text-sub">{d}</p></div></li>)}</ul>
             </div>
           </div>
 
           <div className="mt-10 grid md:grid-cols-2 gap-6 md:gap-8">
-            <BrowserFrame src="/images/nodi/web-start.webp" alt="NODI 웹 시작 화면: 회의 종류를 고르는 선택지와 우측 확인 필요 항목" label="처음에는 선택지로 시작하고 우측에서 부족한 조건을 확인해요" />
-            <BrowserFrame src="/images/nodi/web-reco.webp" alt="NODI 웹 추천 카드: 확정 검토 가능 후보와 추천하는 이유" label="추천 시간은 이유와 함께 보여주고 확정은 사용자가 눌러요" />
+            <BrowserFrame src="/images/nodi/web-start.webp" alt="NODI 웹 시작 화면: 회의 종류를 고르는 선택지와 우측 확인 필요 항목" label="선택지로 시작하고 우측에서 추가로 필요한 조건을 확인합니다" />
+            <BrowserFrame src="/images/nodi/web-reco.webp" alt="NODI 웹 추천 카드: 확정 검토 가능 후보와 추천하는 이유" label="추천 시간과 이유를 함께 보여주고, 사용자가 직접 확정합니다" />
           </div>
 
           <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-center rounded-[28px] p-6 md:p-10" style={{ background: T(14) }}>
@@ -395,11 +395,11 @@ export default function CaseNodi() {
               <table className="mt-6 w-full text-[15px] bg-white rounded-[18px] overflow-hidden"><caption className="sr-only">화면 폭별 레이아웃</caption><thead><tr className="text-left text-[13px] text-sub"><th scope="col" className="py-3 pl-5">구간</th><th scope="col">내비게이션</th><th scope="col" className="pr-5">요약</th></tr></thead><tbody>
                 {[['1200px 이상', '좌측 내비', '우측 고정 패널'], ['768~1199px', '아이콘 레일', '서랍(시트)'], ['767px 이하', '하단 탭', '바텀시트']].map(([a, b, c]) => <tr key={a} className="border-t border-grid"><th scope="row" className="py-3 pl-5 text-left font-semibold">{a}</th><td>{b}</td><td className="pr-5">{c}</td></tr>)}
               </tbody></table>
-              <p className="mt-4 text-[13px] text-sub">반응형 정책 문서(승인본)의 기준이에요. 모바일을 먼저 정의하고 태블릿·PC로 확장했어요.</p>
+              <p className="mt-4 text-[13px] text-sub">승인된 반응형 정책 문서를 기준으로 모바일을 먼저 정의하고 태블릿과 PC로 확장했습니다.</p>
             </div>
             <div className="mt-8 md:mt-0 md:col-span-6 flex justify-center"><div className="w-full max-w-[340px] rounded-[14px] overflow-hidden border border-black/15 bg-white"><Zoomable src="/images/nodi/tablet-start.webp" alt="NODI 태블릿 폭(820px) 화면: 아이콘 레일 내비게이션과 대화 영역" caption="태블릿 폭(820px)" className="w-full" imgClass="block w-full" /></div></div>
           </div>
-          <p className="mt-4 text-[13px] text-sub max-w-3xl">웹 화면은 체험용 데모(가상 데이터)를 1440px와 820px 폭에서 캡처한 거예요. 실제 일정은 등록되지 않아요.</p>
+          <p className="mt-4 text-[13px] text-sub max-w-3xl">웹 화면은 가상 데이터를 사용한 체험용 데모를 1440px와 820px 폭에서 캡처했습니다. 실제 일정은 등록되지 않습니다.</p>
         </div>
       </section>
       {/* 04 Outcome */}
@@ -424,7 +424,7 @@ export default function CaseNodi() {
             <p className="inline-flex px-3 py-1.5 rounded-full bg-ink text-white text-[13px] font-semibold">검증 계획 · 아직 수행하지 않음</p>
             <h3 className="mt-4 text-[24px] md:text-[32px] font-extrabold tracking-tight leading-tight max-w-[24ch]">프로토타입으로 확인할 일곱 가지</h3>
             <ol className="mt-6 grid sm:grid-cols-2 gap-3 text-[15px] leading-snug">{['조건 확인 정확도', '조건 수정 성공률', '필수 참석자 설정 성공 여부', '추천 후보 비교 성공률', '후보 선택 소요 시간', '저장 상태 이해 정확도(저장·캘린더·알림 구분)', '오류 상황에서 다음 행동 선택 여부'].map((x, i) => <li key={x} className="rounded-[20px] bg-white p-4"><span className="text-[13px] font-semibold" style={{ color: S }}>0{i + 1}</span> {x}</li>)}</ol>
-            <p className="mt-5 text-[15px] leading-relaxed text-sub max-w-3xl">방법: 과제를 주고 프로토타입 조작을 관찰하며, 혼란이 생긴 지점과 발화를 기록한 뒤 초기·개선 시안의 행동을 비교하고 재설계해요. 수행 전이라 수치나 인용문은 싣지 않았어요.</p>
+            <p className="mt-5 text-[15px] leading-relaxed text-sub max-w-3xl">예정 방법: 과제 수행 과정을 관찰하고 혼란이 발생한 지점과 발화를 기록합니다. 이후 초기·개선 시안의 행동을 비교해 재설계합니다. 아직 수행하지 않아 수치와 인용문은 제시하지 않습니다.</p>
           </div>
         </div>
       </section>

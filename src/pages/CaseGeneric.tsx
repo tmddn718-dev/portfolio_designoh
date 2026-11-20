@@ -107,7 +107,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="01" label="Background & Problem Discovery" title="특정 구매 방법의 품절이, 구매 전체의 끝처럼 보였다" />
         <div className="mt-8 grid gap-8 md:grid-cols-12">
-          <div className="md:col-span-7"><p className="max-w-[46rem] text-[18px] leading-[1.8]">오늘드림 사용자는 필요한 상품을 빠르게 받으려 할 수 있어요. 하지만 오늘드림 재고가 없을 때 매장 픽업이나 일반배송이 가능해도, 그 가능성을 발견하지 못하면 이전 단계로 돌아가 구매 방법을 다시 탐색해야 했습니다.</p></div>
+          <div className="md:col-span-7"><p className="max-w-[46rem] text-[18px] leading-[1.8]">오늘드림 재고가 없더라도 일반배송이나 매장 픽업으로 구매할 수 있습니다. 그러나 기존 흐름에서는 이 가능성을 바로 확인하기 어려워, 사용자가 이전 단계로 돌아가 구매 방법을 다시 찾아야 했습니다.</p></div>
           <aside className="rounded-[24px] bg-[#F3F7EB] p-6 md:col-span-5 md:p-8"><p className="eyebrow text-sub">Problem statement</p><p className="mt-3 text-[20px] font-bold leading-[1.55]">상품이 품절된 것이 아니라 특정 구매 방법만 불가능한 상황에서도, 구매 자체가 불가능하다고 판단할 수 있었습니다.</p></aside>
         </div>
         <div className="mt-12 rounded-[28px] bg-ink p-7 text-white md:p-10"><p className="eyebrow text-white/55">Design question</p><p className="mt-3 max-w-[30ch] text-[26px] font-bold leading-[1.4] md:text-[36px]">오늘드림이 품절된 순간, 사용할 수 있는 다른 구매 경로를 자연스럽게 안내할 수 없을까?</p></div>
@@ -128,8 +128,8 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <p className="mt-3 text-[16px] font-semibold text-sub">Purchase Recovery</p>
             <h3 className="mt-2 text-[30px] font-extrabold tracking-tight md:text-[38px]">품절 이후에도 구매 가능한 방법을 안내하다.</h3>
             <div className="mt-8 grid md:grid-cols-2 gap-5">
-              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">문제</p><p className="mt-3 text-[19px] font-bold leading-snug">오늘드림 품절이 상품 전체 품절처럼 느껴져 구매가 멈췄어요.</p></div>
-              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">디자인 판단</p><p className="mt-3 text-[19px] font-bold leading-snug">품절을 끝이 아닌 분기점으로 보고, 선택한 옵션을 유지한 채 일반배송·매장 픽업을 안내했어요.</p></div>
+              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">문제</p><p className="mt-3 text-[19px] font-bold leading-snug">오늘드림만 품절된 상황도 상품 전체가 품절된 것처럼 보여 구매 흐름이 중단됐습니다.</p></div>
+              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">디자인 판단</p><p className="mt-3 text-[19px] font-bold leading-snug">품절을 구매 종료가 아닌 경로 전환 시점으로 보고, 선택한 옵션을 유지한 채 일반배송과 매장 픽업을 안내했습니다.</p></div>
             </div>
             {p.beforeAfter?.[0] && <div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={A} /></div>}
             <div className="mt-8 grid grid-cols-2 gap-4 md:gap-8 max-w-[760px] mx-auto"><Fig src={I('n-altMethods')} alt="다른 구매 방법 안내" cap="일반배송과 픽업 비교" /><Fig src={I('n-pickup')} alt="매장 픽업 선택" cap="픽업 매장 선택" className="md:mt-14" /></div>
@@ -142,7 +142,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <p className="mt-3 text-[16px] font-semibold text-sub">Cart Experience</p>
             <h3 className="mt-2 text-[30px] font-extrabold tracking-tight md:text-[38px]">구매에 필요한 판단과 행동을 더 가까이 배치하다.</h3>
             <div className="mt-8 grid md:grid-cols-2 gap-5">
-              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">문제</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">무료배송 조건은 확인할 수 있었지만, 추가 구매에 참고할 추천 상품은 긴 스크롤의 별도 영역에 나뉘어 있었어요.</p></div>
+              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">문제</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">무료배송 조건은 확인할 수 있었지만, 함께 구매할 상품은 긴 스크롤 아래의 별도 영역에 있어 현재 구매 맥락과 연결하기 어려웠습니다.</p></div>
               <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">Design question</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">무료배송까지 남은 금액을 확인한 순간, 필요한 상품을 바로 선택할 수 있다면?</p></div>
             </div>
             <div className="mt-10">
@@ -395,12 +395,12 @@ function Karrot({ c }: { c: Ctx }) {
 
       <section aria-label="프로젝트 이해하기" className="wrap gutter pt-20 md:pt-28">
         <p className="eyebrow" style={{ color: S }}>이 프로젝트를 쉽게 이해하기</p>
-        <h2 className="mt-3 apple-h text-[30px] md:text-[48px] max-w-[22ch]">구매자가 채팅 전에 알고 싶은 정보를 게시글에서 바로 확인하게 했어요</h2>
+        <h2 className="mt-3 apple-h text-[30px] md:text-[48px] max-w-[22ch]">구매자가 채팅 전에 필요한 거래 정보를 확인하도록 개선했습니다</h2>
 
         <Reveal stagger className="mt-10 grid md:grid-cols-3 gap-3 md:gap-5">
-          {[['01', '무엇을 개선했나요?', '당근에서 대형 가구를 사고팔 때 쓰는 판매글을 개선했어요. 크기·분해 여부·가져가는 조건처럼 구매자가 확인하고 싶은 정보를 판매글에서 쉽게 알 수 있게 했어요.'],
-            ['02', '언제 문제가 생겼나요?', '구매자가 글을 읽고 ‘내가 사서 가져갈 수 있을까?’를 판단하는 순간이에요. 크기가 본문 문장 속에 섞여 있거나 층수·엘리베이터 정보가 없으면 글만으로는 판단하기 어려워요.'],
-            ['03', '왜 문제로 봤나요?', '대형 가구는 크기와 운반 조건이 구매를 좌우해요. 정보를 찾지 못한 구매자는 채팅으로 같은 질문을 하게 되고 판매자도 같은 답을 반복해야 해요.']].map(([n, t, d]) => (
+          {[['01', '무엇을 개선했나요?', '대형 가구 판매글에 크기, 분해 여부, 운반 조건을 구조화해 구매자가 필요한 정보를 빠르게 확인하도록 개선했습니다.'],
+            ['02', '언제 문제가 생겼나요?', '구매자가 직접 운반할 수 있는지 판단하는 순간입니다. 크기가 본문에 섞여 있거나 층수·엘리베이터 정보가 없으면 게시글만으로 거래 가능 여부를 판단하기 어렵습니다.'],
+            ['03', '왜 문제로 봤나요?', '대형 가구는 크기와 운반 조건이 구매 결정에 큰 영향을 줍니다. 정보가 없으면 구매자는 같은 질문을 반복하고, 판매자도 같은 답변을 여러 번 해야 합니다.']].map(([n, t, d]) => (
             <div key={n} className="rounded-[24px] bg-[#F7F8FA] p-6 md:p-7"><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.75] text-ink/80">{d}</p></div>
           ))}
         </Reveal>
@@ -413,7 +413,7 @@ function Karrot({ c }: { c: Ctx }) {
               <li className="px-4 py-2 rounded-full bg-[#f5f5f7] font-semibold">크기가 문장 속에 섞여 있음</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-[#fdeaea] text-[#a12a2a] font-semibold">채팅으로 같은 질문 반복</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-sub">채팅을 시작해야 거래할 수 있는지 알 수 있어요.</p>
+            <p className="mt-4 text-[15px] leading-[1.7] text-sub">채팅을 시작한 뒤에야 거래 가능 여부를 판단할 수 있습니다.</p>
           </div>
           <div className="rounded-[24px] p-6 md:p-8" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
             <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: A, color: onBrand(A) }}>개선</span>
@@ -422,15 +422,15 @@ function Karrot({ c }: { c: Ctx }) {
               <li className="px-4 py-2 rounded-full font-semibold" style={{ background: A, color: onBrand(A) }}>거래 정보 카드로 한눈에 확인</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-white">궁금한 것만 질문 초안으로</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">크기·분해·가져가는 조건을 채팅 전에 보고 판단해요. 입력되지 않은 정보도 이유를 구분해서 알려줘요.</p>
+            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">크기·분해·운반 조건을 채팅 전에 확인합니다. 입력되지 않은 정보도 미입력, 모름, 조회 실패로 구분합니다.</p>
           </div>
         </div>
 
         <div className="mt-6 md:mt-8 md:grid md:grid-cols-12 gap-8 items-center rounded-[28px] bg-[#F7F8FA] p-6 md:p-10">
           <div className="md:col-span-7">
             <p className="eyebrow text-sub">프로젝트의 핵심</p>
-            <p className="mt-3 text-[24px] md:text-[34px] font-bold tracking-tight leading-snug">대형 가구에 대한 정보를 중심으로 구매자가 확인하고 싶은 내용을 게시글에서 쉽게 알 수 있게 한 UX 개선 프로젝트예요.</p>
-            <p className="mt-4 text-[14px] leading-[1.7] text-sub">비공식 개인 UX 개선 제안이에요. 프로토타입 사용성 테스트(7명)에서는 거래 약속 확정이 빨라졌지만, 실제 서비스의 거래 성사율은 측정하지 않았어요.</p>
+            <p className="mt-3 text-[24px] md:text-[34px] font-bold tracking-tight leading-snug">대형 가구 거래에 필요한 정보를 게시글에서 먼저 확인하도록 개선한 개인 UX 프로젝트입니다.</p>
+            <p className="mt-4 text-[14px] leading-[1.7] text-sub">참여자 7명의 프로토타입 비교 테스트에서는 거래 약속 확정 시간이 단축됐습니다. 실제 서비스의 거래 성사율은 측정하지 않았습니다.</p>
           </div>
           <div className="mt-8 md:mt-0 md:col-span-5 grid grid-cols-2 gap-4">
             <figure><p className="text-[13px] font-semibold text-sub mb-2">기존 · 상품 상세</p><Screen src={p.beforeAfter![0].before} alt={p.beforeAfter![0].beforeAlt} /></figure>
@@ -484,9 +484,9 @@ function Karrot({ c }: { c: Ctx }) {
             <p className="text-[17px] leading-[1.8]">기존 거래 과정에서는 구매자가 대형가구의 상세 정보, 거래 가능 여부, 거래 방법을 채팅으로 추가 확인해야 했습니다.</p>
             <p className="mt-3 text-[17px] leading-[1.8]">이에 거래 전에 필요한 정보를 게시글에서 먼저 확인할 수 있도록 정보 구조를 개선했습니다.</p>
             <ul className="mt-8 space-y-5">
-              <Ann color={A} n="1" t="상세 상품 정보" d="‘크기 및 분해’ 카드에 가로·세로·높이와 분해 여부, 전달 상태를 보여줘요." />
-              <Ann color={A} n="2" t="거래 진행 방법" d="‘가져가는 조건’ 카드에 층수·엘리베이터·운반 도움을 보여줘요." />
-              <Ann color={A} n="3" t="거래 가능 여부" d="예약중·거래완료 상태를 배지와 버튼에 표시해요." />
+              <Ann color={A} n="1" t="상세 상품 정보" d="‘크기 및 분해’ 카드에서 가로·세로·높이와 분해 여부, 전달 상태를 확인합니다." />
+              <Ann color={A} n="2" t="거래 진행 방법" d="‘가져가는 조건’ 카드에서 층수·엘리베이터·운반 도움 여부를 확인합니다." />
+              <Ann color={A} n="3" t="거래 가능 여부" d="예약 중·거래 완료 상태를 배지와 버튼으로 구분합니다." />
             </ul>
             <p className="mt-10 rounded-[20px] px-6 py-5 text-[18px] md:text-[22px] font-bold leading-snug tracking-tight max-w-[40ch]" style={{ background: T(14) }}>정보를 더 많이 보여주는 것이 아니라, 사용자가 정보를 필요로 하는 시점을 바꾸는 데 집중했습니다.</p>
           </div>
@@ -517,7 +517,7 @@ function Karrot({ c }: { c: Ctx }) {
                   </li>
                 ))}
               </ol>
-              <p className="mt-5 text-[14px] leading-relaxed text-sub">상세 정보·거래 가능 여부·거래 방법을 채팅으로 물은 뒤에야 약속을 조율했어요.</p>
+              <p className="mt-5 text-[14px] leading-relaxed text-sub">상세 정보와 거래 조건을 채팅으로 확인한 뒤에야 거래 약속을 조율할 수 있었습니다.</p>
             </div>
             <div className="rounded-[28px] p-5 md:p-8" style={{ background: T(14), border: `1px solid ${T(36)}` }}>
               <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: A, color: onBrand(A) }}>TO-BE · 개선 프로토타입</span>
@@ -533,10 +533,10 @@ function Karrot({ c }: { c: Ctx }) {
                 <li aria-hidden className="my-1 text-center text-[18px] leading-none text-sub">↓</li>
                 <li><div className="rounded-[16px] border bg-white px-4 py-3 text-[16px] font-semibold" style={{ borderColor: T(36) }}><span className="text-[13px] font-bold tabular-nums opacity-60 mr-3">04</span>거래 약속 조율 및 확정</div></li>
               </ol>
-              <p className="mt-5 text-[14px] leading-relaxed text-ink/80">채팅 전에 정보를 확인하고, 채팅에서는 약속 조율에 집중해요.</p>
+              <p className="mt-5 text-[14px] leading-relaxed text-ink/80">채팅 전에 거래 정보를 확인하고, 채팅에서는 약속 조율에 집중합니다.</p>
             </div>
           </div>
-          <p className="mt-6 text-[13px] text-sub max-w-3xl">테스트에서 확인한 대표적인 거래 흐름을 설명하는 그림이에요. 참가자별 채팅 횟수나 질문 개수는 측정하지 않았습니다.</p>
+          <p className="mt-6 text-[13px] text-sub max-w-3xl">테스트에서 확인한 대표 거래 흐름을 설명한 도식입니다. 참가자별 채팅 횟수와 질문 수는 측정하지 않았습니다.</p>
         </div>
       </section>
 
@@ -587,7 +587,7 @@ function Karrot({ c }: { c: Ctx }) {
               <li key={n} className="rounded-[24px] bg-white border border-grid p-6"><span className="text-[40px] font-extrabold leading-none num-brand">{n}</span><p className="mt-4 text-[19px] font-bold leading-snug">{t}</p></li>
             ))}
           </ol>
-          <p className="mt-5 text-[13px] text-sub">참가자 피드백을 요약한 내용이에요. 직접 인용문이 아닙니다.</p>
+          <p className="mt-5 text-[13px] text-sub">참가자 피드백을 요약한 내용이며, 직접 인용문은 아닙니다.</p>
 
           <div className="mt-24 md:mt-32">
             <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>RESULT INTERPRETATION</p>
@@ -602,7 +602,7 @@ function Karrot({ c }: { c: Ctx }) {
                 <ul className="mt-4 space-y-3 text-[16px] leading-snug">{['참가자 7명의 소규모 테스트', '프로토타입 환경에서 측정한 결과', '테스트 순서에 따른 학습 효과 가능성', '실제 서비스의 거래 성사율 및 운영 성과 미검증'].map(t => <li key={t} className="flex gap-3"><span aria-hidden className="text-sub">–</span>{t}</li>)}</ul>
               </div>
             </div>
-            <p className="mt-6 text-[13px] text-sub max-w-3xl">이 결과는 프로토타입 과제에서 측정한 시간이에요. 실제 서비스 전체의 거래 시간이 34초 단축됐다는 뜻이 아닙니다.</p>
+            <p className="mt-6 text-[13px] text-sub max-w-3xl">프로토타입 과제에서 측정한 결과이며, 실제 서비스 전체의 거래 시간이 34초 단축됐다는 의미는 아닙니다.</p>
           </div>
         </div>
       </section>
@@ -610,9 +610,9 @@ function Karrot({ c }: { c: Ctx }) {
       <section aria-label="기존 앱과 개선안 비교" className="wrap gutter pb-8 md:pb-16">
         <p className="eyebrow rule pt-4 text-sub">Before / After</p>
         <h3 className="mt-4 text-[28px] md:text-[40px] font-bold tracking-tight">실제 당근 앱 vs 대형 가구 거래 개선안</h3>
-        <p className="mt-3 text-[16px] text-sub max-w-[62ch]">같은 장면의 현재 화면(BEFORE)과 개선안(AFTER)을 나란히 놓았어요. 빨간 박스와 번호가 기존 앱의 문제 위치이고 오른쪽 표에서 번호별로 설명해요.</p>
+        <p className="mt-3 text-[16px] text-sub max-w-[62ch]">현재 화면(BEFORE)과 개선안(AFTER)을 나란히 비교했습니다. 빨간 박스와 번호로 기존 화면의 문제 지점을 표시하고, 오른쪽 표에서 개선 내용을 설명합니다.</p>
         <div className="mt-10 space-y-6 md:space-y-10">{karrotCompare.map(d => <CompareSection key={d.n} d={d} color={A} />)}</div>
-        <p className="mt-6 text-[13px] text-sub max-w-3xl">※ Before는 실제 당근 앱을 직접 캡처한 화면이며 판매자 닉네임은 가렸어요. After는 제가 설계한 개선안으로 상품 정보는 예시예요.</p>
+        <p className="mt-6 text-[13px] text-sub max-w-3xl">※ Before는 실제 당근 앱을 직접 캡처한 화면이며 판매자 닉네임은 가렸습니다. After는 직접 설계한 개선안이며 상품 정보는 예시입니다.</p>
       </section>
 
       <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
@@ -623,7 +623,7 @@ function Karrot({ c }: { c: Ctx }) {
       </section>
 
       <Outcome c={c} cards={<><div className="rounded-[20px] bg-[#F7F8FA] p-6"><p className="text-[14px] text-sub">확인된 것</p><p className="mt-2 text-[18px] font-bold">프로토타입 테스트 7명 전원, 거래 약속 확정이 평균 34초 빨라짐</p></div><div className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[14px] text-sub">아직 필요한 것</p><p className="mt-2 text-[18px] font-bold">더 큰 표본과 실제 서비스 환경에서의 검증</p></div></>}>
-        <div className="pt-6 rule"><p className="eyebrow text-sub">Next</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[16px] leading-relaxed"><li>판매자 입력 부담과 정보 변경 흐름은 이번 테스트에 포함되지 않았어요</li><li>더 많은 참가자와 순서를 섞은 비교로 학습 효과 줄이기</li><li>실제 서비스 환경에서 거래 성사율과 채팅 흐름 확인</li></ul></div>
+        <div className="pt-6 rule"><p className="eyebrow text-sub">Next</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[16px] leading-relaxed"><li>판매자 입력 부담과 정보 변경 흐름 추가 검증</li><li>더 큰 표본과 무작위 과제 순서로 학습 효과 최소화</li><li>실제 서비스 환경에서 거래 성사율과 채팅 흐름 확인</li></ul></div>
       </Outcome>
     </>
   )
@@ -669,12 +669,12 @@ function Woorisai({ c }: { c: Ctx }) {
 
       <section aria-label="프로젝트 이해하기" className="wrap gutter pt-20 md:pt-28">
         <p className="eyebrow" style={{ color: S }}>이 서비스를 쉽게 이해하기</p>
-        <h2 className="mt-3 apple-h text-[30px] md:text-[48px] max-w-[22ch]">모임을 관리하는 앱이 아니라 추억을 남기고 다시 꺼내보는 앱이에요</h2>
+        <h2 className="mt-3 apple-h text-[30px] md:text-[48px] max-w-[22ch]">모임 관리보다 함께한 추억을 기록하고 다시 발견하는 데 집중했습니다</h2>
 
         <Reveal stagger className="mt-10 grid md:grid-cols-3 gap-3 md:gap-5">
-          {[['01', '우리사이는 어떤 서비스인가요?', '친구들과 약속을 잡고 그날 있었던 일을 사진과 이야기로 남기는 추억 아카이빙 서비스예요. 함께한 사람만 초대해서 하나의 추억을 같이 완성해요.'],
-            ['02', '다른 모임 앱과 무엇이 다른가요?', '모임 앱은 일정과 멤버를 관리하는 데 집중해요. 우리사이는 관리가 아니라 지난 추억을 중심에 두고 친구와 이야기를 이어가는 데 집중해요.'],
-            ['03', '어떻게 상호작용하나요?', '지난 추억을 다시 보다가 사진마다 바로 반응하고 댓글을 남겨요. 기록이 다시 친구와의 대화로 이어져요.']].map(([n, t, d]) => (
+          {[['01', '우리사이는 어떤 서비스인가요?', '친구와 함께한 사진과 이야기를 하나의 추억으로 모으는 공동 기록 서비스입니다. 함께한 사람만 초대해 기록을 완성합니다.'],
+            ['02', '다른 모임 앱과 무엇이 다른가요?', '일정과 멤버 관리보다 지난 추억을 다시 발견하고, 친구와 이야기를 이어가는 경험에 집중합니다.'],
+            ['03', '어떻게 상호작용하나요?', '지난 추억을 보다가 사진별로 반응과 댓글을 남깁니다. 저장된 기록이 다시 친구와의 대화로 이어집니다.']].map(([n, t, d]) => (
             <div key={n} className="rounded-[24px] p-6 md:p-7" style={{ background: T(14) }}><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.75] text-ink/80">{d}</p></div>
           ))}
         </Reveal>
@@ -687,7 +687,7 @@ function Woorisai({ c }: { c: Ctx }) {
               <li className="px-4 py-2 rounded-full bg-[#f5f5f7]">멤버·일정 관리</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-[#f5f5f7] font-semibold">모임이 끝나면 끝</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-sub">모임을 운영하는 일이 중심이라 지나간 날의 이야기는 남지 않아요.</p>
+            <p className="mt-4 text-[15px] leading-[1.7] text-sub">모임 운영이 중심이어서, 모임이 끝난 뒤 사진과 이야기를 함께 다시 보기 어렵습니다.</p>
           </div>
           <div className="rounded-[24px] p-6 md:p-8" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
             <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: A, color: onBrand(A) }}>우리사이</span>
@@ -697,7 +697,7 @@ function Woorisai({ c }: { c: Ctx }) {
               <li className="px-4 py-2 rounded-full font-semibold" style={{ background: A, color: onBrand(A) }}>다시 꺼내보기</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-white">사진마다 반응·대화</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">약속은 추억을 만드는 계기예요. 쌓인 추억을 다시 보면서 친구와 이야기를 이어가는 것이 서비스의 중심이에요.</p>
+            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">약속은 추억을 만드는 시작점입니다. 쌓인 기록을 다시 보며 친구와 이야기를 이어가는 경험이 서비스의 중심입니다.</p>
           </div>
         </div>
       </section>
@@ -723,12 +723,12 @@ function Woorisai({ c }: { c: Ctx }) {
               </li>
             ))}
           </ol>
-          <p className="mt-5 text-[14px] text-sub max-w-[60ch]">※ 이 흐름은 PRD에서 세운 문제 가설이에요. 검증된 사용자 문제가 아니에요.</p>
+          <p className="mt-5 text-[14px] text-sub max-w-[60ch]">※ PRD에서 정의한 문제 가설이며, 실제 사용자 문제로 검증하지 않았습니다.</p>
 
           <div className="mt-16 rounded-[28px] p-7 md:p-12" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
             <p className="eyebrow" style={{ color: S }}>그래서 잡은 컨셉</p>
             <h3 className="mt-3 text-[28px] md:text-[44px] font-extrabold tracking-tight max-w-[22ch]">흩어진 하루를 한곳에 남기는 ‘추억 아카이빙 서비스’</h3>
-            <p className="mt-5 max-w-[56ch] text-[17px] leading-[1.8] text-ink/80">약속부터 사진 공유와 정산 그리고 추억 회상까지 따로 쓰던 흐름을 우리사이 하나로 이었어요. 모임을 관리하는 앱이 아니라 지난 추억을 다시 꺼내며 친구와 이야기하는 데 집중해요.</p>
+            <p className="mt-5 max-w-[56ch] text-[17px] leading-[1.8] text-ink/80">약속, 사진 공유, 정산, 추억 회상으로 흩어진 흐름을 하나로 연결했습니다. 모임 관리보다 지난 추억을 다시 발견하고 친구와 대화하는 경험에 집중했습니다.</p>
             <ol aria-label="문제와 해결의 연결" className="mt-8 grid md:grid-cols-2 gap-3">
               {[['약속은 메신저에서', '약속은 추억을 만드는 계기로 두고 약속에서 바로 추억을 만들 수 있어요.'], ['사진은 각자의 갤러리에', '함께한 사람이 사진과 이야기를 한 추억에 같이 모아요.'], ['정산은 정산 앱에서', '약속·정산은 추억을 돕는 보조 기능으로 둬요.'], ['추억은 사진 앱에서 찾기', '사람·장소·시간으로 다시 찾고 사진마다 반응과 댓글로 이야기를 이어가요.']].map(([p, r]) => (
                 <li key={p} className="rounded-[18px] bg-white p-5 md:flex md:items-center">
@@ -748,8 +748,8 @@ function Woorisai({ c }: { c: Ctx }) {
           <div className="relative mt-16 rounded-[24px] bg-white border border-grid p-6 md:p-8">
             <div className="md:pr-52 max-w-[820px]">
               <p className="eyebrow text-sub">프로토타입 설문 · 응답 7명 (2026.11.12-16)</p>
-              <p className="mt-3 text-[22px] md:text-[26px] font-bold tracking-tight">만든 프로토타입을 써 본 사람들의 의견으로 앱을 계속 고쳤어요</p>
-              <p className="mt-3 text-[15px] leading-[1.7] text-ink/75">직접 만든 프로토타입을 사용해 본 7명에게 설문을 받았고 초대와 기능 이동처럼 막히는 부분을 확인해 화면을 개선해 나갔어요. 20대 여성 중심의 소규모 표본이라 방향을 확인하는 데만 썼어요.</p>
+              <p className="mt-3 text-[22px] md:text-[26px] font-bold tracking-tight">프로토타입 설문에서 발견한 혼란을 화면 개선에 반영했습니다</p>
+              <p className="mt-3 text-[15px] leading-[1.7] text-ink/75">프로토타입을 사용한 7명의 설문에서 초대 기능의 발견성과 기능 간 이동 문제를 확인했습니다. 20대 여성 중심의 소규모 표본이므로 결과는 개선 방향을 찾는 데만 활용했습니다.</p>
             </div>
             <details className="mt-5 md:mt-0 md:static group">
               <summary className="cursor-pointer list-none inline-flex items-center min-h-[44px] px-4 rounded-full border border-grid text-[14px] font-semibold md:absolute md:top-6 md:right-8 bg-white">설문 결과 보기</summary>
@@ -781,7 +781,7 @@ function Woorisai({ c }: { c: Ctx }) {
 
           <Reveal className="mt-24 md:mt-32 rounded-[28px] p-6 md:p-12 bg-[#F4F2EC]">
             <div className="max-w-[60ch]"><p className="text-[56px] font-extrabold leading-none num-brand">02</p><h3 className="mt-3 text-[32px] md:text-[48px] font-extrabold tracking-tight leading-tight">사진 아래에서 바로 반응하고, 대화한다</h3>
-              <p className="mt-4 text-[17px] leading-[1.8]">우리사이는 기존 서비스가 없는 신규 서비스라 비교 대상은 제가 처음 만든 프로토타입이에요. 첫 버전에서는 기록(‘기억 이어가기’)이 사진과 떨어진 별도 카드에 있었어요. 직접 써 보며 발견한 문제를 고친 과정을 초기 버전과 개선 버전으로 보여줘요.</p></div>
+              <p className="mt-4 text-[17px] leading-[1.8]">신규 서비스이므로 직접 만든 첫 프로토타입을 비교 기준으로 삼았습니다. 초기 버전에서는 기록 기능인 ‘기억 이어가기’가 사진과 떨어진 별도 카드에 있었습니다. 자체 점검에서 발견한 문제와 개선 과정을 초기·개선 버전으로 비교합니다.</p></div>
             <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
               <div className="md:col-span-4"><p className="eyebrow text-sub">초기 버전</p><div className="mt-3 max-w-[300px]"><Screen src={I('ph-before')} alt="초기 버전 사진 상세: 사진 아래 별도 기억 이어가기 카드" cap="초기 버전 · 사진 상세" /></div></div>
               <div className="mt-10 md:mt-0 md:col-span-8">
@@ -817,7 +817,7 @@ function Woorisai({ c }: { c: Ctx }) {
         <ul className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8" data-scale>
           {['plan', 'space', 'calendar', 'home'].map(n => <li key={n}><Screen src={I(n)} alt={`우리사이 화면 ${n}`} cap={({ plan: '초대받은 약속 · 참석 응답', space: '우리 공간', calendar: '추억 달력', home: '홈' } as Record<string, string>)[n]} /></li>)}
         </ul>
-        <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="최신 프로토타입 직접 체험" note="GitHub에 올라온 최신 프로토타입이에요. 화면 시안과 세부가 조금 다를 수 있어요." />
+        <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="최신 프로토타입 직접 체험" note="현재 구현된 웹 프로토타입입니다. 일부 세부 표현은 화면 시안과 다를 수 있습니다." />
       </section>
 
       <Outcome c={c} cards={<>{[['7', '설문 응답 (2026.11.12-16)'], ['통과', '서버 권한 시나리오 테스트 (마지막 실행)']].map(([n, l]) => <div key={l} className="rounded-[20px] p-6" style={{ background: T(16) }}><p className="text-[48px] md:text-[64px] font-extrabold leading-none" style={{ color: S }}>{n}</p><p className="mt-2 text-[16px]">{l}</p></div>)}<p className="text-[13px] text-sub">설문은 소규모 표본, 권한 테스트는 자동화된 서버 테스트입니다. Solution 02·03의 사용자 검증은 아직 수행하지 않았습니다.</p></>} />

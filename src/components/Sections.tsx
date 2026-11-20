@@ -50,8 +50,8 @@ function FeaturedOlive() {
       <div className="grid md:grid-cols-12">
         <div className="flex flex-col p-7 md:col-span-5 md:p-10 lg:p-12">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sub"><span className="text-[13px] font-semibold tabular-nums text-ink">01 / 05</span><span className="text-[12px] font-semibold uppercase tracking-[.08em]">UX REDESIGN / PERSONAL PROJECT</span></div>
-          <h3 className="mt-7 max-w-[13ch] text-[30px] font-bold leading-[1.2] tracking-[-0.035em] md:text-[38px]">품절 이후에도 구매를 이어갈 수 있도록</h3>
-          <p className="mt-5 max-w-[38ch] text-[16px] leading-[1.75] text-ink/75 md:text-[17px]">구매 가능 옵션을 더 쉽게 탐색하고, 결제 과정의 판단 부담을 줄이는 경험을 설계했습니다.</p>
+          <h3 className="mt-7 max-w-[13ch] text-[30px] font-bold leading-[1.2] tracking-[-0.035em] md:text-[38px]">오늘드림 품절 후에도 다른 방법으로 구매하도록</h3>
+          <p className="mt-5 max-w-[38ch] text-[16px] leading-[1.75] text-ink/75 md:text-[17px]">오늘드림 품절 시 일반배송과 매장 픽업을 바로 비교하고, 결제까지 이어갈 수 있도록 구매 흐름을 재설계했습니다.</p>
           <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-[#CEDBB7] py-5 tabular-nums">
             <div><dt className="text-[13px] leading-[1.5] text-sub">품절 후 결제 확정</dt><dd className="mt-1 text-[22px] font-bold tracking-tight">평균 약 42초 단축</dd></div>
             <div><dt className="text-[13px] leading-[1.5] text-sub">배송·혜택 확인 후 결정</dt><dd className="mt-1 text-[22px] font-bold tracking-tight">평균 26초 단축</dd></div>
@@ -70,10 +70,10 @@ function FeaturedOlive() {
 
 const projectOrder = ['karrot-large-furniture', 'nodi', 'woorisai', 'trigr']
 const cardCopy: Record<string, string> = {
-  'karrot-large-furniture': '대형 가구의 상세 정보와 거래 조건을 미리 확인해, 거래 약속 조율에 집중할 수 있도록 개선했습니다.',
-  nodi: '복잡한 일정 조건을 구조화하고 추천 이유를 설명해, 최종 선택은 사용자가 직접 내리도록 설계했습니다. 추천은 규칙 기반 데모입니다.',
-  woorisai: '흩어진 사진과 이야기를 하나의 추억으로 쌓고, 사람과 장소, 시간의 맥락으로 다시 찾도록 설계했습니다.',
-  trigr: '정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화하다.',
+  'karrot-large-furniture': '대형 가구의 크기와 운반 조건을 채팅 전에 확인해, 구매자가 거래 가능 여부를 빠르게 판단하도록 개선했습니다.',
+  nodi: '여러 사람의 일정 조건을 구조화하고 추천 이유를 보여주되, 최종 회의 시간은 사용자가 직접 선택하도록 설계했습니다. 추천 기능은 규칙 기반 데모입니다.',
+  woorisai: '여러 앱에 흩어진 사진과 이야기를 하나의 추억으로 모으고, 사람·장소·시간을 기준으로 다시 찾도록 설계했습니다.',
+  trigr: '기획서에 빠진 사용자 흐름과 예외 상태를 설계하고, 팀과 협의해 태국 시장 출시까지 연결했습니다.',
 }
 
 function ThumbnailVisual({ p }: { p: Project }) {
@@ -151,7 +151,7 @@ export function Work() {
   const selected = projectOrder.map(by)
   return (
     <section id="work" className="home-section wrap gutter scroll-mt-16">
-      <Reveal className="grid gap-6 md:grid-cols-12 md:items-end"><div className="md:col-span-7"><p className="eyebrow text-bluetext">Selected work</p><SplitText as="h2" className="section-title mt-3 max-w-[18ch]" text={"Projects,\nbefore screens."} /></div><p className="body-copy md:col-span-4 md:col-start-9">대표 UX 개선부터 출시 경험까지, 해결한 문제와 설계 판단을 비교해 살펴볼 수 있습니다.</p></Reveal>
+      <Reveal className="grid gap-6 md:grid-cols-12 md:items-end"><div className="md:col-span-7"><p className="eyebrow text-bluetext">Selected work</p><SplitText as="h2" className="section-title mt-3 max-w-[18ch]" text={"화면보다,\n문제부터."} /></div><p className="body-copy md:col-span-4 md:col-start-9">UX 개선안부터 실제 출시 경험까지, 각 프로젝트에서 해결한 문제와 설계 근거를 확인할 수 있습니다.</p></Reveal>
       <Reveal className="mt-12 md:mt-14"><FeaturedOlive /></Reveal>
       <div className="mt-24 md:mt-28"><div className="flex items-end justify-between gap-6 border-t border-grid pt-5"><h2 className="text-[28px] font-bold tracking-tight md:text-[36px]">이어지는 작업</h2><p className="hidden text-[14px] text-sub md:block">당근 / NODI / 우리사이 / trigr</p></div><div data-stagger className="mt-10 grid gap-x-8 gap-y-16 md:grid-cols-2">{selected.map(p => <ProjectCard key={p.slug} p={p} />)}</div></div>
     </section>
@@ -159,15 +159,15 @@ export function Work() {
 }
 
 const approach = [
-  { key: 'Observe', title: '실제 흐름에서 문제를 발견합니다', text: '서비스 화면과 사용자 행동을 관찰하고, 리뷰와 인터뷰에서 반복되는 질문을 모아 문제의 순간을 좁힙니다.', shot: { src: '/images/oliveyoung-todaydream/n-optMain-indicator.png', alt: '올리브영 기존 품절 옵션 화면', cap: '실제 화면 관찰' } },
-  { key: 'Define', title: '판단에 필요한 구조를 정합니다', text: '상태와 선택지를 사용자의 판단 순서로 다시 배열하고, 확인되지 않은 정보는 확정된 사실과 구분합니다.', shot: { src: '/images/karrot-large-furniture/L-b2.webp?v=20261119-seedtext', alt: '당근 정보 상태 구분 화면', cap: '정보 상태 구분' } },
-  { key: 'Craft', title: '동작하는 경험으로 검증합니다', text: '클릭 가능한 프로토타입을 직접 구현하고, 과제 수행과 피드백을 확인해 다음 개선으로 연결합니다.', shot: { src: '/images/trigr/tr-reward-2.webp', alt: 'trigr 남은 상금 계산 화면', cap: '제품 경험 구현' } },
+  { key: 'Observe', title: '사용자가 막히는 순간을 찾습니다', text: '서비스 화면과 사용 행동을 관찰하고, 리뷰와 인터뷰에서 반복되는 질문을 모아 해결할 문제를 구체화합니다.', shot: { src: '/images/oliveyoung-todaydream/n-optMain-indicator.png', alt: '올리브영 기존 품절 옵션 화면', cap: '실제 화면 관찰' } },
+  { key: 'Define', title: '판단에 필요한 정보를 구조화합니다', text: '상태와 선택지를 사용자가 판단하는 순서로 재배치하고, 확인된 사실과 가설을 명확히 구분합니다.', shot: { src: '/images/karrot-large-furniture/L-b2.webp?v=20261119-seedtext', alt: '당근 정보 상태 구분 화면', cap: '정보 상태 구분' } },
+  { key: 'Craft', title: '동작하는 프로토타입으로 확인합니다', text: '직접 조작할 수 있는 프로토타입을 구현하고, 과제 수행 결과와 피드백을 바탕으로 개선합니다.', shot: { src: '/images/trigr/tr-reward-2.webp', alt: 'trigr 남은 상금 계산 화면', cap: '제품 경험 구현' } },
 ]
 
 export function Philosophy() {
   return (
     <section id="approach" className="home-section wrap gutter scroll-mt-16">
-      <Reveal className="grid gap-5 md:grid-cols-12"><div className="md:col-span-5"><SplitText as="h2" className="section-title" text="Soft Clarity" /></div><p className="body-copy md:col-span-5 md:col-start-8 md:mt-2">복잡함을 지우는 대신 관찰하고, 정의하고, 실제로 작동하는 형태까지 만듭니다.</p></Reveal>
+      <Reveal className="grid gap-5 md:grid-cols-12"><div className="md:col-span-5"><SplitText as="h2" className="section-title" text="Soft Clarity" /></div><p className="body-copy md:col-span-5 md:col-start-8 md:mt-2">복잡한 문제를 관찰하고 핵심을 정의한 뒤, 실제로 확인할 수 있는 경험으로 구현합니다.</p></Reveal>
       <ol className="mt-12 border-t border-grid">{approach.map((item, index) => <li key={item.key} className="border-b border-grid py-8 md:py-10"><div data-stagger className="grid gap-6 md:grid-cols-12 md:items-center"><div className="md:col-span-2"><p className="text-[13px] font-medium tabular-nums text-sub">0{index + 1}</p><h3 className="mt-2 text-[28px] font-bold tracking-[-.03em]">{item.key}</h3></div><div className="md:col-span-5"><p className="text-[20px] font-semibold leading-[1.45]">{item.title}</p><p className="mt-3 text-[16px] leading-[1.7] text-sub">{item.text}</p></div><div className="md:col-span-4 md:col-start-9"><div data-parallax-y="5"><Zoomable src={item.shot.src} alt={item.shot.alt} caption={item.shot.cap} className="w-full overflow-hidden rounded-[16px] bg-apple" imgClass="aspect-[16/10] w-full object-contain p-3" /><p className="mt-2 text-[12px] text-sub">{item.shot.cap}</p></div></div></div></li>)}</ol>
     </section>
   )
@@ -180,8 +180,8 @@ function CopyEmail({ email }: { email: string }) {
 }
 
 export function AboutContact() {
-  const skills = [['Observe', '서비스 화면, 사용자 리뷰와 인터뷰에서 반복되는 질문을 찾아 문제를 좁힙니다.'], ['Define', '복잡한 상태와 선택지를 사용자의 판단 순서에 맞게 구조화합니다.'], ['Prototype', '설계안을 직접 눌러보고 과제로 확인할 수 있는 형태까지 구현합니다.'], ['Ship', '개발 조건과 제품 제약을 조율하며 실제 출시와 반복 개선에 참여했습니다.']]
+  const skills = [['Observe', '서비스 화면과 사용자 의견에서 반복되는 불편을 찾아 해결할 문제를 구체화합니다.'], ['Define', '복잡한 상태와 선택지를 사용자가 판단하는 순서에 맞춰 구조화합니다.'], ['Prototype', '설계안을 직접 조작하고 과제로 검증할 수 있는 프로토타입으로 구현합니다.'], ['Ship', '개발 조건과 제품 제약을 조율하며 실제 출시와 반복 개선에 참여했습니다.']]
   return (
-    <><section id="about" className="home-section wrap gutter scroll-mt-16"><Reveal className="grid gap-8 md:grid-cols-12"><div className="md:col-span-4"><SplitText as="h2" className="section-title" text="About" /><p className="mt-4 text-[14px] font-semibold text-bluetext">Product Designer / UX·UI Designer</p></div><div className="md:col-span-8"><p className="max-w-[30ch] text-[24px] font-semibold leading-[1.5] tracking-[-0.02em] md:text-[32px]">복잡한 정보를 사용자가 이해하고 결정할 수 있는 경험으로 바꿉니다.</p><p className="mt-5 max-w-[60ch] text-[16px] leading-[1.75] text-sub">실제 경험에서 문제를 발견하고, 동작하는 프로토타입으로 구체화한 뒤 사용자 피드백과 구현 조건을 함께 보며 개선합니다. AI는 리서치와 아이디어 탐색을 돕는 도구로 사용하며, 제품 판단과 최종 결정은 직접 검토합니다.</p><ul data-stagger className="mt-9 grid gap-x-8 gap-y-6 sm:grid-cols-2">{skills.map(([title, body]) => <li key={title} className="border-t border-grid pt-4"><p className="font-semibold">{title}</p><p className="mt-2 text-[15px] leading-[1.65] text-sub">{body}</p></li>)}</ul><Link to="/about" className="mt-8 inline-flex min-h-11 items-center border-b border-ink text-[15px] font-semibold">경력과 작업 방식 더 보기 ↗</Link></div></Reveal></section><section id="contact" className="mt-[var(--space-section)] scroll-mt-24 border-y border-grid bg-white"><div data-stagger className="wrap gutter py-20 md:py-28"><p className="section-title max-w-[18ch]">함께 명확한 경험을 만들어요.</p><p className="mt-5 max-w-[54ch] text-[16px] leading-[1.7] text-sub">제품의 복잡한 문제를 정리하고, 실제로 확인할 수 있는 경험으로 만드는 일을 이야기하고 싶습니다.</p><div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"><a className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 text-[15px] font-semibold text-white hover:-translate-y-0.5" href={`mailto:${profile.email}`}>이메일로 연락하기</a><CopyEmail email={profile.email} />{profile.resume && <a className="inline-flex min-h-12 items-center justify-center rounded-full px-5 text-[15px] font-semibold hover:bg-apple" href={profile.resume} target="_blank" rel="noreferrer">이력서 보기 ↗</a>}</div></div></section></>
+    <><section id="about" className="home-section wrap gutter scroll-mt-16"><Reveal className="grid gap-8 md:grid-cols-12"><div className="md:col-span-4"><SplitText as="h2" className="section-title" text="About" /><p className="mt-4 text-[14px] font-semibold text-bluetext">Product Designer / UX·UI Designer</p></div><div className="md:col-span-8"><p className="max-w-[30ch] text-[24px] font-semibold leading-[1.5] tracking-[-0.02em] md:text-[32px]">복잡한 정보를 사용자가 이해하고 결정할 수 있는 경험으로 바꿉니다.</p><p className="mt-5 max-w-[60ch] text-[16px] leading-[1.75] text-sub">사용자가 막히는 지점을 찾고, 해결안을 동작하는 프로토타입으로 구현합니다. 이후 사용자 피드백과 개발 조건을 함께 검토해 개선합니다. AI는 리서치와 아이디어 탐색에 활용하며, 제품 판단과 최종 결정은 직접 담당합니다.</p><ul data-stagger className="mt-9 grid gap-x-8 gap-y-6 sm:grid-cols-2">{skills.map(([title, body]) => <li key={title} className="border-t border-grid pt-4"><p className="font-semibold">{title}</p><p className="mt-2 text-[15px] leading-[1.65] text-sub">{body}</p></li>)}</ul><Link to="/about" className="mt-8 inline-flex min-h-11 items-center border-b border-ink text-[15px] font-semibold">경력과 작업 방식 더 보기 ↗</Link></div></Reveal></section><section id="contact" className="mt-[var(--space-section)] scroll-mt-24 border-y border-grid bg-white"><div data-stagger className="wrap gutter py-20 md:py-28"><p className="section-title max-w-[18ch]">제품의 문제를 함께 해결하고 싶습니다.</p><p className="mt-5 max-w-[54ch] text-[16px] leading-[1.7] text-sub">복잡한 제품 문제를 명확한 사용자 흐름으로 바꾸는 디자이너가 필요하다면 연락해 주세요.</p><div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"><a className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 text-[15px] font-semibold text-white hover:-translate-y-0.5" href={`mailto:${profile.email}`}>이메일로 연락하기</a><CopyEmail email={profile.email} />{profile.resume && <a className="inline-flex min-h-12 items-center justify-center rounded-full px-5 text-[15px] font-semibold hover:bg-apple" href={profile.resume} target="_blank" rel="noreferrer">이력서 보기 ↗</a>}</div></div></section></>
   )
 }

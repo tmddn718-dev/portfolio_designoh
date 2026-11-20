@@ -10,11 +10,11 @@ gsap.registerPlugin(ScrollTrigger)
 type Story = { slug: string; category: string; headline: string; description: string; bg: string; fg: string }
 
 const stories: Story[] = [
-  { slug: 'oliveyoung-todaydream', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '품절 이후에도 구매를 이어갈 수 있도록', description: '구매 가능 옵션을 더 쉽게 탐색하고, 결제 과정의 판단 부담을 줄이는 경험을 설계했습니다.', bg: '#C9F45A', fg: '#10210A' },
-  { slug: 'karrot-large-furniture', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '채팅에서 물어보기 전에, 게시글에서 확인하도록', description: '대형 가구의 상세 정보와 거래 조건을 미리 확인해, 거래 약속 조율에 집중할 수 있도록 개선했습니다.', bg: '#F3D7BE', fg: '#2B1D16' },
-  { slug: 'nodi', category: 'PRODUCT CONCEPT / FUNCTIONAL PROTOTYPE', headline: 'AI는 이해하고, 사용자는 결정한다', description: '복잡한 일정 조건을 구조화하고 추천 이유를 설명해, 최종 선택은 사용자가 직접 내릴 수 있도록 설계했습니다. 추천 생성은 규칙 기반 데모입니다.', bg: '#D8DFFF', fg: '#17224C' },
-  { slug: 'woorisai', category: 'PRODUCT CONCEPT / PERSONAL PROJECT', headline: '함께한 순간을 다시 발견하도록', description: '흩어진 사진과 이야기를 하나의 추억으로 쌓고, 사람과 장소, 시간의 맥락으로 다시 찾는 경험을 설계했습니다.', bg: '#E9E8DC', fg: '#263B2F' },
-  { slug: 'trigr', category: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE', headline: '정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화하다', description: '기획서에 없던 사용자 경험을 설계하고, 기획자·개발자와 협의해 실제 출시까지 반영했습니다. Product Design · UX/UI Design · Design System · Product Launch', bg: '#241328', fg: '#FFFFFF' },
+  { slug: 'oliveyoung-todaydream', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '오늘드림 품절 후에도 다른 방법으로 구매하도록', description: '일반배송과 매장 픽업을 바로 비교하고 결제까지 이어갈 수 있도록 구매 흐름을 재설계했습니다.', bg: '#C9F45A', fg: '#10210A' },
+  { slug: 'karrot-large-furniture', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '채팅 전에 거래 가능 여부를 판단하도록', description: '대형 가구의 크기와 운반 조건을 게시글에서 확인해, 채팅에서는 거래 약속 조율에 집중하도록 개선했습니다.', bg: '#F3D7BE', fg: '#2B1D16' },
+  { slug: 'nodi', category: 'PRODUCT CONCEPT / FUNCTIONAL PROTOTYPE', headline: 'AI는 이해하고, 사용자는 결정한다', description: '여러 사람의 일정 조건과 추천 이유를 보여주되, 최종 회의 시간은 사용자가 직접 선택하도록 설계했습니다. 추천 기능은 규칙 기반 데모입니다.', bg: '#D8DFFF', fg: '#17224C' },
+  { slug: 'woorisai', category: 'PRODUCT CONCEPT / PERSONAL PROJECT', headline: '함께한 순간을 기록하고 다시 발견하도록', description: '여러 앱에 흩어진 사진과 이야기를 하나의 추억으로 모으고, 사람·장소·시간을 기준으로 다시 찾도록 설계했습니다.', bg: '#E9E8DC', fg: '#263B2F' },
+  { slug: 'trigr', category: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE', headline: '기획서에 빠진 흐름을 설계해 출시까지', description: '누락된 사용자 흐름과 예외 상태를 설계하고, 기획자·개발자와 협의해 태국 시장 출시까지 연결했습니다.', bg: '#241328', fg: '#FFFFFF' },
 ]
 
 const by = (slug: string) => projects.find(p => p.slug === slug)!

@@ -36,7 +36,7 @@ export function Highlights() {
     <section id="highlights" data-dark className="bg-black text-white scroll-mt-16">
       <div className="wrap gutter pt-16 md:pt-28 pb-20 md:pb-32">
         <Reveal>
-          <h2 className="apple-h text-[40px] md:text-[64px]">작업 5개 <span className="text-white/45">핵심부터.</span></h2>
+          <h2 className="apple-h text-[40px] md:text-[64px]">5개 프로젝트의 <span className="text-white/45">핵심부터.</span></h2>
         </Reveal>
         <div className="mt-10 md:mt-14">
           <Strip label="작업 5개" dark>
@@ -61,7 +61,7 @@ export function Highlights() {
 // 애플의 문장 하이라이트: 스크롤하면 단어가 차례로 밝아진다
 export function Statement() {
   const ref = useRef<HTMLParagraphElement>(null)
-  const text = '복잡한 정보도 사용자가 스스로 판단할 수 있게. 출시한 서비스도 직접 기획한 서비스도 만들어 봤어요.'
+  const text = '복잡한 정보를 사용자가 스스로 판단할 수 있는 구조로 바꿉니다. 직접 기획한 서비스부터 실제 출시한 제품까지 경험했습니다.'
   useLayoutEffect(() => {
     const el = ref.current!
     const mm = gsap.matchMedia()

@@ -26,10 +26,10 @@ export const thumbSpecs: Record<string, ThumbSpec> = {
   },
   // NODI: 정면의 추천 화면 + 오른쪽 뒤에서 약하게 기울어진 최종 검토 화면 (블루·라벤더 SaaS 톤)
   nodi: {
-    bg: '#E1E6FA',
+    bg: '#DDE2FF',
     phones: [
-      { src: I('nodi', 'hero-review'), alt: '이 일정으로 확정할지 묻는 최종 검토 화면', role: 'back', x: 51, y: 13, w: 30, rot: 7, z: 1 },
-      { src: I('nodi', 's-recs'), alt: '추천 회의 시간과 후보를 보여주는 화면', role: 'main', x: 23, y: 8, w: 36, z: 2 },
+      { src: I('nodi', 'full-review'), alt: '이 일정으로 확정할지 묻는 최종 검토 화면', role: 'back', x: 15, y: 12, w: 32, rot: -7, z: 1 },
+      { src: I('nodi', 'full-recs'), alt: '추천 회의 시간과 후보를 보여주는 화면', role: 'main', x: 43, y: 5, w: 42, rot: 3, z: 2 },
     ],
     hideBackOnSmall: true,
   },

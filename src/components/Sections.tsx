@@ -29,7 +29,7 @@ function OliveShowcase() {
         <span className="mt-4 rounded-full bg-[#11150D] px-4 py-2 text-[12px] font-bold text-white">오늘드림 품절</span>
       </div>
       <div className="absolute bottom-[6%] left-[7%] z-20 w-[32%] rotate-[-5deg] overflow-hidden rounded-[15px] border border-black/10 bg-white p-2 shadow-[0_24px_50px_rgba(35,50,15,.22)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-[-3deg]">
-        <img src="/images/oliveyoung-todaydream/n-optC.webp" alt="" className="aspect-[10/11] w-full rounded-[10px] object-cover object-top" loading="lazy" decoding="async" />
+        <img src="/images/oliveyoung-todaydream/n-optC-indicator.png" alt="" className="aspect-[10/11] w-full rounded-[10px] object-cover object-top" loading="lazy" decoding="async" />
         <p className="px-2 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[.12em] text-[#5B654E]">01 · 옵션 선택</p>
       </div>
       <Phone src="/images/oliveyoung-todaydream/n-altMethods.webp" className="z-30 w-[44%] rotate-[2deg] drop-shadow-[0_34px_60px_rgba(27,40,9,.3)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" style={{ right: '-2%', bottom: '-21%' }} />
@@ -159,7 +159,7 @@ export function Work() {
 }
 
 const approach = [
-  { key: 'Observe', title: '실제 흐름에서 문제를 발견합니다', text: '서비스 화면과 사용자 행동을 관찰하고, 리뷰와 인터뷰에서 반복되는 질문을 모아 문제의 순간을 좁힙니다.', shot: { src: '/images/oliveyoung-todaydream/n-optMain.webp', alt: '올리브영 기존 품절 옵션 화면', cap: '실제 화면 관찰' } },
+  { key: 'Observe', title: '실제 흐름에서 문제를 발견합니다', text: '서비스 화면과 사용자 행동을 관찰하고, 리뷰와 인터뷰에서 반복되는 질문을 모아 문제의 순간을 좁힙니다.', shot: { src: '/images/oliveyoung-todaydream/n-optMain-indicator.png', alt: '올리브영 기존 품절 옵션 화면', cap: '실제 화면 관찰' } },
   { key: 'Define', title: '판단에 필요한 구조를 정합니다', text: '상태와 선택지를 사용자의 판단 순서로 다시 배열하고, 확인되지 않은 정보는 확정된 사실과 구분합니다.', shot: { src: '/images/karrot-large-furniture/L-b2.webp?v=20261119-seedtext', alt: '당근 정보 상태 구분 화면', cap: '정보 상태 구분' } },
   { key: 'Craft', title: '동작하는 경험으로 검증합니다', text: '클릭 가능한 프로토타입을 직접 구현하고, 과제 수행과 피드백을 확인해 다음 개선으로 연결합니다.', shot: { src: '/images/trigr/tr-reward-2.webp', alt: 'trigr 남은 상금 계산 화면', cap: '제품 경험 구현' } },
 ]

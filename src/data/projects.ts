@@ -38,7 +38,7 @@ export const projects: Project[] = [
     tags: ['상태 표현', '구매 흐름', '예외 처리'],
     summary: { concept: [['회복', '품절 이후 다른 구매 방법으로 연결'], ['판단', '무료배송 조건과 연관 상품을 가까이 배치'], ['구조', '결제 정보를 목적별로 3그룹화'], ['검증', '두 과제의 평균 소요 시간 단축 확인']], short: '품절 이후에도 구매를 이어가는 경험', about: '오늘드림 품절 이후 다른 구매 방법을 발견하고, 장바구니와 주문·결제까지 자연스럽게 이어갈 수 있도록 구매 경험을 재설계했어요.', decision: '품절은 대체 구매 경로로 연결하고, 장바구니는 무료배송 조건과 연관 상품을 가까이 배치하며, 주문·결제는 목적별 정보 구조로 정리했어요.', status: '동일 참여자 8명이 기존 앱과 개선 프로토타입을 비교했습니다. 과제별 평균 소요 시간은 각각 약 42초와 26초 줄었습니다.', kind: 'evidence' },
     accent: '#82DC28',
-    mock: { srcs: ['/images/oliveyoung-todaydream/n-altMethods.webp', '/images/oliveyoung-todaydream/n-optC.webp', '/images/oliveyoung-todaydream/n-restock.webp'], framed: true },
+    mock: { srcs: ['/images/oliveyoung-todaydream/n-altMethods.webp', '/images/oliveyoung-todaydream/n-optC-indicator.png', '/images/oliveyoung-todaydream/n-restock.webp'], framed: true },
     proto: { url: '/proto/oliveyoung/index.html', w: 390, h: 844, pro: true },
     extra: {
       eyebrow: 'Commerce flow',
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     },
     beforeAfter: [
       {
-        before: '/images/oliveyoung-todaydream/n-optMain.webp', after: '/images/oliveyoung-todaydream/n-optC.webp',
+        before: '/images/oliveyoung-todaydream/n-optMain-indicator.png', after: '/images/oliveyoung-todaydream/n-optC-indicator.png',
         beforeAlt: '기존 옵션 선택 바텀시트(실제 앱 캡처): 품절 옵션마다 일시품절 표시와 재입고 알림 버튼이 있다', afterAlt: '개선 옵션 선택 화면: 오늘드림 품절 옵션을 고르면 하단에서 다른 구매 방법 확인이 주요 행동으로 나온다',
         points: ['Before: 품절 옵션마다 "일시품절" 표시와 "재입고 알림" 버튼이 줄마다 있고, 다른 구매 방법을 확인하는 행동은 보이지 않는다', 'After: 옵션 목록은 비교하는 영역으로 두고, 선택한 옵션에 맞는 주요 CTA("다른 구매 방법 확인")를 하단에 고정한다', '※ Before는 실제 올리브영 앱 화면 캡처입니다'],
       },
@@ -80,8 +80,8 @@ export const projects: Project[] = [
       },
     ],
     gallery: [
-      { src: '/images/oliveyoung-todaydream/n-optA.webp', alt: '옵션 선택 바텀시트: 재고 상태별 구매 방법 표시', caption: '옵션 선택' },
-      { src: '/images/oliveyoung-todaydream/n-optC.webp', alt: '오늘드림 품절 옵션: 다른 구매 방법 확인이 주요 행동', caption: '품절 옵션 선택' },
+      { src: '/images/oliveyoung-todaydream/n-optA-indicator.png', alt: '옵션 선택 바텀시트: 재고 상태별 구매 방법 표시', caption: '옵션 선택' },
+      { src: '/images/oliveyoung-todaydream/n-optC-indicator.png', alt: '오늘드림 품절 옵션: 다른 구매 방법 확인이 주요 행동', caption: '품절 옵션 선택' },
       { src: '/images/oliveyoung-todaydream/n-altMethods.webp', alt: '다른 수령 방법: 일반배송 구매 가능', caption: '일반배송 구매 가능' },
       { src: '/images/oliveyoung-todaydream/n-altPickup.webp', alt: '다른 수령 방법: 픽업 주문 가능', caption: '픽업 주문 가능' },
       { src: '/images/oliveyoung-todaydream/n-pickup.webp', alt: '픽업 매장 선택: 매장별 재고와 픽업 가능 여부', caption: '픽업 매장 선택' },

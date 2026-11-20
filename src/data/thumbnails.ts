@@ -55,7 +55,7 @@ export const thumbSpecs: Record<string, ThumbSpec> = {
   'oliveyoung-todaydream': {
     bg: '#DCEFB4',
     phones: [
-      { src: I('oliveyoung-todaydream', 'n-optC'), alt: '품절 옵션을 안내하는 옵션 선택 화면', role: 'back', x: 14, y: 14, w: 28, rot: -6, z: 1 },
+      { src: '/images/oliveyoung-todaydream/n-optC-indicator.png', alt: '품절 옵션을 안내하는 옵션 선택 화면', role: 'back', x: 14, y: 14, w: 28, rot: -6, z: 1 },
       { src: I('oliveyoung-todaydream', 'n-altMethods'), alt: '다른 구매 방법을 비교하는 화면', role: 'main', x: 38, y: 5, w: 36, z: 2 },
     ],
     hideBackOnSmall: true,

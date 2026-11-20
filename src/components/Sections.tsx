@@ -1,14 +1,39 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { projects, profile, type Project } from '../data/projects'
-import { PhoneShowcase } from './PhoneMockup'
-import { thumbSpecs } from '../data/thumbnails'
 import Reveal from './Reveal'
 import { Modal, Zoomable } from './Modal'
 import { ProtoFrame } from './Mockup'
 import SplitText from '../motion/SplitText'
 
 const by = (slug: string) => projects.find(p => p.slug === slug)!
+
+const Phone = ({ src, style, className = '' }: { src: string; style?: React.CSSProperties; className?: string }) => (
+  <div className={`absolute ${className}`} style={style}><div className="phone-pro"><img src={src} alt="" className="screen" loading="lazy" decoding="async" /><span className="glare" /></div></div>
+)
+
+const BrowserMockup = ({ src, className = '' }: { src: string; className?: string }) => (
+  <div className={`absolute overflow-hidden rounded-[14px] border border-white/70 bg-white p-[5px] shadow-[0_30px_70px_rgba(0,0,0,.24)] ${className}`}>
+    <div className="flex h-5 items-center gap-1.5 rounded-t-[9px] bg-[#F4F5FA] px-2"><i className="h-1.5 w-1.5 rounded-full bg-[#FF7B75]" /><i className="h-1.5 w-1.5 rounded-full bg-[#F6C85F]" /><i className="h-1.5 w-1.5 rounded-full bg-[#69C47B]" /><span className="ml-2 h-1.5 w-[34%] rounded-full bg-[#DDE0EA]" /></div>
+    <img src={src} alt="" className="block w-full rounded-b-[9px]" loading="lazy" decoding="async" />
+  </div>
+)
+
+function OliveShowcase() {
+  return (
+    <div className="absolute inset-0 overflow-hidden bg-[#CCF35B]">
+      <div aria-hidden className="absolute -right-[16%] -top-[16%] aspect-square w-[78%] rounded-full border-[52px] border-white/20" />
+      <p className="absolute left-[7%] top-[8%] z-20 text-[11px] font-bold uppercase tracking-[.2em] text-[#31421B]">Purchase recovery / 2026</p>
+      <p className="absolute left-[7%] top-[15%] z-20 max-w-[45%] text-[clamp(27px,3.6vw,52px)] font-black leading-[.95] tracking-[-.065em] text-[#10150A]">OUT OF STOCK.<br />MORE OPTIONS.</p>
+      <div className="absolute left-[7%] top-[43%] z-20 rounded-full bg-[#11150D] px-4 py-2 text-[11px] font-bold text-white">오늘드림 품절</div>
+      <div className="absolute bottom-[8%] left-[7%] z-20 w-[34%] rotate-[-5deg] overflow-hidden rounded-[15px] border border-black/10 bg-white p-2 shadow-[0_24px_50px_rgba(35,50,15,.22)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-[-3deg]">
+        <img src="/images/oliveyoung-todaydream/n-optC.webp" alt="" className="h-[150px] w-full rounded-[10px] object-cover object-top sm:h-[210px] md:h-[250px]" loading="lazy" decoding="async" />
+        <p className="px-2 pb-1 pt-2 text-[10px] font-bold uppercase tracking-[.12em] text-[#5B654E]">01 · 옵션 선택</p>
+      </div>
+      <Phone src="/images/oliveyoung-todaydream/n-altMethods.webp" className="z-30 w-[44%] rotate-[2deg] drop-shadow-[0_34px_60px_rgba(27,40,9,.3)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" style={{ right: '-2%', bottom: '-21%' }} />
+    </div>
+  )
+}
 
 function ProjectLabel({ p }: { p: Project }) {
   const labels: Record<string, string> = { 'karrot-large-furniture': 'UX REDESIGN / PERSONAL PROJECT', nodi: 'PRODUCT CONCEPT / FUNCTIONAL PROTOTYPE', woorisai: 'PRODUCT CONCEPT / PERSONAL PROJECT', trigr: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE' }
@@ -33,7 +58,7 @@ function FeaturedOlive() {
           <div className="mt-8 flex flex-wrap gap-3"><Link to={`/work/${p.slug}`} className="inline-flex min-h-12 items-center rounded-full bg-ink px-6 text-[15px] font-semibold text-white hover:-translate-y-0.5">케이스 스터디 보기</Link>{p.proto && <button onClick={() => setOpen(true)} className="min-h-12 rounded-full border border-ink px-6 text-[15px] font-semibold hover:bg-white">프로토타입 실행</button>}</div>
         </div>
         <Link to={`/work/${p.slug}`} data-cursor="보기" aria-label="올리브영 오늘드림 케이스 스터디 보기" className="group relative min-h-[420px] overflow-hidden bg-[#C9F45A] md:col-span-7 md:min-h-[580px]">
-          <PhoneShowcase spec={thumbSpecs[p.slug]} fill />
+          <OliveShowcase />
         </Link>
       </div>
       <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>
@@ -49,69 +74,61 @@ const cardCopy: Record<string, string> = {
   trigr: '정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화하다.',
 }
 
-// 홈 카드 섬네일: 프로젝트마다 구도를 다르게 한다(애플 코리아 홈의 타일처럼: 중앙 정렬 단독 기기 · 부채꼴 겹침 · 위에서 내려오는 구도 · 크게 잘린 기울임)
-const Phone = ({ src, style, className = '' }: { src: string; style?: React.CSSProperties; className?: string }) => (
-  <div className={`absolute ${className}`} style={style}><div className="phone-pro"><img src={src} alt="" className="screen" /><span className="glare" /></div></div>
-)
-
-const BrowserMockup = ({ src, className = '' }: { src: string; className?: string }) => (
-  <div className={`absolute overflow-hidden rounded-[14px] border border-white/70 bg-white p-[5px] shadow-[0_30px_70px_rgba(0,0,0,.24)] ${className}`}>
-    <div className="flex h-5 items-center gap-1.5 rounded-t-[9px] bg-[#F4F5FA] px-2"><i className="h-1.5 w-1.5 rounded-full bg-[#FF7B75]" /><i className="h-1.5 w-1.5 rounded-full bg-[#F6C85F]" /><i className="h-1.5 w-1.5 rounded-full bg-[#69C47B]" /><span className="ml-2 h-1.5 w-[34%] rounded-full bg-[#DDE0EA]" /></div>
-    <img src={src} alt="" className="block w-full rounded-b-[9px]" />
-  </div>
-)
-
 function ThumbnailVisual({ p }: { p: Project }) {
-  const spec = thumbSpecs[p.slug]
-  if (spec) return <PhoneShowcase spec={spec} />
-  const tile = 'relative aspect-[4/3] overflow-hidden transition-transform duration-300 group-hover:scale-[1.015]'
-  // 1) 당근: 실제 가구 사진 위에 탐색 화면과 정보 화면을 겹친 에디토리얼 목업
+  const tile = 'relative aspect-[4/3] overflow-hidden'
+  // 1) 당근: 생활 사진을 무대로, 핵심 상세 화면 하나와 치수 정보만 남긴 컨텍스트 목업
   if (p.slug === 'karrot-large-furniture') return (
-    <div className={`${tile} bg-[#EFC9AA]`}>
-      <img src="/proto/karrot/images/sofa.png" alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-95" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#F6E6D6] via-[#F6E6D6]/75 to-transparent" />
-      <div className="absolute -left-[9%] -top-[18%] h-[72%] w-[58%] rounded-full border border-[#C87032]/20" />
-      <p className="absolute left-[6%] top-[8%] z-30 text-[12px] font-bold uppercase tracking-[.18em] text-[#B5500C]">Size · Move · Disassemble</p>
-      <p className="absolute left-[6%] top-[16%] z-30 max-w-[52%] text-[clamp(21px,2.6vw,40px)] font-black leading-[1.1] tracking-[-.055em] text-[#2B1D16]">BETTER DECISIONS<br />BEFORE CHAT.</p>
-      <Phone src="/images/karrot-large-furniture/f-home.webp?v=20261119-seedtext" className="z-10 w-[25%] rotate-[-8deg] opacity-90 drop-shadow-[0_24px_42px_rgba(0,0,0,.25)]" style={{ left: '39%', bottom: '-25%' }} />
-      <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-seedtext" className="z-20 w-[34%] rotate-[4deg] drop-shadow-[0_32px_50px_rgba(0,0,0,.34)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[2deg]" style={{ right: '4%', bottom: '-34%' }} />
-      <span aria-hidden className="absolute bottom-[10%] left-[6%] z-30 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-bold text-[#2B1D16] shadow-[0_8px_24px_rgba(0,0,0,.18)]">140 × 80 × 75cm</span>
-      <span aria-hidden className="absolute bottom-[10%] left-[27%] z-30 rounded-full bg-[#FF6F0F] px-3 py-1.5 text-[11px] font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,.3)]">거래 전 확인</span>
+    <div className={`${tile} bg-[#D9C4AD]`}>
+      <img src="/proto/karrot/images/sofa.png" alt="" className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.025]" loading="lazy" decoding="async" />
+      <div className="absolute inset-0 bg-[#4A2D1E]/25" />
+      <div className="absolute inset-y-0 left-0 w-[47%] bg-[#F5E7D8]/95" />
+      <p className="absolute left-[6%] top-[8%] z-20 text-[11px] font-bold uppercase tracking-[.2em] text-[#A34510]">Karrot · UX redesign</p>
+      <p className="absolute left-[6%] top-[18%] z-20 max-w-[36%] text-[clamp(24px,3.5vw,50px)] font-black leading-[.98] tracking-[-.06em] text-[#271A14]">KNOW IT.<br />MOVE IT.</p>
+      <div className="absolute bottom-[8%] left-[6%] z-20 grid w-[35%] grid-cols-3 gap-1.5 border-y border-[#BDA48E] py-3 text-center text-[#593B2C]"><span className="text-[9px] uppercase tracking-wider">Width<b className="mt-1 block text-[13px] text-[#21150F]">140cm</b></span><span className="text-[9px] uppercase tracking-wider">Depth<b className="mt-1 block text-[13px] text-[#21150F]">80cm</b></span><span className="text-[9px] uppercase tracking-wider">Height<b className="mt-1 block text-[13px] text-[#21150F]">75cm</b></span></div>
+      <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-seedtext" className="z-20 w-[39%] rotate-[6deg] drop-shadow-[0_32px_52px_rgba(31,18,10,.42)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[3deg]" style={{ right: '6%', bottom: '-24%' }} />
     </div>
   )
 
-  // 2) NODI: 데스크톱 추천 결과를 크게, 최종 검토 모바일 화면을 전면에
+  // 2) NODI: 모바일 목업 대신 웹 결과 화면과 의사결정 카드가 겹치는 SaaS 데스크톱 구도
   if (p.slug === 'nodi') return (
-    <div className={`${tile} bg-gradient-to-b from-[#E4E8FF] to-[#CBD4FF]`}>
-      <span aria-hidden className="absolute -right-[8%] -top-[14%] h-[78%] w-[62%] rounded-full border-[44px] border-white/25" />
-      <span aria-hidden className="absolute inset-x-0 bottom-[-7%] text-center text-[clamp(110px,19vw,250px)] font-black leading-none tracking-[-.08em] text-[#3D5ADA]/[.08]">NODI</span>
-      <p className="absolute left-[6%] top-[8%] z-30 max-w-[52%] text-[clamp(21px,2.4vw,37px)] font-black leading-[1.1] tracking-[-.055em] text-[#17224C]">AI UNDERSTANDS.<br />YOU DECIDE.</p>
-      <BrowserMockup src="/images/nodi/web-reco.webp" className="bottom-[8%] left-[7%] z-10 w-[68%] -rotate-2 transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-0" />
-      <Phone src="/images/nodi/full-review.webp" className="z-20 w-[27%] rotate-[7deg] drop-shadow-[0_28px_46px_rgba(0,0,0,.3)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[4deg]" style={{ right: '3%', bottom: '-25%' }} />
+    <div className={`${tile} bg-[#1E2E70]`}>
+      <div aria-hidden className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.06)_1px,transparent_1px)] bg-[size:38px_38px]" />
+      <p className="absolute left-[6%] top-[8%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#AFC0FF]">NODI · Decision support</p>
+      <p className="absolute left-[6%] top-[17%] z-30 text-[clamp(21px,2.75vw,40px)] font-black leading-[1] tracking-[-.055em] text-white">FROM CONDITIONS<br />TO ONE CLEAR TIME.</p>
+      <BrowserMockup src="/images/nodi/web-reco.webp" className="bottom-[5%] left-[6%] z-10 w-[77%] -rotate-1 transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" />
+      <div className="absolute bottom-[6%] right-[5%] z-20 w-[31%] rotate-[4deg] overflow-hidden rounded-[12px] border border-[#BFC9F8] bg-white p-2 shadow-[0_24px_46px_rgba(8,15,54,.42)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[2deg]">
+        <img src="/images/nodi/full-review.webp" alt="" className="h-[150px] w-full rounded-[8px] object-cover object-[50%_23%] sm:h-[190px]" loading="lazy" decoding="async" />
+        <p className="px-1 pb-1 pt-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#3E4E91]">Final review · user decides</p>
+      </div>
     </div>
   )
 
-  // 3) 우리사이: 사진이 중심이 되는 두 개의 큰 화면과 여백 있는 타이포
+  // 3) 우리사이: 한 대의 기기보다 사진과 기억 카드가 먼저 보이는 에디토리얼 아카이브
   if (p.slug === 'woorisai') return (
-    <div className={`${tile} bg-[#EEEDE3]`}>
-      <span aria-hidden className="absolute -right-[12%] -top-[28%] h-[82%] w-[64%] rounded-full bg-[#D7DDC9]" />
-      <span aria-hidden className="absolute right-[38%] top-[18%] h-24 w-24 rounded-full border border-[#829386]/40" />
-      <Phone src="/images/woorisai/detail.webp" className="z-10 w-[30%] rotate-[-7deg] opacity-90 drop-shadow-[0_24px_40px_rgba(0,0,0,.22)] transition-transform duration-300 group-hover:-translate-y-1" style={{ right: '29%', top: '-14%' }} />
-      <Phone src="/images/woorisai/home.webp" className="z-20 w-[38%] rotate-[5deg] drop-shadow-[0_30px_46px_rgba(0,0,0,.28)] transition-transform duration-300 group-hover:translate-y-2 group-hover:rotate-[3deg]" style={{ right: '-4%', top: '-21%' }} />
-      <div className="absolute bottom-[7%] left-[6%] z-30 max-w-[56%]"><p className="mb-3 text-[12px] font-bold uppercase tracking-[.18em] text-[#566B5C]">A shared memory archive</p><p className="text-[clamp(20px,2.35vw,36px)] font-black leading-[1.1] tracking-[-.055em] text-[#263B2F]">SHARED MOMENTS,<br />REDISCOVERED.</p></div>
+    <div className={`${tile} bg-[#E9E6DA]`}>
+      <p className="absolute left-[6%] top-[8%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#526555]">Woorisai · Memory archive</p>
+      <div className="absolute left-[6%] top-[18%] z-20 h-[58%] w-[52%] overflow-hidden rounded-[4px] bg-white p-2 shadow-[0_22px_46px_rgba(48,57,45,.2)] transition-transform duration-300 group-hover:-translate-y-1">
+        <img src="/images/woorisai/detail.webp" alt="" className="h-full w-full object-cover object-[50%_29%]" loading="lazy" decoding="async" />
+      </div>
+      <div className="absolute right-[6%] top-[12%] z-10 h-[36%] w-[31%] rotate-[4deg] overflow-hidden bg-white p-2 shadow-[0_18px_40px_rgba(48,57,45,.18)] transition-transform duration-300 group-hover:rotate-[2deg]">
+        <img src="/images/woorisai/feed.webp" alt="" className="h-full w-full object-cover object-[50%_31%]" loading="lazy" decoding="async" />
+      </div>
+      <div className="absolute bottom-[8%] right-[6%] z-30 w-[42%] border-l border-[#839284] pl-4"><p className="text-[10px] uppercase tracking-[.16em] text-[#66766A]">Nov. 08 · Hangang</p><p className="mt-2 text-[clamp(20px,2.8vw,40px)] font-black leading-[1.02] tracking-[-.055em] text-[#263B2F]">MEMORIES,<br />WITH CONTEXT.</p></div>
     </div>
   )
 
-  // 4) trigr: 출시 제품의 지도와 미션 목록을 겹친 다크 캠페인 포스터
+  // 4) trigr: 한 화면을 강하게 크롭하고 실제 제품 모듈을 전시하는 다크 프로덕트 포스터
   return (
     <div className={`${tile} bg-[#1B1020]`}>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_46%,#6F276F_0%,#28142E_44%,#170B1B_78%)]" />
-      <span aria-hidden className="absolute right-[7%] top-[10%] aspect-square w-[44%] rounded-full border border-[#EE7CF0]/35" />
-      <span aria-hidden className="absolute right-[13%] top-[19%] aspect-square w-[32%] rounded-full border border-[#EE7CF0]/20" />
-      <p className="absolute left-[6%] top-[8%] z-10 text-[11px] font-bold uppercase tracking-[.16em] text-[#F1B4F2]">Trigr · Launched in Thailand</p>
-      <p className="absolute left-[6%] top-[17%] z-10 max-w-[45%] text-[clamp(23px,2.7vw,42px)] font-black leading-[1.1] tracking-[-.06em] text-white">FROM GAPS<br />TO FLOWS.</p>
-      <Phone src="/images/trigr/home-map.webp" className="z-10 w-[29%] rotate-[-10deg] opacity-85 drop-shadow-[0_28px_54px_rgba(0,0,0,.5)]" style={{ right: '24%', bottom: '-30%' }} />
-      <Phone src="/images/trigr/mission-discovery-02.png" className="z-20 w-[36%] rotate-[4deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.58)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[2deg]" style={{ right: '-1%', bottom: '-31%' }} />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_45%,#62245F_0%,#28142E_42%,#170B1B_76%)]" />
+      <span aria-hidden className="absolute -right-[9%] top-[8%] aspect-square w-[60%] rounded-full border border-[#EE7CF0]/30" />
+      <p className="absolute left-[6%] top-[8%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#F1B4F2]">Trigr · Shipped product</p>
+      <p className="absolute left-[6%] top-[18%] z-30 max-w-[42%] text-[clamp(24px,3.5vw,50px)] font-black leading-[.98] tracking-[-.06em] text-white">FROM GAPS<br />TO FLOWS.</p>
+      <div className="absolute bottom-[9%] left-[6%] z-20 w-[31%] overflow-hidden rounded-[12px] border border-white/15 bg-white/10 p-2 shadow-[0_24px_48px_rgba(0,0,0,.36)] backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-1">
+        <img src="/images/trigr/home-map.webp" alt="" className="h-[120px] w-full rounded-[8px] object-cover object-[50%_22%] sm:h-[140px]" loading="lazy" decoding="async" />
+        <p className="px-1 pb-1 pt-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#E9B5E8]">Discover nearby</p>
+      </div>
+      <Phone src="/images/trigr/mission-discovery-02.png" className="z-20 w-[41%] rotate-[-3deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.58)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[-1deg]" style={{ right: '5%', bottom: '-27%' }} />
     </div>
   )
 }

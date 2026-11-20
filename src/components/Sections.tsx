@@ -107,8 +107,8 @@ function ThumbnailVisual({ p }: { p: Project }) {
   if (p.slug === 'woorisai') return (
     <div className={`${tile} bg-[#E9E6DA]`}>
       <p className="absolute left-[6%] top-[8%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#526555]">Woorisai · Memory archive</p>
-      <div className="absolute left-[6%] top-[18%] z-20 h-[58%] w-[52%] overflow-hidden rounded-[4px] bg-white p-2 shadow-[0_22px_46px_rgba(48,57,45,.2)] transition-transform duration-300 group-hover:-translate-y-1">
-        <img src="/images/woorisai/detail.webp" alt="" className="h-full w-full object-cover object-[50%_29%]" loading="lazy" decoding="async" />
+      <div className="absolute left-[6%] top-[15%] z-20 h-[80%] w-[48%] overflow-hidden rounded-[4px] bg-white p-2 shadow-[0_22px_46px_rgba(48,57,45,.2)] transition-transform duration-300 group-hover:-translate-y-1">
+        <img src="/images/woorisai/detail.webp" alt="" className="h-full w-full object-cover object-[50%_10%]" loading="lazy" decoding="async" />
       </div>
       <div className="absolute right-[6%] top-[12%] z-10 h-[36%] w-[31%] rotate-[4deg] overflow-hidden bg-white p-2 shadow-[0_18px_40px_rgba(48,57,45,.18)] transition-transform duration-300 group-hover:rotate-[2deg]">
         <img src="/images/woorisai/feed.webp" alt="" className="h-full w-full object-cover object-[50%_31%]" loading="lazy" decoding="async" />

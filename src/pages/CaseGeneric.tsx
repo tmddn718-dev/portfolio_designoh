@@ -80,7 +80,7 @@ const Outcome = ({ c, children, cards }: { c: Ctx; children?: ReactNode; cards: 
 // ── 올리브영: 문제 → 판단 → 실제 UI → 검증 ───────────────────
 function OliveRenewed({ c }: { c: Ctx }) {
   const { p, A, S } = c
-  const I = (n: string) => `/images/oliveyoung-todaydream/${n}.webp`
+  const I = (n: string) => `/images/oliveyoung-todaydream/${n}${n.startsWith('n-opt') ? '-indicator.png' : '.webp'}`
   const Result = ({ value, task }: { value: string; task: string }) => (
     <div className="mt-10 rounded-[28px] bg-ink p-7 md:p-10 text-white">
       <p className="eyebrow text-white/55">Usability test · 동일 참여자 8명</p>

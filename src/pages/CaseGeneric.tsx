@@ -543,12 +543,12 @@ function Karrot({ c }: { c: Ctx }) {
       {/* Usability Test + Key Results */}
       <section id="test" className="wrap gutter py-20 md:py-32 scroll-mt-20">
         <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>USABILITY TEST / AS-IS vs. TO-BE</p>
-        <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅 전에 거래 정보를 확인하자,<br />약속 확정까지 평균 41초 빨라졌습니다.</h2>
+        <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅 전에 거래 정보를 확인하자,<br />약속 확정까지 평균 34초 빨라졌습니다.</h2>
         <div className="mt-10 md:grid md:grid-cols-12 gap-10">
           <div className="md:col-span-7 text-[17px] leading-[1.8] space-y-3">
             <p>대형가구 거래에서 구매자가 게시글을 확인한 뒤 채팅으로 거래 약속을 확정하기까지의 과정을 비교했습니다.</p>
             <p>동일한 참가자 7명이 기존 당근 앱(AS-IS)과 개선 프로토타입(TO-BE)에서 같은 과제를 수행했습니다.</p>
-            <p>7명 모두 TO-BE에서 더 빠르게 거래 약속을 확정했으며, 평균 소요 시간은 AS-IS보다 41초 짧게 측정됐습니다.</p>
+            <p>7명 모두 TO-BE에서 더 빠르게 거래 약속을 확정했으며, 평균 소요 시간은 AS-IS보다 34초 짧게 측정됐습니다.</p>
           </div>
           <dl className="mt-8 md:mt-0 md:col-span-5 rounded-[24px] border border-grid p-6 text-[15px] grid grid-cols-[auto_1fr] gap-x-5 gap-y-3 content-start">
             {[['Method', '동일 참가자 비교 사용성 테스트'], ['Participants', '7명'], ['Comparison', '기존 앱 AS-IS / 개선 프로토타입 TO-BE'], ['Task', '게시글 확인부터 채팅을 통한 거래 약속 확정까지'], ['Environment', '프로토타입 테스트']].map(([k, v]) => <div key={k} className="contents"><dt className="text-sub text-[13px] pt-0.5">{k}</dt><dd className="font-semibold">{v}</dd></div>)}
@@ -556,13 +556,13 @@ function Karrot({ c }: { c: Ctx }) {
         </div>
 
         <Reveal className="mt-16 md:mt-24">
-          <div className="rounded-[32px] p-7 md:p-14 text-center md:text-left" style={{ background: '#17120F', color: '#fff' }} role="group" aria-label="사용성 테스트 핵심 결과: 평균 41초 단축, 7명 중 7명 단축">
+          <div className="rounded-[32px] p-7 md:p-14 text-center md:text-left" style={{ background: '#17120F', color: '#fff' }} role="group" aria-label="사용성 테스트 핵심 결과: 평균 34초 단축, 7명 중 7명 단축">
             <div className="md:grid md:grid-cols-12 gap-10 items-end">
             <div className="md:col-span-7">
               <p className="text-[13px] font-bold tracking-[.14em]" style={{ color: '#FFB78A' }}>RESULT 01 · AVERAGE TIME DIFFERENCE</p>
-              <p className="mt-4 font-extrabold leading-[.9] tracking-[-.06em] text-[clamp(88px,17vw,196px)]">−41<span className="text-[.42em] tracking-[-.03em] ml-1" style={{ color: '#FF8A3D' }}>초</span></p>
+              <p className="mt-4 font-extrabold leading-[.9] tracking-[-.06em] text-[clamp(88px,17vw,196px)]">−34<span className="text-[.42em] tracking-[-.03em] ml-1" style={{ color: '#FF8A3D' }}>초</span></p>
               <p className="mt-5 text-[18px] md:text-[22px] font-bold">거래 약속 확정까지의 평균 소요 시간 차이</p>
-              <p className="mt-2 text-[15px] text-white/70">TO-BE에서 AS-IS보다 평균 41초 짧게 측정</p>
+              <p className="mt-2 text-[15px] text-white/70">TO-BE에서 AS-IS보다 평균 34초 짧게 측정</p>
             </div>
             <div className="mt-10 md:mt-0 md:col-span-5 pt-8 md:pt-0 md:pl-10 border-t md:border-t-0 md:border-l border-white/20">
               <p className="text-[13px] font-bold tracking-[.14em]" style={{ color: '#FFB78A' }}>RESULT 02 · PARTICIPANT IMPROVEMENT</p>
@@ -602,7 +602,7 @@ function Karrot({ c }: { c: Ctx }) {
                 <ul className="mt-4 space-y-3 text-[16px] leading-snug">{['참가자 7명의 소규모 테스트', '프로토타입 환경에서 측정한 결과', '테스트 순서에 따른 학습 효과 가능성', '실제 서비스의 거래 성사율 및 운영 성과 미검증'].map(t => <li key={t} className="flex gap-3"><span aria-hidden className="text-sub">–</span>{t}</li>)}</ul>
               </div>
             </div>
-            <p className="mt-6 text-[13px] text-sub max-w-3xl">이 결과는 프로토타입 과제에서 측정한 시간이에요. 실제 서비스 전체의 거래 시간이 41초 단축됐다는 뜻이 아닙니다.</p>
+            <p className="mt-6 text-[13px] text-sub max-w-3xl">이 결과는 프로토타입 과제에서 측정한 시간이에요. 실제 서비스 전체의 거래 시간이 34초 단축됐다는 뜻이 아닙니다.</p>
           </div>
         </div>
       </section>
@@ -612,7 +612,7 @@ function Karrot({ c }: { c: Ctx }) {
         <h3 className="mt-4 text-[28px] md:text-[40px] font-bold tracking-tight">실제 당근 앱 vs 대형 가구 거래 개선안</h3>
         <p className="mt-3 text-[16px] text-sub max-w-[62ch]">같은 장면의 현재 화면(BEFORE)과 개선안(AFTER)을 나란히 놓았어요. 빨간 박스와 번호가 기존 앱의 문제 위치이고 오른쪽 표에서 번호별로 설명해요.</p>
         <div className="mt-10 space-y-6 md:space-y-10">{karrotCompare.map(d => <CompareSection key={d.n} d={d} color={A} />)}</div>
-        <p className="mt-6 text-[13px] text-sub max-w-3xl">※ Before는 유아이볼(uibowl.io)에 수집된 실제 당근 앱 화면이에요. After는 제가 설계한 개선안으로 상품 정보는 예시예요.</p>
+        <p className="mt-6 text-[13px] text-sub max-w-3xl">※ Before는 실제 당근 앱을 직접 캡처한 화면이며 판매자 닉네임은 가렸어요. After는 제가 설계한 개선안으로 상품 정보는 예시예요.</p>
       </section>
 
       <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
@@ -622,7 +622,7 @@ function Karrot({ c }: { c: Ctx }) {
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="입력부터 질문 초안까지" />
       </section>
 
-      <Outcome c={c} cards={<><div className="rounded-[20px] bg-[#F7F8FA] p-6"><p className="text-[14px] text-sub">확인된 것</p><p className="mt-2 text-[18px] font-bold">프로토타입 테스트 7명 전원, 거래 약속 확정이 평균 41초 빨라짐</p></div><div className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[14px] text-sub">아직 필요한 것</p><p className="mt-2 text-[18px] font-bold">더 큰 표본과 실제 서비스 환경에서의 검증</p></div></>}>
+      <Outcome c={c} cards={<><div className="rounded-[20px] bg-[#F7F8FA] p-6"><p className="text-[14px] text-sub">확인된 것</p><p className="mt-2 text-[18px] font-bold">프로토타입 테스트 7명 전원, 거래 약속 확정이 평균 34초 빨라짐</p></div><div className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[14px] text-sub">아직 필요한 것</p><p className="mt-2 text-[18px] font-bold">더 큰 표본과 실제 서비스 환경에서의 검증</p></div></>}>
         <div className="pt-6 rule"><p className="eyebrow text-sub">Next</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[16px] leading-relaxed"><li>판매자 입력 부담과 정보 변경 흐름은 이번 테스트에 포함되지 않았어요</li><li>더 많은 참가자와 순서를 섞은 비교로 학습 효과 줄이기</li><li>실제 서비스 환경에서 거래 성사율과 채팅 흐름 확인</li></ul></div>
       </Outcome>
     </>

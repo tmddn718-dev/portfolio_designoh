@@ -4,68 +4,51 @@
 > 표기: **[확정]** 사용자가 정했거나 코드에 반영됨 / **[검토중]** 미결 / **[미확인]** 확인 못 함. `CLAUDE.md`는 이 저장소에 없다.
 
 ## 1. 목적·핵심 기능
-- 프로덕트 디자이너 노승우(UX/UI) 포트폴리오. 채용 담당자가 짧은 시간에 문제 해결 과정을 보게 하는 것이 목적.
-- 작업 5개: trigr(출시·서비스 종료) / NODI(0→1) / 올리브영 오늘드림·당근 대형가구(기존 서비스 비공식 UX 개선) / 우리사이(0→1).
-- 구성: 홈(모션 히어로·프로젝트 스토리·카드) + 케이스 상세 5개 + About. 화면 이미지는 눌러서 확대하고 스크롤해서 볼 수 있음(`Zoomable`).
+- 프로덕트 디자이너 노승우(UX/UI) 포트폴리오. 채용 담당자가 짧은 시간에 문제 해결 과정을 보게 하는 것이 목적. 콘셉트 "Complexity → Clarity", 디자인 철학 Soft Clarity.
+- 작업 5개: 올리브영 오늘드림·당근 대형가구(기존 서비스 비공식 UX 개선) / NODI·우리사이(0→1) / trigr(출시·서비스 종료).
+- 구성: 홈(히어로·핀 고정 프로젝트 스토리·대표 카드+카드 4개·접근 방식·About/Contact) + 케이스 상세 5개 + About. 화면 이미지는 눌러서 확대·스크롤(`Zoomable`).
 
 ## 2. 기술 스택·구조 [확정]
-- React 19 · TypeScript · Vite · Tailwind v4 · React Router 7 · GSAP(ScrollTrigger) · Lenis(홈 한정). `vercel.json`은 SPA rewrite만.
-- `src/data/projects.ts`: 프로젝트 단일 데이터(summary, gallery, beforeAfter, proto, sections). `src/data/karrotBig.ts`: 확대 시 보여줄 전체 스크롤 이미지 매핑(당근 `f-/L-*`, NODI `hi-/hero-/full-*`).
-- `src/pages`: Home, About, CaseGeneric(올리브영·당근·우리사이), CaseNodi, CaseTrigr. `src/components`: Layout, Hero, Sections(홈 카드·썸네일), case.tsx, Compare, Modal, Mockup, ScrollPhone 등. `src/motion`: useMotion(Lenis·자석 버튼), SplitText, Cursor, Marquee, ScrollStory.
-- `public/images/<slug>/`(화면 이미지), `public/proto/{karrot,nodi,oliveyoung,woorisai}`(정적 프로토타입 iframe).
-- 안 건드림: `references/`, `PRODUCT.md`, `.impeccable/`.
+- React 19 · TypeScript · Vite · Tailwind v4 · React Router 7(라우트 분할) · GSAP(ScrollTrigger) · Lenis. `vercel.json`은 SPA rewrite와 보안 헤더.
+- `src/data/projects.ts` 프로젝트 단일 데이터 / `karrotBig.ts` 확대 시 전체 스크롤 이미지 매핑 / `thumbnails.ts` 아래 4절 참고.
+- `src/pages`: Home, About, CaseGeneric(올리브영·당근·우리사이), CaseNodi, CaseTrigr. `src/components`: Sections(홈 카드·섬네일), Hero, case.tsx(공용 상세 요소 `InteractionPreview` 등), Mockup(`ProtoFrame`), Modal. `src/motion`: ScrollStory, SplitText, useScrollMotion.
+- `public/images/<slug>/` 화면 이미지, `public/proto/{karrot,nodi,oliveyoung,woorisai,trigr}` 정적 프로토타입(iframe). 안 건드림: `references/`, `PRODUCT.md`, `.impeccable/`.
 
 ## 3. 디자인 원칙·시스템 [확정]
-- 제목·부제 행간 140%, 본문 13px 이상, 터치 44px. 문장은 쉬운 말(~해요), 문장 중간 쉼표 쓰지 않음.
-- 전역 CSS는 `@layer base`(비레이어 CSS가 Tailwind 유틸을 이김). 폰 프레임 `.phone-pro`·`.phone-light`(바깥 그림자 없음), 섹션 번호 `.num-brand`.
-- 브랜드 컬러: 올리브영 #82DC28, 당근 #FF6F0F, NODI #3654D4, 우리사이 #566B5C, trigr #DE5DE2. 카드는 옅은 틴트 배경.
-- 긴 스크롤 화면은 설명에 맞는 위치를 보여주고 하단 CTA·탭바는 아래에 고정. NODI·우리사이는 기존 서비스가 없어 "초기/개선 시안" 표기.
+- 제목·부제 행간 140%(예외는 상세 상단 제목), 본문 13px 이상, 터치 44px, 문장은 "~해요", 문장 중간 쉼표 쓰지 않음. 전역 CSS는 `@layer base`.
+- 폰 프레임 `.phone-pro`·`.phone-light`. 브랜드 컬러: 올리브영 #82DC28, 당근 #FF6F0F, NODI #3654D4, 우리사이 #566B5C, trigr #DE5DE2.
+- 긴 스크롤 화면은 설명에 맞는 위치를 보여주고 하단 CTA·탭바는 고정. NODI·우리사이는 기존 서비스가 없어 "초기/개선 시안" 표기.
 
-## 4. 정책·의사결정 [확정]
-- 사실 날조 금지: 수치·인용·테스트 결과를 만들지 않고 시뮬레이션·예시는 그렇게 표기. 자료 없으면 "[추가 자료 필요]".
-- 기간: trigr 2025.05–2026.06 / 올리브영 2026.11.09–11.19(약 2주) / 당근 2026.10.19–10.30(2주) / NODI 2026.10.15–10.23(1주) / 우리사이 2026.11.02–11.09(1주).
-- 이름·휴대폰·이메일은 노출, 주소·생년월일은 노출 금지. 당근 판매글 작성 AS-IS의 동네 이름은 가리지 않기로 함.
-- 앱 아이콘: NODI·우리사이·trigr 제공 SVG, 올리브영·당근 공식 아이콘. 올리브영·당근은 비공식 제안 문구 유지.
-- **푸시는 요청할 때만, 기본은 `site-develop`만.** "main도"라고 하면 main까지(현재 두 브랜치 모두 a8f516f). 푸시 전 `git fetch`, 갈라지면 병합(강제 푸시 금지). 커밋 끝에 `Co-Authored-By: Claude Sonnet 5.5` 줄.
-- 작업 브랜치는 `site-develop`. 다른 세션이 같은 브랜치에 푸시한다.
+## 4. 현재 구현 상태 [확정]
+- **홈**: 단어 단위 텍스트 등장, 핀 고정 프로젝트 전환(900px↑), 스태거(`data-stagger`)·패럴랙스(`data-parallax-y`, `useScrollMotion.ts`). 핀 섹션은 `refreshPriority: 10`. 히어로의 포인터 따라다니는 파란 글로우는 다른 세션이 넣은 것(그대로 둠).
+- **홈 섬네일**: 카드 구성은 `Sections.tsx`의 `ThumbnailVisual`·`OliveShowcase`(다른 세션이 직접 짠 구도, 제목은 올리브영 `OUT OF STOCK. MORE OPTIONS.`, NODI 배경 #DCE3FB·제목 #202020). **`PhoneMockup.tsx`·`thumbnails.ts`(설정 기반 목업)는 현재 아무 곳에서도 쓰이지 않지만 삭제하지 않음.** 쓰려면 `ThumbnailVisual` 맨 앞에서 `thumbSpecs[p.slug]`를 읽게 연결.
+- **작업 기간(확정)**: 올리브영 2026.11.09–11.19(약 2주), 당근 2026.10.19–10.30(2주), NODI 2026.10.15–10.23(1주), 우리사이 2026.11.02–11.09(1주), trigr 2025.05–2026.06.
+- **NODI 상세**: 배경→문제→디자인 질문→솔루션 01~04→구현 범위→회고→MORE. 사실: 시안(`NODI-2` 저장소 `.dc.html`), 추천은 규칙 기반 점수(AI 호출 없음), 참석자·캘린더는 예시 데이터.
+- **당근 상세**: 새 UI 20장, 사용성 테스트(동일 참가자 7명, 평균 −34초, 7/7명 단축 — 사용자가 준 값, 원본 기록 없어 그래프 없음).
+- **올리브영**: 프로토타입은 상품 상세에서 시작(`?scenarios`). 사용성 테스트(참여자 8명) 문구는 다른 세션이 넣은 것 **[미확인]**.
+- **Trigr 상세 리뉴얼**: `CaseTrigr.tsx` = Hero → Context·Approach → 상금 지급 → 정산 신청 → Supporting → Design System → Prototype·Validation(`Validation Planned`) → Reflection. 공용 `CaseBlock`(Problem → Decision → UI → Outcome). 역할 `Product Designer · UX/UI Design`, "총괄·디자인 시스템 구축" 같은 과장 표현은 쓰지 않음. 사후 제안은 `Post-project proposal` 라벨로 분리, 자료 없는 곳은 점선 플레이스홀더. 홈 trigr 문구는 `FROM GAPS TO FLOWS.` / "정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화하다."
+- **trigr 프로토타입**: 소스는 **저장소 밖** `Documents/개인 프로젝트 자료/trigr-prototype`(React+Vite), 빌드 결과를 `public/proto/trigr/`에 복사. 사이트 주소 `?sc=e`(전체 앱 둘러보기, 홈 지도 시작), 시나리오 a~d는 `/proto/trigr/index.html` 직접 열 때만(패널·기록). 화면은 사용자가 보낸 PNG(`~/Desktop/포트폴리오 프로젝트 UI/trigr`)만 쓰고 상금·정산 입력 화면만 직접 구현. **PDF에서 뽑은 이미지는 쓰지 않는다(사용자 요청).** 고치면 `dist`를 다시 복사하고 `projects.ts` 주소의 `v=` 값을 올려 캐시를 깨고 README를 갱신.
+- 당근·올리브영 프로토타입은 각 GitHub 저장소(`dangn-prototype`, `OliveYoung`) 최신 빌드 사본, 우리사이는 `WOORISAI` 사본, NODI는 정적 시안 사본(작동 앱 아님).
 
-## 5. 구현 상태
-- 홈·About·상세 5개 동작. 1440/768/390px 자동 점검에서 가로 넘침·깨진 이미지·콘솔 오류 없음, `npm run build` 통과. 모션 줄이기·터치에서는 모션을 모두 끔.
-- **NODI 상세** 개편: 배경→문제→디자인 질문→솔루션 01~04→구현 범위→회고→(MORE: 실제 UI·웹 반응형·설계 기록). 사실: 시안(`NODI-2` 저장소, `.dc.html`)이며 추천은 규칙 기반 점수 계산(AI 호출 없음), 참석자 응답·캘린더는 예시 데이터. 시나리오 A/B 캡처는 같은 화요일 90분에서 선호만 오후→오전으로 바꾼 실제 실행 결과.
-- **당근 상세**: 새 UI 20장 적용, 사용성 테스트 섹션(동일 참가자 7명, 평균 −41초, 7/7명 단축). 수치는 사용자가 알려준 값이고 참가자별 원본 기록은 어디에도 없어 그래프 없음. 판매자 입력·정보 변경은 이 테스트에 미포함으로 표기.
-- **올리브영**: 프로토타입은 상품 상세에서 시작(`?scenarios`로 시나리오 선택 화면), 펼치기/접기 화살표 방향 수정, 상품 이미지 고화질. 사용성 테스트(참여자 8명) 문구가 `projects.ts`에 있음 — 다른 세션이 넣은 것으로 원자료는 내가 확인하지 못함 **[미확인]**.
-- **홈**: 섬네일 4개 서로 다른 구도, Lenis·텍스트 등장·핀 고정 프로젝트 전환(900px↑)·마키·커서·카드 기울임.
-- 당근 프로토타입은 GitHub `dangn-prototype` 최신 빌드, 올리브영은 `OliveYoung` 저장소(수정본 push됨), 우리사이는 `WOORISAI` 사본. NODI는 정적 시안 사본(작동하는 앱 아님).
+## 5. 정책·의사결정 [확정]
+- 사실 날조 금지: 수치·인용·테스트 결과를 만들지 않고 예시·시뮬레이션은 그렇게 표기. 자료 없으면 "[추가 자료 필요]"/플레이스홀더.
+- 이름·휴대폰·이메일은 노출, 주소·생년월일은 노출 금지. 당근 판매글 AS-IS의 동네 이름은 가리지 않음. 올리브영·당근은 비공식 제안 문구 유지.
+- **작업은 `site-develop`에서. 푸시는 요청할 때만, 기본은 `site-develop`만.** "main도"라고 하면 main까지, fast-forward로. 푸시 전 `git fetch`, 갈라지면 병합(강제 푸시 금지). 다른 세션이 같은 브랜치에 푸시하니 자주 병합이 필요함. 커밋 끝에 `Co-Authored-By: Claude Sonnet 5.5` 줄.
+- 현재 `site-develop` 최신 `e6189da`, `main`은 `0ec7824`에 있어 뒤처져 있음(메모리에도 규칙 저장).
 
 ## 6. 진행 중·남은 작업
-- **[검토중] 우리사이 설문 34명**: 문항별 응답 수·응답자 구성·기간·서술 의견을 못 받아 미적용(현재 실제 7명 값). 반영 위치: `CaseGeneric.tsx`의 `survey`·설문 카드·검증 "7" 카드, `projects.ts` 우리사이 본문.
-- 당근: 채팅 장면 BEFORE는 자리표시. 다른 세션이 올린 구매자 화면(F1–F3, T1–T6, `references/karrot-large-furniture/to-be-full-scroll`)은 페이지에 아직 미사용.
-- NODI: 실제 UI 목록의 `hi-*`(위쪽만 잘린 이미지)를 전체 스크롤 기준으로 바꾸는 작업 미실시.
-- 올리브영·우리사이·trigr는 전체 스크롤 원본이 없어 확대하면 한 화면만 보임.
-- 우리사이 사진 상호작용·발자국 Before/After는 예전 프로토타입 캡처. trigr 미션 생성 4단계는 PDF 이미지.
-- 정리: 안 쓰는 `public/images/karrot-large-furniture/k-*`(10개) 등 미사용 이미지, 이미지 srcset, 긴 본문 문장 다듬기.
+- **[검토중] 우리사이 설문 34명**: 문항별 응답 수·구성·기간·서술 의견 자료 대기(현재 실제 7명 값). 반영 위치 `CaseGeneric.tsx`의 `survey`·설문 카드·검증 "7" 카드, `projects.ts` 우리사이 본문.
+- 당근: 채팅 장면 BEFORE는 자리표시, 구매자 화면(F1–F3, T1–T6)은 페이지에 미사용.
+- NODI: 실제 UI 목록의 `hi-*`(위쪽만 잘린 이미지)를 전체 스크롤 기준으로 교체 미실시. 올리브영·우리사이·trigr는 전체 스크롤 원본이 없어 확대하면 한 화면만 보임(trigr 프로토타입의 PNG 화면도 스크롤 안 됨).
+- trigr: 상금 지급 4번째(복귀) 화면·Figma Variables 화면은 자료 없음, 미션 만들기(+) 흐름은 PNG 없어 미구현.
+- 정리: 안 쓰는 `public/images/karrot-large-furniture/k-*`(10개), 미사용 `Marquee.tsx`·`Cursor.tsx`·`PhoneMockup`, 이미지 srcset.
 
 ## 7. 알려진 문제
-- 13px 미만 글자: 홈 장식 라벨(10~12px 여러 개)과 올리브영 몇 곳(미조치).
-- 콘솔 경고 `allowTransparency`(ProtoFrame iframe 속성, 기존부터, 동작엔 영향 없음).
-- 홈 모션의 호버·커서·자석 버튼·모바일 폭은 코드와 자동 점검으로만 확인, 직접 조작·눈 확인 못 함.
+- 13px 미만 장식 라벨(섬네일 11~12px 등). 콘솔 경고 `allowTransparency`(ProtoFrame iframe, 기존부터).
+- 모바일 폭에서 섬네일 안 글자는 읽기 어려움(카드 4:3 고정의 한계). 홈 모션 hover·커서·모바일은 자동 점검과 코드로만 확인.
 
 ## 8. 주의사항
-- 파일 수정 후 `npx tsc --noEmit -p .` → 점검 → `npm run build`. macOS는 `sed -i ''`. dev 서버 `npm run dev -- --port 5173`.
-- 임시 도구(Playwright 점검, 로컬 서버)는 세션 scratchpad라 사라질 수 있음. 새로 만들 때 `npm i playwright-core`와 시스템 Chrome 사용.
-- 핀 고정(ScrollTrigger pin) 섹션은 바깥 div로 감싸야 React 언마운트 오류가 없음. Lenis는 홈에서만 켜고, 모달은 `data-lenis-prevent`.
-- 당근·NODI 화면 이미지는 `full-*`(전체), `sp-*`(상단·본문·CTA 분리), `f-*`(첫 화면), `L-*`(설명 위치) 규칙. 확대는 `karrotBig.ts`가 매핑.
-- 사용자 PNG는 `~/Desktop/포트폴리오 프로젝트 UI/<프로젝트>/` 우선. 올리브영 상품 이미지는 올리브영 상품 페이지(A000000223414) 원본.
-- 메모리에 "작업은 site-develop" 규칙이 있음(`~/.claude/projects/.../memory`).
-
-## 9. 최근 변경 (2026-11-19 ~ 20) [확정]
-- **브랜치:** `site-develop`가 최신(마지막 확인 `23d2aea`). `main`은 `0ec7824`에 있어 뒤처져 있음. main에 올릴 때는 사용자가 "main도"라고 말했을 때만, fast-forward로.
-- **Trigr 상세 리뉴얼:** `CaseTrigr.tsx`를 Hero → Context·Approach → 상금 지급 → 정산 신청 → Supporting → Design System → Prototype·Validation → Reflection 순서로 재구성. 사례는 공용 `CaseBlock`(Problem → Decision → UI → Outcome). 역할은 `Product Designer · UX/UI Design`으로 표기하고 "총괄·디자인 시스템 구축" 같은 과장 표현은 뺌. 사후 개선 제안은 `Post-project proposal` 라벨로 분리, 자료 없는 곳은 점선 플레이스홀더, Validation은 `Validation Planned` 틀만.
-- **Trigr 프로토타입:** 소스는 저장소 밖 `Documents/개인 프로젝트 자료/trigr-prototype`(React+Vite), 빌드 결과를 `public/proto/trigr/`에 복사해 씀. 사이트 iframe 주소는 `?sc=e`(전체 앱 둘러보기, 홈 지도에서 시작). 테스트용 시나리오 a~d와 패널은 `/proto/trigr/index.html`을 직접 열 때만 나옴. 화면은 사용자가 보낸 시안 PNG(`~/Desktop/포트폴리오 프로젝트 UI/trigr`)를 그대로 쓰고, 입력이 필요한 상금·정산 화면만 직접 구현. **PDF에서 뽑은 이미지는 쓰지 않는다**(사용자 요청). 프로토타입을 고치면 `dist`를 `public/proto/trigr/`에 다시 복사하고 `projects.ts`의 주소 `v=` 값을 올려 캐시를 깬다.
-- **홈 trigr 카드:** `FROM GAPS TO FLOWS.` / "정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화하다." (카드 `Sections.tsx`, 스토리 `ScrollStory.tsx`, 카드 설명 `cardCopy`). 섬네일 배지는 모두 제거. 우리사이는 작은 글을 제목 바로 위로 붙임, NODI 파란 배지 삭제.
-- **작업 기간(확정):** 올리브영 2026.11.09–11.19(약 2주), 당근 2026.10.19–10.30(2주), NODI 2026.10.15–10.23(1주), 우리사이 2026.11.02–11.09(1주), trigr 2025.05–2026.06.
-- **모션:** 홈에 스태거(`data-stagger`)·패럴랙스(`data-parallax-y`), `src/motion/useScrollMotion.ts`. 핀 고정 섹션은 `refreshPriority: 10`으로 먼저 계산.
-- **unslop 점검(폴리시 모드):** 브랜드색 그림자를 중립으로, `transition-all` 제거, 10~11px 장식 라벨을 11~12px로. **남긴 것:** 히어로 포인터 파란 글로우(다른 세션이 넣은 인터랙션), 영문 대문자 eyebrow, 800 굵기 제목, 미사용 `Marquee.tsx`·`Cursor.tsx`.
-- **작업 환경 주의:** 포트 5173은 예전 복사본 폴더(`Documents/ChatGPT/.../portfolio_designoh`)의 서버일 수 있으니 확인은 `npm run dev -- --port 5174`로. 스크래치 도구는 세션마다 사라지므로 점검 스크립트가 필요하면 `npm i playwright-core`와 시스템 Chrome으로 다시 만든다.
-- **[미확인]** 올리브영 사용성 테스트(참여자 8명) 문구의 원자료.
-
+- 수정 후 `npx tsc --noEmit -p .` → 화면 점검 → `npm run build`. macOS는 `sed -i ''`. dev 서버는 `npm run dev -- --port 5174`(**5173은 예전 복사본 폴더 서버일 수 있음**). Playwright 점검 도구는 세션마다 사라지니 필요하면 `npm i playwright-core`+시스템 Chrome으로 다시 만든다.
+- 핀 고정(ScrollTrigger pin) 섹션은 바깥 div로 감싸야 React 언마운트 오류가 없음. Lenis는 홈에서만, 모달은 `data-lenis-prevent`.
+- 당근·NODI 이미지는 `full-*`(전체), `sp-*`(상단·본문·CTA 분리), `f-*`(첫 화면), `L-*`(설명 위치) 규칙, 확대 매핑은 `karrotBig.ts`. 사용자 PNG는 `~/Desktop/포트폴리오 프로젝트 UI/<프로젝트>/` 우선.
+- 인라인 `style`의 `left/width`는 CSS보다 우선하므로 반응형 덮어쓰기에는 `!important`가 필요.

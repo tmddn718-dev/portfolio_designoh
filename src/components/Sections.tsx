@@ -161,7 +161,7 @@ export function Work() {
 const approach = [
   { key: 'Observe', title: '사용자가 막히는 순간을 찾습니다', text: '서비스 화면과 사용 행동을 관찰하고, 리뷰와 인터뷰에서 반복되는 질문을 모아 해결할 문제를 구체화합니다.', shot: { src: '/images/oliveyoung-todaydream/n-optMain-indicator.png', alt: '올리브영 기존 품절 옵션 화면', cap: '실제 화면 관찰' } },
   { key: 'Define', title: '판단에 필요한 정보를 구조화합니다', text: '상태와 선택지를 사용자가 판단하는 순서로 재배치하고, 확인된 사실과 가설을 명확히 구분합니다.', shot: { src: '/images/karrot-large-furniture/L-b2.webp?v=20261119-seedtext', alt: '당근 정보 상태 구분 화면', cap: '정보 상태 구분' } },
-  { key: 'Craft', title: '동작하는 프로토타입으로 확인합니다', text: '직접 조작할 수 있는 프로토타입을 구현하고, 과제 수행 결과와 피드백을 바탕으로 개선합니다.', shot: { src: '/images/karrot-large-furniture/f-b3.webp?v=20261119-seedtext', alt: '당근 클릭형 프로토타입의 질문 고르기 화면', cap: '프로토타입으로 검증' } },
+  { key: 'Complete', title: '막히는 순간의 화면까지 설계합니다', text: '정상 흐름뿐 아니라 입력하지 않았을 때, 불러오지 못했을 때, 다시 시도할 때의 화면과 문구까지 빠뜨리지 않고 설계합니다.', shot: { src: '/images/karrot-large-furniture/L-e1.webp', alt: '당근 정보 조회 실패 화면: 불러오지 못했다는 안내와 다시 시도 버튼', cap: '예외 상태 설계' } },
 ]
 
 export function Philosophy() {

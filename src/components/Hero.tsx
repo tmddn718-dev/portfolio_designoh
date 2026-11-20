@@ -103,8 +103,8 @@ export default function Hero() {
         </h1>
         <div className="mt-12 grid gap-7 md:mt-20 md:grid-cols-12 md:items-end">
           <div data-copy className="md:col-span-7">
-            <p className="max-w-[27ch] text-[22px] font-semibold leading-[1.45] tracking-[-.025em] md:text-[30px]">복잡한 사용자 경험을 명확한 선택으로 바꾸는 프로덕트 디자이너</p>
-            <p className="mt-4 max-w-[54ch] text-[15px] leading-[1.75] text-white/62 md:text-[17px]">문제를 발견하고, 프로토타입으로 검증하며, 사용자가 더 쉽게 결정할 수 있는 경험을 설계합니다.</p>
+            <p className="max-w-[27ch] text-[22px] font-semibold leading-[1.45] tracking-[-.025em] md:text-[30px]">복잡한 문제를 사용자가 이해하고 선택할 수 있는 경험으로 바꾸는 프로덕트 디자이너</p>
+            <p className="mt-4 max-w-[54ch] text-[15px] leading-[1.75] text-white/62 md:text-[17px]">사용자의 문제를 발견하고, 동작하는 프로토타입으로 해결안을 검증해 더 쉬운 의사결정 흐름을 만듭니다.</p>
           </div>
           <div data-copy className="md:col-span-5 md:flex md:justify-end">
             <Link to="/#story" className="inline-flex min-h-12 items-center gap-3 border-b border-white/45 text-[15px] font-semibold text-white hover:border-[#2997ff] hover:text-[#2997ff]">Explore Selected Work <span aria-hidden>↗</span></Link>

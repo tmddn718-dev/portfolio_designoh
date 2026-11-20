@@ -117,8 +117,8 @@ export default function CaseTrigr() {
               <AppIcon src="/images/trigr/icon.svg" name="trigr" className="mb-5" />
               <p className="eyebrow" style={{ color: S }}>Launched Product · Mission-based Reward Platform</p>
               <h1 style={{ lineHeight: 1, marginTop: 'calc(1rem + .2em)' }} className="text-[72px] md:text-[126px] font-extrabold tracking-[-0.06em] leading-[0.9]">trigr</h1>
-              <p className="mt-5 text-[26px] md:text-[34px] leading-[1.35] font-bold tracking-[-0.02em] max-w-[18ch]">정의되지 않은 요구사항을 사용자 흐름으로 구체화하다.</p>
-              <p className="mt-4 text-[17px] leading-[1.75] text-sub max-w-[44ch]">기획서에 누락된 사용자 경험을 직접 설계하고, 기획자·개발자와 협의해 실제 제품에 반영한 미션 기반 리워드 플랫폼.</p>
+              <p className="mt-5 text-[26px] md:text-[34px] leading-[1.35] font-bold tracking-[-0.02em] max-w-[18ch]">정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화했습니다.</p>
+              <p className="mt-4 text-[17px] leading-[1.75] text-sub max-w-[44ch]">기획서에 빠진 화면과 예외 상태를 설계하고, 기획자·개발자와 협의해 태국 시장 출시까지 연결한 미션 기반 리워드 앱입니다.</p>
               <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 text-[14px] rule pt-5 max-w-[520px]" style={{ borderColor: T(35) }}>
                 {info.map(([k, v]) => <div key={k}><dt className="text-sub text-[13px]">{k}</dt><dd className="mt-1 font-medium">{v}</dd></div>)}
               </dl>
@@ -153,7 +153,7 @@ export default function CaseTrigr() {
           ))}
         </div>
 
-        <h3 className="mt-24 apple-h text-[28px] md:text-[44px] max-w-[24ch]">누락된 흐름을 발견하고, 설계하고, 협의해 반영하다</h3>
+          <h3 className="mt-24 apple-h text-[28px] md:text-[44px] max-w-[24ch]">누락된 흐름을 찾아 설계하고, 팀과 협의해 제품에 반영했습니다</h3>
         <ol className="mt-10 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
           {approach.map(([k, d], i) => (
             <li key={k} className="rounded-[24px] p-6 md:p-7" style={{ background: T(10), border: `1px solid ${T(38)}` }}>
@@ -232,12 +232,12 @@ export default function CaseTrigr() {
       {/* 07 Validation Plan */}
       <section id="c7" className="scroll-mt-20 md:mt-24" style={{ background: T(9) }}>
         <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="07" label="Validation Plan" title="검증은 아직 남아 있는 과제입니다" />
+          <ChapterHead color={S} n="07" label="Validation Plan" title="출시 당시 검증하지 못한 사용자 흐름이 남아 있습니다" />
 
           <div className="mt-14 rounded-[28px] bg-white border border-grid p-6 md:p-10">
             <div className="flex flex-wrap items-center gap-3"><Tag>Validation Planned</Tag></div>
-            <h3 className="mt-4 apple-h text-[26px] md:text-[40px] max-w-[22ch]">설계한 사용자 흐름을 사후적으로 검증하다</h3>
-            <p className="mt-4 max-w-[56ch] text-[16px] leading-[1.75] text-sub">현재 실제 사용성 테스트 결과는 없습니다. 사용성 테스트를 진행하게 되면 아래 항목을 채울 예정입니다.</p>
+            <h3 className="mt-4 apple-h text-[26px] md:text-[40px] max-w-[22ch]">사용성 테스트에서 확인할 항목을 정리했습니다</h3>
+            <p className="mt-4 max-w-[56ch] text-[16px] leading-[1.75] text-sub">현재 사용성 테스트 결과는 없습니다. 향후 테스트에서 확인할 항목을 아래와 같이 정리했습니다.</p>
             <ul className="mt-7 grid sm:grid-cols-2 md:grid-cols-4 gap-3">{validation.map(v => <li key={v} className="rounded-[16px] border border-dashed px-4 py-4" style={{ borderColor: T(45) }}><p className="text-[15px] font-semibold">{v}</p><p className="mt-1 text-[13px] text-sub">테스트 후 입력</p></li>)}</ul>
           </div>
         </div>

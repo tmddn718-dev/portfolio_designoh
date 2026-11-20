@@ -93,14 +93,14 @@ function ThumbnailVisual({ p }: { p: Project }) {
 
   // 2) NODI: 모바일 목업 대신 웹 결과 화면과 의사결정 카드가 겹치는 SaaS 데스크톱 구도
   if (p.slug === 'nodi') return (
-    <div className={`${tile} bg-[#DCE3FB]`}>
+    <div className={`${tile} bg-[#DCE3FB] [container-type:inline-size]`}>
       <div aria-hidden className="absolute inset-0 bg-[linear-gradient(rgba(32,32,32,.045)_1px,transparent_1px),linear-gradient(90deg,rgba(32,32,32,.045)_1px,transparent_1px)] bg-[size:38px_38px]" />
       <p className="absolute left-[6%] top-[8%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#3E4C94]">NODI · Decision support</p>
-      <p className="absolute left-[6%] top-[18%] z-30 text-[clamp(25px,3.6vw,52px)] font-black leading-[.98] tracking-[-.06em] text-[#202020]">FROM CONDITIONS<br />TO ONE CLEAR TIME.</p>
-      <BrowserMockup src="/images/nodi/web-reco.webp" className="bottom-[2%] left-[6%] z-10 w-[57%] -rotate-1 transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" />
-      <div className="absolute bottom-[6%] right-[5%] z-20 w-[31%] rotate-[4deg] overflow-hidden rounded-[12px] border border-[#BFC9F8] bg-white p-2 shadow-[0_24px_46px_rgba(8,15,54,.42)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[2deg]">
-        <img src="/images/nodi/full-review.webp" alt="" className="aspect-[10/11] w-full rounded-[8px] object-cover object-[50%_23%]" loading="lazy" decoding="async" />
-        <p className="px-1 pb-1 pt-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#3E4E91]">Final review · user decides</p>
+      <p className="absolute left-[6%] top-[18%] z-30 text-[8.4cqw] font-black leading-[.98] tracking-[-.06em] text-[#202020]">FROM CONDITIONS<br />TO ONE CLEAR TIME.</p>
+      <BrowserMockup src="/images/nodi/web-reco.webp" className="bottom-[3%] left-[6%] z-10 w-[55%] -rotate-1 transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" />
+      <div className="absolute bottom-[5%] right-[5%] z-20 w-[28%] rotate-[4deg] overflow-hidden rounded-[12px] border border-[#BFC9F8] bg-white p-2 shadow-[0_24px_46px_rgba(8,15,54,.42)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[2deg]">
+        <img src="/images/nodi/full-review.webp" alt="" className="aspect-[10/9] w-full rounded-[8px] object-cover object-[50%_23%]" loading="lazy" decoding="async" />
+        <p className="px-1 pb-1 pt-2 text-[clamp(9px,1.9cqw,12px)] font-bold uppercase tracking-[.1em] text-[#3E4E91]">Final review · user decides</p>
       </div>
     </div>
   )

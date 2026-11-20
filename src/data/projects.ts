@@ -275,7 +275,6 @@ export const projects: Project[] = [
     tags: ['미션 플랫폼', 'UX/UI 설계', '디자인 시스템', '출시'],
     summary: { concept: [['발견', '기획서에 빠진 흐름 찾기'], ['설계', 'Figma에서 먼저 구체화'], ['협의', '기획자·개발자와 반영 방식 조율'], ['출시', '세 번의 개편 후 태국 출시']], short: '정의되지 않은 요구사항을 사용자 흐름으로 구체화', about: '태국 시장을 대상으로 한 미션 기반 리워드 앱이에요. 1인 디자이너로 UX/UI를 맡아 기획서에 없던 흐름을 설계하고, 협의해 반영해 출시까지 참여했어요.', decision: '기획서에 정의되지 않은 흐름을 먼저 설계하고, 기획자·개발자와 협의해 실제 제품에 반영했어요.', status: '출시를 마쳤어요. 서비스는 현재 운영하지 않아요.', kind: 'launched' },
     accent: '#DD5BE0',
-    proto: { url: '/proto/trigr/index.html?sc=e&v=20261120-flows', w: 390, h: 844, pro: true },
     mock: { srcs: ['/images/trigr/tr-p-method.webp', '/images/trigr/home-map.webp', '/images/trigr/t-proof-detail.webp'], framed: true },
     gallery: [
       { src: '/images/trigr/home-map.webp', alt: 'trigr 홈: 지도 위에 미션 핀이 표시된 화면', caption: '홈 — 지도 위 미션 탐색' },

@@ -4,10 +4,9 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects } from '../data/projects'
 import Reveal from '../components/Reveal'
-import { Modal, Zoomable } from '../components/Modal'
-import { ProtoFrame } from '../components/Mockup'
+import { Zoomable } from '../components/Modal'
 import Compose from '../components/Compose'
-import { ChapterHead, ChapterNav, InteractionPreview, strongOf, tintOf, useActive, ProjectIndex, AppIcon } from '../components/case'
+import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, ProjectIndex, AppIcon } from '../components/case'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -16,7 +15,7 @@ const PINK = '#DE5DE2', TEAL = '#2FD1CD' // 출시 화면에서 추출한 색
 const T = (n: number) => tintOf(PINK, n)
 const S = strongOf(PINK)
 const I = (n: string) => `/images/trigr/${n}.webp`
-const list = [['c1', '개요'], ['c2', '맥락'], ['c3', '상금 지급'], ['c4', '정산 신청'], ['c5', '보조 흐름'], ['c6', '시스템'], ['c7', '프로토타입'], ['c8', '회고']]
+const list = [['c1', '개요'], ['c2', '맥락'], ['c3', '상금 지급'], ['c4', '정산 신청'], ['c5', '보조 흐름'], ['c6', '시스템'], ['c7', '검증 계획'], ['c8', '회고']]
 
 // 실제 화면 하나를 밝은 폰 프레임에 넣고 클릭하면 확대
 function Screen({ src, alt, caption, className = '' }: { src: string; alt: string; caption?: string; className?: string }) {
@@ -92,11 +91,8 @@ const validation = ['테스트 목적', '테스트 참여자 수', '수행 과�
 
 export default function CaseTrigr() {
   const root = useRef<HTMLElement>(null)
-  const [open, setOpen] = useState(false)
-  const [vw, setVw] = useState(typeof innerWidth === 'number' ? innerWidth : 1200)
   const active = useActive('trigr', list)
   useEffect(() => { document.title = 'trigr | Portfolio 2026'; return () => { document.title = 'Portfolio 2026 | Complexity → Clarity' } }, [])
-  useEffect(() => { const f = () => setVw(innerWidth); addEventListener('resize', f); return () => removeEventListener('resize', f) }, [])
   useLayoutEffect(() => {
     const q = gsap.utils.selector(root)
     const mm = gsap.matchMedia()
@@ -127,7 +123,6 @@ export default function CaseTrigr() {
                 {info.map(([k, v]) => <div key={k}><dt className="text-sub text-[13px]">{k}</dt><dd className="mt-1 font-medium">{v}</dd></div>)}
               </dl>
               <div className="mt-8 flex flex-wrap gap-3">
-                {p.proto && <button onClick={() => setOpen(true)} className="px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
                 <a href="#c3" className="px-6 py-3 rounded-full border border-ink text-[16px] font-semibold">핵심 사례 보기</a>
               </div>
             </div>
@@ -234,16 +229,15 @@ export default function CaseTrigr() {
         </div>
       </section>
 
-      {/* 08 Prototype + 09 Validation */}
+      {/* 07 Validation Plan */}
       <section id="c7" className="scroll-mt-20 md:mt-24" style={{ background: T(9) }}>
         <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="07" label="Interactive Prototype" title="실제 사용자 흐름을 경험할 수 있는 인터랙티브 프로토타입" />
-          {p.proto && <InteractionPreview p={p} wide={vw >= 768} onOpen={() => setOpen(true)} title="홈에서 시작해 핵심 기능을 직접 경험해보세요" note="미션 탐색·참여, 인증 등록(사진·위치·직접), 인증 피드, 마이페이지·포인트·정산, 미션 관리와 상금 지급까지 시안 화면으로 이어서 눌러볼 수 있어요. Original Design · Interactive Prototype이며 실제 운영 서비스가 아닌 재현물입니다." />}
+          <ChapterHead color={S} n="07" label="Validation Plan" title="검증은 아직 남아 있는 과제입니다" />
 
-          <div className="mt-24 rounded-[28px] bg-white border border-grid p-6 md:p-10">
+          <div className="mt-14 rounded-[28px] bg-white border border-grid p-6 md:p-10">
             <div className="flex flex-wrap items-center gap-3"><Tag>Validation Planned</Tag></div>
             <h3 className="mt-4 apple-h text-[26px] md:text-[40px] max-w-[22ch]">설계한 사용자 흐름을 사후적으로 검증하다</h3>
-            <p className="mt-4 max-w-[56ch] text-[16px] leading-[1.75] text-sub">현재 실제 사용성 테스트 결과는 없습니다. 위 프로토타입으로 테스트를 진행하면 아래 항목을 채울 예정입니다.</p>
+            <p className="mt-4 max-w-[56ch] text-[16px] leading-[1.75] text-sub">현재 실제 사용성 테스트 결과는 없습니다. 사용성 테스트를 진행하게 되면 아래 항목을 채울 예정입니다.</p>
             <ul className="mt-7 grid sm:grid-cols-2 md:grid-cols-4 gap-3">{validation.map(v => <li key={v} className="rounded-[16px] border border-dashed px-4 py-4" style={{ borderColor: T(45) }}><p className="text-[15px] font-semibold">{v}</p><p className="mt-1 text-[13px] text-sub">테스트 후 입력</p></li>)}</ul>
           </div>
         </div>
@@ -294,7 +288,6 @@ export default function CaseTrigr() {
           <span className="px-5 py-3 rounded-full bg-ink text-white text-[14px] shrink-0">이어서 보기</span>
         </div>
       </Link>
-      {p.proto && <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>}
     </article>
   )
 }

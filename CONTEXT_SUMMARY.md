@@ -26,8 +26,8 @@
 - **NODI 상세**: 배경→문제→디자인 질문→솔루션 01~04→구현 범위→회고→MORE. 사실: 시안(`NODI-2` 저장소 `.dc.html`), 추천은 규칙 기반 점수(AI 호출 없음), 참석자·캘린더는 예시 데이터.
 - **당근 상세**: 새 UI 20장, 사용성 테스트(동일 참가자 7명, 평균 −34초, 7/7명 단축 — 사용자가 준 값, 원본 기록 없어 그래프 없음).
 - **올리브영**: 프로토타입은 상품 상세에서 시작(`?scenarios`). 사용성 테스트(참여자 8명) 문구는 다른 세션이 넣은 것 **[미확인]**.
-- **Trigr 상세 리뉴얼**: `CaseTrigr.tsx` = Hero → Context·Approach → 상금 지급 → 정산 신청 → Supporting → Design System → Prototype·Validation(`Validation Planned`) → Reflection. 공용 `CaseBlock`(Problem → Decision → UI → Outcome). 역할 `Product Designer · UX/UI Design`, "총괄·디자인 시스템 구축" 같은 과장 표현은 쓰지 않음. 사후 제안은 `Post-project proposal` 라벨로 분리, 자료 없는 곳은 점선 플레이스홀더. 홈 trigr 문구는 `FROM GAPS TO FLOWS.` / "정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화하다."
-- **trigr 프로토타입**: 소스는 **저장소 밖** `Documents/개인 프로젝트 자료/trigr-prototype`(React+Vite), 빌드 결과를 `public/proto/trigr/`에 복사. 사이트 주소 `?sc=e`(전체 앱 둘러보기, 홈 지도 시작), 시나리오 a~d는 `/proto/trigr/index.html` 직접 열 때만(패널·기록). 화면은 사용자가 보낸 PNG(`~/Desktop/포트폴리오 프로젝트 UI/trigr`)만 쓰고 상금·정산 입력 화면만 직접 구현. **PDF에서 뽑은 이미지는 쓰지 않는다(사용자 요청).** 고치면 `dist`를 다시 복사하고 `projects.ts` 주소의 `v=` 값을 올려 캐시를 깨고 README를 갱신.
+- **Trigr 상세 리뉴얼**: `CaseTrigr.tsx` = Hero → Context·Approach → 상금 지급 → 정산 신청 → Supporting → Design System → Validation Plan(`Validation Planned`, 프로토타입 체험은 제외) → Reflection. 공용 `CaseBlock`(Problem → Decision → UI → Outcome). 역할 `Product Designer · UX/UI Design`, "총괄·디자인 시스템 구축" 같은 과장 표현은 쓰지 않음. 사후 제안은 `Post-project proposal` 라벨로 분리, 자료 없는 곳은 점선 플레이스홀더. 홈 trigr 문구는 `FROM GAPS TO FLOWS.` / "정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화하다."
+- **trigr 프로토타입(상세에서 제외됨, 2026-11-20)**: 상세 페이지의 실행 버튼·체험 섹션·내비 항목을 뺐고 `projects.ts`의 trigr `proto`도 지움. 정적 빌드 `public/proto/trigr/`와 저장소 밖 소스 `Documents/개인 프로젝트 자료/trigr-prototype`는 남겨 둠(다시 쓰려면 `proto: { url: '/proto/trigr/index.html?sc=e&v=20261120-flows', w: 390, h: 844, pro: true }` 복원).
 - 당근·올리브영 프로토타입은 각 GitHub 저장소(`dangn-prototype`, `OliveYoung`) 최신 빌드 사본, 우리사이는 `WOORISAI` 사본, NODI는 정적 시안 사본(작동 앱 아님).
 
 ## 5. 정책·의사결정 [확정]

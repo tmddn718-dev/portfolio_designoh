@@ -1,6 +1,6 @@
 # CONTEXT_SUMMARY — 노승우 포트폴리오 사이트
 
-> 새 세션용 요약 (2026-11-19, 코드·git으로 확인). 코드와 `src/data/projects.ts`가 최종 근거이고 이 문서와 다르면 코드를 믿는다.
+> 새 세션용 요약 (2026-11-20 갱신, 코드·git으로 확인). **새 세션은 이 파일을 가장 먼저 읽는다.** 코드와 `src/data/projects.ts`가 최종 근거이고 이 문서와 다르면 코드를 믿는다.
 > 표기: **[확정]** 사용자가 정했거나 코드에 반영됨 / **[검토중]** 미결 / **[미확인]** 확인 못 함. `CLAUDE.md`는 이 저장소에 없다.
 
 ## 1. 목적·핵심 기능
@@ -57,3 +57,15 @@
 - 당근·NODI 화면 이미지는 `full-*`(전체), `sp-*`(상단·본문·CTA 분리), `f-*`(첫 화면), `L-*`(설명 위치) 규칙. 확대는 `karrotBig.ts`가 매핑.
 - 사용자 PNG는 `~/Desktop/포트폴리오 프로젝트 UI/<프로젝트>/` 우선. 올리브영 상품 이미지는 올리브영 상품 페이지(A000000223414) 원본.
 - 메모리에 "작업은 site-develop" 규칙이 있음(`~/.claude/projects/.../memory`).
+
+## 9. 최근 변경 (2026-11-19 ~ 20) [확정]
+- **브랜치:** `site-develop`가 최신(마지막 확인 `23d2aea`). `main`은 `0ec7824`에 있어 뒤처져 있음. main에 올릴 때는 사용자가 "main도"라고 말했을 때만, fast-forward로.
+- **Trigr 상세 리뉴얼:** `CaseTrigr.tsx`를 Hero → Context·Approach → 상금 지급 → 정산 신청 → Supporting → Design System → Prototype·Validation → Reflection 순서로 재구성. 사례는 공용 `CaseBlock`(Problem → Decision → UI → Outcome). 역할은 `Product Designer · UX/UI Design`으로 표기하고 "총괄·디자인 시스템 구축" 같은 과장 표현은 뺌. 사후 개선 제안은 `Post-project proposal` 라벨로 분리, 자료 없는 곳은 점선 플레이스홀더, Validation은 `Validation Planned` 틀만.
+- **Trigr 프로토타입:** 소스는 저장소 밖 `Documents/개인 프로젝트 자료/trigr-prototype`(React+Vite), 빌드 결과를 `public/proto/trigr/`에 복사해 씀. 사이트 iframe 주소는 `?sc=e`(전체 앱 둘러보기, 홈 지도에서 시작). 테스트용 시나리오 a~d와 패널은 `/proto/trigr/index.html`을 직접 열 때만 나옴. 화면은 사용자가 보낸 시안 PNG(`~/Desktop/포트폴리오 프로젝트 UI/trigr`)를 그대로 쓰고, 입력이 필요한 상금·정산 화면만 직접 구현. **PDF에서 뽑은 이미지는 쓰지 않는다**(사용자 요청). 프로토타입을 고치면 `dist`를 `public/proto/trigr/`에 다시 복사하고 `projects.ts`의 주소 `v=` 값을 올려 캐시를 깬다.
+- **홈 trigr 카드:** `FROM GAPS TO FLOWS.` / "정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화하다." (카드 `Sections.tsx`, 스토리 `ScrollStory.tsx`, 카드 설명 `cardCopy`). 섬네일 배지는 모두 제거. 우리사이는 작은 글을 제목 바로 위로 붙임, NODI 파란 배지 삭제.
+- **작업 기간(확정):** 올리브영 2026.11.09–11.19(약 2주), 당근 2026.10.19–10.30(2주), NODI 2026.10.15–10.23(1주), 우리사이 2026.11.02–11.09(1주), trigr 2025.05–2026.06.
+- **모션:** 홈에 스태거(`data-stagger`)·패럴랙스(`data-parallax-y`), `src/motion/useScrollMotion.ts`. 핀 고정 섹션은 `refreshPriority: 10`으로 먼저 계산.
+- **unslop 점검(폴리시 모드):** 브랜드색 그림자를 중립으로, `transition-all` 제거, 10~11px 장식 라벨을 11~12px로. **남긴 것:** 히어로 포인터 파란 글로우(다른 세션이 넣은 인터랙션), 영문 대문자 eyebrow, 800 굵기 제목, 미사용 `Marquee.tsx`·`Cursor.tsx`.
+- **작업 환경 주의:** 포트 5173은 예전 복사본 폴더(`Documents/ChatGPT/.../portfolio_designoh`)의 서버일 수 있으니 확인은 `npm run dev -- --port 5174`로. 스크래치 도구는 세션마다 사라지므로 점검 스크립트가 필요하면 `npm i playwright-core`와 시스템 Chrome으로 다시 만든다.
+- **[미확인]** 올리브영 사용성 테스트(참여자 8명) 문구의 원자료.
+

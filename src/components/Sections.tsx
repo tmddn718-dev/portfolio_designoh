@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { projects, profile, type Project } from '../data/projects'
+import { PhoneShowcase } from './PhoneMockup'
+import { thumbSpecs } from '../data/thumbnails'
 import Reveal from './Reveal'
 import { Modal, Zoomable } from './Modal'
 import { ProtoFrame } from './Mockup'
@@ -31,20 +33,7 @@ function FeaturedOlive() {
           <div className="mt-8 flex flex-wrap gap-3"><Link to={`/work/${p.slug}`} className="inline-flex min-h-12 items-center rounded-full bg-ink px-6 text-[15px] font-semibold text-white hover:-translate-y-0.5">케이스 스터디 보기</Link>{p.proto && <button onClick={() => setOpen(true)} className="min-h-12 rounded-full border border-ink px-6 text-[15px] font-semibold hover:bg-white">프로토타입 실행</button>}</div>
         </div>
         <Link to={`/work/${p.slug}`} data-cursor="보기" aria-label="올리브영 오늘드림 케이스 스터디 보기" className="group relative min-h-[420px] overflow-hidden bg-[#C9F45A] md:col-span-7 md:min-h-[580px]">
-          <span aria-hidden className="absolute -right-[18%] -top-[20%] h-[72%] w-[72%] rounded-full border-[52px] border-white/20" />
-          <span aria-hidden className="absolute bottom-[17%] left-[9%] h-[24%] w-[24%] rounded-full border border-black/15" />
-          <div className="absolute left-6 top-7 z-30 flex w-max max-w-[74%] flex-col items-start md:left-9 md:top-10">
-            <div className="max-w-[11ch] text-[clamp(27px,3.6vw,52px)] font-black leading-[1.1] tracking-[-0.07em] text-black">OUT OF STOCK.<br />MORE OPTIONS.</div>
-            <span className="mt-4 whitespace-nowrap rounded-full bg-[#151719] px-4 py-2 text-[11px] font-bold tracking-[-.02em] text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:text-[11px]">오늘드림 품절</span>
-          </div>
-          <span aria-hidden className="absolute bottom-6 left-7 z-20 text-[12px] font-bold uppercase tracking-[.18em] text-black/60 md:left-10">Purchase recovery / 2026</span>
-          <div data-parallax-y="9" className="pointer-events-none absolute inset-0 z-10">
-          <img src="/proto/oliveyoung/public/assets/product-03.png" alt="" className="absolute left-[7%] top-[38%] z-10 w-[15%] -rotate-12 drop-shadow-[0_16px_20px_rgba(0,0,0,.18)] transition-transform duration-300 group-hover:-translate-y-2" />
-          <img src="/proto/oliveyoung/public/assets/product-05.png" alt="" className="absolute bottom-[13%] left-[19%] z-10 w-[16%] rotate-6 drop-shadow-[0_16px_20px_rgba(0,0,0,.18)] transition-transform duration-300 group-hover:-translate-y-1" />
-          </div>
-          <div data-parallax-y="-3" className="pointer-events-none absolute inset-0 z-10">
-          <div className="absolute -bottom-[28%] right-[-4%] z-10 w-[57%] rotate-[2deg] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0"><div className="phone-pro"><img src="/images/oliveyoung-todaydream/n-altMethods.webp" alt="" className="screen" /><span className="glare" /></div></div>
-          </div>
+          <PhoneShowcase spec={thumbSpecs[p.slug]} fill />
         </Link>
       </div>
       <Modal open={open} onClose={() => setOpen(false)} label={`${p.name} 프로토타입`}><div className="flex justify-center pt-14"><ProtoFrame p={p} width={320} /></div></Modal>
@@ -73,6 +62,8 @@ const BrowserMockup = ({ src, className = '' }: { src: string; className?: strin
 )
 
 function ThumbnailVisual({ p }: { p: Project }) {
+  const spec = thumbSpecs[p.slug]
+  if (spec) return <PhoneShowcase spec={spec} />
   const tile = 'relative aspect-[4/3] overflow-hidden transition-transform duration-300 group-hover:scale-[1.015]'
   // 1) 당근: 실제 가구 사진 위에 탐색 화면과 정보 화면을 겹친 에디토리얼 목업
   if (p.slug === 'karrot-large-furniture') return (

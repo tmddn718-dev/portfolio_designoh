@@ -119,18 +119,16 @@ function ThumbnailVisual({ p }: { p: Project }) {
     </div>
   )
 
-  // 4) trigr: 한 화면을 강하게 크롭하고 실제 제품 모듈을 전시하는 다크 프로덕트 포스터
+  // 4) trigr: 당근·NODI와 같은 밝은 파스텔 무대, 왼쪽 큰 제목, 오른쪽 아래에서 올라오는 실제 미션 목록 화면
   return (
-    <div className={`${tile} bg-[#1B1020]`}>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_45%,#62245F_0%,#28142E_42%,#170B1B_76%)]" />
-      <span aria-hidden className="absolute -right-[9%] top-[8%] aspect-square w-[60%] rounded-full border border-[#EE7CF0]/30" />
-      <p className="absolute left-[6%] top-[8%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#F1B4F2]">Trigr · Shipped product</p>
-      <p className="absolute left-[6%] top-[18%] z-30 max-w-[42%] text-[clamp(24px,3.5vw,50px)] font-black leading-[.98] tracking-[-.06em] text-white">FROM GAPS<br />TO FLOWS.</p>
-      <div className="absolute bottom-[9%] left-[6%] z-20 w-[31%] overflow-hidden rounded-[12px] border border-white/15 bg-white/10 p-2 shadow-[0_24px_48px_rgba(0,0,0,.36)] backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-1">
-        <img src="/images/trigr/home-map.webp" alt="" className="h-[120px] w-full rounded-[8px] object-cover object-[50%_22%] sm:h-[140px]" loading="lazy" decoding="async" />
-        <p className="px-1 pb-1 pt-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#E9B5E8]">Discover nearby</p>
-      </div>
-      <Phone src="/images/trigr/mission-discovery-02.png" className="z-20 w-[41%] rotate-[-3deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.58)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[-1deg]" style={{ right: '5%', bottom: '-27%' }} />
+    <div className={`${tile} bg-[#F6E4F6]`}>
+      <span aria-hidden className="absolute -right-[12%] top-[2%] aspect-square w-[62%] rounded-full bg-[#EBC4EC]/70" />
+      <p className="absolute left-[6%] top-[8%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#8A2E8E]">Trigr · Shipped product</p>
+      <p className="absolute left-[6%] top-[18%] z-30 max-w-[46%] text-[clamp(24px,3.5vw,50px)] font-black leading-[.98] tracking-[-.06em] text-[#2A1230]">FROM GAPS<br />TO FLOWS.</p>
+      <ul className="absolute bottom-[8%] left-[6%] z-20 grid w-[42%] grid-cols-2 gap-2 text-[12px] font-bold text-[#4A1C50]">
+        {['미션 탐색', '인증 피드', '상금 지급', '정산 신청'].map(t => <li key={t} className="rounded-full border border-[#D9A6DB] bg-white/80 px-3 py-2 text-center">{t}</li>)}
+      </ul>
+      <Phone src="/images/trigr/mission-discovery-02.png" className="z-20 w-[39%] rotate-[6deg] drop-shadow-[0_32px_52px_rgba(74,28,80,.32)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[3deg]" style={{ right: '6%', bottom: '-24%' }} />
     </div>
   )
 }

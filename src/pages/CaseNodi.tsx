@@ -174,7 +174,6 @@ export default function CaseNodi() {
                   <h3 className="mt-5 text-[22px] font-extrabold tracking-tight">{t}</h3>
                   <p className="mt-3 text-[16px] leading-[1.7] text-ink/80">{d}</p>
                 </div>
-                {i < 2 && <span aria-hidden className="hidden md:grid absolute -right-5 top-1/2 z-10 h-8 w-8 -translate-y-1/2 place-items-center rounded-full bg-white border border-grid text-sub">→</span>}
               </Reveal></li>
             ))}
           </ol>

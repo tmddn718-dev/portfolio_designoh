@@ -11,11 +11,19 @@ export const tintOf = (c: string, n: number) => `color-mix(in srgb, ${c} ${n}%, 
 export const strongOf = (c: string) => `color-mix(in srgb, ${c} 62%, black)` // 밝은 서브컬러를 글자색으로 쓸 때
 
 export function useActive(dep: unknown, list: string[][] = chapters) {
-  const [active, setActive] = useState('c1')
+  const [active, setActive] = useState(list[0]?.[0] ?? 'c1')
   useEffect(() => {
-    const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setActive(e.target.id)), { rootMargin: '-40% 0px -55% 0px' })
-    list.forEach(([id]) => { const el = document.getElementById(id); el && io.observe(el) })
-    return () => io.disconnect()
+    // 스크롤 위치 기준: 상단 고정 내비 아래 기준선(화면 높이의 35%)을 지난 마지막 섹션이 현재 섹션
+    const f = () => {
+      const line = Math.max(140, innerHeight * 0.35)
+      let cur = list[0]?.[0] ?? 'c1'
+      for (const [id] of list) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= line) cur = id }
+      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = list[list.length - 1][0]
+      setActive(cur)
+    }
+    f(); addEventListener('scroll', f, { passive: true }); addEventListener('resize', f)
+    const t = setTimeout(f, 600) // 이미지·지연 로딩으로 높이가 바뀐 뒤 한 번 더
+    return () => { removeEventListener('scroll', f); removeEventListener('resize', f); clearTimeout(t) }
   }, [dep])
   return active
 }

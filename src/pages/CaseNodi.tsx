@@ -66,7 +66,7 @@ const cellOf = (hr: number) => {
 
 export default function CaseNodi() {
   const root = useRef<HTMLElement>(null)
-  const active = useActive('nodi')
+  const active = useActive('nodi', list)
   const [open, setOpen] = useState(false)
   const wide = useMedia('(min-width: 1024px)')
 

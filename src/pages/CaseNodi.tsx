@@ -83,7 +83,7 @@ export default function CaseNodi() {
 
   return (
     <article ref={root} style={{ ['--brand' as string]: p.accent }}>
-      <ChapterNav active={active} list={list} title="NODI" />
+      <ChapterNav active={active} list={list} title="NODI" onCta={p.proto ? () => setOpen(true) : undefined} />
 
       {/* Hero */}
       <section id="c1" className="overflow-hidden" style={{ background: T(9) }}>

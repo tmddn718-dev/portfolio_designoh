@@ -96,8 +96,8 @@ function ThumbnailVisual({ p }: { p: Project }) {
     <div className={`${tile} bg-[#DCE3FB]`}>
       <div aria-hidden className="absolute inset-0 bg-[linear-gradient(rgba(32,32,32,.045)_1px,transparent_1px),linear-gradient(90deg,rgba(32,32,32,.045)_1px,transparent_1px)] bg-[size:38px_38px]" />
       <p className="absolute left-[6%] top-[6%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#3E4C94]">NODI · Decision support</p>
-      <p className="absolute left-[6%] top-[13%] z-30 text-[clamp(20px,2.5vw,36px)] font-black leading-[1] tracking-[-.055em] text-[#202020]">FROM CONDITIONS<br />TO ONE CLEAR TIME.</p>
-      <BrowserMockup src="/images/nodi/web-reco.webp" className="bottom-[5%] left-[6%] z-10 w-[68%] -rotate-1 transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" />
+      <p className="absolute left-[6%] top-[13%] z-30 text-[clamp(24px,3.5vw,50px)] font-black leading-[.98] tracking-[-.06em] text-[#202020]">FROM CONDITIONS<br />TO ONE CLEAR TIME.</p>
+      <BrowserMockup src="/images/nodi/web-reco.webp" className="bottom-[3%] left-[6%] z-10 w-[62%] -rotate-1 transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" />
       <div className="absolute bottom-[6%] right-[5%] z-20 w-[31%] rotate-[4deg] overflow-hidden rounded-[12px] border border-[#BFC9F8] bg-white p-2 shadow-[0_24px_46px_rgba(8,15,54,.42)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[2deg]">
         <img src="/images/nodi/full-review.webp" alt="" className="aspect-[10/11] w-full rounded-[8px] object-cover object-[50%_23%]" loading="lazy" decoding="async" />
         <p className="px-1 pb-1 pt-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#3E4E91]">Final review · user decides</p>

@@ -9,10 +9,12 @@ const ID: Record<string, string> = {
   'asis-write': 'aw', 'f-recheck': 's6', 'f-confirm': 's7', 'f-confirm-empty': 's8', 'f-posted': 's9', 'L-s9': 's9',
 }
 const STICKY = new Set(['aw', 'b1', 'b2', 'c1', 'c3', 'e1', 'e2', 'e3', 's2', 's3', 's4', 's5', 's9'])
-export type KarrotFull = { big: string } | { parts: { top: string; body: string; cta: string } }
+export type KarrotFull = { big: string } | { parts: { top: string; body: string; cta?: string; topCq?: number } }
 export function karrotFull(src: string): KarrotFull | undefined {
   const nodi = /^\/images\/nodi\/(?:hi|hero|full)-([A-Za-z]+)\.webp$/.exec(src) // NODI: 화면 전체를 스크롤해서 볼 수 있는 원본
   if (nodi) return { big: `/images/nodi/full-${nodi[1]}.webp` }
+  // 올리브영 주문/결제 AS-IS: 실제 앱을 스크롤하며 캡처한 6장을 이어 붙인 긴 화면(상단 바는 고정)
+  if (/^\/images\/oliveyoung-todaydream\/n-checkoutAsis\.webp$/.test(src)) return { parts: { top: '/images/oliveyoung-todaydream/sp-checkoutAsis-top.webp', body: '/images/oliveyoung-todaydream/sp-checkoutAsis-body.webp', topCq: 24.74 } }
   if (!src.startsWith(BASE)) return undefined
   const id = ID[src.slice(BASE.length).replace(/\.webp$/, '')]
   if (!id) return undefined

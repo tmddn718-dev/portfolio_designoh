@@ -38,8 +38,8 @@ export function Zoomable({ src, alt, caption, className = '', imgClass = '', big
           {kf && 'parts' in kf
             ? <div className="relative mx-auto overflow-hidden rounded-[24px] bg-white" style={box}>
                 <img src={kf.parts.top} alt="" aria-hidden className="absolute left-0 top-0 block w-full bg-white" />
-                <div tabIndex={0} className={scroller} style={{ top: '26.41cqw', bottom: '28.46cqw' }}><img src={kf.parts.body} alt={alt} className="block w-full" /></div>
-                <img src={kf.parts.cta} alt="" aria-hidden className="absolute bottom-0 left-0 block w-full bg-white" style={{ boxShadow: '0 -6px 12px -8px rgba(0,0,0,.16)' }} />
+                <div tabIndex={0} className={scroller} style={{ top: `${kf.parts.topCq ?? 26.41}cqw`, bottom: kf.parts.cta ? '28.46cqw' : 0 }}><img src={kf.parts.body} alt={alt} className="block w-full" /></div>
+                {kf.parts.cta && <img src={kf.parts.cta} alt="" aria-hidden className="absolute bottom-0 left-0 block w-full bg-white" style={{ boxShadow: '0 -6px 12px -8px rgba(0,0,0,.16)' }} />}
               </div>
             : full
               ? <div className="relative mx-auto overflow-hidden rounded-[24px] bg-white" style={box}><div tabIndex={0} className={`${scroller} inset-y-0`}><img src={full} alt={alt} className="block w-full" /></div></div>

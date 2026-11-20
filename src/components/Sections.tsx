@@ -23,12 +23,14 @@ function OliveShowcase() {
   return (
     <div className="absolute inset-0 overflow-hidden bg-[#CCF35B]">
       <div aria-hidden className="absolute -right-[16%] -top-[16%] aspect-square w-[78%] rounded-full border-[52px] border-white/20" />
-      <p className="absolute left-[7%] top-[8%] z-20 text-[11px] font-bold uppercase tracking-[.2em] text-[#31421B]">Purchase recovery / 2026</p>
-      <p className="absolute left-[7%] top-[15%] z-20 max-w-[45%] text-[clamp(27px,3.6vw,52px)] font-black leading-[.95] tracking-[-.065em] text-[#10150A]">OUT OF STOCK.<br />MORE OPTIONS.</p>
-      <div className="absolute left-[7%] top-[43%] z-20 rounded-full bg-[#11150D] px-4 py-2 text-[11px] font-bold text-white">오늘드림 품절</div>
-      <div className="absolute bottom-[8%] left-[7%] z-20 w-[34%] rotate-[-5deg] overflow-hidden rounded-[15px] border border-black/10 bg-white p-2 shadow-[0_24px_50px_rgba(35,50,15,.22)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-[-3deg]">
-        <img src="/images/oliveyoung-todaydream/n-optC.webp" alt="" className="h-[150px] w-full rounded-[10px] object-cover object-top sm:h-[210px] md:h-[250px]" loading="lazy" decoding="async" />
-        <p className="px-2 pb-1 pt-2 text-[10px] font-bold uppercase tracking-[.12em] text-[#5B654E]">01 · 옵션 선택</p>
+      <div className="absolute left-[7%] top-[7%] z-40 flex max-w-[60%] flex-col items-start">
+        <p className="text-[11px] font-bold uppercase tracking-[.2em] text-[#31421B]">Purchase recovery / 2026</p>
+        <p className="mt-3 whitespace-nowrap text-[clamp(24px,3.3vw,48px)] font-black leading-[1] tracking-[-.065em] text-[#10150A]">OUT OF STOCK.<br />MORE OPTIONS.</p>
+        <span className="mt-4 rounded-full bg-[#11150D] px-4 py-2 text-[12px] font-bold text-white">오늘드림 품절</span>
+      </div>
+      <div className="absolute bottom-[6%] left-[7%] z-20 w-[32%] rotate-[-5deg] overflow-hidden rounded-[15px] border border-black/10 bg-white p-2 shadow-[0_24px_50px_rgba(35,50,15,.22)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-[-3deg]">
+        <img src="/images/oliveyoung-todaydream/n-optC.webp" alt="" className="aspect-[10/11] w-full rounded-[10px] object-cover object-top" loading="lazy" decoding="async" />
+        <p className="px-2 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[.12em] text-[#5B654E]">01 · 옵션 선택</p>
       </div>
       <Phone src="/images/oliveyoung-todaydream/n-altMethods.webp" className="z-30 w-[44%] rotate-[2deg] drop-shadow-[0_34px_60px_rgba(27,40,9,.3)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" style={{ right: '-2%', bottom: '-21%' }} />
     </div>
@@ -91,13 +93,13 @@ function ThumbnailVisual({ p }: { p: Project }) {
 
   // 2) NODI: 모바일 목업 대신 웹 결과 화면과 의사결정 카드가 겹치는 SaaS 데스크톱 구도
   if (p.slug === 'nodi') return (
-    <div className={`${tile} bg-[#1E2E70]`}>
-      <div aria-hidden className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.06)_1px,transparent_1px)] bg-[size:38px_38px]" />
-      <p className="absolute left-[6%] top-[8%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#AFC0FF]">NODI · Decision support</p>
-      <p className="absolute left-[6%] top-[17%] z-30 text-[clamp(21px,2.75vw,40px)] font-black leading-[1] tracking-[-.055em] text-white">FROM CONDITIONS<br />TO ONE CLEAR TIME.</p>
-      <BrowserMockup src="/images/nodi/web-reco.webp" className="bottom-[5%] left-[6%] z-10 w-[77%] -rotate-1 transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" />
+    <div className={`${tile} bg-[#DCE3FB]`}>
+      <div aria-hidden className="absolute inset-0 bg-[linear-gradient(rgba(32,32,32,.045)_1px,transparent_1px),linear-gradient(90deg,rgba(32,32,32,.045)_1px,transparent_1px)] bg-[size:38px_38px]" />
+      <p className="absolute left-[6%] top-[6%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#3E4C94]">NODI · Decision support</p>
+      <p className="absolute left-[6%] top-[13%] z-30 text-[clamp(20px,2.5vw,36px)] font-black leading-[1] tracking-[-.055em] text-[#202020]">FROM CONDITIONS<br />TO ONE CLEAR TIME.</p>
+      <BrowserMockup src="/images/nodi/web-reco.webp" className="bottom-[5%] left-[6%] z-10 w-[68%] -rotate-1 transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" />
       <div className="absolute bottom-[6%] right-[5%] z-20 w-[31%] rotate-[4deg] overflow-hidden rounded-[12px] border border-[#BFC9F8] bg-white p-2 shadow-[0_24px_46px_rgba(8,15,54,.42)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[2deg]">
-        <img src="/images/nodi/full-review.webp" alt="" className="h-[150px] w-full rounded-[8px] object-cover object-[50%_23%] sm:h-[190px]" loading="lazy" decoding="async" />
+        <img src="/images/nodi/full-review.webp" alt="" className="aspect-[10/11] w-full rounded-[8px] object-cover object-[50%_23%]" loading="lazy" decoding="async" />
         <p className="px-1 pb-1 pt-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#3E4E91]">Final review · user decides</p>
       </div>
     </div>

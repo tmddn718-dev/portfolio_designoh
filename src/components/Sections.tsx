@@ -134,12 +134,30 @@ function ThumbnailVisual({ p }: { p: Project }) {
   )
 }
 
+const mobileThumbs: Record<string, { src: string; bg: string; browser?: boolean; ambient?: string }> = {
+  'karrot-large-furniture': { src: '/images/karrot-large-furniture/L-b1.webp?v=20261119-seedtext', bg: '#E8D6C4', ambient: '/proto/karrot/images/sofa.png' },
+  nodi: { src: '/images/nodi/web-reco.webp', bg: '#DDE3FF', browser: true },
+  woorisai: { src: '/images/woorisai/detail.webp', bg: '#E7E6D9' },
+  trigr: { src: '/images/trigr/mission-discovery-02.png', bg: '#F2DDF3' },
+}
+
+function MobileThumbnail({ p }: { p: Project }) {
+  const thumb = mobileThumbs[p.slug]
+  return <div aria-hidden className="relative aspect-[4/3] overflow-hidden" style={{ background: thumb.bg }}>
+    {thumb.ambient && <img src={thumb.ambient} alt="" className="absolute inset-0 h-full w-full object-cover opacity-25" loading="lazy" decoding="async" />}
+    <span className="absolute -right-[18%] -top-[35%] aspect-square w-[88%] rounded-full border-[10px] border-white/25" />
+    {thumb.browser
+      ? <div className="absolute inset-x-[7%] top-[16%] overflow-hidden rounded-[5px] border border-white/80 bg-white p-1 shadow-[0_8px_18px_rgba(31,42,91,.2)]"><div className="mb-1 flex gap-0.5"><i className="h-1 w-1 rounded-full bg-[#FF7B75]" /><i className="h-1 w-1 rounded-full bg-[#F6C85F]" /><i className="h-1 w-1 rounded-full bg-[#69C47B]" /></div><img src={thumb.src} alt="" className="block aspect-[16/9] w-full object-cover object-top" loading="lazy" decoding="async" /></div>
+      : <div className="absolute left-1/2 top-[7%] w-[48%] -translate-x-1/2 rotate-[-2deg] drop-shadow-[0_9px_14px_rgba(26,20,20,.24)]"><div className="phone-pro"><img src={thumb.src} alt="" className="screen" loading="lazy" decoding="async" /><span className="glare" /></div></div>}
+  </div>
+}
+
 function ProjectCard({ p }: { p: Project }) {
   const index = projectOrder.indexOf(p.slug) + 2
   return (
     <article className="group h-full border-b border-grid pb-5 md:border-0 md:pb-0">
       <Link to={`/work/${p.slug}`} data-cursor="보기" aria-label={`${p.name} 케이스 스터디 보기`} className="grid h-full grid-cols-[104px_1fr] gap-4 rounded-[16px] focus-visible:outline-offset-4 md:flex md:flex-col md:rounded-[24px]">
-        <div className="relative overflow-hidden rounded-[14px] md:rounded-[24px]"><ThumbnailVisual p={p} /></div>
+        <div className="relative overflow-hidden rounded-[14px] md:rounded-[24px]"><div className="md:hidden"><MobileThumbnail p={p} /></div><div className="hidden md:block"><ThumbnailVisual p={p} /></div></div>
         <div className="flex min-w-0 flex-1 items-start justify-between gap-3 md:mt-5 md:gap-5"><div className="min-w-0"><div className="flex flex-wrap items-center gap-x-3 gap-y-1"><span className="text-[12px] font-semibold tabular-nums text-ink md:text-[13px]">0{index} / 05</span><ProjectLabel p={p} /></div><h3 className="mt-2 text-[19px] font-bold leading-[1.25] tracking-[-0.025em] group-hover:text-blue md:mt-3 md:text-[26px]">{p.name}</h3><p className="mt-1 line-clamp-2 max-w-[44ch] text-[14px] leading-[1.55] text-ink/70 md:mt-2 md:text-[16px] md:leading-[1.7]">{cardCopy[p.slug]}</p></div><span aria-hidden className="text-[20px] transition-transform group-hover:translate-x-1 md:mt-7 md:text-[24px]">↗</span></div>
       </Link>
     </article>

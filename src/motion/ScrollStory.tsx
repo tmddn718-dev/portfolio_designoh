@@ -65,8 +65,8 @@ function MobileStories() {
         <div><p className="text-[12px] font-semibold uppercase tracking-[.14em] text-bluetext">Featured experience</p><h2 className="mt-2 max-w-[12ch] text-[28px] font-bold leading-[1.2] tracking-[-.04em] md:max-w-none md:text-[34px]">다섯 프로젝트, 다섯 가지 문제</h2></div>
         <p className="mb-1 shrink-0 text-[12px] font-medium text-sub">옆으로 넘겨 보기 <span aria-hidden>→</span></p>
       </div>
-      <ol className="mobile-story-rail -mx-5 mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 md:-mx-8 md:px-8" aria-label="프로젝트 5개, 가로 스크롤">
-        {stories.map((story, index) => <li key={story.slug} className="w-[82vw] min-w-[260px] max-w-[340px] shrink-0 snap-start"><article className="h-full"><Link to={`/work/${story.slug}`} className="group flex h-full flex-col rounded-[20px] focus-visible:outline-offset-4">
+      <ol className="mobile-story-rail mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 pr-5 md:pr-8" aria-label="프로젝트 5개, 가로 스크롤">
+        {stories.map((story, index) => <li key={story.slug} className="w-[78vw] min-w-[248px] max-w-[340px] shrink-0 snap-start"><article className="h-full"><Link to={`/work/${story.slug}`} className="group flex h-full flex-col rounded-[20px] focus-visible:outline-offset-4">
           <div className="relative aspect-[16/10] overflow-hidden rounded-[20px]" style={{ background: story.bg, color: story.fg }}><StoryArt story={story} /></div>
           <div className="flex flex-1 flex-col pt-4"><div className="flex items-center gap-3"><span className="text-[12px] font-semibold tabular-nums text-ink">0{index + 1}</span><p className="truncate text-[11px] font-semibold uppercase tracking-[.07em] text-sub">{story.category}</p></div><div className="mt-3 flex items-start justify-between gap-4"><div><h3 className="text-[22px] font-black leading-[1.15] tracking-[-.035em]">{by(story.slug).name}</h3><p className="mt-2 text-[15px] font-semibold leading-[1.5] tracking-[-.015em]">{story.headline}</p></div><span aria-hidden className="text-[22px] leading-none">↗</span></div></div>
         </Link></article></li>)}

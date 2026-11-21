@@ -651,7 +651,7 @@ function Woorisai({ c }: { c: Ctx }) {
             <div className="md:col-span-6">
               <AppIcon src="/images/woorisai/icon.svg" name={p.name} className="mb-5" />
               <p className="eyebrow" style={{ color: S }}>Personal Case Study · {p.category}</p>
-              <h1 className="text-[54px] md:text-[126px] font-extrabold tracking-[-0.05em]" style={{ lineHeight: 1, marginTop: 'calc(1rem + .2em)', color: '#242622' }}>우리사이</h1>
+              <h1 className="text-[43px] md:text-[101px] font-extrabold tracking-[-0.05em]" style={{ lineHeight: 1, marginTop: 'calc(1rem + .2em)', color: '#242622' }}>우리사이</h1>
               <p className="mt-4 text-[22px] md:text-[28px] font-semibold leading-snug max-w-[24ch]">흩어진 사진과 기억을 하나의 추억으로 연결하고, 기록이 다시 대화로 이어지는 경험을 설계했습니다.</p>
               <dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] rule pt-4" style={{ borderColor: T(40) }}>
                 <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div><div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div><div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div>

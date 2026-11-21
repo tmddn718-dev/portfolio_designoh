@@ -116,7 +116,7 @@ export default function CaseTrigr() {
             <div className="md:col-span-6">
               <AppIcon src="/images/trigr/icon.svg" name="trigr" className="mb-5" />
               <p className="eyebrow" style={{ color: S }}>Launched Product · Mission-based Reward Platform</p>
-              <h1 style={{ lineHeight: 1, marginTop: 'calc(1rem + .2em)' }} className="text-[72px] md:text-[126px] font-extrabold tracking-[-0.06em] leading-[0.9]">trigr</h1>
+              <h1 style={{ lineHeight: 1, marginTop: 'calc(1rem + .2em)' }} className="text-[58px] md:text-[101px] font-extrabold tracking-[-0.06em] leading-[0.9]">trigr</h1>
               <p className="mt-5 text-[26px] md:text-[34px] leading-[1.35] font-bold tracking-[-0.02em] max-w-[18ch]">정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화했습니다.</p>
               <p className="mt-4 text-[17px] leading-[1.75] text-sub max-w-[44ch]">기획서에 빠진 화면과 예외 상태를 설계하고, 기획자·개발자와 협의해 태국 시장 출시까지 연결한 미션 기반 리워드 앱입니다.</p>
               <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 text-[14px] rule pt-5 max-w-[520px]" style={{ borderColor: T(35) }}>

@@ -359,17 +359,12 @@ export default function CaseNodi() {
         <div className="mt-16">
           <p className="eyebrow rule pt-4" style={{ color: S }}>Long screens · 끝까지 스크롤</p>
           <h3 className="mt-4 text-[28px] md:text-[40px] font-extrabold tracking-tight leading-[1.15] max-w-[22ch]">긴 화면의 전체 흐름도 확인할 수 있습니다</h3>
-          <p className="mt-5 max-w-[60ch] text-[17px] leading-[1.8]">조율 현황, 추천 시간, 회의 상세, 재조율 화면은 내부를 스크롤해 전체 흐름을 확인할 수 있습니다. 이미지를 누르면 확대해서 볼 수 있습니다.</p>
-          <div className="mt-10"><Strip label="NODI 긴 화면 전체 스크롤">
-            {[['progress', '조율 진행 현황'], ['recs', '추천 회의 시간'], ['detail', '회의 상세'], ['resched', '새 시간 조율']].map(([n, l]) => (
-              <figure key={n} className="w-[250px] md:w-[280px]">
-                <div className="phone-bare overflow-y-auto overscroll-contain bg-white rounded-[28px] border border-[#E2E8F0]" style={{ height: 560, aspectRatio: 'auto' }} tabIndex={0} role="region" aria-label={`${l} 전체 화면 스크롤`}>
-                  <img src={full(n)} alt={`NODI ${l} 전체 화면`} loading="lazy" className="block w-full" />
-                </div>
-                <figcaption className="mt-3 text-[14px] text-sub">{l}</figcaption>
-              </figure>
+          <p className="mt-5 max-w-[60ch] text-[17px] leading-[1.8]">조율 현황, 추천 시간, 회의 상세, 재조율 화면은 스마트폰 화면에서 시작해 아래로 이어집니다. 이미지를 누르면 확대해서 볼 수 있습니다.</p>
+          <div className="mt-10 grid grid-cols-2 items-start gap-x-3 gap-y-10 md:gap-x-8 lg:grid-cols-4">
+            {[['progress', '조율 진행 현황', 2424], ['recs', '추천 회의 시간', 3308], ['detail', '회의 상세', 3270], ['resched', '새 시간 조율', 3046]].map(([n, l, h]) => (
+              <ExtendedPhoneScreen key={n} src={full(n as string)} ratio={(h as number) / 780} alt={`NODI ${l} 전체 화면`} caption={l as string} />
             ))}
-          </Strip></div>
+          </div>
         </div>
         <div className="mt-24" id="nodi-web">
           <p className="eyebrow rule pt-4" style={{ color: S }}>Web · Responsive</p>

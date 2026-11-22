@@ -135,31 +135,26 @@ export function FullLengthCompare({ asis, tobe, color, children, className = '' 
   )
 }
 
-// 6) 확장형 폰 화면: 한 장의 긴 원본을 스마트폰 목업 안(시작 구간)과 그 아래(나머지 구간)로 나눠 이어 보여준다.
-// 같은 이미지를 같은 너비로 위·아래에서 잘라 쓰므로 이음새에서 중복·누락·왜곡이 없다. 서로 다른 화면(상태)을 이어 붙일 때는 쓰지 않는다.
-export function ExtendedPhoneScreen({ src, alt, ratio, split, zoomSrc, zoomBig, caption, className = '' }: { src: string; alt: string; ratio: number; split?: number; zoomSrc?: string; zoomBig?: boolean; caption?: string; className?: string }) {
-  const sp = Math.min(0.9, Math.max(0.2, split ?? 2 / ratio)) // 폰 안에 보이는 원본 높이의 비율. 기본은 폰 화면 비율(약 1:2)에 맞춘다
-  const bezel = 'linear-gradient(150deg, #5a5a62 0%, #17171a 28%, #0a0a0c 55%, #2c2c32 100%)'
+// 6) 확장형 폰 화면(Extended Phone Mockup with Overflow Content)
+// 이미지 레이어: 긴 원본 한 장을 원본 너비·비율 그대로 한 번만 그린다(자르거나 줄이지 않으므로 연결 지점에서 중복·누락이 없다).
+// 프레임 레이어: 그 위에 실제 기기 높이(390:844)까지만 베젤·다이내믹 아일랜드를 겹쳐 그린다. 기기 높이를 넘는 부분은 프레임 없이 UI만 아래로 이어진다.
+// 폰 안의 스크롤이 아니라 페이지 아래로 이어지는 연출이다. 서로 다른 화면(상태)을 이어 붙일 때는 쓰지 않는다.
+export function ExtendedPhoneScreen({ src, alt, ratio, zoomSrc, caption, className = '' }: { src: string; alt: string; ratio: number; zoomSrc?: string; caption?: string; className?: string }) {
+  const bezel = '2.5cqw'
+  const frameH = `min(${(844 / 390) * 100}cqw, 100%)` // 기기 높이. 이미지가 더 짧으면 이미지 끝까지
   const trigger = (
     <span className="relative block [container-type:inline-size]">
-      <span className="relative block rounded-t-[12cqw] px-[2.5cqw] pt-[2.5cqw]" style={{ background: bezel, boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.28)' }}>
-        <span aria-hidden className="absolute left-1/2 top-[3cqw] z-10 block h-[5.4cqw] w-[26cqw] -translate-x-1/2 rounded-full bg-black" />
-        <span className="block overflow-hidden rounded-t-[9.5cqw] bg-white" style={{ aspectRatio: `1 / ${sp * ratio}` }}>
-          <img src={src} alt={alt} loading="lazy" className="block w-full" />
-        </span>
+      <span className="block overflow-hidden" style={{ margin: `${bezel} ${bezel} 0`, clipPath: 'inset(0 round 9.5cqw 9.5cqw 0 0)', background: '#fff' }}>
+        <img src={src} alt={alt} loading="lazy" className="block w-full" style={{ aspectRatio: `1 / ${ratio}` }} />
       </span>
-      <span className="relative block px-[2.5cqw]">
-        <span aria-hidden className="absolute inset-y-0 left-0 w-[2.5cqw]" style={{ background: 'linear-gradient(to bottom, #17171a, transparent)' }} />
-        <span aria-hidden className="absolute inset-y-0 right-0 w-[2.5cqw]" style={{ background: 'linear-gradient(to bottom, #17171a, transparent)' }} />
-        <span className="block overflow-hidden bg-white" style={{ aspectRatio: `1 / ${(1 - sp) * ratio}` }}>
-          <img src={src} alt="" aria-hidden loading="lazy" className="block w-full" style={{ marginTop: `${-sp * ratio * 100}%` }} />
-        </span>
+      <span aria-hidden className="pointer-events-none absolute left-0 right-0 top-0 block" style={{ height: frameH, border: `${bezel} solid #121214`, borderBottom: 0, borderRadius: '12cqw 12cqw 0 0', boxShadow: 'inset 0 1px 0 rgba(255,255,255,.22), inset 1px 0 0 rgba(255,255,255,.22), inset -1px 0 0 rgba(255,255,255,.22)' }}>
+        <span className="absolute left-1/2 block h-[5.4cqw] w-[26cqw] -translate-x-1/2 rounded-full bg-black" style={{ top: '0.5cqw' }} />
       </span>
     </span>
   )
   return (
     <figure className={className}>
-      <Zoomable src={zoomSrc ?? src} big={zoomBig === false ? undefined : zoomSrc ? undefined : src} alt={alt} caption={caption ?? alt} className="w-full" trigger={trigger} />
+      <Zoomable src={zoomSrc ?? src} big={zoomSrc ? undefined : src} alt={alt} caption={caption ?? alt} className="w-full" trigger={trigger} />
       {caption && <figcaption className="mt-3 text-[14px] text-sub">{caption}</figcaption>}
     </figure>
   )

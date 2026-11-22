@@ -83,7 +83,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
   const { p, A, S } = c
   const I = (n: string) => `/images/oliveyoung-todaydream/${n}${n.startsWith('n-opt') ? '-indicator.png' : '.webp'}`
   const Result = ({ value, task }: { value: string; task: string }) => (
-    <div className="mt-10 rounded-[28px] bg-ink p-7 md:p-10 text-white">
+    <div className="rounded-[28px] bg-ink p-6 md:p-8 text-white">
       <p className="eyebrow text-white/55">Usability test · 동일 참여자 8명</p>
       <p className="mt-3 text-[40px] md:text-[56px] font-extrabold tracking-tight">{value}</p>
       <p className="mt-3 max-w-[52ch] text-[16px] md:text-[18px] leading-[1.7] text-white/80">기존 앱과 개선 프로토타입을 비교해 {task} 과제를 수행한 평균 결과입니다.</p>
@@ -105,7 +105,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
         </div>
       </Hero>
 
-      <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
+      <section id="c2" className="wrap gutter py-14 md:py-24 scroll-mt-20 md:mt-16">
         <ChapterHead color={S} n="01" label="Background & Problem Discovery" title="특정 구매 방법의 품절이, 구매 전체의 끝처럼 보였다" />
         <div className="mt-8 grid gap-8 md:grid-cols-12">
           <div className="md:col-span-7"><p className="max-w-[46rem] text-[18px] leading-[1.8]">오늘드림 재고가 없더라도 일반배송이나 매장 픽업으로 구매할 수 있습니다. 그러나 기존 흐름에서는 이 가능성을 바로 확인하기 어려워, 사용자가 이전 단계로 돌아가 구매 방법을 다시 찾아야 했습니다.</p></div>
@@ -121,33 +121,35 @@ function OliveRenewed({ c }: { c: Ctx }) {
       </section>
 
       <section id="c3" className="scroll-mt-20 md:mt-24" style={{ background: '#F3F7EB' }}>
-        <div className="wrap gutter py-20 md:py-32">
+        <div className="wrap gutter py-14 md:py-24">
           <ChapterHead color={S} n="02" label="Solutions" title="세 가지 구매 구간을 결정 중심으로 다시 설계" />
 
-          <article className="mt-16">
+          <article className="mt-10 md:mt-14">
             <p className="eyebrow" style={{ color: S }}>Solution 01</p>
             <p className="mt-3 text-[16px] font-semibold text-sub">Purchase Recovery</p>
             <h3 className="mt-2 text-[30px] font-extrabold tracking-tight md:text-[38px]">품절 이후에도 구매 가능한 방법을 안내하다.</h3>
-            <div className="mt-8 grid md:grid-cols-2 gap-5">
-              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">문제</p><p className="mt-3 text-[19px] font-bold leading-snug">오늘드림만 품절된 상황도 상품 전체가 품절된 것처럼 보여 구매 흐름이 중단됐습니다.</p></div>
-              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">디자인 판단</p><p className="mt-3 text-[19px] font-bold leading-snug">품절을 구매 종료가 아닌 경로 전환 시점으로 보고, 선택한 옵션을 유지한 채 일반배송과 매장 픽업을 안내했습니다.</p></div>
+            <div className="mt-6 grid gap-3 md:grid-cols-2">
+              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">문제</p><p className="mt-2 text-[16px] font-bold leading-[1.55] md:text-[17px]">오늘드림만 품절된 상황도 상품 전체가 품절된 것처럼 보여 구매 흐름이 중단됐습니다.</p></div>
+              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">디자인 판단</p><p className="mt-2 text-[16px] font-bold leading-[1.55] md:text-[17px]">품절을 구매 종료가 아닌 경로 전환 시점으로 보고, 선택한 옵션을 유지한 채 일반배송과 매장 픽업을 안내했습니다.</p></div>
             </div>
             {p.beforeAfter?.[0] && <div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={A} /></div>}
-            <div className="mt-8 grid grid-cols-2 gap-4 md:gap-8 max-w-[760px] mx-auto"><Fig src={I('n-altMethods')} alt="다른 구매 방법 안내" cap="일반배송과 픽업 비교" /><Fig src={I('n-pickup')} alt="매장 픽업 선택" cap="픽업 매장 선택" className="md:mt-14" /></div>
-            <Result value="평균 약 42초 단축" task="품절 이후 대체 구매 경로를 찾아 결제를 확정하는" />
+            <div className="mt-8 grid items-center gap-6 md:grid-cols-12 md:gap-10">
+              <div className="md:col-span-7"><Result value="평균 약 42초 단축" task="품절 이후 대체 구매 경로를 찾아 결제를 확정하는" /></div>
+              <div className="mx-auto grid max-w-[360px] grid-cols-2 gap-3 md:col-span-5 md:max-w-none"><Fig src={I('n-altMethods')} alt="다른 구매 방법 안내" cap="일반배송과 픽업 비교" /><Fig src={I('n-pickup')} alt="매장 픽업 선택" cap="픽업 매장 선택" /></div>
+            </div>
             <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">가능한 구매 경로를 바로 확인하는 개선 흐름에서 과제 수행 시간이 짧게 나타났습니다. 실제 서비스의 구매 전환율 상승을 검증한 결과는 아닙니다.</p>
           </article>
 
-          <article id="cart-experience" className="mt-24 md:mt-32 pt-16 border-t border-black/10 scroll-mt-24">
+          <article id="cart-experience" className="mt-14 md:mt-24 pt-10 md:pt-14 border-t border-black/10 scroll-mt-24">
             <p className="eyebrow" style={{ color: S }}>Solution 02</p>
             <p className="mt-3 text-[16px] font-semibold text-sub">Cart Experience</p>
             <h3 className="mt-2 text-[30px] font-extrabold tracking-tight md:text-[38px]">구매에 필요한 판단과 행동을 더 가까이 배치하다.</h3>
-            <div className="mt-8 grid md:grid-cols-2 gap-5">
-              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">문제</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">무료배송 조건은 확인할 수 있었지만, 함께 구매할 상품은 긴 스크롤 아래의 별도 영역에 있어 현재 구매 맥락과 연결하기 어려웠습니다.</p></div>
-              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">Design question</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">무료배송까지 남은 금액을 확인한 순간, 필요한 상품을 바로 선택할 수 있다면?</p></div>
+            <div className="mt-6 grid gap-3 md:grid-cols-2">
+              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">문제</p><p className="mt-2 text-[16px] font-bold leading-[1.55] md:text-[17px]">무료배송 조건은 확인할 수 있었지만, 함께 구매할 상품은 긴 스크롤 아래의 별도 영역에 있어 현재 구매 맥락과 연결하기 어려웠습니다.</p></div>
+              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">Design question</p><p className="mt-2 text-[16px] font-bold leading-[1.55] md:text-[17px]">무료배송까지 남은 금액을 확인한 순간, 필요한 상품을 바로 선택할 수 있다면?</p></div>
             </div>
-            <div className="mt-10">
-              <p className="eyebrow text-sub">Before · 실제 올리브영 앱의 긴 장바구니 흐름</p>
+            <details className="group mt-8 rounded-[20px] bg-white/70 p-4 md:p-6">
+              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-[15px] font-bold"><span><span className="eyebrow block text-sub">Before · 실제 올리브영 앱의 긴 장바구니 흐름</span>기존 장바구니 4구간 전체 보기</span><span aria-hidden className="text-[20px] transition-transform group-open:rotate-180">⌄</span></summary>
               <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.75] text-sub">기존 앱도 무료배송 안내와 구매 버튼을 하단에 고정해 제공했습니다. 문제는 버튼을 찾는 것이 아니라, 무료배송 조건을 확인한 순간 추가 구매에 참고할 추천 상품이 현재 구매 맥락과 바로 연결되지 않는 구조였습니다.</p>
               <ScreenSequence className="mt-7" color={S} label="기존 장바구니 스크롤 흐름" steps={[
                 ['cart-asis-01', '상품과 배송 조건', '배송 방식·배송지·도착 예정 시간과 상품 옵션을 확인합니다.'],
@@ -155,11 +157,11 @@ function OliveRenewed({ c }: { c: Ctx }) {
                 ['cart-asis-03', '추천 상품 탐색', '나를 위한 추천과 함께 보면 좋은 상품이 긴 화면에 이어집니다.'],
                 ['cart-asis-04', '화면 하단까지 유지되는 CTA', '스크롤 위치와 관계없이 무료배송 안내와 구매 버튼은 고정됩니다.'],
               ].map(([n, title, body]) => ({ src: `/images/oliveyoung-todaydream/${n}.jpg`, alt: `실제 올리브영 오늘드림 장바구니 ${title}`, title, body }))} />
-            </div>
-            <div className="mt-14 rounded-[28px] bg-white p-6 md:p-10">
+            </details>
+            <div className="mt-8 rounded-[28px] bg-white p-5 md:p-10">
               <p className="eyebrow" style={{ color: S }}>After · 개선안</p>
               <div className="mt-6 grid items-start gap-10 md:grid-cols-12">
-                <div className="mx-auto w-full max-w-[380px] md:col-span-5"><Fig src={I('n-cart')} alt="무료배송 남은 금액, 현재 상품, 연관 상품과 담기 버튼을 한 흐름으로 보여주는 장바구니 개선 화면" cap="무료배송까지 남은 금액, 수량 조절, 추천 상품, 배송 시간 선택으로 이어지는 하단 CTA" /></div>
+                <div className="mx-auto grid w-full max-w-[420px] grid-cols-2 items-start gap-3 md:col-span-5"><Fig src={I('n-cart')} alt="무료배송 남은 금액, 현재 상품, 연관 상품과 담기 버튼을 한 흐름으로 보여주는 장바구니 개선 화면" cap="장바구니 · 추천 상품과 남은 금액" /><Fig src={I('n-slotSelect')} alt="세 시간대의 배송비를 비교하고 15:00~16:00을 선택한 화면" cap="배송 시간대별 배송비 선택" className="mt-8" /></div>
                 <ol className="space-y-6 md:col-span-7">
                   {[
                     ['01', '무료배송 조건의 가시성', '현재 10,000원, 기준 30,000원, 남은 금액 20,000원과 진행 바(33.3%)를 한 카드에 모았습니다. 기준 금액은 프로토타입 예시 값입니다.'],
@@ -168,7 +170,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
                   ].map(([n, title, body]) => <li key={n} className="border-t border-grid pt-5"><p className="text-[13px] font-bold" style={{ color: S }}>Decision {n}</p><h4 className="mt-2 text-[20px] font-bold">{title}</h4><p className="mt-2 text-[15px] leading-[1.75] text-sub">{body}</p></li>)}
                 </ol>
               </div>
-              <div className="mx-auto mt-10 max-w-[260px]"><Fig src={I('n-slotSelect')} alt="세 시간대의 배송비를 비교하고 15:00~16:00을 선택한 화면" cap="배송 시간대별 배송비 비교 후 선택" /></div>
+              
             </div>
             <div className="mt-14">
               <p className="eyebrow rule pt-4 text-sub">Before / After · 장바구니 핵심 구간</p>
@@ -191,7 +193,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <div className="mt-5 rounded-[20px] bg-white/70 p-6 text-[15px] leading-[1.7] text-sub"><b className="text-ink">Future validation</b><br />“무료배송까지 남은 금액을 확인하고 필요한 상품을 추가해 구매를 진행해 주세요” 과제로 조건 확인 시간, 추천 발견 여부, 선택 이유와 혼란 지점을 추후 검증할 수 있습니다. 아직 수행한 테스트로 표현하지 않습니다.</div>
           </article>
 
-          <article className="mt-24 md:mt-32 pt-16 border-t border-black/10">
+          <article className="mt-14 md:mt-24 pt-10 md:pt-14 border-t border-black/10">
             <p className="eyebrow" style={{ color: S }}>Solution 03</p>
             <p className="mt-3 text-[16px] font-semibold text-sub">Checkout Experience</p>
             <h3 className="mt-2 max-w-[22ch] text-[30px] font-extrabold tracking-tight md:text-[38px]">길게 펼쳐진 주문 정보를, 확인하기 쉬운 구조로.</h3>
@@ -237,7 +239,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
         </div>
       </section>
 
-      <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
+      <section id="c4" className="wrap gutter py-14 md:py-24 scroll-mt-20 md:mt-16">
         <ChapterHead color={S} n="03" label="Edge cases" title="대표 흐름과 예외 상황을 분리하다" />
         <p className="mt-6 max-w-2xl text-[17px] leading-[1.8] text-sub">주요 구매 흐름과 분리해, 사용자가 멈출 수 있는 상태만 빠르게 비교할 수 있도록 묶었어요.</p>
         <div className="mt-12"><Strip label="구매 예외 상황 갤러리">{[
@@ -247,7 +249,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
       </section>
 
       <section id="c5" className="scroll-mt-20 md:mt-24 rule">
-        <div className="wrap gutter py-20 md:py-32">
+        <div className="wrap gutter py-14 md:py-24">
           <ChapterHead color={S} n="04" label="Reflection & Limitations" title="화면보다, 다음 결정을 설계하며 배운 것" />
           <ol className="mt-12 grid gap-5 md:grid-cols-3">
             {[
@@ -660,7 +662,10 @@ function Karrot({ c }: { c: Ctx }) {
 
       <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="03" label="Actual UI" title="판매자 입력 → 구매자 확인 → 정보 변경" />
-        <div className="mt-14"><PinnedPhone color={S} label="당근 화면 둘러보기" steps={(p.gallery ?? []).map(g => ({ src: g.src, alt: g.alt, title: g.caption ?? g.alt, body: g.alt }))} /></div>
+        <details className="group mt-10 rounded-[24px] bg-white p-4 md:p-6">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-[16px] font-bold"><span><span className="eyebrow block text-sub">Detail · 클릭형 프로토타입 화면</span>실제 UI {(p.gallery ?? []).length}화면 전체 보기</span><span aria-hidden className="text-[20px] transition-transform group-open:rotate-180">⌄</span></summary>
+          <ScreenSequence className="mt-5" color={S} label="당근 화면 둘러보기" steps={(p.gallery ?? []).map(g => ({ src: g.src, alt: g.alt, title: g.caption ?? g.alt }))} />
+        </details>
         <p className="mt-8 max-w-3xl text-[17px] leading-[1.8]">예외 상태(조회 실패와 재시도, 거래 완료)까지 포함한 20개 화면을 클릭형 프로토타입으로 구현했습니다.</p>
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="입력부터 질문 초안까지" />
       </section>
@@ -808,7 +813,7 @@ function Woorisai({ c }: { c: Ctx }) {
         <div className="wrap gutter py-20 md:py-28">
           <p className="eyebrow text-sub">Walkthrough</p>
           <h2 className="mt-3 apple-h text-[32px] md:text-[56px] max-w-[18ch]">추억이 쌓이고, 다시 이어지는 흐름</h2>
-          <div className="mt-14"><PinnedPhone color={S} label="우리사이 화면 둘러보기" steps={[0, 1, 2, 5, 7].map(i => p.gallery![i]).map(g => ({ src: g.src, alt: g.alt, title: g.caption ?? g.alt, body: g.alt }))} /></div>
+          <ScreenSequence className="mt-10" color={S} label="우리사이 화면 둘러보기" steps={[0, 1, 2, 5, 7].map(i => p.gallery![i]).map(g => ({ src: g.src, alt: g.alt, title: g.caption ?? g.alt, body: g.alt }))} />
         </div>
       </section>
 

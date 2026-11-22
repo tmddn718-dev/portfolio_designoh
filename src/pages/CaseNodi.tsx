@@ -356,8 +356,8 @@ export default function CaseNodi() {
           ))}
         </Strip></div>
         <p className="mt-8 max-w-3xl text-[17px] leading-[1.8]">재조율, 받은 요청과 응답, 이전 회의 재사용, 작성 중 이어하기까지 포함해 26개 아트보드로 구현했습니다.</p>
-        <div className="mt-16">
-          <p className="eyebrow rule pt-4" style={{ color: S }}>Long screens · 끝까지 스크롤</p>
+        <details className="group mt-12 rounded-[24px] bg-white p-4 md:p-8">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-[16px] font-bold"><span><span className="eyebrow block" style={{ color: S }}>Detail · Long screens</span>긴 화면 4개 전체 보기</span><span aria-hidden className="text-[20px] transition-transform group-open:rotate-180">⌄</span></summary>
           <h3 className="mt-4 text-[28px] md:text-[40px] font-extrabold tracking-tight leading-[1.15] max-w-[22ch]">긴 화면의 전체 흐름도 확인할 수 있습니다</h3>
           <p className="mt-5 max-w-[60ch] text-[17px] leading-[1.8]">조율 현황, 추천 시간, 회의 상세, 재조율 화면은 스마트폰 화면에서 시작해 아래로 이어집니다. 이미지를 누르면 확대해서 볼 수 있습니다.</p>
           <div className="mt-10 grid grid-cols-2 items-start gap-x-3 gap-y-10 md:gap-x-8 lg:grid-cols-4">
@@ -365,7 +365,7 @@ export default function CaseNodi() {
               <ExtendedPhoneScreen key={n} src={full(n as string)} ratio={(h as number) / 780} alt={`NODI ${l} 전체 화면`} caption={l as string} />
             ))}
           </div>
-        </div>
+        </details>
         <div className="mt-24" id="nodi-web">
           <p className="eyebrow rule pt-4" style={{ color: S }}>Web · Responsive</p>
           <h3 className="mt-4 text-[28px] md:text-[40px] font-extrabold tracking-tight max-w-[22ch]">모바일 앱이면서 PC 웹에서도 그대로 쓰는 서비스</h3>

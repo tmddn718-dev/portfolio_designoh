@@ -89,7 +89,7 @@ export default function CaseNodi() {
       {/* Hero */}
       <section id="c1" className="overflow-hidden" style={{ background: T(9) }}>
         <div className="wrap gutter pt-10 md:pt-16 pb-16 md:pb-24">
-          <Link to="/#work" className="inline-block py-2 text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
+          <Link to="/#work" className="inline-flex min-h-11 items-center text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
           <div className="mt-6 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-6">
               <AppIcon src="/images/nodi/icon.svg" name="NODI" className="mb-5" />

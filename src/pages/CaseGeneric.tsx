@@ -38,7 +38,7 @@ function Hero({ c, eyebrow, kicker, title, lead, children, size = 'md' }: { c: C
     <>
     <section id="c1" className="overflow-hidden" style={{ background: T(13) }}>
       <div className="wrap gutter pt-10 md:pt-16 pb-14 md:pb-20">
-        <Link to="/#work" className="inline-block py-2 text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
+        <Link to="/#work" className="inline-flex min-h-11 items-center text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
         <div className="mt-6 md:grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-5">
             <AppIcon src={`/images/${p.slug}/icon.webp`} name={p.name} className="mb-5" />
@@ -694,7 +694,7 @@ function Woorisai({ c }: { c: Ctx }) {
     <>
       <section id="c1" className="overflow-hidden" style={{ background: '#FAF9F6' }}>
         <div className="wrap gutter pt-10 md:pt-16 pb-14 md:pb-20">
-          <Link to="/#work" className="inline-block py-2 text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
+          <Link to="/#work" className="inline-flex min-h-11 items-center text-[14px] text-sub hover:text-blue">← 프로젝트 목록</Link>
           <div className="mt-6 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-6">
               <AppIcon src="/images/woorisai/icon.svg" name={p.name} className="mb-5" />

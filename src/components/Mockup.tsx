@@ -38,7 +38,7 @@ export function ProtoFrame({ p, width = 300 }: { p: Project; width?: number }) {
         </div>
         <p className="mt-4 text-[13px] text-sub flex items-center justify-between" style={{ width }}>
           <span>{p.name} · 직접 눌러보세요</span>
-          <a className="text-bluetext underline underline-offset-4 py-1" href={p.proto.url} target="_blank" rel="noreferrer">새 탭에서 열기</a>
+          <a className="inline-flex min-h-11 items-center text-bluetext underline underline-offset-4" href={p.proto.url} target="_blank" rel="noreferrer">새 탭에서 열기</a>
         </p>
       </div>
     )
@@ -58,7 +58,7 @@ export function ProtoFrame({ p, width = 300 }: { p: Project; width?: number }) {
           </div>}
       <p className="mt-3 text-[13px] text-sub flex items-center justify-between" style={{ width }}>
         <span>{p.name} · 직접 눌러보세요</span>
-        <a className="text-bluetext underline underline-offset-4 py-1" href={p.proto.url} target="_blank" rel="noreferrer">새 탭에서 열기</a>
+        <a className="inline-flex min-h-11 items-center text-bluetext underline underline-offset-4" href={p.proto.url} target="_blank" rel="noreferrer">새 탭에서 열기</a>
       </p>
     </div>
   )

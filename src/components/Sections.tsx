@@ -40,7 +40,7 @@ function OliveShowcase() {
 function ProjectLabel({ p }: { p: Project }) {
   const labels: Record<string, string> = { 'karrot-large-furniture': 'UX REDESIGN / PERSONAL PROJECT', nodi: 'PRODUCT CONCEPT / FUNCTIONAL PROTOTYPE', woorisai: 'PRODUCT CONCEPT / PERSONAL PROJECT', trigr: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE' }
   const compact: Record<string, string> = { 'karrot-large-furniture': 'UX REDESIGN', nodi: 'PRODUCT CONCEPT', woorisai: 'PRODUCT CONCEPT', trigr: 'SHIPPED PRODUCT' }
-  return <><span className="text-[11px] font-semibold uppercase tracking-[.07em] text-sub md:hidden">{compact[p.slug]}</span><span className="hidden text-[12px] font-semibold uppercase tracking-[.08em] text-sub md:inline">{labels[p.slug]}</span></>
+  return <><span className="text-[13px] font-semibold uppercase tracking-[.05em] text-sub md:hidden">{compact[p.slug]}</span><span className="hidden text-[12px] font-semibold uppercase tracking-[.08em] text-sub md:inline">{labels[p.slug]}</span></>
 }
 
 function FeaturedOlive() {
@@ -50,13 +50,13 @@ function FeaturedOlive() {
     <article className="overflow-hidden rounded-[22px] bg-[#F1F6E8] md:rounded-[28px]">
       <div className="grid md:grid-cols-12">
         <div className="flex flex-col p-6 md:col-span-5 md:p-10 lg:p-12">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sub"><span className="text-[13px] font-semibold tabular-nums text-ink">01 / 05</span><span className="text-[12px] font-semibold uppercase tracking-[.08em]">UX REDESIGN / PERSONAL PROJECT</span></div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sub"><span className="text-[13px] font-semibold tabular-nums text-ink">01 / 05</span><span className="text-[13px] font-semibold uppercase tracking-[.06em]">UX REDESIGN / PERSONAL PROJECT</span></div>
           <h3 className="mt-5 max-w-[13ch] text-[28px] font-bold leading-[1.2] tracking-[-0.035em] md:mt-7 md:text-[38px]">품절 이후에도 구매를 이어갈 수 있도록</h3>
           <p className="mt-4 max-w-[38ch] text-[15px] leading-[1.7] text-ink/75 md:mt-5 md:text-[17px]">오늘드림 품절 시 일반배송과 매장 픽업을 바로 비교하고, 결제까지 이어갈 수 있도록 구매 흐름을 재설계했습니다.</p>
           <dl className="mt-6 grid grid-cols-2 gap-3 border-y border-[#CEDBB7] py-4 tabular-nums md:mt-8 md:gap-4 md:py-5">
-            <div><dt className="text-[12px] leading-[1.45] text-sub md:text-[13px]">품절 후 결제 확정</dt><dd className="mt-1 text-[20px] font-bold tracking-tight md:text-[22px]">약 42초<span className="mt-0.5 block text-[11px] font-medium text-sub md:inline md:text-[14px]"> 평균 단축</span></dd></div>
-            <div><dt className="text-[12px] leading-[1.45] text-sub md:text-[13px]">배송·혜택 확인 후 결정</dt><dd className="mt-1 text-[20px] font-bold tracking-tight md:text-[22px]">26초<span className="mt-0.5 block text-[11px] font-medium text-sub md:inline md:text-[14px]"> 평균 단축</span></dd></div>
-            <p className="col-span-2 text-[11px] leading-[1.5] text-sub md:text-[12px]">동일 참여자 8명 · 기존 앱과 개선 프로토타입 비교</p>
+            <div><dt className="text-[13px] leading-[1.45] text-sub">품절 후 결제 확정</dt><dd className="mt-1 text-[20px] font-bold tracking-tight md:text-[22px]">약 42초<span className="mt-0.5 block text-[13px] font-medium text-sub md:inline md:text-[14px]"> 평균 단축</span></dd></div>
+            <div><dt className="text-[13px] leading-[1.45] text-sub">배송·혜택 확인 후 결정</dt><dd className="mt-1 text-[20px] font-bold tracking-tight md:text-[22px]">26초<span className="mt-0.5 block text-[13px] font-medium text-sub md:inline md:text-[14px]"> 평균 단축</span></dd></div>
+            <p className="col-span-2 text-[13px] leading-[1.5] text-sub">동일 참여자 8명 · 기존 앱과 개선 프로토타입 비교</p>
           </dl>
           <div className="mt-6 grid grid-cols-2 gap-2 md:mt-8 md:flex md:flex-wrap md:gap-3"><Link to={`/work/${p.slug}`} className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-3 text-[13px] font-semibold text-white hover:-translate-y-0.5 md:px-6 md:text-[15px]">케이스 스터디 보기</Link>{p.proto && <button onClick={() => setOpen(true)} className="min-h-12 rounded-full border border-ink px-3 text-[13px] font-semibold hover:bg-white md:px-6 md:text-[15px]">프로토타입 실행</button>}</div>
         </div>

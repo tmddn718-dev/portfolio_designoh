@@ -74,19 +74,19 @@ export function ScreenSequence({ steps, color, label, className = '' }: { steps:
   )
 }
 
-export type CropSide = { src: string; alt: string; ratio: number; region: Region; mark: Region; caption: string }
+export type CropSide = { src: string; alt: string; ratio: number; region: Region; mark?: Region; caption: string; full?: string }
 
 // 4) 핵심 구간 좌우 비교: 긴 원본에서 같은 정보 맥락의 구간만 잘라(크롭) AS-IS 왼쪽 / TO-BE 오른쪽에 같은 크기로 놓는다.
 // 크롭은 원본 이미지를 CSS로 자를 뿐 새 이미지를 만들지 않고, 누르면 원본 전체 화면을 AS-IS/TO-BE로 전환하며 스크롤해서 볼 수 있다.
 export function CropCompare({ n, title, asis, tobe, decision, color, className = '' }: { n: string; title: string; asis: CropSide; tobe: CropSide; decision: string; color: string; className?: string }) {
-  const pair = [{ src: asis.src, alt: asis.alt, tag: 'AS-IS', big: asis.src }, { src: tobe.src, alt: tobe.alt, tag: 'TO-BE', big: tobe.src }]
+  const pair = [asis, tobe].map((x, i) => ({ src: x.full ?? x.src, alt: x.alt, tag: i ? 'TO-BE' : 'AS-IS', big: x.full ? undefined : x.src }))
   const Crop = ({ side, i }: { side: CropSide; i: 0 | 1 }) => {
     const { x, y, w, h } = side.region, m = side.mark, after = i === 1
     const view = (
       <span className="relative block overflow-hidden rounded-[12px] border border-grid bg-white" style={{ aspectRatio: `${w} / ${h * side.ratio}` }}>
         <img src={side.src} alt={side.alt} loading="lazy" className="absolute max-w-none" style={{ width: `${10000 / w}%`, left: `${-x * 100 / w}%`, top: `${-y * 100 / h}%` }} />
         {/* 테두리만 그려 실제 UI를 가리지 않는다 */}
-        <span aria-hidden className="pointer-events-none absolute rounded-[6px]" style={{ left: `${m.x}%`, top: `${m.y}%`, width: `${m.w}%`, height: `${m.h}%`, border: after ? `2.5px solid ${color}` : '2.5px dashed #555' }} />
+        {m && <span aria-hidden className="pointer-events-none absolute rounded-[6px]" style={{ left: `${m.x}%`, top: `${m.y}%`, width: `${m.w}%`, height: `${m.h}%`, border: after ? `2.5px solid ${color}` : '2.5px dashed #555' }} />}
       </span>
     )
     return <Zoomable src={side.src} alt={side.alt} caption={`${pair[i].tag} · ${side.caption}`} pair={pair} pairIndex={i} pairColor={color} className="w-full" trigger={view} />
@@ -105,5 +105,32 @@ export function CropCompare({ n, title, asis, tobe, decision, color, className =
       </div>
       <p className="mt-4 rounded-[14px] p-4 text-[15px] leading-[1.65]" style={{ background: `color-mix(in srgb, ${color} 12%, white)` }}><b className="block text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>디자인 판단</b>{decision}</p>
     </section>
+  )
+}
+
+export type FullSide = { src: string; alt: string; label: string; big?: string }
+
+// 5) 전체 길이 비교: 같은 너비·원본 비율로 AS-IS(왼쪽, 위·본문 두 장을 이어 붙인 실제 길이)와 TO-BE(오른쪽, 접힌·펼친 상태)를 위에서부터 놓는다.
+// 높이를 억지로 맞추지 않고, 오른쪽 아래 남는 자리는 children(설명)이 채운다. 누르면 세 화면을 AS-IS/TO-BE로 전환하며 확대한다.
+export function FullLengthCompare({ asis, tobe, color, children, className = '' }: { asis: { top: string; body: string; alt: string; zoom: string; note: string }; tobe: FullSide[]; color: string; children?: React.ReactNode; className?: string }) {
+  const pair = [{ src: asis.zoom, alt: asis.alt, tag: 'AS-IS' }, ...tobe.map((t, i) => ({ src: t.src, alt: t.alt, tag: i ? 'TO-BE 펼침' : 'TO-BE 접힘', big: t.big }))]
+  const pill = (txt: string, after: boolean) => <span className="inline-block w-fit rounded-full px-2.5 py-1 text-[13px] font-bold" style={after ? { background: color, color: onBrand(color) } : { background: '#e8e8e8', color: '#111' }}>{txt}</span>
+  return (
+    <div className={`grid grid-cols-2 items-start gap-x-2 sm:gap-x-4 ${className}`}>
+      <div className="min-w-0">
+        {pill('AS-IS · 전체 길이', false)}
+        <Zoomable src={asis.zoom} alt={asis.alt} caption={asis.alt} pair={pair} pairIndex={0} pairColor={color} className="mt-2 w-full" trigger={<span className="block overflow-hidden rounded-[12px] border border-grid bg-white"><img src={asis.top} alt={asis.alt} loading="lazy" className="block w-full" /><img src={asis.body} alt="" aria-hidden loading="lazy" className="block w-full" /></span>} />
+        <p className="mt-2 text-[13px] leading-[1.6] text-sub sm:text-[14px]">{asis.note}</p>
+      </div>
+      <div className="min-w-0">
+        {tobe.map((t, i) => (
+          <div key={t.src} className={i ? 'mt-4' : ''}>
+            {pill(`TO-BE · ${t.label}`, true)}
+            <Zoomable src={t.src} alt={t.alt} caption={t.alt} pair={pair} pairIndex={i + 1} pairColor={color} className="mt-2 w-full" trigger={<img src={t.src} alt={t.alt} loading="lazy" className="block w-full rounded-[12px] border border-grid bg-white" />} />
+          </div>
+        ))}
+        {children}
+      </div>
+    </div>
   )
 }

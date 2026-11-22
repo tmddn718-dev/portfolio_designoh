@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects, TODO, type Project } from '../data/projects'
 import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
-import { CropCompare, ScreenSequence, UIFocusDetail } from '../components/LongScreen'
+import { CropCompare, FullLengthCompare, ScreenSequence } from '../components/LongScreen'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
 import { AppIcon, onBrand, CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
@@ -194,19 +194,45 @@ function OliveRenewed({ c }: { c: Ctx }) {
           <article className="mt-24 md:mt-32 pt-16 border-t border-black/10">
             <p className="eyebrow" style={{ color: S }}>Solution 03</p>
             <p className="mt-3 text-[16px] font-semibold text-sub">Checkout Experience</p>
-            <h3 className="mt-2 text-[30px] font-extrabold tracking-tight md:text-[38px]">결제에 필요한 정보를, 필요한 순간에 확인하도록.</h3>
-            <div className="mt-8 grid md:grid-cols-2 gap-5">
-              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">문제</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">배송 시간, 배송비, 쿠폰, 포인트와 최종 금액이 긴 화면에 분산되면 필요한 정보를 다시 찾는 부담이 생길 수 있어요.</p></div>
-              <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">디자인 판단</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">배송·수령 정보 / 할인·혜택 / 최종 결제의 세 영역으로 묶고, 핵심은 접힌 상태에서도 확인하게 했어요.</p></div>
+            <h3 className="mt-2 max-w-[22ch] text-[30px] font-extrabold tracking-tight md:text-[38px]">길게 펼쳐진 주문 정보를, 확인하기 쉬운 구조로.</h3>
+            <p className="mt-5 max-w-[48rem] text-[16px] leading-[1.75] text-sub">기존 주문/결제 화면에서는 배송·혜택·결제 정보가 긴 화면에 연속적으로 배치되어 있어, 필요한 정보를 확인하기 위해 여러 영역을 탐색해야 했습니다.</p>
+
+            <FullLengthCompare className="mt-10 max-w-[760px] md:mx-auto" color={A}
+              asis={{ top: '/images/oliveyoung-todaydream/sp-checkoutPickup-top.webp', body: '/images/oliveyoung-todaydream/sp-checkoutPickup-body.webp', alt: '기존 주문/결제 전체 길이: 배송 방법·주문상품·쿠폰·포인트·최종 결제금액·결제수단·약관이 위에서 아래로 길게 이어짐(실제 앱 스크롤 캡처)', zoom: I('n-checkoutAsisPickup'), note: '실제 앱을 스크롤하며 캡처해 이은 전체 길이예요. 배송·혜택·결제 정보가 모두 펼쳐진 채 이어져요.' }}
+              tobe={[
+                { src: I('n-checkoutTobe'), alt: '개선 주문/결제 접힌 상태: 배송·수령 정보와 할인·혜택은 한 줄 요약, 최종 결제는 바로 확인', label: '접힌 상태 · 처음 보이는 화면' },
+                { src: I('n-checkoutOpen'), alt: '개선 주문/결제 펼친 상태: 배송 시간대별 배송비, 쿠폰·포인트, 최종 결제 금액', label: '펼친 상태', big: I('n-checkoutOpen') },
+              ]}>
+              <ul className="mt-4 space-y-2 text-[13px] leading-[1.6] sm:text-[14px]">{['처음에는 핵심 정보만 요약해서 보여줘요', '필요한 영역만 펼쳐 세부 정보를 확인해요', '펼친 상태에서도 배송·혜택·결제 세 영역이 구분돼요'].map(t => <li key={t} className="flex gap-2"><span aria-hidden className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: A }} /><span>{t}</span></li>)}</ul>
+            </FullLengthCompare>
+
+            <div className="mt-16 space-y-12">
+              <CropCompare n="01" title="배송 정보" color={A}
+                asis={{ src: '/images/oliveyoung-todaydream/sp-checkoutPickup-body.webp', full: I('n-checkoutAsisPickup'), alt: '기존 주문/결제 배송 방법: 오늘드림·픽업 전환, 픽업 매장 지도와 목록', ratio: 5782 / 780, region: { x: 0, y: 0, w: 100, h: 15.74 }, mark: { x: 1, y: 22, w: 98, h: 66 }, caption: '배송 방법을 고르면 매장 지도와 목록이 바로 길게 펼쳐져요.' }}
+                tobe={{ src: I('n-checkoutOpen'), alt: '개선 주문/결제 배송·수령 정보: 주소, 오늘드림·픽업, 시간대별 배송비', ratio: 2888 / 780, region: { x: 0, y: 7.44, w: 100, h: 31.5 }, mark: { x: 1, y: 47, w: 98, h: 46 }, caption: '배송지와 수령 방법, 시간대별 배송비를 한 구획에 모았어요.' }}
+                decision="배송 선택과 비용을 한 구획에 묶어, 시간을 고르면서 배송비를 바로 비교하도록 했어요." />
+              <CropCompare n="02" title="혜택 및 할인" color={A}
+                asis={{ src: '/images/oliveyoung-todaydream/sp-checkoutPickup-body.webp', full: I('n-checkoutAsisPickup'), alt: '기존 주문/결제 쿠폰·포인트: 포인트, 기프트카드, 모바일 상품권, 리워드 입력칸이 줄마다 이어짐', ratio: 5782 / 780, region: { x: 0, y: 24.56, w: 100, h: 8.65 }, mark: { x: 1, y: 19, w: 98, h: 79 }, caption: '포인트·기프트카드·상품권 입력칸이 줄마다 펼쳐져 있어요.' }}
+                tobe={{ src: I('n-checkoutOpen'), alt: '개선 주문/결제 할인·혜택: 쿠폰, CJ ONE 포인트, 기프트카드·상품권과 조건 안내', ratio: 2888 / 780, region: { x: 0, y: 44.15, w: 100, h: 17.31 }, mark: { x: 1, y: 12, w: 98, h: 60 }, caption: '쿠폰·포인트·상품권을 한 줄씩 요약하고, 조건 안내를 아래에 붙였어요.' }}
+                decision="입력칸을 모두 펼쳐 두지 않고 목적별 한 줄로 정리해, 필요한 혜택만 골라 확인하도록 했어요." />
+              <CropCompare n="03" title="결제 정보" color={A}
+                asis={{ src: '/images/oliveyoung-todaydream/sp-checkoutPickup-body.webp', full: I('n-checkoutAsisPickup'), alt: '기존 주문/결제 최종 결제금액과 결제수단: 올영PAY 혜택 안내와 결제수단 선택', ratio: 5782 / 780, region: { x: 0, y: 50.02, w: 100, h: 13.49 }, mark: { x: 1, y: 47, w: 98, h: 51 }, caption: '최종 결제금액과 혜택, 결제수단이 따로 떨어져 이어져요.' }}
+                tobe={{ src: I('n-checkoutOpen'), alt: '개선 주문/결제 최종 결제: 주문상품, 결제수단, 약관 동의, 상품금액·배송비·할인금액과 최종 결제금액', ratio: 2888 / 780, region: { x: 0, y: 63.19, w: 100, h: 27 }, mark: { x: 1, y: 59, w: 98, h: 32 }, caption: '주문상품·결제수단·금액 내역을 한 구획에 이어 놓았어요.' }}
+                decision="결제 확인에 필요한 상품·수단·금액을 한곳에 모아, 결제 직전에 흩어진 정보를 다시 찾지 않도록 했어요." />
             </div>
-            {p.beforeAfter?.[3] && <div className="mt-8"><BeforeAfter data={p.beforeAfter[3]} color={A} /></div>}
-            <div className="mt-10 grid items-start gap-8 md:grid-cols-12 md:gap-10">
-              <Fig className="mx-auto w-full max-w-[260px] md:col-span-4" src={I('n-checkoutTobe')} alt="접힌 상태의 주문 결제 화면: 핵심 정보만 요약" cap="접힌 상태 · 핵심 정보만" />
-              <UIFocusDetail className="md:col-span-8" src={I('n-checkoutOpen')} alt="같은 화면을 펼친 상태: 시간대별 배송비와 할인·혜택 세부 정보" caption="펼친 상태의 원본 화면" region={{ x: 2, y: 15, w: 96, h: 21 }} color={A} title="시간대별 배송비 비교" why="배송 시간을 고르는 자리에 시간대와 배송비를 한 줄씩 함께 놓아, 시간을 바꿀 때 비용이 어떻게 달라지는지 바로 비교해요." />
+
+            <div className="mt-14 rounded-[24px] bg-white p-6 md:p-8">
+              <p className="eyebrow text-sub">디자인 판단</p>
+              <p className="mt-3 text-[20px] font-bold leading-[1.5] md:text-[24px]">한 번에 모두 보여주기보다, 필요한 순간에 확인할 수 있도록.</p>
+              <p className="mt-3 max-w-[52ch] text-[15px] leading-[1.75] text-sub">배송·혜택·결제 정보를 구획하고 아코디언 방식으로 정리해, 사용자가 필요한 정보를 선택적으로 확인할 수 있도록 설계했습니다.</p>
             </div>
-            <ul className="mt-8 grid gap-3 text-[15px] leading-[1.65] sm:grid-cols-2 lg:grid-cols-4">{['접힌 상태에서도 핵심 정보 확인', '시간대와 배송비 관계를 함께 표시', '쿠폰·포인트 조건을 목적별로 확인', '선택 변경 시 금액 정보 일관성 유지'].map(item => <li key={item} className="rounded-[18px] bg-white p-4">{item}</li>)}</ul>
-            <Result value="평균 26초 단축" task="배송 시간과 혜택을 확인하고 구매를 결정하는" />
-            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">목적별로 정보를 그룹화한 개선 프로토타입에서 구매 결정 과제의 평균 시간이 짧게 나타났습니다. 실제 결제 완료율이나 구매 전환율 상승을 검증한 결과는 아닙니다.</p>
+
+            <div className="mt-10 rounded-[28px] bg-ink p-7 text-white md:p-10">
+              <p className="eyebrow text-white/55">Usability test · 동일 참여자 8명 · 프로토타입</p>
+              <p className="mt-3 text-[40px] font-extrabold tracking-tight md:text-[56px]">평균 26초 단축</p>
+              <p className="mt-3 max-w-[52ch] text-[16px] leading-[1.7] text-white/80 md:text-[18px]">기존 앱과 개선 프로토타입을 비교해 결제 정보를 확인하고 구매를 결정하는 과제를 수행한 평균 결과입니다.</p>
+            </div>
+            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">프로토타입 사용성 테스트에서 나타난 과제 수행 시간이며, 실제 서비스의 결제 완료율이나 구매 전환율을 검증한 결과는 아닙니다.</p>
           </article>
         </div>
       </section>

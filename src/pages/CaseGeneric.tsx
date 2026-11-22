@@ -177,7 +177,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
               <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.75] text-sub">기존 장바구니에도 하단 고정 구매 버튼과 무료배송 안내가 있었습니다. 같은 정보 맥락의 화면을 나란히 비교했고, 눌러서 AS-IS와 TO-BE를 전환하며 확대해 볼 수 있습니다.</p>
               <div className="mt-8 space-y-14">
                 <PhoneCompare n="01" title="결제 금액과 배송 조건" color={A}
-                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-02.jpg', alt: '기존 장바구니: 최종 예상 결제 금액 표(상품금액·할인·배송비·총액)', caption: '상품금액·할인·배송비·총액을 표로 확인해요. 무료배송 안내는 화면 하단에 따로 있어요.' }}
+                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-01.jpg', alt: '기존 장바구니 맨 위: 배송 방식 탭, 배송지, 도착 예정 시간, 상품과 옵션, 하단 고정 총액과 구매 버튼', caption: '배송 방식·배송지·도착 예정 시간과 상품이 먼저 보이고, 최종 결제 금액은 아래로 스크롤해야 확인해요. 무료배송 안내는 하단에 따로 있어요.' }}
                   tobe={{ src: I('n-cart'), alt: '개선 장바구니: 추천 상품별 무료배송까지 남은 금액, 예상 총 결제금액과 배송 시간대 안내', caption: '추천 상품마다 무료배송까지 남는 금액을 보여주고, 예상 총 결제금액과 배송 시간대 안내를 이어 놓았어요.' }}
                   decision="하단 고정 구매 버튼과 무료배송 안내는 기존 앱에도 있었어요. 바뀐 점은 가격과 배송 정보를 상품 선택 흐름 가까이에 이어서 배치한 것이에요." />
                 <PhoneCompare n="02" title="관련 상품 탐색" color={A}
@@ -200,7 +200,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <p className="mt-5 max-w-[48rem] text-[16px] leading-[1.75] text-sub">기존 주문/결제 화면에서는 배송·혜택·결제 정보가 긴 화면에 연속적으로 배치되어 있어, 필요한 정보를 확인하기 위해 여러 영역을 탐색해야 했습니다.</p>
 
             <FullLengthCompare className="mt-10 max-w-[760px] md:mx-auto" color={A}
-              asis={{ top: '/images/oliveyoung-todaydream/sp-checkoutPickup-top.webp', body: '/images/oliveyoung-todaydream/sp-checkoutPickup-body.webp', alt: '기존 주문/결제 전체 길이: 배송 방법·주문상품·쿠폰·포인트·최종 결제금액·결제수단·약관이 위에서 아래로 길게 이어짐(실제 앱 스크롤 캡처)', zoom: I('n-checkoutAsisPickup'), note: '실제 앱을 스크롤하며 캡처해 이은 전체 길이예요. 배송·혜택·결제 정보가 모두 펼쳐진 채 이어져요.' }}
+              asis={{ top: '/images/oliveyoung-todaydream/sp-checkoutAsis-top.webp', body: '/images/oliveyoung-todaydream/sp-checkoutAsis-body.webp', alt: '기존 주문/결제 전체 길이(오늘드림): 배송 방법 시간대 표, 배송 요청사항, 주문상품, 쿠폰·포인트, 최종 결제금액, 결제수단, 약관이 위에서 아래로 길게 이어짐(실제 앱 스크롤 캡처)', zoom: I('n-checkoutAsis'), note: '실제 앱을 스크롤하며 캡처해 이은 오늘드림 주문 전체 길이예요. 배송·혜택·결제 정보가 모두 펼쳐진 채 이어져요.' }}
               tobe={[
                 { src: I('n-checkoutTobe'), alt: '개선 주문/결제 접힌 상태: 배송·수령 정보와 할인·혜택은 한 줄 요약, 최종 결제는 바로 확인', label: '접힌 상태 · 처음 보이는 화면' },
                 { src: I('n-checkoutOpen'), alt: '개선 주문/결제 펼친 상태: 배송 시간대별 배송비, 쿠폰·포인트, 최종 결제 금액', label: '펼친 상태', big: I('n-checkoutOpen') },
@@ -209,7 +209,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
             </FullLengthCompare>
 
             <PhoneCompare className="mt-16" title="배송·혜택·결제를 구획으로 나눈 주문/결제 화면" color={A}
-              asis={{ src: I('n-checkoutAsisPickup'), alt: '기존 주문/결제 첫 화면: 배송 방법과 픽업 매장 지도가 먼저 길게 펼쳐짐', caption: '배송 방법을 고르면 매장 지도와 목록이 바로 길게 펼쳐져요. 쿠폰·포인트·결제는 그 아래로 이어져요.' }}
+              asis={{ src: I('n-checkoutAsis'), alt: '기존 주문/결제 첫 화면(오늘드림): 배송 방법과 시간대 표가 먼저 펼쳐지고 배송비가 표 아래에 한 번 표시됨', caption: '오늘드림 배송 시간대 표가 먼저 펼쳐지고 배송비는 표 아래에 한 번 나와요. 쿠폰·포인트·결제는 그 아래로 이어져요.' }}
               tobe={{ src: I('n-checkoutTobe'), alt: '개선 주문/결제 첫 화면: 배송·수령 정보와 할인·혜택은 한 줄 요약, 최종 결제는 바로 확인', caption: '배송·혜택은 한 줄로 요약하고 최종 결제를 바로 확인해요. 필요한 구획만 펼쳐 볼 수 있어요.' }}
               extra={[{ src: I('n-checkoutOpen'), alt: '개선 주문/결제 펼친 상태: 시간대별 배송비, 쿠폰·포인트, 최종 결제 금액', tag: 'TO-BE 펼침', big: I('n-checkoutOpen') }]} />
             <ul className="mx-auto mt-6 grid max-w-[640px] gap-3 text-[15px] leading-[1.65] sm:grid-cols-3">

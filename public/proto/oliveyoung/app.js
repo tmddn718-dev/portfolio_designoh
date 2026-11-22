@@ -45,7 +45,19 @@
       Array.prototype.forEach.call(child.attributes, (a) => {
         const name = a.name;
         if (name.indexOf('hint-') === 0) return;
-        if (name.indexOf('on') === 0 && name.length > 2) { const fn = evalBind(a.value, scope); if (typeof fn === 'function') el.addEventListener(name.slice(2), fn); return; }
+        if (name.indexOf('on') === 0 && name.length > 2) {
+          const fn = evalBind(a.value, scope);
+          if (typeof fn === 'function') {
+            el.addEventListener(name.slice(2), fn);
+            // 버튼이 아닌 요소에 클릭이 걸려 있으면 키보드(Tab·Enter·Space)로도 쓸 수 있게 해요.
+            if (name === 'onclick' && el.localName !== 'button' && el.localName !== 'a') {
+              if (!child.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+              if (!child.hasAttribute('role')) el.setAttribute('role', 'button');
+              el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(e); } });
+            }
+          }
+          return;
+        }
         el.setAttribute(name, interp(a.value, scope));
       });
       build(child, scope, el);
@@ -105,8 +117,8 @@ class Component extends DCLogic {
   renderVals() {
     const st = this.state;
     const fmt = function (n) { return n.toLocaleString('ko-KR') + '원'; };
-    const chip = function (bg, fg, extra) { return 'display:inline-flex;align-items:center;padding:1px 5px;border-radius:2px;background:' + bg + ';color:' + fg + ';font-size:13px;line-height:18px;font-weight:600;white-space:nowrap;' + (extra || ''); };
-    const T = function (c) { return 'font-size:13px;line-height:18px;font-weight:600;white-space:nowrap;color:' + c; };
+    const chip = function (bg, fg, extra) { return 'display:inline-flex;align-items:center;padding:1px 5px;border-radius:2px;background:' + bg + ';color:' + fg + ';font-size:14px;line-height:20px;font-weight:600;white-space:nowrap;' + (extra || ''); };
+    const T = function (c) { return 'font-size:14px;line-height:20px;font-weight:600;white-space:nowrap;color:' + c; };
     const GRAY = T('#6E737B');
     const OK = T('#1D7A4C');
     const WARN = T('#8A5200');
@@ -162,11 +174,11 @@ class Component extends DCLogic {
     });
     const segOn = 'flex:1;height:44px;border:1.5px solid #131518;border-radius:6px;background:#FFFFFF;color:#131518;font-size:16px;font-weight:600;font-family:inherit';
     const segOff = 'flex:1;height:44px;border:1px solid #DCDFE3;border-radius:6px;background:#FFFFFF;color:#666B73;font-size:16px;font-family:inherit';
-    const pillOn = 'height:32px;padding:0 14px;border:0;border-radius:16px;background:#131518;color:#FFFFFF;font-size:14px;font-weight:600;font-family:inherit';
-    const pillOff = 'height:32px;padding:0 14px;border:0;border-radius:16px;background:transparent;color:#666B73;font-size:14px;font-family:inherit';
+    const pillOn = 'height:40px;padding:0 14px;border:0;border-radius:20px;background:#131518;color:#FFFFFF;font-size:14px;font-weight:600;font-family:inherit';
+    const pillOff = 'height:40px;padding:0 14px;border:0;border-radius:20px;background:transparent;color:#666B73;font-size:14px;font-family:inherit';
     const btnBase = 'flex:none;width:96px;height:44px;padding:0;border-radius:8px;font-size:14px;font-family:inherit;';
     const secBlack = btnBase + 'border:0;background:none;color:#131518;font-weight:600;text-decoration:underline;text-underline-offset:3px';
-    const offBtn = 'flex:none;width:96px;height:44px;padding:0;border:0;background:none;font-size:13px;font-family:inherit;color:#A5A9AF';
+    const offBtn = 'flex:none;width:96px;height:44px;padding:0;border:0;background:none;font-size:13px;font-family:inherit;color:#6E737B';
     const q = (st.query || '').trim(), toks = q.split(/\s+/).filter(Boolean);
     const shown = ids.filter((id) => q === '' || q === '서울 구로구' || toks.every((t) => (sNames[id] + ' ' + sAddr[id]).indexOf(t) >= 0));
     const stores = shown.map((id) => {
@@ -191,7 +203,7 @@ class Component extends DCLogic {
     const recs = recDefs.map((r) => {
       const added = !!st.recs[r.id];
       const after = subtotal + r.price;
-      const hint = added ? '장바구니에 담았어요' : (st.addrCheck ? '재고 확인 중' : (free ? '무료배송 조건을 충족한 상태예요' : (after >= 30000 ? '추가하면 무료배송 조건을 충족해요' : '추가 시 무료배송까지 ' + fmt(30000 - after))));
+      const hint = added ? '장바구니에 담았어요' : (st.addrCheck ? '재고 확인 중' : (free ? '무료배송 조건을 충족한 상태예요' : (after >= 30000 ? '추가하면 무료배송 조건 충족' : '추가 시 무료배송까지 ' + fmt(30000 - after))));
       const blocked = added || st.addrCheck;
       return {
         name: r.name, img: recImg[r.id], priceText: fmt(r.price), added: added, hint: hint, blocked: blocked, btnText: added ? '추가됨' : (st.addrCheck ? '확인 중' : '담기'),
@@ -244,9 +256,9 @@ class Component extends DCLogic {
       opA: 1, opB: 1, opC: 0.6, opD: 1,
       nmA: optName('A'), nmB: optName('B'), nmC: optName('C', true), nmD: optName('D'),
       dStatText: st.teaStage === 'fail' ? '선택해 재고 확인' : (st.teaStage === 'checking' ? '확인 중…' : '오늘드림 구매 가능'),
-      dStatStyle: 'font-size:13px;line-height:18px;font-weight:600;color:' + (st.teaStage === 'fail' ? '#8A5200' : (st.teaStage === 'checking' ? '#6E737B' : '#E9417F')),
+      dStatStyle: 'font-size:14px;line-height:20px;font-weight:600;color:' + (st.teaStage === 'fail' ? '#8A5200' : (st.teaStage === 'checking' ? '#6E737B' : '#E9417F')),
       optHint: optInfo.hint, optCtaText: optInfo.text, optCtaDisabled: optInfo.disabled, optShowLink: st.optSel === 'B',
-      optCtaStyle: 'width:100%;height:52px;border-radius:8px;font-size:17px;font-weight:700;font-family:inherit;' + (optInfo.disabled ? 'border:0;background:#DCDFE3;color:#5E636B' : 'background:#131518;color:#FFFFFF;border:1px solid #131518'),
+      optCtaStyle: 'width:100%;height:52px;border-radius:8px;font-size:18px;font-weight:700;font-family:inherit;' + (optInfo.disabled ? 'border:0;background:#DCDFE3;color:#5E636B' : 'background:#131518;color:#FFFFFF;border:1px solid #131518'),
       optCtaTap: () => {
         const o = this.state.optSel;
         if (o === 'A' || (o === 'D' && this.state.teaStage === 'ok')) this.setState({ method: 'today', screen: 'checkout' });
@@ -302,7 +314,7 @@ class Component extends DCLogic {
       allNone: allNone, notAllNone: !allNone,
       ctaDisabled: !canBuy,
       ctaText: stdSel ? '일반배송으로 구매하기' : (pickSel ? '픽업으로 구매하기' : '구매 방법을 선택해 주세요'),
-      ctaStyle: 'width:100%;height:52px;border-radius:8px;font-size:17px;font-weight:700;font-family:inherit;' + (canBuy ? 'border:1.5px solid #131518;background:#131518;color:#FFFFFF' : 'border:0;background:#DCDFE3;color:#5E636B'),
+      ctaStyle: 'width:100%;height:52px;border-radius:8px;font-size:18px;font-weight:700;font-family:inherit;' + (canBuy ? 'border:1.5px solid #131518;background:#131518;color:#FFFFFF' : 'border:0;background:#DCDFE3;color:#5E636B'),
       ctaNote: pickSel,
       ctaTap: () => { if (stdSel) this.setState({ method: 'standard', screen: 'checkout' }); else if (pickSel) this.setState({ method: 'pickup', screen: 'checkout' }); },
       stores: stores, storeAllFailed: storeAllFailed, hasStores: stores.length > 0, noResults: stores.length === 0, query: st.query,
@@ -329,16 +341,16 @@ class Component extends DCLogic {
       cartFeeLine: free ? '확인 후 확정 (무료 가능)' : '2,500~5,000원',
       cartHelper: st.addrCheck ? '배송비를 다시 확인하고 있어요.' : (free ? '배송비는 배송 조건을 확인한 뒤 확정돼요.' : '배송 시간대에 따라 배송비가 달라져요.'),
       cartCtaText: st.addrCheck ? '확인 중' : '배송 시간 선택하기',
-      cartCtaStyle: 'height:52px;width:100%;font-size:17px;font-weight:700;font-family:inherit;border-radius:8px;' + (st.addrCheck ? 'border:0;background:#DCDFE3;color:#5E636B' : 'border:1px solid #131518;background:#131518;color:#FFFFFF'),
+      cartCtaStyle: 'height:52px;width:100%;font-size:18px;font-weight:700;font-family:inherit;border-radius:8px;' + (st.addrCheck ? 'border:0;background:#DCDFE3;color:#5E636B' : 'border:1px solid #131518;background:#131518;color:#FFFFFF'),
       goSlot: () => { if (!this.state.addrCheck) this.setState({ screen: 'slot' }); },
-      slotBack: () => this.setState({ screen: 'cart' }),
+      slotBack: () => this.setState({ screen: 'cart' }), cartBack: () => { if (isC) { this.altTok++; this.timers.forEach(function (t) { clearTimeout(t); }); this.timers = []; this.setState(this.fresh(typeof START !== 'undefined' ? START : 'home', 'A')); } else this.setState({ screen: 'alt' }); },
       slotChoices: ['s1', 's2', 's3'].map((id) => { const sel = st.slotSel === id; return { time: times[id], feeText: free ? '무료' : fmt(base[id]), selected: sel, pick: () => this.setState({ slotSel: id }),
         cardStyle: 'width:100%;display:flex;align-items:center;gap:12px;padding:16px;border-radius:12px;box-sizing:border-box;margin-top:12px;font-family:inherit;color:#131518;text-align:left;letter-spacing:-0.3px;' + (sel ? 'border:1.5px solid #131518;background:#F5F6F8' : 'border:1px solid #DCDFE3;background:#FFFFFF'),
-        radioStyle: 'flex:none;' + (sel ? rOn : rOff), timeStyle: 'flex:1;font-size:17px;line-height:24px;' + (sel ? 'font-weight:700' : 'font-weight:500') }; }),
+        radioStyle: 'flex:none;' + (sel ? rOn : rOff), timeStyle: 'flex:1;font-size:18px;line-height:24px;' + (sel ? 'font-weight:700' : 'font-weight:500') }; }),
       slotNone: !st.slotSel,
       slotFeeText: st.slotSel ? (free ? '무료' : fmt(base[st.slotSel])) : '시간을 선택하면 확인할 수 있어요',
       slotTotalText: st.slotSel ? fmt(subtotal + (free ? 0 : base[st.slotSel])) : (free ? fmt(subtotal) : (subtotal + 2500).toLocaleString('ko-KR') + '~' + fmt(subtotal + 5000)),
-      slotCtaStyle: 'height:52px;width:100%;font-size:17px;font-weight:700;font-family:inherit;border-radius:8px;' + (st.slotSel ? 'border:1px solid #131518;background:#131518;color:#FFFFFF' : 'border:0;background:#DCDFE3;color:#5E636B'),
+      slotCtaStyle: 'height:52px;width:100%;font-size:18px;font-weight:700;font-family:inherit;border-radius:8px;' + (st.slotSel ? 'border:1px solid #131518;background:#131518;color:#FFFFFF' : 'border:0;background:#DCDFE3;color:#5E636B'),
       slotContinue: () => { if (this.state.slotSel) this.setState({ slot: this.state.slotSel, method: 'today', screen: 'checkout', intent: 'buy', g1Open: false }); },
       scrollRecs: () => { const n = Object.assign({}, this.state.recs); if (!n.r1) n.r1 = true; else n.r2 = true; this.setState({ recs: n }); },
       goCheckout: () => this.setState({ method: 'today', screen: 'checkout', intent: 'buy' }),
@@ -374,7 +386,7 @@ class Component extends DCLogic {
       showAgreeHint: !st.agree,
       payDisabled: !st.agree,
       payText: fmt(total) + ' 결제하기',
-      payStyle: 'width:100%;height:52px;margin-top:12px;border:0;border-radius:8px;font-size:17px;font-weight:700;font-family:inherit;' + (st.agree ? 'background:#131518;color:#FFFFFF' : 'background:#DCDFE3;color:#5E636B'),
+      payStyle: 'width:100%;height:52px;margin-top:12px;border:0;border-radius:8px;font-size:18px;font-weight:700;font-family:inherit;' + (st.agree ? 'background:#131518;color:#FFFFFF' : 'background:#DCDFE3;color:#5E636B'),
       pay: () => {
         if (!this.state.agree) { this.setState({ triedPay: true }); return; }
         if (flow === 'E' && this.state.method === 'pickup' && !this.state.stockHit) {
@@ -396,6 +408,16 @@ class Component extends DCLogic {
   const tpl = document.getElementById('dc-template').content;
   const comp = new Component({});
   let lastScreen = null;
+  // 렌더 뒤: 선택 행 묶음에 radiogroup, 하단 고정 영역 높이에 맞춰 스크롤 영역 아래 여백을 맞춰요.
+  function syncLayout() {
+    frame.querySelectorAll('[role=radio]').forEach((r) => { const p = r.parentElement; if (p && !p.getAttribute('role') && Array.prototype.every.call(p.children, (c) => c.getAttribute('role') === 'radio')) p.setAttribute('role', 'radiogroup'); });
+    frame.querySelectorAll('div').forEach((bar) => {
+      const st = bar.style;
+      if (st.position !== 'absolute' || st.bottom !== '0px' || !st.borderTop) return;
+      const h = bar.offsetHeight;
+      Array.prototype.forEach.call(bar.parentElement.children, (sib) => { if (sib !== bar && sib.style.position === 'absolute' && sib.style.overflowY === 'auto' && /px$/.test(sib.style.bottom) && sib.style.bottom !== '0px') sib.style.bottom = h + 'px'; });
+    });
+  }
   comp._render = function () {
     const vals = comp.renderVals();
     const keep = [];
@@ -405,6 +427,7 @@ class Component extends DCLogic {
     frame.replaceChildren(wrap);
     if (comp.state.screen === lastScreen) keep.forEach(([p, t]) => { const el = at(frame, p); if (el) el.scrollTop = t; });
     lastScreen = comp.state.screen;
+    syncLayout();
   };
   comp._render();
 
@@ -413,6 +436,10 @@ class Component extends DCLogic {
   if (embedded) document.documentElement.classList.add('embedded');
   function fit() {
     if (embedded) return;
+    // 폭 500px 이하(실제 폰)에서는 틀·축소 없이 화면 전체를 써요.
+    const mobile = window.innerWidth <= 500;
+    document.documentElement.classList.toggle('fullbleed', mobile);
+    if (mobile) { frame.style.transform = ''; frame.style.margin = ''; return; }
     const s = Math.min(1, (window.innerHeight - 24) / 844, (window.innerWidth - 8) / 390);
     frame.style.transform = 'scale(' + s + ')';
     frame.style.margin = ((844 * s - 844) / 2) + 'px ' + ((390 * s - 390) / 2) + 'px';

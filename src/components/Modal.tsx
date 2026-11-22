@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode, type SyntheticEvent } from 'react'
 import { karrotFull } from '../data/karrotBig'
 
 // 네이티브 <dialog>: 포커스 가두기·Esc·배경 클릭 닫기, 닫히면 트리거로 포커스 복귀.
@@ -20,6 +20,15 @@ export function Modal({ open, onClose, label, children }: { open: boolean; onClo
   )
 }
 
+// 폰 프레임보다 조금 더 긴 화면(비율 2.17~2.6)은 아래가 잘리지 않게 프레임 높이를 이미지에 맞춘다. 더 긴 스크롤 화면은 의도적으로 위쪽만 보여준다.
+function fitFrame(e: SyntheticEvent<HTMLImageElement>) {
+  const img = e.currentTarget, btn = img.parentElement
+  const r = img.naturalHeight / img.naturalWidth
+  if (!btn || !btn.className.includes('phone-') || r <= 2.17 || r >= 2.6) return
+  const pad = parseFloat(getComputedStyle(btn).paddingLeft) / btn.clientWidth
+  btn.style.aspectRatio = `1 / ${r * (1 - 2 * pad) + 2 * pad}`
+}
+
 // 이미지를 누르면 크게 보는 버튼형 이미지
 export function Zoomable({ src, alt, caption, className = '', imgClass = '', big }: { src: string; alt: string; caption?: string; className?: string; imgClass?: string; big?: string }) {
   const [open, setOpen] = useState(false)
@@ -31,7 +40,7 @@ export function Zoomable({ src, alt, caption, className = '', imgClass = '', big
   return (
     <>
       <button type="button" className={`zoomable ${className}`} onClick={() => setOpen(true)} aria-label={`${alt}: 크게 보기`}>
-        <img src={src} alt={alt} loading="lazy" className={imgClass} />
+        <img src={src} alt={alt} loading="lazy" className={imgClass} onLoad={fitFrame} />
       </button>
       <Modal open={open} onClose={() => setOpen(false)} label={alt}>
         <figure className="text-white text-center">

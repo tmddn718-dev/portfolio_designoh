@@ -25,7 +25,7 @@ export function Modal({ open, onClose, label, children }: { open: boolean; onClo
 function fitFrame(e: SyntheticEvent<HTMLImageElement>) {
   const img = e.currentTarget, btn = img.parentElement
   const r = img.naturalHeight / img.naturalWidth
-  if (!btn || !btn.className.includes('phone-') || r <= 2.17 || r >= 2.6) return
+  if (!btn || btn.dataset.fixed || !btn.className.includes('phone-') || r <= 2.17 || r >= 2.6) return
   const pad = parseFloat(getComputedStyle(btn).paddingLeft) / btn.clientWidth
   btn.style.aspectRatio = `1 / ${r * (1 - 2 * pad) + 2 * pad}`
 }
@@ -33,7 +33,7 @@ function fitFrame(e: SyntheticEvent<HTMLImageElement>) {
 export type ZoomPair = { src: string; alt: string; tag: string; big?: string }
 
 // 이미지를 누르면 크게 보는 버튼형 이미지. pair(예: AS-IS / TO-BE)를 주면 확대 화면에서 두 이미지를 전환해 볼 수 있다(버튼·좌우 방향키).
-export function Zoomable({ src, alt, caption, className = '', imgClass = '', big, pair, pairIndex = 0, pairColor, trigger }: { src: string; alt: string; caption?: string; className?: string; imgClass?: string; big?: string; pair?: ZoomPair[]; pairIndex?: number; pairColor?: string; trigger?: ReactNode }) {
+export function Zoomable({ src, alt, caption, className = '', imgClass = '', big, pair, pairIndex = 0, pairColor, trigger, frameRatio, imgFit }: { src: string; alt: string; caption?: string; className?: string; imgClass?: string; big?: string; pair?: ZoomPair[]; pairIndex?: number; pairColor?: string; trigger?: ReactNode; frameRatio?: number; imgFit?: 'contain' }) {
   const [open, setOpen] = useState(false)
   const [idx, setIdx] = useState(pairIndex)
   const cur: ZoomPair = pair ? pair[idx] : { src, alt, tag: '', big }
@@ -49,8 +49,8 @@ export function Zoomable({ src, alt, caption, className = '', imgClass = '', big
   }
   return (
     <>
-      <button type="button" className={`zoomable ${className}`} onClick={() => { setIdx(pairIndex); setOpen(true) }} aria-label={`${alt}: 크게 보기`}>
-        {trigger ?? <img src={src} alt={alt} loading="lazy" className={imgClass} onLoad={fitFrame} />}
+      <button type="button" className={`zoomable ${className}`} style={frameRatio ? { aspectRatio: `1 / ${frameRatio}` } : undefined} data-fixed={frameRatio ? '1' : undefined} onClick={() => { setIdx(pairIndex); setOpen(true) }} aria-label={`${alt}: 크게 보기`}>
+        {trigger ?? <img src={src} alt={alt} loading="lazy" className={`${imgClass}${imgFit ? ' fit-contain' : ''}`} onLoad={fitFrame} />}
       </button>
       <Modal open={open} onClose={() => setOpen(false)} label={cur.alt}>
         <figure className="text-white text-center" onKeyDown={onKey}>

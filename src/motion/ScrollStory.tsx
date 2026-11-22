@@ -25,7 +25,7 @@ function StoryArt({ story }: { story: Story }) {
   if (story.slug === 'oliveyoung-todaydream') return <>
     <div className="absolute left-[7%] top-[7%] z-30 flex w-max max-w-[72%] flex-col items-start">
       <p className="hidden lg:block max-w-[8ch] text-[clamp(31px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MORE OPTIONS.</p>
-      <span className="mt-4 whitespace-nowrap rounded-full bg-[#151719] px-4 py-2 text-[13px] font-bold text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:text-[11px]">오늘드림 품절</span>
+      <span className="mt-4 whitespace-nowrap rounded-full bg-[#151719] px-4 py-2 text-[13px] font-bold text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:text-[13px]">오늘드림 품절</span>
     </div>
     <span className="absolute -right-[16%] -top-[18%] h-[70%] w-[70%] rounded-full border-[52px] border-white/20" />
     <Phone src="/images/oliveyoung-todaydream/n-altMethods.webp" className="bottom-[-23%] right-[5%] z-10 w-[44%] rotate-[3deg] drop-shadow-[0_28px_42px_rgba(0,0,0,.25)]" />
@@ -104,7 +104,7 @@ export default function ScrollStory() {
         <p className="text-[12px] font-semibold uppercase tracking-[.14em] text-sub">Featured experience</p>
         <ol className="mt-4 space-y-1">{stories.map((story, index) => <li key={story.slug}><Link to={`/work/${story.slug}`} onFocus={() => setActive(index)} onPointerEnter={() => setActive(index)} aria-current={index === active ? 'true' : undefined} className={`block text-[clamp(34px,4.1vw,64px)] font-black leading-[1.02] tracking-[-.05em] transition-[color,transform,opacity] duration-300 ${index === active ? 'translate-x-3 text-ink' : 'text-ink/18 hover:text-ink/50'}`}>{by(story.slug).name.replace(' 중고거래', '').replace(' 오늘드림', '')}</Link></li>)}</ol>
         <div className="relative mt-8 min-h-[190px] max-w-[44ch]">{stories.map((story, index) => <div key={story.slug} className={`absolute inset-0 transition-[opacity,transform] duration-300 ${index === active ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'}`}>
-          <p className="text-[12px] font-semibold uppercase tracking-[.08em] text-sub">{story.category}</p><h2 className="mt-3 text-[24px] font-bold leading-[1.35] tracking-[-.03em]">{story.headline}</h2><p className="mt-3 text-[15px] leading-[1.7] text-sub">{story.description}</p><Link to={`/work/${story.slug}`} className="mt-4 inline-flex border-b border-ink pb-1 text-[14px] font-semibold">프로젝트 보기 ↗</Link>
+          <p className="text-[13px] font-semibold uppercase tracking-[.08em] text-sub">{story.category}</p><h2 className="mt-3 text-[24px] font-bold leading-[1.35] tracking-[-.03em]">{story.headline}</h2><p className="mt-3 text-[15px] leading-[1.7] text-sub">{story.description}</p><Link to={`/work/${story.slug}`} className="mt-4 inline-flex min-h-11 items-center border-b border-ink text-[14px] font-semibold">프로젝트 보기 ↗</Link>
         </div>)}</div>
       </div>
       <div className="relative col-span-7 h-[min(74svh,720px)] overflow-hidden rounded-[28px]">{stories.map((story, index) => <div key={story.slug} aria-hidden={index !== active} className={`story-layer absolute inset-0 overflow-hidden rounded-[28px] ${index === active ? 'is-active' : ''}`} style={{ zIndex: index, background: story.bg, color: story.fg }}><StoryArt story={story} /></div>)}</div>

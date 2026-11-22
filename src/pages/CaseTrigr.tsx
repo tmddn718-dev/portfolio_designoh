@@ -198,7 +198,7 @@ export default function CaseTrigr() {
           <p className="mt-5 max-w-2xl text-[16px] leading-[1.75] text-sub">서비스의 전체 구조와 UI 설계 범위를 보여주는 보조 사례입니다. 기획서에 있던 기능도 포함하며, 디자이너가 제안한 기능만을 뜻하지 않습니다.</p>
           <ScreenSequence className="mt-10" color={S} label="미션 참여부터 인증까지 화면 흐름" steps={flows.map(([t, src, c]) => ({ src, alt: `${t} 화면`, title: t, body: c }))} />
           <details className="mt-10 rounded-[20px] border border-grid bg-white p-5 md:p-6">
-            <summary className="cursor-pointer text-[16px] font-semibold">생성자·참여자 관점의 흐름 보기</summary>
+            <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold">생성자·참여자 관점의 흐름 보기</summary>
             <div className="mt-6 space-y-8">{lanes.map(l => (
               <div key={l.title}><p className="text-[17px] font-bold" style={{ color: l.color }}>{l.title}</p>
                 <ol className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">{l.steps.map(([a, q], i) => <li key={a} className="rounded-[16px] bg-[#F7F8FA] p-4"><p className="text-[13px] font-semibold" style={{ color: l.color }}>0{i + 1} · {a}</p><p className="mt-1.5 text-[15px] leading-snug">“{q}”</p></li>)}</ol>
@@ -270,7 +270,7 @@ export default function CaseTrigr() {
           </div>
 
           <details className="mt-10 rounded-[20px] border border-grid p-6">
-            <summary className="cursor-pointer text-[16px] font-semibold">원문 보기 · 직접 작성한 회고</summary>
+            <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold">원문 보기 · 직접 작성한 회고</summary>
             <div className="mt-6 space-y-8 text-[16px] leading-[1.8]">
               {p.sections.map(s => <div key={s.id}><p className="text-[13px] text-sub">{s.title}</p>{s.body.split('\n\n').map(t => <p key={t} className="mt-2 whitespace-pre-line">{t}</p>)}</div>)}
             </div>

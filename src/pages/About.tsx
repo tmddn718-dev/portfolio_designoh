@@ -44,9 +44,9 @@ export default function About() {
         </Row>
         <Row t="EDUCATION"><ul>{profile.education.map(e => <li key={e}>{e}</li>)}</ul></Row>
         <Row t="CONTACT">
-          <a className="underline underline-offset-4" href={`mailto:${profile.email}`}>{profile.email}</a>
+          <a className="inline-flex min-h-11 items-center underline underline-offset-4" href={`mailto:${profile.email}`}>{profile.email}</a>
           {profile.resume && <> · <a className="underline underline-offset-4" href={profile.resume} target="_blank" rel="noreferrer">이력서 PDF</a></>}
-          <p className="mt-6"><Link to="/#work" className="inline-block py-2 font-semibold text-bluetext border-b border-bluetext">프로젝트 보기</Link></p>
+          <p className="mt-6"><Link to="/#work" className="inline-flex min-h-11 items-center font-semibold text-bluetext border-b border-bluetext">프로젝트 보기</Link></p>
         </Row>
       </div>
     </div>

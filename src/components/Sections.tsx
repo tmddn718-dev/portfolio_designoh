@@ -24,13 +24,13 @@ function OliveShowcase() {
     <div className="absolute inset-0 overflow-hidden bg-[#CCF35B]">
       <div aria-hidden className="absolute -right-[16%] -top-[16%] aspect-square w-[78%] rounded-full border-[52px] border-white/20" />
       <div className="absolute left-[7%] top-[7%] z-40 flex max-w-[60%] flex-col items-start">
-        <p className="text-[11px] font-bold uppercase tracking-[.2em] text-[#31421B]">Purchase recovery / 2026</p>
+        <p className="text-[12px] font-bold uppercase tracking-[.2em] text-[#31421B]">Purchase recovery / 2026</p>
         <p className="mt-3 whitespace-nowrap text-[clamp(24px,3.3vw,48px)] font-black leading-[1] tracking-[-.065em] text-[#10150A]">OUT OF STOCK.<br />MORE OPTIONS.</p>
         <span className="mt-4 rounded-full bg-[#11150D] px-4 py-2 text-[12px] font-bold text-white">오늘드림 품절</span>
       </div>
       <div className="absolute bottom-[6%] left-[7%] z-20 w-[32%] rotate-[-5deg] overflow-hidden rounded-[15px] border border-black/10 bg-white p-2 shadow-[0_24px_50px_rgba(35,50,15,.22)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-[-3deg]">
         <img src="/images/oliveyoung-todaydream/n-optC-indicator.png" alt="" className="aspect-[10/11] w-full rounded-[10px] object-cover object-top" loading="lazy" decoding="async" />
-        <p className="px-2 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[.12em] text-[#5B654E]">01 · 옵션 선택</p>
+        <p className="px-2 pb-1 pt-2 text-[12px] font-bold uppercase tracking-[.12em] text-[#5B654E]">01 · 옵션 선택</p>
       </div>
       <Phone src="/images/oliveyoung-todaydream/n-altMethods.webp" className="z-30 w-[44%] rotate-[2deg] drop-shadow-[0_34px_60px_rgba(27,40,9,.3)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" style={{ right: '-2%', bottom: '-21%' }} />
     </div>
@@ -85,9 +85,9 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <img src="/proto/karrot/images/sofa.png" alt="" className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.025]" loading="lazy" decoding="async" />
       <div className="absolute inset-0 bg-[#4A2D1E]/25" />
       <div className="absolute inset-y-0 left-0 w-[47%] bg-[#F5E7D8]/95" />
-      <p className="absolute left-[6%] top-[8%] z-20 text-[11px] font-bold uppercase tracking-[.2em] text-[#A34510]">Karrot · UX redesign</p>
+      <p className="absolute left-[6%] top-[8%] z-20 text-[12px] font-bold uppercase tracking-[.2em] text-[#A34510]">Karrot · UX redesign</p>
       <p className="absolute left-[6%] top-[18%] z-20 max-w-[36%] text-[clamp(24px,3.5vw,50px)] font-black leading-[.98] tracking-[-.06em] text-[#271A14]">KNOW IT.<br />MOVE IT.</p>
-      <div className="absolute bottom-[8%] left-[6%] z-20 grid w-[35%] grid-cols-3 gap-1.5 border-y border-[#BDA48E] py-3 text-center text-[#593B2C]"><span className="text-[9px] uppercase tracking-wider">Width<b className="mt-1 block text-[13px] text-[#21150F]">140cm</b></span><span className="text-[9px] uppercase tracking-wider">Depth<b className="mt-1 block text-[13px] text-[#21150F]">80cm</b></span><span className="text-[9px] uppercase tracking-wider">Height<b className="mt-1 block text-[13px] text-[#21150F]">75cm</b></span></div>
+      <div className="absolute bottom-[8%] left-[6%] z-20 grid w-[35%] grid-cols-3 gap-1.5 border-y border-[#BDA48E] py-3 text-center text-[#593B2C]"><span className="text-[12px] uppercase tracking-wider">Width<b className="mt-1 block text-[13px] text-[#21150F]">140cm</b></span><span className="text-[12px] uppercase tracking-wider">Depth<b className="mt-1 block text-[13px] text-[#21150F]">80cm</b></span><span className="text-[12px] uppercase tracking-wider">Height<b className="mt-1 block text-[13px] text-[#21150F]">75cm</b></span></div>
       <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-seedtext" className="z-20 w-[39%] rotate-[6deg] drop-shadow-[0_32px_52px_rgba(31,18,10,.42)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[3deg]" style={{ right: '6%', bottom: '-24%' }} />
     </div>
   )
@@ -96,12 +96,12 @@ function ThumbnailVisual({ p }: { p: Project }) {
   if (p.slug === 'nodi') return (
     <div className={`${tile} bg-[#DCE3FB] [container-type:inline-size]`}>
       <div aria-hidden className="absolute inset-0 bg-[linear-gradient(rgba(32,32,32,.045)_1px,transparent_1px),linear-gradient(90deg,rgba(32,32,32,.045)_1px,transparent_1px)] bg-[size:38px_38px]" />
-      <p className="absolute left-[6%] top-[8%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#3E4C94]">NODI · Decision support</p>
+      <p className="absolute left-[6%] top-[8%] z-30 text-[12px] font-bold uppercase tracking-[.2em] text-[#3E4C94]">NODI · Decision support</p>
       <p className="absolute left-[6%] top-[18%] z-30 text-[8.4cqw] font-black leading-[.98] tracking-[-.06em] text-[#202020]">FROM CONDITIONS<br />TO ONE CLEAR TIME.</p>
       <BrowserMockup src="/images/nodi/web-reco.webp" className="bottom-[3%] left-[6%] z-10 w-[55%] -rotate-1 transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" />
       <div className="absolute bottom-[5%] right-[5%] z-20 w-[28%] rotate-[4deg] overflow-hidden rounded-[12px] border border-[#BFC9F8] bg-white p-2 shadow-[0_24px_46px_rgba(8,15,54,.42)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[2deg]">
         <img src="/images/nodi/full-review.webp" alt="" className="aspect-[10/9] w-full rounded-[8px] object-cover object-[50%_23%]" loading="lazy" decoding="async" />
-        <p className="px-1 pb-1 pt-2 text-[clamp(9px,1.9cqw,12px)] font-bold uppercase tracking-[.1em] text-[#3E4E91]">Final review · user decides</p>
+        <p className="px-1 pb-1 pt-2 text-[clamp(11px,1.9cqw,12px)] font-bold uppercase tracking-[.1em] text-[#3E4E91]">Final review · user decides</p>
       </div>
     </div>
   )
@@ -109,14 +109,14 @@ function ThumbnailVisual({ p }: { p: Project }) {
   // 3) 우리사이: 한 대의 기기보다 사진과 기억 카드가 먼저 보이는 에디토리얼 아카이브
   if (p.slug === 'woorisai') return (
     <div className={`${tile} bg-[#E9E6DA]`}>
-      <p className="absolute left-[6%] top-[8%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#526555]">Woorisai · Memory archive</p>
+      <p className="absolute left-[6%] top-[8%] z-30 text-[12px] font-bold uppercase tracking-[.2em] text-[#526555]">Woorisai · Memory archive</p>
       <div className="absolute left-[6%] top-[15%] z-20 h-[80%] w-[48%] overflow-hidden rounded-[4px] bg-white p-2 shadow-[0_22px_46px_rgba(48,57,45,.2)] transition-transform duration-300 group-hover:-translate-y-1">
         <img src="/images/woorisai/detail.webp" alt="" className="h-full w-full object-cover object-[50%_10%]" loading="lazy" decoding="async" />
       </div>
       <div className="absolute right-[6%] top-[12%] z-10 h-[36%] w-[31%] rotate-[4deg] overflow-hidden bg-white p-2 shadow-[0_18px_40px_rgba(48,57,45,.18)] transition-transform duration-300 group-hover:rotate-[2deg]">
         <img src="/images/woorisai/feed.webp" alt="" className="h-full w-full object-cover object-[50%_31%]" loading="lazy" decoding="async" />
       </div>
-      <div className="absolute bottom-[8%] right-[6%] z-30 w-[42%] border-l border-[#839284] pl-4"><p className="text-[10px] uppercase tracking-[.16em] text-[#66766A]">Nov. 08 · Hangang</p><p className="mt-2 text-[clamp(20px,2.8vw,40px)] font-black leading-[1.02] tracking-[-.055em] text-[#263B2F]">MEMORIES,<br />WITH CONTEXT.</p></div>
+      <div className="absolute bottom-[8%] right-[6%] z-30 w-[42%] border-l border-[#839284] pl-4"><p className="text-[12px] uppercase tracking-[.16em] text-[#66766A]">Nov. 08 · Hangang</p><p className="mt-2 text-[clamp(20px,2.8vw,40px)] font-black leading-[1.02] tracking-[-.055em] text-[#263B2F]">MEMORIES,<br />WITH CONTEXT.</p></div>
     </div>
   )
 
@@ -124,7 +124,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
   return (
     <div className={`${tile} bg-[#F6E4F6]`}>
       <span aria-hidden className="absolute -right-[12%] top-[2%] aspect-square w-[62%] rounded-full bg-[#EBC4EC]/70" />
-      <p className="absolute left-[6%] top-[8%] z-30 text-[11px] font-bold uppercase tracking-[.2em] text-[#8A2E8E]">Trigr · Shipped product</p>
+      <p className="absolute left-[6%] top-[8%] z-30 text-[12px] font-bold uppercase tracking-[.2em] text-[#8A2E8E]">Trigr · Shipped product</p>
       <p className="absolute left-[6%] top-[18%] z-30 max-w-[46%] text-[clamp(24px,3.5vw,50px)] font-black leading-[.98] tracking-[-.06em] text-[#2A1230]">FROM GAPS<br />TO FLOWS.</p>
       <ul className="absolute bottom-[8%] left-[6%] z-20 grid w-[42%] grid-cols-2 gap-2 text-[12px] font-bold text-[#4A1C50]">
         {['미션 탐색', '인증 피드', '상금 지급', '정산 신청'].map(t => <li key={t} className="rounded-full border border-[#D9A6DB] bg-white/80 px-3 py-2 text-center">{t}</li>)}

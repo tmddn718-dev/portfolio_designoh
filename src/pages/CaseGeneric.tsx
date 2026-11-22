@@ -186,7 +186,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
               <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">디자인 판단</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">배송·수령 정보 / 할인·혜택 / 최종 결제의 세 영역으로 묶고, 핵심은 접힌 상태에서도 확인하게 했어요.</p></div>
             </div>
             {p.beforeAfter?.[3] && <div className="mt-8"><BeforeAfter data={p.beforeAfter[3]} color={A} /></div>}
-            <div className="mt-10 grid grid-cols-2 gap-5 md:mx-auto md:max-w-[760px] md:gap-8"><Fig src={I('n-checkoutOpen')} alt="할인과 혜택 정보를 펼쳐 확인하는 주문 결제 화면" cap="필요할 때 세부 정보 펼치기" /><Fig src={I('n-slot')} alt="배송 시간대와 비용을 함께 비교하는 화면" cap="시간대별 배송비 비교" className="md:mt-14" /></div>
+            <div className="mt-10 grid grid-cols-2 gap-5 md:mx-auto md:max-w-[760px] md:gap-8"><Fig src={I('n-checkoutTobe')} alt="접힌 상태의 주문 결제 화면: 핵심 정보만 요약" cap="접힌 상태 · 핵심 정보만" /><Fig src={I('n-checkoutOpen')} alt="같은 화면을 펼친 상태: 시간대별 배송비와 할인·혜택 세부 정보" cap="같은 화면을 펼치면 · 시간대별 배송비 비교" className="md:mt-14" /></div>
             <ul className="mt-8 grid gap-3 text-[15px] leading-[1.65] sm:grid-cols-2 lg:grid-cols-4">{['접힌 상태에서도 핵심 정보 확인', '시간대와 배송비 관계를 함께 표시', '쿠폰·포인트 조건을 목적별로 확인', '선택 변경 시 금액 정보 일관성 유지'].map(item => <li key={item} className="rounded-[18px] bg-white p-4">{item}</li>)}</ul>
             <Result value="평균 26초 단축" task="배송 시간과 혜택을 확인하고 구매를 결정하는" />
             <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">목적별로 정보를 그룹화한 개선 프로토타입에서 구매 결정 과제의 평균 시간이 짧게 나타났습니다. 실제 결제 완료율이나 구매 전환율 상승을 검증한 결과는 아닙니다.</p>

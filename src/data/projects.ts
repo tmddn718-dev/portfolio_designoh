@@ -46,14 +46,14 @@ export const projects: Project[] = [
       intro: '품절 이후의 대체 구매 흐름과 함께 장바구니, 배송 시간, 주문·결제, 상품 상세 하단도 개선했습니다. 구매 결정을 돕기 위한 설계 제안이며, 실제 매출 효과는 측정하지 않았습니다.',
       bullets: [
         '장바구니: 무료배송 기준까지 남은 금액을 안내하고, 함께 담기 좋은 상품을 제안합니다.',
-        '배송 시간: 날짜와 시간대별 배송비를 함께 보여주고, 무료배송까지 남은 금액을 안내합니다.',
+        '배송 시간: 주문/결제의 배송·수령 정보를 펼치면 날짜와 시간대별 배송비를 함께 보여주고, 무료배송까지 남은 금액을 안내합니다.',
         '주문·결제: 한 페이지에 길게 이어지던 정보를 배송·수령 / 할인·혜택 / 최종 결제의 3그룹으로 정리하고 접고 펼 수 있게 했습니다.',
         '상품 상세 하단: 오늘드림과 매장 픽업 중 수령 방법을 고르는 패널로 정리했습니다.',
       ],
       images: [
         { src: '/images/oliveyoung-todaydream/n-checkoutAsis.webp', alt: '기존 주문 결제 화면(실제 앱 캡처)', caption: 'AS-IS 주문/결제' },
         { src: '/images/oliveyoung-todaydream/n-checkoutTobe.webp', alt: '개선 주문 결제 화면: 배송·수령 정보, 할인·혜택, 최종 결제 3그룹', caption: '주문/결제 3그룹' },
-        { src: '/images/oliveyoung-todaydream/n-slot.webp', alt: '배송 날짜와 시간대별 배송비, 무료배송까지 남은 금액 안내', caption: '시간대별 배송비' },
+        { src: '/images/oliveyoung-todaydream/n-slot.webp', alt: '주문/결제를 펼친 상태: 배송·수령 정보 안에서 날짜와 시간대별 배송비, 무료배송까지 남은 금액 안내', caption: '주문/결제 펼침 · 시간대별 배송비' },
         { src: '/images/oliveyoung-todaydream/n-cart.webp', alt: '장바구니: 무료배송까지 남은 금액과 함께 담기 좋은 상품', caption: '장바구니 무료배송 안내' },
       ],
     },
@@ -70,7 +70,7 @@ export const projects: Project[] = [
       },
       {
         before: '/images/oliveyoung-todaydream/n-checkoutAsis.webp', after: '/images/oliveyoung-todaydream/n-slot.webp',
-        beforeAlt: '기존 주문/결제: 배송 시간대를 고른 뒤 아래에 배송비가 한 번 표시된다', afterAlt: '개선 배송 시간 선택: 시간대마다 배송비를 함께 표시',
+        beforeAlt: '기존 주문/결제: 배송 시간대를 고른 뒤 아래에 배송비가 한 번 표시된다', afterAlt: '개선 주문/결제(펼침): 배송·수령 정보 안에서 시간대마다 배송비를 함께 표시',
         points: ['Before: 배송 시간대를 선택한 뒤 별도 영역에서 배송비를 확인한다(12:45~13:45 선택 시 5,000원)', 'After: 12:45~13:45는 5,000원, 15:00~16:00과 22:00~24:00은 2,500원처럼 시간대마다 배송비를 함께 표시한다', '※ Before는 실제 앱 화면을 직접 캡처한 이미지이며 개인정보는 가렸습니다'],
       },
       {

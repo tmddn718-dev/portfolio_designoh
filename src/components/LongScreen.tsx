@@ -190,3 +190,9 @@ export function PhoneCompare({ n, title, asis, tobe, extra = [], decision, color
     </section>
   )
 }
+
+// 8) UIPopout: 실제 UI 조각(말풍선·카드·버튼 등)을 폰 목업보다 앞 레이어로 올려 경계 밖으로 돌출시킨다. 원본 UI는 그대로이고 부드러운 그림자만 더한다.
+// 위치·너비는 className(퍼센트)으로 지정하며, 부모(폰을 감싼 relative 박스)의 좌우 여백 안에 들어오도록 호출하는 쪽에서 맞춘다. 과하게 반복하지 않는다.
+export function UIPopout({ src, alt, className = '' }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} loading="lazy" className={`pointer-events-none absolute z-20 h-auto drop-shadow-[0_12px_22px_rgba(24,36,58,.24)] ${className}`} />
+}

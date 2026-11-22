@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects, TODO } from '../data/projects'
 import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
-import { ExtendedPhoneScreen } from '../components/LongScreen'
+import { ExtendedPhoneScreen, UIPopout } from '../components/LongScreen'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
 import { ChapterHead, ChapterNav, InteractionPreview, tintOf, strongOf, useActive, CaseSummary, ProjectIndex, AppIcon } from '../components/case'
@@ -105,15 +105,12 @@ export default function CaseNodi() {
               </dl>
               {p.proto && <button onClick={() => setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
             </div>
-            <div className="mt-14 md:mt-0 md:col-span-6 relative flex justify-center md:justify-end gap-4 md:gap-0">
-              <div data-rise className="relative w-[58%] md:w-[62%] z-10">
-                <Zoomable src="/images/nodi/hero-conds.webp" alt="NODI 조건 확인 화면: AI가 정리한 회의 조건" caption="조건 확인" className="phone-pro w-full" imgClass="screen" />
-                <ul className="hidden md:block absolute -left-40 top-[22%] w-36 space-y-24 text-[13px] leading-snug">
-                  <li className="rounded-[12px] bg-white p-3 shadow-sm border border-grid"><b style={{ color: S }}>① AI가 정리</b><br />자연어를 회의 조건 카드로</li>
-                  <li className="rounded-[12px] bg-white p-3 shadow-sm border border-grid"><b style={{ color: S }}>② 사용자가 수정</b><br />조건 항목별 수정·직접 입력</li>
-                </ul>
+            <div className="mt-14 md:mt-0 md:col-span-6">
+              <div data-rise className="relative mx-auto w-[58%] md:w-[60%]">
+                <Zoomable src="/images/nodi/hero-phone-card.png?v=2" alt="NODI 조건 확인 화면: AI가 정리한 회의 조건 카드와 참석자 선택하기 버튼" caption="회의 조건을 확인해 주세요" className="block w-full" imgClass="block h-auto w-full" />
+                <UIPopout src="/images/nodi/hero-pop-user.png" alt="사용자 입력: 다음주 화요일에 디자인팀 5명 1시간 미팅 시간 잡아줘" className="left-[-36%] top-[17%] w-[60%] lg:left-[-66%] lg:w-[86%]" />
+                <UIPopout src="/images/nodi/hero-pop-ai.png" alt="NODI 응답: 회의 조건을 정리했어요. 맞는지 확인해 주세요." className="right-[-36%] top-[27%] w-[60%] lg:right-[-66%] lg:w-[86%]" />
               </div>
-              <div data-rise className="w-[38%] md:w-[34%] mt-16 md:mt-24 md:-ml-8"><Zoomable src="/images/nodi/hero-review.webp" alt="NODI 최종 검토 화면: 사용자가 일정을 확정" caption="최종 검토" className="phone-pro w-full" imgClass="screen" /></div>
             </div>
           </div>
           {/* 모바일용 주석 */}

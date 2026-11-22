@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Zoomable } from './Modal'
+import { Zoomable, type ZoomPair } from './Modal'
 import { onBrand } from './case'
 
 // 긴 UI 화면을 읽기 쉽게 보여주는 공통 조각. 모두 원본 에셋만 쓰고, 확대는 Zoomable(Esc·포커스 복귀·세로 스크롤)에 맡긴다.
@@ -140,16 +140,17 @@ export function FullLengthCompare({ asis, tobe, color, children, className = '' 
 // 레이어 2(프레임): 실제 기기 높이(390:844)로 고정된 베젤·다이내믹 아일랜드·하단 홈 영역을 UI 앞에 겹친다. 콘텐츠 길이에 따라 늘어나지 않는다.
 // 프레임 아래로 이어지는 길이는 extra(기기 높이 대비)까지만 보이고 끝에서 옅게 사라진다. 전체는 눌러서 확대해 세로로 볼 수 있다.
 // 내부 스크롤 컨테이너가 아니라 페이지 흐름이며, 서로 다른 화면(상태)을 이어 붙일 때는 쓰지 않는다.
-export function ExtendedPhoneScreen({ src, alt, ratio, zoomSrc, caption, extra = 0.5, className = '' }: { src: string; alt: string; ratio: number; zoomSrc?: string; caption?: string; extra?: number; className?: string }) {
+export function ExtendedPhoneScreen({ src, srcs, alt, ratio, zoomSrc, caption, extra = 0.5, pair, pairIndex = 0, pairColor, className = '' }: { src: string; srcs?: string[]; alt: string; ratio: number; zoomSrc?: string; caption?: string; extra?: number; pair?: ZoomPair[]; pairIndex?: number; pairColor?: string; className?: string }) {
   const bz = 2.5 // 베젤 두께(cqw)
   const devH = (844 / 390) * 100 // 기기 전체 높이(cqw)
   const imgH = (100 - bz * 2) * ratio // 원본 이미지가 화면 너비로 그려질 때의 높이(cqw)
   const vis = Math.min(imgH, devH - bz * 2 + devH * extra) // 보이는 UI 높이
   const cut = imgH > vis + 0.5
+  const list = srcs ?? [src] // 여러 장으로 나뉜 원본(상단바+본문)은 순서대로 이어 그린다
   const trigger = (
     <span className="relative block [container-type:inline-size]">
       <span className="block overflow-hidden bg-white" style={{ margin: `${bz}cqw ${bz}cqw 0`, height: `${vis}cqw`, borderRadius: '9.5cqw 9.5cqw 0 0', maskImage: cut ? 'linear-gradient(to bottom, #000 calc(100% - 34cqw), transparent)' : undefined, WebkitMaskImage: cut ? 'linear-gradient(to bottom, #000 calc(100% - 34cqw), transparent)' : undefined }}>
-        <img src={src} alt={alt} loading="lazy" className="block w-full" style={{ aspectRatio: `1 / ${ratio}` }} />
+        {list.map((u, i) => <img key={u} src={u} alt={i === 0 ? alt : ''} aria-hidden={i === 0 ? undefined : true} loading="lazy" className="block w-full" />)}
       </span>
       <span aria-hidden className="pointer-events-none absolute left-0 right-0 top-0 block overflow-hidden" style={{ height: `${devH}cqw`, border: `${bz}cqw solid #121214`, borderRadius: '12cqw', boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.22), 0 0 0 1px rgba(0,0,0,.5)' }}>
         <span className="absolute left-1/2 block h-[5.4cqw] w-[26cqw] -translate-x-1/2 rounded-full bg-black" style={{ top: '0.5cqw' }} />
@@ -160,7 +161,7 @@ export function ExtendedPhoneScreen({ src, alt, ratio, zoomSrc, caption, extra =
   )
   return (
     <figure className={className}>
-      <Zoomable src={zoomSrc ?? src} big={zoomSrc ? undefined : src} alt={alt} caption={caption ?? alt} className="w-full" trigger={trigger} />
+      <Zoomable src={zoomSrc ?? src} big={zoomSrc || srcs ? undefined : src} alt={alt} caption={caption ?? alt} pair={pair} pairIndex={pairIndex} pairColor={pairColor} className="w-full" trigger={trigger} />
       {caption && <figcaption className="mt-3 text-[14px] text-sub">{caption}</figcaption>}
     </figure>
   )
@@ -199,4 +200,26 @@ export function PhoneCompare({ n, title, asis, tobe, extra = [], decision, color
 // 위치·너비는 className(퍼센트)으로 지정하며, 부모(폰을 감싼 relative 박스)의 좌우 여백 안에 들어오도록 호출하는 쪽에서 맞춘다. 과하게 반복하지 않는다.
 export function UIPopout({ src, alt, className = '' }: { src: string; alt: string; className?: string }) {
   return <img src={src} alt={alt} loading="lazy" className={`pointer-events-none absolute z-20 h-auto drop-shadow-[0_12px_22px_rgba(24,36,58,.24)] ${className}`} />
+}
+
+export type OverflowSide = { src?: string; srcs?: string[]; alt: string; ratio: number; extra?: number; zoomSrc?: string; caption: string }
+
+// 9) 선택적 Overflow 비교: 같은 크기의 폰 프레임 두 개를 AS-IS(왼쪽)·TO-BE(오른쪽)로 놓는다. 각 화면은 실제 길이만큼만 이어서 보이고(AS-IS처럼 길면 프레임 아래로 이어지다 옅어짐, 짧으면 끝에서 멈춤),
+// 프레임 자체는 늘리지 않는다. 길이를 연출로 줄이거나 늘리지 않는다. 누르면 전체 화면을 AS-IS/TO-BE로 전환하며 확대한다.
+export function PhoneOverflowCompare({ asis, tobe, color, extraPair = [], className = '' }: { asis: OverflowSide; tobe: OverflowSide; color: string; extraPair?: ZoomPair[]; className?: string }) {
+  const pair: ZoomPair[] = [{ src: asis.zoomSrc ?? asis.src ?? asis.srcs![0], alt: asis.alt, tag: 'AS-IS' }, { src: tobe.zoomSrc ?? tobe.src!, alt: tobe.alt, tag: 'TO-BE', big: tobe.zoomSrc ? undefined : tobe.src }, ...extraPair]
+  const pill = (txt: string, after: boolean) => <span className="inline-block w-fit rounded-full px-2.5 py-1 text-[13px] font-bold" style={after ? { background: color, color: onBrand(color) } : { background: '#e8e8e8', color: '#111' }}>{txt}</span>
+  const Col = ({ side, i }: { side: OverflowSide; i: 0 | 1 }) => (
+    <div className="min-w-0">
+      {pill(i ? 'TO-BE' : 'AS-IS', !!i)}
+      <ExtendedPhoneScreen className="mt-3" src={side.src ?? side.srcs![0]} srcs={side.srcs} alt={side.alt} ratio={side.ratio} extra={side.extra} zoomSrc={side.zoomSrc} pair={pair} pairIndex={i} pairColor={color} />
+      <p className="mt-3 text-[13px] leading-[1.6] sm:text-[14px]" style={i ? undefined : { color: 'var(--color-sub)' }}>{side.caption}</p>
+    </div>
+  )
+  return (
+    <div className={`mx-auto grid max-w-[640px] grid-cols-2 items-start gap-x-3 sm:gap-x-8 ${className}`}>
+      <Col side={asis} i={0} />
+      <Col side={tobe} i={1} />
+    </div>
+  )
 }

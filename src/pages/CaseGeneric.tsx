@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects, TODO, type Project } from '../data/projects'
 import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
-import { ExtendedPhoneScreen, FullLengthCompare, PhoneCompare, ScreenSequence } from '../components/LongScreen'
+import { ExtendedPhoneScreen, PhoneCompare, PhoneOverflowCompare, ScreenSequence } from '../components/LongScreen'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
 import { AppIcon, onBrand, CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
@@ -199,19 +199,10 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <h3 className="mt-2 max-w-[22ch] text-[30px] font-extrabold tracking-tight md:text-[38px]">길게 펼쳐진 주문 정보를, 확인하기 쉬운 구조로.</h3>
             <p className="mt-5 max-w-[48rem] text-[16px] leading-[1.75] text-sub">기존 주문/결제 화면에서는 배송·혜택·결제 정보가 긴 화면에 연속적으로 배치되어 있어, 필요한 정보를 확인하기 위해 여러 영역을 탐색해야 했습니다.</p>
 
-            <FullLengthCompare className="mt-10 max-w-[760px] md:mx-auto" color={A}
-              asis={{ top: '/images/oliveyoung-todaydream/sp-checkoutAsis-top.webp', body: '/images/oliveyoung-todaydream/sp-checkoutAsis-body.webp', alt: '기존 주문/결제 전체 길이(오늘드림): 배송 방법 시간대 표, 배송 요청사항, 주문상품, 쿠폰·포인트, 최종 결제금액, 결제수단, 약관이 위에서 아래로 길게 이어짐(실제 앱 스크롤 캡처)', zoom: I('n-checkoutAsis'), note: '실제 앱을 스크롤하며 캡처해 이은 오늘드림 주문 전체 길이예요. 배송·혜택·결제 정보가 모두 펼쳐진 채 이어져요.' }}
-              tobe={[
-                { src: I('n-checkoutTobe-slots'), alt: '개선 주문/결제 접힌 상태: 배송 시간대는 항상 펼쳐져 있고 할인·혜택은 한 줄 요약, 최종 결제는 바로 확인', label: '접힌 상태 · 처음 보이는 화면', big: I('n-checkoutTobe-slots') },
-                { src: I('n-checkoutOpen'), alt: '개선 주문/결제 펼친 상태: 배송 시간대별 배송비, 쿠폰·포인트, 최종 결제 금액', label: '펼친 상태', big: I('n-checkoutOpen') },
-              ]}>
-              <ul className="mt-4 space-y-2 text-[13px] leading-[1.6] sm:text-[14px]">{['배송 시간대는 항상 펼쳐 두고, 나머지는 요약해서 보여줘요', '필요한 영역만 펼쳐 세부 정보를 확인해요', '펼친 상태에서도 배송·혜택·결제 세 영역이 구분돼요'].map(t => <li key={t} className="flex gap-2"><span aria-hidden className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: A }} /><span>{t}</span></li>)}</ul>
-            </FullLengthCompare>
-
-            <PhoneCompare className="mt-16" title="배송·혜택·결제를 구획으로 나눈 주문/결제 화면" color={A}
-              asis={{ src: I('n-checkoutAsis'), alt: '기존 주문/결제 첫 화면(오늘드림): 배송 방법과 시간대 표가 먼저 펼쳐지고 배송비가 표 아래에 한 번 표시됨', ratio: 2000 / 924, caption: '오늘드림 배송 시간대 표가 먼저 펼쳐지고 배송비는 표 아래에 한 번 나와요. 쿠폰·포인트·결제는 그 아래로 이어져요.' }}
-              tobe={{ src: I('n-checkoutTobe-slots'), alt: '개선 주문/결제 첫 화면: 배송 시간대는 항상 펼쳐져 있고 할인·혜택은 한 줄 요약, 최종 결제는 바로 확인', ratio: 2465 / 780, caption: '배송 시간대는 접지 않고 항상 펼쳐 두고, 할인·혜택은 한 줄로 요약해 최종 결제를 바로 확인해요.', big: true }}
-              extra={[{ src: I('n-checkoutOpen'), alt: '개선 주문/결제 펼친 상태: 시간대별 배송비, 쿠폰·포인트, 최종 결제 금액', tag: 'TO-BE 펼침', big: I('n-checkoutOpen') }]} />
+            <PhoneOverflowCompare className="mt-10" color={A}
+              asis={{ srcs: ['/images/oliveyoung-todaydream/sp-checkoutAsis-top.webp', '/images/oliveyoung-todaydream/sp-checkoutAsis-body.webp'], zoomSrc: I('n-checkoutAsis'), ratio: (193 + 6516) / 780, extra: 1.1, alt: '기존 주문/결제(오늘드림): 배송 방법 시간대 표, 배송 요청사항, 주문상품, 쿠폰·포인트, 최종 결제금액, 결제수단, 약관이 위에서 아래로 길게 이어짐(실제 앱 스크롤 캡처)', caption: '배송·혜택·결제 정보가 모두 펼쳐진 채 긴 화면에 이어져요. 프레임 아래로 계속 이어지고, 확대하면 끝까지 볼 수 있어요.' }}
+              tobe={{ src: I('n-checkoutTobe-slots'), ratio: 2465 / 780, extra: 1.1, alt: '개선 주문/결제: 배송 시간대는 항상 펼쳐져 있고 할인·혜택은 한 줄 요약, 최종 결제와 결제 버튼까지 이어짐', caption: '배송 시간대는 항상 펼쳐 두고 할인·혜택은 한 줄로 요약해, 결제 버튼까지 한 번에 확인해요.' }}
+              extraPair={[{ src: I('n-checkoutOpen'), alt: '개선 주문/결제 펼친 상태: 시간대별 배송비, 쿠폰·포인트, 최종 결제 금액', tag: 'TO-BE 펼침', big: I('n-checkoutOpen') }]} />
             <ul className="mx-auto mt-6 grid max-w-[640px] gap-3 text-[15px] leading-[1.65] sm:grid-cols-3">
               {[['배송 정보', '배송 선택과 비용을 한 구획에 묶어, 시간을 고르면서 배송비를 바로 비교해요.'], ['혜택 및 할인', '입력칸을 모두 펼쳐 두지 않고 목적별 한 줄로 정리해, 필요한 혜택만 골라 확인해요.'], ['결제 정보', '상품·결제수단·금액을 한곳에 모아 결제 직전에 정보를 다시 찾지 않아요.']].map(([t, d]) => <li key={t} className="rounded-[14px] bg-white p-4"><b className="block text-[13px]" style={{ color: S }}>{t}</b>{d}</li>)}
             </ul>

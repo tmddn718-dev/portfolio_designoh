@@ -42,7 +42,7 @@ function Hero({ c, eyebrow, kicker, title, lead, children, size = 'md' }: { c: C
           <div className="md:col-span-5">
             <AppIcon src={`/images/${p.slug}/icon.webp`} name={p.name} className="mb-5" />
             <p className="eyebrow" style={{ color: S }}>{eyebrow ?? `Personal Case Study · ${p.category}`}</p>
-            <h1 style={{ lineHeight: 1.2 }} className={`mt-4 font-extrabold tracking-[-0.045em] ${size === 'xl' ? 'text-[64px] md:text-[104px]' : 'text-[44px] md:text-[72px]'}`}>{title}</h1>
+            <h1 style={{ lineHeight: 1.2 }} className={`mt-4 font-extrabold tracking-[-0.045em] ${size === 'xl' ? 'text-[64px] md:text-[104px]' : 'text-[35px] md:text-[58px]'}`}>{title}</h1>
             <p className="mt-6 text-[24px] md:text-[28px] font-bold leading-snug max-w-[20ch]">{lead}</p>
             <dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] rule pt-4" style={{ borderColor: T(40) }}>
               <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div>

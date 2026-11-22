@@ -135,23 +135,26 @@ export function FullLengthCompare({ asis, tobe, color, children, className = '' 
   )
 }
 
-// 6) 확장형 폰 화면: 긴 원본을 한 장 그대로(자르거나 줄이지 않고) 폰 목업 안에 담는다.
-// 이미지 레이어와 프레임 레이어를 따로 두고, 프레임은 이미지 전체 길이를 감싸며 위에는 다이내믹 아일랜드, 아래는 둥근 끝으로 닫는다.
-// 실제 기기 화면 높이(390:844)를 넘어 스크롤해야 보이는 구간은 같은 프레임 안에서 점선 경계로 나뉘어 아래로 쌓인다.
-// 내부 스크롤이 아니라 페이지 흐름 그대로 이어진다. 서로 다른 화면(상태)을 이어 붙일 때는 쓰지 않는다.
-export function ExtendedPhoneScreen({ src, alt, ratio, zoomSrc, caption, className = '' }: { src: string; alt: string; ratio: number; zoomSrc?: string; caption?: string; className?: string }) {
-  const bezel = 2.5 // cqw
-  const screenH = (844 / 390) * 100 - bezel * 2 // 기기 화면 한 장의 높이(cqw)
-  const imgH = (100 - bezel * 2) * ratio // 이미지 높이(cqw)
-  const seams = Array.from({ length: Math.max(0, Math.ceil(imgH / screenH) - 1) }, (_, i) => (i + 1) * screenH)
+// 6) Phone Frame Overflow with Continuous UI Content
+// 레이어 1(UI): 긴 원본 한 장을 원본 너비·비율 그대로 한 번만 그린다. 폰 화면 안에서 시작해 프레임 아래로 같은 UI가 이어진다(자르거나 줄이지 않으므로 중복·누락·왜곡이 없다).
+// 레이어 2(프레임): 실제 기기 높이(390:844)로 고정된 베젤·다이내믹 아일랜드·하단 홈 영역을 UI 앞에 겹친다. 콘텐츠 길이에 따라 늘어나지 않는다.
+// 프레임 아래로 이어지는 길이는 extra(기기 높이 대비)까지만 보이고 끝에서 옅게 사라진다. 전체는 눌러서 확대해 세로로 볼 수 있다.
+// 내부 스크롤 컨테이너가 아니라 페이지 흐름이며, 서로 다른 화면(상태)을 이어 붙일 때는 쓰지 않는다.
+export function ExtendedPhoneScreen({ src, alt, ratio, zoomSrc, caption, extra = 0.5, className = '' }: { src: string; alt: string; ratio: number; zoomSrc?: string; caption?: string; extra?: number; className?: string }) {
+  const bz = 2.5 // 베젤 두께(cqw)
+  const devH = (844 / 390) * 100 // 기기 전체 높이(cqw)
+  const imgH = (100 - bz * 2) * ratio // 원본 이미지가 화면 너비로 그려질 때의 높이(cqw)
+  const vis = Math.min(imgH, devH - bz * 2 + devH * extra) // 보이는 UI 높이
+  const cut = imgH > vis + 0.5
   const trigger = (
     <span className="relative block [container-type:inline-size]">
-      <span className="relative block overflow-hidden bg-white" style={{ margin: `${bezel}cqw`, borderRadius: '9.5cqw' }}>
+      <span className="block overflow-hidden bg-white" style={{ margin: `${bz}cqw ${bz}cqw 0`, height: `${vis}cqw`, borderRadius: '9.5cqw 9.5cqw 0 0', maskImage: cut ? 'linear-gradient(to bottom, #000 calc(100% - 34cqw), transparent)' : undefined, WebkitMaskImage: cut ? 'linear-gradient(to bottom, #000 calc(100% - 34cqw), transparent)' : undefined }}>
         <img src={src} alt={alt} loading="lazy" className="block w-full" style={{ aspectRatio: `1 / ${ratio}` }} />
-        {seams.map(y => <span key={y} aria-hidden className="pointer-events-none absolute left-0 right-0 border-t border-dashed" style={{ top: `${y}cqw`, borderColor: 'rgba(24,36,58,.28)' }} />)}
       </span>
-      <span aria-hidden className="pointer-events-none absolute inset-0 block" style={{ border: `${bezel}cqw solid #121214`, borderRadius: '12cqw', boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.22), 0 0 0 1px rgba(0,0,0,.5)' }}>
+      <span aria-hidden className="pointer-events-none absolute left-0 right-0 top-0 block overflow-hidden" style={{ height: `${devH}cqw`, border: `${bz}cqw solid #121214`, borderRadius: '12cqw', boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.22), 0 0 0 1px rgba(0,0,0,.5)' }}>
         <span className="absolute left-1/2 block h-[5.4cqw] w-[26cqw] -translate-x-1/2 rounded-full bg-black" style={{ top: '0.5cqw' }} />
+        <span className="absolute inset-x-0 bottom-0 block h-[15cqw]" style={{ background: 'linear-gradient(to top, rgba(255,255,255,.97) 45%, rgba(255,255,255,0))' }} />
+        <span className="absolute bottom-[2.6cqw] left-1/2 block h-[1.3cqw] w-[34cqw] -translate-x-1/2 rounded-full bg-[#15171c]" />
       </span>
     </span>
   )

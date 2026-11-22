@@ -63,7 +63,7 @@ class Component extends DCLogic {
     this.state = this.fresh(START, 'A');
   }
   fresh(screen, flow) {
-    return { screen: screen, flow: flow, panelOpen: false, recv: 'today', altStage: 'checking', altSel: null, stdTry: 0, stores: { E: 'fail', F: 'closed' }, query: '서울 구로구', intent: 'buy', dTried: false, pickStore: null, method: 'today', slot: 's1', recs: {}, g1Open: false, benefitsOpen: false, teaStage: 'fail', stdInfoOpen: false, optSel: null, qty: 1, optMode: 'A', usePoint: false, agree: false, triedPay: false, stockHit: false, restocked: false, returnTo: 'alt' };
+    return { screen: screen, flow: flow, panelOpen: false, recv: 'today', altStage: 'checking', altSel: null, stdTry: 0, stores: { E: 'fail', F: 'closed' }, query: '서울 구로구', intent: 'buy', dTried: false, pickStore: null, method: 'today', slot: 's1', recs: {}, slotSel: null, cartOpen: false, addrCheck: false, g1Open: false, benefitsOpen: false, teaStage: 'fail', stdInfoOpen: false, optSel: null, qty: 1, optMode: 'A', usePoint: false, agree: false, triedPay: false, stockHit: false, restocked: false, returnTo: 'alt' };
   }
   componentWillUnmount() { this.timers.forEach(function (t) { clearTimeout(t); }); }
   later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
@@ -186,13 +186,17 @@ class Component extends DCLogic {
       };
     });
     const productName = isC ? '마데카소사이드 흔적리페어 10+1매' : '로제 PDRN 모공결광 10매';
-    const addedItems = recDefs.filter((r) => st.recs[r.id]).map((r) => ({ name: r.name, img: r.img, priceText: fmt(r.price) }));
+    const recImg = { r1: IMG.rose, r2: IMG.tea };
+    const addedItems = recDefs.filter((r) => st.recs[r.id]).map((r) => ({ name: r.name, img: recImg[r.id], priceText: fmt(r.price), remove: () => { const n = Object.assign({}, this.state.recs); n[r.id] = false; this.setState({ recs: n }); } }));
     const recs = recDefs.map((r) => {
       const added = !!st.recs[r.id];
+      const after = subtotal + r.price;
+      const hint = added ? '장바구니에 담았어요' : (st.addrCheck ? '재고 확인 중' : (free ? '무료배송 조건을 충족한 상태예요' : (after >= 30000 ? '추가하면 무료배송 조건을 충족해요' : '추가 시 무료배송까지 ' + fmt(30000 - after))));
+      const blocked = added || st.addrCheck;
       return {
-        name: r.name, img: r.img, priceText: fmt(r.price), added: added, btnText: added ? '담김' : '담기',
-        toggle: () => { const n = Object.assign({}, this.state.recs); n[r.id] = !n[r.id]; this.setState({ recs: n }); },
-        btnStyle: 'flex:none;width:96px;height:44px;border-radius:8px;font-size:14px;font-family:inherit;' + (added ? 'border:1px solid #DCDFE3;background:#F5F6F8;color:#3A3D42' : 'border:1px solid #131518;background:#FFFFFF;color:#131518;font-weight:600')
+        name: r.name, img: recImg[r.id], priceText: fmt(r.price), added: added, hint: hint, blocked: blocked, btnText: added ? '추가됨' : (st.addrCheck ? '확인 중' : '담기'),
+        toggle: () => { if (blocked) return; const n = Object.assign({}, this.state.recs); n[r.id] = true; this.setState({ recs: n }); },
+        btnStyle: 'flex:none;width:96px;height:44px;border-radius:8px;font-size:14px;font-family:inherit;' + (blocked ? 'border:1px solid #DCDFE3;background:#F5F6F8;color:#3A3D42' : 'border:1px solid #131518;background:#FFFFFF;color:#131518;font-weight:600')
       };
     });
     const doneMethod = st.method === 'today' ? '오늘드림 · 11/17 ' + times[st.slot] : st.method === 'pickup' ? '매장 픽업 · ' + storeName : '일반배송';
@@ -220,7 +224,7 @@ class Component extends DCLogic {
       flowLabel: !SCENARIOS ? '' : sc === 'home' ? '프로토타입 · 시뮬레이션' : 'Flow ' + (flow === 'S' ? 'G' : flow) + ' · 시뮬레이션',
       showDetail: ['detail', 'options', 'alt', 'restock', 'restockDone'].indexOf(sc) >= 0,
       isOptions: sc === 'options', isAlt: sc === 'alt', isRestock: sc === 'restock', isRestockDone: sc === 'restockDone',
-      isStore: sc === 'store', isCart: sc === 'cart', isCheckout: sc === 'checkout' || sc === 'stockChanged', isStockChanged: sc === 'stockChanged', isDone: sc === 'done',
+      isStore: sc === 'store', isCart: sc === 'cart', isSlot: sc === 'slot', isCheckout: sc === 'checkout' || sc === 'stockChanged', isStockChanged: sc === 'stockChanged', isDone: sc === 'done',
       startA: () => this.setState(this.fresh('detail', 'A')),
       startB: () => this.setState(this.fresh('detail', 'B')),
       startC: () => this.setState(this.fresh('detail', 'C')),
@@ -308,10 +312,34 @@ class Component extends DCLogic {
       productName: productName, productImg: isC ? IMG.made : IMG.roseS,
       freeShip: free, notFree: !free,
       remainText: fmt(Math.max(0, 30000 - subtotal)),
-      progressPct: Math.min(100, Math.round(subtotal / 300)) + '%',
+      progressPct: +Math.min(100, subtotal / 300).toFixed(1) + '%',
       subtotalText: fmt(subtotal),
       cartFeeText: free ? '무료' : '배송 시간에 따라 2,500~5,000원',
-      recs: recs, addedItems: addedItems,
+      recs: recs, addedItems: addedItems, madeImg: IMG.made, currentText: '현재 ' + fmt(subtotal),
+      cardCaption: free ? '실제 무료배송 적용 여부는 선택한 배송 조건에 따라 다시 확인해요' : '기준 금액은 이번 시안의 예시 값이에요',
+      qtyNum: st.qty, mainPriceText: fmt(10000 * st.qty),
+      qtyMinus: () => { if (this.state.qty > 1) this.setState({ qty: this.state.qty - 1 }); },
+      qtyPlus: () => { if (this.state.qty < 5) this.setState({ qty: this.state.qty + 1 }); },
+      minusStyle: 'width:44px;height:44px;border:0;background:none;font-size:20px;font-family:inherit;color:' + (st.qty <= 1 ? '#C5C9CE' : '#131518'),
+      plusStyle: 'width:44px;height:44px;border:0;background:none;font-size:20px;font-family:inherit;color:' + (st.qty >= 5 ? '#C5C9CE' : '#131518'),
+      addrCheck: st.addrCheck,
+      changeAddr: () => { if (this.state.addrCheck) return; this.setState({ addrCheck: true }); this.later(() => this.setState({ addrCheck: false }), 1100); },
+      cartOpen: st.cartOpen, cartToggle: () => this.setState({ cartOpen: !this.state.cartOpen }), cartChevron: st.cartOpen ? 'M5 9l7 7 7-7' : 'M5 15l7-7 7 7',
+      cartTotalText: free ? fmt(subtotal) : (subtotal + 2500).toLocaleString('ko-KR') + '~' + fmt(subtotal + 5000),
+      cartFeeLine: free ? '확인 후 확정 (무료 가능)' : '2,500~5,000원',
+      cartHelper: st.addrCheck ? '배송비를 다시 확인하고 있어요.' : (free ? '배송비는 배송 조건을 확인한 뒤 확정돼요.' : '배송 시간대에 따라 배송비가 달라져요.'),
+      cartCtaText: st.addrCheck ? '확인 중' : '배송 시간 선택하기',
+      cartCtaStyle: 'height:52px;width:100%;font-size:17px;font-weight:700;font-family:inherit;border-radius:8px;' + (st.addrCheck ? 'border:0;background:#DCDFE3;color:#5E636B' : 'border:1px solid #131518;background:#131518;color:#FFFFFF'),
+      goSlot: () => { if (!this.state.addrCheck) this.setState({ screen: 'slot' }); },
+      slotBack: () => this.setState({ screen: 'cart' }),
+      slotChoices: ['s1', 's2', 's3'].map((id) => { const sel = st.slotSel === id; return { time: times[id], feeText: free ? '무료' : fmt(base[id]), selected: sel, pick: () => this.setState({ slotSel: id }),
+        cardStyle: 'width:100%;display:flex;align-items:center;gap:12px;padding:16px;border-radius:12px;box-sizing:border-box;margin-top:12px;font-family:inherit;color:#131518;text-align:left;letter-spacing:-0.3px;' + (sel ? 'border:1.5px solid #131518;background:#F5F6F8' : 'border:1px solid #DCDFE3;background:#FFFFFF'),
+        radioStyle: 'flex:none;' + (sel ? rOn : rOff), timeStyle: 'flex:1;font-size:17px;line-height:24px;' + (sel ? 'font-weight:700' : 'font-weight:500') }; }),
+      slotNone: !st.slotSel,
+      slotFeeText: st.slotSel ? (free ? '무료' : fmt(base[st.slotSel])) : '시간을 선택하면 확인할 수 있어요',
+      slotTotalText: st.slotSel ? fmt(subtotal + (free ? 0 : base[st.slotSel])) : (free ? fmt(subtotal) : (subtotal + 2500).toLocaleString('ko-KR') + '~' + fmt(subtotal + 5000)),
+      slotCtaStyle: 'height:52px;width:100%;font-size:17px;font-weight:700;font-family:inherit;border-radius:8px;' + (st.slotSel ? 'border:1px solid #131518;background:#131518;color:#FFFFFF' : 'border:0;background:#DCDFE3;color:#5E636B'),
+      slotContinue: () => { if (this.state.slotSel) this.setState({ slot: this.state.slotSel, method: 'today', screen: 'checkout', intent: 'buy', g1Open: false }); },
       scrollRecs: () => { const n = Object.assign({}, this.state.recs); if (!n.r1) n.r1 = true; else n.r2 = true; this.setState({ recs: n }); },
       goCheckout: () => this.setState({ method: 'today', screen: 'checkout', intent: 'buy' }),
       checkoutBack: () => this.setState({ screen: isC ? 'cart' : 'alt' }),

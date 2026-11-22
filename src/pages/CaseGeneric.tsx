@@ -160,19 +160,20 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <div className="mt-14 rounded-[28px] bg-white p-6 md:p-10">
               <p className="eyebrow" style={{ color: S }}>After · 개선안</p>
               <div className="mt-6 grid items-start gap-10 md:grid-cols-12">
-                <div className="mx-auto w-full max-w-[380px] md:col-span-5"><Fig src={I('n-cart')} alt="무료배송 남은 금액, 현재 상품, 연관 상품과 담기 버튼을 한 흐름으로 보여주는 장바구니 개선 화면" cap="무료배송 조건과 장바구니 상품 기반 연관 상품을 한 흐름에서 안내" /></div>
+                <div className="mx-auto w-full max-w-[380px] md:col-span-5"><Fig src={I('n-cart')} alt="무료배송 남은 금액, 현재 상품, 연관 상품과 담기 버튼을 한 흐름으로 보여주는 장바구니 개선 화면" cap="무료배송까지 남은 금액, 수량 조절, 추천 상품, 배송 시간 선택으로 이어지는 하단 CTA" /></div>
                 <ol className="space-y-6 md:col-span-7">
                   {[
-                    ['01', '무료배송 조건의 가시성', '현재 상품금액 10,000원, 기준 30,000원, 남은 금액 20,000원을 프로토타입 예시 조건으로 분명하게 보여줍니다.'],
-                    ['02', '구매 맥락에 맞는 연관 상품', '장바구니에 담긴 마스크팩과 함께 고려할 수 있는 메디힐 상품 두 개에 집중했습니다. AI 개인화 추천이 아니라 장바구니 상품 기반 제안입니다.'],
-                    ['03', '탐색과 행동의 거리 축소', '무료배송 조건 아래에 현재 상품과 추천 상품, 담기 버튼을 배치해 판단 직후 다음 행동으로 이어지게 했습니다.'],
+                    ['01', '무료배송 조건의 가시성', '현재 10,000원, 기준 30,000원, 남은 금액 20,000원과 진행 바(33.3%)를 한 카드에 모았습니다. 기준 금액은 프로토타입 예시 값입니다.'],
+                    ['02', '추가 구매에 따른 비용 변화', '추천 상품마다 담았을 때 무료배송까지 남는 금액을 보여주고, 담으면 진행 바와 예상 결제금액이 바로 바뀝니다. 담지 않아도 구매를 이어갈 수 있습니다.'],
+                    ['03', '배송 시간과 배송비 사전 비교', '하단 CTA를 누르면 세 시간대의 배송비를 모두 비교해 고를 수 있고, 선택에 따라 결제금액이 바뀐 채 주문/결제로 이어집니다.'],
                   ].map(([n, title, body]) => <li key={n} className="border-t border-grid pt-5"><p className="text-[13px] font-bold" style={{ color: S }}>Decision {n}</p><h4 className="mt-2 text-[20px] font-bold">{title}</h4><p className="mt-2 text-[15px] leading-[1.75] text-sub">{body}</p></li>)}
                 </ol>
               </div>
+              <div className="mt-10 grid grid-cols-2 gap-5 md:mx-auto md:max-w-[760px] md:gap-8"><Fig src={I('n-cartAdded')} alt="추천 상품을 담은 뒤 무료배송까지 8,000원 남은 장바구니" cap="추천 상품을 담으면 남은 금액 8,000원으로 갱신" /><Fig src={I('n-slotSelect')} alt="세 시간대의 배송비를 비교하고 15:00~16:00을 선택한 화면" cap="배송 시간대별 배송비 비교 후 선택" className="md:mt-14" /></div>
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-2">
-              <div className="rounded-[24px] bg-[#EAF4DB] p-6 md:p-8"><p className="eyebrow" style={{ color: S }}>Qualitative feedback</p><ul className="mt-4 space-y-3 text-[16px] leading-[1.7]"><li>무료배송까지 더 담아야 할 금액을 이해하기 쉬웠음</li><li>기존에 구매하려던 상품과 관련된 추천이 자연스럽게 느껴졌음</li><li>추천 상품을 보며 추가 구매를 긍정적으로 고려하게 됐음</li></ul><p className="mt-5 text-[13px] leading-[1.65] text-sub">정성적 반응이며 실제 추가 구매 행동이나 금액·매출 지표는 측정하지 않았습니다.</p></div>
-              <div className="rounded-[24px] border border-grid bg-white p-6 md:p-8"><p className="eyebrow text-sub">후속 보완 방향 · 미구현</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[15px] leading-[1.7] text-sub"><li>옵션·수량 변경, 상품 삭제와 선택 상태 보완</li><li>배송지 확인·변경 경로 추가</li><li>실제 다음 단계에 맞는 CTA 문구 확정</li><li>상품 추가 후 금액·프로그레스·안내의 일관된 갱신</li></ul></div>
+              <div className="rounded-[24px] bg-[#EAF4DB] p-6 md:p-8"><p className="eyebrow" style={{ color: S }}>Qualitative feedback</p><ul className="mt-4 space-y-3 text-[16px] leading-[1.7]"><li>무료배송까지 더 담아야 할 금액을 이해하기 쉬웠음</li><li>기존에 구매하려던 상품과 관련된 추천이 자연스럽게 느껴졌음</li><li>추천 상품을 보며 추가 구매를 긍정적으로 고려하게 됐음</li></ul><p className="mt-5 text-[13px] leading-[1.65] text-sub">정성적 반응이며 실제 추가 구매 행동이나 금액·매출 지표는 측정하지 않았습니다. 이 반응은 이번 개편(수량·삭제·배송 시간 선택 추가) 이전 장바구니 시안 기준입니다.</p></div>
+              <div className="rounded-[24px] border border-grid bg-white p-6 md:p-8"><p className="eyebrow text-sub">후속 보완 방향 · 미구현</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[15px] leading-[1.7] text-sub"><li>품절·배송비 조회 실패·재고 변동 등 예외 상태는 화면으로만 설계했고 프로토타입에는 미구현</li><li>실제 배송 가능 시간·재고·배송비 연동 없이 시나리오 값 사용</li><li>쿠폰·결제수단 할인까지 반영한 최종 결제금액 확인</li><li>배송지 변경은 재확인 상태만 시연</li></ul></div>
             </div>
             <div className="mt-5 rounded-[20px] bg-white/70 p-6 text-[15px] leading-[1.7] text-sub"><b className="text-ink">Future validation</b><br />“무료배송까지 남은 금액을 확인하고 필요한 상품을 추가해 구매를 진행해 주세요” 과제로 조건 확인 시간, 추천 발견 여부, 선택 이유와 혼란 지점을 추후 검증할 수 있습니다. 아직 수행한 테스트로 표현하지 않습니다.</div>
           </article>

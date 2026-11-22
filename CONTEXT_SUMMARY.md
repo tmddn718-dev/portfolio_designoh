@@ -22,6 +22,9 @@
 ## 4. 현재 구현 상태 [확정]
 - **홈**: 단어 단위 텍스트 등장, 핀 고정 프로젝트 전환(900px↑), 스태거(`data-stagger`)·패럴랙스(`data-parallax-y`, `useScrollMotion.ts`). 핀 섹션은 `refreshPriority: 10`. 히어로의 포인터 따라다니는 파란 글로우는 다른 세션이 넣은 것(그대로 둠).
 - **홈 섬네일**: 카드 구성은 `Sections.tsx`의 `ThumbnailVisual`·`OliveShowcase`(다른 세션이 직접 짠 구도, 제목은 올리브영 `OUT OF STOCK. MORE OPTIONS.`, NODI 배경 #DCE3FB·제목 #202020). **`PhoneMockup.tsx`·`thumbnails.ts`(설정 기반 목업)는 현재 아무 곳에서도 쓰이지 않지만 삭제하지 않음.** 쓰려면 `ThumbnailVisual` 맨 앞에서 `thumbSpecs[p.slug]`를 읽게 연결.
+- **홈 최근 변경 [확정]**: 접근 방식 3번은 `Complete`("막히는 순간의 화면까지 설계합니다", 당근 조회 실패 화면 `L-e1`), About의 Prototype 항목도 Complete로 교체. trigr 섬네일은 밝은 톤(#F6E4F6, 알약 4개, 폰 6° 회전), NODI 섬네일은 `cqw` 단위(제목 8.4cqw)로 제목·목업이 겹치지 않게 맞춤.
+- **상세 공통 [확정]**: 상단 챕터 내비는 `case.tsx`의 스크롤 기반 `useActive(dep, list)`로 동작(5개 상세 모두 확인, NODI는 list를 넘겨야 함). NODI 내비에는 `프로토타입` 버튼(`onCta`) 있음. NODI 문제 카드 사이 화살표 제거, 초기 시안 이미지 `it-init-*` 재렌더, 개선 시안 조건 확인 `it-final-conds`는 사용자 v6 PNG.
+- **올리브영 BEFORE 롱스크롤 [확정]**: `karrotBig.ts`의 `n-checkoutAsis`(배송)·`n-checkoutAsisPickup`(픽업) `parts` 매핑(상단 고정+본문 스크롤, `topCq` 24.74). 현재 페이지는 픽업 사용, 개인정보(계좌 번호 등)는 가림.
 - **작업 기간(확정)**: 올리브영 2026.11.09–11.19(약 2주), 당근 2026.10.19–10.30(2주), NODI 2026.10.15–10.23(1주), 우리사이 2026.11.02–11.09(1주), trigr 2025.05–2026.06.
 - **NODI 상세**: 배경→문제→디자인 질문→솔루션 01~04→구현 범위→회고→MORE. 사실: 시안(`NODI-2` 저장소 `.dc.html`), 추천은 규칙 기반 점수(AI 호출 없음), 참석자·캘린더는 예시 데이터.
 - **당근 상세**: 새 UI 20장, 사용성 테스트(동일 참가자 7명, 평균 −34초, 7/7명 단축 — 사용자가 준 값, 원본 기록 없어 그래프 없음).
@@ -34,11 +37,12 @@
 - 사실 날조 금지: 수치·인용·테스트 결과를 만들지 않고 예시·시뮬레이션은 그렇게 표기. 자료 없으면 "[추가 자료 필요]"/플레이스홀더.
 - 이름·휴대폰·이메일은 노출, 주소·생년월일은 노출 금지. 당근 판매글 AS-IS의 동네 이름은 가리지 않음. 올리브영·당근은 비공식 제안 문구 유지.
 - **작업은 `site-develop`에서. 푸시는 요청할 때만, 기본은 `site-develop`만.** "main도"라고 하면 main까지, fast-forward로. 푸시 전 `git fetch`, 갈라지면 병합(강제 푸시 금지). 다른 세션이 같은 브랜치에 푸시하니 자주 병합이 필요함. 커밋 끝에 `Co-Authored-By: Claude Sonnet 5.5` 줄.
-- 현재 `site-develop` 최신 `e6189da`, `main`은 `0ec7824`에 있어 뒤처져 있음(메모리에도 규칙 저장).
+- 2026-11-20 기준 `site-develop`과 `main` 모두 `6f05337`(동기화됨, 이후 변경은 `git log`로 확인. 메모리에도 규칙 저장).
 
 ## 6. 진행 중·남은 작업
 - **[검토중] 우리사이 설문 34명**: 문항별 응답 수·구성·기간·서술 의견 자료 대기(현재 실제 7명 값). 반영 위치 `CaseGeneric.tsx`의 `survey`·설문 카드·검증 "7" 카드, `projects.ts` 우리사이 본문.
-- 당근: 채팅 장면 BEFORE는 자리표시, 구매자 화면(F1–F3, T1–T6)은 페이지에 미사용.
+- 당근: 채팅 BEFORE는 사용자 캡처(`asis-chat`, 닉네임 가림)로 채움. 구매자 화면(F1–F3, T1–T6)은 페이지에 미사용.
+- **[검토중] 올리브영 비교 불일치**: 두 번째 비교의 BEFORE는 픽업 결제 롱스크롤(`n-checkoutAsisPickup`), AFTER는 오늘드림 배송 화면이라 흐름이 다름. 맞출지 사용자 결정 필요.
 - NODI: 실제 UI 목록의 `hi-*`(위쪽만 잘린 이미지)를 전체 스크롤 기준으로 교체 미실시. 올리브영·우리사이·trigr는 전체 스크롤 원본이 없어 확대하면 한 화면만 보임(trigr 프로토타입의 PNG 화면도 스크롤 안 됨).
 - trigr: 상금 지급 4번째(복귀) 화면·Figma Variables 화면은 자료 없음, 미션 만들기(+) 흐름은 PNG 없어 미구현.
 - 정리: 안 쓰는 `public/images/karrot-large-furniture/k-*`(10개), 미사용 `Marquee.tsx`·`Cursor.tsx`·`PhoneMockup`, 이미지 srcset.

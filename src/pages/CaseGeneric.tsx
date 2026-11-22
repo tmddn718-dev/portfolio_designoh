@@ -99,7 +99,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
           <dl className="mt-7 grid grid-cols-3 gap-2 text-center tabular-nums">
             <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">−42초</dd><dt className="mt-1 text-[11px] leading-snug text-sub md:text-[12px]">대체 구매 후 결제 확정</dt></div>
             <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">−26초</dd><dt className="mt-1 text-[11px] leading-snug text-sub md:text-[12px]">배송·혜택 확인 후 결정</dt></div>
-            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">n=8</dd><dt className="mt-1 text-[11px] leading-snug text-sub md:text-[12px]">동일 참여자 비교 테스트</dt></div>
+            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">8</dd><dt className="mt-1 text-[11px] leading-snug text-sub md:text-[12px]">동일 참여자 비교 테스트</dt></div>
           </dl>
         </div>
       </Hero>
@@ -108,7 +108,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
         <ChapterHead color={S} n="01" label="Background & Problem Discovery" title="특정 구매 방법의 품절이, 구매 전체의 끝처럼 보였다" />
         <div className="mt-8 grid gap-8 md:grid-cols-12">
           <div className="md:col-span-7"><p className="max-w-[46rem] text-[18px] leading-[1.8]">오늘드림 재고가 없더라도 일반배송이나 매장 픽업으로 구매할 수 있습니다. 그러나 기존 흐름에서는 이 가능성을 바로 확인하기 어려워, 사용자가 이전 단계로 돌아가 구매 방법을 다시 찾아야 했습니다.</p></div>
-          <aside className="rounded-[24px] bg-[#F3F7EB] p-6 md:col-span-5 md:p-8"><p className="eyebrow text-sub">Problem statement</p><p className="mt-3 text-[20px] font-bold leading-[1.55]">상품이 품절된 것이 아니라 특정 구매 방법만 불가능한 상황에서도, 구매 자체가 불가능하다고 판단할 수 있었습니다.</p></aside>
+          <aside className="rounded-[24px] bg-[#F3F7EB] p-6 md:col-span-5 md:p-8"><p className="eyebrow text-sub">Problem statement</p><p className="mt-3 text-[20px] font-bold leading-[1.55]">오늘드림이 품절되면, 다른 방법으로 구매할 수 있어도 상품 전체가 품절된 것으로 오해할 수 있습니다.</p></aside>
         </div>
         <div className="mt-12 rounded-[28px] bg-ink p-7 text-white md:p-10"><p className="eyebrow text-white/55">Design question</p><p className="mt-3 max-w-[30ch] text-[26px] font-bold leading-[1.4] md:text-[36px]">오늘드림이 품절된 순간, 사용할 수 있는 다른 구매 경로를 자연스럽게 안내할 수 없을까?</p></div>
         <div className="mt-14 grid gap-5 md:grid-cols-2">

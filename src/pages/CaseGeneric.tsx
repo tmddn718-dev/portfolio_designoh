@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects, TODO, type Project } from '../data/projects'
 import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
-import { CropCompare, FullLengthCompare, ScreenSequence } from '../components/LongScreen'
+import { CropCompare, ExtendedPhoneScreen, FullLengthCompare, ScreenSequence } from '../components/LongScreen'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
 import { AppIcon, onBrand, CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
@@ -535,7 +535,7 @@ function Karrot({ c }: { c: Ctx }) {
           </div>
           <div className="mt-12 md:mt-0 md:col-span-7 grid grid-cols-3 gap-3 md:gap-6">
             <figure><p className="mb-2 text-[13px] font-bold text-sub">AS-IS · 기존 게시글</p><Screen src={I('asis-desc')} alt="기존 당근 상품 상세 본문: 크기와 분해 정보가 문장 속에 섞여 있음" cap="기존 게시글" /></figure>
-            <figure className="mt-6 md:mt-10"><p className="mb-2 text-[13px] font-bold" style={{ color: S }}>TO-BE · 정보 카드</p><Screen src={I('L-b1')} alt="개선 상품 상세: 크기 및 분해, 가져가는 조건 카드" cap="크기·분해·가져가는 조건" /></figure>
+            <figure><p className="mb-2 text-[13px] font-bold" style={{ color: S }}>TO-BE · 정보 카드</p><ExtendedPhoneScreen src={I('full-b1')} zoomSrc={I('L-b1')} ratio={2700 / 780} alt="개선 상품 상세 전체 화면: 본문 아래 크기 및 분해, 가져가는 조건을 거래 정보 카드로 정리" caption="크기·분해·가져가는 조건" /></figure>
             <figure><p className="mb-2 text-[13px] font-bold" style={{ color: S }}>TO-BE · 거래 상태</p><Screen src={I('f-done')} alt="개선 상품 상세: 거래완료 안내와 비활성 버튼" cap="거래 상태 표시" /></figure>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects, TODO } from '../data/projects'
 import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
+import { ExtendedPhoneScreen } from '../components/LongScreen'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
 import { ChapterHead, ChapterNav, InteractionPreview, tintOf, strongOf, useActive, CaseSummary, ProjectIndex, AppIcon } from '../components/case'
@@ -248,7 +249,7 @@ export default function CaseNodi() {
               <Key>추천 결과를 보여주는 것에서 그치지 않고, 사용자가 납득할 수 있는 선택을 돕고자 했습니다.</Key>
             </div>
             <div className="mt-12 md:mt-0 md:col-span-7 grid grid-cols-2 gap-4 md:gap-8">
-              <Ph n="scB" cap="추천 시간 카드" />
+              <ExtendedPhoneScreen src={full('scB')} ratio={3260 / 780} alt="NODI 추천 시간 카드 전체 화면: 추천 순위와 필수 일정 조건 충족 여부, 가능 응답 수" caption="추천 시간 카드 · 전체 화면" />
               <Ph n="reasonB" cap="추천 이유 확인" className="mt-8 md:mt-14" />
             </div>
           </div>

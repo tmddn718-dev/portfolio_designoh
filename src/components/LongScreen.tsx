@@ -134,3 +134,33 @@ export function FullLengthCompare({ asis, tobe, color, children, className = '' 
     </div>
   )
 }
+
+// 6) 확장형 폰 화면: 한 장의 긴 원본을 스마트폰 목업 안(시작 구간)과 그 아래(나머지 구간)로 나눠 이어 보여준다.
+// 같은 이미지를 같은 너비로 위·아래에서 잘라 쓰므로 이음새에서 중복·누락·왜곡이 없다. 서로 다른 화면(상태)을 이어 붙일 때는 쓰지 않는다.
+export function ExtendedPhoneScreen({ src, alt, ratio, split, zoomSrc, zoomBig, caption, className = '' }: { src: string; alt: string; ratio: number; split?: number; zoomSrc?: string; zoomBig?: boolean; caption?: string; className?: string }) {
+  const sp = Math.min(0.9, Math.max(0.2, split ?? 2 / ratio)) // 폰 안에 보이는 원본 높이의 비율. 기본은 폰 화면 비율(약 1:2)에 맞춘다
+  const bezel = 'linear-gradient(150deg, #5a5a62 0%, #17171a 28%, #0a0a0c 55%, #2c2c32 100%)'
+  const trigger = (
+    <span className="relative block [container-type:inline-size]">
+      <span className="relative block rounded-t-[12cqw] px-[2.5cqw] pt-[2.5cqw]" style={{ background: bezel, boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.28)' }}>
+        <span aria-hidden className="absolute left-1/2 top-[3cqw] z-10 block h-[5.4cqw] w-[26cqw] -translate-x-1/2 rounded-full bg-black" />
+        <span className="block overflow-hidden rounded-t-[9.5cqw] bg-white" style={{ aspectRatio: `1 / ${sp * ratio}` }}>
+          <img src={src} alt={alt} loading="lazy" className="block w-full" />
+        </span>
+      </span>
+      <span className="relative block px-[2.5cqw]">
+        <span aria-hidden className="absolute inset-y-0 left-0 w-[2.5cqw]" style={{ background: 'linear-gradient(to bottom, #17171a, transparent)' }} />
+        <span aria-hidden className="absolute inset-y-0 right-0 w-[2.5cqw]" style={{ background: 'linear-gradient(to bottom, #17171a, transparent)' }} />
+        <span className="block overflow-hidden bg-white" style={{ aspectRatio: `1 / ${(1 - sp) * ratio}` }}>
+          <img src={src} alt="" aria-hidden loading="lazy" className="block w-full" style={{ marginTop: `${-sp * ratio * 100}%` }} />
+        </span>
+      </span>
+    </span>
+  )
+  return (
+    <figure className={className}>
+      <Zoomable src={zoomSrc ?? src} big={zoomBig === false ? undefined : zoomSrc ? undefined : src} alt={alt} caption={caption ?? alt} className="w-full" trigger={trigger} />
+      {caption && <figcaption className="mt-3 text-[14px] text-sub">{caption}</figcaption>}
+    </figure>
+  )
+}

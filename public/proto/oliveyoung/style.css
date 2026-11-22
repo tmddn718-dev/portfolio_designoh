@@ -13,3 +13,9 @@ button:focus-visible,[role=radio]:focus-visible{outline:2px solid #131518;outlin
 .embedded,.embedded body{background:transparent;overflow:hidden}
 .embedded .stage{display:block;width:390px;height:844px}
 .embedded .frame{border-radius:0;box-shadow:none;transform:none;margin:0}
+
+/* 폰 크기(폭 500px 이하): 틀 없이 화면 전체 */
+.fullbleed,.fullbleed body{background:#fff}
+.fullbleed body{display:block;overflow:hidden}
+.fullbleed .stage{display:block;width:100vw;height:100vh;height:100dvh}
+.fullbleed .frame{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none;transform:none;margin:0}

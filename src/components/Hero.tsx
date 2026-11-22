@@ -90,7 +90,7 @@ export default function Hero() {
       <div aria-hidden data-grid className="grid-bg grid-bg-dark absolute inset-0" />
       <div aria-hidden data-hero-glow className="hero-pointer-glow" />
       <div data-parallax className="wrap gutter relative flex w-full flex-col justify-center py-14 md:py-20">
-        <p data-copy className="mb-8 text-[12px] font-semibold uppercase tracking-[.16em] text-white/68 md:mb-10">Product Designer · UX/UI Portfolio / 2026</p>
+        <p data-copy className="mb-8 text-[13px] font-semibold uppercase tracking-[.16em] text-white/68 md:mb-10">Product Designer · UX/UI Portfolio / 2026</p>
         <h1 data-hero-title aria-label="Complexity → Clarity" className="hero-title text-[clamp(46px,14.5vw,64px)] font-extrabold leading-[0.98] tracking-[-0.05em] md:text-[clamp(88px,8.5vw,112px)]">
           <span data-cx data-text="Complexity" aria-hidden className="hero-outline outline-text block">Complexity</span>
           <span aria-hidden className="flex items-center gap-[0.1em]">

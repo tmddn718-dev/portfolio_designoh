@@ -97,9 +97,9 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <figure className="w-[44%] md:mt-12"><p className="mb-2 text-[13px] font-semibold" style={{ color: S }}>Alternative Methods</p><Screen src={I('n-altMethods')} alt="일반배송과 매장 픽업을 비교하는 개선 화면" /></figure>
           </div>
           <dl className="mt-7 grid grid-cols-3 gap-2 text-center tabular-nums">
-            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">−42초</dd><dt className="mt-1 text-[11px] leading-snug text-sub md:text-[12px]">대체 구매 후 결제 확정</dt></div>
-            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">−26초</dd><dt className="mt-1 text-[11px] leading-snug text-sub md:text-[12px]">배송·혜택 확인 후 결정</dt></div>
-            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">8</dd><dt className="mt-1 text-[11px] leading-snug text-sub md:text-[12px]">동일 참여자 비교 테스트</dt></div>
+            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">−42초</dd><dt className="mt-1 text-[13px] leading-snug text-sub">대체 구매 후 결제 확정</dt></div>
+            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">−26초</dd><dt className="mt-1 text-[13px] leading-snug text-sub">배송·혜택 확인 후 결정</dt></div>
+            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">8</dd><dt className="mt-1 text-[13px] leading-snug text-sub">동일 참여자 비교 테스트</dt></div>
           </dl>
         </div>
       </Hero>

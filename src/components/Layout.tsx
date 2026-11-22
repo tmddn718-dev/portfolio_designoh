@@ -63,7 +63,7 @@ export default function Layout() {
       <footer className="border-t border-grid mt-24">
         <div className="wrap gutter py-8 text-[13px] text-sub flex justify-between gap-4 flex-wrap">
           <span>© 2026 Portfolio</span>
-          <span>UX/UI · PRODUCT DESIGN</span>
+          <span>UX/UI · PRODUCT DESIGN · <Link className="underline underline-offset-4 hover:text-ink" to="/#contact">Contact</Link></span>
         </div>
       </footer>
       {top && <button onClick={() => scrollTo({ top: 0 })} className="fixed right-4 bottom-4 z-40 px-4 py-3 rounded-full bg-ink text-white text-[13px] font-semibold shadow-lg">맨 위로</button>}

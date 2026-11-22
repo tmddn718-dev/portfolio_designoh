@@ -135,19 +135,22 @@ export function FullLengthCompare({ asis, tobe, color, children, className = '' 
   )
 }
 
-// 6) 확장형 폰 화면(Extended Phone Mockup with Overflow Content)
-// 이미지 레이어: 긴 원본 한 장을 원본 너비·비율 그대로 한 번만 그린다(자르거나 줄이지 않으므로 연결 지점에서 중복·누락이 없다).
-// 프레임 레이어: 그 위에 실제 기기 높이(390:844)까지만 베젤·다이내믹 아일랜드를 겹쳐 그린다. 기기 높이를 넘는 부분은 프레임 없이 UI만 아래로 이어진다.
-// 폰 안의 스크롤이 아니라 페이지 아래로 이어지는 연출이다. 서로 다른 화면(상태)을 이어 붙일 때는 쓰지 않는다.
+// 6) 확장형 폰 화면: 긴 원본을 한 장 그대로(자르거나 줄이지 않고) 폰 목업 안에 담는다.
+// 이미지 레이어와 프레임 레이어를 따로 두고, 프레임은 이미지 전체 길이를 감싸며 위에는 다이내믹 아일랜드, 아래는 둥근 끝으로 닫는다.
+// 실제 기기 화면 높이(390:844)를 넘어 스크롤해야 보이는 구간은 같은 프레임 안에서 점선 경계로 나뉘어 아래로 쌓인다.
+// 내부 스크롤이 아니라 페이지 흐름 그대로 이어진다. 서로 다른 화면(상태)을 이어 붙일 때는 쓰지 않는다.
 export function ExtendedPhoneScreen({ src, alt, ratio, zoomSrc, caption, className = '' }: { src: string; alt: string; ratio: number; zoomSrc?: string; caption?: string; className?: string }) {
-  const bezel = '2.5cqw'
-  const frameH = `min(${(844 / 390) * 100}cqw, 100%)` // 기기 높이. 이미지가 더 짧으면 이미지 끝까지
+  const bezel = 2.5 // cqw
+  const screenH = (844 / 390) * 100 - bezel * 2 // 기기 화면 한 장의 높이(cqw)
+  const imgH = (100 - bezel * 2) * ratio // 이미지 높이(cqw)
+  const seams = Array.from({ length: Math.max(0, Math.ceil(imgH / screenH) - 1) }, (_, i) => (i + 1) * screenH)
   const trigger = (
     <span className="relative block [container-type:inline-size]">
-      <span className="block overflow-hidden" style={{ margin: `${bezel} ${bezel} 0`, clipPath: 'inset(0 round 9.5cqw 9.5cqw 0 0)', background: '#fff' }}>
+      <span className="relative block overflow-hidden bg-white" style={{ margin: `${bezel}cqw`, borderRadius: '9.5cqw' }}>
         <img src={src} alt={alt} loading="lazy" className="block w-full" style={{ aspectRatio: `1 / ${ratio}` }} />
+        {seams.map(y => <span key={y} aria-hidden className="pointer-events-none absolute left-0 right-0 border-t border-dashed" style={{ top: `${y}cqw`, borderColor: 'rgba(24,36,58,.28)' }} />)}
       </span>
-      <span aria-hidden className="pointer-events-none absolute left-0 right-0 top-0 block" style={{ height: frameH, border: `${bezel} solid #121214`, borderBottom: 0, borderRadius: '12cqw 12cqw 0 0', boxShadow: 'inset 0 1px 0 rgba(255,255,255,.22), inset 1px 0 0 rgba(255,255,255,.22), inset -1px 0 0 rgba(255,255,255,.22)' }}>
+      <span aria-hidden className="pointer-events-none absolute inset-0 block" style={{ border: `${bezel}cqw solid #121214`, borderRadius: '12cqw', boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.22), 0 0 0 1px rgba(0,0,0,.5)' }}>
         <span className="absolute left-1/2 block h-[5.4cqw] w-[26cqw] -translate-x-1/2 rounded-full bg-black" style={{ top: '0.5cqw' }} />
       </span>
     </span>

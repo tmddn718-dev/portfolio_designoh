@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects, TODO, type Project } from '../data/projects'
 import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
-import { LongScreenViewer, ScreenSequence, UIFocusDetail } from '../components/LongScreen'
+import { CropCompare, ScreenSequence, UIFocusDetail } from '../components/LongScreen'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
 import { AppIcon, onBrand, CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
@@ -168,7 +168,21 @@ function OliveRenewed({ c }: { c: Ctx }) {
                   ].map(([n, title, body]) => <li key={n} className="border-t border-grid pt-5"><p className="text-[13px] font-bold" style={{ color: S }}>Decision {n}</p><h4 className="mt-2 text-[20px] font-bold">{title}</h4><p className="mt-2 text-[15px] leading-[1.75] text-sub">{body}</p></li>)}
                 </ol>
               </div>
-              <div className="mt-10 grid grid-cols-2 gap-5 md:mx-auto md:max-w-[760px] md:gap-8"><Fig src={I('n-cartAdded')} alt="추천 상품을 담은 뒤 무료배송까지 8,000원 남은 장바구니" cap="추천 상품을 담으면 남은 금액 8,000원으로 갱신" /><Fig src={I('n-slotSelect')} alt="세 시간대의 배송비를 비교하고 15:00~16:00을 선택한 화면" cap="배송 시간대별 배송비 비교 후 선택" className="md:mt-14" /></div>
+              <div className="mx-auto mt-10 max-w-[260px]"><Fig src={I('n-slotSelect')} alt="세 시간대의 배송비를 비교하고 15:00~16:00을 선택한 화면" cap="배송 시간대별 배송비 비교 후 선택" /></div>
+            </div>
+            <div className="mt-14">
+              <p className="eyebrow rule pt-4 text-sub">Before / After · 장바구니 핵심 구간</p>
+              <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.75] text-sub">기존 장바구니에도 하단 고정 구매 버튼과 무료배송 안내가 있었습니다. 같은 정보 맥락의 구간만 잘라 나란히 비교했고, 눌러서 원본 전체 화면을 AS-IS와 TO-BE로 전환해 볼 수 있습니다.</p>
+              <div className="mt-8 space-y-12">
+                <CropCompare n="01" title="결제 금액과 배송 조건" color={A}
+                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-02.jpg', alt: '기존 장바구니: 최종 예상 결제 금액 표(상품금액·할인·배송비·총액)', ratio: 1688 / 780, region: { x: 0, y: 10, w: 100, h: 31 }, mark: { x: 1, y: 28, w: 97, h: 66 }, caption: '상품금액·할인·배송비·총액을 표로 확인해요. 무료배송 안내는 화면 하단에 따로 있어요.' }}
+                  tobe={{ src: '/images/oliveyoung-todaydream/n-cart.webp', alt: '개선 장바구니: 추천 상품별 무료배송까지 남은 금액, 예상 총 결제금액과 배송 시간대 안내', ratio: 1720 / 780, region: { x: 0, y: 69, w: 100, h: 30 }, mark: { x: 1, y: 2, w: 98, h: 70 }, caption: '추천 상품마다 무료배송까지 남는 금액을 보여주고, 예상 총 결제금액과 배송 시간대 안내를 이어 놓았어요.' }}
+                  decision="하단 고정 구매 버튼과 무료배송 안내는 기존 앱에도 있었어요. 바뀐 점은 가격과 배송 정보를 상품 선택 흐름 가까이에 이어서 배치한 것이에요." />
+                <CropCompare n="02" title="관련 상품 탐색" color={A}
+                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-03.jpg', alt: '기존 장바구니: 함께 보면 좋은 상품 가로 카드 목록', ratio: 1688 / 780, region: { x: 0, y: 41, w: 100, h: 36 }, mark: { x: 1, y: 24, w: 98, h: 54 }, caption: '‘함께 보면 좋은 상품’을 가로 카드로 넘겨 보며 상품 정보 중심으로 탐색해요.' }}
+                  tobe={{ src: '/images/oliveyoung-todaydream/n-cartAdded.webp', alt: '개선 장바구니: 함께 담기 좋은 상품 목록과 담기 버튼, 무료배송 조건 안내', ratio: 1880 / 780, region: { x: 0, y: 58.5, w: 100, h: 30.5 }, mark: { x: 1, y: 17, w: 98, h: 58 }, caption: '‘함께 담기 좋은 상품’을 한 줄씩 보여주고, 담기 버튼과 무료배송 조건 충족 여부를 함께 확인해요.' }}
+                  decision="추천 상품을 구경하는 목록에서, 지금 장바구니 금액과 무료배송 조건에 연결해 담을지 판단하는 목록으로 바꿨어요." />
+              </div>
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-2">
               <div className="rounded-[24px] bg-[#EAF4DB] p-6 md:p-8"><p className="eyebrow" style={{ color: S }}>Qualitative feedback</p><ul className="mt-4 space-y-3 text-[16px] leading-[1.7]"><li>무료배송까지 더 담아야 할 금액을 이해하기 쉬웠음</li><li>기존에 구매하려던 상품과 관련된 추천이 자연스럽게 느껴졌음</li><li>추천 상품을 보며 추가 구매를 긍정적으로 고려하게 됐음</li></ul><p className="mt-5 text-[13px] leading-[1.65] text-sub">정성적 반응이며 실제 추가 구매 행동이나 금액·매출 지표는 측정하지 않았습니다. 이 반응은 이번 개편(수량·삭제·배송 시간 선택 추가) 이전 장바구니 시안 기준입니다.</p></div>

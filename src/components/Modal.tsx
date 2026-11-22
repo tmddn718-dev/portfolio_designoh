@@ -30,15 +30,15 @@ function fitFrame(e: SyntheticEvent<HTMLImageElement>) {
   btn.style.aspectRatio = `1 / ${r * (1 - 2 * pad) + 2 * pad}`
 }
 
-export type ZoomPair = { src: string; alt: string; tag: string }
+export type ZoomPair = { src: string; alt: string; tag: string; big?: string }
 
 // 이미지를 누르면 크게 보는 버튼형 이미지. pair(예: AS-IS / TO-BE)를 주면 확대 화면에서 두 이미지를 전환해 볼 수 있다(버튼·좌우 방향키).
-export function Zoomable({ src, alt, caption, className = '', imgClass = '', big, pair, pairIndex = 0, pairColor }: { src: string; alt: string; caption?: string; className?: string; imgClass?: string; big?: string; pair?: ZoomPair[]; pairIndex?: number; pairColor?: string }) {
+export function Zoomable({ src, alt, caption, className = '', imgClass = '', big, pair, pairIndex = 0, pairColor, trigger }: { src: string; alt: string; caption?: string; className?: string; imgClass?: string; big?: string; pair?: ZoomPair[]; pairIndex?: number; pairColor?: string; trigger?: ReactNode }) {
   const [open, setOpen] = useState(false)
   const [idx, setIdx] = useState(pairIndex)
-  const cur = pair ? pair[idx] : { src, alt, tag: '' }
-  const kf = big ? undefined : karrotFull(cur.src)
-  const full = big ?? (kf && 'big' in kf ? kf.big : undefined)
+  const cur: ZoomPair = pair ? pair[idx] : { src, alt, tag: '', big }
+  const kf = cur.big ? undefined : karrotFull(cur.src)
+  const full = cur.big ?? (kf && 'big' in kf ? kf.big : undefined)
   // 휴대폰 한 대 크기(화면 높이에 맞춰 줄여서 위아래가 잘리지 않게)에 상단·본문·하단을 따로 올려, 본문은 가운데에서만 스크롤한다
   const box = { width: 'min(390px, 92vw, calc(78vh * 780 / 1688))', aspectRatio: '780 / 1688', containerType: 'inline-size' as const }
   const scroller = 'absolute left-0 right-0 overflow-y-auto overscroll-contain [scrollbar-width:thin]'
@@ -50,7 +50,7 @@ export function Zoomable({ src, alt, caption, className = '', imgClass = '', big
   return (
     <>
       <button type="button" className={`zoomable ${className}`} onClick={() => { setIdx(pairIndex); setOpen(true) }} aria-label={`${alt}: 크게 보기`}>
-        <img src={src} alt={alt} loading="lazy" className={imgClass} onLoad={fitFrame} />
+        {trigger ?? <img src={src} alt={alt} loading="lazy" className={imgClass} onLoad={fitFrame} />}
       </button>
       <Modal open={open} onClose={() => setOpen(false)} label={cur.alt}>
         <figure className="text-white text-center" onKeyDown={onKey}>

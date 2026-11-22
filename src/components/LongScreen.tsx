@@ -73,3 +73,37 @@ export function ScreenSequence({ steps, color, label, className = '' }: { steps:
     </div>
   )
 }
+
+export type CropSide = { src: string; alt: string; ratio: number; region: Region; mark: Region; caption: string }
+
+// 4) 핵심 구간 좌우 비교: 긴 원본에서 같은 정보 맥락의 구간만 잘라(크롭) AS-IS 왼쪽 / TO-BE 오른쪽에 같은 크기로 놓는다.
+// 크롭은 원본 이미지를 CSS로 자를 뿐 새 이미지를 만들지 않고, 누르면 원본 전체 화면을 AS-IS/TO-BE로 전환하며 스크롤해서 볼 수 있다.
+export function CropCompare({ n, title, asis, tobe, decision, color, className = '' }: { n: string; title: string; asis: CropSide; tobe: CropSide; decision: string; color: string; className?: string }) {
+  const pair = [{ src: asis.src, alt: asis.alt, tag: 'AS-IS', big: asis.src }, { src: tobe.src, alt: tobe.alt, tag: 'TO-BE', big: tobe.src }]
+  const Crop = ({ side, i }: { side: CropSide; i: 0 | 1 }) => {
+    const { x, y, w, h } = side.region, m = side.mark, after = i === 1
+    const view = (
+      <span className="relative block overflow-hidden rounded-[12px] border border-grid bg-white" style={{ aspectRatio: `${w} / ${h * side.ratio}` }}>
+        <img src={side.src} alt={side.alt} loading="lazy" className="absolute max-w-none" style={{ width: `${10000 / w}%`, left: `${-x * 100 / w}%`, top: `${-y * 100 / h}%` }} />
+        {/* 테두리만 그려 실제 UI를 가리지 않는다 */}
+        <span aria-hidden className="pointer-events-none absolute rounded-[6px]" style={{ left: `${m.x}%`, top: `${m.y}%`, width: `${m.w}%`, height: `${m.h}%`, border: after ? `2.5px solid ${color}` : '2.5px dashed #555' }} />
+      </span>
+    )
+    return <Zoomable src={side.src} alt={side.alt} caption={`${pair[i].tag} · ${side.caption}`} pair={pair} pairIndex={i} pairColor={color} className="w-full" trigger={view} />
+  }
+  return (
+    <section aria-label={`Comparison ${n} ${title}`} className={className}>
+      <p className="text-[13px] font-bold" style={{ color }}>Comparison {n}</p>
+      <h4 className="mt-1 text-[20px] font-bold leading-snug md:text-[24px]">{title}</h4>
+      <div className="mt-4 grid grid-cols-2 items-start gap-x-2 gap-y-2 sm:gap-x-4">
+        <span className="inline-block w-fit rounded-full bg-[#e8e8e8] px-2.5 py-1 text-[13px] font-bold text-ink">AS-IS</span>
+        <span className="inline-block w-fit rounded-full px-2.5 py-1 text-[13px] font-bold" style={{ background: color, color: onBrand(color) }}>TO-BE</span>
+        <Crop side={asis} i={0} />
+        <Crop side={tobe} i={1} />
+        <p className="text-[13px] leading-[1.6] text-sub sm:text-[14px]">{asis.caption}</p>
+        <p className="text-[13px] leading-[1.6] sm:text-[14px]">{tobe.caption}</p>
+      </div>
+      <p className="mt-4 rounded-[14px] p-4 text-[15px] leading-[1.65]" style={{ background: `color-mix(in srgb, ${color} 12%, white)` }}><b className="block text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>디자인 판단</b>{decision}</p>
+    </section>
+  )
+}

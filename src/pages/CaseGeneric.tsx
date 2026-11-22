@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects, TODO, type Project } from '../data/projects'
 import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
+import { LongScreenViewer, ScreenSequence, UIFocusDetail } from '../components/LongScreen'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
 import { AppIcon, onBrand, CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
@@ -148,14 +149,12 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <div className="mt-10">
               <p className="eyebrow text-sub">Before · 실제 올리브영 앱의 긴 장바구니 흐름</p>
               <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.75] text-sub">기존 앱도 무료배송 안내와 구매 버튼을 하단에 고정해 제공했습니다. 문제는 버튼을 찾는 것이 아니라, 무료배송 조건을 확인한 순간 추가 구매에 참고할 추천 상품이 현재 구매 맥락과 바로 연결되지 않는 구조였습니다.</p>
-              <ol id="cart-before-flow" role="region" aria-label="기존 장바구니 스크롤 흐름, 모바일에서는 좌우로 탐색" tabIndex={0} className="mt-7 -mx-5 flex scroll-mt-24 gap-5 overflow-x-auto px-5 pb-5 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4">
-                {[
-                  ['/images/oliveyoung-todaydream/cart-asis-01.jpg', '01', '상품과 배송 조건', '배송 방식·배송지·도착 예정 시간과 상품 옵션을 확인합니다.'],
-                  ['/images/oliveyoung-todaydream/cart-asis-02.jpg', '02', '결제 예상과 추천 시작', '예상 결제 금액 아래에서 추천 상품 영역이 시작됩니다.'],
-                  ['/images/oliveyoung-todaydream/cart-asis-03.jpg', '03', '추천 상품 탐색', '나를 위한 추천과 함께 보면 좋은 상품이 긴 화면에 이어집니다.'],
-                  ['/images/oliveyoung-todaydream/cart-asis-04.jpg', '04', '화면 하단까지 유지되는 CTA', '스크롤 위치와 관계없이 무료배송 안내와 구매 버튼은 고정됩니다.'],
-                ].map(([src, n, title, body]) => <li key={src} className="w-[72vw] max-w-[270px] shrink-0 sm:w-auto sm:max-w-none"><Fig src={src} alt={`실제 올리브영 오늘드림 장바구니 ${title}`} cap={`${n} · ${title}`} /><p className="mt-2 text-[13px] leading-[1.65] text-sub">{body}</p></li>)}
-              </ol>
+              <ScreenSequence className="mt-7" color={S} label="기존 장바구니 스크롤 흐름" steps={[
+                ['cart-asis-01', '상품과 배송 조건', '배송 방식·배송지·도착 예정 시간과 상품 옵션을 확인합니다.'],
+                ['cart-asis-02', '결제 예상과 추천 시작', '예상 결제 금액 아래에서 추천 상품 영역이 시작됩니다.'],
+                ['cart-asis-03', '추천 상품 탐색', '나를 위한 추천과 함께 보면 좋은 상품이 긴 화면에 이어집니다.'],
+                ['cart-asis-04', '화면 하단까지 유지되는 CTA', '스크롤 위치와 관계없이 무료배송 안내와 구매 버튼은 고정됩니다.'],
+              ].map(([n, title, body]) => ({ src: `/images/oliveyoung-todaydream/${n}.jpg`, alt: `실제 올리브영 오늘드림 장바구니 ${title}`, title, body }))} />
             </div>
             <div className="mt-14 rounded-[28px] bg-white p-6 md:p-10">
               <p className="eyebrow" style={{ color: S }}>After · 개선안</p>
@@ -187,7 +186,10 @@ function OliveRenewed({ c }: { c: Ctx }) {
               <div className="rounded-[24px] bg-white p-6 md:p-8"><p className="eyebrow text-sub">디자인 판단</p><p className="mt-3 text-[18px] font-bold leading-[1.55]">배송·수령 정보 / 할인·혜택 / 최종 결제의 세 영역으로 묶고, 핵심은 접힌 상태에서도 확인하게 했어요.</p></div>
             </div>
             {p.beforeAfter?.[3] && <div className="mt-8"><BeforeAfter data={p.beforeAfter[3]} color={A} /></div>}
-            <div className="mt-10 grid grid-cols-2 gap-5 md:mx-auto md:max-w-[760px] md:gap-8"><Fig src={I('n-checkoutTobe')} alt="접힌 상태의 주문 결제 화면: 핵심 정보만 요약" cap="접힌 상태 · 핵심 정보만" /><Fig src={I('n-checkoutOpen')} alt="같은 화면을 펼친 상태: 시간대별 배송비와 할인·혜택 세부 정보" cap="같은 화면을 펼치면 · 시간대별 배송비 비교" className="md:mt-14" /></div>
+            <div className="mt-10 grid items-start gap-8 md:grid-cols-12 md:gap-10">
+              <Fig className="mx-auto w-full max-w-[260px] md:col-span-4" src={I('n-checkoutTobe')} alt="접힌 상태의 주문 결제 화면: 핵심 정보만 요약" cap="접힌 상태 · 핵심 정보만" />
+              <UIFocusDetail className="md:col-span-8" src={I('n-checkoutOpen')} alt="같은 화면을 펼친 상태: 시간대별 배송비와 할인·혜택 세부 정보" caption="펼친 상태의 원본 화면" region={{ x: 2, y: 15, w: 96, h: 21 }} color={A} title="시간대별 배송비 비교" why="배송 시간을 고르는 자리에 시간대와 배송비를 한 줄씩 함께 놓아, 시간을 바꿀 때 비용이 어떻게 달라지는지 바로 비교해요." />
+            </div>
             <ul className="mt-8 grid gap-3 text-[15px] leading-[1.65] sm:grid-cols-2 lg:grid-cols-4">{['접힌 상태에서도 핵심 정보 확인', '시간대와 배송비 관계를 함께 표시', '쿠폰·포인트 조건을 목적별로 확인', '선택 변경 시 금액 정보 일관성 유지'].map(item => <li key={item} className="rounded-[18px] bg-white p-4">{item}</li>)}</ul>
             <Result value="평균 26초 단축" task="배송 시간과 혜택을 확인하고 구매를 결정하는" />
             <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">목적별로 정보를 그룹화한 개선 프로토타입에서 구매 결정 과제의 평균 시간이 짧게 나타났습니다. 실제 결제 완료율이나 구매 전환율 상승을 검증한 결과는 아닙니다.</p>

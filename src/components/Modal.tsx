@@ -44,8 +44,8 @@ export function Zoomable({ src, alt, caption, className = '', imgClass = '', big
   const scroller = 'absolute left-0 right-0 overflow-y-auto overscroll-contain [scrollbar-width:thin]'
   const onKey = (e: KeyboardEvent<HTMLDivElement>) => {
     if (!pair) return
-    if (e.key === 'ArrowLeft') setIdx(0)
-    if (e.key === 'ArrowRight') setIdx(pair.length - 1)
+    if (e.key === 'ArrowLeft') setIdx(i => Math.max(0, i - 1))
+    if (e.key === 'ArrowRight') setIdx(i => Math.min(pair.length - 1, i + 1))
   }
   return (
     <>

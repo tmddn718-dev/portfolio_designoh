@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects } from '../data/projects'
 import Reveal from '../components/Reveal'
 import { Zoomable } from '../components/Modal'
+import { ScreenSequence } from '../components/LongScreen'
 import Compose from '../components/Compose'
 import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, ProjectIndex, AppIcon } from '../components/case'
 
@@ -195,11 +196,7 @@ export default function CaseTrigr() {
         <div className="wrap gutter py-16 md:py-24">
           <ChapterHead color={S} n="05" label="Supporting Flows" title="미션 참여부터 인증까지 연결되는 사용자 경험" />
           <p className="mt-5 max-w-2xl text-[16px] leading-[1.75] text-sub">서비스의 전체 구조와 UI 설계 범위를 보여주는 보조 사례입니다. 기획서에 있던 기능도 포함하며, 디자이너가 제안한 기능만을 뜻하지 않습니다.</p>
-          <ul className="mt-10 -mx-5 px-5 md:mx-0 md:px-0 flex md:grid md:grid-cols-5 gap-4 md:gap-5 overflow-x-auto snap-x scroll-pl-5 pb-3 md:overflow-visible">
-            {flows.map(([t, src, c]) => (
-              <li key={t} className="snap-start shrink-0 w-[46%] sm:w-[30%] md:w-auto"><Screen src={src} alt={`${t} 화면`} caption={t} /><p className="mt-3 text-[15px] font-bold">{t}</p><p className="mt-1 text-[14px] text-sub leading-snug">{c}</p></li>
-            ))}
-          </ul>
+          <ScreenSequence className="mt-10" color={S} label="미션 참여부터 인증까지 화면 흐름" steps={flows.map(([t, src, c]) => ({ src, alt: `${t} 화면`, title: t, body: c }))} />
           <details className="mt-10 rounded-[20px] border border-grid bg-white p-5 md:p-6">
             <summary className="cursor-pointer text-[16px] font-semibold">생성자·참여자 관점의 흐름 보기</summary>
             <div className="mt-6 space-y-8">{lanes.map(l => (

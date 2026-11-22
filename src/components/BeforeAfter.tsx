@@ -6,7 +6,7 @@ import { onBrand } from './case'
 // marks 가 있으면 화면 위에 바뀐 영역을 번호 박스로 표시하고, changes 표에서 번호별로 무엇이 어떻게 바뀌었는지 설명한다.
 type Data = NonNullable<Project['beforeAfter']>[number]
 const strip = (s: string, k: string) => s.replace(new RegExp(`^${k}\\s*:\\s*`), '')
-export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'AS-IS', afterLabel = 'TO-BE' }: { data: Data; color?: string; beforeLabel?: string; afterLabel?: string }) {
+export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'AS-IS', afterLabel = 'TO-BE', decision }: { data: Data; color?: string; beforeLabel?: string; afterLabel?: string; decision?: string }) {
   const hasChanges = !!data.changes?.length
   const bef = hasChanges ? [] : data.points.filter(p => p.startsWith('Before')).map(p => strip(p, 'Before'))
   const aft = hasChanges ? [] : data.points.filter(p => p.startsWith('After')).map(p => strip(p, 'After'))
@@ -46,6 +46,7 @@ export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'AS
           ))}
         </ol>
       )}
+      {decision && <p className="mt-5 rounded-[14px] p-4 text-[15px] leading-[1.65]" style={{ background: `color-mix(in srgb, ${color} 12%, white)` }}><b className="block text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>디자인 판단</b>{decision}</p>}
       {note.length > 0 && <figcaption className="mt-5 pt-4 rule text-[13px] text-sub">{note.join(' ')}</figcaption>}
     </figure>
   )

@@ -165,3 +165,28 @@ export function ExtendedPhoneScreen({ src, alt, ratio, zoomSrc, caption, extra =
     </figure>
   )
 }
+
+export type PhoneSide = { src: string; alt: string; caption: string; label?: string }
+
+// 7) 폰 목업 좌우 비교: AS-IS(왼쪽)와 TO-BE(오른쪽)를 같은 폰 프레임으로 나란히 보여준다. 누르면 AS-IS/TO-BE(+추가 화면)를 전환하며 확대한다.
+export function PhoneCompare({ n, title, asis, tobe, extra = [], decision, color, className = '' }: { n?: string; title: string; asis: PhoneSide; tobe: PhoneSide; extra?: { src: string; alt: string; tag: string; big?: string }[]; decision?: string; color: string; className?: string }) {
+  const pair = [{ src: asis.src, alt: asis.alt, tag: 'AS-IS' }, { src: tobe.src, alt: tobe.alt, tag: asis.label ? 'TO-BE' : 'TO-BE' }, ...extra]
+  const Col = ({ side, i }: { side: PhoneSide; i: 0 | 1 }) => (
+    <figure className="min-w-0">
+      <span className="inline-block rounded-full px-2.5 py-1 text-[13px] font-bold" style={i ? { background: color, color: onBrand(color) } : { background: '#e8e8e8', color: '#111' }}>{i ? 'TO-BE' : 'AS-IS'}</span>
+      <Zoomable src={side.src} alt={side.alt} caption={`${i ? 'TO-BE' : 'AS-IS'} · ${side.caption}`} pair={pair} pairIndex={i} pairColor={color} className="phone-light mt-3 w-full" imgClass="screen" />
+      <figcaption className="mt-3 text-[13px] leading-[1.6] sm:text-[14px]" style={i ? undefined : { color: 'var(--color-sub)' }}>{side.caption}</figcaption>
+    </figure>
+  )
+  return (
+    <section aria-label={`${n ? `Comparison ${n} ` : ''}${title}`} className={className}>
+      {n && <p className="text-[13px] font-bold" style={{ color }}>Comparison {n}</p>}
+      <h4 className="mt-1 text-[20px] font-bold leading-snug md:text-[24px]">{title}</h4>
+      <div className="mx-auto mt-5 grid max-w-[640px] grid-cols-2 items-start gap-x-3 sm:gap-x-8">
+        <Col side={asis} i={0} />
+        <Col side={tobe} i={1} />
+      </div>
+      {decision && <p className="mx-auto mt-5 max-w-[640px] rounded-[14px] p-4 text-[15px] leading-[1.65]" style={{ background: `color-mix(in srgb, ${color} 12%, white)` }}><b className="block text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>디자인 판단</b>{decision}</p>}
+    </section>
+  )
+}

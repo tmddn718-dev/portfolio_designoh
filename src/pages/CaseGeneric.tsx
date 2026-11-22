@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects, TODO, type Project } from '../data/projects'
 import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
-import { CropCompare, ExtendedPhoneScreen, FullLengthCompare, ScreenSequence } from '../components/LongScreen'
+import { ExtendedPhoneScreen, FullLengthCompare, PhoneCompare, ScreenSequence } from '../components/LongScreen'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
 import { AppIcon, onBrand, CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
@@ -173,16 +173,16 @@ function OliveRenewed({ c }: { c: Ctx }) {
               
             </div>
             <div className="mt-14">
-              <p className="eyebrow rule pt-4 text-sub">Before / After · 장바구니 핵심 구간</p>
-              <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.75] text-sub">기존 장바구니에도 하단 고정 구매 버튼과 무료배송 안내가 있었습니다. 같은 정보 맥락의 구간만 잘라 나란히 비교했고, 눌러서 원본 전체 화면을 AS-IS와 TO-BE로 전환해 볼 수 있습니다.</p>
-              <div className="mt-8 space-y-12">
-                <CropCompare n="01" title="결제 금액과 배송 조건" color={A}
-                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-02.jpg', alt: '기존 장바구니: 최종 예상 결제 금액 표(상품금액·할인·배송비·총액)', ratio: 1688 / 780, region: { x: 0, y: 10, w: 100, h: 31 }, mark: { x: 1, y: 28, w: 97, h: 66 }, caption: '상품금액·할인·배송비·총액을 표로 확인해요. 무료배송 안내는 화면 하단에 따로 있어요.' }}
-                  tobe={{ src: '/images/oliveyoung-todaydream/n-cart.webp', alt: '개선 장바구니: 추천 상품별 무료배송까지 남은 금액, 예상 총 결제금액과 배송 시간대 안내', ratio: 1720 / 780, region: { x: 0, y: 69, w: 100, h: 30 }, mark: { x: 1, y: 2, w: 98, h: 70 }, caption: '추천 상품마다 무료배송까지 남는 금액을 보여주고, 예상 총 결제금액과 배송 시간대 안내를 이어 놓았어요.' }}
+              <p className="eyebrow rule pt-4 text-sub">Before / After · 장바구니</p>
+              <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.75] text-sub">기존 장바구니에도 하단 고정 구매 버튼과 무료배송 안내가 있었습니다. 같은 정보 맥락의 화면을 나란히 비교했고, 눌러서 AS-IS와 TO-BE를 전환하며 확대해 볼 수 있습니다.</p>
+              <div className="mt-8 space-y-14">
+                <PhoneCompare n="01" title="결제 금액과 배송 조건" color={A}
+                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-02.jpg', alt: '기존 장바구니: 최종 예상 결제 금액 표(상품금액·할인·배송비·총액)', caption: '상품금액·할인·배송비·총액을 표로 확인해요. 무료배송 안내는 화면 하단에 따로 있어요.' }}
+                  tobe={{ src: I('n-cart'), alt: '개선 장바구니: 추천 상품별 무료배송까지 남은 금액, 예상 총 결제금액과 배송 시간대 안내', caption: '추천 상품마다 무료배송까지 남는 금액을 보여주고, 예상 총 결제금액과 배송 시간대 안내를 이어 놓았어요.' }}
                   decision="하단 고정 구매 버튼과 무료배송 안내는 기존 앱에도 있었어요. 바뀐 점은 가격과 배송 정보를 상품 선택 흐름 가까이에 이어서 배치한 것이에요." />
-                <CropCompare n="02" title="관련 상품 탐색" color={A}
-                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-03.jpg', alt: '기존 장바구니: 함께 보면 좋은 상품 가로 카드 목록', ratio: 1688 / 780, region: { x: 0, y: 41, w: 100, h: 36 }, mark: { x: 1, y: 24, w: 98, h: 54 }, caption: '‘함께 보면 좋은 상품’을 가로 카드로 넘겨 보며 상품 정보 중심으로 탐색해요.' }}
-                  tobe={{ src: '/images/oliveyoung-todaydream/n-cartAdded.webp', alt: '개선 장바구니: 함께 담기 좋은 상품 목록과 담기 버튼, 무료배송 조건 안내', ratio: 1880 / 780, region: { x: 0, y: 58.5, w: 100, h: 30.5 }, mark: { x: 1, y: 17, w: 98, h: 58 }, caption: '‘함께 담기 좋은 상품’을 한 줄씩 보여주고, 담기 버튼과 무료배송 조건 충족 여부를 함께 확인해요.' }}
+                <PhoneCompare n="02" title="관련 상품 탐색" color={A}
+                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-03.jpg', alt: '기존 장바구니: 함께 보면 좋은 상품 가로 카드 목록', caption: '‘함께 보면 좋은 상품’을 가로 카드로 넘겨 보며 상품 정보 중심으로 탐색해요.' }}
+                  tobe={{ src: I('n-cartAdded'), alt: '개선 장바구니: 함께 담기 좋은 상품 목록과 담기 버튼, 무료배송 조건 안내', caption: '‘함께 담기 좋은 상품’을 한 줄씩 보여주고, 담기 버튼과 무료배송 조건 충족 여부를 함께 확인해요.' }}
                   decision="추천 상품을 구경하는 목록에서, 지금 장바구니 금액과 무료배송 조건에 연결해 담을지 판단하는 목록으로 바꿨어요." />
               </div>
             </div>
@@ -208,20 +208,13 @@ function OliveRenewed({ c }: { c: Ctx }) {
               <ul className="mt-4 space-y-2 text-[13px] leading-[1.6] sm:text-[14px]">{['처음에는 핵심 정보만 요약해서 보여줘요', '필요한 영역만 펼쳐 세부 정보를 확인해요', '펼친 상태에서도 배송·혜택·결제 세 영역이 구분돼요'].map(t => <li key={t} className="flex gap-2"><span aria-hidden className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: A }} /><span>{t}</span></li>)}</ul>
             </FullLengthCompare>
 
-            <div className="mt-16 space-y-12">
-              <CropCompare n="01" title="배송 정보" color={A}
-                asis={{ src: '/images/oliveyoung-todaydream/sp-checkoutPickup-body.webp', full: I('n-checkoutAsisPickup'), alt: '기존 주문/결제 배송 방법: 오늘드림·픽업 전환, 픽업 매장 지도와 목록', ratio: 5782 / 780, region: { x: 0, y: 0, w: 100, h: 15.74 }, mark: { x: 1, y: 22, w: 98, h: 66 }, caption: '배송 방법을 고르면 매장 지도와 목록이 바로 길게 펼쳐져요.' }}
-                tobe={{ src: I('n-checkoutOpen'), alt: '개선 주문/결제 배송·수령 정보: 주소, 오늘드림·픽업, 시간대별 배송비', ratio: 2888 / 780, region: { x: 0, y: 7.44, w: 100, h: 31.5 }, mark: { x: 1, y: 47, w: 98, h: 46 }, caption: '배송지와 수령 방법, 시간대별 배송비를 한 구획에 모았어요.' }}
-                decision="배송 선택과 비용을 한 구획에 묶어, 시간을 고르면서 배송비를 바로 비교하도록 했어요." />
-              <CropCompare n="02" title="혜택 및 할인" color={A}
-                asis={{ src: '/images/oliveyoung-todaydream/sp-checkoutPickup-body.webp', full: I('n-checkoutAsisPickup'), alt: '기존 주문/결제 쿠폰·포인트: 포인트, 기프트카드, 모바일 상품권, 리워드 입력칸이 줄마다 이어짐', ratio: 5782 / 780, region: { x: 0, y: 24.56, w: 100, h: 8.65 }, mark: { x: 1, y: 19, w: 98, h: 79 }, caption: '포인트·기프트카드·상품권 입력칸이 줄마다 펼쳐져 있어요.' }}
-                tobe={{ src: I('n-checkoutOpen'), alt: '개선 주문/결제 할인·혜택: 쿠폰, CJ ONE 포인트, 기프트카드·상품권과 조건 안내', ratio: 2888 / 780, region: { x: 0, y: 44.15, w: 100, h: 17.31 }, mark: { x: 1, y: 12, w: 98, h: 60 }, caption: '쿠폰·포인트·상품권을 한 줄씩 요약하고, 조건 안내를 아래에 붙였어요.' }}
-                decision="입력칸을 모두 펼쳐 두지 않고 목적별 한 줄로 정리해, 필요한 혜택만 골라 확인하도록 했어요." />
-              <CropCompare n="03" title="결제 정보" color={A}
-                asis={{ src: '/images/oliveyoung-todaydream/sp-checkoutPickup-body.webp', full: I('n-checkoutAsisPickup'), alt: '기존 주문/결제 최종 결제금액과 결제수단: 올영PAY 혜택 안내와 결제수단 선택', ratio: 5782 / 780, region: { x: 0, y: 50.02, w: 100, h: 13.49 }, mark: { x: 1, y: 47, w: 98, h: 51 }, caption: '최종 결제금액과 혜택, 결제수단이 따로 떨어져 이어져요.' }}
-                tobe={{ src: I('n-checkoutOpen'), alt: '개선 주문/결제 최종 결제: 주문상품, 결제수단, 약관 동의, 상품금액·배송비·할인금액과 최종 결제금액', ratio: 2888 / 780, region: { x: 0, y: 63.19, w: 100, h: 27 }, mark: { x: 1, y: 59, w: 98, h: 32 }, caption: '주문상품·결제수단·금액 내역을 한 구획에 이어 놓았어요.' }}
-                decision="결제 확인에 필요한 상품·수단·금액을 한곳에 모아, 결제 직전에 흩어진 정보를 다시 찾지 않도록 했어요." />
-            </div>
+            <PhoneCompare className="mt-16" title="배송·혜택·결제를 구획으로 나눈 주문/결제 화면" color={A}
+              asis={{ src: I('n-checkoutAsisPickup'), alt: '기존 주문/결제 첫 화면: 배송 방법과 픽업 매장 지도가 먼저 길게 펼쳐짐', caption: '배송 방법을 고르면 매장 지도와 목록이 바로 길게 펼쳐져요. 쿠폰·포인트·결제는 그 아래로 이어져요.' }}
+              tobe={{ src: I('n-checkoutTobe'), alt: '개선 주문/결제 첫 화면: 배송·수령 정보와 할인·혜택은 한 줄 요약, 최종 결제는 바로 확인', caption: '배송·혜택은 한 줄로 요약하고 최종 결제를 바로 확인해요. 필요한 구획만 펼쳐 볼 수 있어요.' }}
+              extra={[{ src: I('n-checkoutOpen'), alt: '개선 주문/결제 펼친 상태: 시간대별 배송비, 쿠폰·포인트, 최종 결제 금액', tag: 'TO-BE 펼침', big: I('n-checkoutOpen') }]} />
+            <ul className="mx-auto mt-6 grid max-w-[640px] gap-3 text-[15px] leading-[1.65] sm:grid-cols-3">
+              {[['배송 정보', '배송 선택과 비용을 한 구획에 묶어, 시간을 고르면서 배송비를 바로 비교해요.'], ['혜택 및 할인', '입력칸을 모두 펼쳐 두지 않고 목적별 한 줄로 정리해, 필요한 혜택만 골라 확인해요.'], ['결제 정보', '상품·결제수단·금액을 한곳에 모아 결제 직전에 정보를 다시 찾지 않아요.']].map(([t, d]) => <li key={t} className="rounded-[14px] bg-white p-4"><b className="block text-[13px]" style={{ color: S }}>{t}</b>{d}</li>)}
+            </ul>
 
             <div className="mt-14 rounded-[24px] bg-white p-6 md:p-8">
               <p className="eyebrow text-sub">디자인 판단</p>

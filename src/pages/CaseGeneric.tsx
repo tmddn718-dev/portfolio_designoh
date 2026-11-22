@@ -699,9 +699,7 @@ function Woorisai({ c }: { c: Ctx }) {
               </dl>
               {c.proto && <button onClick={() => c.setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
             </div>
-            <ul data-scale className="mt-12 md:mt-0 md:col-span-6 flex items-end justify-center gap-4 md:gap-6">
-              {[['feed', '추억 피드', 'w-[28%]'], ['ph-after-top', '사진 상세', 'w-[34%]'], ['foot-after', '발자국', 'w-[28%]']].map(([n, a, w], i) => <li key={n} className={`${w} ${i !== 1 ? 'md:translate-y-8' : ''}`}><Screen src={I(n)} alt={`우리사이 ${a} 화면`} cap={a} /></li>)}
-            </ul>
+            <div data-scale className="mx-auto mt-12 w-[58%] max-w-[340px] md:col-span-6 md:mt-0 md:w-[52%] md:max-w-[380px]"><Screen src={I('ph-after-top')} alt="우리사이 사진 상세 화면: 함께한 사람의 사진과 이야기가 한 추억에 모임" cap="사진 상세" /></div>
           </div>
         </div>
       </section>
@@ -750,23 +748,23 @@ function Woorisai({ c }: { c: Ctx }) {
       </section>
 
       <section id="c2" className="scroll-mt-20 md:mt-8" style={{ background: '#F4F2EC' }}>
-        <div className="wrap gutter py-20 md:py-28">
+        <div className="wrap gutter py-14 md:py-24">
           <ChapterHead color={S} n="01" label="Problem" title="친구와 보낸 하루가 여러 앱에 흩어진다" />
           <p className="mt-6 max-w-[60ch] text-[18px] leading-[1.8]">친구와 약속을 잡고 만나서 사진을 찍고 비용을 나누고 나중에 그날을 떠올릴 때까지 사람들은 서로 다른 앱과 기능을 오가요. 그래서 하루의 사진과 이야기가 한곳에 남지 않아요.</p>
 
-          <ol aria-label="친구와의 하루에서 쓰는 앱" className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+          <ol aria-label="친구와의 하루에서 쓰는 앱" className="mt-10 grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
             {[['01', '약속 잡기', '메신저', '대화방에서 일정과 장소를 정해요'], ['02', '사진 공유', '각자의 갤러리', '사진이 각자의 휴대폰에 따로 남아요'], ['03', '정산', '정산 앱', '비용은 또 다른 앱에서 나눠요'], ['04', '추억 회상', '사진 앱', '나중에 그날을 사진 앱에서 찾아야 해요']].map(([n, t, app, d]) => (
-              <li key={n} className="rounded-[24px] bg-white border border-grid p-6 flex flex-col">
+              <li key={n} className="flex flex-col rounded-[20px] border border-grid bg-white p-4 md:rounded-[24px] md:p-6">
                 <span className="text-[13px] font-bold" style={{ color: S }}>{n}</span>
-                <p className="mt-2 text-[22px] font-bold tracking-tight">{t}</p>
-                <p className="mt-4 inline-flex w-fit px-3 py-1.5 rounded-full text-[14px] font-semibold" style={{ background: T(16) }}>{app}</p>
-                <p className="mt-4 text-[15px] leading-[1.65] text-ink/75">{d}</p>
+                <p className="mt-2 text-[18px] font-bold tracking-tight md:text-[22px]">{t}</p>
+                <p className="mt-3 inline-flex w-fit px-3 py-1.5 rounded-full text-[13px] font-semibold md:text-[14px]" style={{ background: T(16) }}>{app}</p>
+                <p className="mt-3 text-[14px] leading-[1.6] text-ink/75 md:text-[15px]">{d}</p>
               </li>
             ))}
           </ol>
           <p className="mt-5 text-[14px] text-sub max-w-[60ch]">※ PRD에서 정의한 문제 가설이며, 실제 사용자 문제로 검증하지 않았습니다.</p>
 
-          <div className="mt-16 rounded-[28px] p-7 md:p-12" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
+          <div className="mt-12 rounded-[28px] p-6 md:mt-16 md:p-12" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
             <p className="eyebrow" style={{ color: S }}>그래서 잡은 컨셉</p>
             <h3 className="mt-3 text-[28px] md:text-[44px] font-extrabold tracking-tight max-w-[22ch]">흩어진 하루를 한곳에 남기는 ‘추억 아카이빙 서비스’</h3>
             <p className="mt-5 max-w-[56ch] text-[17px] leading-[1.8] text-ink/80">약속, 사진 공유, 정산, 추억 회상으로 흩어진 흐름을 하나로 연결했습니다. 모임 관리보다 지난 추억을 다시 발견하고 친구와 대화하는 경험에 집중했습니다.</p>
@@ -780,13 +778,13 @@ function Woorisai({ c }: { c: Ctx }) {
             </ol>
           </div>
 
-          <div className="mt-20">
+          <div className="mt-12 md:mt-20">
             <p className="eyebrow text-sub">Design Strategy</p>
             <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight">기록 → 함께 쌓기 → 다시 발견하기 → 대화로 이어지기</h3>
             <ol className="mt-8 grid md:grid-cols-4 gap-4">{[['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자별 사진과 이야기를 한 추억에'], ['다시 발견하기', '사람·장소·시간으로 되찾기'], ['대화로 이어지기', '사진 단위 반응과 댓글']].map(([t, d], i) => <li key={t} className="rounded-[20px] bg-white border border-grid p-5"><span className="text-[24px] font-extrabold" style={{ color: S }}>0{i + 1}</span><p className="mt-2 text-[18px] font-bold">{t}</p><p className="mt-1 text-[14px] text-sub leading-snug">{d}</p></li>)}</ol>
           </div>
 
-          <div className="relative mt-16 rounded-[24px] bg-white border border-grid p-6 md:p-8">
+          <div className="relative mt-12 rounded-[24px] border border-grid bg-white p-5 md:mt-16 md:p-8">
             <div className="md:pr-52 max-w-[820px]">
               <p className="eyebrow text-sub">프로토타입 설문 · 응답 7명 (2026.11.12-16)</p>
               <p className="mt-3 text-[22px] md:text-[26px] font-bold tracking-tight">프로토타입 설문에서 발견한 혼란을 화면 개선에 반영했습니다</p>
@@ -803,7 +801,7 @@ function Woorisai({ c }: { c: Ctx }) {
       </section>
 
       <section aria-label="화면 둘러보기" className="bg-[#f5f5f7] mt-8">
-        <div className="wrap gutter py-20 md:py-28">
+        <div className="wrap gutter py-14 md:py-24">
           <p className="eyebrow text-sub">Walkthrough</p>
           <h2 className="mt-3 apple-h text-[32px] md:text-[56px] max-w-[18ch]">추억이 쌓이고, 다시 이어지는 흐름</h2>
           <ScreenSequence className="mt-10" color={S} label="우리사이 화면 둘러보기" steps={[0, 1, 2, 5, 7].map(i => p.gallery![i]).map(g => ({ src: g.src, alt: g.alt, title: g.caption ?? g.alt, body: g.alt }))} />
@@ -811,7 +809,7 @@ function Woorisai({ c }: { c: Ctx }) {
       </section>
 
       <section id="c3" className="scroll-mt-20 md:mt-24">
-        <div className="wrap gutter py-20 md:py-28">
+        <div className="wrap gutter py-14 md:py-24">
           <ChapterHead color={S} n="02" label="Solutions" title="기록, 대화, 발자국 — 처음부터 설계한 세 가지 경험" />
 
           <Reveal className="mt-14 md:grid md:grid-cols-12 gap-10 items-center">
@@ -853,7 +851,7 @@ function Woorisai({ c }: { c: Ctx }) {
         </div>
       </section>
 
-      <section id="c4" className="wrap gutter py-20 md:py-28 scroll-mt-20 md:mt-8">
+      <section id="c4" className="wrap gutter py-14 md:py-24 scroll-mt-20 md:mt-8">
         <ChapterHead color={S} n="03" label="Actual UI" title="약속과 우리 공간은 추억을 돕는 보조 기능" />
         <ul className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8" data-scale>
           {['plan', 'space', 'calendar', 'home'].map(n => <li key={n}><Screen src={I(n)} alt={`우리사이 화면 ${n}`} cap={({ plan: '초대받은 약속 · 참석 응답', space: '우리 공간', calendar: '추억 달력', home: '홈' } as Record<string, string>)[n]} /></li>)}

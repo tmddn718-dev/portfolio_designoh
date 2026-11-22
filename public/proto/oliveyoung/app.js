@@ -75,7 +75,7 @@ class Component extends DCLogic {
     this.state = this.fresh(START, 'A');
   }
   fresh(screen, flow) {
-    return { screen: screen, flow: flow, panelOpen: false, recv: 'today', altStage: 'checking', altSel: null, stdTry: 0, stores: { E: 'fail', F: 'closed' }, query: '서울 구로구', intent: 'buy', dTried: false, pickStore: null, method: 'today', slot: 's1', recs: {}, slotSel: null, cartOpen: false, addrCheck: false, g1Open: false, benefitsOpen: false, teaStage: 'fail', stdInfoOpen: false, optSel: null, qty: 1, optMode: 'A', usePoint: false, agree: false, triedPay: false, stockHit: false, restocked: false, returnTo: 'alt' };
+    return { screen: screen, flow: flow, panelOpen: false, recv: 'today', altStage: 'checking', altSel: null, stdTry: 0, stores: { E: 'fail', F: 'closed' }, query: '서울 구로구', intent: 'buy', dTried: false, pickStore: null, method: 'today', slot: 's1', recs: {}, slotSel: null, cartOpen: false, addrCheck: false, g1Open: true, benefitsOpen: false, teaStage: 'fail', stdInfoOpen: false, optSel: null, qty: 1, optMode: 'A', usePoint: false, agree: false, triedPay: false, stockHit: false, restocked: false, returnTo: 'alt' };
   }
   componentWillUnmount() { this.timers.forEach(function (t) { clearTimeout(t); }); }
   later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
@@ -351,7 +351,7 @@ class Component extends DCLogic {
       slotFeeText: st.slotSel ? (free ? '무료' : fmt(base[st.slotSel])) : '시간을 선택하면 확인할 수 있어요',
       slotTotalText: st.slotSel ? fmt(subtotal + (free ? 0 : base[st.slotSel])) : (free ? fmt(subtotal) : (subtotal + 2500).toLocaleString('ko-KR') + '~' + fmt(subtotal + 5000)),
       slotCtaStyle: 'height:52px;width:100%;font-size:18px;font-weight:700;font-family:inherit;border-radius:8px;' + (st.slotSel ? 'border:1px solid #131518;background:#131518;color:#FFFFFF' : 'border:0;background:#DCDFE3;color:#5E636B'),
-      slotContinue: () => { if (this.state.slotSel) this.setState({ slot: this.state.slotSel, method: 'today', screen: 'checkout', intent: 'buy', g1Open: false }); },
+      slotContinue: () => { if (this.state.slotSel) this.setState({ slot: this.state.slotSel, method: 'today', screen: 'checkout', intent: 'buy', g1Open: true }); },
       scrollRecs: () => { const n = Object.assign({}, this.state.recs); if (!n.r1) n.r1 = true; else n.r2 = true; this.setState({ recs: n }); },
       goCheckout: () => this.setState({ method: 'today', screen: 'checkout', intent: 'buy' }),
       checkoutBack: () => this.setState({ screen: isC ? 'cart' : 'alt' }),

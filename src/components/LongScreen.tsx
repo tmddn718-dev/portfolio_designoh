@@ -166,11 +166,11 @@ export function ExtendedPhoneScreen({ src, alt, ratio, zoomSrc, caption, extra =
   )
 }
 
-export type PhoneSide = { src: string; alt: string; caption: string; label?: string }
+export type PhoneSide = { src: string; alt: string; caption: string; label?: string; big?: boolean }
 
 // 7) 폰 목업 좌우 비교: AS-IS(왼쪽)와 TO-BE(오른쪽)를 같은 폰 프레임으로 나란히 보여준다. 누르면 AS-IS/TO-BE(+추가 화면)를 전환하며 확대한다.
 export function PhoneCompare({ n, title, asis, tobe, extra = [], decision, color, className = '' }: { n?: string; title: string; asis: PhoneSide; tobe: PhoneSide; extra?: { src: string; alt: string; tag: string; big?: string }[]; decision?: string; color: string; className?: string }) {
-  const pair = [{ src: asis.src, alt: asis.alt, tag: 'AS-IS' }, { src: tobe.src, alt: tobe.alt, tag: asis.label ? 'TO-BE' : 'TO-BE' }, ...extra]
+  const pair = [{ src: asis.src, alt: asis.alt, tag: 'AS-IS' }, { src: tobe.src, alt: tobe.alt, tag: 'TO-BE', big: tobe.big ? tobe.src : undefined }, ...extra]
   const Col = ({ side, i }: { side: PhoneSide; i: 0 | 1 }) => (
     <figure className="min-w-0">
       <span className="inline-block rounded-full px-2.5 py-1 text-[13px] font-bold" style={i ? { background: color, color: onBrand(color) } : { background: '#e8e8e8', color: '#111' }}>{i ? 'TO-BE' : 'AS-IS'}</span>

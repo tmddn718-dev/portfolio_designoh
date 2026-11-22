@@ -1,3 +1,4 @@
+import { thumbSet } from '../data/thumb'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
@@ -18,7 +19,7 @@ const stories: Story[] = [
 ]
 
 const by = (slug: string) => projects.find(p => p.slug === slug)!
-const Phone = ({ src, className }: { src: string; className: string }) => <div className={`absolute ${className}`}><div className="phone-pro"><img src={src} alt="" className="screen" loading="lazy" /></div></div>
+const Phone = ({ src, className }: { src: string; className: string }) => <div className={`absolute ${className}`}><div className="phone-pro"><img {...thumbSet(src)} alt="" className="screen" loading="lazy" /></div></div>
 const Browser = ({ src, className }: { src: string; className: string }) => <div className={`absolute overflow-hidden rounded-[16px] border border-white/70 bg-white p-[5px] shadow-[0_28px_60px_rgba(0,0,0,.24)] ${className}`}><div className="flex h-5 items-center gap-1.5 rounded-t-[10px] bg-[#F4F5FA] px-2"><i className="h-1.5 w-1.5 rounded-full bg-[#FF7B75]" /><i className="h-1.5 w-1.5 rounded-full bg-[#F6C85F]" /><i className="h-1.5 w-1.5 rounded-full bg-[#69C47B]" /><span className="ml-2 h-1.5 w-[32%] rounded-full bg-[#DDE0EA]" /></div><img src={src} alt="" className="block w-full rounded-b-[10px]" loading="lazy" /></div>
 
 function StoryArt({ story }: { story: Story }) {

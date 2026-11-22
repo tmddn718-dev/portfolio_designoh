@@ -1,3 +1,4 @@
+import { thumbSet } from '../data/thumb'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { projects, profile, type Project } from '../data/projects'
@@ -9,7 +10,7 @@ import SplitText from '../motion/SplitText'
 const by = (slug: string) => projects.find(p => p.slug === slug)!
 
 const Phone = ({ src, style, className = '' }: { src: string; style?: React.CSSProperties; className?: string }) => (
-  <div className={`absolute ${className}`} style={style}><div className="phone-pro"><img src={src} alt="" className="screen" loading="lazy" decoding="async" /><span className="glare" /></div></div>
+  <div className={`absolute ${className}`} style={style}><div className="phone-pro"><img {...thumbSet(src)} alt="" className="screen" loading="lazy" decoding="async" /><span className="glare" /></div></div>
 )
 
 const BrowserMockup = ({ src, className = '' }: { src: string; className?: string }) => (
@@ -29,7 +30,7 @@ function OliveShowcase() {
         <span className="mt-4 rounded-full bg-[#11150D] px-4 py-2 text-[12px] font-bold text-white">오늘드림 품절</span>
       </div>
       <div className="absolute bottom-[6%] left-[7%] z-20 w-[32%] rotate-[-5deg] overflow-hidden rounded-[15px] border border-black/10 bg-white p-2 shadow-[0_24px_50px_rgba(35,50,15,.22)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-[-3deg]">
-        <img src="/images/oliveyoung-todaydream/n-optC-indicator.png" alt="" className="aspect-[10/11] w-full rounded-[10px] object-cover object-top" loading="lazy" decoding="async" />
+        <img {...thumbSet("/images/oliveyoung-todaydream/n-optC-indicator.png")} alt="" className="aspect-[10/11] w-full rounded-[10px] object-cover object-top" loading="lazy" decoding="async" />
         <p className="px-2 pb-1 pt-2 text-[12px] font-bold uppercase tracking-[.12em] text-[#5B654E]">01 · 옵션 선택</p>
       </div>
       <Phone src="/images/oliveyoung-todaydream/n-altMethods.webp" className="z-30 w-[44%] rotate-[2deg] drop-shadow-[0_34px_60px_rgba(27,40,9,.3)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" style={{ right: '-2%', bottom: '-21%' }} />
@@ -100,7 +101,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <p className="absolute left-[6%] top-[18%] z-30 text-[8.4cqw] font-black leading-[.98] tracking-[-.06em] text-[#202020]">FROM CONDITIONS<br />TO ONE CLEAR TIME.</p>
       <BrowserMockup src="/images/nodi/web-reco.webp" className="bottom-[3%] left-[6%] z-10 w-[55%] -rotate-1 transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-0" />
       <div className="absolute bottom-[5%] right-[5%] z-20 w-[28%] rotate-[4deg] overflow-hidden rounded-[12px] border border-[#BFC9F8] bg-white p-2 shadow-[0_24px_46px_rgba(8,15,54,.42)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[2deg]">
-        <img src="/images/nodi/full-review.webp" alt="" className="aspect-[10/9] w-full rounded-[8px] object-cover object-[50%_23%]" loading="lazy" decoding="async" />
+        <img {...thumbSet("/images/nodi/full-review.webp")} alt="" className="aspect-[10/9] w-full rounded-[8px] object-cover object-[50%_23%]" loading="lazy" decoding="async" />
         <p className="px-1 pb-1 pt-2 text-[clamp(11px,1.9cqw,12px)] font-bold uppercase tracking-[.1em] text-[#3E4E91]">Final review · user decides</p>
       </div>
     </div>
@@ -111,10 +112,10 @@ function ThumbnailVisual({ p }: { p: Project }) {
     <div className={`${tile} bg-[#E9E6DA]`}>
       <p className="absolute left-[6%] top-[8%] z-30 text-[12px] font-bold uppercase tracking-[.2em] text-[#526555]">Woorisai · Memory archive</p>
       <div className="absolute left-[6%] top-[15%] z-20 h-[80%] w-[48%] overflow-hidden rounded-[4px] bg-white p-2 shadow-[0_22px_46px_rgba(48,57,45,.2)] transition-transform duration-300 group-hover:-translate-y-1">
-        <img src="/images/woorisai/detail.webp" alt="" className="h-full w-full object-cover object-[50%_10%]" loading="lazy" decoding="async" />
+        <img {...thumbSet("/images/woorisai/detail.webp")} alt="" className="h-full w-full object-cover object-[50%_10%]" loading="lazy" decoding="async" />
       </div>
       <div className="absolute right-[6%] top-[12%] z-10 h-[36%] w-[31%] rotate-[4deg] overflow-hidden bg-white p-2 shadow-[0_18px_40px_rgba(48,57,45,.18)] transition-transform duration-300 group-hover:rotate-[2deg]">
-        <img src="/images/woorisai/feed.webp" alt="" className="h-full w-full object-cover object-[50%_31%]" loading="lazy" decoding="async" />
+        <img {...thumbSet("/images/woorisai/feed.webp")} alt="" className="h-full w-full object-cover object-[50%_31%]" loading="lazy" decoding="async" />
       </div>
       <div className="absolute bottom-[8%] right-[6%] z-30 w-[42%] border-l border-[#839284] pl-4"><p className="text-[12px] uppercase tracking-[.16em] text-[#66766A]">Nov. 08 · Hangang</p><p className="mt-2 text-[clamp(20px,2.8vw,40px)] font-black leading-[1.02] tracking-[-.055em] text-[#263B2F]">MEMORIES,<br />WITH CONTEXT.</p></div>
     </div>
@@ -148,7 +149,7 @@ function MobileThumbnail({ p }: { p: Project }) {
     <span className="absolute -right-[18%] -top-[35%] aspect-square w-[88%] rounded-full border-[10px] border-white/25" />
     {thumb.browser
       ? <div className="absolute inset-x-[7%] top-[16%] overflow-hidden rounded-[5px] border border-white/80 bg-white p-1 shadow-[0_8px_18px_rgba(31,42,91,.2)]"><div className="mb-1 flex gap-0.5"><i className="h-1 w-1 rounded-full bg-[#FF7B75]" /><i className="h-1 w-1 rounded-full bg-[#F6C85F]" /><i className="h-1 w-1 rounded-full bg-[#69C47B]" /></div><img src={thumb.src} alt="" className="block aspect-[16/9] w-full object-cover object-top" loading="lazy" decoding="async" /></div>
-      : <div className="absolute left-1/2 top-[7%] w-[48%] -translate-x-1/2 rotate-[-2deg] drop-shadow-[0_9px_14px_rgba(26,20,20,.24)]"><div className="phone-pro"><img src={thumb.src} alt="" className="screen" loading="lazy" decoding="async" /><span className="glare" /></div></div>}
+      : <div className="absolute left-1/2 top-[7%] w-[48%] -translate-x-1/2 rotate-[-2deg] drop-shadow-[0_9px_14px_rgba(26,20,20,.24)]"><div className="phone-pro"><img {...thumbSet(thumb.src, '110px')} alt="" className="screen" loading="lazy" decoding="async" /><span className="glare" /></div></div>}
   </div>
 }
 

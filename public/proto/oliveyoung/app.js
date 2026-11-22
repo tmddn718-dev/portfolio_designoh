@@ -112,7 +112,7 @@ class Component extends DCLogic {
     const rt = this.state.returnTo;
     if (rt === 'detail') this.setState({ pickStore: id, recv: 'pickup', screen: 'detail', panelOpen: true });
     else if (rt === 'alt') this.setState({ pickStore: id, screen: 'alt', altSel: 'pickup' });
-    else this.setState({ pickStore: id, method: 'pickup', screen: 'checkout' });
+    else this.setState({ pickStore: id, method: 'pickup', screen: 'checkout', g1Open: true });
   }
   renderVals() {
     const st = this.state;
@@ -249,7 +249,7 @@ class Component extends DCLogic {
       modeA: () => this.setState({ optMode: 'A' }), modeB: () => this.setState({ optMode: 'B' }),
       segModeA: st.optMode === 'A' ? segOn : segOff, segModeB: st.optMode === 'B' ? segOn : segOff,
       optName: st.optSel ? ({ A: '마데카소사이드 흔적리페어 10+1매', B: '로제 PDRN 모공결광 10매', C: '콜라겐 코어탄력 10매', D: '티트리 진정수분 10매' })[st.optSel] : '',
-      selA: () => { if (this.state.optMode === 'B') this.setState({ optSel: 'A', method: 'today', screen: 'checkout' }); else this.setState({ optSel: 'A' }); }, selB: () => this.setState({ optSel: 'B' }), selC: () => {}, restockForC: () => this.setState({ optSel: 'C', screen: 'restock' }), selD: () => this.setState({ optSel: 'D' }),
+      selA: () => { if (this.state.optMode === 'B') this.setState({ optSel: 'A', method: 'today', screen: 'checkout', g1Open: true }); else this.setState({ optSel: 'A' }); }, selB: () => this.setState({ optSel: 'B' }), selC: () => {}, restockForC: () => this.setState({ optSel: 'C', screen: 'restock' }), selD: () => this.setState({ optSel: 'D' }),
       isSelA: st.optSel === 'A', isSelB: st.optSel === 'B', isSelC: st.optSel === 'C', isSelD: st.optSel === 'D',
       rowA: optRow('A'), rowB: optRow('B'), rowC: optRow('C'), rowD: optRow('D'),
       radA: st.optSel === 'A' ? rOn : rOff, radB: st.optSel === 'B' ? rOn : rOff, radC: st.optSel === 'C' ? rOn : rOff, radD: st.optSel === 'D' ? rOn : rOff,
@@ -261,7 +261,7 @@ class Component extends DCLogic {
       optCtaStyle: 'width:100%;height:52px;border-radius:8px;font-size:18px;font-weight:700;font-family:inherit;' + (optInfo.disabled ? 'border:0;background:#DCDFE3;color:#5E636B' : 'background:#131518;color:#FFFFFF;border:1px solid #131518'),
       optCtaTap: () => {
         const o = this.state.optSel;
-        if (o === 'A' || (o === 'D' && this.state.teaStage === 'ok')) this.setState({ method: 'today', screen: 'checkout' });
+        if (o === 'A' || (o === 'D' && this.state.teaStage === 'ok')) this.setState({ method: 'today', screen: 'checkout', g1Open: true });
         else if (o === 'B') this.openAlt();
         else if (o === 'C') this.setState({ screen: 'restock' });
         else if (o === 'D' && this.state.teaStage === 'fail') { this.setState({ teaStage: 'checking' }); this.later(() => this.setState({ teaStage: 'ok' }), 900); }
@@ -316,7 +316,7 @@ class Component extends DCLogic {
       ctaText: stdSel ? '일반배송으로 구매하기' : (pickSel ? '픽업으로 구매하기' : '구매 방법을 선택해 주세요'),
       ctaStyle: 'width:100%;height:52px;border-radius:8px;font-size:18px;font-weight:700;font-family:inherit;' + (canBuy ? 'border:1.5px solid #131518;background:#131518;color:#FFFFFF' : 'border:0;background:#DCDFE3;color:#5E636B'),
       ctaNote: pickSel,
-      ctaTap: () => { if (stdSel) this.setState({ method: 'standard', screen: 'checkout' }); else if (pickSel) this.setState({ method: 'pickup', screen: 'checkout' }); },
+      ctaTap: () => { if (stdSel) this.setState({ method: 'standard', screen: 'checkout', g1Open: true }); else if (pickSel) this.setState({ method: 'pickup', screen: 'checkout', g1Open: true }); },
       stores: stores, storeAllFailed: storeAllFailed, hasStores: stores.length > 0, noResults: stores.length === 0, query: st.query,
       searchKey: (e) => { if (e.key === 'Enter') { e.preventDefault(); this.setState({ query: e.target.value.trim() }); e.target.blur(); } },
       searchChange: (e) => { this.setState({ query: e.target.value.trim() }); },
@@ -353,7 +353,7 @@ class Component extends DCLogic {
       slotCtaStyle: 'height:52px;width:100%;font-size:18px;font-weight:700;font-family:inherit;border-radius:8px;' + (st.slotSel ? 'border:1px solid #131518;background:#131518;color:#FFFFFF' : 'border:0;background:#DCDFE3;color:#5E636B'),
       slotContinue: () => { if (this.state.slotSel) this.setState({ slot: this.state.slotSel, method: 'today', screen: 'checkout', intent: 'buy', g1Open: true }); },
       scrollRecs: () => { const n = Object.assign({}, this.state.recs); if (!n.r1) n.r1 = true; else n.r2 = true; this.setState({ recs: n }); },
-      goCheckout: () => this.setState({ method: 'today', screen: 'checkout', intent: 'buy' }),
+      goCheckout: () => this.setState({ method: 'today', screen: 'checkout', g1Open: true, intent: 'buy' }),
       checkoutBack: () => this.setState({ screen: isC ? 'cart' : 'alt' }),
       showMethodToggle: isC || st.method === 'today', showMethodLabel: !(isC || st.method === 'today'), methodLabel: st.method === 'pickup' ? '매장 픽업' : '일반배송', isToday: st.method === 'today', isPickup: st.method === 'pickup', isStandard: st.method === 'standard',
       pillToday: st.method === 'today' ? pillOn : pillOff, pillPickup: st.method === 'pickup' ? pillOn : pillOff,
@@ -396,7 +396,7 @@ class Component extends DCLogic {
         }
         this.setState({ screen: 'done' });
       },
-      stockClose: () => this.setState({ screen: 'checkout' }),
+      stockClose: () => this.setState({ screen: 'checkout', g1Open: true }),
       stockAlt: () => this.openAlt(),
       stockStore: () => this.setState({ screen: 'store', returnTo: 'checkout' }),
       doneMethod: doneMethod

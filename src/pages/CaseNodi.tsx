@@ -133,7 +133,7 @@ export default function CaseNodi() {
       {/* 02 Background */}
       <section id="bg" className="wrap gutter py-20 md:py-32 scroll-mt-20">
         <Head label="BACKGROUND">회의 시간을 정하는 일은, <br />여러 사람의 조건을 비교하는 일이었습니다.</Head>
-        <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
+        <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-end">
           <div className="md:col-span-5 text-[17px] leading-[1.65] space-y-4">
             <p>여러 사람이 참여하는 회의를 잡으려면 각자의 빈 시간만 확인해서는 충분하지 않았습니다.</p>
             <p>누군가는 외근이 있고, 누군가는 이미 다른 미팅이 잡혀 있습니다. 또 누군가는 점심 직후 회의를 선호하지 않는 등 참여자마다 고려해야 할 조건이 달랐습니다.</p>

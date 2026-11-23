@@ -207,7 +207,7 @@ export default function CaseTrigr() {
       {/* 07 Design System */}
       <section id="c6" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="06" label="Design System" title="반복되는 변경 속에서도 일관성을 유지하기 위한 UI 기반 구축" />
-        <div className="mt-12 md:grid md:grid-cols-12 gap-10">
+        <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-end">
           <div className="md:col-span-6">
             <ul className="space-y-3">{['초기 기초 디자인 토큰 정의', '화면 설계 과정에서 디자인 시스템 점진적 확장', 'Figma Variables 활용', '라이트·다크 모드 대응', '다국어 UI 대응', '공통 컴포넌트와 UI 패턴 정리'].map(t => <li key={t} className="rounded-[16px] bg-white border border-grid px-5 py-4 text-[17px] font-semibold flex gap-3"><span aria-hidden style={{ color: PINK }}>●</span>{t}</li>)}</ul>
             <p className="mt-4 text-[14px] text-sub leading-snug">처음부터 완성된 시스템을 만든 것이 아니라, 화면을 만들며 필요한 규칙을 보완해 나갔습니다.</p>

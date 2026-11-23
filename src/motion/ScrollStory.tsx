@@ -16,7 +16,7 @@ const stories: Story[] = [
   { slug: 'karrot-large-furniture', category: 'UX REDESIGN / PERSONAL PROJECT', headline: '채팅에서 물어보기 전에, 게시글에서 확인하도록', description: '대형 가구의 크기와 운반 조건을 게시글에서 확인해, 채팅에서는 거래 약속 조율에 집중하도록 개선했습니다.', bg: '#F3D7BE', fg: '#2B1D16' },
   { slug: 'nodi', category: 'PRODUCT CONCEPT / FUNCTIONAL PROTOTYPE', headline: 'AI는 이해하고, 사용자는 결정한다', description: '여러 사람의 일정 조건과 추천 이유를 보여주되, 최종 회의 시간은 사용자가 직접 선택하도록 설계했습니다. 추천 기능은 규칙 기반 데모입니다.', bg: '#D8DFFF', fg: '#17224C' },
   { slug: 'woorisai', category: 'PRODUCT CONCEPT / PERSONAL PROJECT', headline: '함께한 순간을 다시 발견하도록', description: '여러 앱에 흩어진 사진과 이야기를 하나의 추억으로 모으고, 사람·장소·시간을 기준으로 다시 찾도록 설계했습니다.', bg: '#E9E8DC', fg: '#263B2F' },
-  { slug: 'trigr', category: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE', headline: '실제 출시 제품을 만들고, 반복해서 개선한 경험', description: '누락된 사용자 흐름과 예외 상태를 설계하고, 기획자·개발자와 협의해 태국 시장 출시까지 연결했습니다.', bg: '#241328', fg: '#FFFFFF' },
+  { slug: 'trigr', category: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE', headline: '실제 출시 제품을 만들고, 반복해서 개선한 경험', description: '누락된 사용자 흐름과 예외 상태를 설계하고, 기획자·개발자와 협의해 태국 시장 출시까지 연결했습니다.', bg: '#F6E4F6', fg: '#2A1230' },
 ]
 
 const by = (slug: string) => projects.find(p => p.slug === slug)!
@@ -52,11 +52,10 @@ function StoryArt({ story }: { story: Story }) {
     <Phone src="/images/woorisai/home.webp" className="right-[-3%] top-[-17%] z-10 w-[42%] rotate-[5deg] drop-shadow-[0_30px_46px_rgba(0,0,0,.26)]" />
   </>
   return <>
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_46%,#6F276F_0%,#28142E_44%,#170B1B_78%)]" />
-    <span className="absolute right-[5%] top-[9%] aspect-square w-[48%] rounded-full border border-[#EE7CF0]/35" />
+    <span className="absolute -right-[12%] top-[2%] aspect-square w-[62%] rounded-full bg-[#EBC4EC]/70" />
     <p className="hidden lg:block absolute left-[7%] top-[8%] z-10 max-w-[9ch] text-[clamp(34px,4.1vw,64px)] font-black leading-[1.1] tracking-[-.065em]">FROM GAPS TO FLOWS.</p>
-    <Phone src="/images/trigr/home-map.webp" className="bottom-[-28%] right-[28%] w-[31%] rotate-[-10deg] opacity-85 drop-shadow-[0_28px_54px_rgba(0,0,0,.5)]" />
-    <Phone src="/images/trigr/mission-discovery-02.png" className="bottom-[-26%] right-0 z-10 w-[39%] rotate-[4deg] drop-shadow-[0_34px_60px_rgba(0,0,0,.55)]" />
+    <Phone src="/images/trigr/home-map.webp" className="bottom-[-28%] right-[28%] w-[31%] rotate-[-10deg] opacity-85 drop-shadow-[0_28px_44px_rgba(74,28,80,.26)]" />
+    <Phone src="/images/trigr/mission-discovery-02.png" className="bottom-[-26%] right-0 z-10 w-[39%] rotate-[4deg] drop-shadow-[0_32px_52px_rgba(74,28,80,.32)]" />
   </>
 }
 

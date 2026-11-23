@@ -456,3 +456,9 @@ main article :is(h3, h4).apple-h { letter-spacing: -.02em; }
 @media (min-width: 768px) {
   main > :not(article) article :is(p, li)[class*="text-[17px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"]) { font-size: 19px !important; }
 }
+
+/* ── 홈 프로젝트 썸네일 영문 타이포 토큰 ─────────────────────────────
+   타이틀: 48px(썸네일 폭 608px 기준 = 7.9cqw) · 800 · 행간 1.05 · 자간 -0.04em · 대문자 / 상단 라벨: 14px · 700 · .12em · 대문자
+   크기는 썸네일 실제 폭(container query)에 비례해 줄어든다(모바일 약 28px). 프로젝트별 임의 크기·scale 금지. */
+.thumb-title { font-size: clamp(20px, 7.9cqw, 48px); font-weight: 800; line-height: 1.05; letter-spacing: -.04em; text-transform: uppercase; }
+.thumb-label { font-size: clamp(11px, 2.3cqw, 14px); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }

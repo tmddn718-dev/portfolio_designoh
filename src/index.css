@@ -141,8 +141,9 @@ a:active, button:active { transform: translateY(1px); }
 /* 어두운 구간 위에서는 글로벌 내비도 어둡게(애플 글로벌 내비) */
 header[data-dark="1"] { background: rgba(22,22,23,.72); border-color: rgba(255,255,255,.12); }
 header[data-dark="1"] a, header[data-dark="1"] button { color: #f5f5f7; }
-.pill { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 99px; background: var(--color-bluetext); color: #fff; font-size: 13px; font-weight: 600; }
+.pill { position: relative; display: inline-flex; align-items: center; min-height: 38px; padding: 0 16px; border-radius: 99px; background: var(--color-bluetext); color: #fff; font-size: 13px; font-weight: 600; }
 .pill:hover { background: #2a5dd6; }
+.pill::after { content: ""; position: absolute; inset: -3px 0; } /* 보이는 높이 38px, 터치 영역은 44px 유지 */
 
 /* 핀 고정 폰 스토리: 폰은 고정, 화면만 교차 */
 .stage-screen { position: absolute; inset: 0; opacity: 0; transform: scale(.985); transition: opacity .6s var(--ease-apple), transform .6s var(--ease-apple); }

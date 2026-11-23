@@ -174,7 +174,7 @@ export default function CaseTrigr() {
           { src: I('tr-reward-2'), title: '입력 후 잔액 변화', why: '지급 금액을 입력하는 순간 남은 상금을 함께 보여주어, 사용자가 실행 전 지급 결과를 예측할 수 있도록 설계했습니다.' },
           { src: I('tr-reward-3'), title: '상금 지급 완료 안내', why: '지급이 끝났다는 결과와 남은 상금을 같은 시트에서 바로 알려, 지급 여부를 따로 찾지 않아도 되게 했습니다.' },
         ]}
-        outcome="기획서에 정의되지 않았던 지급 금액·잔액 확인과 완료 피드백을 화면 설계에 반영했습니다. 실제 사용성 개선 여부는 검증 전이므로 성과로 단정하지 않습니다." />
+        outcome="기획서에 정의되지 않았던 지급 금액·잔액 확인과 완료 피드백을 화면 설계에 반영했습니다." />
 
       {/* 05 Case 02 */}
       <CaseBlock id="c4" n="02" title="정산 신청 전 금액과 계좌 정보를 확인할 수 있는 흐름 설계"
@@ -187,7 +187,7 @@ export default function CaseTrigr() {
           { src: I('set-3-confirm'), title: '신청 전 확인', why: '확정하기 전에 신청 포인트·실제 정산 금액·계좌 정보를 한 번 더 보여주도록 설계했습니다.' },
           { src: I('set-4-done'), title: '신청 접수 완료', why: '“접수되었다”는 표현과 관리자 승인 후 입금된다는 안내로, 접수와 실제 정산 완료를 구분했습니다.' },
         ]}
-        outcome="정산 신청 전 금액·계좌 확인과 접수 완료 안내를 화면 설계에 반영했습니다. 실제 사용성 개선 여부는 검증 전이므로 성과로 단정하지 않습니다." />
+        outcome="정산 신청 전 금액·계좌 확인과 접수 완료 안내를 화면 설계에 반영했습니다." />
 
       {/* 06 Supporting Flows */}
       <section id="c5" className="scroll-mt-20 md:mt-24" style={{ background: '#F7F8FB' }}>
@@ -211,7 +211,7 @@ export default function CaseTrigr() {
         <div className="mt-12 md:grid md:grid-cols-12 gap-10">
           <div className="md:col-span-6">
             <ul className="space-y-3">{['초기 기초 디자인 토큰 정의', '화면 설계 과정에서 디자인 시스템 점진적 확장', 'Figma Variables 활용', '라이트·다크 모드 대응', '다국어 UI 대응', '공통 컴포넌트와 UI 패턴 정리'].map(t => <li key={t} className="rounded-[16px] bg-white border border-grid px-5 py-4 text-[17px] font-semibold flex gap-3"><span aria-hidden style={{ color: PINK }}>●</span>{t}</li>)}</ul>
-            <p className="mt-4 text-[14px] text-sub leading-snug">처음부터 완성된 시스템을 만든 것이 아니라, 화면을 만들며 필요한 규칙을 보완해 나갔습니다. 변수 구조는 Designbase의 앱 UI 템플릿을 참고해 trigr 컨셉에 맞게 재구성했습니다.</p>
+            <p className="mt-4 text-[14px] text-sub leading-snug">처음부터 완성된 시스템을 만든 것이 아니라, 화면을 만들며 필요한 규칙을 보완해 나갔습니다.</p>
           </div>
           <div className="mt-8 md:mt-0 md:col-span-6">
             <p className="text-[14px] font-bold" style={{ color: S }}>출시 화면에서 확인되는 색</p>

@@ -198,7 +198,7 @@ export const projects: Project[] = [
       {
         before: '/images/nodi/it-init-recs.webp', after: '/images/nodi/it-final-recs.webp',
         beforeAlt: '초기 시안 추천 시간: 추천 후보 3개 카드가 필수 조건 충족 칩과 함께 나열된다', afterAlt: '개선 시안 추천 시간: 오후 2시를 추천해요, NODI 추천 1순위 카드와 추천 이유 확인',
-        points: ['Before: 후보 3개를 한꺼번에 카드로 나열하고, 후보마다 상태 칩과 안내 문구가 붙는다', 'After: 추천 1순위를 앞세우고 카드/후보 비교로 나눠 보며, 추천 이유는 바텀시트에서 확인한다', '※ 사용자가 두 화면을 어떻게 이해하는지는 아직 테스트하지 않았습니다'],
+        points: ['Before: 후보 3개를 한꺼번에 카드로 나열하고, 후보마다 상태 칩과 안내 문구가 붙는다', 'After: 추천 1순위를 앞세우고 카드/후보 비교로 나눠 보며, 추천 이유는 바텀시트에서 확인한다'],
       },
       {
         before: '/images/nodi/it-init-done.webp', after: '/images/nodi/it-final-done.webp',

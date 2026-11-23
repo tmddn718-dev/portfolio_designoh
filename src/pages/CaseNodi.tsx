@@ -232,7 +232,7 @@ export default function CaseNodi() {
                 </div></Reveal>
               ))}
             </div>
-            <p className="mt-6 text-[13px] text-sub max-w-3xl leading-relaxed">두 화면은 같은 날짜와 회의 길이에서 선호 시간대만 바꿔 비교한 결과입니다. 추천은 참석 가능 인원, 필수 참석자 충족 여부, 선호 시간대를 점수화하는 규칙 기반 로직이며 실제 AI 모델을 호출하지 않습니다.</p>
+            <p className="mt-6 text-[13px] text-sub max-w-3xl leading-relaxed">두 화면은 같은 날짜와 회의 길이에서 선호 시간대만 바꿔 비교한 결과입니다. 추천은 참석 가능 인원, 필수 참석자 충족 여부, 선호 시간대를 점수화하는 규칙 기반 로직입니다.</p>
           </div>
 
           {/* Solution 03 */}
@@ -339,7 +339,7 @@ export default function CaseNodi() {
             </div>
           </Reveal>
           {p.beforeAfter?.map((b, i) => <div key={b.before} className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">초기 시안 → 개선 시안 · {['조건 확인', '추천 시간', '저장 완료'][i]}</p><p className="mt-4 text-[15px] text-sub">신규 서비스이므로 직접 만든 초기 시안(v5.2)을 비교 기준으로 삼았습니다. 왼쪽은 초기 시안, 오른쪽은 개선 시안입니다.</p></div><div className="mt-6"><BeforeAfter data={b} color={S} beforeLabel="초기 시안" afterLabel="개선 시안" /></div></div>)}
-          <p className="mt-10 text-[15px] leading-relaxed text-sub max-w-3xl">변경이 사용자의 이해와 행동에 미친 영향은 아직 검증하지 않았습니다. 대신 44px 이상 터치 영역, 13px 이상 글자 크기, 클릭 시나리오 19개로 구현 품질을 점검했습니다.</p>
+          <p className="mt-10 text-[15px] leading-relaxed text-sub max-w-3xl">변경이 사용자의 이해와 행동에 미친 영향은 아직 검증하지 않았습니다.</p>
         </div>
       </section>
 

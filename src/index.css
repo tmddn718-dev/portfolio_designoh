@@ -169,12 +169,15 @@ dialog.modal::backdrop { background: rgba(11,11,12,.72); }
   * { animation: none !important; }
 }
 
-/* 타이틀·서브타이틀 행간 140% (leading-none 으로 지정한 큰 숫자 지표는 제외, 홈 히어로 큰 제목은 디자인상 제외) */
-main h1:not(#hero h1), main h2, main h3, main h4,
+/* 타이틀 행간: 큰 제목은 데스크톱 1.2 / 모바일 1.25로 조여 한 덩어리로 읽히게 하고, 작은 제목·서브타이틀은 1.35 (leading-none 지표, 홈 히어로 큰 제목은 제외) */
+main h1:not(#hero h1), main h2, main blockquote, .apple-h { line-height: 1.2; }
+main h3, main h4,
 main p[class*="font-bold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-bold"][class*="text-[3"]:not([class*="leading-none"]),
 main p[class*="font-semibold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-semibold"][class*="text-[3"]:not([class*="leading-none"]),
-main p[class*="font-extrabold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-extrabold"][class*="text-[3"]:not([class*="leading-none"]),
-main blockquote, .apple-h { line-height: 1.4; }
+main p[class*="font-extrabold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-extrabold"][class*="text-[3"]:not([class*="leading-none"]) { line-height: 1.35; }
+@media (max-width: 767px) {
+  main h1:not(#hero h1), main h2, main blockquote, .apple-h { line-height: 1.25; }
+}
 
 /* 상세 섹션 번호(01·02·03): 프로젝트 브랜드 컬러로 채운 글자 */
 .num-brand { color: var(--brand, var(--color-ink)); }

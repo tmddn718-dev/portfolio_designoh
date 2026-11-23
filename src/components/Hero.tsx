@@ -104,7 +104,7 @@ export default function Hero() {
         <div className="mt-12 grid gap-7 md:mt-20 md:grid-cols-12 md:items-end">
           <div data-copy className="md:col-span-7">
             <p className="max-w-[27ch] text-[22px] font-semibold leading-[1.45] tracking-[-.025em] md:text-[30px]">복잡한 사용자 경험을 명확한 선택으로 바꾸는 프로덕트 디자이너</p>
-            <p className="mt-4 max-w-[54ch] text-[15px] leading-[1.75] text-white/72 md:text-[17px]">문제를 발견하고, 동작하는 프로토타입으로 검증하며, 사용자가 더 쉽게 결정할 수 있는 경험을 설계합니다.</p>
+            <p className="mt-4 max-w-[54ch] text-[15px] leading-[1.65] text-white/72 md:text-[17px]">문제를 발견하고, 동작하는 프로토타입으로 검증하며, 사용자가 더 쉽게 결정할 수 있는 경험을 설계합니다.</p>
           </div>
           <div data-copy className="md:col-span-5 md:flex md:justify-end">
             <Link to="/#story" className="inline-flex min-h-12 items-center gap-3 rounded-full bg-[#2997ff] px-6 text-[15px] font-semibold text-white shadow-[0_10px_30px_rgba(41,151,255,.22)] hover:-translate-y-0.5 hover:bg-[#1689ed]">Explore Work <span aria-hidden>↓</span></Link>

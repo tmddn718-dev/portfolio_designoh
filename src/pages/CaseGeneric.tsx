@@ -43,8 +43,8 @@ function Hero({ c, eyebrow, kicker, title, lead, children, size = 'md' }: { c: C
           <div className="md:col-span-5">
             <AppIcon src={`/images/${p.slug}/icon.webp`} name={p.name} className="mb-5" />
             <p className="eyebrow" style={{ color: S }}>{eyebrow ?? `Personal Case Study · ${p.category}`}</p>
-            <h1 style={{ lineHeight: 1.2 }} className={`mt-4 font-extrabold tracking-[-0.045em] ${size === 'xl' ? 'text-[64px] md:text-[104px]' : 'text-[35px] md:text-[58px]'}`}>{title}</h1>
-            <p className="mt-6 text-[24px] md:text-[28px] font-bold leading-snug max-w-[20ch]">{lead}</p>
+            <h1 style={{ lineHeight: 1.2 }} className={`mt-3 font-extrabold tracking-[-0.045em] ${size === 'xl' ? 'text-[64px] md:text-[104px]' : 'text-[35px] md:text-[58px]'}`}>{title}</h1>
+            <p className="mt-4 text-[21px] md:text-[24px] font-semibold leading-snug max-w-[22ch] text-ink/80">{lead}</p>
             <dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] rule pt-4" style={{ borderColor: T(40) }}>
               <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div>
               <div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div>
@@ -68,7 +68,7 @@ const Outcome = ({ c, children, cards }: { c: Ctx; children?: ReactNode; cards: 
       <ChapterHead color={c.S} n="04" label="Outcome" title="검증 결과와 남은 한계" />
       <div className="mt-12 md:grid md:grid-cols-12 gap-10">
         <div className="md:col-span-5 grid gap-4">{cards}</div>
-        <div className="md:col-span-7 mt-10 md:mt-0 text-[17px] leading-[1.8] space-y-4">
+        <div className="md:col-span-7 mt-10 md:mt-0 text-[17px] leading-[1.65] space-y-4">
           {c.body('validation').map(t => <p key={t} className={`whitespace-pre-line ${t.startsWith('※') || t.startsWith('확인 필요') ? 'text-sub text-[16px]' : ''}`}>{t}</p>)}
           {children}
           {c.body('reflection').length > 0 && <div className="pt-6 rule"><p className="eyebrow text-sub mb-2">Learnings</p>{c.body('reflection').map(t => <p key={t}>{t}</p>)}</div>}
@@ -86,7 +86,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
     <div className="rounded-[28px] bg-ink p-6 md:p-8 text-white">
       <p className="eyebrow text-white/55">Usability test · 동일 참여자 8명</p>
       <p className="mt-3 text-[40px] md:text-[56px] font-extrabold tracking-tight">{value}</p>
-      <p className="mt-3 max-w-[52ch] text-[16px] md:text-[18px] leading-[1.7] text-white/80">기존 앱과 개선 프로토타입을 비교해 {task} 과제를 수행한 평균 결과입니다.</p>
+      <p className="mt-3 max-w-[52ch] text-[16px] md:text-[18px] leading-[1.65] text-white/80">기존 앱과 개선 프로토타입을 비교해 {task} 과제를 수행한 평균 결과입니다.</p>
     </div>
   )
   return (
@@ -107,8 +107,8 @@ function OliveRenewed({ c }: { c: Ctx }) {
 
       <section id="c2" className="wrap gutter py-14 md:py-24 scroll-mt-20 md:mt-16">
         <ChapterHead color={S} n="01" label="Background & Problem Discovery" title="특정 구매 방법의 품절이, 구매 전체의 끝처럼 보였다" />
-        <div className="mt-8 grid gap-8 md:grid-cols-12">
-          <div className="md:col-span-7"><p className="max-w-[46rem] text-[18px] leading-[1.8]">오늘드림 재고가 없더라도 일반배송이나 매장 픽업으로 구매할 수 있습니다. 그러나 기존 흐름에서는 이 가능성을 바로 확인하기 어려워, 사용자가 이전 단계로 돌아가 구매 방법을 다시 찾아야 했습니다.</p></div>
+        <div className="mt-5 md:mt-6 grid gap-8 md:grid-cols-12">
+          <div className="md:col-span-7"><p className="max-w-[46rem] text-[18px] leading-[1.65]">오늘드림 재고가 없더라도 일반배송이나 매장 픽업으로 구매할 수 있습니다. 그러나 기존 흐름에서는 이 가능성을 바로 확인하기 어려워, 사용자가 이전 단계로 돌아가 구매 방법을 다시 찾아야 했습니다.</p></div>
           <aside className="rounded-[24px] bg-[#F3F7EB] p-6 md:col-span-5 md:p-8"><p className="eyebrow text-sub">Problem statement</p><p className="mt-3 text-[20px] font-bold leading-[1.55]">오늘드림이 품절되면, 다른 방법으로 구매할 수 있어도 상품 전체가 품절된 것으로 오해할 수 있습니다.</p></aside>
         </div>
         <div className="mt-12 rounded-[28px] bg-ink p-7 text-white md:p-10"><p className="eyebrow text-white/55">Design question</p><p className="mt-3 max-w-[30ch] text-[26px] font-bold leading-[1.4] md:text-[36px]">오늘드림이 품절된 순간, 사용할 수 있는 다른 구매 경로를 자연스럽게 안내할 수 없을까?</p></div>
@@ -137,7 +137,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
               <div className="md:col-span-7"><Result value="평균 약 42초 단축" task="품절 이후 대체 구매 경로를 찾아 결제를 확정하는" /></div>
               <div className="mx-auto grid max-w-[360px] grid-cols-2 gap-3 md:col-span-5 md:max-w-none"><Fig src={I('n-altMethods')} alt="다른 구매 방법 안내" cap="일반배송과 픽업 비교" /><Fig src={I('n-pickup')} alt="매장 픽업 선택" cap="픽업 매장 선택" /></div>
             </div>
-            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">가능한 구매 경로를 바로 확인하는 개선 흐름에서 과제 수행 시간이 짧게 나타났습니다.</p>
+            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.65] text-sub">가능한 구매 경로를 바로 확인하는 개선 흐름에서 과제 수행 시간이 짧게 나타났습니다.</p>
           </article>
 
           <article id="cart-experience" className="mt-14 md:mt-24 pt-10 md:pt-14 border-t border-black/10 scroll-mt-24">
@@ -150,7 +150,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
             </div>
             <details className="group mt-8 rounded-[20px] bg-white/70 p-4 md:p-6">
               <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-[15px] font-bold"><span><span className="eyebrow block text-sub">Before · 실제 올리브영 앱의 긴 장바구니 흐름</span>기존 장바구니 4구간 전체 보기</span><span aria-hidden className="text-[20px] transition-transform group-open:rotate-180">⌄</span></summary>
-              <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.75] text-sub">기존 앱도 무료배송 안내와 구매 버튼을 하단에 고정해 제공했습니다. 문제는 버튼을 찾는 것이 아니라, 무료배송 조건을 확인한 순간 추가 구매에 참고할 추천 상품이 현재 구매 맥락과 바로 연결되지 않는 구조였습니다.</p>
+              <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.65] text-sub">기존 앱도 무료배송 안내와 구매 버튼을 하단에 고정해 제공했습니다. 문제는 버튼을 찾는 것이 아니라, 무료배송 조건을 확인한 순간 추가 구매에 참고할 추천 상품이 현재 구매 맥락과 바로 연결되지 않는 구조였습니다.</p>
               <ScreenSequence className="mt-7" color={S} label="기존 장바구니 스크롤 흐름" steps={[
                 ['cart-asis-01', '상품과 배송 조건', '배송 방식·배송지·도착 예정 시간과 상품 옵션을 확인합니다.'],
                 ['cart-asis-02', '결제 예상과 추천 시작', '예상 결제 금액 아래에서 추천 상품 영역이 시작됩니다.'],
@@ -167,14 +167,14 @@ function OliveRenewed({ c }: { c: Ctx }) {
                     ['01', '무료배송 조건의 가시성', '현재 10,000원, 기준 30,000원, 남은 금액 20,000원과 진행 바(33.3%)를 한 카드에 모았습니다. 기준 금액은 프로토타입 예시 값입니다.'],
                     ['02', '추가 구매에 따른 비용 변화', '추천 상품마다 담았을 때 무료배송까지 남는 금액을 보여주고, 담으면 진행 바와 예상 결제금액이 바로 바뀝니다. 담지 않아도 구매를 이어갈 수 있습니다.'],
                     ['03', '배송 시간과 배송비 사전 비교', '하단 CTA를 누르면 세 시간대의 배송비를 모두 비교해 고를 수 있고, 선택에 따라 결제금액이 바뀐 채 주문/결제로 이어집니다.'],
-                  ].map(([n, title, body]) => <li key={n} className="border-t border-grid pt-5"><p className="text-[13px] font-bold" style={{ color: S }}>Decision {n}</p><h4 className="mt-2 text-[20px] font-bold">{title}</h4><p className="mt-2 text-[15px] leading-[1.75] text-sub">{body}</p></li>)}
+                  ].map(([n, title, body]) => <li key={n} className="border-t border-grid pt-5"><p className="text-[13px] font-bold" style={{ color: S }}>Decision {n}</p><h4 className="mt-2 text-[20px] font-bold">{title}</h4><p className="mt-2 text-[15px] leading-[1.65] text-sub">{body}</p></li>)}
                 </ol>
               </div>
               
             </div>
             <div className="mt-14">
               <p className="eyebrow rule pt-4 text-sub">Before / After · 장바구니</p>
-              <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.75] text-sub">기존 장바구니에도 하단 고정 구매 버튼과 무료배송 안내가 있었습니다. 같은 정보 맥락의 화면을 나란히 비교했고, 눌러서 AS-IS와 TO-BE를 전환하며 확대해 볼 수 있습니다.</p>
+              <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.65] text-sub">기존 장바구니에도 하단 고정 구매 버튼과 무료배송 안내가 있었습니다. 같은 정보 맥락의 화면을 나란히 비교했고, 눌러서 AS-IS와 TO-BE를 전환하며 확대해 볼 수 있습니다.</p>
               <div className="mt-8 space-y-14">
                 <PhoneCompare n="01" title="결제 금액과 배송 조건" color={A}
                   asis={{ src: '/images/oliveyoung-todaydream/cart-asis-01-tall.jpg', alt: '기존 장바구니 맨 위: 배송 방식 탭, 배송지, 도착 예정 시간, 상품과 옵션, 하단 고정 총액과 구매 버튼', ratio: 1720 / 780, caption: '배송 방식·배송지·도착 예정 시간과 상품이 먼저 보이고, 최종 결제 금액은 아래로 스크롤해야 확인해요. 무료배송 안내는 하단에 따로 있어요.' }}
@@ -187,17 +187,17 @@ function OliveRenewed({ c }: { c: Ctx }) {
               </div>
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-2">
-              <div className="rounded-[24px] bg-[#EAF4DB] p-6 md:p-8"><p className="eyebrow" style={{ color: S }}>Qualitative feedback</p><ul className="mt-4 space-y-3 text-[16px] leading-[1.7]"><li>무료배송까지 더 담아야 할 금액을 이해하기 쉬웠음</li><li>기존에 구매하려던 상품과 관련된 추천이 자연스럽게 느껴졌음</li><li>추천 상품을 보며 추가 구매를 긍정적으로 고려하게 됐음</li></ul><p className="mt-5 text-[13px] leading-[1.65] text-sub">정성적 반응이며 실제 추가 구매 행동이나 금액·매출 지표는 측정하지 않았습니다. 이 반응은 이번 개편(수량·삭제·배송 시간 선택 추가) 이전 장바구니 시안 기준입니다.</p></div>
-              <div className="rounded-[24px] border border-grid bg-white p-6 md:p-8"><p className="eyebrow text-sub">후속 보완 방향 · 미구현</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[15px] leading-[1.7] text-sub"><li>품절·배송비 조회 실패·재고 변동 등 예외 상태는 화면으로만 설계했고 프로토타입에는 미구현</li><li>실제 배송 가능 시간·재고·배송비 연동 없이 시나리오 값 사용</li><li>쿠폰·결제수단 할인까지 반영한 최종 결제금액 확인</li><li>배송지 변경은 재확인 상태만 시연</li></ul></div>
+              <div className="rounded-[24px] bg-[#EAF4DB] p-6 md:p-8"><p className="eyebrow" style={{ color: S }}>Qualitative feedback</p><ul className="mt-4 space-y-3 text-[16px] leading-[1.65]"><li>무료배송까지 더 담아야 할 금액을 이해하기 쉬웠음</li><li>기존에 구매하려던 상품과 관련된 추천이 자연스럽게 느껴졌음</li><li>추천 상품을 보며 추가 구매를 긍정적으로 고려하게 됐음</li></ul><p className="mt-5 text-[13px] leading-[1.65] text-sub">정성적 반응이며 실제 추가 구매 행동이나 금액·매출 지표는 측정하지 않았습니다. 이 반응은 이번 개편(수량·삭제·배송 시간 선택 추가) 이전 장바구니 시안 기준입니다.</p></div>
+              <div className="rounded-[24px] border border-grid bg-white p-6 md:p-8"><p className="eyebrow text-sub">후속 보완 방향 · 미구현</p><ul className="mt-4 list-disc space-y-2 pl-5 text-[15px] leading-[1.65] text-sub"><li>품절·배송비 조회 실패·재고 변동 등 예외 상태는 화면으로만 설계했고 프로토타입에는 미구현</li><li>실제 배송 가능 시간·재고·배송비 연동 없이 시나리오 값 사용</li><li>쿠폰·결제수단 할인까지 반영한 최종 결제금액 확인</li><li>배송지 변경은 재확인 상태만 시연</li></ul></div>
             </div>
-            <div className="mt-5 rounded-[20px] bg-white/70 p-6 text-[15px] leading-[1.7] text-sub"><b className="text-ink">Future validation</b><br />“무료배송까지 남은 금액을 확인하고 필요한 상품을 추가해 구매를 진행해 주세요” 과제로 조건 확인 시간, 추천 발견 여부, 선택 이유와 혼란 지점을 추후 검증할 수 있습니다. 아직 수행한 테스트로 표현하지 않습니다.</div>
+            <div className="mt-5 rounded-[20px] bg-white/70 p-6 text-[15px] leading-[1.65] text-sub"><b className="text-ink">Future validation</b><br />“무료배송까지 남은 금액을 확인하고 필요한 상품을 추가해 구매를 진행해 주세요” 과제로 조건 확인 시간, 추천 발견 여부, 선택 이유와 혼란 지점을 추후 검증할 수 있습니다. 아직 수행한 테스트로 표현하지 않습니다.</div>
           </article>
 
           <article className="mt-14 md:mt-24 pt-10 md:pt-14 border-t border-black/10">
             <p className="eyebrow" style={{ color: S }}>Solution 03</p>
             <p className="mt-3 text-[16px] font-semibold text-sub">Checkout Experience</p>
             <h3 className="mt-2 max-w-[22ch] text-[30px] font-extrabold tracking-tight md:text-[38px]">길게 펼쳐진 주문 정보를, 확인하기 쉬운 구조로.</h3>
-            <p className="mt-5 max-w-[48rem] text-[16px] leading-[1.75] text-sub">기존 주문/결제 화면에서는 배송·혜택·결제 정보가 긴 화면에 연속적으로 배치되어 있어, 필요한 정보를 확인하기 위해 여러 영역을 탐색해야 했습니다.</p>
+            <p className="mt-5 max-w-[48rem] text-[16px] leading-[1.65] text-sub">기존 주문/결제 화면에서는 배송·혜택·결제 정보가 긴 화면에 연속적으로 배치되어 있어, 필요한 정보를 확인하기 위해 여러 영역을 탐색해야 했습니다.</p>
 
             <PhoneOverflowCompare className="mt-10" color={A}
               asis={{ srcs: ['/images/oliveyoung-todaydream/sp-checkoutAsis-top.webp', '/images/oliveyoung-todaydream/sp-checkoutAsis-body.webp'], zoomSrc: I('n-checkoutAsis'), ratio: (193 + 6516) / 780, extra: 1.1, alt: '기존 주문/결제(오늘드림): 배송 방법 시간대 표, 배송 요청사항, 주문상품, 쿠폰·포인트, 최종 결제금액, 결제수단, 약관이 위에서 아래로 길게 이어짐(실제 앱 스크롤 캡처)', caption: '배송·혜택·결제 정보가 모두 펼쳐진 채 긴 화면에 이어져요. 프레임 아래로 계속 이어지고, 확대하면 끝까지 볼 수 있어요.' }}
@@ -210,22 +210,22 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <div className="mt-14 rounded-[24px] bg-white p-6 md:p-8">
               <p className="eyebrow text-sub">디자인 판단</p>
               <p className="mt-3 text-[20px] font-bold leading-[1.5] md:text-[24px]">한 번에 모두 보여주기보다, 필요한 순간에 확인할 수 있도록.</p>
-              <p className="mt-3 max-w-[52ch] text-[15px] leading-[1.75] text-sub">배송·혜택·결제 정보를 구획하고 아코디언 방식으로 정리해, 사용자가 필요한 정보를 선택적으로 확인할 수 있도록 설계했습니다.</p>
+              <p className="mt-3 max-w-[52ch] text-[15px] leading-[1.65] text-sub">배송·혜택·결제 정보를 구획하고 아코디언 방식으로 정리해, 사용자가 필요한 정보를 선택적으로 확인할 수 있도록 설계했습니다.</p>
             </div>
 
             <div className="mt-10 rounded-[28px] bg-ink p-7 text-white md:p-10">
               <p className="eyebrow text-white/55">Usability test · 동일 참여자 8명 · 프로토타입</p>
               <p className="mt-3 text-[40px] font-extrabold tracking-tight md:text-[56px]">평균 26초 단축</p>
-              <p className="mt-3 max-w-[52ch] text-[16px] leading-[1.7] text-white/80 md:text-[18px]">기존 앱과 개선 프로토타입을 비교해 결제 정보를 확인하고 구매를 결정하는 과제를 수행한 평균 결과입니다.</p>
+              <p className="mt-3 max-w-[52ch] text-[16px] leading-[1.65] text-white/80 md:text-[18px]">기존 앱과 개선 프로토타입을 비교해 결제 정보를 확인하고 구매를 결정하는 과제를 수행한 평균 결과입니다.</p>
             </div>
-            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">프로토타입 사용성 테스트에서 나타난 과제 수행 시간입니다.</p>
+            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.65] text-sub">프로토타입 사용성 테스트에서 나타난 과제 수행 시간입니다.</p>
           </article>
         </div>
       </section>
 
       <section id="c4" className="wrap gutter py-14 md:py-24 scroll-mt-20 md:mt-16">
         <ChapterHead color={S} n="03" label="Edge cases" title="대표 흐름과 예외 상황을 분리하다" />
-        <p className="mt-6 max-w-2xl text-[17px] leading-[1.8] text-sub">주요 구매 흐름과 분리해, 사용자가 멈출 수 있는 상태만 빠르게 비교할 수 있도록 묶었어요.</p>
+        <p className="mt-4 md:mt-6 max-w-2xl text-[17px] leading-[1.65] text-sub">주요 구매 흐름과 분리해, 사용자가 멈출 수 있는 상태만 빠르게 비교할 수 있도록 묶었어요.</p>
         <div className="mt-12"><Strip label="구매 예외 상황 갤러리">{[
           ['n-optFail', '재고 확인 실패'], ['n-altNone', '전체 품절'], ['n-restock', '재입고 알림'], ['n-stockChanged', '주문 직전 재고 변경'],
         ].map(([n, label]) => <figure key={n} className="w-[230px] shrink-0"><Screen src={I(n)} alt={`${label} 화면`} /><figcaption className="mt-3 text-[14px] text-sub">{label}</figcaption></figure>)}</Strip></div>
@@ -240,9 +240,9 @@ function OliveRenewed({ c }: { c: Ctx }) {
               ['01', 'Recovery', '품절이나 실패 상태에서도 사용자가 다음 행동을 이해할 수 있도록 안내해야 합니다.'],
               ['02', 'Decision', '구매 맥락과 연결된 정보는 사용자가 다음 선택을 내리는 데 도움을 줄 수 있습니다.'],
               ['03', 'Structure', '정보를 무조건 줄이기보다 필요한 순간에 이해할 수 있도록 구조화하는 것이 중요합니다.'],
-            ].map(([n, title, body]) => <li key={n} className="border-t border-grid pt-5"><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[24px] font-bold">{title}</h3><p className="mt-3 text-[16px] leading-[1.75] text-sub">{body}</p></li>)}
+            ].map(([n, title, body]) => <li key={n} className="border-t border-grid pt-5"><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[24px] font-bold">{title}</h3><p className="mt-3 text-[16px] leading-[1.65] text-sub">{body}</p></li>)}
           </ol>
-          <div className="mt-12 rounded-[24px] bg-[#F5F5F3] p-6 md:p-8"><p className="eyebrow text-sub">Limitations</p><ul className="mt-4 grid gap-x-8 gap-y-2 text-[15px] leading-[1.7] text-sub md:grid-cols-2"><li>소규모 사용자 테스트 n=8</li><li>실제 서비스와 프로토타입의 사용 환경 차이</li><li>테스트 순서에 따른 학습 효과 가능성</li><li>실제 매출·구매 전환율 변화 미검증</li><li>장바구니 추가 구매 의향은 정성적 피드백</li><li>후속 보완 기능은 실제 미구현 항목으로 분리</li></ul></div>
+          <div className="mt-12 rounded-[24px] bg-[#F5F5F3] p-6 md:p-8"><p className="eyebrow text-sub">Limitations</p><ul className="mt-4 grid gap-x-8 gap-y-2 text-[15px] leading-[1.65] text-sub md:grid-cols-2"><li>소규모 사용자 테스트 n=8</li><li>실제 서비스와 프로토타입의 사용 환경 차이</li><li>테스트 순서에 따른 학습 효과 가능성</li><li>실제 매출·구매 전환율 변화 미검증</li><li>장바구니 추가 구매 의향은 정성적 피드백</li><li>후속 보완 기능은 실제 미구현 항목으로 분리</li></ul></div>
         </div>
       </section>
     </>
@@ -273,7 +273,7 @@ function Olive({ c }: { c: Ctx }) {
           {[['01', '오늘드림이 뭐예요?', '올리브영 앱에서 주문하면 내 배송지로 빠르게 받는 배송 서비스예요. 재고는 내 배송지 기준으로 확인해요. 같은 상품을 일반배송으로 받거나 매장에서 픽업할 수도 있어요.'],
             ['02', '언제 문제가 생겼나요?', '오늘드림으로 주문하려고 옵션을 골랐는데 ‘일시품절’만 보일 때예요. 이때 화면에는 ‘재입고 알림’ 버튼만 있었어요.'],
             ['03', '왜 문제로 봤나요?', '이 순간 사용자는 보통 주문을 포기하거나 재입고 알림만 눌러요. 하지만 같은 상품을 일반배송이나 매장 픽업으로 살 수 있다면 구매할 수 있는 사람을 놓치는 거예요. 올리브영에게는 팔 수 있었던 기회가 사라져요.']].map(([n, t, d]) => (
-            <div key={n} className="rounded-[24px] bg-[#F7F8FA] p-6 md:p-7"><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.75] text-ink/80">{d}</p></div>
+            <div key={n} className="rounded-[24px] bg-[#F7F8FA] p-6 md:p-7"><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.65] text-ink/80">{d}</p></div>
           ))}
         </Reveal>
 
@@ -285,7 +285,7 @@ function Olive({ c }: { c: Ctx }) {
               <li className="px-4 py-2 rounded-full bg-[#f5f5f7] font-semibold">일시품절</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-[#fdeaea] text-[#a12a2a] font-semibold">주문 포기 또는 재입고 알림</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-sub">구매가 여기서 멈춰요. 다른 방법으로 살 수 있는지는 알려주지 않아요.</p>
+            <p className="mt-4 text-[15px] leading-[1.65] text-sub">구매가 여기서 멈춰요. 다른 방법으로 살 수 있는지는 알려주지 않아요.</p>
           </div>
           <div className="rounded-[24px] p-6 md:p-8" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
             <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: A, color: onBrand(A) }}>개선</span>
@@ -296,7 +296,7 @@ function Olive({ c }: { c: Ctx }) {
               <li className="px-4 py-2 rounded-full bg-white">일반배송 · 매장 픽업</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-white">구매 이어짐</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">품절 옵션을 고르면 ‘다른 구매 방법 확인’ 버튼이 먼저 나와요. 고른 옵션을 그대로 가지고 일반배송이나 매장 픽업으로 이어가요.</p>
+            <p className="mt-4 text-[15px] leading-[1.65] text-ink/80">품절 옵션을 고르면 ‘다른 구매 방법 확인’ 버튼이 먼저 나와요. 고른 옵션을 그대로 가지고 일반배송이나 매장 픽업으로 이어가요.</p>
           </div>
         </div>
 
@@ -304,7 +304,7 @@ function Olive({ c }: { c: Ctx }) {
           <div className="md:col-span-7">
             <p className="eyebrow text-sub">프로젝트의 핵심</p>
             <p className="mt-3 text-[24px] md:text-[34px] font-bold tracking-tight leading-snug">오늘드림이 품절됐다고 매출을 포기하지 않아요. 다른 방법으로 구매하도록 이어서 잠재 매출을 지키는 게 목표예요.</p>
-            <p className="mt-4 text-[14px] leading-[1.7] text-sub">매출이 얼마나 오를지는 측정하지 않았어요. 사용자가 구매를 이어갈 가능성을 높이는 설계 목표이고, 사용성 테스트로 검증이 필요해요.</p>
+            <p className="mt-4 text-[14px] leading-[1.65] text-sub">매출이 얼마나 오를지는 측정하지 않았어요. 사용자가 구매를 이어갈 가능성을 높이는 설계 목표이고, 사용성 테스트로 검증이 필요해요.</p>
           </div>
           <div className="mt-8 md:mt-0 md:col-span-5 grid grid-cols-2 gap-4">
             <figure><p className="text-[13px] font-semibold text-sub mb-2">기존 · 품절 옵션 선택</p><Screen src={p.beforeAfter![0].before} alt={p.beforeAfter![0].beforeAlt} /></figure>
@@ -315,13 +315,13 @@ function Olive({ c }: { c: Ctx }) {
 
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="01" label="The Challenge" title="품절은 구매 여정의 끝이어야 할까?" />
-        <p className="mt-6 max-w-2xl text-[18px] leading-[1.7]">오늘드림에서 원하는 옵션이 품절됐을 때, 일반배송이나 매장 픽업이 가능한지 쉽게 확인하지 못하면 구매를 멈출 수 있어요. 품절을 <b>끝</b>이 아니라 <b>다른 구매 방법을 탐색하는 지점</b>으로 다시 설계했어요.</p>
+        <p className="mt-4 md:mt-6 max-w-2xl text-[18px] leading-[1.65]">오늘드림에서 원하는 옵션이 품절됐을 때, 일반배송이나 매장 픽업이 가능한지 쉽게 확인하지 못하면 구매를 멈출 수 있어요. 품절을 <b>끝</b>이 아니라 <b>다른 구매 방법을 탐색하는 지점</b>으로 다시 설계했어요.</p>
 
         <p className="mt-16 eyebrow text-sub">AS-IS 구매 여정 · 실제 앱 캡처</p>
         <ol className="mt-5 grid md:grid-cols-3 gap-6 md:gap-10">{journey.map(([n, l, d, e]) => <li key={n}><Fig src={I('n-' + n)} alt={`실제 올리브영 앱 ${l}`} cap={l} /><p className="mt-1 text-[16px] leading-snug">{d}</p><p className="mt-1 text-[14px] text-sub">{e}</p></li>)}</ol>
         <div className="mt-8 rounded-[20px] p-6 md:p-8" style={{ background: T(14) }}>
           <p className="eyebrow text-sub">실제 화면에서 확인한 사실</p>
-          <ul className="mt-3 text-[16px] leading-[1.8] list-disc pl-5"><li>상품 상세에 오늘드림 또는 픽업 이용 영역이 있다</li><li>주문/결제에서 배송 시간대에 따라 배송비가 다르다: 12:45~13:45 5,000원 · 15:00~16:00 2,500원 · 22:00~24:00 2,500원</li><li>최종 결제금액 12,500원 화면이 확인된다</li></ul>
+          <ul className="mt-3 text-[16px] leading-[1.65] list-disc pl-5"><li>상품 상세에 오늘드림 또는 픽업 이용 영역이 있다</li><li>주문/결제에서 배송 시간대에 따라 배송비가 다르다: 12:45~13:45 5,000원 · 15:00~16:00 2,500원 · 22:00~24:00 2,500원</li><li>최종 결제금액 12,500원 화면이 확인된다</li></ul>
           <p className="mt-3 text-[13px] text-sub">품절 옵션 선택 화면도 실제 앱 캡처예요. 그 이후의 기존 동작은 단정하지 않고 검증할 가설로 뒀어요.</p>
         </div>
 
@@ -344,7 +344,7 @@ function Olive({ c }: { c: Ctx }) {
 
           <div className="mt-14 md:grid md:grid-cols-12 gap-10 items-start">
             <div className="md:col-span-5"><Num n="01" t="옵션 선택형 리스트 + 하단 고정 CTA" />
-              <p className="mt-4 text-[16px] leading-[1.7] text-sub">옵션 목록은 상품·재고를 비교하는 영역으로, 하단에는 선택한 옵션에 맞는 주요 CTA 하나를 고정했어요. 보조 행동은 텍스트 링크예요.</p>
+              <p className="mt-4 text-[16px] leading-[1.65] text-sub">옵션 목록은 상품·재고를 비교하는 영역으로, 하단에는 선택한 옵션에 맞는 주요 CTA 하나를 고정했어요. 보조 행동은 텍스트 링크예요.</p>
               <table className="mt-6 w-full text-[15px] bg-white rounded-[20px] overflow-hidden"><caption className="sr-only">옵션 상태별 하단 CTA</caption><thead><tr className="text-left text-[13px] text-sub"><th scope="col" className="py-3 pl-5">옵션 상태</th><th scope="col" className="py-3 pr-5">하단 CTA</th></tr></thead><tbody>{ctas.map(([a, b]) => <tr key={a} className="border-t border-grid"><th scope="row" className="py-3 pl-5 pr-3 text-left font-semibold">{a}</th><td className="py-3 pr-5" style={{ color: S }}>{b}</td></tr>)}</tbody></table></div>
             <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-3 gap-4 md:gap-6"><Fig src={I('n-optA')} alt="옵션 미선택 상태" cap="옵션 미선택" /><Fig src={I('n-optC')} alt="오늘드림 품절 옵션 선택" cap="오늘드림 품절" className="md:mt-10" /><Fig src={I('n-optFail')} alt="재고 확인 실패 상태" cap="재고 확인 실패" /></div>
           </div>
@@ -352,7 +352,7 @@ function Olive({ c }: { c: Ctx }) {
 
           <Reveal className="mt-20 md:mt-24">
             <Num n="02" t="수령 방법별로 재고와 주문 가능 상태를 구분" />
-            <p className="mt-4 text-[17px] leading-[1.8] max-w-2xl">오늘드림 품절을 상품 전체 품절로 읽지 않도록, 오늘드림은 배송지 · 일반배송은 동일 옵션 · 매장 픽업은 선택한 매장 기준으로 따로 확인해요. <b>재고 조회 실패는 품절로 표시하지 않아요.</b></p>
+            <p className="mt-4 text-[17px] leading-[1.65] max-w-2xl">오늘드림 품절을 상품 전체 품절로 읽지 않도록, 오늘드림은 배송지 · 일반배송은 동일 옵션 · 매장 픽업은 선택한 매장 기준으로 따로 확인해요. <b>재고 조회 실패는 품절로 표시하지 않아요.</b></p>
             <ul className="mt-5 flex flex-wrap gap-2" aria-label="재고 상태">{states.map(s => <li key={s} className="px-4 py-2 rounded-full bg-white border border-grid text-[14px]">{s}</li>)}</ul>
             <div className="mt-10 grid grid-cols-3 gap-4 md:gap-6 md:max-w-3xl"><Fig src={I('n-altMethods')} alt="일반배송 구매 가능" cap="일반배송 구매 가능" /><Fig src={I('n-pickup')} alt="픽업 매장 선택" cap="픽업 매장 선택" className="md:mt-10" /><Fig src={I('n-stockChanged')} alt="주문 직전 재고 변동" cap="주문 직전 재고 변동" /></div>
             <p className="mt-4 text-[15px] leading-relaxed text-sub max-w-2xl">옵션·수량·배송지·매장이 바뀌면 그 조건으로 재고를 다시 확인하고, 주문 직전에 재고가 소진되면 상품 정보를 유지한 채 다른 구매 방법을 다시 고르게 해요.</p>
@@ -361,14 +361,14 @@ function Olive({ c }: { c: Ctx }) {
 
           <Reveal className="mt-20 md:mt-24">
             <Num n="03" t="배송 시간대별 배송비를 선택 전에 비교" />
-            <p className="mt-4 text-[17px] leading-[1.8] max-w-2xl">시간대를 고른 뒤 배송비를 확인하는 구조를, 각 시간대 항목에 배송비를 함께 보여주는 구조로 바꿨어요. 시간대를 바꾸면 최종 결제금액도 바로 갱신돼요.</p>
+            <p className="mt-4 text-[17px] leading-[1.65] max-w-2xl">시간대를 고른 뒤 배송비를 확인하는 구조를, 각 시간대 항목에 배송비를 함께 보여주는 구조로 바꿨어요. 시간대를 바꾸면 최종 결제금액도 바로 갱신돼요.</p>
           </Reveal>
           {p.beforeAfter?.[2] && <div className="mt-10"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 배송비</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">시간 선택 뒤 비용 확인에서, 시간과 비용을 함께 비교로</h3></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[2]} color={A} /></div></div>}
 
           {p.extra && p.beforeAfter?.[3] && (
             <Reveal className="mt-20 md:mt-24">
               <p className="eyebrow text-sub rule pt-4">함께 정리한 구매 구간</p>
-              <p className="mt-4 text-[16px] leading-[1.8] text-sub max-w-2xl">{p.extra.intro}</p>
+              <p className="mt-4 text-[16px] leading-[1.65] text-sub max-w-2xl">{p.extra.intro}</p>
               <div className="mt-8"><ul className="md:col-span-5 space-y-3">{p.extra.bullets.map(b => <li key={b} className="pl-4 border-l-2 text-[15px] leading-relaxed" style={{ borderColor: A }}>{b}</li>)}</ul><div className="mt-8"><BeforeAfter data={p.beforeAfter[3]} color={A} /></div></div>
             </Reveal>
           )}
@@ -430,7 +430,7 @@ function Karrot({ c }: { c: Ctx }) {
           {[['01', '무엇을 개선했나요?', '대형 가구 판매글에 크기, 분해 여부, 운반 조건을 구조화해 구매자가 필요한 정보를 빠르게 확인하도록 개선했습니다.'],
             ['02', '언제 문제가 생겼나요?', '구매자가 직접 운반할 수 있는지 판단하는 순간입니다. 크기가 본문에 섞여 있거나 층수·엘리베이터 정보가 없으면 게시글만으로 거래 가능 여부를 판단하기 어렵습니다.'],
             ['03', '왜 문제로 봤나요?', '대형 가구는 크기와 운반 조건이 구매 결정에 큰 영향을 줍니다. 정보가 없으면 구매자는 같은 질문을 반복하고, 판매자도 같은 답변을 여러 번 해야 합니다.']].map(([n, t, d]) => (
-            <div key={n} className="rounded-[24px] bg-[#F7F8FA] p-6 md:p-7"><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.75] text-ink/80">{d}</p></div>
+            <div key={n} className="rounded-[24px] bg-[#F7F8FA] p-6 md:p-7"><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.65] text-ink/80">{d}</p></div>
           ))}
         </Reveal>
 
@@ -442,7 +442,7 @@ function Karrot({ c }: { c: Ctx }) {
               <li className="px-4 py-2 rounded-full bg-[#f5f5f7] font-semibold">크기가 문장 속에 섞여 있음</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-[#fdeaea] text-[#a12a2a] font-semibold">채팅으로 같은 질문 반복</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-sub">채팅을 시작한 뒤에야 거래 가능 여부를 판단할 수 있습니다.</p>
+            <p className="mt-4 text-[15px] leading-[1.65] text-sub">채팅을 시작한 뒤에야 거래 가능 여부를 판단할 수 있습니다.</p>
           </div>
           <div className="rounded-[24px] p-6 md:p-8" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
             <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: A, color: onBrand(A) }}>개선</span>
@@ -451,7 +451,7 @@ function Karrot({ c }: { c: Ctx }) {
               <li className="px-4 py-2 rounded-full font-semibold" style={{ background: A, color: onBrand(A) }}>거래 정보 카드로 한눈에 확인</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-white">궁금한 것만 질문 초안으로</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">크기·분해·운반 조건을 채팅 전에 확인합니다. 입력되지 않은 정보도 미입력, 모름, 조회 실패로 구분합니다.</p>
+            <p className="mt-4 text-[15px] leading-[1.65] text-ink/80">크기·분해·운반 조건을 채팅 전에 확인합니다. 입력되지 않은 정보도 미입력, 모름, 조회 실패로 구분합니다.</p>
           </div>
         </div>
 
@@ -459,7 +459,7 @@ function Karrot({ c }: { c: Ctx }) {
           <div className="md:col-span-7">
             <p className="eyebrow text-sub">프로젝트의 핵심</p>
             <p className="mt-3 text-[24px] md:text-[34px] font-bold tracking-tight leading-snug">대형 가구 거래에 필요한 정보를 게시글에서 먼저 확인하도록 개선한 개인 UX 프로젝트입니다.</p>
-            <p className="mt-4 text-[14px] leading-[1.7] text-sub">참여자 7명의 프로토타입 비교 테스트에서는 거래 약속 확정 시간이 단축됐습니다. 실제 서비스의 거래 성사율은 측정하지 않았습니다.</p>
+            <p className="mt-4 text-[14px] leading-[1.65] text-sub">참여자 7명의 프로토타입 비교 테스트에서는 거래 약속 확정 시간이 단축됐습니다. 실제 서비스의 거래 성사율은 측정하지 않았습니다.</p>
           </div>
           <div className="mt-8 md:mt-0 md:col-span-5 grid grid-cols-2 gap-4">
             <figure><p className="text-[13px] font-semibold text-sub mb-2">기존 · 상품 상세</p><Screen src={p.beforeAfter![0].before} alt={p.beforeAfter![0].beforeAlt} /></figure>
@@ -470,7 +470,7 @@ function Karrot({ c }: { c: Ctx }) {
 
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="01" label="Problem" title="대형 가구는 정보가 빠지면 판단이 멈춘다" />
-        <Reveal><blockquote className="mt-10 text-[28px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]" style={{ borderLeft: `6px solid ${A}`, paddingLeft: 24 }}>{p.problem}</blockquote></Reveal>
+        <Reveal><blockquote className="mt-7 md:mt-8 text-[28px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]" style={{ borderLeft: `6px solid ${A}`, paddingLeft: 24 }}>{p.problem}</blockquote></Reveal>
         <ul className="mt-12 grid md:grid-cols-3 gap-5">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
         <div className="mt-14"><p className="eyebrow text-sub">실제 당근 앱 · AS-IS 캡처</p>
           <ul className="mt-5 grid grid-cols-3 gap-4 md:grid-cols-5 md:gap-6 max-w-5xl">{[['asis-write', '판매글 작성: 제목·설명·가격만 입력'], ['asis-write-ai', '사진 분석 중(AI 작성)'], ['asis-search', '대형 가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul></div>
@@ -509,8 +509,8 @@ function Karrot({ c }: { c: Ctx }) {
         <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[22ch]">채팅에서 물어봐야 했던 정보를,<br />채팅 전에 확인할 수 있도록.</h2>
         <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
           <div className="md:col-span-5">
-            <p className="text-[17px] leading-[1.8]">기존 거래 과정에서는 구매자가 대형 가구의 상세 정보, 거래 가능 여부, 거래 방법을 채팅으로 추가 확인해야 했습니다.</p>
-            <p className="mt-3 text-[17px] leading-[1.8]">이에 거래 전에 필요한 정보를 게시글에서 먼저 확인할 수 있도록 정보 구조를 개선했습니다.</p>
+            <p className="text-[17px] leading-[1.65]">기존 거래 과정에서는 구매자가 대형 가구의 상세 정보, 거래 가능 여부, 거래 방법을 채팅으로 추가 확인해야 했습니다.</p>
+            <p className="mt-3 text-[17px] leading-[1.65]">이에 거래 전에 필요한 정보를 게시글에서 먼저 확인할 수 있도록 정보 구조를 개선했습니다.</p>
             <ul className="mt-8 space-y-5">
               <Ann color={A} n="1" t="상세 상품 정보" d="‘크기 및 분해’ 카드에서 가로·세로·높이와 분해 여부, 전달 상태를 확인합니다." />
               <Ann color={A} n="2" t="거래 진행 방법" d="‘가져가는 조건’ 카드에서 층수·엘리베이터·운반 도움 여부를 확인합니다." />
@@ -573,7 +573,7 @@ function Karrot({ c }: { c: Ctx }) {
         <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>USABILITY TEST / AS-IS vs. TO-BE</p>
         <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅 전에 거래 정보를 확인하자,<br />약속 확정까지 평균 34초 빨라졌습니다.</h2>
         <div className="mt-10 md:grid md:grid-cols-12 gap-10">
-          <div className="md:col-span-7 text-[17px] leading-[1.8] space-y-3">
+          <div className="md:col-span-7 text-[17px] leading-[1.65] space-y-3">
             <p>대형 가구 거래에서 구매자가 게시글을 확인한 뒤 채팅으로 거래 약속을 확정하기까지의 과정을 비교했습니다.</p>
             <p>동일한 참가자 7명이 기존 당근 앱(AS-IS)과 개선 프로토타입(TO-BE)에서 같은 과제를 수행했습니다.</p>
           </div>
@@ -608,7 +608,7 @@ function Karrot({ c }: { c: Ctx }) {
         <div className="wrap gutter py-20 md:py-32">
           <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>USER FEEDBACK</p>
           <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅에서는 상품 질문보다,<br />거래 약속 조율에 집중할 수 있었습니다.</h2>
-          <p className="mt-8 max-w-[58ch] text-[17px] leading-[1.8]">참가자들은 개선된 게시글에서 필요한 가구 정보와 거래 조건을 미리 확인할 수 있어, 채팅에서는 추가적인 상품 정보 질문보다 거래 약속 조율에 집중할 수 있었다고 피드백했습니다.</p>
+          <p className="mt-5 md:mt-6 max-w-[58ch] text-[17px] leading-[1.65]">참가자들은 개선된 게시글에서 필요한 가구 정보와 거래 조건을 미리 확인할 수 있어, 채팅에서는 추가적인 상품 정보 질문보다 거래 약속 조율에 집중할 수 있었다고 피드백했습니다.</p>
           <ol className="mt-10 grid md:grid-cols-3 gap-4 md:gap-6">
             {[['01', '거래 전에 필요한 정보 확인'], ['02', '추가적인 상품 정보 질문의 필요성 감소'], ['03', '채팅에서 거래 약속 조율에 집중']].map(([n, t]) => (
               <li key={n} className="rounded-[24px] bg-white border border-grid p-6"><span className="text-[40px] font-extrabold leading-none num-brand">{n}</span><p className="mt-4 text-[19px] font-bold leading-snug">{t}</p></li>
@@ -620,7 +620,7 @@ function Karrot({ c }: { c: Ctx }) {
             <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>RESULT INTERPRETATION</p>
             <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">정보를 확인하는 시점의 변화가,<br />거래 약속 확정 과정을 단축했습니다.</h2>
             <div className="mt-8 md:grid md:grid-cols-12 gap-10">
-              <div className="md:col-span-7 text-[17px] leading-[1.8] space-y-3">
+              <div className="md:col-span-7 text-[17px] leading-[1.65] space-y-3">
                 <p>이번 결과는 거래 전에 필요한 정보를 제공하는 설계가 채팅에서의 반복적인 확인 부담을 줄이고, 거래 약속 조율을 효율적으로 진행하는 데 도움이 될 가능성을 보여줍니다.</p>
               </div>
               <div className="mt-8 md:mt-0 md:col-span-5 rounded-[24px] bg-white border border-grid p-6">
@@ -645,7 +645,7 @@ function Karrot({ c }: { c: Ctx }) {
           <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-[16px] font-bold"><span><span className="eyebrow block text-sub">Detail · 클릭형 프로토타입 화면</span>실제 UI {(p.gallery ?? []).length}화면 전체 보기</span><span aria-hidden className="text-[20px] transition-transform group-open:rotate-180">⌄</span></summary>
           <ScreenSequence className="mt-5" color={S} label="당근 화면 둘러보기" steps={(p.gallery ?? []).map(g => ({ src: g.src, alt: g.alt, title: g.caption ?? g.alt }))} />
         </details>
-        <p className="mt-8 max-w-3xl text-[17px] leading-[1.8]">예외 상태(조회 실패와 재시도, 거래 완료)까지 포함한 20개 화면을 클릭형 프로토타입으로 구현했습니다.</p>
+        <p className="mt-8 max-w-3xl text-[17px] leading-[1.65]">예외 상태(조회 실패와 재시도, 거래 완료)까지 포함한 20개 화면을 클릭형 프로토타입으로 구현했습니다.</p>
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="입력부터 질문 초안까지" />
       </section>
 
@@ -699,7 +699,7 @@ function Woorisai({ c }: { c: Ctx }) {
           {[['01', '우리사이는 어떤 서비스인가요?', '친구와 함께한 사진과 이야기를 하나의 추억으로 모으는 공동 기록 서비스입니다. 함께한 사람만 초대해 기록을 완성합니다.'],
             ['02', '다른 모임 앱과 무엇이 다른가요?', '일정과 멤버 관리보다 지난 추억을 다시 발견하고, 친구와 이야기를 이어가는 경험에 집중합니다.'],
             ['03', '어떻게 상호작용하나요?', '지난 추억을 보다가 사진별로 반응과 댓글을 남깁니다. 저장된 기록이 다시 친구와의 대화로 이어집니다.']].map(([n, t, d]) => (
-            <div key={n} className="rounded-[24px] p-6 md:p-7" style={{ background: T(14) }}><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.75] text-ink/80">{d}</p></div>
+            <div key={n} className="rounded-[24px] p-6 md:p-7" style={{ background: T(14) }}><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[20px] md:text-[22px] font-bold tracking-tight">{t}</h3><p className="mt-3 text-[16px] leading-[1.65] text-ink/80">{d}</p></div>
           ))}
         </Reveal>
 
@@ -711,7 +711,7 @@ function Woorisai({ c }: { c: Ctx }) {
               <li className="px-4 py-2 rounded-full bg-[#f5f5f7]">멤버·일정 관리</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-[#f5f5f7] font-semibold">모임이 끝나면 끝</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-sub">모임 운영이 중심이어서, 모임이 끝난 뒤 사진과 이야기를 함께 다시 보기 어렵습니다.</p>
+            <p className="mt-4 text-[15px] leading-[1.65] text-sub">모임 운영이 중심이어서, 모임이 끝난 뒤 사진과 이야기를 함께 다시 보기 어렵습니다.</p>
           </div>
           <div className="rounded-[24px] p-6 md:p-8" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
             <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: A, color: onBrand(A) }}>우리사이</span>
@@ -721,7 +721,7 @@ function Woorisai({ c }: { c: Ctx }) {
               <li className="px-4 py-2 rounded-full font-semibold" style={{ background: A, color: onBrand(A) }}>다시 꺼내보기</li><li aria-hidden className="text-sub">→</li>
               <li className="px-4 py-2 rounded-full bg-white">사진마다 반응·대화</li>
             </ol>
-            <p className="mt-4 text-[15px] leading-[1.7] text-ink/80">약속은 추억을 만드는 시작점입니다. 쌓인 기록을 다시 보며 친구와 이야기를 이어가는 경험이 서비스의 중심입니다.</p>
+            <p className="mt-4 text-[15px] leading-[1.65] text-ink/80">약속은 추억을 만드는 시작점입니다. 쌓인 기록을 다시 보며 친구와 이야기를 이어가는 경험이 서비스의 중심입니다.</p>
           </div>
         </div>
       </section>
@@ -729,13 +729,13 @@ function Woorisai({ c }: { c: Ctx }) {
 
       <section className="wrap gutter py-16 md:py-24 md:grid md:grid-cols-12 gap-10">
         <div className="md:col-span-4"><p className="eyebrow text-sub">Overview</p><h2 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">함께한 사람만 초대해, 하나의 추억을 같이 완성한다</h2></div>
-        <div className="mt-6 md:mt-0 md:col-span-8 text-[17px] leading-[1.8] space-y-4">{c.body('overview').map(t => <p key={t}>{t}</p>)}</div>
+        <div className="mt-6 md:mt-0 md:col-span-8 text-[17px] leading-[1.65] space-y-4">{c.body('overview').map(t => <p key={t}>{t}</p>)}</div>
       </section>
 
       <section id="c2" className="scroll-mt-20 md:mt-8" style={{ background: '#F4F2EC' }}>
         <div className="wrap gutter py-14 md:py-24">
           <ChapterHead color={S} n="01" label="Problem" title="친구와 보낸 하루가 여러 앱에 흩어진다" />
-          <p className="mt-6 max-w-[60ch] text-[18px] leading-[1.8]">친구와 약속을 잡고, 만나서 사진을 찍고, 비용을 나누고, 나중에 그날을 떠올릴 때까지 사람들은 서로 다른 앱과 기능을 오가요. 그래서 하루의 사진과 이야기가 한곳에 남지 않아요.</p>
+          <p className="mt-4 md:mt-6 max-w-[60ch] text-[18px] leading-[1.65]">친구와 약속을 잡고, 만나서 사진을 찍고, 비용을 나누고, 나중에 그날을 떠올릴 때까지 사람들은 서로 다른 앱과 기능을 오가요. 그래서 하루의 사진과 이야기가 한곳에 남지 않아요.</p>
 
           <ol aria-label="친구와의 하루에서 쓰는 앱" className="mt-10 grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
             {[['01', '약속 잡기', '메신저', '대화방에서 일정과 장소를 정해요'], ['02', '사진 공유', '각자의 갤러리', '사진이 각자의 휴대폰에 따로 남아요'], ['03', '정산', '정산 앱', '비용은 또 다른 앱에서 나눠요'], ['04', '추억 회상', '사진 앱', '나중에 그날을 사진 앱에서 찾아야 해요']].map(([n, t, app, d]) => (
@@ -752,7 +752,7 @@ function Woorisai({ c }: { c: Ctx }) {
           <div className="mt-12 rounded-[28px] p-6 md:mt-16 md:p-12" style={{ background: T(16), border: `1px solid ${T(36)}` }}>
             <p className="eyebrow" style={{ color: S }}>그래서 잡은 컨셉</p>
             <h3 className="mt-3 text-[28px] md:text-[44px] font-extrabold tracking-tight max-w-[22ch]">흩어진 하루를 한곳에 남기는 ‘추억 아카이빙 서비스’</h3>
-            <p className="mt-5 max-w-[56ch] text-[17px] leading-[1.8] text-ink/80">약속, 사진 공유, 정산, 추억 회상으로 흩어진 흐름을 하나로 연결했습니다. 모임 관리보다 지난 추억을 다시 발견하고 친구와 대화하는 경험에 집중했습니다.</p>
+            <p className="mt-5 max-w-[56ch] text-[17px] leading-[1.65] text-ink/80">약속, 사진 공유, 정산, 추억 회상으로 흩어진 흐름을 하나로 연결했습니다. 모임 관리보다 지난 추억을 다시 발견하고 친구와 대화하는 경험에 집중했습니다.</p>
             <ol aria-label="문제와 해결의 연결" className="mt-8 grid md:grid-cols-2 gap-3">
               {[['약속은 메신저에서', '약속은 추억을 만드는 계기로 두고 약속에서 바로 추억을 만들 수 있어요.'], ['사진은 각자의 갤러리에', '함께한 사람이 사진과 이야기를 한 추억에 같이 모아요.'], ['정산은 정산 앱에서', '약속·정산은 추억을 돕는 보조 기능으로 둬요.'], ['추억은 사진 앱에서 찾기', '사람·장소·시간으로 다시 찾고 사진마다 반응과 댓글로 이야기를 이어가요.']].map(([p, r]) => (
                 <li key={p} className="rounded-[18px] bg-white p-5 md:flex md:items-center">
@@ -773,7 +773,7 @@ function Woorisai({ c }: { c: Ctx }) {
             <div className="md:pr-52 max-w-[820px]">
               <p className="eyebrow text-sub">프로토타입 설문 · 응답 7명 (2026.11.12-16)</p>
               <p className="mt-3 text-[22px] md:text-[26px] font-bold tracking-tight">프로토타입 설문에서 발견한 혼란을 화면 개선에 반영했습니다</p>
-              <p className="mt-3 text-[15px] leading-[1.7] text-ink/75">프로토타입을 사용한 7명의 설문에서 초대 기능의 발견성과 기능 간 이동 문제를 확인했습니다. 20대 여성 중심의 소규모 표본이므로 결과는 개선 방향을 찾는 데만 활용했습니다.</p>
+              <p className="mt-3 text-[15px] leading-[1.65] text-ink/75">프로토타입을 사용한 7명의 설문에서 초대 기능의 발견성과 기능 간 이동 문제를 확인했습니다. 20대 여성 중심의 소규모 표본이므로 결과는 개선 방향을 찾는 데만 활용했습니다.</p>
             </div>
             <details className="mt-5 md:mt-0 md:static group">
               <summary className="cursor-pointer list-none inline-flex items-center min-h-[44px] px-4 rounded-full border border-grid text-[14px] font-semibold md:absolute md:top-6 md:right-8 bg-white">설문 결과 보기</summary>
@@ -805,7 +805,7 @@ function Woorisai({ c }: { c: Ctx }) {
 
           <Reveal className="mt-24 md:mt-32 rounded-[28px] p-6 md:p-12 bg-[#F4F2EC]">
             <div className="max-w-[60ch]"><p className="text-[56px] font-extrabold leading-none num-brand">02</p><h3 className="mt-3 text-[32px] md:text-[48px] font-extrabold tracking-tight leading-tight">사진 아래에서 바로 반응하고, 대화한다</h3>
-              <p className="mt-4 text-[17px] leading-[1.8]">신규 서비스이므로 직접 만든 첫 프로토타입을 비교 기준으로 삼았습니다. 초기 버전에서는 기록 기능인 ‘기억 이어가기’가 사진과 떨어진 별도 카드에 있었습니다. 자체 점검에서 발견한 문제와 개선 과정을 초기·개선 버전으로 비교합니다.</p></div>
+              <p className="mt-4 text-[17px] leading-[1.65]">신규 서비스이므로 직접 만든 첫 프로토타입을 비교 기준으로 삼았습니다. 초기 버전에서는 기록 기능인 ‘기억 이어가기’가 사진과 떨어진 별도 카드에 있었습니다. 자체 점검에서 발견한 문제와 개선 과정을 초기·개선 버전으로 비교합니다.</p></div>
             <div className="mt-12 md:grid md:grid-cols-12 gap-10 items-start">
               <div className="md:col-span-4"><p className="eyebrow text-sub">초기 버전</p><div className="mt-3 max-w-[300px]"><Screen src={I('ph-before')} alt="초기 버전 사진 상세: 사진 아래 별도 기억 이어가기 카드" cap="초기 버전 · 사진 상세" /></div></div>
               <div className="mt-10 md:mt-0 md:col-span-8">

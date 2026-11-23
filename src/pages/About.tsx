@@ -7,7 +7,7 @@ const skills = [['실제 서비스 출시', 'trigr의 기획 구체화부터 세
 const Row = ({ t, children }: { t: string; children: React.ReactNode }) => (
   <section className="rule py-10 md:py-14 md:grid md:grid-cols-12 gap-6">
     <h2 className="eyebrow text-bluetext md:col-span-3">{t}</h2>
-    <div className="mt-4 md:mt-0 md:col-span-9 text-[17px] leading-[1.8]">{children}</div>
+    <div className="mt-4 md:mt-0 md:col-span-9 text-[17px] leading-[1.65]">{children}</div>
   </section>
 )
 

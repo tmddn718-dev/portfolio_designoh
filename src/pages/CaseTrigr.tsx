@@ -39,7 +39,7 @@ function CaseBlock({ id, n, title, problem, decisions, principles, shots, outcom
       <p className="eyebrow" style={{ color: S }}>Case Study {n}</p>
       <ChapterHead color={S} n={n} label="Case Study" title={title} />
       <ol className="mt-12 grid md:grid-cols-2 gap-4 md:gap-6">
-        <li className="rounded-[24px] bg-white border border-grid p-6 md:p-8"><p className={label} style={{ color: S }}>01 · Problem</p><p className="mt-3 text-[17px] md:text-[18px] leading-[1.75]">{problem}</p></li>
+        <li className="rounded-[24px] bg-white border border-grid p-6 md:p-8"><p className={label} style={{ color: S }}>01 · Problem</p><p className="mt-3 text-[17px] md:text-[18px] leading-[1.65]">{problem}</p></li>
         <li className="rounded-[24px] p-6 md:p-8" style={{ background: T(10), border: `1px solid ${T(40)}` }}><p className={label} style={{ color: S }}>02 · Design Decision</p>
           <p className="mt-3 text-[16px] text-sub">디자이너가 필요하다고 판단해 먼저 설계하고, 기획자·개발자와 협의해 반영했습니다.</p>
           <ul className="mt-3 space-y-2">{decisions.map(d => <li key={d} className="flex gap-3 text-[17px] font-semibold leading-snug"><span aria-hidden style={{ color: PINK }}>●</span>{d}</li>)}</ul>
@@ -58,7 +58,7 @@ function CaseBlock({ id, n, title, problem, decisions, principles, shots, outcom
       </ul>
       <div className="mt-12 rounded-[24px] p-6 md:p-8 md:flex md:items-center md:gap-8" style={{ background: T(8) }}>
         <p className={`${label} shrink-0`} style={{ color: S }}>04 · Confirmed Outcome</p>
-        <p className="mt-3 md:mt-0 text-[17px] md:text-[18px] leading-[1.75]">{outcome}</p>
+        <p className="mt-3 md:mt-0 text-[17px] md:text-[18px] leading-[1.65]">{outcome}</p>
       </div>
     </section>
   )
@@ -118,7 +118,7 @@ export default function CaseTrigr() {
               <p className="eyebrow" style={{ color: S }}>Launched Product · Mission-based Reward Platform</p>
               <h1 style={{ lineHeight: 1, marginTop: 'calc(1rem + .2em)' }} className="text-[58px] md:text-[101px] font-extrabold tracking-[-0.06em] leading-[0.9]">trigr</h1>
               <p className="mt-5 text-[26px] md:text-[34px] leading-[1.35] font-bold tracking-[-0.02em] max-w-[18ch]">정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화했습니다.</p>
-              <p className="mt-4 text-[17px] leading-[1.75] text-sub max-w-[44ch]">기획서에 빠진 화면과 예외 상태를 설계하고, 기획자·개발자와 협의해 태국 시장 출시까지 연결한 미션 기반 리워드 앱입니다.</p>
+              <p className="mt-4 text-[17px] leading-[1.65] text-sub max-w-[44ch]">기획서에 빠진 화면과 예외 상태를 설계하고, 기획자·개발자와 협의해 태국 시장 출시까지 연결한 미션 기반 리워드 앱입니다.</p>
               <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 text-[14px] rule pt-5 max-w-[520px]" style={{ borderColor: T(35) }}>
                 {info.map(([k, v]) => <div key={k}><dt className="text-sub text-[13px]">{k}</dt><dd className="mt-1 font-medium">{v}</dd></div>)}
               </dl>
@@ -193,7 +193,7 @@ export default function CaseTrigr() {
       <section id="c5" className="scroll-mt-20 md:mt-24" style={{ background: '#F7F8FB' }}>
         <div className="wrap gutter py-16 md:py-24">
           <ChapterHead color={S} n="05" label="Supporting Flows" title="미션 참여부터 인증까지 연결되는 사용자 경험" />
-          <p className="mt-5 max-w-2xl text-[16px] leading-[1.75] text-sub">서비스의 전체 구조와 UI 설계 범위를 보여주는 보조 사례입니다. 기획서에 있던 기능도 포함하며, 디자이너가 제안한 기능만을 뜻하지 않습니다.</p>
+          <p className="mt-4 md:mt-5 max-w-2xl text-[16px] leading-[1.65] text-sub">서비스의 전체 구조와 UI 설계 범위를 보여주는 보조 사례입니다. 기획서에 있던 기능도 포함하며, 디자이너가 제안한 기능만을 뜻하지 않습니다.</p>
           <ScreenSequence className="mt-10" color={S} label="미션 참여부터 인증까지 화면 흐름" steps={flows.map(([t, src, c]) => ({ src, alt: `${t} 화면`, title: t, body: c }))} />
           <details className="mt-10 rounded-[20px] border border-grid bg-white p-5 md:p-6">
             <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold">생성자·참여자 관점의 흐름 보기</summary>
@@ -249,12 +249,12 @@ export default function CaseTrigr() {
                 </div>
               ))}
             </div>
-            <p className="mt-5 text-[16px] leading-[1.75] text-sub max-w-[60ch]">미션의 수행 방식(종류)을 먼저 정한 뒤 보상을 설정하는 흐름이 더 자연스러울 가능성이 있다고 보고, 출시 후 새로 정리해 본 제안입니다. 검증되지 않았습니다.</p>
+            <p className="mt-5 text-[16px] leading-[1.65] text-sub max-w-[60ch]">미션의 수행 방식(종류)을 먼저 정한 뒤 보상을 설정하는 흐름이 더 자연스러울 가능성이 있다고 보고, 출시 후 새로 정리해 본 제안입니다. 검증되지 않았습니다.</p>
           </div>
 
           <details className="mt-10 rounded-[20px] border border-grid p-6">
             <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold">원문 보기 · 직접 작성한 회고</summary>
-            <div className="mt-6 space-y-8 text-[16px] leading-[1.8]">
+            <div className="mt-6 space-y-8 text-[16px] leading-[1.65]">
               {p.sections.map(s => <div key={s.id}><p className="text-[13px] text-sub">{s.title}</p>{s.body.split('\n\n').map(t => <p key={t} className="mt-2 whitespace-pre-line">{t}</p>)}</div>)}
             </div>
           </details>

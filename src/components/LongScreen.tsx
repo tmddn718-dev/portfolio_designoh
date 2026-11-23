@@ -57,7 +57,7 @@ export type SeqStep = { src: string; alt: string; title: string; body?: string; 
 export function ScreenSequence({ steps, color, label, className = '' }: { steps: SeqStep[]; color: string; label: string; className?: string }) {
   return (
     <div className={className}>
-      <p className="text-[13px] text-sub sm:hidden" aria-hidden>{steps.length}단계 · 옆으로 넘겨 보기 →</p>
+      <p className="text-[13px] text-sub sm:hidden" aria-hidden>{steps.length}단계</p>
       <ScrollFade hideFrom="sm"><ol role="region" aria-label={`${label}, 모바일에서는 좌우로 탐색`} tabIndex={0} className="mt-3 -mx-5 flex snap-x snap-mandatory scroll-pl-5 gap-4 overflow-x-auto px-5 pb-4 sm:mx-0 sm:mt-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-[repeat(auto-fit,minmax(160px,1fr))]">
         {steps.map((s, i) => (
           <li key={s.src} className="w-[74vw] max-w-[280px] shrink-0 snap-start sm:w-auto sm:max-w-none">

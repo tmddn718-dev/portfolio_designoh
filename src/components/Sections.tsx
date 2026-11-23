@@ -88,7 +88,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <div className="absolute inset-y-0 left-0 w-[50%] bg-[#F5E7D8]/95" />
       <p className="absolute left-[6%] top-[8%] z-20 thumb-label text-[#A34510]">Karrot · UX redesign</p>
       <p className="absolute left-[6%] top-[18%] z-20 thumb-title whitespace-nowrap text-[#271A14]">KNOW IT.<br />MOVE IT.</p>
-      <div className="absolute bottom-[8%] left-[6%] z-20 grid w-[35%] grid-cols-3 gap-1.5 border-y border-[#BDA48E] py-3 text-center text-[#593B2C]"><span className="text-[12px] uppercase tracking-wider">Width<b className="mt-1 block text-[13px] text-[#21150F]">140cm</b></span><span className="text-[12px] uppercase tracking-wider">Depth<b className="mt-1 block text-[13px] text-[#21150F]">80cm</b></span><span className="text-[12px] uppercase tracking-wider">Height<b className="mt-1 block text-[13px] text-[#21150F]">75cm</b></span></div>
+      <div className="absolute bottom-[8%] left-[6%] z-20 grid w-[35%] grid-cols-3 gap-1.5 py-3 text-center text-[#593B2C]"><span className="text-[12px] uppercase tracking-wider">Width<b className="mt-1 block text-[13px] text-[#21150F]">140cm</b></span><span className="text-[12px] uppercase tracking-wider">Depth<b className="mt-1 block text-[13px] text-[#21150F]">80cm</b></span><span className="text-[12px] uppercase tracking-wider">Height<b className="mt-1 block text-[13px] text-[#21150F]">75cm</b></span></div>
       <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-seedtext" className="z-20 w-[39%] rotate-[6deg] drop-shadow-[0_32px_52px_rgba(31,18,10,.42)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[3deg]" style={{ right: '6%', bottom: '-24%' }} />
     </div>
   )

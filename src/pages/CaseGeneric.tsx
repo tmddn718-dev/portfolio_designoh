@@ -466,7 +466,7 @@ function Karrot({ c }: { c: Ctx }) {
 
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="01" label="Problem" title="대형 가구는 정보가 빠지면 판단이 멈춘다" />
-        <Reveal><blockquote className="mt-7 md:mt-8 text-[28px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]" style={{ borderLeft: `6px solid ${A}`, paddingLeft: 24 }}>{p.problem}</blockquote></Reveal>
+        <Reveal><blockquote className="mt-5 md:mt-7 max-w-[720px] border-l-2 pl-3 text-[17px] font-normal leading-[1.55] text-[#444] md:border-l-[3px] md:pl-6 md:text-[23px]" style={{ borderColor: A }}>{p.problem}</blockquote></Reveal>
         <ul className="mt-12 grid md:grid-cols-3 gap-5">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
         <div className="mt-14"><p className="eyebrow text-sub">실제 당근 앱 · AS-IS 캡처</p>
           <ul className="mt-5 grid grid-cols-3 gap-4 md:grid-cols-5 md:gap-6 max-w-5xl">{[['asis-write', '판매글 작성: 제목·설명·가격만 입력'], ['asis-write-ai', '사진 분석 중(AI 작성)'], ['asis-search', '대형 가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul></div>
@@ -512,7 +512,7 @@ function Karrot({ c }: { c: Ctx }) {
               <Ann color={A} n="2" t="거래 진행 방법" d="‘가져가는 조건’ 카드에서 층수·엘리베이터·운반 도움 여부를 확인합니다." />
               <Ann color={A} n="3" t="거래 가능 여부" d="예약 중·거래 완료 상태를 배지와 버튼으로 구분합니다." />
             </ul>
-            <p className="mt-10 rounded-[20px] px-6 py-5 text-[18px] md:text-[22px] font-bold leading-snug tracking-tight max-w-[40ch]" style={{ background: T(14) }}>정보를 더 많이 보여주는 것이 아니라, 사용자가 정보를 필요로 하는 시점을 바꾸는 데 집중했습니다.</p>
+            <p className="mt-10 rounded-[20px] px-6 py-5 text-[17px] md:text-[21px] font-normal leading-[1.55] text-[#333] max-w-[44ch]" style={{ background: T(14) }}>정보를 더 많이 보여주는 것이 아니라, 사용자가 정보를 필요로 하는 시점을 바꾸는 데 집중했습니다.</p>
           </div>
           <div className="mt-12 md:mt-0 md:col-span-7 grid grid-cols-3 gap-3 md:gap-6">
             <figure><p className="mb-2 text-[13px] font-bold text-sub">AS-IS · 기존 게시글</p><Screen src={I('asis-desc')} alt="기존 당근 상품 상세 본문: 크기와 분해 정보가 문장 속에 섞여 있음" cap="기존 게시글" /></figure>
@@ -808,7 +808,7 @@ function Woorisai({ c }: { c: Ctx }) {
                 <p className="eyebrow text-sub">발견한 문제 (제 점검)</p>
                 <ul className="mt-4 space-y-5"><Ann color={A} n="1" t="‘기억 이어가기’ 카드가 사진에서 떨어져 있다" d="사진을 보다가 바로 반응하기 어렵습니다." /><Ann color={A} n="2" t="반응·댓글 수가 ‘0’으로 표시된 카드에 묻혀 있다" d="사진에 대한 가벼운 참여와 함께 기록하기가 구분되지 않습니다." /><Ann color={A} n="3" t="‘이어진 기억이 아직 없어요’ 문구가 비어 있다는 인상만 준다" d="다음에 할 행동이 버튼 하나뿐입니다." /></ul>
                 <p className="mt-10 eyebrow text-sub">개선 가설</p>
-                <p className="mt-3 text-[20px] md:text-[24px] font-bold leading-snug max-w-[28ch]">반응·댓글이 사진 바로 아래에 있으면, 가벼운 참여가 먼저 일어나고 대화로 이어질 것이다.</p>
+                <p className="mt-3 text-[18px] md:text-[22px] font-normal leading-[1.55] text-[#444] max-w-[34ch]">반응·댓글이 사진 바로 아래에 있으면, 가벼운 참여가 먼저 일어나고 대화로 이어질 것이다.</p>
                 <p className="mt-3 text-[14px] text-sub">※ 가설이며 사용자 검증 전입니다.</p>
               </div>
             </div>

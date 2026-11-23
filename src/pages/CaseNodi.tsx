@@ -51,7 +51,7 @@ const Ph = ({ n, cap, className = '' }: { n: string; cap: string; className?: st
   </figure>
 )
 const Key = ({ children }: { children: React.ReactNode }) => (
-  <p className="mt-10 rounded-[20px] px-6 py-5 text-[18px] md:text-[22px] font-bold leading-snug tracking-tight max-w-[40ch]" style={{ background: T(14), color: '#18243A' }}>{children}</p>
+  <p className="mt-10 rounded-[20px] px-6 py-5 text-[17px] md:text-[21px] font-normal leading-[1.55] max-w-[44ch]" style={{ background: T(14), color: '#2B3547' }}>{children}</p>
 )
 // 배경 설명용 가상 일정표(예시). 9시~17시 시작 기준
 const HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17]

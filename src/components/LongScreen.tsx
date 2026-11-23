@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Reveal from './Reveal'
 import { Zoomable, type ZoomPair } from './Modal'
 import { onBrand } from './case'
+import { ScrollFade } from './Strip'
 
 // 긴 UI 화면을 읽기 쉽게 보여주는 공통 조각. 모두 원본 에셋만 쓰고, 확대는 Zoomable(Esc·포커스 복귀·세로 스크롤)에 맡긴다.
 export { default as BeforeAfterComparison } from './BeforeAfter'
@@ -57,7 +58,7 @@ export function ScreenSequence({ steps, color, label, className = '' }: { steps:
   return (
     <div className={className}>
       <p className="text-[13px] text-sub sm:hidden" aria-hidden>{steps.length}단계 · 옆으로 넘겨 보기 →</p>
-      <ol role="region" aria-label={`${label}, 모바일에서는 좌우로 탐색`} tabIndex={0} className="mt-3 -mx-5 flex snap-x snap-mandatory scroll-pl-5 gap-4 overflow-x-auto px-5 pb-4 sm:mx-0 sm:mt-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-[repeat(auto-fit,minmax(160px,1fr))]">
+      <ScrollFade hideFrom="sm"><ol role="region" aria-label={`${label}, 모바일에서는 좌우로 탐색`} tabIndex={0} className="mt-3 -mx-5 flex snap-x snap-mandatory scroll-pl-5 gap-4 overflow-x-auto px-5 pb-4 sm:mx-0 sm:mt-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-[repeat(auto-fit,minmax(160px,1fr))]">
         {steps.map((s, i) => (
           <li key={s.src} className="w-[74vw] max-w-[280px] shrink-0 snap-start sm:w-auto sm:max-w-none">
             <div className="flex items-center gap-2">
@@ -70,7 +71,7 @@ export function ScreenSequence({ steps, color, label, className = '' }: { steps:
             {s.decision && <p className="mt-2 text-[14px] leading-[1.6]"><b className="text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>설계 판단</b><br />{s.decision}</p>}
           </li>
         ))}
-      </ol>
+      </ol></ScrollFade>
     </div>
   )
 }

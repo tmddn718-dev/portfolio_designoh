@@ -25,3 +25,22 @@ export default function Strip({ label, children, dark = false }: { label: string
     </div>
   )
 }
+
+// 모바일 가로 스크롤 영역 공통 페이드: 첫 자식이 스크롤 영역이다. 끝까지 스크롤하면 사라지고, 화면 우측 끝(-right-5)에 맞춘다.
+export function ScrollFade({ children, hideFrom = 'md', className = '' }: { children: ReactNode; hideFrom?: 'sm' | 'md'; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [end, setEnd] = useState(true)
+  useEffect(() => {
+    const el = ref.current?.firstElementChild as HTMLElement | null
+    if (!el) return
+    const f = () => setEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 8)
+    f(); el.addEventListener('scroll', f, { passive: true }); const ro = new ResizeObserver(f); ro.observe(el)
+    return () => { el.removeEventListener('scroll', f); ro.disconnect() }
+  }, [])
+  return (
+    <div ref={ref} className={`relative ${className}`}>
+      {children}
+      {!end && <span aria-hidden className={`pointer-events-none absolute -right-5 top-0 bottom-4 w-16 bg-gradient-to-l from-white/90 to-transparent ${hideFrom === 'sm' ? 'sm:hidden' : 'md:hidden'}`} />}
+    </div>
+  )
+}

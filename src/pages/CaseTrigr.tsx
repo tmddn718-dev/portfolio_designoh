@@ -6,6 +6,7 @@ import { projects } from '../data/projects'
 import Reveal from '../components/Reveal'
 import { Zoomable } from '../components/Modal'
 import { ScreenSequence } from '../components/LongScreen'
+import { ScrollFade } from '../components/Strip'
 import Compose from '../components/Compose'
 import { ChapterHead, ChapterNav, strongOf, tintOf, useActive, ProjectIndex, AppIcon } from '../components/case'
 
@@ -47,7 +48,7 @@ function CaseBlock({ id, n, title, problem, decisions, principles, shots, outcom
         </li>
       </ol>
       <p className={`mt-14 ${label}`} style={{ color: S }}>03 · UI Solution</p>
-      <ul className="mt-5 -mx-5 px-5 md:mx-0 md:px-0 flex md:grid gap-5 md:gap-6 overflow-x-auto snap-x scroll-pl-5 pb-4 md:overflow-visible" style={{ gridTemplateColumns: `repeat(${shots.length}, minmax(0, 1fr))` }}>
+      <ScrollFade><ul className="mt-5 -mx-5 px-5 md:mx-0 md:px-0 flex md:grid gap-5 md:gap-6 overflow-x-auto snap-x scroll-pl-5 pb-4 md:overflow-visible" style={{ gridTemplateColumns: `repeat(${shots.length}, minmax(0, 1fr))` }}>
         {shots.map((s, i) => (
           <li key={s.title} className="snap-start shrink-0 w-[72%] sm:w-[44%] md:w-auto">
             <p className="mb-3 text-[14px] font-bold" style={{ color: S }}>{i + 1}. {s.title}</p>
@@ -55,7 +56,7 @@ function CaseBlock({ id, n, title, problem, decisions, principles, shots, outcom
             <p className="mt-3 text-[15px] leading-[1.65] text-sub">{s.why}</p>
           </li>
         ))}
-      </ul>
+      </ul></ScrollFade>
       <div className="mt-12 rounded-[24px] p-6 md:p-8 md:flex md:items-center md:gap-8" style={{ background: T(8) }}>
         <p className={`${label} shrink-0`} style={{ color: S }}>04 · Confirmed Outcome</p>
         <p className="mt-3 md:mt-0 text-[17px] md:text-[18px] leading-[1.65]">{outcome}</p>
@@ -145,13 +146,13 @@ export default function CaseTrigr() {
             <li key={t} className="rounded-[24px] bg-white border border-grid p-6 md:p-7 flex gap-4"><span className="text-[28px] font-extrabold leading-none num-brand">0{i + 1}</span><p className="text-[18px] leading-[1.55] font-semibold">{t}</p></li>
           ))}
         </Reveal>
-        <Reveal stagger slow attrs={{ role: 'region', tabIndex: 0 }} label="세 차례 개편 흐름 (좌우로 스크롤)" className="mt-8 -mx-5 px-5 md:mx-0 md:px-0 flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
+        <ScrollFade><Reveal stagger slow attrs={{ role: 'region', tabIndex: 0 }} label="세 차례 개편 흐름 (좌우로 스크롤)" className="mt-8 -mx-5 px-5 md:mx-0 md:px-0 flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
           {stages.map(([n, c], i) => (
             <div key={n} className="w-[230px] shrink-0 md:w-auto rounded-[24px] p-5" style={{ background: i === 3 ? T(16) : '#F7F8FB' }}>
               <p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><p className="mt-2 text-[15px] leading-snug">{c}</p>
             </div>
           ))}
-        </Reveal>
+        </Reveal></ScrollFade>
 
           <h3 className="mt-24 apple-h text-[28px] md:text-[44px] max-w-[24ch]">누락된 흐름을 찾아 설계하고, 팀과 협의해 제품에 반영했습니다</h3>
         <ol className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">

@@ -360,7 +360,7 @@ main article :is(p, li, dd, ul, ol):is([class*="text-[14px]"], [class*="text-[15
 main article p[class*="text-[13px]"]:not([class*="font-"], [class*="uppercase"], .eyebrow) { line-height: 1.7; }
 /* 제목 묶음(Reveal 안 h2) 바로 뒤 설명 24px, 문단 사이 16px */
 main article :is(div, header):has(> h2:last-child) + p { margin-top: 24px; }
-main article p + p:not([class*="rounded-["] *) { margin-top: 16px; }
+main article p + p:not([class*="mt-"], [class*="rounded-["] *) { margin-top: 16px; }
 @media (min-width: 768px) {
   main article h1.case-h1 { line-height: 1.35 !important; }
   main article h2, main article h2.apple-h { font-size: 40px; }

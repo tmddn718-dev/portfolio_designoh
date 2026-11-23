@@ -729,9 +729,9 @@ function Woorisai({ c }: { c: Ctx }) {
       </section>
 
 
-      <section className="wrap gutter py-16 md:py-24 md:grid md:grid-cols-12 gap-10">
-        <div className="md:col-span-4"><p className="eyebrow text-sub">Overview</p><h2 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight leading-tight">함께한 사람만 초대해, 하나의 추억을 같이 완성한다</h2></div>
-        <div className="mt-6 md:mt-0 md:col-span-8 text-[17px] leading-[1.65] space-y-4">{c.body('overview').map(t => <p key={t}>{t}</p>)}</div>
+      <section className="wrap gutter py-16 md:py-24 md:grid md:grid-cols-12 md:items-start md:gap-x-6">
+        <div className="md:col-span-6"><p className="eyebrow text-sub">Overview</p><h2 className="mt-3">함께한 사람만 초대하여, <br />하나의 추억을 같이 완성한다</h2></div>
+        <div className="mt-6 md:mt-0 md:col-span-6 md:pt-8 text-[18px] leading-[1.75]">{c.body('overview').map(t => <p key={t}>{t}</p>)}</div>
       </section>
 
       <section id="c2" className="scroll-mt-20 md:mt-8" style={{ background: '#F4F2EC' }}>

@@ -159,9 +159,9 @@ function OliveRenewed({ c }: { c: Ctx }) {
               ].map(([n, title, body]) => ({ src: `/images/oliveyoung-todaydream/${n}.jpg`, alt: `실제 올리브영 오늘드림 장바구니 ${title}`, title, body }))} />
             </details>
             <div className="mt-8 rounded-[28px] bg-white p-5 md:p-10">
-              <p className="eyebrow" style={{ color: S }}>After · 개선안</p>
+              <p className="eyebrow" style={{ color: S }}>Before / After · 개선안</p>
               <div className="mt-6 grid items-start gap-10 md:grid-cols-12">
-                <div className="mx-auto grid w-full max-w-[420px] grid-cols-2 items-start gap-3 md:col-span-5"><Fig src={I('n-cart')} alt="무료배송 남은 금액, 현재 상품, 연관 상품과 담기 버튼을 한 흐름으로 보여주는 장바구니 개선 화면" cap="장바구니 · 추천 상품과 남은 금액" /><Fig src={I('n-slotSelect')} alt="세 시간대의 배송비를 비교하고 15:00~16:00을 선택한 화면" cap="배송 시간대별 배송비 선택" className="mt-8" /></div>
+                <div className="mx-auto grid w-full max-w-[420px] grid-cols-2 items-start gap-3 md:col-span-5"><Fig src="/images/oliveyoung-todaydream/cart-asis-01-tall.jpg" alt="기존 장바구니 맨 위: 배송 방식 탭, 배송지, 상품과 옵션, 하단 고정 총액과 구매 버튼" cap="AS-IS · 기존 장바구니" /><Fig src={I('n-cart')} alt="개선 장바구니: 무료배송 남은 금액, 현재 상품, 함께 담기 좋은 상품과 담기 버튼, 배송 시간 선택 CTA" cap="TO-BE · 추천 상품과 남은 금액" /></div>
                 <ol className="space-y-6 md:col-span-7">
                   {[
                     ['01', '무료배송 조건의 가시성', '현재 10,000원, 기준 30,000원, 남은 금액 20,000원과 진행 바(33.3%)를 한 카드에 모았습니다. 기준 금액은 프로토타입 예시 값입니다.'],
@@ -176,10 +176,6 @@ function OliveRenewed({ c }: { c: Ctx }) {
               <p className="eyebrow rule pt-4 text-sub">Before / After · 장바구니</p>
               <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.65] text-sub">기존 장바구니에도 하단 고정 구매 버튼과 무료배송 안내가 있었습니다. 같은 정보 맥락의 화면을 나란히 비교했고, 눌러서 AS-IS와 TO-BE를 전환하며 확대해 볼 수 있습니다.</p>
               <div className="mt-8 space-y-14">
-                <PhoneCompare n="01" title="결제 금액과 배송 조건" color={A}
-                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-01-tall.jpg', alt: '기존 장바구니 맨 위: 배송 방식 탭, 배송지, 도착 예정 시간, 상품과 옵션, 하단 고정 총액과 구매 버튼', ratio: 1720 / 780, caption: '배송 방식·배송지·도착 예정 시간과 상품이 먼저 보이고, 최종 결제 금액은 아래로 스크롤해야 확인해요. 무료배송 안내는 하단에 따로 있어요.' }}
-                  tobe={{ src: I('n-cart'), alt: '개선 장바구니: 추천 상품별 무료배송까지 남은 금액, 예상 총 결제금액과 배송 시간대 안내', ratio: 1720 / 780, caption: '추천 상품마다 무료배송까지 남는 금액을 보여주고, 예상 총 결제금액과 배송 시간대 안내를 이어 놓았어요.' }}
-                  decision="하단 고정 구매 버튼과 무료배송 안내는 기존 앱에도 있었어요. 바뀐 점은 가격과 배송 정보를 상품 선택 흐름 가까이에 이어서 배치한 것이에요." />
                 <PhoneCompare n="02" title="관련 상품 탐색" color={A}
                   asis={{ src: '/images/oliveyoung-todaydream/cart-asis-03-tall.jpg', alt: '기존 장바구니: 함께 보면 좋은 상품 가로 카드 목록', ratio: 1880 / 780, caption: '‘함께 보면 좋은 상품’을 가로 카드로 넘겨 보며 상품 정보 중심으로 탐색해요.' }}
                   tobe={{ src: I('n-cartAdded'), alt: '개선 장바구니: 함께 담기 좋은 상품 목록과 담기 버튼, 무료배송 조건 안내', ratio: 1880 / 780, caption: '‘함께 담기 좋은 상품’을 한 줄씩 보여주고, 담기 버튼과 무료배송 조건 충족 여부를 함께 확인해요.' }}

@@ -24,8 +24,8 @@ export default function Layout() {
   useEffect(() => {
     const mm = gsap.matchMedia()
     const t = setTimeout(() => {
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.utils.toArray<HTMLElement>('[data-scale]').forEach(el => gsap.fromTo(el, { scale: 0.9, y: 40 }, { scale: 1, y: 0, ease: 'none', scrollTrigger: { trigger: el, start: 'top 95%', end: 'top 45%', scrub: true } }))
+      mm.add('(prefers-reduced-motion: no-preference) and (min-width: 768px)', () => {
+        gsap.utils.toArray<HTMLElement>('[data-scale]').forEach(el => gsap.fromTo(el, { scale: 0.96, y: 16 }, { scale: 1, y: 0, ease: 'none', scrollTrigger: { trigger: el, start: 'top 95%', end: 'top 45%', scrub: true } }))
         ScrollTrigger.refresh()
       })
     }, 150)

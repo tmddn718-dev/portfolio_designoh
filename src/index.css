@@ -89,11 +89,18 @@ body { font-family: var(--font-sans); color: var(--color-ink); background: #fdfd
   will-change: transform, opacity;
 }
 
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease-apple), transform .9s var(--ease-apple); }
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .45s cubic-bezier(.22,.61,.36,1), transform .45s cubic-bezier(.22,.61,.36,1); }
+/* 읽는 글(제목·본문)은 움직이지 않고 투명도만 바꿔 바로 읽히게 한다 */
+.reveal.reveal-fade { transform: none; transition: opacity .3s ease-out; }
 .reveal.in { opacity: 1; transform: none; }
 /* 줄·카드가 차례로 나타난다(Rauno 방식): 부모에 stagger 를 주면 자식이 70ms 간격으로 등장 */
 .reveal.stagger { opacity: 1; transform: none; transition: none; }
-.stagger > * { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease-apple), transform .8s var(--ease-apple); transition-delay: calc(var(--i, 0) * 70ms); }
+.stagger > * { opacity: 0; transform: translateY(10px); transition: opacity .45s cubic-bezier(.22,.61,.36,1), transform .45s cubic-bezier(.22,.61,.36,1); transition-delay: calc(var(--i, 0) * 50ms); }
+/* 비교 쌍: AS-IS가 먼저 보이고 TO-BE가 이어서 나타난다 */
+.stagger.seq-cmp > :nth-child(2) { --i: 3 }
+/* NODI 말풍선: 입력 → 응답 순서로 폰 위에 나타난다 */
+@keyframes popIn { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
+.popout-in { animation: popIn .45s cubic-bezier(.22,.61,.36,1) both; }
 .stagger.in > * { opacity: 1; transform: none; }
 .stagger > :nth-child(2) { --i: 1 } .stagger > :nth-child(3) { --i: 2 } .stagger > :nth-child(4) { --i: 3 } .stagger > :nth-child(5) { --i: 4 } .stagger > :nth-child(6) { --i: 5 } .stagger > :nth-child(7) { --i: 6 } .stagger > :nth-child(n+8) { --i: 7 }
 
@@ -164,6 +171,7 @@ dialog.modal::backdrop { background: rgba(11,11,12,.72); }
   .stagger > * { opacity: 1; transform: none; transition: none; }
   .page-in { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .popout-in { animation: none; }
   .hero-pointer-glow { display: none; }
   .hero-outline::after, .hero-title [data-arrow], .hero-clarity { transition: none; }
   * { animation: none !important; }

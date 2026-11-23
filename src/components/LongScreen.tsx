@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Reveal from './Reveal'
 import { Zoomable, type ZoomPair } from './Modal'
 import { onBrand } from './case'
 
@@ -187,10 +188,10 @@ export function PhoneCompare({ n, title, asis, tobe, extra = [], decision, color
     <section aria-label={`${n ? `Comparison ${n} ` : ''}${title}`} className={className}>
       {n && <p className="text-[13px] font-bold" style={{ color }}>Comparison {n}</p>}
       <h4 className="mt-1 text-[20px] font-bold leading-snug md:text-[24px]">{title}</h4>
-      <div className="mx-auto mt-5 grid max-w-[640px] grid-cols-2 items-start gap-x-3 sm:gap-x-8">
+      <Reveal stagger className="seq-cmp mx-auto mt-5 grid max-w-[640px] grid-cols-2 items-start gap-x-3 sm:gap-x-8">
         <Col side={asis} i={0} />
         <Col side={tobe} i={1} />
-      </div>
+      </Reveal>
       {decision && <p className="mx-auto mt-5 max-w-[640px] rounded-[14px] p-4 text-[15px] leading-[1.65]" style={{ background: `color-mix(in srgb, ${color} 12%, white)` }}><b className="block text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>디자인 판단</b>{decision}</p>}
     </section>
   )
@@ -198,8 +199,8 @@ export function PhoneCompare({ n, title, asis, tobe, extra = [], decision, color
 
 // 8) UIPopout: 실제 UI 조각(말풍선·카드·버튼 등)을 폰 목업보다 앞 레이어로 올려 경계 밖으로 돌출시킨다. 원본 UI는 그대로이고 부드러운 그림자만 더한다.
 // 위치·너비는 className(퍼센트)으로 지정하며, 부모(폰을 감싼 relative 박스)의 좌우 여백 안에 들어오도록 호출하는 쪽에서 맞춘다. 과하게 반복하지 않는다.
-export function UIPopout({ src, alt, className = '' }: { src: string; alt: string; className?: string }) {
-  return <img src={src} alt={alt} loading="lazy" className={`pointer-events-none absolute z-20 h-auto drop-shadow-[0_12px_22px_rgba(24,36,58,.24)] ${className}`} />
+export function UIPopout({ src, alt, className = '', delay = 0 }: { src: string; alt: string; className?: string; delay?: number }) {
+  return <img src={src} alt={alt} loading="lazy" style={{ animationDelay: `${delay}ms` }} className={`popout-in pointer-events-none absolute z-20 h-auto drop-shadow-[0_12px_22px_rgba(24,36,58,.24)] ${className}`} />
 }
 
 export type OverflowSide = { src?: string; srcs?: string[]; alt: string; ratio: number; extra?: number; zoomSrc?: string; caption: string }
@@ -217,9 +218,9 @@ export function PhoneOverflowCompare({ asis, tobe, color, extraPair = [], classN
     </div>
   )
   return (
-    <div className={`mx-auto grid max-w-[640px] grid-cols-2 items-start gap-x-3 sm:gap-x-8 ${className}`}>
+    <Reveal stagger className={`seq-cmp mx-auto grid max-w-[640px] grid-cols-2 items-start gap-x-3 sm:gap-x-8 ${className}`}>
       <Col side={asis} i={0} />
       <Col side={tobe} i={1} />
-    </div>
+    </Reveal>
   )
 }

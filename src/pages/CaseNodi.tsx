@@ -107,13 +107,13 @@ export default function CaseNodi() {
             <div className="mt-14 md:mt-0 md:col-span-6">
               {/* 모바일: 말풍선이 폰 밖으로 돌출하면 글자가 너무 작아져, 위에 읽히는 크기의 콜아웃으로 놓는다 */}
               <div className="mx-auto mb-5 max-w-[360px] space-y-3 md:hidden">
-                <img src="/images/nodi/hero-pop-user.png?v=2" alt="사용자 입력: 다음주 화요일에 디자인팀 5명 1시간 미팅 시간 잡아줘" loading="lazy" className="ml-0 h-auto w-[82%] drop-shadow-[0_10px_18px_rgba(24,36,58,.18)]" />
-                <img src="/images/nodi/hero-pop-ai.png?v=2" alt="NODI 응답: 회의 조건을 정리했어요. 맞는지 확인해 주세요." loading="lazy" className="ml-auto h-auto w-[78%] drop-shadow-[0_10px_18px_rgba(24,36,58,.18)]" />
+                <img src="/images/nodi/hero-pop-user.png?v=2" alt="사용자 입력: 다음주 화요일에 디자인팀 5명 1시간 미팅 시간 잡아줘" loading="lazy" style={{ animationDelay: '350ms' }} className="popout-in ml-0 h-auto w-[82%] drop-shadow-[0_10px_18px_rgba(24,36,58,.18)]" />
+                <img src="/images/nodi/hero-pop-ai.png?v=2" alt="NODI 응답: 회의 조건을 정리했어요. 맞는지 확인해 주세요." loading="lazy" style={{ animationDelay: '800ms' }} className="popout-in ml-auto h-auto w-[78%] drop-shadow-[0_10px_18px_rgba(24,36,58,.18)]" />
               </div>
               <div data-rise className="relative mx-auto w-[58%] md:w-[60%]">
                 <Zoomable src="/images/nodi/hero-phone-card.png?v=2" alt="NODI 조건 확인 화면: AI가 정리한 회의 조건 카드와 참석자 선택하기 버튼" caption="회의 조건을 확인해 주세요" className="block w-full" imgClass="block h-auto w-full" />
-                <UIPopout src="/images/nodi/hero-pop-user.png?v=2" alt="사용자 입력: 다음주 화요일에 디자인팀 5명 1시간 미팅 시간 잡아줘" className="hidden md:block md:left-[-36%] md:top-[17%] md:w-[60%] lg:left-[-66%] lg:w-[86%]" />
-                <UIPopout src="/images/nodi/hero-pop-ai.png?v=2" alt="NODI 응답: 회의 조건을 정리했어요. 맞는지 확인해 주세요." className="hidden md:block md:right-[-36%] md:top-[27%] md:w-[60%] lg:right-[-66%] lg:w-[86%]" />
+                <UIPopout delay={350} src="/images/nodi/hero-pop-user.png?v=2" alt="사용자 입력: 다음주 화요일에 디자인팀 5명 1시간 미팅 시간 잡아줘" className="hidden md:block md:left-[-36%] md:top-[17%] md:w-[60%] lg:left-[-66%] lg:w-[86%]" />
+                <UIPopout delay={800} src="/images/nodi/hero-pop-ai.png?v=2" alt="NODI 응답: 회의 조건을 정리했어요. 맞는지 확인해 주세요." className="hidden md:block md:right-[-36%] md:top-[27%] md:w-[60%] lg:right-[-66%] lg:w-[86%]" />
               </div>
             </div>
           </div>

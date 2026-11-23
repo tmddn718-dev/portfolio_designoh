@@ -62,7 +62,7 @@ export function ChapterNav({ active, list = chapters, title, onCta }: { active: 
 
 export function ChapterHead({ n, label, title, color }: { n: string; label: string; title: string; color: string }) {
   return (
-    <Reveal>
+    <Reveal fade>
       <div className="rule pt-4" style={{ borderColor: `color-mix(in srgb, ${color} 35%, white)` }}><span className="sr-only">챕터 {n}: {label}</span></div>
       <h2 className="mt-4 apple-h text-[32px] md:text-[56px] max-w-[22ch]">{title}</h2>
     </Reveal>

@@ -467,9 +467,15 @@ function Karrot({ c }: { c: Ctx }) {
       </section>
 
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="01" label="Problem" kind="problem" title="대형 가구는 정보가 빠지면 판단이 멈춘다" />
-        <Reveal><blockquote className="mt-5 max-w-[720px] border-l-2 pl-3 text-[17px] font-normal leading-[1.55] text-[#444] md:border-l-[3px] md:pl-6 md:text-[23px]" style={{ borderColor: A }}>{p.problem}</blockquote></Reveal>
-        <ul className="mt-12 grid md:grid-cols-3 gap-5">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
+        <div className="grid items-start gap-8 md:grid-cols-12 md:gap-x-6">
+          <div className="md:col-span-7">
+            <ChapterHead color={S} n="01" label="Problem" kind="problem" title="대형 가구는 정보가 빠지면 판단이 멈춘다" />
+            <Reveal><blockquote className="mt-5 max-w-[720px] border-l-2 pl-3 text-[17px] font-normal leading-[1.55] text-[#444] md:border-l-[3px] md:pl-6 md:text-[23px]" style={{ borderColor: A }}>{p.problem}</blockquote></Reveal>
+          </div>
+          <div className="md:col-span-5">
+            <ul className="grid gap-4 md:pt-4">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
+          </div>
+        </div>
         <div className="mt-14"><p className="eyebrow text-sub">실제 당근 앱 · AS-IS 캡처</p>
           <ul className="mt-5 grid grid-cols-3 gap-4 md:grid-cols-5 md:gap-6 max-w-5xl">{[['asis-write', '판매글 작성: 제목·설명·가격만 입력'], ['asis-write-ai', '사진 분석 중(AI 작성)'], ['asis-search', '대형 가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul></div>
         <p className="mt-10 text-[13px] text-sub max-w-3xl">앱 리뷰·블로그 VOC와 인터뷰를 근거로 PRD 문제를 정의했습니다. 원자료가 없어 표본 수와 수치는 싣지 않았고, 발생 빈도와 영향은 사용성 테스트로 검증해야 하는 디자인 가설입니다.</p>
@@ -585,13 +591,13 @@ function Karrot({ c }: { c: Ctx }) {
             <div className="md:grid md:grid-cols-12 gap-10 items-end">
             <div className="md:col-span-7">
               <p className="text-[13px] font-bold tracking-[.14em]" style={{ color: '#FFB78A' }}>RESULT 01 · AVERAGE TIME DIFFERENCE</p>
-              <p className="mt-4 font-extrabold leading-[.9] tracking-[-.06em] text-[clamp(88px,17vw,196px)]">−34<span className="text-[.42em] tracking-[-.03em] ml-1" style={{ color: '#FF8A3D' }}>초</span></p>
+              <p className="mt-4 font-extrabold leading-[.9] tracking-[-.06em] text-[clamp(52px,6vw,80px)]">−34<span className="text-[.42em] tracking-[-.03em] ml-1" style={{ color: '#FF8A3D' }}>초</span></p>
               <p className="mt-5 text-[18px] md:text-[22px] font-bold">거래 약속 확정까지의 평균 소요 시간 차이</p>
               <p className="mt-2 text-[15px] text-white/70">TO-BE에서 AS-IS보다 평균 34초 짧게 측정</p>
             </div>
             <div className="mt-10 md:mt-0 md:col-span-5 pt-8 md:pt-0 md:pl-10 border-t md:border-t-0 md:border-l border-white/20">
               <p className="text-[13px] font-bold tracking-[.14em]" style={{ color: '#FFB78A' }}>RESULT 02 · PARTICIPANT IMPROVEMENT</p>
-              <p className="mt-4 font-extrabold leading-[.95] tracking-[-.05em] text-[clamp(60px,10vw,112px)]">7/7<span className="text-[.42em] tracking-[-.03em] ml-1" style={{ color: '#FF8A3D' }}>명</span></p>
+              <p className="mt-4 font-extrabold leading-[.95] tracking-[-.05em] text-[clamp(40px,4.5vw,64px)]">7/7<span className="text-[.42em] tracking-[-.03em] ml-1" style={{ color: '#FF8A3D' }}>명</span></p>
               <p className="mt-4 text-[17px] md:text-[19px] font-bold">모든 참가자가 TO-BE에서 소요 시간 단축</p>
               <p className="mt-2 text-[15px] text-white/70">동일한 7명이 두 조건을 모두 수행한 비교 결과</p>
             </div>
@@ -732,10 +738,13 @@ function Woorisai({ c }: { c: Ctx }) {
 
       <section id="c2" className="scroll-mt-20 md:mt-8" style={{ background: '#F4F2EC' }}>
         <div className="wrap gutter py-14 md:py-24">
-          <ChapterHead color={S} n="01" label="Problem" kind="problem" title="친구와 보낸 하루가 여러 앱에 흩어진다" />
-          <p className="mt-5 max-w-[60ch] text-[18px] leading-[1.65]">친구와 약속을 잡고, 만나서 사진을 찍고, 비용을 나누고, 나중에 그날을 떠올릴 때까지 사람들은 서로 다른 앱과 기능을 오가요. 그래서 하루의 사진과 이야기가 한곳에 남지 않아요.</p>
-
-          <ol aria-label="친구와의 하루에서 쓰는 앱" className="mt-10 grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
+          <div className="grid items-start gap-8 md:grid-cols-12 md:gap-x-6">
+            <div className="md:col-span-5">
+              <ChapterHead color={S} n="01" label="Problem" kind="problem" title="친구와 보낸 하루가 여러 앱에 흩어진다" />
+              <p className="mt-5 max-w-[60ch] text-[18px] leading-[1.65]">친구와 약속을 잡고, 만나서 사진을 찍고, 비용을 나누고, 나중에 그날을 떠올릴 때까지 사람들은 서로 다른 앱과 기능을 오가요. 그래서 하루의 사진과 이야기가 한곳에 남지 않아요.</p>
+            </div>
+            <div className="md:col-span-7 md:pt-4">
+              <ol aria-label="친구와의 하루에서 쓰는 앱" className="grid grid-cols-2 gap-3 md:gap-4">
             {[['01', '약속 잡기', '메신저', '대화방에서 일정과 장소를 정해요'], ['02', '사진 공유', '각자의 갤러리', '사진이 각자의 휴대폰에 따로 남아요'], ['03', '정산', '정산 앱', '비용은 또 다른 앱에서 나눠요'], ['04', '추억 회상', '사진 앱', '나중에 그날을 사진 앱에서 찾아야 해요']].map(([n, t, app, d]) => (
               <li key={n} className="flex flex-col rounded-[20px] border border-grid bg-white p-4 md:rounded-[24px] md:p-6">
                 <span className="text-[13px] font-bold" style={{ color: S }}>{n}</span>
@@ -745,6 +754,8 @@ function Woorisai({ c }: { c: Ctx }) {
               </li>
             ))}
           </ol>
+            </div>
+          </div>
           <p className="mt-5 text-[14px] text-sub max-w-[60ch]">※ PRD에서 정의한 문제 가설이며, 실제 사용자 문제로 검증하지 않았습니다.</p>
 
           <div className="mt-12 rounded-[28px] p-6 md:mt-16 md:p-12" style={{ background: T(16), border: `1px solid ${T(36)}` }}>

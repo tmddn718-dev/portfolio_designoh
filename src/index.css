@@ -13,7 +13,7 @@
 }
 
 :root {
-  --content-max: 1320px;
+  --content-max: 1240px;
   --space-section: clamp(64px, 8vw, 120px);
   --type-section: clamp(24px, 2.1vw, 30px);
   --type-body: clamp(15px, 1.2vw, 18px);
@@ -280,7 +280,7 @@ main article .wrap[class*="pt-20"] { padding-top: 36px; }
 }
 
 /* 홈 콘텐츠 최대 너비 1080px (상세 페이지는 목업 크기를 지키려고 1200px 유지) */
-@media (min-width: 1200px) { html:has(#hero) .wrap { max-width: calc(1080px + 120px); } }
+
 
 /* 프로젝트 카드: 마우스가 있는 환경에서만 썸네일이 아주 조금 커진다(터치·모션 줄이기에서는 없음) */
 .card-thumb { transition: transform .5s cubic-bezier(.22,.61,.36,1); }
@@ -408,7 +408,7 @@ main article :is(h3, h4).apple-h { letter-spacing: -.02em; }
   main article p + p:not([class*="mt-"], [class*="rounded-["] *) { margin-top: 18px; }
   main article .wrap:is([class*="py-14"], [class*="py-16"], [class*="py-20"], [class*="py-24"]) { padding-block: 66px; }
   main article .wrap[class*="pt-20"] { padding-top: 66px; }
-  main article [class*="rounded-["]:is([class~="p-5"], [class~="p-6"], [class~="p-7"]) { padding: 36px; }
+  main article [class*="rounded-["]:is([class~="p-5"], [class~="p-6"], [class~="p-7"]) { padding: 32px; }
   /* 클래스로 크기를 지정한 나머지 문구: +2px (작은 값부터 순서대로 덮어써서 가장 큰 값이 이긴다) */
   :where(main article) :where(p, li, blockquote)[class*="text-[14px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 16px; }
   :where(main article) :where(p, li, blockquote)[class*="text-[15px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 17px; }

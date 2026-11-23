@@ -169,8 +169,8 @@ export function Work() {
   const selected = projectOrder.map(by)
   return (
     <section id="work" className="home-section wrap gutter scroll-mt-16">
-      <Reveal fade className="grid gap-6 md:grid-cols-12 md:items-end"><div className="md:col-span-7"><p className="eyebrow text-bluetext">Selected work</p><SplitText as="h2" className="section-title mt-3" text="화면보다, 문제부터." /></div><p className="body-copy md:col-span-6 md:col-start-7">UX 개선안부터 실제 출시 경험까지, 각 프로젝트에서 해결한 문제와 설계 근거를 확인할 수 있습니다.</p></Reveal>
-      <Reveal className="mt-8 md:mt-14"><FeaturedOlive /></Reveal>
+      <Reveal fade><p className="eyebrow text-bluetext">Selected work</p><div className="mt-3 grid gap-4 md:grid-cols-12 md:items-start md:gap-x-16"><SplitText as="h2" className="section-title whitespace-nowrap md:col-span-7" text="화면보다, 문제부터." /><p className="body-copy md:col-span-5 md:mt-1 md:justify-self-end md:max-w-[440px]">UX 개선안부터 실제 출시 경험까지, 각 프로젝트에서 해결한 문제와 설계 근거를 확인할 수 있습니다.</p></div></Reveal>
+      <Reveal className="mt-8 md:mt-12"><FeaturedOlive /></Reveal>
       <div className="mt-16 md:mt-28"><div className="flex items-end justify-between gap-6 border-t border-grid pt-5"><h2 className="text-[24px] font-bold tracking-tight md:text-[30px]">이어지는 작업</h2><p className="hidden text-[14px] text-sub md:block">당근 / NODI / 우리사이 / trigr</p></div><div data-stagger className="mt-6 grid gap-x-6 gap-y-10 md:mt-10 md:grid-cols-2 md:gap-y-16">{selected.map(p => <ProjectCard key={p.slug} p={p} />)}</div></div>
     </section>
   )
@@ -185,7 +185,7 @@ const approach = [
 export function Philosophy() {
   return (
     <section id="approach" className="home-section wrap gutter scroll-mt-16">
-      <Reveal fade className="grid gap-5 md:grid-cols-12"><div className="md:col-span-5"><SplitText as="h2" className="section-title" text="Soft Clarity" /></div><p className="body-copy md:col-span-6 md:col-start-7 md:mt-2">복잡한 문제를 관찰하고 핵심을 정의한 뒤, 실제로 확인할 수 있는 경험으로 구현합니다.</p></Reveal>
+      <Reveal fade className="grid gap-4 md:grid-cols-12 md:items-start md:gap-x-16"><div className="md:col-span-7"><SplitText as="h2" className="section-title" text="Soft Clarity" /></div><p className="body-copy md:col-span-5 md:mt-1 md:justify-self-end md:max-w-[440px]">복잡한 문제를 관찰하고 핵심을 정의한 뒤, 실제로 확인할 수 있는 경험으로 구현합니다.</p></Reveal>
       <ol className="mt-8 border-t border-grid md:mt-12">{approach.map((item, index) => <li key={item.key} className="border-b border-grid py-6 md:py-10"><div data-stagger className="grid gap-4 md:grid-cols-12 md:items-center md:gap-6"><div className="md:col-span-2"><p className="text-[13px] font-medium tabular-nums text-sub">0{index + 1}</p><h3 className="mt-1 text-[24px] font-bold tracking-[-.03em] md:mt-2 md:text-[28px]">{item.key}</h3></div><div className="md:col-span-5"><p className="text-[18px] font-semibold leading-[1.45] md:text-[20px]">{item.title}</p><p className="mt-2 text-[15px] leading-[1.65] text-sub md:mt-3 md:text-[16px] md:leading-[1.65]">{item.text}</p></div><div className="max-w-[180px] md:col-span-4 md:col-start-9 md:max-w-none"><div data-parallax-y="5"><Zoomable src={item.shot.src} alt={item.shot.alt} caption={item.shot.cap} className="w-full overflow-hidden rounded-[16px] bg-apple md:rounded-[16px]" imgClass="aspect-[4/3] w-full object-contain object-left p-2 md:p-3" /><p className="mt-2 text-[13px] text-sub">{item.shot.cap}</p></div></div></div></li>)}</ol>
     </section>
   )

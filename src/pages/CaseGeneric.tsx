@@ -222,8 +222,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
       </section>
 
       <section id="c4" className="wrap gutter py-14 md:py-24 scroll-mt-20 md:mt-16">
-        <ChapterHead color={S} n="03" label="Edge cases" title="대표 흐름과 예외 상황을 분리하다" />
-        <p className="mt-4 max-w-2xl text-[17px] leading-[1.65] text-sub">주요 구매 흐름과 분리해, 사용자가 멈출 수 있는 상태만 빠르게 비교할 수 있도록 묶었어요.</p>
+        <ChapterHead color={S} n="03" label="Edge cases" title="대표 흐름과 예외 상황을 분리하다" desc="주요 구매 흐름과 분리해, 사용자가 멈출 수 있는 상태만 빠르게 비교할 수 있도록 묶었어요." />
         <div className="mt-12"><Strip label="구매 예외 상황 갤러리">{[
           ['n-optFail', '재고 확인 실패'], ['n-altNone', '전체 품절'], ['n-restock', '재입고 알림'], ['n-stockChanged', '주문 직전 재고 변경'],
         ].map(([n, label]) => <figure key={n} className="w-[230px] shrink-0"><Screen src={I(n)} alt={`${label} 화면`} /><figcaption className="mt-3 text-[14px] text-sub">{label}</figcaption></figure>)}</Strip></div>

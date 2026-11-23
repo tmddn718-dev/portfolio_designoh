@@ -61,11 +61,13 @@ export function ChapterNav({ active, list = chapters, title, onCta }: { active: 
   )
 }
 
-export function ChapterHead({ n, label, title, color, kind }: { n: string; label: string; title: string; color: string; kind?: 'problem' }) {
+// 섹션 헤더: 타이틀은 왼쪽, 설명문(desc)은 오른쪽 컬럼 끝에 맞추고 두 요소의 상단선을 맞춘다
+export function ChapterHead({ n, label, title, color, kind, desc }: { n: string; label: string; title: string; color: string; kind?: 'problem'; desc?: string }) {
   return (
-    <Reveal fade>
+    <Reveal fade className={desc ? 'md:grid md:grid-cols-12 md:items-start md:gap-x-16' : ''}>
       <span className="sr-only">챕터 {n}: {label}</span>
-      <h2 className={`apple-h text-[32px] md:text-[56px] max-w-[22ch]${kind ? ' ty-problem' : ''}`}>{title}</h2>
+      <h2 className={`apple-h text-[32px] md:text-[56px] max-w-[22ch]${desc ? ' md:col-span-7' : ''}${kind ? ' ty-problem' : ''}`}>{title}</h2>
+      {desc && <p className="mt-5 text-[17px] leading-[1.75] text-ink/75 md:col-span-5 md:mt-1 md:justify-self-end md:max-w-[440px]">{desc}</p>}
     </Reveal>
   )
 }

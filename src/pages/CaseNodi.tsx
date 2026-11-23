@@ -38,10 +38,13 @@ const Callout = ({ n, t, d }: { n: string; t: string; d: string }) => (
 )
 
 
-const Head = ({ label, children, className = '', sm = false, role }: { label: string; children: React.ReactNode; className?: string; sm?: boolean; role?: 'problem' | 'question' }) => (
+const Head = ({ label, children, className = '', sm = false, role, desc }: { label: string; children: React.ReactNode; className?: string; sm?: boolean; role?: 'problem' | 'question'; desc?: string }) => (
   <Reveal className={className}>
     <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>{label}</p>
-    <h2 className={`mt-4 apple-h ${role === 'problem' ? 'ty-problem max-w-[22ch]' : role === 'question' ? 'ty-question max-w-[22ch]' : sm ? 'text-[28px] md:text-[40px] max-w-[18ch]' : 'text-[30px] md:text-[52px] max-w-[22ch]'}`}>{children}</h2>
+    <div className={desc ? 'mt-4 md:grid md:grid-cols-12 md:items-start md:gap-x-16' : ''}>
+      <h2 className={`${desc ? '' : 'mt-4 '}apple-h ${desc ? 'md:col-span-7 ' : ''}${role === 'problem' ? 'ty-problem max-w-[22ch]' : role === 'question' ? 'ty-question max-w-[22ch]' : sm ? 'text-[28px] md:text-[40px] max-w-[18ch]' : 'text-[30px] md:text-[52px] max-w-[22ch]'}`}>{children}</h2>
+      {desc && <p className="mt-5 text-[17px] leading-[1.75] text-ink/75 md:col-span-5 md:mt-1 md:justify-self-end md:max-w-[440px]">{desc}</p>}
+    </div>
   </Reveal>
 )
 const Ph = ({ n, cap, className = '' }: { n: string; cap: string; className?: string }) => (
@@ -166,8 +169,7 @@ export default function CaseNodi() {
       {/* 03 Problem */}
       <section id="problem" className="scroll-mt-20" style={{ background: '#F7F8FB' }}>
         <div className="wrap gutter py-20 md:py-32">
-          <Head role="problem" label="PROBLEM">조건이 많아질수록, <br />회의 조율은 복잡한 의사결정이 됩니다.</Head>
-          <p className="mt-6 max-w-[52ch] text-[17px] leading-[1.65]">참여자별 일정과 선호도가 서로 다르기 때문에 회의 시간을 정하려면 반복적인 확인과 비교가 필요합니다.</p>
+          <Head desc="참여자별 일정과 선호도가 서로 다르기 때문에 회의 시간을 정하려면 반복적인 확인과 비교가 필요합니다." role="problem" label="PROBLEM">조건이 많아질수록, <br />회의 조율은 복잡한 의사결정이 됩니다.</Head>
           <ol className="mt-12 grid md:grid-cols-3 gap-4 md:gap-6">
             {[['01', '일정 확인', '외근과 기존 미팅 등 참석할 수 없는 시간을 확인해야 합니다.'], ['02', '조건 비교', '참석 불가능한 시간과 선호하지 않는 시간을 구분해야 합니다.'], ['03', '최종 판단', '여러 조건을 종합해 적절한 회의 시간을 결정해야 합니다.']].map(([n, t, d], i) => (
               <li key={n} className="relative"><Reveal delay={i * 60}>
@@ -185,8 +187,7 @@ export default function CaseNodi() {
 
       {/* 04 Design Question */}
       <section id="question" className="wrap gutter py-24 md:py-40 scroll-mt-20">
-        <Head role="question" label="DESIGN QUESTION">복잡한 조건 비교는 AI가 돕고, <br />최종 결정은 사용자가 할 수 없을까?</Head>
-        <p className="mt-8 max-w-[44ch] text-[18px] md:text-[20px] leading-[1.65] text-ink/80">반복적인 일정 비교의 부담은 줄이되, 최종 선택에 필요한 판단 근거는 사용자에게 제공하고자 했습니다.</p>
+        <Head desc="반복적인 일정 비교의 부담은 줄이되, 최종 선택에 필요한 판단 근거는 사용자에게 제공하고자 했습니다." role="question" label="DESIGN QUESTION">복잡한 조건 비교는 AI가 돕고, <br />최종 결정은 사용자가 할 수 없을까?</Head>
       </section>
 
       {/* 05-08 Solutions */}
@@ -212,8 +213,7 @@ export default function CaseNodi() {
 
           {/* Solution 02 */}
           <div className="mt-28 md:mt-40">
-            <Head label="SOLUTION 02 / RECOMMENDATION">입력한 조건이 달라지면, <br />추천 시간도 달라집니다.</Head>
-            <p className="mt-6 max-w-[56ch] text-[17px] leading-[1.65]">NODI는 참여자별 일정과 선호도를 바탕으로 회의 시간 후보를 제안합니다. 프로토타입에서는 사용자가 입력한 조건에 따라 실제 추천 결과가 달라지도록 구현했습니다.</p>
+            <Head desc="NODI는 참여자별 일정과 선호도를 바탕으로 회의 시간 후보를 제안합니다. 프로토타입에서는 사용자가 입력한 조건에 따라 실제 추천 결과가 달라지도록 구현했습니다." label="SOLUTION 02 / RECOMMENDATION">입력한 조건이 달라지면, <br />추천 시간도 달라집니다.</Head>
             <div className="mt-12 grid md:grid-cols-2 gap-5 md:gap-8">
               {[
                 { k: 'A', pref: '오후', ino: 'scAin', outo: 'scA', res: '조건에 맞는 시간 3개', sub: '참석 가능성이 비슷한 후보 중 선호 시간을 사용자가 선택합니다' },
@@ -256,8 +256,7 @@ export default function CaseNodi() {
 
           {/* Solution 04 */}
           <div className="mt-28 md:mt-40">
-            <Head label="SOLUTION 04 / DECISION">최종 결정은 <br />사용자에게 남겨두었습니다.</Head>
-            <p className="mt-6 max-w-[56ch] text-[17px] leading-[1.65]">NODI는 회의 시간을 자동으로 확정하는 대신, 추천 결과와 근거를 확인한 사용자가 최종 시간을 선택하도록 설계했습니다.</p>
+            <Head desc="NODI는 회의 시간을 자동으로 확정하는 대신, 추천 결과와 근거를 확인한 사용자가 최종 시간을 선택하도록 설계했습니다." label="SOLUTION 04 / DECISION">최종 결정은 <br />사용자에게 남겨두었습니다.</Head>
             <Reveal as="ol" stagger slow className="mt-12 grid grid-cols-3 gap-3 md:gap-8 max-w-4xl">
               {[['pickB', '추천 결과 확인'], ['reasonB', '추천 이유 검토'], ['review', '최종 시간 선택']].map(([n, t], i) => (
                 <li key={n}>
@@ -308,8 +307,7 @@ export default function CaseNodi() {
       {/* More: 보조 화면과 설계 기록 */}
       <section id="more" className="scroll-mt-20">
         <div className="wrap gutter pt-20 md:pt-28">
-          <Head label="MORE">보조 화면과 설계 기록</Head>
-          <p className="mt-6 max-w-[52ch] text-[17px] leading-[1.65] text-sub">위 흐름 밖의 화면과 예외 상태, 반응형, 설계 점검 기록을 모았어요.</p>
+          <Head desc="위 흐름 밖의 화면과 예외 상태, 반응형, 설계 점검 기록을 모았어요." label="MORE">보조 화면과 설계 기록</Head>
         </div>
       </section>
 

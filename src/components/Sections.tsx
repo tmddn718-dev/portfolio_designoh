@@ -171,7 +171,7 @@ export function Work() {
     <section id="work" className="home-section wrap gutter scroll-mt-16">
       <Reveal fade className="grid gap-4 md:grid-cols-12 md:items-end md:gap-x-16"><div className="md:col-span-7"><p className="eyebrow text-bluetext">Selected work</p><SplitText as="h2" className="section-title mt-3 whitespace-nowrap" text="화면보다 문제부터" /></div><p className="body-copy md:col-span-5 md:justify-self-end md:max-w-[440px]">UX 개선안부터 실제 출시 경험까지, 각 프로젝트에서 해결한 문제와 설계 근거를 확인할 수 있습니다.</p></Reveal>
       <Reveal className="mt-8 md:mt-12"><FeaturedOlive /></Reveal>
-      <div className="mt-16 md:mt-28"><div className="flex items-end justify-between gap-6 border-t border-grid pt-5"><h2 className="text-[24px] font-bold tracking-tight md:text-[30px]">이어지는 작업</h2><p className="hidden text-[14px] text-sub md:block">당근 / NODI / 우리사이 / trigr</p></div><div data-stagger className="mt-6 grid gap-x-6 gap-y-10 md:mt-10 md:grid-cols-2 md:gap-y-16">{selected.map(p => <ProjectCard key={p.slug} p={p} />)}</div></div>
+      <div className="mt-16 md:mt-28"><div className="flex items-end justify-between gap-6 pt-5"><h2 className="text-[24px] font-bold tracking-tight md:text-[30px]">이어지는 작업</h2><p className="hidden text-[14px] text-sub md:block">당근 / NODI / 우리사이 / trigr</p></div><div data-stagger className="mt-6 grid gap-x-6 gap-y-10 md:mt-10 md:grid-cols-2 md:gap-y-16">{selected.map(p => <ProjectCard key={p.slug} p={p} />)}</div></div>
     </section>
   )
 }

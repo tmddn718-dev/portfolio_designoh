@@ -164,12 +164,12 @@ function OliveRenewed({ c }: { c: Ctx }) {
               <p className="eyebrow" style={{ color: S }}>Before / After · 개선안</p>
               <div className="mt-6 grid items-start gap-10 md:grid-cols-12">
                 <div className="mx-auto grid w-full max-w-[420px] grid-cols-2 items-start gap-3 md:col-span-5"><Fig src="/images/oliveyoung-todaydream/cart-asis-01-tall.jpg" alt="기존 장바구니 맨 위: 배송 방식 탭, 배송지, 상품과 옵션, 하단 고정 총액과 구매 버튼" cap="AS-IS · 기존 장바구니" /><Fig src={I('n-cart')} alt="개선 장바구니: 무료배송 남은 금액, 현재 상품, 함께 담기 좋은 상품과 담기 버튼, 배송 시간 선택 CTA" cap="TO-BE · 추천 상품과 남은 금액" /></div>
-                <ol className="space-y-6 md:col-span-7">
+                <ol className="space-y-8 md:col-span-7">
                   {[
                     ['01', '무료배송 조건의 가시성', '현재 10,000원, 기준 30,000원, 남은 금액 20,000원과 진행 바(33.3%)를 한 카드에 모았습니다. 기준 금액은 프로토타입 예시 값입니다.'],
                     ['02', '추가 구매에 따른 비용 변화', '추천 상품마다 담았을 때 무료배송까지 남는 금액을 보여주고, 담으면 진행 바와 예상 결제금액이 바로 바뀝니다. 담지 않아도 구매를 이어갈 수 있습니다.'],
                     ['03', '배송 시간과 배송비 사전 비교', '하단 CTA를 누르면 세 시간대의 배송비를 모두 비교해 고를 수 있고, 선택에 따라 결제금액이 바뀐 채 주문/결제로 이어집니다.'],
-                  ].map(([n, title, body]) => <li key={n} className="border-t border-grid pt-5"><p className="text-[13px] font-bold" style={{ color: S }}>Decision {n}</p><h4 className="mt-2 text-[20px] font-bold">{title}</h4><p className="mt-2 text-[15px] leading-[1.65] text-sub">{body}</p></li>)}
+                  ].map(([n, title, body]) => <li key={n}><p className="text-[13px] font-bold" style={{ color: S }}>Decision {n}</p><h4 className="mt-2 text-[20px] font-bold">{title}</h4><p className="mt-2 text-[15px] leading-[1.65] text-sub">{body}</p></li>)}
                 </ol>
               </div>
               

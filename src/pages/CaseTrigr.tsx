@@ -140,11 +140,11 @@ export default function CaseTrigr() {
       {/* 02 Project Context + 03 My Approach */}
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
         <ChapterHead color={S} n="01" label="Project Context" title="불완전한 요구사항 속에서 시작된 제품 설계" />
-        <ul className="mt-12 grid sm:grid-cols-2 gap-4 md:gap-6">
+        <Reveal as="ul" stagger slow className="mt-12 grid sm:grid-cols-2 gap-4 md:gap-6">
           {['서비스 정책과 상세 기능 정의가 충분하지 않았습니다.', '기획서에 일부 화면 상태와 예외 흐름이 빠져 있었습니다.', '요구사항이 바뀌면서 주요 UI 개편이 세 차례 있었습니다.', '디자이너 1명이 기획자·개발자와 협의하며 UX/UI를 구체화했습니다.'].map((t, i) => (
             <li key={t} className="rounded-[24px] bg-white border border-grid p-6 md:p-7 flex gap-4"><span className="text-[28px] font-extrabold leading-none num-brand">0{i + 1}</span><p className="text-[18px] leading-[1.55] font-semibold">{t}</p></li>
           ))}
-        </ul>
+        </Reveal>
         <div role="region" aria-label="세 차례 개편 흐름 (좌우로 스크롤)" tabIndex={0} className="mt-8 -mx-5 px-5 md:mx-0 md:px-0 flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
           {stages.map(([n, c], i) => (
             <div key={n} className="w-[230px] shrink-0 md:w-auto rounded-[20px] p-5" style={{ background: i === 3 ? T(16) : '#F7F8FB' }}>
@@ -199,7 +199,7 @@ export default function CaseTrigr() {
             <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold">생성자·참여자 관점의 흐름 보기</summary>
             <div className="mt-6 space-y-8">{lanes.map(l => (
               <div key={l.title}><p className="text-[17px] font-bold" style={{ color: l.color }}>{l.title}</p>
-                <ol className="mt-3 grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-4 gap-3">{l.steps.map(([a, q], i) => <li key={a} className="rounded-[16px] bg-[#F7F8FA] p-4"><p className="text-[13px] font-semibold" style={{ color: l.color }}>0{i + 1} · {a}</p><p className="mt-1.5 text-[15px] leading-snug [overflow-wrap:anywhere]">“{q}”</p></li>)}</ol>
+                <Reveal as="ol" stagger slow className="mt-3 grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-4 gap-3">{l.steps.map(([a, q], i) => <li key={a} className="rounded-[16px] bg-[#F7F8FA] p-4"><p className="text-[13px] font-semibold" style={{ color: l.color }}>0{i + 1} · {a}</p><p className="mt-1.5 text-[15px] leading-snug [overflow-wrap:anywhere]">“{q}”</p></li>)}</Reveal>
               </div>))}</div>
           </details>
         </div>

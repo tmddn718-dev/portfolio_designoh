@@ -116,7 +116,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
           {[
             ['Before flow', ['상품 옵션 선택', '오늘드림 품절', '이전 단계 이동', '구매 방법 재탐색', '결제 진행']],
             ['After flow', ['상품 옵션 선택', '오늘드림 품절', '다른 구매 방법 안내', '일반배송·픽업 선택', '결제 진행']],
-          ].map(([label, steps]) => <div key={label as string} className="rounded-[24px] border border-grid p-6"><p className="eyebrow text-sub">{label as string}</p><ol className="mt-5 flex flex-wrap items-center gap-2 text-[14px]">{(steps as string[]).map((step, index) => <li key={step} className="contents"><span className={`rounded-full px-3 py-2 ${label === 'After flow' && index === 2 ? 'font-semibold text-white' : 'bg-[#F5F5F3]'}`} style={label === 'After flow' && index === 2 ? { background: S } : undefined}>{step}</span>{index < (steps as string[]).length - 1 && <span aria-hidden className="text-sub">→</span>}</li>)}</ol></div>)}
+          ].map(([label, steps]) => <div key={label as string} className="rounded-[24px] border border-grid p-6"><p className="eyebrow text-sub">{label as string}</p><Reveal as="ol" fade delay={label === 'After flow' ? 600 : 0} className="chain mt-5 flex flex-wrap items-center gap-2 text-[14px]">{(steps as string[]).map((step, index) => <li key={step} style={{ ['--k' as string]: index }} className="contents"><span className={`rounded-full px-3 py-2 ${label === 'After flow' && index === 2 ? 'font-semibold text-white' : 'bg-[#F5F5F3]'}`} style={label === 'After flow' && index === 2 ? { background: S } : undefined}>{step}</span>{index < (steps as string[]).length - 1 && <span aria-hidden className="text-sub">→</span>}</li>)}</Reveal></div>)}
         </div>
       </section>
 
@@ -530,7 +530,7 @@ function Karrot({ c }: { c: Ctx }) {
           <div className="mt-12 grid md:grid-cols-2 gap-4 md:gap-8">
             <div className="rounded-[28px] bg-white border border-grid p-5 md:p-8">
               <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-[#e8e8e8]">AS-IS · 기존 앱</span>
-              <ol aria-label="기존 거래 과정" className="mt-6">
+              <Reveal as="ol" stagger slow label="기존 거래 과정" className="mt-6">
                 {[['게시글 확인', false], ['채팅 시작', false], ['가구 상세 정보 질문', true], ['거래 가능 여부 확인', true], ['거래 방법 질문', true], ['거래 약속 조율 및 확정', false]].map(([t, ask], i, a) => (
                   <li key={String(t)}>
                     <div className="flex items-center gap-3 rounded-[16px] border px-4 py-3 text-[16px]" style={ask ? { background: '#FDEAEA', borderColor: '#F2BDBD', color: '#7A1F1F', fontWeight: 600 } : { background: '#fff', borderColor: '#E5E5E7' }}>
@@ -540,12 +540,12 @@ function Karrot({ c }: { c: Ctx }) {
                     {i < a.length - 1 && <p aria-hidden className="my-1 text-center text-[18px] leading-none text-sub">↓</p>}
                   </li>
                 ))}
-              </ol>
+              </Reveal>
               <p className="mt-5 text-[14px] leading-relaxed text-sub">상세 정보와 거래 조건을 채팅으로 확인한 뒤에야 거래 약속을 조율할 수 있었습니다.</p>
             </div>
             <div className="rounded-[28px] p-5 md:p-8" style={{ background: T(14), border: `1px solid ${T(36)}` }}>
               <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold" style={{ background: A, color: onBrand(A) }}>TO-BE · 개선 프로토타입</span>
-              <ol aria-label="개선된 거래 과정" className="mt-6">
+              <Reveal as="ol" stagger slow delay={700} label="개선된 거래 과정" className="mt-6">
                 <li><div className="rounded-[16px] border bg-white px-4 py-3 text-[16px]" style={{ borderColor: T(36) }}><span className="text-[13px] font-bold tabular-nums opacity-60 mr-3">01</span>개선 게시글 확인</div></li>
                 <li aria-hidden className="my-1 text-center text-[18px] leading-none text-sub">↓</li>
                 <li><div className="rounded-[16px] p-3" style={{ background: '#fff', border: `2px solid ${A}` }}>
@@ -556,7 +556,7 @@ function Karrot({ c }: { c: Ctx }) {
                 <li><div className="rounded-[16px] border bg-white px-4 py-3 text-[16px]" style={{ borderColor: T(36) }}><span className="text-[13px] font-bold tabular-nums opacity-60 mr-3">03</span>채팅 시작</div></li>
                 <li aria-hidden className="my-1 text-center text-[18px] leading-none text-sub">↓</li>
                 <li><div className="rounded-[16px] border bg-white px-4 py-3 text-[16px] font-semibold" style={{ borderColor: T(36) }}><span className="text-[13px] font-bold tabular-nums opacity-60 mr-3">04</span>거래 약속 조율 및 확정</div></li>
-              </ol>
+              </Reveal>
               <p className="mt-5 text-[14px] leading-relaxed text-ink/80">채팅 전에 거래 정보를 확인하고, 채팅에서는 약속 조율에 집중합니다.</p>
             </div>
           </div>
@@ -762,7 +762,7 @@ function Woorisai({ c }: { c: Ctx }) {
           <div className="mt-12 md:mt-20">
             <p className="eyebrow text-sub">Design Strategy</p>
             <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight">기록 → 함께 쌓기 → 다시 발견하기 → 대화로 이어지기</h3>
-            <ol className="mt-8 grid md:grid-cols-4 gap-4">{[['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자별 사진과 이야기를 한 추억에'], ['다시 발견하기', '사람·장소·시간으로 되찾기'], ['대화로 이어지기', '사진 단위 반응과 댓글']].map(([t, d], i) => <li key={t} className="rounded-[20px] bg-white border border-grid p-5"><span className="text-[24px] font-extrabold" style={{ color: S }}>0{i + 1}</span><p className="mt-2 text-[18px] font-bold">{t}</p><p className="mt-1 text-[14px] text-sub leading-snug">{d}</p></li>)}</ol>
+            <Reveal as="ol" stagger slow className="mt-8 grid md:grid-cols-4 gap-4">{[['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자별 사진과 이야기를 한 추억에'], ['다시 발견하기', '사람·장소·시간으로 되찾기'], ['대화로 이어지기', '사진 단위 반응과 댓글']].map(([t, d], i) => <li key={t} className="rounded-[20px] bg-white border border-grid p-5"><span className="text-[24px] font-extrabold" style={{ color: S }}>0{i + 1}</span><p className="mt-2 text-[18px] font-bold">{t}</p><p className="mt-1 text-[14px] text-sub leading-snug">{d}</p></li>)}</Reveal>
           </div>
 
           <div className="relative mt-12 rounded-[24px] border border-grid bg-white p-5 md:mt-16 md:p-8">

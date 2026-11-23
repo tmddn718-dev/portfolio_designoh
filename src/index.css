@@ -269,3 +269,12 @@ main h3, main h4 { line-height: 1.4; }
 @media (max-width: 767px) {
   main [class*="rounded-["]:is([class~="p-6"], [class~="p-7"]) { padding: 20px; }
 }
+
+/* 섹션 간격: 인접 섹션 사이가 데스크톱 120px / 모바일 72px (위·아래 각 절반). 섹션 자체의 위쪽 바깥 여백은 쓰지 않는다. */
+main article section[class*="md:mt-"] { margin-top: 0; }
+main article .wrap:is([class*="py-14"], [class*="py-16"], [class*="py-20"], [class*="py-24"]) { padding-block: 36px; }
+main article .wrap[class*="pt-20"] { padding-top: 36px; }
+@media (min-width: 768px) {
+  main article .wrap:is([class*="py-14"], [class*="py-16"], [class*="py-20"], [class*="py-24"]) { padding-block: 60px; }
+  main article .wrap[class*="pt-20"] { padding-top: 60px; }
+}

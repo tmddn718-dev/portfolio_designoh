@@ -137,7 +137,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
               <div className="md:col-span-7"><Result value="평균 약 42초 단축" task="품절 이후 대체 구매 경로를 찾아 결제를 확정하는" /></div>
               <div className="mx-auto grid max-w-[360px] grid-cols-2 gap-3 md:col-span-5 md:max-w-none"><Fig src={I('n-altMethods')} alt="다른 구매 방법 안내" cap="일반배송과 픽업 비교" /><Fig src={I('n-pickup')} alt="매장 픽업 선택" cap="픽업 매장 선택" /></div>
             </div>
-            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">가능한 구매 경로를 바로 확인하는 개선 흐름에서 과제 수행 시간이 짧게 나타났습니다. 실제 서비스의 구매 전환율 상승을 검증한 결과는 아닙니다.</p>
+            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">가능한 구매 경로를 바로 확인하는 개선 흐름에서 과제 수행 시간이 짧게 나타났습니다.</p>
           </article>
 
           <article id="cart-experience" className="mt-14 md:mt-24 pt-10 md:pt-14 border-t border-black/10 scroll-mt-24">
@@ -218,7 +218,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
               <p className="mt-3 text-[40px] font-extrabold tracking-tight md:text-[56px]">평균 26초 단축</p>
               <p className="mt-3 max-w-[52ch] text-[16px] leading-[1.7] text-white/80 md:text-[18px]">기존 앱과 개선 프로토타입을 비교해 결제 정보를 확인하고 구매를 결정하는 과제를 수행한 평균 결과입니다.</p>
             </div>
-            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">프로토타입 사용성 테스트에서 나타난 과제 수행 시간이며, 실제 서비스의 결제 완료율이나 구매 전환율을 검증한 결과는 아닙니다.</p>
+            <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.75] text-sub">프로토타입 사용성 테스트에서 나타난 과제 수행 시간입니다.</p>
           </article>
         </div>
       </section>
@@ -576,7 +576,6 @@ function Karrot({ c }: { c: Ctx }) {
           <div className="md:col-span-7 text-[17px] leading-[1.8] space-y-3">
             <p>대형 가구 거래에서 구매자가 게시글을 확인한 뒤 채팅으로 거래 약속을 확정하기까지의 과정을 비교했습니다.</p>
             <p>동일한 참가자 7명이 기존 당근 앱(AS-IS)과 개선 프로토타입(TO-BE)에서 같은 과제를 수행했습니다.</p>
-            <p>7명 모두 TO-BE에서 더 빠르게 거래 약속을 확정했으며, 평균 소요 시간은 AS-IS보다 34초 짧게 측정됐습니다.</p>
           </div>
           <dl className="mt-8 md:mt-0 md:col-span-5 rounded-[24px] border border-grid p-6 text-[15px] grid grid-cols-[auto_1fr] gap-x-5 gap-y-3 content-start">
             {[['Method', '동일 참가자 비교 사용성 테스트'], ['Participants', '7명'], ['Comparison', '기존 앱 AS-IS / 개선 프로토타입 TO-BE'], ['Task', '게시글 확인부터 채팅을 통한 거래 약속 확정까지'], ['Environment', '프로토타입 테스트']].map(([k, v]) => <div key={k} className="contents"><dt className="text-sub text-[13px] pt-0.5">{k}</dt><dd className="font-semibold">{v}</dd></div>)}
@@ -622,7 +621,6 @@ function Karrot({ c }: { c: Ctx }) {
             <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">정보를 확인하는 시점의 변화가,<br />거래 약속 확정 과정을 단축했습니다.</h2>
             <div className="mt-8 md:grid md:grid-cols-12 gap-10">
               <div className="md:col-span-7 text-[17px] leading-[1.8] space-y-3">
-                <p>게시글에서 거래 정보를 미리 확인할 수 있도록 개선한 프로토타입에서 참가자 7명 모두 거래 약속을 더 빠르게 확정했습니다.</p>
                 <p>이번 결과는 거래 전에 필요한 정보를 제공하는 설계가 채팅에서의 반복적인 확인 부담을 줄이고, 거래 약속 조율을 효율적으로 진행하는 데 도움이 될 가능성을 보여줍니다.</p>
               </div>
               <div className="mt-8 md:mt-0 md:col-span-5 rounded-[24px] bg-white border border-grid p-6">
@@ -630,7 +628,6 @@ function Karrot({ c }: { c: Ctx }) {
                 <ul className="mt-4 space-y-3 text-[16px] leading-snug">{['참가자 7명의 소규모 테스트', '프로토타입 환경에서 측정한 결과', '테스트 순서에 따른 학습 효과 가능성', '실제 서비스의 거래 성사율 및 운영 성과 미검증'].map(t => <li key={t} className="flex gap-3"><span aria-hidden className="text-sub">–</span>{t}</li>)}</ul>
               </div>
             </div>
-            <p className="mt-6 text-[13px] text-sub max-w-3xl">프로토타입 과제에서 측정한 결과이며, 실제 서비스 전체의 거래 시간이 34초 단축됐다는 의미는 아닙니다.</p>
           </div>
         </div>
       </section>
@@ -845,7 +842,7 @@ function Woorisai({ c }: { c: Ctx }) {
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="최신 프로토타입 직접 체험" note="현재 구현된 웹 프로토타입입니다." />
       </section>
 
-      <Outcome c={c} cards={<>{[['7', '설문 응답 (2026.11.12-16)'], ['통과', '서버 권한 시나리오 테스트 (마지막 실행)']].map(([n, l]) => <div key={l} className="rounded-[20px] p-6" style={{ background: T(16) }}><p className="text-[48px] md:text-[64px] font-extrabold leading-none" style={{ color: S }}>{n}</p><p className="mt-2 text-[16px]">{l}</p></div>)}<p className="text-[13px] text-sub">설문은 소규모 표본, 권한 테스트는 자동화된 서버 테스트입니다. Solution 02·03의 사용자 검증은 아직 수행하지 않았습니다.</p></>} />
+      <Outcome c={c} cards={<>{[['7', '설문 응답 (2026.11.12-16)'], ['통과', '서버 권한 시나리오 테스트 (마지막 실행)']].map(([n, l]) => <div key={l} className="rounded-[20px] p-6" style={{ background: T(16) }}><p className="text-[48px] md:text-[64px] font-extrabold leading-none" style={{ color: S }}>{n}</p><p className="mt-2 text-[16px]">{l}</p></div>)}</>} />
     </>
   )
 }

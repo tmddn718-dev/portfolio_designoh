@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects, TODO, type Project } from '../data/projects'
 import Reveal from '../components/Reveal'
 import BeforeAfter from '../components/BeforeAfter'
-import { ExtendedPhoneScreen, PhoneCompare, PhoneOverflowCompare, ScreenSequence, UIFocusDetail } from '../components/LongScreen'
+import { ExtendedPhoneScreen, PhoneCompare, PhoneOverflowCompare, ScreenSequence } from '../components/LongScreen'
 import { Modal, Zoomable } from '../components/Modal'
 import { ProtoFrame, owner, useMedia } from '../components/Mockup'
 import { AppIcon, onBrand, CaseSummary, ChapterHead, ChapterNav, InteractionPreview, PinnedPhone, strongOf, tintOf, useActive, ProjectIndex } from '../components/case'
@@ -161,8 +161,8 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <div className="mt-8 rounded-[28px] bg-white p-5 md:p-10">
               <p className="eyebrow" style={{ color: S }}>After · 개선안</p>
               <div className="mt-6 grid items-start gap-10 md:grid-cols-12">
-                <UIFocusDetail className="md:col-span-7" src={I('n-cart')} alt="개선 장바구니 전체 화면: 무료배송 남은 금액 카드, 현재 상품, 함께 담기 좋은 상품 목록, 하단 배송 시간 선택 CTA" region={{ x: 2, y: 24, w: 96, h: 56 }} color={S} n={1} title="남은 금액과 추천 상품을 한 화면에서 이어서 봅니다" why="무료배송까지 남은 금액 카드 바로 아래에서 상품마다 ‘추가 시 무료배송까지’ 금액과 담기 버튼을 확인할 수 있습니다." />
-                <ol className="space-y-6 md:col-span-5">
+                <div className="mx-auto grid w-full max-w-[420px] grid-cols-2 items-start gap-3 md:col-span-5"><Fig src={I('n-cart')} alt="무료배송 남은 금액, 현재 상품, 연관 상품과 담기 버튼을 한 흐름으로 보여주는 장바구니 개선 화면" cap="장바구니 · 추천 상품과 남은 금액" /><Fig src={I('n-slotSelect')} alt="세 시간대의 배송비를 비교하고 15:00~16:00을 선택한 화면" cap="배송 시간대별 배송비 선택" className="mt-8" /></div>
+                <ol className="space-y-6 md:col-span-7">
                   {[
                     ['01', '무료배송 조건의 가시성', '현재 10,000원, 기준 30,000원, 남은 금액 20,000원과 진행 바(33.3%)를 한 카드에 모았습니다. 기준 금액은 프로토타입 예시 값입니다.'],
                     ['02', '추가 구매에 따른 비용 변화', '추천 상품마다 담았을 때 무료배송까지 남는 금액을 보여주고, 담으면 진행 바와 예상 결제금액이 바로 바뀝니다. 담지 않아도 구매를 이어갈 수 있습니다.'],

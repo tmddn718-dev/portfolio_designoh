@@ -98,21 +98,23 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <figure className="w-[44%] md:mt-12"><p className="mb-2 text-[13px] font-semibold" style={{ color: S }}>Alternative Methods</p><Screen src={I('n-altMethods')} alt="일반배송과 매장 픽업을 비교하는 개선 화면" /></figure>
           </div>
           <dl className="mt-7 grid grid-cols-3 gap-2 text-center tabular-nums">
-            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">−42초</dd><dt className="mt-1 text-[13px] leading-snug text-sub">대체 구매 후 결제 확정</dt></div>
-            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">−26초</dd><dt className="mt-1 text-[13px] leading-snug text-sub">배송·혜택 확인 후 결정</dt></div>
-            <div className="rounded-[16px] bg-white/80 p-3"><dd className="text-[22px] font-extrabold md:text-[30px]">8</dd><dt className="mt-1 text-[13px] leading-snug text-sub">동일 참여자 비교 테스트</dt></div>
+            <div className="rounded-[16px] bg-white/80 p-3"><dd className="ty-result">−42초</dd><dt className="mt-1 text-[13px] leading-snug text-sub">대체 구매 후 결제 확정</dt></div>
+            <div className="rounded-[16px] bg-white/80 p-3"><dd className="ty-result">−26초</dd><dt className="mt-1 text-[13px] leading-snug text-sub">배송·혜택 확인 후 결정</dt></div>
+            <div className="rounded-[16px] bg-white/80 p-3"><dd className="ty-result">8</dd><dt className="mt-1 text-[13px] leading-snug text-sub">동일 참여자 비교 테스트</dt></div>
           </dl>
         </div>
       </Hero>
 
       <section id="c2" className="wrap gutter py-14 md:py-24 scroll-mt-20 md:mt-16">
-        <ChapterHead color={S} n="01" label="Background & Problem Discovery" title="특정 구매 방법의 품절이, 구매 전체의 끝처럼 보였다" />
-        <div className="mt-4 grid gap-8 md:grid-cols-12">
-          <div className="md:col-span-7"><p className="max-w-[46rem] text-[18px] leading-[1.65]">오늘드림 재고가 없더라도 일반배송이나 매장 픽업으로 구매할 수 있습니다. 그러나 기존 흐름에서는 이 가능성을 바로 확인하기 어려워, 사용자가 이전 단계로 돌아가 구매 방법을 다시 찾아야 했습니다.</p></div>
+        <div className="grid items-start gap-8 md:grid-cols-12 md:gap-x-6">
+          <div className="md:col-span-7">
+            <ChapterHead color={S} n="01" label="Background & Problem Discovery" kind="problem" title="특정 구매 방법의 품절이, 구매 전체의 끝처럼 보였다" />
+            <p className="mt-5 max-w-[46rem] text-[18px] leading-[1.7]">오늘드림 재고가 없더라도 일반배송이나 매장 픽업으로 구매할 수 있습니다. 그러나 기존 흐름에서는 이 가능성을 바로 확인하기 어려워, 사용자가 이전 단계로 돌아가 구매 방법을 다시 찾아야 했습니다.</p>
+          </div>
           <aside className="rounded-[24px] bg-[#F3F7EB] p-6 md:col-span-5 md:p-8"><p className="eyebrow text-sub">Problem statement</p><p className="mt-3 text-[18px] font-normal leading-[1.55] text-[#333] md:text-[20px]">오늘드림이 품절되면, 다른 방법으로 구매할 수 있어도 상품 전체가 품절된 것으로 오해할 수 있습니다.</p></aside>
         </div>
-        <div className="mt-12 rounded-[28px] bg-ink p-7 text-white md:p-10"><p className="eyebrow text-white/55">Design question</p><p className="mt-3 max-w-[30ch] text-[26px] font-bold leading-[1.4] md:text-[36px]">오늘드림이 품절된 순간, 사용할 수 있는 다른 구매 경로를 자연스럽게 안내할 수 없을까?</p></div>
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
+        <Reveal fade className="mt-[60px] rounded-[24px] bg-ink p-7 text-white md:p-12"><p className="eyebrow text-white/55">Design question</p><p className="ty-question mt-4 max-w-[30ch]">오늘드림이 품절된 순간, 사용할 수 있는 다른 구매 경로를 자연스럽게 안내할 수 없을까?</p></Reveal>
+        <div className="mt-[60px] grid gap-6 md:grid-cols-2">
           {[
             ['Before flow', ['상품 옵션 선택', '오늘드림 품절', '이전 단계 이동', '구매 방법 재탐색', '결제 진행']],
             ['After flow', ['상품 옵션 선택', '오늘드림 품절', '다른 구매 방법 안내', '일반배송·픽업 선택', '결제 진행']],
@@ -310,7 +312,7 @@ function Olive({ c }: { c: Ctx }) {
       </section>
 
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="01" label="The Challenge" title="품절은 구매 여정의 끝이어야 할까?" />
+        <ChapterHead color={S} n="01" label="The Challenge" kind="problem" title="품절은 구매 여정의 끝이어야 할까?" />
         <p className="mt-4 max-w-2xl text-[18px] leading-[1.65]">오늘드림에서 원하는 옵션이 품절됐을 때, 일반배송이나 매장 픽업이 가능한지 쉽게 확인하지 못하면 구매를 멈출 수 있어요. 품절을 <b>끝</b>이 아니라 <b>다른 구매 방법을 탐색하는 지점</b>으로 다시 설계했어요.</p>
 
         <p className="mt-16 eyebrow text-sub">AS-IS 구매 여정 · 실제 앱 캡처</p>
@@ -465,8 +467,8 @@ function Karrot({ c }: { c: Ctx }) {
       </section>
 
       <section id="c2" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
-        <ChapterHead color={S} n="01" label="Problem" title="대형 가구는 정보가 빠지면 판단이 멈춘다" />
-        <Reveal><blockquote className="mt-5 md:mt-7 max-w-[720px] border-l-2 pl-3 text-[17px] font-normal leading-[1.55] text-[#444] md:border-l-[3px] md:pl-6 md:text-[23px]" style={{ borderColor: A }}>{p.problem}</blockquote></Reveal>
+        <ChapterHead color={S} n="01" label="Problem" kind="problem" title="대형 가구는 정보가 빠지면 판단이 멈춘다" />
+        <Reveal><blockquote className="mt-5 max-w-[720px] border-l-2 pl-3 text-[17px] font-normal leading-[1.55] text-[#444] md:border-l-[3px] md:pl-6 md:text-[23px]" style={{ borderColor: A }}>{p.problem}</blockquote></Reveal>
         <ul className="mt-12 grid md:grid-cols-3 gap-5">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
         <div className="mt-14"><p className="eyebrow text-sub">실제 당근 앱 · AS-IS 캡처</p>
           <ul className="mt-5 grid grid-cols-3 gap-4 md:grid-cols-5 md:gap-6 max-w-5xl">{[['asis-write', '판매글 작성: 제목·설명·가격만 입력'], ['asis-write-ai', '사진 분석 중(AI 작성)'], ['asis-search', '대형 가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul></div>
@@ -730,8 +732,8 @@ function Woorisai({ c }: { c: Ctx }) {
 
       <section id="c2" className="scroll-mt-20 md:mt-8" style={{ background: '#F4F2EC' }}>
         <div className="wrap gutter py-14 md:py-24">
-          <ChapterHead color={S} n="01" label="Problem" title="친구와 보낸 하루가 여러 앱에 흩어진다" />
-          <p className="mt-4 max-w-[60ch] text-[18px] leading-[1.65]">친구와 약속을 잡고, 만나서 사진을 찍고, 비용을 나누고, 나중에 그날을 떠올릴 때까지 사람들은 서로 다른 앱과 기능을 오가요. 그래서 하루의 사진과 이야기가 한곳에 남지 않아요.</p>
+          <ChapterHead color={S} n="01" label="Problem" kind="problem" title="친구와 보낸 하루가 여러 앱에 흩어진다" />
+          <p className="mt-5 max-w-[60ch] text-[18px] leading-[1.65]">친구와 약속을 잡고, 만나서 사진을 찍고, 비용을 나누고, 나중에 그날을 떠올릴 때까지 사람들은 서로 다른 앱과 기능을 오가요. 그래서 하루의 사진과 이야기가 한곳에 남지 않아요.</p>
 
           <ol aria-label="친구와의 하루에서 쓰는 앱" className="mt-10 grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
             {[['01', '약속 잡기', '메신저', '대화방에서 일정과 장소를 정해요'], ['02', '사진 공유', '각자의 갤러리', '사진이 각자의 휴대폰에 따로 남아요'], ['03', '정산', '정산 앱', '비용은 또 다른 앱에서 나눠요'], ['04', '추억 회상', '사진 앱', '나중에 그날을 사진 앱에서 찾아야 해요']].map(([n, t, app, d]) => (

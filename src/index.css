@@ -13,7 +13,7 @@
 }
 
 :root {
-  --content-max: 1200px;
+  --content-max: 1280px;
   --space-section: clamp(64px, 8vw, 120px);
   --type-section: clamp(24px, 2.1vw, 30px);
   --type-body: clamp(15px, 1.2vw, 18px);
@@ -252,11 +252,11 @@ html.lenis, html.lenis body { height: auto; }
 
 /* 카드 밖 본문(p)은 데스크톱 16 / 모바일 15 이상, 카드 안 설명은 데스크톱 15 / 모바일 14 이상 */
 @media (min-width: 768px) {
-  main p[class*="text-[15px]"]:not([class*="rounded-["]):not([class*="rounded-["] *) { font-size: var(--ty-body); }
-  main [class*="text-[14px]"]:not(h1, h2, h3, h4, svg, [class*="text-[2"], [class*="text-[3"]) { font-size: var(--ty-card-desc); }
+  main > :not(article) p[class*="text-[15px]"]:not([class*="rounded-["]):not([class*="rounded-["] *) { font-size: var(--ty-body); }
+  main > :not(article) [class*="text-[14px]"]:not(h1, h2, h3, h4, svg, [class*="text-[2"], [class*="text-[3"]) { font-size: var(--ty-card-desc); }
 }
 @media (max-width: 767px) {
-  main p[class*="text-[14px]"]:not([class*="rounded-["]):not([class*="rounded-["] *) { font-size: var(--ty-body); }
+  main > :not(article) p[class*="text-[14px]"]:not([class*="rounded-["]):not([class*="rounded-["] *) { font-size: var(--ty-body); }
 }
 
 /* 두 줄 이상 본문·설명의 행간: 1.5 미만이던 leading-snug·tight·1.3x를 읽기 좋은 값으로 (큰 제목류 text-[2x~4x]는 제외) */
@@ -285,3 +285,31 @@ main article .wrap[class*="pt-20"] { padding-top: 36px; }
 /* 프로젝트 카드: 마우스가 있는 환경에서만 썸네일이 아주 조금 커진다(터치·모션 줄이기에서는 없음) */
 .card-thumb { transition: transform .5s cubic-bezier(.22,.61,.36,1); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) { .group:hover .card-thumb { transform: scale(1.03); } }
+
+/* ══ Typography System v2 — 상세 페이지(main article) ══════════════════════════
+   데스크톱: 메인 48 · 섹션 36 · 서브 26 · 카드 제목 22 · 본문 18 · 카드 설명 17 · 캡션 15 · 각주 14 · 라벨 14
+   모바일  : 메인 32 · 섹션 28 · 서브 22 · 카드 제목 19 · 본문 16 · 카드 설명 15 · 캡션 14 · 각주 13
+   콘텐츠 최대 1280px, 본문 최대 760px, 카드 안쪽 여백 32px(모바일 20px), 제목→본문 16px, 섹션 간 120px(위에서 정의). */
+main article p { max-width: min(760px, 100%); }
+main article figcaption { font-size: 14px; line-height: 1.5; }
+main article p:is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"], [class*="text-[17px]"]):not([class*="font-"], [class*="rounded-["], [class*="rounded-["] *) { font-size: 16px; line-height: 1.65; }
+main article :is(p, li, dd, ul, ol):is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"]):is([class*="rounded-["], [class*="rounded-["] *):not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 15px; line-height: 1.65; }
+main article p[class*="text-[13px]"]:not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 13px; line-height: 1.6; }
+main article h2 { font-size: 28px; font-weight: 700; line-height: 1.3; }
+main article h3 { font-size: 22px; font-weight: 600; line-height: 1.4; }
+main article [class*="rounded-["] :is(h3, h4) { font-size: 19px; font-weight: 600; line-height: 1.45; }
+main article h4 { font-size: 19px; font-weight: 600; line-height: 1.45; }
+main article h1.case-h1 { font-size: 32px; font-weight: 700; }
+@media (min-width: 768px) {
+  main article figcaption { font-size: 15px; }
+  main article p:is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"], [class*="text-[17px]"]):not([class*="font-"], [class*="rounded-["], [class*="rounded-["] *) { font-size: 18px; }
+  main article :is(p, li, dd, ul, ol):is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"]):is([class*="rounded-["], [class*="rounded-["] *):not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 17px; }
+  main article p[class*="text-[13px]"]:not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 14px; }
+  main article .eyebrow { font-size: 14px; font-weight: 600; }
+  main article h2 { font-size: 36px; }
+  main article h3 { font-size: 26px; }
+  main article [class*="rounded-["] :is(h3, h4) { font-size: 22px; }
+  main article h4 { font-size: 22px; }
+  main article h1.case-h1 { font-size: 48px; }
+  main article [class*="rounded-["]:is([class~="p-5"], [class~="p-6"], [class~="p-7"]) { padding: 32px; }
+}

@@ -193,7 +193,7 @@ export default function CaseTrigr() {
       <section id="c5" className="scroll-mt-20 md:mt-24" style={{ background: '#F7F8FB' }}>
         <div className="wrap gutter py-16 md:py-24">
           <ChapterHead color={S} n="05" label="Supporting Flows" title="미션 참여부터 인증까지 연결되는 사용자 경험" />
-          <p className="mt-4 md:mt-5 max-w-2xl text-[16px] leading-[1.65] text-sub">서비스의 전체 구조와 UI 설계 범위를 보여주는 보조 사례입니다. 기획서에 있던 기능도 포함하며, 디자이너가 제안한 기능만을 뜻하지 않습니다.</p>
+          <p className="mt-4 max-w-2xl text-[16px] leading-[1.65] text-sub">서비스의 전체 구조와 UI 설계 범위를 보여주는 보조 사례입니다. 기획서에 있던 기능도 포함하며, 디자이너가 제안한 기능만을 뜻하지 않습니다.</p>
           <ScreenSequence className="mt-10" color={S} label="미션 참여부터 인증까지 화면 흐름" steps={flows.map(([t, src, c]) => ({ src, alt: `${t} 화면`, title: t, body: c }))} />
           <details className="mt-10 rounded-[20px] border border-grid bg-white p-5 md:p-6">
             <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold">생성자·참여자 관점의 흐름 보기</summary>

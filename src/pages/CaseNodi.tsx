@@ -289,7 +289,7 @@ export default function CaseNodi() {
             <ul className="mt-4 space-y-3 text-[17px] text-ink/80">{['외부 캘린더 API 연동', '실제 캘린더 데이터 자동 수집', 'AI 모델 호출 (자연어 해석과 추천은 규칙 기반)'].map(t => <li key={t} className="flex gap-3"><span aria-hidden className="text-sub">–</span>{t}</li>)}</ul>
           </div>
         </div>
-        <InteractionPreview p={p} wide={wide} onOpen={() => setOpen(true)} title="직접 눌러보세요" note="화면 이미지는 v6 시안과 세부가 다를 수 있습니다." />
+        <InteractionPreview p={p} wide={wide} onOpen={() => setOpen(true)} title="직접 눌러보세요" />
       </section>
 
       {/* 10 Reflection */}
@@ -339,7 +339,7 @@ export default function CaseNodi() {
             </div>
           </Reveal>
           {p.beforeAfter?.map((b, i) => <div key={b.before} className="mt-14"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">초기 시안 → 개선 시안 · {['조건 확인', '추천 시간', '저장 완료'][i]}</p><p className="mt-4 text-[15px] text-sub">신규 서비스이므로 직접 만든 초기 시안(v5.2)을 비교 기준으로 삼았습니다. 왼쪽은 초기 시안, 오른쪽은 개선 시안입니다.</p></div><div className="mt-6"><BeforeAfter data={b} color={S} beforeLabel="초기 시안" afterLabel="개선 시안" /></div></div>)}
-          <p className="mt-10 text-[15px] leading-relaxed text-sub max-w-3xl">변경이 사용자의 이해와 행동에 미친 영향은 아직 검증하지 않았습니다. 대신 44px 이상 터치 영역, 13px 이상 글자 크기, 클릭 시나리오 19개로 구현 품질을 점검했습니다. 이해도 검증은 아래 계획에 따라 진행할 예정입니다.</p>
+          <p className="mt-10 text-[15px] leading-relaxed text-sub max-w-3xl">변경이 사용자의 이해와 행동에 미친 영향은 아직 검증하지 않았습니다. 대신 44px 이상 터치 영역, 13px 이상 글자 크기, 클릭 시나리오 19개로 구현 품질을 점검했습니다.</p>
         </div>
       </section>
 

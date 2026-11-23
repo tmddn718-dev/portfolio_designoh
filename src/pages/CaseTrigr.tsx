@@ -163,7 +163,6 @@ export default function CaseTrigr() {
             </li>
           ))}
         </ol>
-        <p className="mt-5 text-[14px] text-sub">실제로 수행한 작업을 순서대로 설명한 것이며, 별도의 정형화된 UX 프로세스를 운영했다는 뜻은 아닙니다.</p>
       </section>
 
       {/* 04 Case 01 */}
@@ -219,7 +218,6 @@ export default function CaseTrigr() {
             <ul className="mt-3 flex gap-5">{[['Primary', PINK], ['포인트', TEAL]].map(([n, c]) => <li key={n} className="flex items-center gap-3 text-[14px]"><span className="w-14 h-14 rounded-[16px] border border-grid" style={{ background: c }} /><span>{n}<br /><span className="text-sub">{c}</span></span></li>)}</ul>
             <div className="mt-6 rounded-[24px] border border-dashed p-6 md:p-7" style={{ borderColor: T(55), background: T(6) }}>
               <p className="text-[15px] font-bold" style={{ color: S }}>Figma Variables · 컴포넌트 · 라이트/다크 · 다국어</p>
-              <p className="mt-2 text-[15px] leading-snug text-sub">원본 Figma 자료가 확인되면 화면을 추가합니다. 남아 있지 않은 토큰이나 Variables는 당시 작업물처럼 재현하지 않습니다.</p>
             </div>
           </div>
         </div>

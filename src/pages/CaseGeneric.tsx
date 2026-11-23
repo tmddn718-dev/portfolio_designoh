@@ -183,7 +183,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
                 <PhoneCompare n="02" title="관련 상품 탐색" color={A}
                   asis={{ src: '/images/oliveyoung-todaydream/cart-asis-03.jpg', alt: '기존 장바구니: 함께 보면 좋은 상품 가로 카드 목록', ratio: 1688 / 780, caption: '‘함께 보면 좋은 상품’을 가로 카드로 넘겨 보며 상품 정보 중심으로 탐색해요.' }}
                   tobe={{ src: I('n-cartAdded'), alt: '개선 장바구니: 함께 담기 좋은 상품 목록과 담기 버튼, 무료배송 조건 안내', ratio: 1880 / 780, caption: '‘함께 담기 좋은 상품’을 한 줄씩 보여주고, 담기 버튼과 무료배송 조건 충족 여부를 함께 확인해요.' }}
-                  decision="추천 상품을 구경하는 목록에서, 지금 장바구니 금액과 무료배송 조건에 연결해 담을지 판단하는 목록으로 바꿨어요." />
+                  decision="추천 상품을 구경하는 목록에서, 현재 장바구니 금액과 무료배송 조건을 보며 담을지 판단하는 목록으로 바꿨어요." />
               </div>
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -396,12 +396,12 @@ const karrotCompare: CompareData[] = [
     afters: [{ src: I2('L-s2'), alt: '개선 판매글 작성: 자세한 설명 아래에 선택 입력 가구 정보 섹션', tag: 'S2', label: '판매글 작성 · 아래로 스크롤' }, { src: I2('L-s3'), alt: '개선 가구 정보 입력: 크기와 분해 여부, 가져가는 조건 입력', tag: 'S3', label: '가구 정보 입력 · 펼친 상태' }],
     current: ['크기·분해 여부·운반 조건을 ‘자세한 설명’ 자유 입력란에 쓸 수 있어요. 판매자마다 쓰는 정보의 양과 형식이 달라져요.', '거래 방식·가격 외에 대형 가구 거래에 필요한 조건(층수, 엘리베이터, 운반 도움)을 입력하는 칸이 없어요.'],
     improved: ['S2 · 판매글 작성에 ‘가구 정보’ 섹션을 선택 입력으로 추가했어요. 상품 정보(크기, 분해 여부)와 가져가는 조건(층수, 엘리베이터, 운반 도움)으로 나뉘어요.', 'S3 · 아는 항목만 입력해도 되고 섹션별 입력 진행도(4/4 입력, 3/3 입력)를 바로 보여줘요.'] },
-  { n: '02', title: '상품 상세 · 채팅 전에 거래 조건을 확인해요', sub: '구매자가 채팅을 열기 전에 크기와 가져가는 조건을 확인하고 확인되지 않은 정보가 무엇인지도 알 수 있어요.',
+  { n: '02', title: '상품 상세 · 채팅 전에 거래 조건을 확인해요', sub: '구매자가 채팅을 열기 전에 크기와 가져가는 조건을 확인하고, 확인되지 않은 정보가 무엇인지도 알 수 있어요.',
     before: { src: I2('asis-desc'), alt: '현재 당근 앱 상품 상세 본문: 크기와 분해 정보가 문장 속에 섞여 있고 하단에 채팅하기 버튼이 있음', label: '현재 당근 앱' },
     afters: [{ src: I2('L-b1'), alt: '개선 상품 상세: 거래 정보 카드에 크기·분해와 가져가는 조건이 모두 입력됨', tag: 'B1', label: '상세 · 거래 정보(스크롤)' }, { src: I2('L-b2'), alt: '개선 상품 상세: 일부만 입력되어 확인되지 않은 정보 3개를 알려줌', tag: 'B2', label: '상세 · 확인되지 않은 정보(스크롤)' }],
-    current: ['상품 정보가 본문 자유 텍스트에만 있어서 크기, 분해 여부, 운반 조건을 상세 화면에서 알 수 없어요.', '궁금한 점을 확인하는 방법이 채팅뿐이라 기본적인 질문까지 모두 채팅으로 물려요.'],
+    current: ['상품 정보가 본문 자유 텍스트에만 있어서 크기, 분해 여부, 운반 조건을 상세 화면에서 알 수 없어요.', '궁금한 점을 확인하는 방법이 채팅뿐이라 기본적인 질문까지 모두 채팅으로 몰려요.'],
     improved: ['B1 · ‘거래 정보’ 카드에 판매자가 직접 입력한 크기·분해, 가져가는 조건을 정리해 보여줘요.', 'B2 · ‘아직 미입력’과 ‘판매자도 모름’을 구분해 ‘확인되지 않은 정보 3개’로 알려줘요.'] },
-  { n: '03', title: '채팅 문의 · 질문을 골라서 보내요', sub: '확인되지 않은 정보를 바탕으로 질문을 고르면 채팅 입력창에 초안으로 들어가요. 처음 말 걸기가 쉬워지고 질문이 구체적이 돼요.',
+  { n: '03', title: '채팅 문의 · 질문을 골라서 보내요', sub: '확인되지 않은 정보를 바탕으로 질문을 고르면 채팅 입력창에 초안으로 들어가요. 처음 말 걸기가 쉬워지고 질문이 구체적으로 바뀌어요.',
     before: { src: I2('asis-chat'), alt: '현재 당근 앱 채팅 시작 화면: 상단에 상품 요약과 당근페이 등 버튼, 하단에 안녕하세요 같은 일반 인사 추천 문구와 입력창', label: '현재 당근 앱' },
     afters: [{ src: I2('f-b4'), alt: '개선 채팅 질문 초안: 고른 질문이 입력창에 초안으로 들어감', tag: 'B4', label: '채팅 질문 초안' }, { src: I2('f-b3'), alt: '개선 질문 고르기: 확인되지 않은 정보에서 물어볼 질문을 선택', tag: 'B3', label: '질문 고르기' }],
     current: ['추천 문구가 ‘안녕하세요’ ‘관심 있어서 문의드려요.’ 같은 일반 인사라서 크기·운반 같은 필요한 조건은 직접 써서 물어봐야 해요.', '상단 상품 요약에는 상태와 제목만 있어서 대화 중에 거래 조건을 보려면 상세 화면으로 다시 돌아가야 해요.'],
@@ -473,7 +473,7 @@ function Karrot({ c }: { c: Ctx }) {
         <Reveal><blockquote className="mt-10 text-[28px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]" style={{ borderLeft: `6px solid ${A}`, paddingLeft: 24 }}>{p.problem}</blockquote></Reveal>
         <ul className="mt-12 grid md:grid-cols-3 gap-5">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
         <div className="mt-14"><p className="eyebrow text-sub">실제 당근 앱 · AS-IS 캡처</p>
-          <ul className="mt-5 grid grid-cols-3 gap-4 md:grid-cols-5 md:gap-6 max-w-5xl">{[['asis-write', '판매글 작성: 제목·설명·가격만 입력'], ['asis-write-ai', '사진 분석 중(AI 작성)'], ['asis-search', '대형가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul></div>
+          <ul className="mt-5 grid grid-cols-3 gap-4 md:grid-cols-5 md:gap-6 max-w-5xl">{[['asis-write', '판매글 작성: 제목·설명·가격만 입력'], ['asis-write-ai', '사진 분석 중(AI 작성)'], ['asis-search', '대형 가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul></div>
         <p className="mt-10 text-[13px] text-sub max-w-3xl">앱 리뷰·블로그 VOC와 인터뷰를 근거로 PRD 문제를 정의했습니다. 원자료가 없어 표본 수와 수치는 싣지 않았고, 발생 빈도와 영향은 사용성 테스트로 검증해야 하는 디자인 가설입니다.</p>
       </section>
 
@@ -509,7 +509,7 @@ function Karrot({ c }: { c: Ctx }) {
         <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[22ch]">채팅에서 물어봐야 했던 정보를,<br />채팅 전에 확인할 수 있도록.</h2>
         <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
           <div className="md:col-span-5">
-            <p className="text-[17px] leading-[1.8]">기존 거래 과정에서는 구매자가 대형가구의 상세 정보, 거래 가능 여부, 거래 방법을 채팅으로 추가 확인해야 했습니다.</p>
+            <p className="text-[17px] leading-[1.8]">기존 거래 과정에서는 구매자가 대형 가구의 상세 정보, 거래 가능 여부, 거래 방법을 채팅으로 추가 확인해야 했습니다.</p>
             <p className="mt-3 text-[17px] leading-[1.8]">이에 거래 전에 필요한 정보를 게시글에서 먼저 확인할 수 있도록 정보 구조를 개선했습니다.</p>
             <ul className="mt-8 space-y-5">
               <Ann color={A} n="1" t="상세 상품 정보" d="‘크기 및 분해’ 카드에서 가로·세로·높이와 분해 여부, 전달 상태를 확인합니다." />
@@ -574,7 +574,7 @@ function Karrot({ c }: { c: Ctx }) {
         <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅 전에 거래 정보를 확인하자,<br />약속 확정까지 평균 34초 빨라졌습니다.</h2>
         <div className="mt-10 md:grid md:grid-cols-12 gap-10">
           <div className="md:col-span-7 text-[17px] leading-[1.8] space-y-3">
-            <p>대형가구 거래에서 구매자가 게시글을 확인한 뒤 채팅으로 거래 약속을 확정하기까지의 과정을 비교했습니다.</p>
+            <p>대형 가구 거래에서 구매자가 게시글을 확인한 뒤 채팅으로 거래 약속을 확정하기까지의 과정을 비교했습니다.</p>
             <p>동일한 참가자 7명이 기존 당근 앱(AS-IS)과 개선 프로토타입(TO-BE)에서 같은 과제를 수행했습니다.</p>
             <p>7명 모두 TO-BE에서 더 빠르게 거래 약속을 확정했으며, 평균 소요 시간은 AS-IS보다 34초 짧게 측정됐습니다.</p>
           </div>
@@ -738,7 +738,7 @@ function Woorisai({ c }: { c: Ctx }) {
       <section id="c2" className="scroll-mt-20 md:mt-8" style={{ background: '#F4F2EC' }}>
         <div className="wrap gutter py-14 md:py-24">
           <ChapterHead color={S} n="01" label="Problem" title="친구와 보낸 하루가 여러 앱에 흩어진다" />
-          <p className="mt-6 max-w-[60ch] text-[18px] leading-[1.8]">친구와 약속을 잡고 만나서 사진을 찍고 비용을 나누고 나중에 그날을 떠올릴 때까지 사람들은 서로 다른 앱과 기능을 오가요. 그래서 하루의 사진과 이야기가 한곳에 남지 않아요.</p>
+          <p className="mt-6 max-w-[60ch] text-[18px] leading-[1.8]">친구와 약속을 잡고, 만나서 사진을 찍고, 비용을 나누고, 나중에 그날을 떠올릴 때까지 사람들은 서로 다른 앱과 기능을 오가요. 그래서 하루의 사진과 이야기가 한곳에 남지 않아요.</p>
 
           <ol aria-label="친구와의 하루에서 쓰는 앱" className="mt-10 grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
             {[['01', '약속 잡기', '메신저', '대화방에서 일정과 장소를 정해요'], ['02', '사진 공유', '각자의 갤러리', '사진이 각자의 휴대폰에 따로 남아요'], ['03', '정산', '정산 앱', '비용은 또 다른 앱에서 나눠요'], ['04', '추억 회상', '사진 앱', '나중에 그날을 사진 앱에서 찾아야 해요']].map(([n, t, app, d]) => (
@@ -824,7 +824,6 @@ function Woorisai({ c }: { c: Ctx }) {
                 <div className="md:col-span-7 grid grid-cols-2 gap-4 md:gap-6"><Fig src={I('ph-after-top')} alt="현재 버전: 사진 바로 아래 반응·댓글" cap="사진 바로 아래 반응·댓글" /><Fig src={I('ph-after-mid')} alt="현재 버전: 최근 댓글 미리보기와 함께 남기는 추억" cap="최근 댓글 · 함께 남기는 추억" className="md:mt-10" /></div>
                 <ul className="mt-8 md:mt-0 md:col-span-5 space-y-5"><Ann color={A} n="A" t="반응·댓글을 사진 바로 아래로" d="사진을 본 자리에서 바로 남깁니다." /><Ann color={A} n="B" t="최근 댓글 미리보기 + ‘이 사진에 댓글 남기기’" d="대화가 있는지 한눈에 보입니다." /><Ann color={A} n="C" t="가벼운 반응과 ‘함께 남기는 추억’ 분리" d="반응은 가볍게, 함께 기록은 별도 카드로." /></ul>
               </div>
-              <div className="mt-6"><Need t="전체 댓글·답글 바텀시트 화면 캡처" /></div>
             </div>
           </Reveal>
 
@@ -843,7 +842,7 @@ function Woorisai({ c }: { c: Ctx }) {
         <ul className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8" data-scale>
           {['plan', 'space', 'calendar', 'home'].map(n => <li key={n}><Screen src={I(n)} alt={`우리사이 화면 ${n}`} cap={({ plan: '초대받은 약속 · 참석 응답', space: '우리 공간', calendar: '추억 달력', home: '홈' } as Record<string, string>)[n]} /></li>)}
         </ul>
-        <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="최신 프로토타입 직접 체험" note="현재 구현된 웹 프로토타입입니다. 일부 세부 표현은 화면 시안과 다를 수 있습니다." />
+        <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="최신 프로토타입 직접 체험" note="현재 구현된 웹 프로토타입입니다." />
       </section>
 
       <Outcome c={c} cards={<>{[['7', '설문 응답 (2026.11.12-16)'], ['통과', '서버 권한 시나리오 테스트 (마지막 실행)']].map(([n, l]) => <div key={l} className="rounded-[20px] p-6" style={{ background: T(16) }}><p className="text-[48px] md:text-[64px] font-extrabold leading-none" style={{ color: S }}>{n}</p><p className="mt-2 text-[16px]">{l}</p></div>)}<p className="text-[13px] text-sub">설문은 소규모 표본, 권한 테스트는 자동화된 서버 테스트입니다. Solution 02·03의 사용자 검증은 아직 수행하지 않았습니다.</p></>} />

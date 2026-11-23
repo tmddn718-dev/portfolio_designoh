@@ -177,11 +177,11 @@ function OliveRenewed({ c }: { c: Ctx }) {
               <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.75] text-sub">기존 장바구니에도 하단 고정 구매 버튼과 무료배송 안내가 있었습니다. 같은 정보 맥락의 화면을 나란히 비교했고, 눌러서 AS-IS와 TO-BE를 전환하며 확대해 볼 수 있습니다.</p>
               <div className="mt-8 space-y-14">
                 <PhoneCompare n="01" title="결제 금액과 배송 조건" color={A}
-                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-01.jpg', alt: '기존 장바구니 맨 위: 배송 방식 탭, 배송지, 도착 예정 시간, 상품과 옵션, 하단 고정 총액과 구매 버튼', ratio: 1688 / 780, caption: '배송 방식·배송지·도착 예정 시간과 상품이 먼저 보이고, 최종 결제 금액은 아래로 스크롤해야 확인해요. 무료배송 안내는 하단에 따로 있어요.' }}
+                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-01-tall.jpg', alt: '기존 장바구니 맨 위: 배송 방식 탭, 배송지, 도착 예정 시간, 상품과 옵션, 하단 고정 총액과 구매 버튼', ratio: 1720 / 780, caption: '배송 방식·배송지·도착 예정 시간과 상품이 먼저 보이고, 최종 결제 금액은 아래로 스크롤해야 확인해요. 무료배송 안내는 하단에 따로 있어요.' }}
                   tobe={{ src: I('n-cart'), alt: '개선 장바구니: 추천 상품별 무료배송까지 남은 금액, 예상 총 결제금액과 배송 시간대 안내', ratio: 1720 / 780, caption: '추천 상품마다 무료배송까지 남는 금액을 보여주고, 예상 총 결제금액과 배송 시간대 안내를 이어 놓았어요.' }}
                   decision="하단 고정 구매 버튼과 무료배송 안내는 기존 앱에도 있었어요. 바뀐 점은 가격과 배송 정보를 상품 선택 흐름 가까이에 이어서 배치한 것이에요." />
                 <PhoneCompare n="02" title="관련 상품 탐색" color={A}
-                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-03.jpg', alt: '기존 장바구니: 함께 보면 좋은 상품 가로 카드 목록', ratio: 1688 / 780, caption: '‘함께 보면 좋은 상품’을 가로 카드로 넘겨 보며 상품 정보 중심으로 탐색해요.' }}
+                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-03-tall.jpg', alt: '기존 장바구니: 함께 보면 좋은 상품 가로 카드 목록', ratio: 1880 / 780, caption: '‘함께 보면 좋은 상품’을 가로 카드로 넘겨 보며 상품 정보 중심으로 탐색해요.' }}
                   tobe={{ src: I('n-cartAdded'), alt: '개선 장바구니: 함께 담기 좋은 상품 목록과 담기 버튼, 무료배송 조건 안내', ratio: 1880 / 780, caption: '‘함께 담기 좋은 상품’을 한 줄씩 보여주고, 담기 버튼과 무료배송 조건 충족 여부를 함께 확인해요.' }}
                   decision="추천 상품을 구경하는 목록에서, 현재 장바구니 금액과 무료배송 조건을 보며 담을지 판단하는 목록으로 바꿨어요." />
               </div>

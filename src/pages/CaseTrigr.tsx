@@ -200,7 +200,7 @@ export default function CaseTrigr() {
             <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold">생성자·참여자 관점의 흐름 보기</summary>
             <div className="mt-6 space-y-8">{lanes.map(l => (
               <div key={l.title}><p className="text-[17px] font-bold" style={{ color: l.color }}>{l.title}</p>
-                <ol className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">{l.steps.map(([a, q], i) => <li key={a} className="rounded-[16px] bg-[#F7F8FA] p-4"><p className="text-[13px] font-semibold" style={{ color: l.color }}>0{i + 1} · {a}</p><p className="mt-1.5 text-[15px] leading-snug">“{q}”</p></li>)}</ol>
+                <ol className="mt-3 grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-4 gap-3">{l.steps.map(([a, q], i) => <li key={a} className="rounded-[16px] bg-[#F7F8FA] p-4"><p className="text-[13px] font-semibold" style={{ color: l.color }}>0{i + 1} · {a}</p><p className="mt-1.5 text-[15px] leading-snug [overflow-wrap:anywhere]">“{q}”</p></li>)}</ol>
               </div>))}</div>
           </details>
         </div>

@@ -290,7 +290,7 @@ main article .wrap[class*="pt-20"] { padding-top: 36px; }
    데스크톱: 메인 48 · 섹션 36 · 서브 26 · 카드 제목 22 · 본문 18 · 카드 설명 17 · 캡션 15 · 각주 14 · 라벨 14
    모바일  : 메인 32 · 섹션 28 · 서브 22 · 카드 제목 19 · 본문 16 · 카드 설명 15 · 캡션 14 · 각주 13
    콘텐츠 최대 1280px, 본문 최대 760px, 카드 안쪽 여백 32px(모바일 20px), 제목→본문 16px, 섹션 간 120px(위에서 정의). */
-main article p { max-width: min(34em, 100%); } /* 한국어 한 줄 40자 안팎 */
+main article p { max-width: min(680px, 100%); }
 main article figcaption { font-size: 14px; line-height: 1.5; }
 main article p:is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"], [class*="text-[17px]"]):not([class*="font-"], [class*="rounded-["], [class*="rounded-["] *) { font-size: 16px; line-height: 1.65; }
 main article :is(p, li, dd, ul, ol):is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"]):is([class*="rounded-["], [class*="rounded-["] *):not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 15px; line-height: 1.65; }
@@ -339,5 +339,44 @@ body { overflow-wrap: break-word; }
 main article :is(h1, h2, h3, h4) { text-wrap: balance; }
 main :is(p, li, dd, figcaption, blockquote) { text-wrap: balance; } /* 줄 길이를 고르게: 짧은 마지막 줄·고아 줄 방지 (Chrome 6줄 이하) */
 main article :is(ul, ol):not([class*="grid"], [class*="flex"]) > li:not([class*="rounded-["]) { max-width: 36em; }
-main article h2 + p { margin-top: 20px; }
 @media (max-width: 767px) { main article h2 br { display: none; } }
+
+/* ══ 행간·위계 개선 (2차): 제목이 붙어 보이지 않도록 행간 1.35~1.4, 본문 1.75 ═══════════════
+   데스크톱: 메인 48/1.35 · 섹션 40/1.4 · 질문 40/1.4 · 결정(서브) 32/1.4 · 강조 24/1.65 · 카드 제목 22/1.45 · 본문 18/1.75 · 보조 15/1.7 · 라벨 13/1.5
+   모바일  : 메인 32/1.4 · 섹션 28/1.4 · 질문 28/1.4 · 결정 24/1.4 · 강조 20/1.6 · 카드 제목 18/1.5 · 본문 16/1.75 · 보조 14/1.7
+   (.apple-h·main h1:not(#hero h1)가 specificity가 높아 행간이 덮이던 문제 → 아래에서 같은 선택자 위에 다시 지정) */
+main article h1.case-h1 { line-height: 1.4 !important; letter-spacing: -.03em; }
+main article h2, main article h2.apple-h { font-size: 28px; line-height: 1.4; letter-spacing: -.025em; }
+main article h2.ty-problem { font-size: 26px; line-height: 1.4; }
+main article .ty-question, main article h2.ty-question { font-size: 28px; line-height: 1.4; }
+main article h3 { font-size: 24px; line-height: 1.4; letter-spacing: -.02em; }
+main article [class*="rounded-["] :is(h3, h4), main article h4 { font-size: 18px; line-height: 1.5; letter-spacing: -.01em; }
+main article .eyebrow { line-height: 1.5; }
+main article blockquote { font-size: 20px; line-height: 1.6; }
+main article p[class*="text-[2"]:not([class*="font-bold"], [class*="font-extrabold"], [class*="leading-none"], [class*="rounded-["] *) { font-size: 20px; line-height: 1.6; }
+main article p:is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"], [class*="text-[17px]"]):not([class*="font-"], [class*="rounded-["], [class*="rounded-["] *) { line-height: 1.75; }
+main article p[class*="text-[18px]"]:not([class*="font-"], [class*="rounded-["] *) { line-height: 1.75; }
+main article :is(p, li, dd, ul, ol):is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"]):is([class*="rounded-["], [class*="rounded-["] *):not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 14px; line-height: 1.7; }
+main article p[class*="text-[13px]"]:not([class*="font-"], [class*="uppercase"], .eyebrow) { line-height: 1.7; }
+/* 제목 묶음(Reveal 안 h2) 바로 뒤 설명 24px, 문단 사이 16px */
+main article :is(div, header):has(> h2:last-child) + p { margin-top: 24px; }
+main article p + p:not([class*="rounded-["] *) { margin-top: 16px; }
+@media (min-width: 768px) {
+  main article h1.case-h1 { line-height: 1.35 !important; }
+  main article h2, main article h2.apple-h { font-size: 40px; }
+  main article h2.ty-problem { font-size: 32px; }
+  main article .ty-question, main article h2.ty-question { font-size: 40px; }
+  main article h3 { font-size: 32px; }
+  main article [class*="rounded-["] :is(h3, h4), main article h4 { font-size: 22px; line-height: 1.45; }
+  main article blockquote { font-size: 24px; line-height: 1.65; }
+  main article p[class*="text-[2"]:not([class*="font-bold"], [class*="font-extrabold"], [class*="leading-none"], [class*="rounded-["] *) { font-size: 24px; line-height: 1.65; }
+  main article :is(p, li, dd, ul, ol):is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"]):is([class*="rounded-["], [class*="rounded-["] *):not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 15px; }
+}
+/* 남은 조밀한 행간 보정: 큰 굵은 문단 1.4, 중간 굵기 본문 1.7, 목록 1.7 */
+main article p[class*="font-"]:is([class*="text-[3"], [class*="text-[4"], [class*="text-[5"], [class*="text-[6"]):not([class*="leading-none"]) { line-height: 1.4; }
+main article p[class*="font-medium"]:not([class*="text-[2"], [class*="text-[3"], [class*="rounded-["] *) { line-height: 1.7; }
+main article :is(ul, ol)[class*="leading-"]:not([class*="grid"]) { line-height: 1.7; }
+main article li[class]:not([class*="text-[13px]"], [class*="text-[12px]"], [class*="rounded-"], [class*="uppercase"]) { line-height: 1.7; }
+main article :is(p, li):is([class*="text-[17px]"]):is([class*="rounded-["], [class*="rounded-["] *):not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 15px; line-height: 1.7; }
+@media (max-width: 767px) { main article :is(p, li):is([class*="text-[17px]"]):is([class*="rounded-["], [class*="rounded-["] *):not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 14px; } }
+main article :is(h3, h4).apple-h { line-height: 1.4; }

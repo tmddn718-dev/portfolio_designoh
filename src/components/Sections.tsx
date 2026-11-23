@@ -117,7 +117,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <div className="absolute right-[6%] top-[12%] z-10 h-[36%] w-[31%] rotate-[4deg] overflow-hidden bg-white p-2 shadow-[0_18px_40px_rgba(48,57,45,.18)] transition-transform duration-300 group-hover:rotate-[2deg]">
         <img {...thumbSet("/images/woorisai/feed.webp")} alt="" className="h-full w-full object-cover object-[50%_31%]" loading="lazy" decoding="async" />
       </div>
-      <div className="absolute bottom-[8%] right-[6%] z-30 w-[50%] border-l border-[#839284] pl-4"><p className="text-[12px] uppercase tracking-[.16em] text-[#66766A]">Nov. 08 · Hangang</p><p className="thumb-title mt-2 whitespace-nowrap text-[#263B2F]">MEMORIES,<br />WITH<br />CONTEXT.</p></div>
+      <div className="absolute bottom-[8%] right-[6%] z-30 w-[50%] pl-4"><p className="text-[12px] uppercase tracking-[.16em] text-[#66766A]">Nov. 08 · Hangang</p><p className="thumb-title mt-2 whitespace-nowrap text-[#263B2F]">MEMORIES,<br />WITH<br />CONTEXT.</p></div>
     </div>
   )
 

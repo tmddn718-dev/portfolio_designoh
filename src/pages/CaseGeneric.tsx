@@ -238,7 +238,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
               ['03', 'Structure', '정보를 무조건 줄이기보다 필요한 순간에 이해할 수 있도록 구조화하는 것이 중요합니다.'],
             ].map(([n, title, body]) => <li key={n} className="border-t border-grid pt-5"><p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><h3 className="mt-2 text-[24px] font-bold">{title}</h3><p className="mt-3 text-[16px] leading-[1.65] text-sub">{body}</p></li>)}
           </ol>
-          <div className="mt-12 rounded-[24px] bg-[#F5F5F3] p-6 md:p-8"><p className="eyebrow text-sub">Limitations</p><ul className="mt-4 grid gap-x-8 gap-y-2 text-[15px] leading-[1.65] text-sub md:grid-cols-2"><li>소규모 사용자 테스트 n=8</li><li>실제 서비스와 프로토타입의 사용 환경 차이</li><li>테스트 순서에 따른 학습 효과 가능성</li><li>실제 매출·구매 전환율 변화 미검증</li><li>장바구니 추가 구매 의향은 정성적 피드백</li><li>후속 보완 기능은 실제 미구현 항목으로 분리</li></ul></div>
+          <div className="mt-12 rounded-[24px] bg-[#F5F5F3] p-6 md:p-8"><p className="eyebrow text-sub">Limitations</p><ul className="mt-4 grid gap-x-8 gap-y-2 text-[15px] leading-[1.65] text-sub md:grid-cols-2"><li>소규모 사용자 테스트 8명</li><li>실제 서비스와 프로토타입의 사용 환경 차이</li><li>테스트 순서에 따른 학습 효과 가능성</li><li>실제 매출·구매 전환율 변화 미검증</li><li>장바구니 추가 구매 의향은 정성적 피드백</li><li>후속 보완 기능은 실제 미구현 항목으로 분리</li></ul></div>
         </div>
       </section>
     </>

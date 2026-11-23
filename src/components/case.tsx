@@ -155,7 +155,7 @@ export function ProjectIndex({ current }: { current: string }) {
           {projects.map(p => (
             <li key={p.slug} className="rule">
               <Link to={`/work/${p.slug}`} aria-current={p.slug === current ? 'page' : undefined} className={`group flex flex-col items-start gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 ${p.slug === current ? 'text-ink' : 'text-ink/70 hover:text-ink'}`}>
-                <span className="shrink-0 whitespace-nowrap text-[20px] md:text-[26px] font-bold tracking-tight">{p.name}{p.slug === current && <span className="ml-3 text-[13px] font-semibold text-bluetext align-middle">현재 보는 작업</span>}</span>
+                <span className="inline-flex shrink-0 items-center gap-3 whitespace-nowrap text-[20px] md:text-[26px] font-bold tracking-tight">{p.name}{p.slug === current && <><svg aria-hidden viewBox="0 0 24 24" className="h-[1em] w-[1em] shrink-0 text-bluetext" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg><span className="sr-only">현재 보는 작업</span></>}</span>
                 <span className="text-[13px] md:text-[14px] text-sub sm:text-right">{p.slug === 'trigr' ? '출시 서비스' : p.kind} · {p.period}</span>
               </Link>
             </li>

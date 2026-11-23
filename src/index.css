@@ -281,3 +281,7 @@ main article .wrap[class*="pt-20"] { padding-top: 36px; }
 
 /* 홈 콘텐츠 최대 너비 1080px (상세 페이지는 목업 크기를 지키려고 1200px 유지) */
 @media (min-width: 1200px) { html:has(#hero) .wrap { max-width: calc(1080px + 80px); } }
+
+/* 프로젝트 카드: 마우스가 있는 환경에서만 썸네일이 아주 조금 커진다(터치·모션 줄이기에서는 없음) */
+.card-thumb { transition: transform .5s cubic-bezier(.22,.61,.36,1); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .group:hover .card-thumb { transform: scale(1.03); } }

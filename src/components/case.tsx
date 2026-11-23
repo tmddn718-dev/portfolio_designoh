@@ -149,14 +149,14 @@ export function CaseSummary({ p }: { p: Project }) {
 export function ProjectIndex({ current }: { current: string }) {
   return (
     <section aria-label="작업 목록" className="rule">
-      <div className="wrap gutter py-14 md:py-20 md:grid md:grid-cols-12 gap-8">
-        <h2 className="md:col-span-4 apple-h text-[32px] md:text-[48px]">INDEX.</h2>
-        <ul className="mt-8 md:mt-0 md:col-span-8">
+      <div className="wrap gutter py-14 md:py-20 xl:grid xl:grid-cols-12 gap-8">
+        <h2 className="xl:col-span-4 apple-h text-[32px] md:text-[48px]">INDEX.</h2>
+        <ul className="mt-8 xl:mt-0 xl:col-span-8">
           {projects.map(p => (
             <li key={p.slug} className="rule">
-              <Link to={`/work/${p.slug}`} aria-current={p.slug === current ? 'page' : undefined} className={`group flex flex-col items-start gap-1 py-5 ${p.slug === current ? 'text-ink' : 'text-ink/70 hover:text-ink'}`}>
+              <Link to={`/work/${p.slug}`} aria-current={p.slug === current ? 'page' : undefined} className={`group flex flex-col items-start gap-1 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 ${p.slug === current ? 'text-ink' : 'text-ink/70 hover:text-ink'}`}>
                 <span className="inline-flex shrink-0 items-center gap-3 whitespace-nowrap text-[20px] md:text-[26px] font-bold tracking-tight">{p.name}{p.slug === current && <><svg aria-hidden viewBox="0 0 24 24" className="h-[1em] w-[1em] shrink-0 text-bluetext" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg><span className="sr-only">현재 보는 작업</span></>}</span>
-                <span className="text-[13px] md:text-[14px] text-sub">{p.slug === 'trigr' ? '출시 서비스' : p.kind} · {p.period}</span>
+                <span className="text-[13px] md:text-[14px] text-sub sm:text-right"><span className="sm:block">{p.slug === 'trigr' ? '출시 서비스' : p.kind}</span><span className="sm:hidden"> · </span><span className="sm:block">{p.period}</span></span>
               </Link>
             </li>
           ))}

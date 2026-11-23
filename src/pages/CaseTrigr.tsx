@@ -78,7 +78,7 @@ const approach = [
 ]
 const lanes = [
   { title: '생성자', color: S, steps: [['미션 생성', '이 미션에 상금을 걸고 사람들과 함께 해볼까?'], ['미션 운영', '지금 참여자들이 어떻게 하고 있지?'], ['인증 확인', '이 인증이 미션을 제대로 수행한 걸까?'], ['보상 지급', '인증했으니 약속한 상금을 지급해야겠다.']] },
-  { title: '참여자', color: '#16A19D', steps: [['미션 탐색', '내 주변에 재미있어 보이는 미션이 있나?'], ['미션 참여', '이 정도면 나도 한번 해볼 만하겠다.'], ['미션 인증', '미션을 수행했으니 이렇게 인증하면 되겠네.'], ['보상 확인', '인증 완료했으니 상금을 받았네!']] },
+  { title: '참여자', color: '#0F7F7B', steps: [['미션 탐색', '내 주변에 재미있어 보이는 미션이 있나?'], ['미션 참여', '이 정도면 나도 한번 해볼 만하겠다.'], ['미션 인증', '미션을 수행했으니 이렇게 인증하면 되겠네.'], ['보상 확인', '인증 완료했으니 상금을 받았네!']] },
 ]
 
 const flows: [string, string, string][] = [
@@ -116,7 +116,7 @@ export default function CaseTrigr() {
             <div className="md:col-span-6">
               <AppIcon src="/images/trigr/icon.svg" name="trigr" className="mb-5" />
               <p className="eyebrow" style={{ color: S }}>Launched Product · Mission-based Reward Platform</p>
-              <h1 style={{ lineHeight: 1.25 }} className="case-h1 mt-4 text-[58px] md:text-[101px] font-extrabold tracking-[-0.06em] leading-[0.9]">trigr</h1>
+              <h1 style={{ lineHeight: 1.25 }} className="case-h1 mt-4 text-[32px] md:text-[48px] font-extrabold tracking-[-0.06em] leading-[0.9]">trigr</h1>
               <p className="mt-5 text-[22px] md:text-[30px] leading-[1.4] font-semibold tracking-[-0.02em] max-w-[20ch] text-ink/85">정의되지 않은 요구사항을 실제 사용자 흐름으로 구체화했습니다.</p>
               <p className="mt-4 text-[17px] leading-[1.65] text-sub max-w-[44ch]">기획서에 빠진 화면과 예외 상태를 설계하고, 기획자·개발자와 협의해 태국 시장 출시까지 연결한 미션 기반 리워드 앱입니다.</p>
               <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 text-[14px] rule pt-5 max-w-[520px]" style={{ borderColor: T(35) }}>
@@ -147,7 +147,7 @@ export default function CaseTrigr() {
         </Reveal>
         <Reveal stagger slow attrs={{ role: 'region', tabIndex: 0 }} label="세 차례 개편 흐름 (좌우로 스크롤)" className="mt-8 -mx-5 px-5 md:mx-0 md:px-0 flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
           {stages.map(([n, c], i) => (
-            <div key={n} className="w-[230px] shrink-0 md:w-auto rounded-[20px] p-5" style={{ background: i === 3 ? T(16) : '#F7F8FB' }}>
+            <div key={n} className="w-[230px] shrink-0 md:w-auto rounded-[24px] p-5" style={{ background: i === 3 ? T(16) : '#F7F8FB' }}>
               <p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><p className="mt-2 text-[15px] leading-snug">{c}</p>
             </div>
           ))}
@@ -195,7 +195,7 @@ export default function CaseTrigr() {
           <ChapterHead color={S} n="05" label="Supporting Flows" title="미션 참여부터 인증까지 연결되는 사용자 경험" />
           <p className="mt-4 max-w-2xl text-[16px] leading-[1.65] text-sub">서비스의 전체 구조와 UI 설계 범위를 보여주는 보조 사례입니다. 기획서에 있던 기능도 포함하며, 디자이너가 제안한 기능만을 뜻하지 않습니다.</p>
           <ScreenSequence className="mt-10" color={S} label="미션 참여부터 인증까지 화면 흐름" steps={flows.map(([t, src, c]) => ({ src, alt: `${t} 화면`, title: t, body: c }))} />
-          <details className="mt-10 rounded-[20px] border border-grid bg-white p-5 md:p-6">
+          <details className="mt-10 rounded-[24px] border border-grid bg-white p-5 md:p-6">
             <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold">생성자·참여자 관점의 흐름 보기</summary>
             <div className="mt-6 space-y-8">{lanes.map(l => (
               <div key={l.title}><p className="text-[17px] font-bold" style={{ color: l.color }}>{l.title}</p>
@@ -243,7 +243,7 @@ export default function CaseTrigr() {
             <p className="mt-4 text-[18px] font-bold">미션 생성 순서 개선 제안</p>
             <div className="mt-5 grid sm:grid-cols-2 gap-5 max-w-[860px]">
               {([['Current · 출시 버전', ['미션 제목', '태그 선택', '상금 설정', '미션 종류'], false], ['Proposed · 사후 제안', ['미션 제목', '미션 종류', '태그 선택', '상금 설정'], true]] as [string, string[], boolean][]).map(([t, items, prop]) => (
-                <div key={t} className="rounded-[20px] p-5" style={{ background: prop ? T(10) : '#f3f3f3', border: prop ? `1px solid ${T(45)}` : 'none' }}>
+                <div key={t} className="rounded-[24px] p-5" style={{ background: prop ? T(10) : '#f3f3f3', border: prop ? `1px solid ${T(45)}` : 'none' }}>
                   <p className="text-[16px] font-bold" style={{ color: prop ? S : undefined }}>{t}</p>
                   <ol className="mt-3 space-y-2">{items.map((x, i) => <li key={x} className="rounded-[12px] bg-white px-4 py-3 text-[16px] flex gap-3" style={prop && i >= 1 ? { color: S } : undefined}><span className="text-sub">{i + 1}</span>{x}</li>)}</ol>
                 </div>
@@ -252,7 +252,7 @@ export default function CaseTrigr() {
             <p className="mt-5 text-[16px] leading-[1.65] text-sub max-w-[60ch]">미션의 수행 방식(종류)을 먼저 정한 뒤 보상을 설정하는 흐름이 더 자연스러울 가능성이 있다고 보고, 출시 후 새로 정리해 본 제안입니다. 검증되지 않았습니다.</p>
           </div>
 
-          <details className="mt-10 rounded-[20px] border border-grid p-6">
+          <details className="mt-10 rounded-[24px] border border-grid p-6">
             <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold">원문 보기 · 직접 작성한 회고</summary>
             <div className="mt-6 space-y-8 text-[16px] leading-[1.65]">
               {p.sections.map(s => <div key={s.id}><p className="text-[13px] text-sub">{s.title}</p>{s.body.split('\n\n').map(t => <p key={t} className="mt-2 whitespace-pre-line">{t}</p>)}</div>)}

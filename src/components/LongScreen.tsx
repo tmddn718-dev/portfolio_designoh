@@ -13,7 +13,7 @@ export type Region = { x: number; y: number; w: number; h: number }
 export function LongScreenViewer({ src, alt, caption, className = '' }: { src: string; alt: string; caption?: string; className?: string }) {
   return (
     <figure className={className}>
-      <Zoomable src={src} big={src} alt={alt} caption={caption ?? alt} className="w-full" imgClass="block w-full rounded-[14px] border border-grid bg-white" />
+      <Zoomable src={src} big={src} alt={alt} caption={caption ?? alt} className="w-full" imgClass="block w-full rounded-[16px] border border-grid bg-white" />
       {caption && <figcaption className="mt-3 text-[14px] text-sub">{caption}<span className="block text-[13px]">눌러서 전체 화면을 스크롤해요</span></figcaption>}
     </figure>
   )
@@ -30,7 +30,7 @@ export function UIFocusDetail({ src, alt, region, color, n = 1, title, why, capt
         <div>
           <p className="mb-2 text-[13px] font-bold text-sub">원본 전체 화면</p>
           <div className="relative">
-            <Zoomable src={src} big={src} alt={alt} caption={caption ?? alt} className="w-full" imgClass="block w-full rounded-[10px] border border-grid bg-white" />
+            <Zoomable src={src} big={src} alt={alt} caption={caption ?? alt} className="w-full" imgClass="block w-full rounded-[12px] border border-grid bg-white" />
             {/* 테두리만 그려 실제 UI를 가리지 않는다 */}
             <span aria-hidden className="pointer-events-none absolute rounded-[6px]" style={{ left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%`, border: `2px solid ${color}` }}>
               <span className="absolute -left-2 -top-2 grid h-5 w-5 place-items-center rounded-full text-[11px] font-bold" style={{ background: color, color: onBrand(color) }}>{n}</span>
@@ -104,7 +104,7 @@ export function CropCompare({ n, title, asis, tobe, decision, color, className =
         <p className="text-[13px] leading-[1.6] text-sub sm:text-[14px]">{asis.caption}</p>
         <p className="text-[13px] leading-[1.6] sm:text-[14px]">{tobe.caption}</p>
       </div>
-      <p className="mt-4 rounded-[14px] p-4 text-[15px] leading-[1.65]" style={{ background: `color-mix(in srgb, ${color} 12%, white)` }}><b className="block text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>디자인 판단</b>{decision}</p>
+      <p className="mt-4 rounded-[16px] p-4 text-[15px] leading-[1.65]" style={{ background: `color-mix(in srgb, ${color} 12%, white)` }}><b className="block text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>디자인 판단</b>{decision}</p>
     </section>
   )
 }
@@ -192,7 +192,7 @@ export function PhoneCompare({ n, title, asis, tobe, extra = [], decision, color
         <Col side={asis} i={0} />
         <Col side={tobe} i={1} />
       </Reveal>
-      {decision && <p className="mx-auto mt-5 max-w-[640px] rounded-[14px] p-4 text-[15px] leading-[1.65]" style={{ background: `color-mix(in srgb, ${color} 12%, white)` }}><b className="block text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>디자인 판단</b>{decision}</p>}
+      {decision && <p className="mx-auto mt-5 max-w-[640px] rounded-[16px] p-4 text-[15px] leading-[1.65]" style={{ background: `color-mix(in srgb, ${color} 12%, white)` }}><b className="block text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>디자인 판단</b>{decision}</p>}
     </section>
   )
 }

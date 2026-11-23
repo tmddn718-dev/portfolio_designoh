@@ -69,7 +69,7 @@ export function Zoomable({ src, alt, caption, className = '', imgClass = '', big
               </div>
             : full
               ? <div className="relative mx-auto overflow-hidden rounded-[24px] bg-white" style={box}><div tabIndex={0} className={`${scroller} inset-y-0`}><img src={full} alt={cur.alt} className="block w-full" /></div></div>
-              : <img src={cur.src} alt={cur.alt} className="mx-auto max-h-[82vh] w-auto max-w-[92vw] rounded-[20px]" />}
+              : <img src={cur.src} alt={cur.alt} className="mx-auto max-h-[82vh] w-auto max-w-[92vw] rounded-[24px]" />}
           {(caption || pair) && <figcaption className="mt-3 text-[14px]">{pair ? `${cur.tag} · ${cur.alt}` : caption}</figcaption>}
         </figure>
       </Modal>

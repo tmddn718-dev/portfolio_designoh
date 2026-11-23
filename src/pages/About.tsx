@@ -23,7 +23,7 @@ export default function About() {
           </div>
           <div className="mt-6 md:mt-0 md:col-span-4">
           <p className="text-[18px] font-bold">{profile.name}</p>
-          {profile.phone && <a className="mt-1 inline-block py-1 text-[18px] font-semibold text-bluetext" href={`tel:${profile.phone.replace(/-/g, '')}`}>{profile.phone}</a>}
+          {profile.phone && <a className="mt-1 inline-flex min-h-11 items-center text-[18px] font-semibold text-bluetext" href={`tel:${profile.phone.replace(/-/g, '')}`}>{profile.phone}</a>}
           <p className="mt-3 text-[16px] leading-relaxed text-sub">Product Designer / UX·UI Designer. 복잡한 문제를 구조화하고, 사용자가 판단하는 데 필요한 정보의 우선순위를 설계합니다.</p>
           </div>
         </div>
@@ -31,7 +31,7 @@ export default function About() {
 
       <div className="wrap gutter">
         <Row t="WHAT I DO">
-          <ul className="grid sm:grid-cols-2 gap-3">{skills.map(([a, b]) => <li key={a} className="rounded-[20px] bg-[#F7F8FA] p-5"><p className="text-[16px] font-bold">{a}</p><p className="mt-1 text-[14px] leading-snug text-sub">{b}</p></li>)}</ul>
+          <ul className="grid sm:grid-cols-2 gap-3">{skills.map(([a, b]) => <li key={a} className="rounded-[24px] bg-[#F7F8FA] p-5"><p className="text-[16px] font-bold">{a}</p><p className="mt-1 text-[14px] leading-snug text-sub">{b}</p></li>)}</ul>
         </Row>
         <Row t="DESIGN PHILOSOPHY">Soft Clarity — 부드러움 · 명확함 · 절제 · 일관성 · 배려. 정보를 단순히 줄이기보다, 사용자가 이해하고 판단하는 순서에 맞춰 정리합니다.</Row>
         <Row t="EXPERIENCE">

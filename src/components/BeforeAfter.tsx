@@ -16,11 +16,11 @@ export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'AS
   const Col = ({ src, alt, tag, list, after }: { src: string; alt: string; tag: string; list: string[]; after?: boolean }) => (
     <div className="min-w-0">
       <span className={`inline-block px-2.5 py-1 sm:px-3 rounded-full text-[13px] font-bold ${after ? '' : 'bg-[#e8e8e8] text-ink'}`} style={after ? { background: color, color: onBrand(color) } : undefined}>{tag}</span>
-      <div className="mt-3 rounded-[16px] sm:rounded-[22px] bg-[#f5f5f7] p-1.5 sm:p-3 md:p-5">
+      <div className="mt-3 rounded-[16px] sm:rounded-[24px] bg-[#f5f5f7] p-1.5 sm:p-3 md:p-5">
         <div className="relative max-w-[320px] mx-auto">
-          <Zoomable src={src} alt={alt} caption={`${tag} · ${alt}`} pair={pair} pairIndex={after ? 1 : 0} pairColor={color} className="w-full" imgClass="w-full rounded-[14px] border border-grid bg-white" />
+          <Zoomable src={src} alt={alt} caption={`${tag} · ${alt}`} pair={pair} pairIndex={after ? 1 : 0} pairColor={color} className="w-full" imgClass="w-full rounded-[16px] border border-grid bg-white" />
           {data.marks?.filter(m => m.side === (after ? 'after' : 'before')).map(m => (
-            <span key={m.n} aria-hidden className="pointer-events-none absolute rounded-[10px]" style={{ left: `${m.x}%`, top: `${m.y}%`, width: `${m.w}%`, height: `${m.h}%`, border: after ? `2.5px solid ${color}` : '2.5px dashed #111', background: after ? `color-mix(in srgb, ${color} 10%, transparent)` : 'rgba(0,0,0,.05)' }}>
+            <span key={m.n} aria-hidden className="pointer-events-none absolute rounded-[12px]" style={{ left: `${m.x}%`, top: `${m.y}%`, width: `${m.w}%`, height: `${m.h}%`, border: after ? `2.5px solid ${color}` : '2.5px dashed #111', background: after ? `color-mix(in srgb, ${color} 10%, transparent)` : 'rgba(0,0,0,.05)' }}>
               <span className="absolute -top-2 -left-2 sm:-top-3 sm:-left-3 grid place-items-center w-6 h-6 sm:w-7 sm:h-7 rounded-full text-[13px] font-bold text-white" style={{ background: after ? color : '#111' }}>{m.n}</span>
             </span>
           ))}
@@ -30,7 +30,7 @@ export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'AS
     </div>
   )
   return (
-    <figure className="rounded-[20px] sm:rounded-[28px] border border-grid p-3 sm:p-4 md:p-8 bg-white">
+    <figure className="rounded-[24px] sm:rounded-[28px] border border-grid p-3 sm:p-4 md:p-8 bg-white">
       <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-8 items-start relative">
         <Col src={data.before} alt={data.beforeAlt} tag={beforeLabel} list={bef} />
         <span aria-hidden className="absolute left-1/2 top-[38%] -translate-x-1/2 z-10 hidden md:grid place-items-center w-11 h-11 rounded-full bg-white border border-grid text-[18px] shadow-sm">→</span>
@@ -43,7 +43,7 @@ export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'AS
       {hasChanges && (
         <ol aria-label="바뀐 부분" className="mt-6 md:mt-8 space-y-3">
           {data.changes!.map(c => (
-            <li key={c.n} className="rounded-[18px] bg-[#f5f5f7] p-4 md:p-5 md:grid md:grid-cols-[40px_1fr_1fr] gap-4 items-start">
+            <li key={c.n} className="rounded-[16px] bg-[#f5f5f7] p-4 md:p-5 md:grid md:grid-cols-[40px_1fr_1fr] gap-4 items-start">
               <span className="grid place-items-center w-8 h-8 rounded-full text-[14px] font-bold text-white" style={{ background: color }}>{c.n}</span>
               <p className="mt-3 md:mt-0 text-[15px] leading-[1.6]"><b className="block text-[13px] text-sub">{beforeLabel}</b>{c.before}</p>
               <p className="mt-3 md:mt-0 text-[15px] leading-[1.6]"><b className="block text-[13px]" style={{ color }}>{afterLabel}</b>{c.after}</p>
@@ -51,7 +51,7 @@ export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'AS
           ))}
         </ol>
       )}
-      {decision && <p className="mt-5 rounded-[14px] p-4 text-[15px] leading-[1.65]" style={{ background: `color-mix(in srgb, ${color} 12%, white)` }}><b className="block text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>디자인 판단</b>{decision}</p>}
+      {decision && <p className="mt-5 rounded-[16px] p-4 text-[15px] leading-[1.65]" style={{ background: `color-mix(in srgb, ${color} 12%, white)` }}><b className="block text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>디자인 판단</b>{decision}</p>}
       {note.length > 0 && <figcaption className="mt-5 pt-4 rule text-[13px] text-sub">{note.join(' ')}</figcaption>}
     </figure>
   )

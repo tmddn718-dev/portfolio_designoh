@@ -6,9 +6,10 @@ import { projects } from '../data/projects'
 
 export const chapters = [['c1', '개요'], ['c2', '문제'], ['c3', '핵심 결정'], ['c4', '최종 화면'], ['c5', '검증']]
 // 브랜드 메인 컬러 위의 글자색: 밝은 색(올리브영 연두)은 검정, 나머지는 흰색
-export const onBrand = (hex: string) => { const n = parseInt(hex.slice(1), 16), r = n >> 16 & 255, g = n >> 8 & 255, b = n & 255; return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 > 0.62 ? '#111' : '#fff' }
+// 브랜드색 위 글자색: 흰색 대비가 3.5:1 미만이면 어두운 글자로 바꾼다(WCAG 상대 휘도 기준)
+export const onBrand = (hex: string) => { const n = parseInt(hex.slice(1), 16), lin = (v: number) => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4 }, L = .2126 * lin(n >> 16 & 255) + .7152 * lin(n >> 8 & 255) + .0722 * lin(n & 255); const white = 1.05 / (L + .05), dark = (L + .05) / (.0056 + .05); return white >= 3.5 || white >= dark ? '#fff' : '#111' }
 export const tintOf = (c: string, n: number) => `color-mix(in srgb, ${c} ${n}%, white)`
-export const strongOf = (c: string) => `color-mix(in srgb, ${c} 62%, black)` // 밝은 서브컬러를 글자색으로 쓸 때
+export const strongOf = (c: string) => `color-mix(in srgb, ${c} 55%, black)` // 밝은 서브컬러를 글자색으로 쓸 때
 
 export function useActive(dep: unknown, list: string[][] = chapters) {
   const [active, setActive] = useState(list[0]?.[0] ?? 'c1')
@@ -43,14 +44,14 @@ export function ChapterNav({ active, list = chapters, title, onCta }: { active: 
   const w = useProgress()
   return (
     <nav aria-label="챕터" className="sticky top-14 z-30 pointer-events-none">
-    <div className="wrap gutter"><div className="pointer-events-auto relative rounded-[18px] bg-[rgba(29,29,31,.95)] text-white backdrop-blur-xl overflow-hidden shadow-[0_10px_30px_-12px_rgba(0,0,0,.5)]">
+    <div className="wrap gutter"><div className="pointer-events-auto relative rounded-[16px] bg-[rgba(29,29,31,.95)] text-white backdrop-blur-xl overflow-hidden shadow-[0_10px_30px_-12px_rgba(0,0,0,.5)]">
       <div aria-hidden className="absolute left-0 bottom-0 h-[2px] bg-[#2997ff]" style={{ width: `${w}%` }} />
       <div className="px-5 flex items-center justify-between gap-4 h-[52px]">
         {title && <p className="hidden sm:block text-[19px] font-semibold tracking-tight shrink-0">{title}</p>}
         <ol className="flex items-center gap-5 overflow-x-auto text-[13px] min-w-0 flex-1 sm:flex-none">
           {list.map(([id, label]) => (
             <li key={id}><a href={`#${id}`} aria-current={active === id ? 'true' : undefined}
-              className={`block py-3 whitespace-nowrap ${active === id ? 'text-white font-semibold' : 'text-white/60 hover:text-white'}`}>{label}</a></li>
+              className={`block min-w-11 py-3 text-center whitespace-nowrap ${active === id ? 'text-white font-semibold' : 'text-white/60 hover:text-white'}`}>{label}</a></li>
           ))}
         </ol>
         {onCta && <button onClick={onCta} className="pill shrink-0">프로토타입</button>}
@@ -123,7 +124,7 @@ export function PinnedPhone({ steps, color, label }: { steps: Step[]; color: str
 const kindLabel = { launched: '출시', design: '설계안', evidence: '근거 일부' } as const
 export function CaseSummary({ p }: { p: Project }) {
   const S = strongOf(p.accent)
-  const cell = 'rounded-[20px] bg-white border border-grid p-5 md:p-6'
+  const cell = 'rounded-[24px] bg-white border border-grid p-5 md:p-6'
   const h = 'text-[13px] font-semibold text-sub'
   return (
     <section aria-label="30초 요약" className="bg-[#f5f5f7]">
@@ -134,7 +135,7 @@ export function CaseSummary({ p }: { p: Project }) {
           <div className={`${cell} md:col-span-5`}><p className={h}>내 역할</p><p className="mt-2 text-[17px] font-semibold leading-snug">{p.role}</p><p className="mt-1 text-[14px] text-sub">{p.period}</p><ul className="mt-3 flex flex-wrap gap-1.5">{p.tags.map(t => <li key={t} className="text-[13px] px-2.5 py-1 rounded-full bg-[#f5f5f7]">{t}</li>)}</ul></div>
           
           <div className={`${cell} md:col-span-12`}><p className={h}>핵심 결정</p><p className="mt-2 text-[20px] md:text-[26px] font-bold tracking-tight leading-snug whitespace-pre-line [text-wrap:pretty] md:max-w-none max-w-[40ch]">{p.summary.decision}</p></div>
-          <ul aria-label="컨셉 키워드" className="md:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">{p.summary.concept.map(([k, d], i) => <li key={k} className="rounded-[20px] p-5 md:p-6" style={{ background: tintOf(p.accent, 16), border: `1px solid ${tintOf(p.accent, 34)}` }}><p className="text-[13px] font-semibold" style={{ color: S }}>CONCEPT 0{i + 1}</p><p className="mt-3 apple-h text-[24px] md:text-[30px] text-ink">{k}</p><p className="mt-2 text-[15px] leading-snug text-ink/80">{d}</p></li>)}</ul>
+          <ul aria-label="컨셉 키워드" className="md:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">{p.summary.concept.map(([k, d], i) => <li key={k} className="rounded-[24px] p-5 md:p-6" style={{ background: tintOf(p.accent, 16), border: `1px solid ${tintOf(p.accent, 34)}` }}><p className="text-[13px] font-semibold" style={{ color: S }}>CONCEPT 0{i + 1}</p><p className="mt-3 apple-h text-[24px] md:text-[30px] text-ink">{k}</p><p className="mt-2 text-[15px] leading-snug text-ink/80">{d}</p></li>)}</ul>
         </Reveal>
       </div>
     </section>

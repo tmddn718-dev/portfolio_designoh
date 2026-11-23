@@ -67,8 +67,8 @@ function MobileStories() {
         <p className="mb-1 shrink-0 text-[13px] font-medium text-sub">옆으로 넘겨 보기 <span aria-hidden>→</span></p>
       </div>
       <ol className="mobile-story-rail mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 pr-5 md:pr-8" aria-label="프로젝트 5개, 가로 스크롤">
-        {stories.map((story, index) => <li key={story.slug} className="w-[78vw] min-w-[248px] max-w-[340px] shrink-0 snap-start"><article className="h-full"><Link to={`/work/${story.slug}`} className="group flex h-full flex-col rounded-[20px] focus-visible:outline-offset-4">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-[20px]" style={{ background: story.bg, color: story.fg }}><StoryArt story={story} /></div>
+        {stories.map((story, index) => <li key={story.slug} className="w-[78vw] min-w-[248px] max-w-[340px] shrink-0 snap-start"><article className="h-full"><Link to={`/work/${story.slug}`} className="group flex h-full flex-col rounded-[24px] focus-visible:outline-offset-4">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-[24px]" style={{ background: story.bg, color: story.fg }}><StoryArt story={story} /></div>
           <div className="flex flex-1 flex-col pt-4"><div className="flex items-center gap-3"><span className="text-[13px] font-semibold tabular-nums text-ink">0{index + 1}</span><p className="truncate text-[13px] font-semibold uppercase tracking-[.05em] text-sub">{story.category}</p></div><div className="mt-3 flex items-start justify-between gap-4"><div><h3 className="text-[24px] font-bold leading-[1.3] tracking-[-.03em]">{by(story.slug).name}</h3><p className="mt-2 text-[15px] font-semibold leading-[1.5] tracking-[-.015em]">{story.headline}</p></div><span aria-hidden className="text-[22px] leading-none">↗</span></div></div>
         </Link></article></li>)}
       </ol>

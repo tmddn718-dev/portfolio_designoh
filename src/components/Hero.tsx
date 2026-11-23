@@ -107,7 +107,7 @@ export default function Hero() {
             <p className="mt-3 max-w-[54ch] text-[15px] leading-[1.65] text-white/72 md:text-[16px]">문제를 발견하고, 동작하는 프로토타입으로 검증하며, 사용자가 더 쉽게 결정할 수 있는 경험을 설계합니다.</p>
           </div>
           <div data-copy className="md:col-span-5 md:flex md:justify-end">
-            <Link to="/#story" className="inline-flex min-h-14 items-center gap-3 rounded-full bg-[#2997ff] px-7 text-[16px] font-semibold text-white shadow-[0_10px_30px_rgba(41,151,255,.22)] hover:-translate-y-0.5 hover:bg-[#1689ed]">Explore Work <span aria-hidden>↓</span></Link>
+            <Link to="/#story" className="inline-flex min-h-14 items-center gap-3 rounded-full bg-[#0b6bdc] px-7 text-[16px] font-semibold text-white shadow-[0_10px_30px_rgba(41,151,255,.22)] hover:-translate-y-0.5 hover:bg-[#1689ed]">Explore Work <span aria-hidden>↓</span></Link>
           </div>
         </div>
       </div>

@@ -51,7 +51,7 @@ const Ph = ({ n, cap, className = '' }: { n: string; cap: string; className?: st
   </figure>
 )
 const Key = ({ children }: { children: React.ReactNode }) => (
-  <p className="mt-10 rounded-[20px] px-6 py-5 text-[17px] md:text-[21px] font-normal leading-[1.55] max-w-[44ch]" style={{ background: T(14), color: '#2B3547' }}>{children}</p>
+  <p className="mt-10 rounded-[24px] px-6 py-5 text-[17px] md:text-[21px] font-normal leading-[1.55] max-w-[44ch]" style={{ background: T(14), color: '#2B3547' }}>{children}</p>
 )
 // 배경 설명용 가상 일정표(예시). 9시~17시 시작 기준
 const HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17]
@@ -93,7 +93,7 @@ export default function CaseNodi() {
             <div className="md:col-span-6">
               <AppIcon src="/images/nodi/icon.svg" name="NODI" className="mb-5" />
               <p className="eyebrow" style={{ color: S }}>NODI / AI SCHEDULING EXPERIENCE</p>
-              <h1 style={{ lineHeight: 1.25 }} className="case-h1 mt-4 text-[53px] md:text-[101px] font-extrabold tracking-[-0.055em] leading-[0.88]">NODI</h1>
+              <h1 style={{ lineHeight: 1.25 }} className="case-h1 mt-4 text-[32px] md:text-[48px] font-extrabold tracking-[-0.055em] leading-[0.88]">NODI</h1>
               <p className="mt-4 text-[28px] md:text-[40px] font-bold leading-[1.2] tracking-tight">AI는 이해하고,<br />사용자는 결정한다.</p>
               <p className="mt-5 text-[17px] leading-[1.65] text-sub max-w-[30ch] md:max-w-[34ch]">여러 사람의 일정과 선호도를 비교하는 부담을 줄이기 위해, 추천 시간과 그 이유를 함께 제공하는 회의 일정 조율 경험을 설계했습니다.</p>
               <p className="mt-6 text-[13px] text-sub">Project Type · AI Scheduling Service Concept · Functional Prototype</p>
@@ -148,7 +148,7 @@ export default function CaseNodi() {
                     </div>
                   ))}
                   <p className="pr-2 pt-2 text-[14px] font-bold self-center">모두 가능</p>
-                  {HOURS.map(h => { const c = cellOf(h); return <span key={h} className="mt-2 h-9 rounded-[6px] grid place-items-center text-[13px] font-bold" style={c === 'ok' ? { background: S, color: '#fff' } : c === 'dis' ? { background: '#F6DFA8', color: '#6B4A00' } : { background: '#EEF1F6', color: '#8A94A6' }}><span aria-label={c === 'ok' ? '모두 가능' : c === 'dis' ? '선호하지 않는 시간' : '참석 불가'}>{c === 'ok' ? '✓' : c === 'dis' ? '△' : '×'}</span></span> })}
+                  {HOURS.map(h => { const c = cellOf(h); return <span key={h} className="mt-2 h-9 rounded-[6px] grid place-items-center text-[13px] font-bold" style={c === 'ok' ? { background: S, color: '#fff' } : c === 'dis' ? { background: '#F6DFA8', color: '#6B4A00' } : { background: '#EEF1F6', color: '#5F6B80' }}><span aria-label={c === 'ok' ? '모두 가능' : c === 'dis' ? '선호하지 않는 시간' : '참석 불가'}>{c === 'ok' ? '✓' : c === 'dis' ? '△' : '×'}</span></span> })}
                 </div>
               </div></div>
               <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[13px]" aria-label="범례">
@@ -318,7 +318,7 @@ export default function CaseNodi() {
         <div className="wrap gutter py-20 md:py-32">
           {/* tokens + states */}
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-start">
-            <div className="md:col-span-5 rounded-[20px] bg-white border border-grid p-6 md:p-8">
+            <div className="md:col-span-5 rounded-[24px] bg-white border border-grid p-6 md:p-8">
               <p className="eyebrow text-sub">Design tokens · 문서 기준</p>
               <ul className="mt-5 grid grid-cols-[repeat(auto-fit,minmax(60px,1fr))] gap-2">{swatches.map(([n, c]) => <li key={n}><span className="block aspect-square rounded-[12px] border border-grid" style={{ background: c }} /><span className="mt-2 block text-[13px] leading-tight">{n}<br /><span className="text-sub">{c}</span></span></li>)}</ul>
               <p className="mt-6 text-[16px] leading-relaxed text-sub">글자 13·14·16·18·24·28 · 4px 격자 · 터치 44px · 칩과 CTA는 아이콘 없이 텍스트만</p>
@@ -387,12 +387,12 @@ export default function CaseNodi() {
             <div className="md:col-span-6">
               <p className="eyebrow" style={{ color: S }}>화면 폭에 따른 배치</p>
               <h4 className="mt-3 text-[24px] md:text-[30px] font-bold tracking-tight">같은 정보 다른 배치</h4>
-              <table className="mt-6 w-full text-[15px] bg-white rounded-[18px] overflow-hidden"><caption className="sr-only">화면 폭별 레이아웃</caption><thead><tr className="text-left text-[13px] text-sub"><th scope="col" className="py-3 pl-5">구간</th><th scope="col">내비게이션</th><th scope="col" className="pr-5">요약</th></tr></thead><tbody>
+              <table className="mt-6 w-full text-[15px] bg-white rounded-[16px] overflow-hidden"><caption className="sr-only">화면 폭별 레이아웃</caption><thead><tr className="text-left text-[13px] text-sub"><th scope="col" className="py-3 pl-5">구간</th><th scope="col">내비게이션</th><th scope="col" className="pr-5">요약</th></tr></thead><tbody>
                 {[['1200px 이상', '좌측 내비', '우측 고정 패널'], ['768~1199px', '아이콘 레일', '서랍(시트)'], ['767px 이하', '하단 탭', '바텀시트']].map(([a, b, c]) => <tr key={a} className="border-t border-grid"><th scope="row" className="py-3 pl-5 text-left font-semibold">{a}</th><td>{b}</td><td className="pr-5">{c}</td></tr>)}
               </tbody></table>
               <p className="mt-4 text-[13px] text-sub">승인된 반응형 정책 문서를 기준으로 모바일을 먼저 정의하고 태블릿과 PC로 확장했습니다.</p>
             </div>
-            <div className="mt-8 md:mt-0 md:col-span-6 flex justify-center"><div className="w-full max-w-[340px] rounded-[14px] overflow-hidden border border-black/15 bg-white"><Zoomable src="/images/nodi/tablet-start.webp" alt="NODI 태블릿 폭(820px) 화면: 아이콘 레일 내비게이션과 대화 영역" caption="태블릿 폭(820px)" className="w-full" imgClass="block w-full" /></div></div>
+            <div className="mt-8 md:mt-0 md:col-span-6 flex justify-center"><div className="w-full max-w-[340px] rounded-[16px] overflow-hidden border border-black/15 bg-white"><Zoomable src="/images/nodi/tablet-start.webp" alt="NODI 태블릿 폭(820px) 화면: 아이콘 레일 내비게이션과 대화 영역" caption="태블릿 폭(820px)" className="w-full" imgClass="block w-full" /></div></div>
           </div>
         </div>
       </section>

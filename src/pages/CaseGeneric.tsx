@@ -596,14 +596,14 @@ function Karrot({ c }: { c: Ctx }) {
               <p className="mt-5 text-[18px] md:text-[22px] font-bold">거래 약속 확정까지의 평균 소요 시간 차이</p>
               <p className="mt-2 text-[15px] text-white/70">TO-BE에서 AS-IS보다 평균 34초 짧게 측정</p>
             </div>
-            <div className="mt-10 md:mt-0 md:col-span-5 pt-8 md:pt-0 md:pl-10 border-t md:border-t-0 md:border-l border-white/20">
+            <div className="mt-10 md:mt-0 md:col-span-5 pt-8 md:pt-0 md:pl-10">
               <p className="text-[13px] font-bold tracking-[.14em]" style={{ color: '#FFB78A' }}>RESULT 02 · PARTICIPANT IMPROVEMENT</p>
               <p className="mt-4 font-extrabold leading-[.95] tracking-[-.05em] text-[clamp(40px,4.5vw,64px)]">7/7<span className="text-[.42em] tracking-[-.03em] ml-1" style={{ color: '#FF8A3D' }}>명</span></p>
               <p className="mt-4 text-[17px] md:text-[19px] font-bold">모든 참가자가 TO-BE에서 소요 시간 단축</p>
               <p className="mt-2 text-[15px] text-white/70">동일한 7명이 두 조건을 모두 수행한 비교 결과</p>
             </div>
             </div>
-            <p className="mt-10 pt-5 border-t border-white/20 text-[13px] text-white/65 text-left">측정 조건 · 동일 참가자 7명 · 프로토타입 테스트 · 게시글 확인부터 채팅을 통한 거래 약속 확정까지의 소요 시간</p>
+            <p className="mt-10 text-[13px] text-white/65 text-left">측정 조건 · 동일 참가자 7명 · 프로토타입 테스트 · 게시글 확인부터 채팅을 통한 거래 약속 확정까지의 소요 시간</p>
           </div>
         </Reveal>
       </section>

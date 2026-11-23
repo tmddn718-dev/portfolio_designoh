@@ -64,7 +64,6 @@ function MobileStories() {
     <div className="wrap gutter">
       <div className="flex items-end justify-between gap-5">
         <div><p className="text-[13px] font-semibold uppercase tracking-[.14em] text-bluetext">Featured experience</p><h2 className="mt-2 max-w-[14ch] text-[24px] font-bold leading-[1.3] tracking-[-.035em] md:max-w-none md:text-[30px]">다섯 프로젝트, 다섯 가지 문제</h2></div>
-        <p className="mb-1 shrink-0 text-[13px] font-medium text-sub">옆으로 넘겨 보기 <span aria-hidden>→</span></p>
       </div>
       <ScrollFade hideFrom="md"><ol className="mobile-story-rail mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 pr-5 md:pr-8" aria-label="프로젝트 5개, 가로 스크롤">
         {stories.map((story, index) => <li key={story.slug} className="w-[78vw] min-w-[248px] max-w-[340px] shrink-0 snap-start"><article className="h-full"><Link to={`/work/${story.slug}`} className="group flex h-full flex-col rounded-[24px] focus-visible:outline-offset-4">

@@ -329,3 +329,7 @@ main article [class*="rounded-["] :is(h3, h4), main article h4 { font-size: 20px
 }
 main article p[class*="text-[18px]"]:not([class*="font-"], [class*="rounded-["] *) { line-height: 1.65; }
 @media (min-width: 768px) { main article p[class*="text-[18px]"]:not([class*="font-"], [class*="rounded-["] *) { line-height: 1.7; } }
+
+/* 섹션 구분선 제거 — 상세 페이지는 간격만으로 섹션을 나눈다 */
+main article p.eyebrow.rule { border-top: 0; padding-top: 0; }
+main article section[id].rule { border-top: 0; }

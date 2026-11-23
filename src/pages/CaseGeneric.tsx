@@ -142,7 +142,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.65] text-sub">가능한 구매 경로를 바로 확인하는 개선 흐름에서 과제 수행 시간이 짧게 나타났습니다.</p>
           </article>
 
-          <article id="cart-experience" className="mt-14 md:mt-24 pt-10 md:pt-14 border-t border-black/10 scroll-mt-24">
+          <article id="cart-experience" className="mt-14 md:mt-24 scroll-mt-24">
             <p className="eyebrow" style={{ color: S }}>Solution 02</p>
             <p className="mt-3 text-[16px] font-semibold text-sub">Cart Experience</p>
             <h3 className="mt-2 text-[30px] font-extrabold tracking-tight md:text-[38px]">구매에 필요한 판단과 행동을 더 가까이 배치하다.</h3>
@@ -191,7 +191,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <div className="mt-5 rounded-[20px] bg-white/70 p-6 text-[15px] leading-[1.65] text-sub"><b className="text-ink">Future validation</b><br />“무료배송까지 남은 금액을 확인하고 필요한 상품을 추가해 구매를 진행해 주세요” 과제로 조건 확인 시간, 추천 발견 여부, 선택 이유와 혼란 지점을 추후 검증할 수 있습니다. 아직 수행한 테스트로 표현하지 않습니다.</div>
           </article>
 
-          <article className="mt-14 md:mt-24 pt-10 md:pt-14 border-t border-black/10">
+          <article className="mt-14 md:mt-24">
             <p className="eyebrow" style={{ color: S }}>Solution 03</p>
             <p className="mt-3 text-[16px] font-semibold text-sub">Checkout Experience</p>
             <h3 className="mt-2 max-w-[22ch] text-[30px] font-extrabold tracking-tight md:text-[38px]">길게 펼쳐진 주문 정보를, 확인하기 쉬운 구조로.</h3>

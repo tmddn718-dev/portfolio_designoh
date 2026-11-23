@@ -154,7 +154,7 @@ export default function CaseTrigr() {
         </Reveal>
 
           <h3 className="mt-24 apple-h text-[28px] md:text-[44px] max-w-[24ch]">누락된 흐름을 찾아 설계하고, 팀과 협의해 제품에 반영했습니다</h3>
-        <ol className="mt-10 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+        <ol className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {approach.map(([k, d], i) => (
             <li key={k} className="rounded-[24px] p-6 md:p-7" style={{ background: T(10), border: `1px solid ${T(38)}` }}>
               <p className="text-[13px] font-bold" style={{ color: S }}>0{i + 1}</p>

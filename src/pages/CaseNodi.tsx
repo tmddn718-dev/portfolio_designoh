@@ -97,10 +97,10 @@ export default function CaseNodi() {
               <p className="mt-4 text-[28px] md:text-[40px] font-bold leading-[1.2] tracking-tight">AI는 이해하고,<br />사용자는 결정한다.</p>
               <p className="mt-5 text-[17px] leading-[1.65] text-sub max-w-[30ch] md:max-w-[34ch]">여러 사람의 일정과 선호도를 비교하는 부담을 줄이기 위해, 추천 시간과 그 이유를 함께 제공하는 회의 일정 조율 경험을 설계했습니다.</p>
               <p className="mt-6 text-[13px] text-sub">Project Type · AI Scheduling Service Concept · Functional Prototype</p>
-              <dl className="mt-6 grid grid-cols-3 gap-5 max-w-lg text-[16px] rule pt-4" style={{ borderColor: T(30) }}>
+              <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-4 text-[16px] rule pt-4" style={{ borderColor: T(30) }}>
                 <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div>
                 <div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div>
-                <div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div>
+                <div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1 whitespace-nowrap">{p.period}</dd></div>
               </dl>
               {p.proto && <button onClick={() => setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
             </div>
@@ -129,7 +129,7 @@ export default function CaseNodi() {
 
       {/* 02 Background */}
       <section id="bg" className="wrap gutter py-20 md:py-32 scroll-mt-20">
-        <Head label="BACKGROUND">회의 시간을 정하는 일은,<br />여러 사람의 조건을 비교하는 일이었습니다.</Head>
+        <Head label="BACKGROUND">회의 시간을 정하는 일은, <br />여러 사람의 조건을 비교하는 일이었습니다.</Head>
         <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
           <div className="md:col-span-5 text-[17px] leading-[1.65] space-y-4">
             <p>여러 사람이 참여하는 회의를 잡으려면 각자의 빈 시간만 확인해서는 충분하지 않았습니다.</p>
@@ -166,7 +166,7 @@ export default function CaseNodi() {
       {/* 03 Problem */}
       <section id="problem" className="scroll-mt-20" style={{ background: '#F7F8FB' }}>
         <div className="wrap gutter py-20 md:py-32">
-          <Head role="problem" label="PROBLEM">조건이 많아질수록,<br />회의 조율은 복잡한 의사결정이 됩니다.</Head>
+          <Head role="problem" label="PROBLEM">조건이 많아질수록, <br />회의 조율은 복잡한 의사결정이 됩니다.</Head>
           <p className="mt-6 max-w-[52ch] text-[17px] leading-[1.65]">참여자별 일정과 선호도가 서로 다르기 때문에 회의 시간을 정하려면 반복적인 확인과 비교가 필요합니다.</p>
           <ol className="mt-12 grid md:grid-cols-3 gap-4 md:gap-6">
             {[['01', '일정 확인', '외근과 기존 미팅 등 참석할 수 없는 시간을 확인해야 합니다.'], ['02', '조건 비교', '참석 불가능한 시간과 선호하지 않는 시간을 구분해야 합니다.'], ['03', '최종 판단', '여러 조건을 종합해 적절한 회의 시간을 결정해야 합니다.']].map(([n, t, d], i) => (
@@ -185,7 +185,7 @@ export default function CaseNodi() {
 
       {/* 04 Design Question */}
       <section id="question" className="wrap gutter py-24 md:py-40 scroll-mt-20">
-        <Head role="question" label="DESIGN QUESTION">복잡한 조건 비교는 AI가 돕고,<br />최종 결정은 사용자가 할 수 없을까?</Head>
+        <Head role="question" label="DESIGN QUESTION">복잡한 조건 비교는 AI가 돕고, <br />최종 결정은 사용자가 할 수 없을까?</Head>
         <p className="mt-8 max-w-[44ch] text-[18px] md:text-[20px] leading-[1.65] text-ink/80">반복적인 일정 비교의 부담은 줄이되, 최종 선택에 필요한 판단 근거는 사용자에게 제공하고자 했습니다.</p>
       </section>
 
@@ -195,7 +195,7 @@ export default function CaseNodi() {
           {/* Solution 01 */}
           <div className="md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5">
-              <Head sm label="SOLUTION 01 / INPUT">서로 다른 일정과 선호도를<br />하나의 입력 흐름으로.</Head>
+              <Head sm label="SOLUTION 01 / INPUT">서로 다른 일정과 선호도를 <br />하나의 입력 흐름으로.</Head>
               <p className="mt-6 text-[17px] leading-[1.65]">회의를 만드는 사람은 날짜와 길이, 선호하는 시간대, 참석자, 일정 필수 여부를 입력합니다. 참석자가 가능한 시간을 답하는 화면도 설계했습니다.</p>
               <p className="mt-3 text-[17px] leading-[1.65]">이렇게 입력한 조건은 회의 시간 추천에 반영됩니다.</p>
               <ul className="mt-8 space-y-5">
@@ -212,7 +212,7 @@ export default function CaseNodi() {
 
           {/* Solution 02 */}
           <div className="mt-28 md:mt-40">
-            <Head label="SOLUTION 02 / RECOMMENDATION">입력한 조건이 달라지면,<br />추천 시간도 달라집니다.</Head>
+            <Head label="SOLUTION 02 / RECOMMENDATION">입력한 조건이 달라지면, <br />추천 시간도 달라집니다.</Head>
             <p className="mt-6 max-w-[56ch] text-[17px] leading-[1.65]">NODI는 참여자별 일정과 선호도를 바탕으로 회의 시간 후보를 제안합니다. 프로토타입에서는 사용자가 입력한 조건에 따라 실제 추천 결과가 달라지도록 구현했습니다.</p>
             <div className="mt-12 grid md:grid-cols-2 gap-5 md:gap-8">
               {[
@@ -238,7 +238,7 @@ export default function CaseNodi() {
           {/* Solution 03 */}
           <div className="mt-28 md:mt-40 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5">
-              <Head sm label="SOLUTION 03 / EXPLANATION">추천 시간뿐 아니라,<br />추천하는 이유까지.</Head>
+              <Head sm label="SOLUTION 03 / EXPLANATION">추천 시간뿐 아니라, <br />추천하는 이유까지.</Head>
               <p className="mt-6 text-[17px] leading-[1.65]">추천된 시간이 왜 적절한지 이해할 수 있도록 추천 근거를 함께 제공했습니다.</p>
               <p className="mt-3 text-[17px] leading-[1.65]">사용자는 결과를 그대로 받아들이는 대신, 추천 이유를 확인하고 자신의 판단에 활용할 수 있습니다.</p>
               <ul className="mt-8 space-y-5">
@@ -256,7 +256,7 @@ export default function CaseNodi() {
 
           {/* Solution 04 */}
           <div className="mt-28 md:mt-40">
-            <Head label="SOLUTION 04 / DECISION">최종 결정은<br />사용자에게 남겨두었습니다.</Head>
+            <Head label="SOLUTION 04 / DECISION">최종 결정은 <br />사용자에게 남겨두었습니다.</Head>
             <p className="mt-6 max-w-[56ch] text-[17px] leading-[1.65]">NODI는 회의 시간을 자동으로 확정하는 대신, 추천 결과와 근거를 확인한 사용자가 최종 시간을 선택하도록 설계했습니다.</p>
             <Reveal as="ol" stagger slow className="mt-12 grid grid-cols-3 gap-3 md:gap-8 max-w-4xl">
               {[['pickB', '추천 결과 확인'], ['reasonB', '추천 이유 검토'], ['review', '최종 시간 선택']].map(([n, t], i) => (
@@ -273,7 +273,7 @@ export default function CaseNodi() {
 
       {/* 09 Implementation */}
       <section id="impl" className="wrap gutter py-20 md:py-32 scroll-mt-20">
-        <Head label="IMPLEMENTATION">캘린더 연동 없이,<br />핵심 추천 경험을 구현했습니다.</Head>
+        <Head label="IMPLEMENTATION">캘린더 연동 없이, <br />핵심 추천 경험을 구현했습니다.</Head>
         <div className="mt-8 max-w-[58ch] text-[17px] leading-[1.65] space-y-3">
           <p>실제 서비스에서는 외부 캘린더 연동을 전제로 설계했습니다.</p>
           <p>이번 프로젝트에서는 캘린더 API를 연결하는 대신 사용자가 직접 입력한 일정과 선호도를 활용했습니다.</p>
@@ -320,7 +320,7 @@ export default function CaseNodi() {
           <Reveal className="mt-20 md:mt-24 md:grid md:grid-cols-12 gap-10 items-start">
             <div className="md:col-span-5 rounded-[20px] bg-white border border-grid p-6 md:p-8">
               <p className="eyebrow text-sub">Design tokens · 문서 기준</p>
-              <ul className="mt-5 grid grid-cols-5 gap-2">{swatches.map(([n, c]) => <li key={n}><span className="block aspect-square rounded-[12px] border border-grid" style={{ background: c }} /><span className="mt-2 block text-[13px] leading-tight">{n}<br /><span className="text-sub">{c}</span></span></li>)}</ul>
+              <ul className="mt-5 grid grid-cols-[repeat(auto-fit,minmax(60px,1fr))] gap-2">{swatches.map(([n, c]) => <li key={n}><span className="block aspect-square rounded-[12px] border border-grid" style={{ background: c }} /><span className="mt-2 block text-[13px] leading-tight">{n}<br /><span className="text-sub">{c}</span></span></li>)}</ul>
               <p className="mt-6 text-[16px] leading-relaxed text-sub">글자 13·14·16·18·24·28 · 4px 격자 · 터치 44px · 칩과 CTA는 아이콘 없이 텍스트만</p>
             </div>
             <div className="mt-10 md:mt-0 md:col-span-7">

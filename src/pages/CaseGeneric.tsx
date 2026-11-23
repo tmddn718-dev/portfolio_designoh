@@ -45,10 +45,10 @@ function Hero({ c, eyebrow, kicker, title, lead, children, size = 'md' }: { c: C
             <p className="eyebrow" style={{ color: S }}>{eyebrow ?? `Personal Case Study · ${p.category}`}</p>
             <h1 style={{ lineHeight: 1.25 }} className={`case-h1 mt-3 font-extrabold tracking-[-0.045em] ${size === 'xl' ? 'text-[64px] md:text-[104px]' : 'text-[35px] md:text-[58px]'}`}>{title}</h1>
             <p className="mt-4 text-[21px] md:text-[24px] font-semibold leading-snug max-w-[22ch] text-ink/80">{lead}</p>
-            <dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] rule pt-4" style={{ borderColor: T(40) }}>
+            <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-4 text-[14px] rule pt-4" style={{ borderColor: T(40) }}>
               <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div>
               <div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div>
-              <div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div>
+              <div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1 whitespace-nowrap">{p.period}</dd></div>
             </dl>
             {p.proto && <button onClick={() => setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
             <p className="mt-6 text-[13px] text-sub max-w-[40ch]">{kicker}</p>
@@ -510,7 +510,7 @@ function Karrot({ c }: { c: Ctx }) {
       {/* Design Decision: 정보를 확인하는 시점의 변화 */}
       <section id="dd" className="wrap gutter py-20 md:py-32 scroll-mt-20">
         <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>DESIGN DECISION</p>
-        <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[22ch]">채팅에서 물어봐야 했던 정보를,<br />채팅 전에 확인할 수 있도록.</h2>
+        <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[22ch]">채팅에서 물어봐야 했던 정보를, <br />채팅 전에 확인할 수 있도록.</h2>
         <div className="mt-10 md:grid md:grid-cols-12 gap-10 items-start">
           <div className="md:col-span-5">
             <p className="text-[17px] leading-[1.65]">기존 거래 과정에서는 구매자가 대형 가구의 상세 정보, 거래 가능 여부, 거래 방법을 채팅으로 추가 확인해야 했습니다.</p>
@@ -534,7 +534,7 @@ function Karrot({ c }: { c: Ctx }) {
       <section id="flow" className="scroll-mt-20" style={{ background: '#F7F8FA' }}>
         <div className="wrap gutter py-20 md:py-32">
           <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>BEFORE &amp; AFTER</p>
-          <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">상품 정보 확인에 쓰이던 채팅을,<br />거래 약속 조율에 집중하도록.</h2>
+          <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">상품 정보 확인에 쓰이던 채팅을, <br />거래 약속 조율에 집중하도록.</h2>
           <div className="mt-12 grid md:grid-cols-2 gap-4 md:gap-8">
             <div className="rounded-[28px] bg-white border border-grid p-5 md:p-8">
               <span className="inline-block px-3 py-1 rounded-full text-[13px] font-bold bg-[#e8e8e8]">AS-IS · 기존 앱</span>
@@ -575,9 +575,9 @@ function Karrot({ c }: { c: Ctx }) {
       {/* Usability Test + Key Results */}
       <section id="test" className="wrap gutter py-20 md:py-32 scroll-mt-20">
         <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>USABILITY TEST / AS-IS vs. TO-BE</p>
-        <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅 전에 거래 정보를 확인하자,<br />약속 확정까지 평균 34초 빨라졌습니다.</h2>
-        <div className="mt-10 md:grid md:grid-cols-12 gap-10">
-          <div className="md:col-span-7 text-[17px] leading-[1.65] space-y-3">
+        <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅 전에 거래 정보를 확인하자, <br />약속 확정까지 평균 34초 빨라졌습니다.</h2>
+        <div className="mt-5 md:grid md:grid-cols-12 md:gap-x-6 md:gap-y-0">
+          <div className="md:col-span-7 text-[17px] leading-[1.7] space-y-2">
             <p>대형 가구 거래에서 구매자가 게시글을 확인한 뒤 채팅으로 거래 약속을 확정하기까지의 과정을 비교했습니다.</p>
             <p>동일한 참가자 7명이 기존 당근 앱(AS-IS)과 개선 프로토타입(TO-BE)에서 같은 과제를 수행했습니다.</p>
           </div>
@@ -611,7 +611,7 @@ function Karrot({ c }: { c: Ctx }) {
       <section id="feedback" className="scroll-mt-20" style={{ background: '#F7F8FA' }}>
         <div className="wrap gutter py-20 md:py-32">
           <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>USER FEEDBACK</p>
-          <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅에서는 상품 질문보다,<br />거래 약속 조율에 집중할 수 있었습니다.</h2>
+          <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅에서는 상품 질문보다, <br />거래 약속 조율에 집중할 수 있었습니다.</h2>
           <p className="mt-5 md:mt-6 max-w-[58ch] text-[17px] leading-[1.65]">참가자들은 개선된 게시글에서 필요한 가구 정보와 거래 조건을 미리 확인할 수 있어, 채팅에서는 추가적인 상품 정보 질문보다 거래 약속 조율에 집중할 수 있었다고 피드백했습니다.</p>
           <ol className="mt-10 grid md:grid-cols-3 gap-4 md:gap-6">
             {[['01', '거래 전에 필요한 정보 확인'], ['02', '추가적인 상품 정보 질문의 필요성 감소'], ['03', '채팅에서 거래 약속 조율에 집중']].map(([n, t]) => (
@@ -620,23 +620,21 @@ function Karrot({ c }: { c: Ctx }) {
           </ol>
           <p className="mt-5 text-[13px] text-sub">참가자 피드백을 요약한 내용이며, 직접 인용문은 아닙니다.</p>
 
-          <div className="mt-24 md:mt-32">
-            <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>RESULT INTERPRETATION</p>
-            <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">정보를 확인하는 시점의 변화가,<br />거래 약속 확정 과정을 단축했습니다.</h2>
-            <div className="mt-8 md:grid md:grid-cols-12 gap-10">
-              <div className="md:col-span-7 text-[17px] leading-[1.65] space-y-3">
-                <p>이번 결과는 거래 전에 필요한 정보를 제공하는 설계가 채팅에서의 반복적인 확인 부담을 줄이고, 거래 약속 조율을 효율적으로 진행하는 데 도움이 될 가능성을 보여줍니다.</p>
-              </div>
-              <div className="mt-8 md:mt-0 md:col-span-5 rounded-[24px] bg-white border border-grid p-6">
-                <p className="text-[13px] font-bold text-sub">Limitations</p>
-                <ul className="mt-4 space-y-3 text-[16px] leading-snug">{['참가자 7명의 소규모 테스트', '프로토타입 환경에서 측정한 결과', '테스트 순서에 따른 학습 효과 가능성', '실제 서비스의 거래 성사율 및 운영 성과 미검증'].map(t => <li key={t} className="flex gap-3"><span aria-hidden className="text-sub">–</span>{t}</li>)}</ul>
-              </div>
+          <div className="mt-24 md:mt-32 grid items-start gap-8 md:grid-cols-12 md:gap-x-6">
+            <div className="md:col-span-7">
+              <p className="eyebrow" style={{ color: S }}>RESULT INTERPRETATION</p>
+              <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">정보를 확인하는 시점의 변화가, <br />거래 약속 확정 과정을 단축했습니다.</h2>
+              <p className="mt-5 text-[17px] leading-[1.7]">이번 결과는 거래 전에 필요한 정보를 제공하는 설계가 채팅에서의 반복적인 확인 부담을 줄이고, 거래 약속 조율을 효율적으로 진행하는 데 도움이 될 가능성을 보여줍니다.</p>
+            </div>
+            <div className="md:col-span-5 rounded-[24px] bg-white border border-grid p-6">
+              <p className="eyebrow text-sub">Limitations</p>
+              <ul className="mt-4 space-y-3 text-[16px] leading-[1.6]">{['참가자 7명의 소규모 테스트', '프로토타입 환경에서 측정한 결과', '테스트 순서에 따른 학습 효과 가능성', '실제 서비스의 거래 성사율 및 운영 성과 미검증'].map(t => <li key={t} className="flex gap-3"><span aria-hidden className="text-sub">–</span>{t}</li>)}</ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section aria-label="기존 앱과 개선안 비교" className="wrap gutter pb-8 md:pb-16">
+      <section aria-label="기존 앱과 개선안 비교" className="wrap gutter pt-16 pb-8 md:pt-[60px] md:pb-16">
         <p className="eyebrow rule pt-4 text-sub">Before / After</p>
         <h3 className="mt-4 text-[28px] md:text-[40px] font-bold tracking-tight">실제 당근 앱 vs 대형 가구 거래 개선안</h3>
         <p className="mt-3 text-[16px] text-sub max-w-[62ch]">현재 화면(BEFORE)과 개선안(AFTER)을 나란히 비교했습니다. 빨간 박스와 번호로 기존 화면의 문제 지점을 표시하고, 오른쪽 표에서 개선 내용을 설명합니다.</p>
@@ -684,8 +682,8 @@ function Woorisai({ c }: { c: Ctx }) {
               <p className="eyebrow" style={{ color: S }}>Personal Case Study · {p.category}</p>
               <h1 className="text-[43px] md:text-[101px] font-extrabold tracking-[-0.05em]" style={{ lineHeight: 1, marginTop: 'calc(1rem + .2em)', color: '#242622' }}>우리사이</h1>
               <p className="mt-4 text-[22px] md:text-[28px] font-semibold leading-snug max-w-[24ch]">흩어진 사진과 기억을 하나의 추억으로 연결하고, 기록이 다시 대화로 이어지는 경험을 설계했습니다.</p>
-              <dl className="mt-8 grid grid-cols-3 gap-5 text-[14px] rule pt-4" style={{ borderColor: T(40) }}>
-                <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div><div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div><div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1">{p.period}</dd></div>
+              <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-4 text-[14px] rule pt-4" style={{ borderColor: T(40) }}>
+                <div><dt className="text-sub text-[13px]">담당</dt><dd className="mt-1">{owner}</dd></div><div><dt className="text-sub text-[13px]">역할</dt><dd className="mt-1">{p.role}</dd></div><div><dt className="text-sub text-[13px]">기간</dt><dd className="mt-1 whitespace-nowrap">{p.period}</dd></div>
               </dl>
               {c.proto && <button onClick={() => c.setOpen(true)} className="mt-8 px-6 py-3 rounded-full bg-ink text-white text-[16px] font-semibold">프로토타입 실행</button>}
             </div>
@@ -775,7 +773,7 @@ function Woorisai({ c }: { c: Ctx }) {
           <div className="mt-12 md:mt-20">
             <p className="eyebrow text-sub">Design Strategy</p>
             <h3 className="mt-3 text-[28px] md:text-[36px] font-extrabold tracking-tight">기록 → 함께 쌓기 → 다시 발견하기 → 대화로 이어지기</h3>
-            <Reveal as="ol" stagger slow className="mt-8 grid md:grid-cols-4 gap-4">{[['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자별 사진과 이야기를 한 추억에'], ['다시 발견하기', '사람·장소·시간으로 되찾기'], ['대화로 이어지기', '사진 단위 반응과 댓글']].map(([t, d], i) => <li key={t} className="rounded-[20px] bg-white border border-grid p-5"><span className="text-[24px] font-extrabold" style={{ color: S }}>0{i + 1}</span><p className="mt-2 text-[18px] font-bold">{t}</p><p className="mt-1 text-[14px] text-sub leading-snug">{d}</p></li>)}</Reveal>
+            <Reveal as="ol" stagger slow className="mt-8 grid lg:grid-cols-4 md:grid-cols-2 gap-4">{[['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자별 사진과 이야기를 한 추억에'], ['다시 발견하기', '사람·장소·시간으로 되찾기'], ['대화로 이어지기', '사진 단위 반응과 댓글']].map(([t, d], i) => <li key={t} className="rounded-[20px] bg-white border border-grid p-5"><span className="text-[24px] font-extrabold" style={{ color: S }}>0{i + 1}</span><p className="mt-2 text-[18px] font-bold">{t}</p><p className="mt-1 text-[14px] text-sub leading-snug">{d}</p></li>)}</Reveal>
           </div>
 
           <div className="relative mt-12 rounded-[24px] border border-grid bg-white p-5 md:mt-16 md:p-8">
@@ -809,7 +807,7 @@ function Woorisai({ c }: { c: Ctx }) {
           <Reveal className="mt-14 md:grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5"><Num n="01" t="추억 하나부터, 함께 기록한다" />
               <ul className="mt-8 space-y-5"><Ann color={A} n="A" t="첫 CTA는 ‘그룹 만들기’가 아니라 ‘추억 만들기’" d="그룹 없이 사람을 골라 바로 시작합니다." /><Ann color={A} n="B" t="친구 선택 · 검색과 여러 명 선택" d="검색해서 여러 친구를 한 번에 고르는 선택기를 구현했습니다." /><Ann color={A} n="C" t="참여자별 기록 유지" d="각자의 사진과 이야기가 사라지지 않고 한 추억에 모입니다." /></ul></div>
-            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5"><Fig src={I('new')} alt="새 추억 만들기" cap="새 추억 만들기" /><Fig src={I('picker')} alt="함께한 친구 선택: 이름으로 검색하고 여러 명을 한 번에 선택" cap="친구 검색·다중 선택" className="md:mt-10" /><Fig src={I('picker-many')} alt="친구가 많을 때의 선택 목록" cap="친구가 많을 때" /><Fig src={I('people')} alt="볼 수 있는 사람 확인" cap="볼 수 있는 사람 확인" className="md:mt-10" /></div>
+            <div className="mt-10 md:mt-0 md:col-span-7 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5"><Fig src={I('new')} alt="새 추억 만들기" cap="새 추억 만들기" /><Fig src={I('picker')} alt="함께한 친구 선택: 이름으로 검색하고 여러 명을 한 번에 선택" cap="친구 검색·다중 선택" className="md:mt-10" /><Fig src={I('picker-many')} alt="친구가 많을 때의 선택 목록" cap="친구가 많을 때" /><Fig src={I('people')} alt="볼 수 있는 사람 확인" cap="볼 수 있는 사람 확인" className="md:mt-10" /></div>
           </Reveal>
 
           <Reveal className="mt-24 md:mt-32 rounded-[28px] p-6 md:p-12 bg-[#F4F2EC]">
@@ -845,7 +843,7 @@ function Woorisai({ c }: { c: Ctx }) {
 
       <section id="c4" className="wrap gutter py-14 md:py-24 scroll-mt-20 md:mt-8">
         <ChapterHead color={S} n="03" label="Actual UI" title="약속과 우리 공간은 추억을 돕는 보조 기능" />
-        <Reveal as="ul" stagger slow className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
+        <Reveal as="ul" stagger slow className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
           {['plan', 'space', 'calendar', 'home'].map(n => <li key={n}><Screen src={I(n)} alt={`우리사이 화면 ${n}`} cap={({ plan: '초대받은 약속 · 참석 응답', space: '우리 공간', calendar: '추억 달력', home: '홈' } as Record<string, string>)[n]} /></li>)}
         </Reveal>
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="최신 프로토타입 직접 체험" note="현재 구현된 웹 프로토타입입니다." />

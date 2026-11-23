@@ -290,7 +290,7 @@ main article .wrap[class*="pt-20"] { padding-top: 36px; }
    데스크톱: 메인 48 · 섹션 36 · 서브 26 · 카드 제목 22 · 본문 18 · 카드 설명 17 · 캡션 15 · 각주 14 · 라벨 14
    모바일  : 메인 32 · 섹션 28 · 서브 22 · 카드 제목 19 · 본문 16 · 카드 설명 15 · 캡션 14 · 각주 13
    콘텐츠 최대 1280px, 본문 최대 760px, 카드 안쪽 여백 32px(모바일 20px), 제목→본문 16px, 섹션 간 120px(위에서 정의). */
-main article p { max-width: min(760px, 100%); }
+main article p { max-width: min(34em, 100%); } /* 한국어 한 줄 40자 안팎 */
 main article figcaption { font-size: 14px; line-height: 1.5; }
 main article p:is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"], [class*="text-[17px]"]):not([class*="font-"], [class*="rounded-["], [class*="rounded-["] *) { font-size: 16px; line-height: 1.65; }
 main article :is(p, li, dd, ul, ol):is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"]):is([class*="rounded-["], [class*="rounded-["] *):not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 15px; line-height: 1.65; }
@@ -333,3 +333,11 @@ main article p[class*="text-[18px]"]:not([class*="font-"], [class*="rounded-["] 
 /* 섹션 구분선 제거 — 상세 페이지는 간격만으로 섹션을 나눈다 */
 main article p.eyebrow.rule { border-top: 0; padding-top: 0; }
 main article section[id].rule { border-top: 0; }
+
+/* 한국어 줄바꿈: 어절 단위 유지, 긴 URL·영문은 넘치지 않게. 제목 바로 아래 설명은 20px. */
+body { overflow-wrap: break-word; }
+main article :is(h1, h2, h3, h4) { text-wrap: balance; }
+main :is(p, li, dd, figcaption, blockquote) { text-wrap: balance; } /* 줄 길이를 고르게: 짧은 마지막 줄·고아 줄 방지 (Chrome 6줄 이하) */
+main article :is(ul, ol):not([class*="grid"], [class*="flex"]) > li:not([class*="rounded-["]) { max-width: 36em; }
+main article h2 + p { margin-top: 20px; }
+@media (max-width: 767px) { main article h2 br { display: none; } }

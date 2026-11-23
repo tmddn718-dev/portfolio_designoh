@@ -573,14 +573,16 @@ function Karrot({ c }: { c: Ctx }) {
 
       {/* Usability Test + Key Results */}
       <section id="test" className="wrap gutter py-20 md:py-32 scroll-mt-20">
-        <p className="eyebrow rule pt-4" style={{ color: S, borderColor: T(40) }}>USABILITY TEST / AS-IS vs. TO-BE</p>
-        <h2 className="mt-4 apple-h text-[30px] md:text-[52px] max-w-[24ch]">채팅 전에 거래 정보를 확인하자, <br />약속 확정까지 평균 34초 빨라졌습니다.</h2>
-        <div className="mt-5 md:grid md:grid-cols-12 md:items-end md:gap-x-6 md:gap-y-0">
-          <div className="md:col-span-7 text-[17px] leading-[1.7] space-y-2">
-            <p>대형 가구 거래에서 구매자가 게시글을 확인한 뒤 채팅으로 거래 약속을 확정하기까지의 과정을 비교했습니다.</p>
-            <p>동일한 참가자 7명이 기존 당근 앱(AS-IS)과 개선 프로토타입(TO-BE)에서 같은 과제를 수행했습니다.</p>
+        <div className="md:grid md:grid-cols-12 md:items-end md:gap-x-12">
+          <div className="md:col-span-8">
+            <p className="eyebrow" style={{ color: S }}>USABILITY TEST / AS-IS vs. TO-BE</p>
+            <h2 className="mt-4 apple-h text-[30px] md:text-[52px]">채팅 전에 거래 정보를 확인하자, <br />약속 확정까지 평균 34초 빨라졌습니다.</h2>
+            <div className="mt-6 text-[17px] leading-[1.7] space-y-2">
+              <p>대형 가구 거래에서 구매자가 게시글을 확인한 뒤 채팅으로 거래 약속을 확정하기까지의 과정을 비교했습니다.</p>
+              <p>동일한 참가자 7명이 기존 당근 앱(AS-IS)과 개선 프로토타입(TO-BE)에서 같은 과제를 수행했습니다.</p>
+            </div>
           </div>
-          <dl className="mt-8 md:mt-0 md:col-span-5 rounded-[24px] border border-grid p-6 text-[15px] grid grid-cols-[auto_1fr] gap-x-5 gap-y-3 content-start">
+          <dl className="mt-8 md:mt-0 md:col-span-4 rounded-[24px] border border-grid p-6 text-[15px] grid grid-cols-[auto_1fr] gap-x-5 gap-y-3 content-start">
             {[['Method', '동일 참가자 비교 사용성 테스트'], ['Participants', '7명'], ['Comparison', '기존 앱 AS-IS / 개선 프로토타입 TO-BE'], ['Task', '게시글 확인부터 채팅을 통한 거래 약속 확정까지'], ['Environment', '프로토타입 테스트']].map(([k, v]) => <div key={k} className="contents"><dt className="text-sub text-[13px] pt-0.5">{k}</dt><dd className="font-semibold">{v}</dd></div>)}
           </dl>
         </div>

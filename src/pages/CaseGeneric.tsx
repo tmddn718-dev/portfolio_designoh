@@ -109,7 +109,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
         <ChapterHead color={S} n="01" label="Background & Problem Discovery" title="특정 구매 방법의 품절이, 구매 전체의 끝처럼 보였다" />
         <div className="mt-5 md:mt-6 grid gap-8 md:grid-cols-12">
           <div className="md:col-span-7"><p className="max-w-[46rem] text-[18px] leading-[1.65]">오늘드림 재고가 없더라도 일반배송이나 매장 픽업으로 구매할 수 있습니다. 그러나 기존 흐름에서는 이 가능성을 바로 확인하기 어려워, 사용자가 이전 단계로 돌아가 구매 방법을 다시 찾아야 했습니다.</p></div>
-          <aside className="rounded-[24px] bg-[#F3F7EB] p-6 md:col-span-5 md:p-8"><p className="eyebrow text-sub">Problem statement</p><p className="mt-3 text-[20px] font-bold leading-[1.55]">오늘드림이 품절되면, 다른 방법으로 구매할 수 있어도 상품 전체가 품절된 것으로 오해할 수 있습니다.</p></aside>
+          <aside className="rounded-[24px] bg-[#F3F7EB] p-6 md:col-span-5 md:p-8"><p className="eyebrow text-sub">Problem statement</p><p className="mt-3 text-[18px] font-normal leading-[1.55] text-[#333] md:text-[20px]">오늘드림이 품절되면, 다른 방법으로 구매할 수 있어도 상품 전체가 품절된 것으로 오해할 수 있습니다.</p></aside>
         </div>
         <div className="mt-12 rounded-[28px] bg-ink p-7 text-white md:p-10"><p className="eyebrow text-white/55">Design question</p><p className="mt-3 max-w-[30ch] text-[26px] font-bold leading-[1.4] md:text-[36px]">오늘드림이 품절된 순간, 사용할 수 있는 다른 구매 경로를 자연스럽게 안내할 수 없을까?</p></div>
         <div className="mt-14 grid gap-5 md:grid-cols-2">
@@ -129,8 +129,8 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <p className="mt-3 text-[16px] font-semibold text-sub">Purchase Recovery</p>
             <h3 className="mt-2 text-[30px] font-extrabold tracking-tight md:text-[38px]">품절 이후에도 구매 가능한 방법을 안내하다.</h3>
             <div className="mt-6 grid gap-3 md:grid-cols-2">
-              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">문제</p><p className="mt-2 text-[16px] font-bold leading-[1.55] md:text-[17px]">오늘드림만 품절된 상황도 상품 전체가 품절된 것처럼 보여 구매 흐름이 중단됐습니다.</p></div>
-              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">디자인 판단</p><p className="mt-2 text-[16px] font-bold leading-[1.55] md:text-[17px]">품절을 구매 종료가 아닌 경로 전환 시점으로 보고, 선택한 옵션을 유지한 채 일반배송과 매장 픽업을 안내했습니다.</p></div>
+              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">문제</p><p className="mt-2 text-[16px] font-medium leading-[1.6] md:text-[17px]">오늘드림만 품절된 상황도 상품 전체가 품절된 것처럼 보여 구매 흐름이 중단됐습니다.</p></div>
+              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">디자인 판단</p><p className="mt-2 text-[16px] font-medium leading-[1.6] md:text-[17px]">품절을 구매 종료가 아닌 경로 전환 시점으로 보고, 선택한 옵션을 유지한 채 일반배송과 매장 픽업을 안내했습니다.</p></div>
             </div>
             {p.beforeAfter?.[0] && <div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={A} /></div>}
             <div className="mt-8 grid items-center gap-6 md:grid-cols-12 md:gap-10">
@@ -145,8 +145,8 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <p className="mt-3 text-[16px] font-semibold text-sub">Cart Experience</p>
             <h3 className="mt-2 text-[30px] font-extrabold tracking-tight md:text-[38px]">구매에 필요한 판단과 행동을 더 가까이 배치하다.</h3>
             <div className="mt-6 grid gap-3 md:grid-cols-2">
-              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">문제</p><p className="mt-2 text-[16px] font-bold leading-[1.55] md:text-[17px]">무료배송 조건은 확인할 수 있었지만, 함께 구매할 상품은 긴 스크롤 아래의 별도 영역에 있어 현재 구매 맥락과 연결하기 어려웠습니다.</p></div>
-              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">Design question</p><p className="mt-2 text-[16px] font-bold leading-[1.55] md:text-[17px]">무료배송까지 남은 금액을 확인한 순간, 필요한 상품을 바로 선택할 수 있다면?</p></div>
+              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">문제</p><p className="mt-2 text-[16px] font-medium leading-[1.6] md:text-[17px]">무료배송 조건은 확인할 수 있었지만, 함께 구매할 상품은 긴 스크롤 아래의 별도 영역에 있어 현재 구매 맥락과 연결하기 어려웠습니다.</p></div>
+              <div className="rounded-[18px] bg-white p-4 md:p-5"><p className="eyebrow text-sub">Design question</p><p className="mt-2 text-[16px] font-medium leading-[1.6] md:text-[17px]">무료배송까지 남은 금액을 확인한 순간, 필요한 상품을 바로 선택할 수 있다면?</p></div>
             </div>
             <details className="group mt-8 rounded-[20px] bg-white/70 p-4 md:p-6">
               <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-[15px] font-bold"><span><span className="eyebrow block text-sub">Before · 실제 올리브영 앱의 긴 장바구니 흐름</span>기존 장바구니 4구간 전체 보기</span><span aria-hidden className="text-[20px] transition-transform group-open:rotate-180">⌄</span></summary>

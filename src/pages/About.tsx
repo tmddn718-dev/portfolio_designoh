@@ -18,8 +18,7 @@ export default function About() {
         <div className="wrap gutter pt-14 md:pt-24 pb-14 md:pb-20 md:grid md:grid-cols-12 gap-6 items-end">
           <div className="md:col-span-8">
             <p className="eyebrow text-bluetext">About</p>
-            <h1 className="mt-4 text-[48px] md:text-[96px] font-extrabold tracking-[-0.045em] leading-[1]">{profile.name}</h1>
-            <p className="mt-6 text-[24px] md:text-[32px] font-bold leading-snug max-w-[24ch]">복잡한 정보를 <span className="text-blue">사용자가 판단할 수 있는</span> 경험으로.</p>
+            <h1 className="mt-5 max-w-[16ch] text-[34px] md:text-[56px] font-extrabold leading-[1.3] tracking-[-0.035em]">복잡한 정보를 <span className="text-blue">사용자가 판단할 수 있는</span> 경험으로.</h1>
           </div>
           <div className="mt-6 md:mt-0 md:col-span-4">
           <p className="text-[18px] font-bold">{profile.name}</p>

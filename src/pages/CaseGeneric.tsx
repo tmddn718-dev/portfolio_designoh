@@ -473,8 +473,7 @@ function Karrot({ c }: { c: Ctx }) {
         <Reveal><blockquote className="mt-10 text-[28px] md:text-[40px] font-bold tracking-tight leading-snug max-w-[26ch]" style={{ borderLeft: `6px solid ${A}`, paddingLeft: 24 }}>{p.problem}</blockquote></Reveal>
         <ul className="mt-12 grid md:grid-cols-3 gap-5">{[['크기', '가로·세로·높이를 설명에서 찾아야 함'], ['분해 · 운반', '분해 가능 여부와 가져가는 조건이 문장으로 흩어짐'], ['반복 질문', '판매자에게 같은 질문을 되풀이해야 할 수 있음']].map(([a, b]) => <li key={a} className="rounded-[20px] p-6" style={{ background: T(14) }}><p className="text-[13px] font-semibold" style={{ color: S }}>{a}</p><p className="mt-2 text-[17px] leading-snug">{b}</p></li>)}</ul>
         <div className="mt-14"><p className="eyebrow text-sub">실제 당근 앱 · AS-IS 캡처</p>
-          <ul className="mt-5 grid grid-cols-3 gap-4 md:grid-cols-5 md:gap-6 max-w-5xl">{[['asis-write', '판매글 작성: 제목·설명·가격만 입력'], ['asis-write-ai', '사진 분석 중(AI 작성)'], ['asis-search', '대형가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul>
-          <p className="mt-4 text-[13px] text-sub max-w-3xl">실제 앱 화면 캡처이며 판매자 닉네임, 거래 장소 주소·지도, 캡처한 사람의 정보는 가렸습니다. 판매글 작성 화면 두 장은 동네 이름과 거래 희망 장소를 가리지 않았습니다.</p></div>
+          <ul className="mt-5 grid grid-cols-3 gap-4 md:grid-cols-5 md:gap-6 max-w-5xl">{[['asis-write', '판매글 작성: 제목·설명·가격만 입력'], ['asis-write-ai', '사진 분석 중(AI 작성)'], ['asis-search', '대형가구 검색 결과'], ['asis-desc', '상품 본문: 크기가 문장 속에'], ['asis-loc', '거래 장소·용달비 안내']].map(([n, l]) => <li key={n}><Fig src={I(n)} alt={`실제 당근 앱 ${l}`} cap={l} /></li>)}</ul></div>
         <p className="mt-10 text-[13px] text-sub max-w-3xl">앱 리뷰·블로그 VOC와 인터뷰를 근거로 PRD 문제를 정의했습니다. 원자료가 없어 표본 수와 수치는 싣지 않았고, 발생 빈도와 영향은 사용성 테스트로 검증해야 하는 디자인 가설입니다.</p>
       </section>
 
@@ -641,7 +640,6 @@ function Karrot({ c }: { c: Ctx }) {
         <h3 className="mt-4 text-[28px] md:text-[40px] font-bold tracking-tight">실제 당근 앱 vs 대형 가구 거래 개선안</h3>
         <p className="mt-3 text-[16px] text-sub max-w-[62ch]">현재 화면(BEFORE)과 개선안(AFTER)을 나란히 비교했습니다. 빨간 박스와 번호로 기존 화면의 문제 지점을 표시하고, 오른쪽 표에서 개선 내용을 설명합니다.</p>
         <div className="mt-10 space-y-6 md:space-y-10">{karrotCompare.map(d => <CompareSection key={d.n} d={d} color={A} />)}</div>
-        <p className="mt-6 text-[13px] text-sub max-w-3xl">※ Before는 실제 당근 앱을 직접 캡처한 화면이며 판매자 닉네임은 가렸습니다. After는 직접 설계한 개선안이며 상품 정보는 예시입니다.</p>
       </section>
 
       <section id="c4" className="wrap gutter py-20 md:py-32 scroll-mt-20 md:mt-24">
@@ -694,7 +692,6 @@ function Woorisai({ c }: { c: Ctx }) {
           </div>
         </div>
       </section>
-      <p className="wrap gutter pt-8 text-[13px] text-sub text-center">실제 프로토타입 화면 캡처 · 사진은 Unsplash 예시 이미지, 이름과 내용은 예시 데이터</p>
       <CaseSummary p={p} />
 
       <section aria-label="프로젝트 이해하기" className="wrap gutter pt-20 md:pt-28">
@@ -829,7 +826,6 @@ function Woorisai({ c }: { c: Ctx }) {
               </div>
               <div className="mt-6"><Need t="전체 댓글·답글 바텀시트 화면 캡처" /></div>
             </div>
-            <div className="mt-12 rounded-[20px] bg-white border border-grid p-6"><p className="eyebrow text-sub">검증 계획 (미수행)</p><ul className="mt-3 text-[16px] leading-[1.8] list-disc pl-5"><li>사진 단위 반응·댓글 사용 비율을 초기·개선 버전으로 비교</li><li>‘함께 남기는 추억’과 ‘반응’을 구분해 이해하는지 과제 기반 관찰</li></ul><p className="mt-3 text-[13px] text-sub">아직 수행하지 않았고, 결과는 없습니다.</p></div>
           </Reveal>
 
           <Reveal className="mt-24 md:mt-32">

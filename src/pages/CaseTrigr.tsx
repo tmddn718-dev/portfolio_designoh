@@ -16,7 +16,7 @@ const PINK = '#DE5DE2', TEAL = '#2FD1CD' // 출시 화면에서 추출한 색
 const T = (n: number) => tintOf(PINK, n)
 const S = strongOf(PINK)
 const I = (n: string) => `/images/trigr/${n}.webp`
-const list = [['c1', '개요'], ['c2', '맥락'], ['c3', '상금 지급'], ['c4', '정산 신청'], ['c5', '보조 흐름'], ['c6', '시스템'], ['c7', '검증 계획'], ['c8', '회고']]
+const list = [['c1', '개요'], ['c2', '맥락'], ['c3', '상금 지급'], ['c4', '정산 신청'], ['c5', '보조 흐름'], ['c6', '시스템'], ['c8', '회고']]
 
 // 실제 화면 하나를 밝은 폰 프레임에 넣고 클릭하면 확대
 function Screen({ src, alt, caption, className = '' }: { src: string; alt: string; caption?: string; className?: string }) {
@@ -88,7 +88,6 @@ const flows: [string, string, string][] = [
   ['인증 피드', I('tr-proofs'), '인증 모아보기'],
   ['활동·포인트 확인', I('tr-my-1'), '마이페이지 활동과 포인트'],
 ]
-const validation = ['테스트 목적', '테스트 참여자 수', '수행 과제', '과제 성공 여부', '주요 관찰 내용', '발견한 문제', '후속 개선안']
 
 export default function CaseTrigr() {
   const root = useRef<HTMLElement>(null)
@@ -222,20 +221,6 @@ export default function CaseTrigr() {
               <p className="text-[15px] font-bold" style={{ color: S }}>Figma Variables · 컴포넌트 · 라이트/다크 · 다국어</p>
               <p className="mt-2 text-[15px] leading-snug text-sub">원본 Figma 자료가 확인되면 화면을 추가합니다. 남아 있지 않은 토큰이나 Variables는 당시 작업물처럼 재현하지 않습니다.</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 07 Validation Plan */}
-      <section id="c7" className="scroll-mt-20 md:mt-24" style={{ background: T(9) }}>
-        <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="07" label="Validation Plan" title="출시 당시 검증하지 못한 사용자 흐름이 남아 있습니다" />
-
-          <div className="mt-14 rounded-[28px] bg-white border border-grid p-6 md:p-10">
-            <div className="flex flex-wrap items-center gap-3"><Tag>Validation Planned</Tag></div>
-            <h3 className="mt-4 apple-h text-[26px] md:text-[40px] max-w-[22ch]">사용성 테스트에서 확인할 항목을 정리했습니다</h3>
-            <p className="mt-4 max-w-[56ch] text-[16px] leading-[1.75] text-sub">현재 사용성 테스트 결과는 없습니다. 향후 테스트에서 확인할 항목을 아래와 같이 정리했습니다.</p>
-            <ul className="mt-7 grid sm:grid-cols-2 md:grid-cols-4 gap-3">{validation.map(v => <li key={v} className="rounded-[16px] border border-dashed px-4 py-4" style={{ borderColor: T(45) }}><p className="text-[15px] font-semibold">{v}</p><p className="mt-1 text-[13px] text-sub">테스트 후 입력</p></li>)}</ul>
           </div>
         </div>
       </section>

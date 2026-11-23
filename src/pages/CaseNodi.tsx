@@ -80,7 +80,6 @@ export default function CaseNodi() {
     })
     return () => mm.revert()
   }, [])
-  const validation = paras('validation')
 
   return (
     <article ref={root} style={{ ['--brand' as string]: p.accent }}>
@@ -108,13 +107,13 @@ export default function CaseNodi() {
             <div className="mt-14 md:mt-0 md:col-span-6">
               {/* 모바일: 말풍선이 폰 밖으로 돌출하면 글자가 너무 작아져, 위에 읽히는 크기의 콜아웃으로 놓는다 */}
               <div className="mx-auto mb-5 max-w-[360px] space-y-3 md:hidden">
-                <img src="/images/nodi/hero-pop-user.png" alt="사용자 입력: 다음주 화요일에 디자인팀 5명 1시간 미팅 시간 잡아줘" loading="lazy" className="ml-0 h-auto w-[82%] drop-shadow-[0_10px_18px_rgba(24,36,58,.18)]" />
-                <img src="/images/nodi/hero-pop-ai.png" alt="NODI 응답: 회의 조건을 정리했어요. 맞는지 확인해 주세요." loading="lazy" className="ml-auto h-auto w-[78%] drop-shadow-[0_10px_18px_rgba(24,36,58,.18)]" />
+                <img src="/images/nodi/hero-pop-user.png?v=2" alt="사용자 입력: 다음주 화요일에 디자인팀 5명 1시간 미팅 시간 잡아줘" loading="lazy" className="ml-0 h-auto w-[82%] drop-shadow-[0_10px_18px_rgba(24,36,58,.18)]" />
+                <img src="/images/nodi/hero-pop-ai.png?v=2" alt="NODI 응답: 회의 조건을 정리했어요. 맞는지 확인해 주세요." loading="lazy" className="ml-auto h-auto w-[78%] drop-shadow-[0_10px_18px_rgba(24,36,58,.18)]" />
               </div>
               <div data-rise className="relative mx-auto w-[58%] md:w-[60%]">
                 <Zoomable src="/images/nodi/hero-phone-card.png?v=2" alt="NODI 조건 확인 화면: AI가 정리한 회의 조건 카드와 참석자 선택하기 버튼" caption="회의 조건을 확인해 주세요" className="block w-full" imgClass="block h-auto w-full" />
-                <UIPopout src="/images/nodi/hero-pop-user.png" alt="사용자 입력: 다음주 화요일에 디자인팀 5명 1시간 미팅 시간 잡아줘" className="hidden md:block md:left-[-36%] md:top-[17%] md:w-[60%] lg:left-[-66%] lg:w-[86%]" />
-                <UIPopout src="/images/nodi/hero-pop-ai.png" alt="NODI 응답: 회의 조건을 정리했어요. 맞는지 확인해 주세요." className="hidden md:block md:right-[-36%] md:top-[27%] md:w-[60%] lg:right-[-66%] lg:w-[86%]" />
+                <UIPopout src="/images/nodi/hero-pop-user.png?v=2" alt="사용자 입력: 다음주 화요일에 디자인팀 5명 1시간 미팅 시간 잡아줘" className="hidden md:block md:left-[-36%] md:top-[17%] md:w-[60%] lg:left-[-66%] lg:w-[86%]" />
+                <UIPopout src="/images/nodi/hero-pop-ai.png?v=2" alt="NODI 응답: 회의 조건을 정리했어요. 맞는지 확인해 주세요." className="hidden md:block md:right-[-36%] md:top-[27%] md:w-[60%] lg:right-[-66%] lg:w-[86%]" />
               </div>
             </div>
           </div>
@@ -210,7 +209,6 @@ export default function CaseNodi() {
               <Ph n="required" cap="일정 필수 설정" />
             </div>
           </div>
-          <p className="mt-8 text-[13px] text-sub max-w-3xl">프로토타입의 참석자 응답과 캘린더 상태는 기능 설명을 위한 예시 데이터입니다.</p>
 
           {/* Solution 02 */}
           <div className="mt-28 md:mt-40">
@@ -291,7 +289,6 @@ export default function CaseNodi() {
             <ul className="mt-4 space-y-3 text-[17px] text-ink/80">{['외부 캘린더 API 연동', '실제 캘린더 데이터 자동 수집', 'AI 모델 호출 (자연어 해석과 추천은 규칙 기반)'].map(t => <li key={t} className="flex gap-3"><span aria-hidden className="text-sub">–</span>{t}</li>)}</ul>
           </div>
         </div>
-        <p className="mt-6 text-[13px] text-sub max-w-3xl leading-relaxed">참석자 응답과 캘린더 상태는 예시 데이터입니다. 자연어 입력은 규칙 기반 데모이며, 알림 발송과 캘린더 반영은 실제로 처리되지 않습니다.</p>
         <InteractionPreview p={p} wide={wide} onOpen={() => setOpen(true)} title="직접 눌러보세요" note="화면 이미지는 v6 시안과 세부가 다를 수 있습니다." />
       </section>
 
@@ -397,36 +394,8 @@ export default function CaseNodi() {
             </div>
             <div className="mt-8 md:mt-0 md:col-span-6 flex justify-center"><div className="w-full max-w-[340px] rounded-[14px] overflow-hidden border border-black/15 bg-white"><Zoomable src="/images/nodi/tablet-start.webp" alt="NODI 태블릿 폭(820px) 화면: 아이콘 레일 내비게이션과 대화 영역" caption="태블릿 폭(820px)" className="w-full" imgClass="block w-full" /></div></div>
           </div>
-          <p className="mt-4 text-[13px] text-sub max-w-3xl">웹 화면은 가상 데이터를 사용한 체험용 데모를 1440px와 820px 폭에서 캡처했습니다. 실제 일정은 등록되지 않습니다.</p>
         </div>
       </section>
-      {/* 04 Outcome */}
-      <section className="scroll-mt-20 rule">
-        <div className="wrap gutter py-20 md:py-32">
-          <ChapterHead color={S} n="A3" label="Outcome" title="점검한 것과 아직 확인하지 못한 것" />
-          <div className="mt-14 md:grid md:grid-cols-12 gap-10">
-            <ul className="md:col-span-5 grid grid-cols-3 md:grid-cols-1 gap-4">
-              {[['0', '44px 미만 터치 영역'], ['0', '13px 미만 글자'], ['19', '클릭 시나리오 통과']].map(([n, l]) => (
-                <li key={l} className="rounded-[20px] p-5 md:p-7" style={{ background: T(9) }}>
-                  <p className="text-[44px] md:text-[72px] font-extrabold leading-none tracking-tight" style={{ color: S }}>{n}</p>
-                  <p className="mt-2 text-[14px] md:text-[16px]">{l}</p>
-                </li>
-              ))}
-              <li className="col-span-3 md:col-span-1 text-[13px] text-sub leading-relaxed">자체 점검 스크립트 기준입니다. 사용자 테스트 결과가 아닙니다.</li>
-            </ul>
-            <div className="md:col-span-7 mt-10 md:mt-0 text-[17px] leading-[1.8] space-y-4">
-              {validation.map(t => <p key={t} className={t.startsWith('확인 필요') ? 'text-sub' : ''}>{t}</p>)}
-            </div>
-          </div>
-          <div className="mt-16 rounded-[28px] p-7 md:p-10 bg-[#F7F8FA]">
-            <p className="inline-flex px-3 py-1.5 rounded-full bg-ink text-white text-[13px] font-semibold">검증 계획 · 아직 수행하지 않음</p>
-            <h3 className="mt-4 text-[24px] md:text-[32px] font-extrabold tracking-tight leading-tight max-w-[24ch]">프로토타입으로 확인할 일곱 가지</h3>
-            <ol className="mt-6 grid sm:grid-cols-2 gap-3 text-[15px] leading-snug">{['조건 확인 정확도', '조건 수정 성공률', '필수 참석자 설정 성공 여부', '추천 후보 비교 성공률', '후보 선택 소요 시간', '저장 상태 이해 정확도(저장·캘린더·알림 구분)', '오류 상황에서 다음 행동 선택 여부'].map((x, i) => <li key={x} className="rounded-[20px] bg-white p-4"><span className="text-[13px] font-semibold" style={{ color: S }}>0{i + 1}</span> {x}</li>)}</ol>
-            <p className="mt-5 text-[15px] leading-relaxed text-sub max-w-3xl">예정 방법: 과제 수행 과정을 관찰하고 혼란이 발생한 지점과 발화를 기록합니다. 이후 초기·개선 시안의 행동을 비교해 재설계합니다. 아직 수행하지 않아 수치와 인용문은 제시하지 않습니다.</p>
-          </div>
-        </div>
-      </section>
-
       <ProjectIndex current={'nodi'} />
       <Link to={`/work/${next.slug}`} className="group block rule">
         <div className="wrap gutter py-14 md:py-20 flex items-end justify-between gap-6">

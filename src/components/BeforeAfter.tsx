@@ -33,7 +33,6 @@ export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'AS
     <figure className="rounded-[24px] sm:rounded-[28px] border border-grid p-3 sm:p-4 md:p-8 bg-white">
       <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-8 items-start relative">
         <Col src={data.before} alt={data.beforeAlt} tag={beforeLabel} list={bef} />
-        <span aria-hidden className="absolute left-1/2 top-[38%] -translate-x-1/2 z-10 hidden md:grid place-items-center w-11 h-11 rounded-full bg-white border border-grid text-[18px] shadow-sm">→</span>
         <Col src={data.after} alt={data.afterAlt} tag={afterLabel} list={aft} after />
       </div>
       {(bef.length > 0 || aft.length > 0) && <div className="mt-5 space-y-5 sm:hidden">

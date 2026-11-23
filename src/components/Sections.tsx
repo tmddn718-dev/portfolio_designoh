@@ -41,7 +41,7 @@ function OliveShowcase() {
 function ProjectLabel({ p }: { p: Project }) {
   const labels: Record<string, string> = { 'karrot-large-furniture': 'UX REDESIGN / PERSONAL PROJECT', nodi: 'PRODUCT CONCEPT / FUNCTIONAL PROTOTYPE', woorisai: 'PRODUCT CONCEPT / PERSONAL PROJECT', trigr: 'SHIPPED PRODUCT / PROFESSIONAL EXPERIENCE' }
   const compact: Record<string, string> = { 'karrot-large-furniture': 'UX REDESIGN', nodi: 'PRODUCT CONCEPT', woorisai: 'PRODUCT CONCEPT', trigr: 'SHIPPED PRODUCT' }
-  return <><span className="text-[13px] font-semibold uppercase tracking-[.05em] text-sub md:hidden">{compact[p.slug]}</span><span className="hidden text-[12px] font-semibold uppercase tracking-[.08em] text-sub md:inline">{labels[p.slug]}</span></>
+  return <><span className="text-[11px] font-medium uppercase tracking-[.05em] text-sub md:hidden">{compact[p.slug]}</span><span className="hidden text-[13px] font-medium uppercase tracking-[.08em] text-sub md:inline">{labels[p.slug]}</span></>
 }
 
 function FeaturedOlive() {
@@ -72,10 +72,10 @@ function FeaturedOlive() {
 
 const projectOrder = ['karrot-large-furniture', 'nodi', 'woorisai', 'trigr']
 const cardCopy: Record<string, string> = {
-  'karrot-large-furniture': '대형 가구의 크기와 운반 조건을 채팅 전에 확인해, 구매자가 거래 가능 여부를 빠르게 판단하도록 개선했습니다.',
-  nodi: '여러 사람의 일정 조건을 구조화하고 추천 이유를 보여주되, 최종 회의 시간은 사용자가 직접 선택하도록 설계했습니다. 추천 기능은 규칙 기반 데모입니다.',
-  woorisai: '여러 앱에 흩어진 사진과 이야기를 하나의 추억으로 모으고, 사람·장소·시간을 기준으로 다시 찾도록 설계했습니다.',
-  trigr: '기획서에 빠진 사용자 흐름과 예외 상태를 설계하고, 팀과 협의해 태국 시장 출시까지 연결했습니다.',
+  'karrot-large-furniture': '거래 전 필요한 가구 정보와 운반 조건을 제공해 구매자가 거래 가능 여부를 빠르게 판단하도록 개선했습니다.',
+  nodi: '여러 사람의 일정과 선호도를 분석해 회의 추천 시간과 그 이유를 제공하고, 최종 일정은 사용자가 직접 선택하도록 설계했습니다.',
+  woorisai: '여러 앱에 흩어진 사진과 이야기를 하나의 추억으로 모으고, 사람과 장소를 기준으로 다시 발견하도록 설계했습니다.',
+  trigr: '복잡한 사용자 흐름과 예외 상황을 정리하고, 팀과 협업해 실제 서비스 출시까지 연결했습니다.',
 }
 
 function ThumbnailVisual({ p }: { p: Project }) {
@@ -157,9 +157,9 @@ function ProjectCard({ p }: { p: Project }) {
   const index = projectOrder.indexOf(p.slug) + 2
   return (
     <article className="group h-full border-b border-grid pb-5 md:border-0 md:pb-0">
-      <Link to={`/work/${p.slug}`} data-cursor="보기" aria-label={`${p.name} 케이스 스터디 보기`} className="grid h-full grid-cols-[104px_1fr] gap-4 rounded-[16px] focus-visible:outline-offset-4 md:flex md:flex-col md:rounded-[24px]">
+      <Link to={`/work/${p.slug}`} data-cursor="보기" aria-label={`${p.name} 케이스 스터디 보기`} className="grid h-full grid-cols-[88px_1fr] gap-4 rounded-[16px] focus-visible:outline-offset-4 md:flex md:flex-col md:rounded-[24px]">
         <div className="relative overflow-hidden rounded-[14px] md:rounded-[24px]"><div className="card-thumb"><div className="md:hidden"><MobileThumbnail p={p} /></div><div className="hidden md:block"><ThumbnailVisual p={p} /></div></div></div>
-        <div className="flex min-w-0 flex-1 items-start justify-between gap-3 md:mt-5 md:gap-5"><div className="min-w-0"><div className="flex flex-wrap items-center gap-x-3 gap-y-1"><span className="text-[13px] font-semibold tabular-nums text-ink md:text-[13px]">0{index} / 05</span><ProjectLabel p={p} /></div><h3 className="mt-2 text-[18px] font-semibold leading-[1.4] tracking-[-0.02em] group-hover:text-blue md:mt-3 md:text-[20px]">{p.name}</h3><p className="mt-1 line-clamp-3 max-w-[44ch] text-[15px] leading-[1.65] text-ink/70 md:mt-2">{cardCopy[p.slug]}</p></div><span aria-hidden className="text-[20px] transition-transform group-hover:translate-x-1 md:mt-7 md:text-[24px]">↗</span></div>
+        <div className="flex min-w-0 flex-1 items-start justify-between gap-3 md:mt-5 md:gap-5"><div className="min-w-0"><div className="flex flex-wrap items-center gap-x-3 gap-y-1"><span className="text-[12px] font-medium tabular-nums text-ink md:text-[0.875rem]">0{index} / 05</span><ProjectLabel p={p} /></div><h3 className="mt-3 text-[22px] font-bold leading-[1.3] tracking-[-0.025em] group-hover:text-blue md:mt-4 md:text-[26px]">{p.name}</h3><p className="mt-2 max-w-[44ch] text-[15px] leading-[1.65] text-ink/75 md:mt-3 md:text-[17px] md:leading-[1.65]">{cardCopy[p.slug]}</p></div><span aria-hidden className="text-[20px] transition-transform group-hover:translate-x-1 md:mt-7 md:text-[24px]">↗</span></div>
       </Link>
     </article>
   )

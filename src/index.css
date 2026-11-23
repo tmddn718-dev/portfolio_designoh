@@ -278,3 +278,6 @@ main article .wrap[class*="pt-20"] { padding-top: 36px; }
   main article .wrap:is([class*="py-14"], [class*="py-16"], [class*="py-20"], [class*="py-24"]) { padding-block: 60px; }
   main article .wrap[class*="pt-20"] { padding-top: 60px; }
 }
+
+/* 홈 콘텐츠 최대 너비 1080px (상세 페이지는 목업 크기를 지키려고 1200px 유지) */
+@media (min-width: 1200px) { html:has(#hero) .wrap { max-width: calc(1080px + 80px); } }

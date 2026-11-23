@@ -25,7 +25,7 @@ const Browser = ({ src, className }: { src: string; className: string }) => <div
 function StoryArt({ story }: { story: Story }) {
   if (story.slug === 'oliveyoung-todaydream') return <>
     <div className="absolute left-[7%] top-[7%] z-30 flex w-max max-w-[72%] flex-col items-start">
-      <p className="hidden lg:block max-w-[8ch] text-[clamp(31px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MORE OPTIONS.</p>
+      <p className="hidden lg:block max-w-[8ch] text-[clamp(29px,4vw,61px)] font-black leading-[1.1] tracking-[-.06em]">MORE OPTIONS.</p>
       <span className="mt-4 whitespace-nowrap rounded-full bg-[#151719] px-4 py-2 text-[13px] font-bold text-white shadow-[0_8px_20px_rgba(0,0,0,.14)] md:text-[13px]">오늘드림 품절</span>
     </div>
     <span className="absolute -right-[16%] -top-[18%] h-[70%] w-[70%] rounded-full border-[52px] border-white/20" />
@@ -34,18 +34,18 @@ function StoryArt({ story }: { story: Story }) {
   if (story.slug === 'karrot-large-furniture') return <>
     <img src="/proto/karrot/images/sofa.png" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
     <div className="absolute inset-0 bg-gradient-to-r from-[#F7E8D9]/95 via-[#F7E8D9]/60 to-transparent" />
-    <p className="hidden lg:block absolute left-[7%] top-[9%] z-10 max-w-[8ch] text-[clamp(31px,4.2vw,63px)] font-black leading-[1.1] tracking-[-.06em]">DECIDE BEFORE CHAT.</p>
+    <p className="hidden lg:block absolute left-[7%] top-[9%] z-10 max-w-[8ch] text-[clamp(29px,3.8vw,57px)] font-black leading-[1.1] tracking-[-.06em]">DECIDE BEFORE CHAT.</p>
     <Phone src="/images/karrot-large-furniture/f-home.webp?v=20261119-seedtext" className="bottom-[-28%] right-[33%] w-[27%] rotate-[-8deg] opacity-90 drop-shadow-[0_24px_38px_rgba(0,0,0,.22)]" />
     <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-seedtext" className="bottom-[-30%] right-[3%] z-10 w-[39%] rotate-[4deg] drop-shadow-[0_30px_48px_rgba(0,0,0,.3)]" />
   </>
   if (story.slug === 'nodi') return <>
-    <p className="hidden lg:block absolute left-[7%] top-[7%] z-20 max-w-[8ch] text-[clamp(31px,4.2vw,63px)] font-black leading-[1.1] tracking-[-.06em]">REASONS, NOT JUST TIMES.</p>
+    <p className="hidden lg:block absolute left-[7%] top-[7%] z-20 max-w-[8ch] text-[clamp(29px,3.8vw,57px)] font-black leading-[1.1] tracking-[-.06em]">REASONS, NOT JUST TIMES.</p>
     <span className="absolute -right-[12%] -top-[18%] h-[70%] w-[64%] rounded-full border-[48px] border-white/25" />
     <Browser src="/images/nodi/web-reco.webp" className="bottom-[7%] right-[5%] w-[72%] -rotate-2" />
     <Phone src="/images/nodi/full-review.webp" className="bottom-[-22%] left-[7%] z-10 w-[28%] rotate-[6deg] drop-shadow-[0_24px_42px_rgba(0,0,0,.28)]" />
   </>
   if (story.slug === 'woorisai') return <>
-    <p className="hidden lg:block absolute bottom-[8%] left-[7%] z-20 max-w-[8ch] text-[clamp(32px,4.5vw,68px)] font-black leading-[1.1] tracking-[-.06em]">MEMORIES, TOGETHER.</p>
+    <p className="hidden lg:block absolute bottom-[8%] left-[7%] z-20 max-w-[8ch] text-[clamp(30px,4vw,61px)] font-black leading-[1.1] tracking-[-.06em]">MEMORIES, TOGETHER.</p>
     <span className="absolute -right-[12%] -top-[24%] h-[78%] w-[64%] rounded-full bg-[#D7DDC9]" />
     <Phone src="/images/woorisai/detail.webp" className="right-[28%] top-[-14%] w-[32%] rotate-[-7deg] opacity-90 drop-shadow-[0_24px_40px_rgba(0,0,0,.22)]" />
     <Phone src="/images/woorisai/home.webp" className="right-[-3%] top-[-17%] z-10 w-[42%] rotate-[5deg] drop-shadow-[0_30px_46px_rgba(0,0,0,.26)]" />

@@ -26,7 +26,7 @@ function OliveShowcase() {
       <div aria-hidden className="absolute -right-[16%] -top-[16%] aspect-square w-[78%] rounded-full border-[52px] border-white/20" />
       <div className="absolute left-[7%] top-[7%] z-40 flex max-w-[60%] flex-col items-start">
         <p className="text-[12px] font-bold uppercase tracking-[.2em] text-[#31421B]">Purchase recovery / 2026</p>
-        <p className="mt-3 whitespace-nowrap text-[clamp(24px,3.3vw,48px)] font-black leading-[1] tracking-[-.065em] text-[#10150A]">OUT OF STOCK.<br />MORE OPTIONS.</p>
+        <p className="mt-3 whitespace-nowrap text-[clamp(22px,2.9vw,42px)] font-black leading-[1] tracking-[-.065em] text-[#10150A]">OUT OF STOCK.<br />MORE OPTIONS.</p>
         <span className="mt-4 rounded-full bg-[#11150D] px-4 py-2 text-[12px] font-bold text-white">오늘드림 품절</span>
       </div>
       <div className="absolute bottom-[6%] left-[7%] z-20 w-[32%] rotate-[-5deg] overflow-hidden rounded-[15px] border border-black/10 bg-white p-2 shadow-[0_24px_50px_rgba(35,50,15,.22)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-[-3deg]">
@@ -53,7 +53,7 @@ function FeaturedOlive() {
         <div className="flex flex-col p-6 md:col-span-5 md:p-10 lg:p-12">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sub"><span className="text-[13px] font-semibold tabular-nums text-ink">01 / 05</span><span className="text-[13px] font-semibold uppercase tracking-[.06em]">UX REDESIGN / PERSONAL PROJECT</span></div>
           <h3 className="mt-5 max-w-[13ch] text-[28px] font-bold leading-[1.2] tracking-[-0.035em] md:mt-7 md:text-[38px]">품절 이후에도 구매를 이어갈 수 있도록</h3>
-          <p className="mt-4 max-w-[38ch] text-[15px] leading-[1.65] text-ink/75 md:mt-5 md:text-[17px]">오늘드림 품절 시 일반배송과 매장 픽업을 바로 비교하고, 결제까지 이어갈 수 있도록 구매 흐름을 재설계했습니다.</p>
+          <p className="mt-4 max-w-[46ch] text-[15px] leading-[1.65] text-ink/75 md:mt-5 md:max-w-[38ch] md:text-[17px]">오늘드림 품절 시 일반배송과 매장 픽업을 바로 비교하고, 결제까지 이어갈 수 있도록 구매 흐름을 재설계했습니다.</p>
           <dl className="mt-6 grid grid-cols-2 gap-3 border-y border-[#CEDBB7] py-4 tabular-nums md:mt-8 md:gap-4 md:py-5">
             <div><dt className="text-[13px] leading-[1.45] text-sub">품절 후 결제 확정</dt><dd className="mt-1 text-[20px] font-bold tracking-tight md:text-[22px]">약 42초<span className="mt-0.5 block text-[13px] font-medium text-sub md:inline md:text-[14px]"> 평균 단축</span></dd></div>
             <div><dt className="text-[13px] leading-[1.45] text-sub">배송·혜택 확인 후 결정</dt><dd className="mt-1 text-[20px] font-bold tracking-tight md:text-[22px]">26초<span className="mt-0.5 block text-[13px] font-medium text-sub md:inline md:text-[14px]"> 평균 단축</span></dd></div>
@@ -87,7 +87,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <div className="absolute inset-0 bg-[#4A2D1E]/25" />
       <div className="absolute inset-y-0 left-0 w-[47%] bg-[#F5E7D8]/95" />
       <p className="absolute left-[6%] top-[8%] z-20 text-[12px] font-bold uppercase tracking-[.2em] text-[#A34510]">Karrot · UX redesign</p>
-      <p className="absolute left-[6%] top-[18%] z-20 max-w-[36%] text-[clamp(24px,3.5vw,50px)] font-black leading-[.98] tracking-[-.06em] text-[#271A14]">KNOW IT.<br />MOVE IT.</p>
+      <p className="absolute left-[6%] top-[18%] z-20 max-w-[36%] text-[clamp(22px,3.1vw,45px)] font-black leading-[.98] tracking-[-.06em] text-[#271A14]">KNOW IT.<br />MOVE IT.</p>
       <div className="absolute bottom-[8%] left-[6%] z-20 grid w-[35%] grid-cols-3 gap-1.5 border-y border-[#BDA48E] py-3 text-center text-[#593B2C]"><span className="text-[12px] uppercase tracking-wider">Width<b className="mt-1 block text-[13px] text-[#21150F]">140cm</b></span><span className="text-[12px] uppercase tracking-wider">Depth<b className="mt-1 block text-[13px] text-[#21150F]">80cm</b></span><span className="text-[12px] uppercase tracking-wider">Height<b className="mt-1 block text-[13px] text-[#21150F]">75cm</b></span></div>
       <Phone src="/images/karrot-large-furniture/L-b1.webp?v=20261119-seedtext" className="z-20 w-[39%] rotate-[6deg] drop-shadow-[0_32px_52px_rgba(31,18,10,.42)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:rotate-[3deg]" style={{ right: '6%', bottom: '-24%' }} />
     </div>
@@ -117,7 +117,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
       <div className="absolute right-[6%] top-[12%] z-10 h-[36%] w-[31%] rotate-[4deg] overflow-hidden bg-white p-2 shadow-[0_18px_40px_rgba(48,57,45,.18)] transition-transform duration-300 group-hover:rotate-[2deg]">
         <img {...thumbSet("/images/woorisai/feed.webp")} alt="" className="h-full w-full object-cover object-[50%_31%]" loading="lazy" decoding="async" />
       </div>
-      <div className="absolute bottom-[8%] right-[6%] z-30 w-[42%] border-l border-[#839284] pl-4"><p className="text-[12px] uppercase tracking-[.16em] text-[#66766A]">Nov. 08 · Hangang</p><p className="mt-2 text-[clamp(20px,2.8vw,40px)] font-black leading-[1.02] tracking-[-.055em] text-[#263B2F]">MEMORIES,<br />WITH CONTEXT.</p></div>
+      <div className="absolute bottom-[8%] right-[6%] z-30 w-[42%] border-l border-[#839284] pl-4"><p className="text-[12px] uppercase tracking-[.16em] text-[#66766A]">Nov. 08 · Hangang</p><p className="mt-2 text-[clamp(19px,2.5vw,36px)] font-black leading-[1.02] tracking-[-.055em] text-[#263B2F]">MEMORIES,<br />WITH CONTEXT.</p></div>
     </div>
   )
 
@@ -126,7 +126,7 @@ function ThumbnailVisual({ p }: { p: Project }) {
     <div className={`${tile} bg-[#F6E4F6]`}>
       <span aria-hidden className="absolute -right-[12%] top-[2%] aspect-square w-[62%] rounded-full bg-[#EBC4EC]/70" />
       <p className="absolute left-[6%] top-[8%] z-30 text-[12px] font-bold uppercase tracking-[.2em] text-[#8A2E8E]">Trigr · Shipped product</p>
-      <p className="absolute left-[6%] top-[18%] z-30 max-w-[46%] text-[clamp(24px,3.5vw,50px)] font-black leading-[.98] tracking-[-.06em] text-[#2A1230]">FROM GAPS<br />TO FLOWS.</p>
+      <p className="absolute left-[6%] top-[18%] z-30 max-w-[46%] text-[clamp(22px,3.1vw,45px)] font-black leading-[.98] tracking-[-.06em] text-[#2A1230]">FROM GAPS<br />TO FLOWS.</p>
       <ul className="absolute bottom-[8%] left-[6%] z-20 grid w-[42%] grid-cols-2 gap-2 text-[12px] font-bold text-[#4A1C50]">
         {['미션 탐색', '인증 피드', '상금 지급', '정산 신청'].map(t => <li key={t} className="rounded-full border border-[#D9A6DB] bg-white/80 px-3 py-2 text-center">{t}</li>)}
       </ul>
@@ -171,7 +171,7 @@ export function Work() {
     <section id="work" className="home-section wrap gutter scroll-mt-16">
       <Reveal className="grid gap-6 md:grid-cols-12 md:items-end"><div className="md:col-span-7"><p className="eyebrow text-bluetext">Selected work</p><SplitText as="h2" className="section-title mt-3 max-w-[18ch]" text={"화면보다,\n문제부터."} /></div><p className="body-copy md:col-span-4 md:col-start-9">UX 개선안부터 실제 출시 경험까지, 각 프로젝트에서 해결한 문제와 설계 근거를 확인할 수 있습니다.</p></Reveal>
       <Reveal className="mt-8 md:mt-14"><FeaturedOlive /></Reveal>
-      <div className="mt-16 md:mt-28"><div className="flex items-end justify-between gap-6 border-t border-grid pt-5"><h2 className="text-[24px] font-bold tracking-tight md:text-[30px]">이어지는 작업</h2><p className="hidden text-[14px] text-sub md:block">당근 / NODI / 우리사이 / trigr</p></div><div data-stagger className="mt-6 grid gap-x-8 gap-y-5 md:mt-10 md:grid-cols-2 md:gap-y-16">{selected.map(p => <ProjectCard key={p.slug} p={p} />)}</div></div>
+      <div className="mt-16 md:mt-28"><div className="flex items-end justify-between gap-6 border-t border-grid pt-5"><h2 className="text-[24px] font-bold tracking-tight md:text-[30px]">이어지는 작업</h2><p className="hidden text-[14px] text-sub md:block">당근 / NODI / 우리사이 / trigr</p></div><div data-stagger className="mt-6 grid gap-x-6 gap-y-5 md:mt-10 md:grid-cols-2 md:gap-y-16">{selected.map(p => <ProjectCard key={p.slug} p={p} />)}</div></div>
     </section>
   )
 }

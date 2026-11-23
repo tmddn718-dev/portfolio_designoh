@@ -134,7 +134,7 @@ export function CaseSummary({ p }: { p: Project }) {
           <div className={`${cell} md:col-span-5`}><p className={h}>내 역할</p><p className="mt-2 text-[17px] font-semibold leading-snug">{p.role}</p><p className="mt-1 text-[14px] text-sub">{p.period}</p><ul className="mt-3 flex flex-wrap gap-1.5">{p.tags.map(t => <li key={t} className="text-[13px] px-2.5 py-1 rounded-full bg-[#f5f5f7]">{t}</li>)}</ul></div>
           
           <div className={`${cell} md:col-span-12`}><p className={h}>핵심 결정</p><p className="mt-2 text-[20px] md:text-[26px] font-bold tracking-tight leading-snug whitespace-pre-line [text-wrap:pretty] md:max-w-none max-w-[40ch]">{p.summary.decision}</p></div>
-          <ul aria-label="컨셉 키워드" className="md:col-span-12 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">{p.summary.concept.map(([k, d], i) => <li key={k} className="rounded-[20px] p-5 md:p-6" style={{ background: tintOf(p.accent, 16), border: `1px solid ${tintOf(p.accent, 34)}` }}><p className="text-[13px] font-semibold" style={{ color: S }}>CONCEPT 0{i + 1}</p><p className="mt-3 apple-h text-[24px] md:text-[30px] text-ink">{k}</p><p className="mt-2 text-[15px] leading-snug text-ink/80">{d}</p></li>)}</ul>
+          <ul aria-label="컨셉 키워드" className="md:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">{p.summary.concept.map(([k, d], i) => <li key={k} className="rounded-[20px] p-5 md:p-6" style={{ background: tintOf(p.accent, 16), border: `1px solid ${tintOf(p.accent, 34)}` }}><p className="text-[13px] font-semibold" style={{ color: S }}>CONCEPT 0{i + 1}</p><p className="mt-3 apple-h text-[24px] md:text-[30px] text-ink">{k}</p><p className="mt-2 text-[15px] leading-snug text-ink/80">{d}</p></li>)}</ul>
         </Reveal>
       </div>
     </section>
@@ -151,9 +151,9 @@ export function ProjectIndex({ current }: { current: string }) {
         <ul className="mt-8 md:mt-0 md:col-span-8">
           {projects.map(p => (
             <li key={p.slug} className="rule">
-              <Link to={`/work/${p.slug}`} aria-current={p.slug === current ? 'page' : undefined} className={`group flex items-baseline justify-between gap-4 py-5 ${p.slug === current ? 'text-ink' : 'text-ink/70 hover:text-ink'}`}>
+              <Link to={`/work/${p.slug}`} aria-current={p.slug === current ? 'page' : undefined} className={`group flex flex-col items-start gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 ${p.slug === current ? 'text-ink' : 'text-ink/70 hover:text-ink'}`}>
                 <span className="text-[20px] md:text-[26px] font-bold tracking-tight">{p.name}{p.slug === current && <span className="ml-3 text-[13px] font-semibold text-bluetext align-middle">현재 보는 작업</span>}</span>
-                <span className="text-[13px] md:text-[14px] text-sub text-right">{p.slug === 'trigr' ? '출시 서비스' : p.kind} · {p.period}</span>
+                <span className="text-[13px] md:text-[14px] text-sub sm:text-right">{p.slug === 'trigr' ? '출시 서비스' : p.kind} · {p.period}</span>
               </Link>
             </li>
           ))}

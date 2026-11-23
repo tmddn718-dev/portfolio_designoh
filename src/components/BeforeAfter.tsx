@@ -12,6 +12,7 @@ export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'AS
   const aft = hasChanges ? [] : data.points.filter(p => p.startsWith('After')).map(p => strip(p, 'After'))
   const note = data.points.filter(p => !p.startsWith('Before') && !p.startsWith('After'))
   const pair = [{ src: data.before, alt: data.beforeAlt, tag: beforeLabel }, { src: data.after, alt: data.afterAlt, tag: afterLabel }]
+  const Bullets = ({ list, after }: { list: string[]; after?: boolean }) => <ul className="mt-3 space-y-2 text-[14px] sm:text-[15px] leading-snug">{list.map(t => <li key={t} className="flex gap-2"><span aria-hidden className="mt-[9px] w-1.5 h-1.5 shrink-0 rounded-full" style={{ background: after ? color : '#9a9a9a' }} /><span>{t}</span></li>)}</ul>
   const Col = ({ src, alt, tag, list, after }: { src: string; alt: string; tag: string; list: string[]; after?: boolean }) => (
     <div className="min-w-0">
       <span className={`inline-block px-2.5 py-1 sm:px-3 rounded-full text-[13px] font-bold ${after ? '' : 'bg-[#e8e8e8] text-ink'}`} style={after ? { background: color, color: onBrand(color) } : undefined}>{tag}</span>
@@ -25,7 +26,7 @@ export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'AS
           ))}
         </div>
       </div>
-      {list.length > 0 && <ul className="mt-3 space-y-2 text-[14px] sm:text-[15px] leading-snug">{list.map(t => <li key={t} className="flex gap-2"><span aria-hidden className="mt-[9px] w-1.5 h-1.5 shrink-0 rounded-full" style={{ background: after ? color : '#9a9a9a' }} /><span>{t}</span></li>)}</ul>}
+      {list.length > 0 && <div className="hidden sm:block"><Bullets list={list} after={after} /></div>}
     </div>
   )
   return (
@@ -35,6 +36,10 @@ export default function BeforeAfter({ data, color = '#3975f6', beforeLabel = 'AS
         <span aria-hidden className="absolute left-1/2 top-[38%] -translate-x-1/2 z-10 hidden md:grid place-items-center w-11 h-11 rounded-full bg-white border border-grid text-[18px] shadow-sm">→</span>
         <Col src={data.after} alt={data.afterAlt} tag={afterLabel} list={aft} after />
       </div>
+      {(bef.length > 0 || aft.length > 0) && <div className="mt-5 space-y-5 sm:hidden">
+        {bef.length > 0 && <div><b className="text-[13px] text-sub">{beforeLabel}</b><Bullets list={bef} /></div>}
+        {aft.length > 0 && <div><b className="text-[13px]" style={{ color: `color-mix(in srgb, ${color} 65%, black)` }}>{afterLabel}</b><Bullets list={aft} after /></div>}
+      </div>}
       {hasChanges && (
         <ol aria-label="바뀐 부분" className="mt-6 md:mt-8 space-y-3">
           {data.changes!.map(c => (

@@ -742,7 +742,7 @@ function Woorisai({ c }: { c: Ctx }) {
               <p className="mt-5 max-w-[60ch] text-[18px] leading-[1.65]">친구와 약속을 잡고, 만나서 사진을 찍고, 비용을 나누고, 나중에 그날을 떠올릴 때까지 사람들은 서로 다른 앱과 기능을 오가요. 그래서 하루의 사진과 이야기가 한곳에 남지 않아요.</p>
             </div>
             <div className="md:col-span-7 md:pt-4">
-              <ol aria-label="친구와의 하루에서 쓰는 앱" className="grid grid-cols-2 gap-3 md:gap-4">
+              <ol aria-label="친구와의 하루에서 쓰는 앱" className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
             {[['01', '약속 잡기', '메신저', '대화방에서 일정과 장소를 정해요'], ['02', '사진 공유', '각자의 갤러리', '사진이 각자의 휴대폰에 따로 남아요'], ['03', '정산', '정산 앱', '비용은 또 다른 앱에서 나눠요'], ['04', '추억 회상', '사진 앱', '나중에 그날을 사진 앱에서 찾아야 해요']].map(([n, t, app, d]) => (
               <li key={n} className="flex flex-col rounded-[20px] border border-grid bg-white p-4 md:rounded-[24px] md:p-6">
                 <span className="text-[13px] font-bold" style={{ color: S }}>{n}</span>

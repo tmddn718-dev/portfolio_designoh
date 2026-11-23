@@ -29,8 +29,9 @@ body { font-family: var(--font-sans); color: var(--color-ink); background: #fdfd
 }
 .gutter { padding-inline: 20px; }
 @media (min-width: 768px) { .gutter { padding-inline: 32px; } }
-@media (min-width: 1200px) { .gutter { padding-inline: 48px; } }
+@media (min-width: 1200px) { .gutter { padding-inline: 40px; } }
 .wrap { width: 100%; max-width: calc(var(--content-max) + 96px); margin-inline: auto; }
+@media (min-width: 1200px) { .wrap { max-width: calc(var(--content-max) + 80px); } } /* 가로 패딩 40px로 줄인 만큼 줄여 본문 폭은 그대로 */
 .home-section { padding-top: var(--space-section); }
 .section-title { font-size: var(--type-section); font-weight: 700; line-height: 1.18; letter-spacing: -.035em; }
 .body-copy { max-width: 62ch; font-size: var(--type-body); line-height: 1.7; color: var(--color-sub); }
@@ -263,3 +264,8 @@ main :is([class*="leading-snug"], [class*="leading-tight"], [class*="leading-[1.
 /* 22px 안팎의 강조 설명문(부제·핵심 결정 문장)은 1.55~1.6 */
 main p[class*="text-[2"]:not([class*="font-bold"], [class*="font-extrabold"], [class*="leading-none"]), main p[class*="text-[1"]:not([class*="font-bold"]) { line-height: 1.6; }
 main h3, main h4 { line-height: 1.4; }
+
+/* 모바일 카드 안쪽 여백 20px(데스크톱 24px은 그대로) */
+@media (max-width: 767px) {
+  main [class*="rounded-["]:is([class~="p-6"], [class~="p-7"]) { padding: 20px; }
+}

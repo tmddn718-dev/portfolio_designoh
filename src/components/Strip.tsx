@@ -15,7 +15,7 @@ export default function Strip({ label, children, dark = false }: { label: string
   return (
     <div className="relative">
       <div ref={ref} role="region" aria-label={`${label} (좌우로 스크롤, 방향키 사용 가능)`} tabIndex={0} className={`strip -mx-5 px-5 md:mx-0 md:px-0 ${dark ? 'no-bar' : ''}`}>{children}</div>
-      {!pos.end && <span aria-hidden className={`pointer-events-none absolute right-0 top-0 bottom-4 w-16 bg-gradient-to-l ${dark ? 'from-black/90' : 'from-white/90'} to-transparent`} />}
+      {!pos.end && <span aria-hidden className={`pointer-events-none absolute -right-5 md:right-0 top-0 bottom-4 w-16 bg-gradient-to-l ${dark ? 'from-black/90' : 'from-white/90'} to-transparent`} />}
       {showBtns && (
         <div className="mt-3 flex gap-2">
           <button type="button" onClick={() => go(-1)} disabled={pos.start} aria-label="이전 화면" className={`px-4 py-3 rounded-full border ${dark ? 'border-white/30 text-white' : 'border-grid'} text-[14px] disabled:opacity-40`}>← 이전</button>

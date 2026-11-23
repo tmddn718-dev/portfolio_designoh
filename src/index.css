@@ -15,7 +15,7 @@
 :root {
   --content-max: 1200px;
   --space-section: clamp(64px, 8vw, 120px);
-  --type-section: clamp(28px, 3.2vw, 44px);
+  --type-section: clamp(24px, 2.1vw, 30px);
   --type-body: clamp(15px, 1.2vw, 18px);
 }
 
@@ -33,7 +33,7 @@ body { font-family: var(--font-sans); color: var(--color-ink); background: #fdfd
 .wrap { width: 100%; max-width: calc(var(--content-max) + 96px); margin-inline: auto; }
 @media (min-width: 1200px) { .wrap { max-width: calc(var(--content-max) + 80px); } } /* 가로 패딩 40px로 줄인 만큼 줄여 본문 폭은 그대로 */
 .home-section { padding-top: var(--space-section); }
-.section-title { font-size: var(--type-section); font-weight: 700; line-height: 1.18; letter-spacing: -.035em; }
+.section-title { font-size: var(--type-section); font-weight: 700; line-height: 1.3; letter-spacing: -.035em; }
 .body-copy { max-width: 62ch; font-size: var(--type-body); line-height: 1.7; color: var(--color-sub); }
 .tabular-nums { font-variant-numeric: tabular-nums; }
 .eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }

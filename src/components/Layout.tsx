@@ -32,7 +32,7 @@ export default function Layout() {
     return () => { clearTimeout(t); mm.revert() }
   }, [pathname])
 
-  const link = 'nav-link px-3 py-3 text-[14px] text-ink/85 hover:text-ink'
+  const link = 'nav-link px-3 py-3 text-[13px] font-medium text-ink/85 hover:text-ink'
   const on = (c: boolean) => `${link} ${c ? 'text-ink font-semibold underline decoration-2 underline-offset-4' : ''}`
   const [dark, setDark] = useState(false)
   const [top, setTop] = useState(false)

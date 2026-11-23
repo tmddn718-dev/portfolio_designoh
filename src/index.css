@@ -187,7 +187,7 @@ main h1:not(#hero h1), main h2, main blockquote, .apple-h { line-height: 1.2; }
 main h3, main h4,
 main p[class*="font-bold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-bold"][class*="text-[3"]:not([class*="leading-none"]),
 main p[class*="font-semibold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-semibold"][class*="text-[3"]:not([class*="leading-none"]),
-main p[class*="font-extrabold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-extrabold"][class*="text-[3"]:not([class*="leading-none"]) { line-height: 1.35; }
+main p[class*="font-extrabold"][class*="text-[2"]:not([class*="leading-none"]), main p[class*="font-extrabold"][class*="text-[3"]:not([class*="leading-none"]) { line-height: 1.5; }
 @media (max-width: 767px) {
   main h1:not(#hero h1), main h2, main blockquote, .apple-h { line-height: 1.25; }
 }
@@ -240,3 +240,26 @@ html.lenis, html.lenis body { height: auto; }
 @media (max-width: 479px) { .pm-hide-back-sm .pm-back { display: none; } .pm-hide-back-sm .pm-main { left: 28% !important; width: 44% !important; } }
 @media (max-width: 479px) { .pm-fill.pm-hide-back-sm .pm-main { left: 22% !important; width: 56% !important; } }
 @media (prefers-reduced-motion: reduce) { .pm { transition: none; } .group:hover .pm-main, .group:hover .pm-back, .group:focus-within .pm-main, .group:focus-within .pm-back { --ty: 0px; --sc: 1; } }
+
+/* ── Typography System (상세 페이지 가독성 기준) ─────────────────────────
+   토큰(데스크톱 / 모바일): Body 16 / 15 · Card Description 15 / 14 · Caption 13 / 13(12 미만 금지) · Tag 12
+   규칙: 글자를 줄이지 않고 아래 최소값으로만 올린다(카드·그리드는 높이를 고정하지 않으므로 줄바꿈이 늘어도 늘어난다). */
+:root {
+  --ty-body: 16px; --ty-card-desc: 15px; --ty-caption: 13px; --ty-body-lh: 1.65; --ty-card-lh: 1.6;
+}
+@media (max-width: 767px) { :root { --ty-body: 15px; --ty-card-desc: 14px; } }
+
+/* 카드 밖 본문(p)은 데스크톱 16 / 모바일 15 이상, 카드 안 설명은 데스크톱 15 / 모바일 14 이상 */
+@media (min-width: 768px) {
+  main p[class*="text-[15px]"]:not([class*="rounded-["]):not([class*="rounded-["] *) { font-size: var(--ty-body); }
+  main [class*="text-[14px]"]:not(h1, h2, h3, h4, svg, [class*="text-[2"], [class*="text-[3"]) { font-size: var(--ty-card-desc); }
+}
+@media (max-width: 767px) {
+  main p[class*="text-[14px]"]:not([class*="rounded-["]):not([class*="rounded-["] *) { font-size: var(--ty-body); }
+}
+
+/* 두 줄 이상 본문·설명의 행간: 1.5 미만이던 leading-snug·tight·1.3x를 읽기 좋은 값으로 (큰 제목류 text-[2x~4x]는 제외) */
+main :is([class*="leading-snug"], [class*="leading-tight"], [class*="leading-[1.3"], [class*="leading-[1.4"]):not(h1, h2, h3, h4, [class*="text-[3"], [class*="text-[4"], [class*="text-[5"], [class*="text-[6"]) { line-height: 1.55; }
+/* 22px 안팎의 강조 설명문(부제·핵심 결정 문장)은 1.55~1.6 */
+main p[class*="text-[2"]:not([class*="font-bold"], [class*="font-extrabold"], [class*="leading-none"]), main p[class*="text-[1"]:not([class*="font-bold"]) { line-height: 1.6; }
+main h3, main h4 { line-height: 1.4; }

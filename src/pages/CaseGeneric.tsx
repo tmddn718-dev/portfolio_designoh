@@ -577,7 +577,7 @@ function Karrot({ c }: { c: Ctx }) {
           <div className="md:col-span-8">
             <p className="eyebrow" style={{ color: S }}>USABILITY TEST / AS-IS vs. TO-BE</p>
             <h2 className="mt-4 apple-h text-[30px] md:text-[52px]">채팅 전에 거래 정보를 확인하자, <br />약속 확정까지 평균 34초 빨라졌습니다.</h2>
-            <div className="mt-6 text-[17px] leading-[1.7] space-y-2">
+            <div className="mt-6 max-w-[713px] text-[17px] leading-[1.7] space-y-2">
               <p>대형 가구 거래에서 구매자가 게시글을 확인한 뒤 채팅으로 거래 약속을 확정하기까지의 과정을 비교했습니다.</p>
               <p>동일한 참가자 7명이 기존 당근 앱(AS-IS)과 개선 프로토타입(TO-BE)에서 같은 과제를 수행했습니다.</p>
             </div>

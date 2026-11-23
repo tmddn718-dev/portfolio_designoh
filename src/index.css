@@ -381,3 +381,78 @@ main article :is(p, li):is([class*="text-[17px]"]):is([class*="rounded-["], [cla
 @media (max-width: 767px) { main article :is(p, li):is([class*="text-[17px]"]):is([class*="rounded-["], [class*="rounded-["] *):not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 14px; } }
 main article :is(h3, h4).apple-h { line-height: 1.4; }
 main article :is(h3, h4).apple-h { letter-spacing: -.02em; }
+
+/* ══ 텍스트 +2px (데스크톱·태블릿 ≥768px) — 프로젝트 설명 문구(제목·부제·본문)만.
+   제외: 모바일, 배지·라벨(대문자·13px 이하·둥근 알약), 캡션, 버튼·링크, 썸네일·목업 안 글자.
+   행간은 단위 없는 비율이라 그대로 따라가고, 간격·본문 폭은 같은 비율(≈1.1)로 키운다. ═════════════════════ */
+:root { --ty-body: 18px; --ty-card-desc: 17px; }
+@media (max-width: 767px) { :root { --ty-body: 15px; --ty-card-desc: 14px; } }
+@media (min-width: 768px) {
+  :root { --type-section: clamp(26px, 2.2vw, 32px); --type-body: clamp(17px, 1.4vw, 20px); }
+  /* 상세 페이지: 명시 규칙 */
+  main article h1.case-h1 { font-size: 50px; }
+  main article h2, main article h2.apple-h { font-size: 42px; }
+  main article h2.ty-problem { font-size: 34px; }
+  main article .ty-question, main article h2.ty-question { font-size: 42px; }
+  main article h3 { font-size: 34px; }
+  main article [class*="rounded-["] :is(h3, h4), main article h4 { font-size: 24px; }
+  main article blockquote { font-size: 26px; }
+  main article p[class*="text-[2"]:not([class*="font-bold"], [class*="font-extrabold"], [class*="leading-none"], [class*="rounded-["] *) { font-size: 26px; }
+  main article p:is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"], [class*="text-[17px]"]):not([class*="font-"], [class*="rounded-["], [class*="rounded-["] *) { font-size: 20px; }
+  main article p[class*="text-[18px]"]:not([class*="font-"], [class*="rounded-["] *) { font-size: 20px; }
+  main article :is(p, li, dd, ul, ol):is([class*="text-[14px]"], [class*="text-[15px]"], [class*="text-[16px]"]):is([class*="rounded-["], [class*="rounded-["] *):not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 17px; }
+  main article :is(p, li):is([class*="text-[17px]"]):is([class*="rounded-["], [class*="rounded-["] *):not([class*="font-"], [class*="uppercase"], .eyebrow) { font-size: 17px; }
+  /* 간격·본문 폭 (×1.1) */
+  main article p { max-width: min(756px, 100%); }
+  main article :is(div, header):has(> h2:last-child) + p { margin-top: 26px; }
+  main article p + p:not([class*="mt-"], [class*="rounded-["] *) { margin-top: 18px; }
+  main article .wrap:is([class*="py-14"], [class*="py-16"], [class*="py-20"], [class*="py-24"]) { padding-block: 66px; }
+  main article .wrap[class*="pt-20"] { padding-top: 66px; }
+  main article [class*="rounded-["]:is([class~="p-5"], [class~="p-6"], [class~="p-7"]) { padding: 36px; }
+  /* 클래스로 크기를 지정한 나머지 문구: +2px (작은 값부터 순서대로 덮어써서 가장 큰 값이 이긴다) */
+  :where(main article) :where(p, li, blockquote)[class*="text-[14px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 16px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[15px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 17px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[16px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 18px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[17px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 19px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[18px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 20px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[19px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 21px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[20px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 22px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[21px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 23px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[22px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 24px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[23px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 25px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[24px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 26px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[26px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 28px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[28px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 30px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[30px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 32px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[32px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 34px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[34px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 36px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[36px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 38px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[38px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 40px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[40px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 42px; }
+  :where(main article) :where(p, li, blockquote)[class*="text-[44px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 46px; }
+  /* 홈 */
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[14px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 16px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[15px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 17px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[16px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 18px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[17px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 19px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[18px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 20px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[19px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 21px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[20px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 22px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[21px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 23px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[22px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 24px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[23px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 25px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[24px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 26px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[26px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 28px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[28px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 30px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[30px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 32px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[32px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 34px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[34px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 36px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[36px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 38px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[38px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 40px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[40px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 42px; }
+  :where(main > :not(article)) :where(p, li, blockquote, h3)[class*="text-[44px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"], [class*="text-[11px]"], [class*="absolute"], figcaption *, .card-thumb *, .phone-pro *) { font-size: 46px; }
+}
+/* 홈 카드(article 안) 설명: 상세용 카드 규칙(17px)이 새어 들어오지 않게 홈은 +2px(19px) */
+@media (min-width: 768px) {
+  main > :not(article) article :is(p, li)[class*="text-[17px]"]:not(.eyebrow, [class*="uppercase"], [class*="rounded-full"], [class*="text-[13px]"], [class*="text-[12px]"]) { font-size: 19px !important; }
+}

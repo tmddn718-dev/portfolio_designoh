@@ -832,9 +832,9 @@ function Woorisai({ c }: { c: Ctx }) {
 
       <section id="c4" className="wrap gutter py-14 md:py-24 scroll-mt-20 md:mt-8">
         <ChapterHead color={S} n="03" label="Actual UI" title="약속과 우리 공간은 추억을 돕는 보조 기능" />
-        <ul className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8" data-scale>
+        <Reveal as="ul" stagger slow className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
           {['plan', 'space', 'calendar', 'home'].map(n => <li key={n}><Screen src={I(n)} alt={`우리사이 화면 ${n}`} cap={({ plan: '초대받은 약속 · 참석 응답', space: '우리 공간', calendar: '추억 달력', home: '홈' } as Record<string, string>)[n]} /></li>)}
-        </ul>
+        </Reveal>
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="최신 프로토타입 직접 체험" note="현재 구현된 웹 프로토타입입니다." />
       </section>
 

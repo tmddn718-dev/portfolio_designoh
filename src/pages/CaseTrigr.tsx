@@ -145,13 +145,13 @@ export default function CaseTrigr() {
             <li key={t} className="rounded-[24px] bg-white border border-grid p-6 md:p-7 flex gap-4"><span className="text-[28px] font-extrabold leading-none num-brand">0{i + 1}</span><p className="text-[18px] leading-[1.55] font-semibold">{t}</p></li>
           ))}
         </Reveal>
-        <div role="region" aria-label="세 차례 개편 흐름 (좌우로 스크롤)" tabIndex={0} className="mt-8 -mx-5 px-5 md:mx-0 md:px-0 flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
+        <Reveal stagger slow attrs={{ role: 'region', tabIndex: 0 }} label="세 차례 개편 흐름 (좌우로 스크롤)" className="mt-8 -mx-5 px-5 md:mx-0 md:px-0 flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
           {stages.map(([n, c], i) => (
             <div key={n} className="w-[230px] shrink-0 md:w-auto rounded-[20px] p-5" style={{ background: i === 3 ? T(16) : '#F7F8FB' }}>
               <p className="text-[13px] font-bold" style={{ color: S }}>{n}</p><p className="mt-2 text-[15px] leading-snug">{c}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
 
           <h3 className="mt-24 apple-h text-[28px] md:text-[44px] max-w-[24ch]">누락된 흐름을 찾아 설계하고, 팀과 협의해 제품에 반영했습니다</h3>
         <ol className="mt-10 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">

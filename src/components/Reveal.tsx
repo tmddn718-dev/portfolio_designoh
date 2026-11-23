@@ -1,7 +1,7 @@
 import { useEffect, useRef, type ElementType, type ReactNode } from 'react'
 
 // 진입 시 opacity + translateY. stagger 면 자식이 차례로 등장한다. IntersectionObserver 미지원이면 즉시 표시.
-export default function Reveal({ children, className = '', delay = 0, stagger = false, fade = false, slow = false, label, as: Tag = 'div' }: { children: ReactNode; className?: string; delay?: number; stagger?: boolean; fade?: boolean; slow?: boolean; label?: string; as?: ElementType }) {
+export default function Reveal({ children, className = '', delay = 0, stagger = false, fade = false, slow = false, label, attrs, as: Tag = 'div' }: { children: ReactNode; className?: string; delay?: number; stagger?: boolean; fade?: boolean; slow?: boolean; label?: string; attrs?: Record<string, unknown>; as?: ElementType }) {
   const ref = useRef<HTMLElement>(null)
   useEffect(() => {
     const el = ref.current!
@@ -12,5 +12,5 @@ export default function Reveal({ children, className = '', delay = 0, stagger = 
     io.observe(el)
     return () => io.disconnect()
   }, [])
-  return <Tag ref={ref} aria-label={label} className={`reveal ${stagger ? 'stagger' : ''} ${slow ? 'seq-slow' : ''} ${fade ? 'reveal-fade' : ''} ${className}`} style={{ transitionDelay: `${delay}ms`, ['--d' as string]: `${delay}ms` }}>{children}</Tag>
+  return <Tag ref={ref} {...attrs} aria-label={label} className={`reveal ${stagger ? 'stagger' : ''} ${slow ? 'seq-slow' : ''} ${fade ? 'reveal-fade' : ''} ${className}`} style={{ transitionDelay: `${delay}ms`, ['--d' as string]: `${delay}ms` }}>{children}</Tag>
 }

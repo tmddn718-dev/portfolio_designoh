@@ -258,14 +258,14 @@ export default function CaseNodi() {
           <div className="mt-28 md:mt-40">
             <Head label="SOLUTION 04 / DECISION">최종 결정은<br />사용자에게 남겨두었습니다.</Head>
             <p className="mt-6 max-w-[56ch] text-[17px] leading-[1.65]">NODI는 회의 시간을 자동으로 확정하는 대신, 추천 결과와 근거를 확인한 사용자가 최종 시간을 선택하도록 설계했습니다.</p>
-            <ol className="mt-12 grid grid-cols-3 gap-3 md:gap-8 max-w-4xl">
+            <Reveal as="ol" stagger slow className="mt-12 grid grid-cols-3 gap-3 md:gap-8 max-w-4xl">
               {[['pickB', '추천 결과 확인'], ['reasonB', '추천 이유 검토'], ['review', '최종 시간 선택']].map(([n, t], i) => (
                 <li key={n}>
                   <p className="mb-3 text-[14px]"><b style={{ color: S }}>0{i + 1}</b> <span className="text-sub">{t}</span></p>
                   <Ph n={n} cap={t} />
                 </li>
               ))}
-            </ol>
+            </Reveal>
             <Key>AI는 조건 비교를 돕고, 사용자는 선택의 주체가 됩니다.</Key>
           </div>
         </div>

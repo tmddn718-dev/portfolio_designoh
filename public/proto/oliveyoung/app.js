@@ -215,7 +215,7 @@ class Component extends DCLogic {
     const cnt = { ok: 0, check: 0, off: 0 };
     stores.forEach((x) => { cnt[x.group]++; });
     const sFilter = st.storeFilter || 'all';
-    const chipStyle = (on) => 'flex:none;height:40px;padding:0 16px;border-radius:20px;font-size:14px;font-family:inherit;box-sizing:border-box;' + (on ? 'border:0;background:#131518;color:#FFFFFF;font-weight:600' : 'border:1px solid #DCDFE3;background:#FFFFFF;color:#3A3D42');
+    const chipStyle = (on) => 'flex:none;height:40px;padding:0 12px;border-radius:20px;font-size:14px;font-family:inherit;box-sizing:border-box;' + (on ? 'border:0;background:#131518;color:#FFFFFF;font-weight:600' : 'border:1px solid #DCDFE3;background:#FFFFFF;color:#3A3D42');
     const storeChips = [['all', '전체', stores.length], ['ok', '픽업 가능', cnt.ok], ['check', '확인 필요', cnt.check], ['off', '이용 불가', cnt.off]].map((c) => ({ label: c[1] + ' ' + c[2], selected: sFilter === c[0], style: chipStyle(sFilter === c[0]), pick: () => this.setState({ storeFilter: c[0] }) }));
     const gDefs = [['ok', '픽업 주문 가능한 매장'], ['check', '확인이 필요한 매장'], ['off', '현재 이용할 수 없는 매장']];
     const offOpen = !!st.offOpen || sFilter === 'off';
@@ -228,7 +228,8 @@ class Component extends DCLogic {
     const regionDefault = qNow === '' || qNow === '서울 구로구';
     const areaTitle = regionDefault ? '서울 구로구 주변 매장' : '‘' + qNow + '’ 검색 결과';
     const areaSub = stores.length + '곳 중 픽업 주문 가능 ' + cnt.ok + '곳';
-    const productName = isC ? '마데카소사이드 흔적리페어 10+1매' : '로제 PDRN 모공결광 10매';
+    const isMade = isC || st.optSel === 'A';
+    const productName = isMade ? '마데카소사이드 흔적리페어 10+1매' : '로제 PDRN 모공결광 10매';
     const recImg = { r1: IMG.rose, r2: IMG.tea };
     const addedItems = recDefs.filter((r) => st.recs[r.id]).map((r) => ({ name: r.name, img: recImg[r.id], priceText: fmt(r.price), remove: () => { const n = Object.assign({}, this.state.recs); n[r.id] = false; this.setState({ recs: n }); } }));
     const recs = recDefs.map((r) => {
@@ -299,7 +300,7 @@ class Component extends DCLogic {
         const o = this.state.optSel;
         const okO = o === 'A' || o === 'B' || (o === 'D' && this.state.teaStage === 'ok');
         if (this.state.recv === 'pickup' && okO) { this.setState({ screen: 'store', returnTo: 'options' }); return; }
-        if (this.state.recv === 'normal' && okO) { this.setState({ method: 'standard', screen: 'checkout' }); return; }
+        if (this.state.recv === 'normal' && okO) { this.setState({ method: 'standard', screen: 'checkout', g1Open: true }); return; }
         if (o === 'A' || (o === 'D' && this.state.teaStage === 'ok')) this.setState({ method: 'today', screen: 'checkout', g1Open: true });
         else if (o === 'B') this.openAlt();
         else if (o === 'C') this.setState({ screen: 'restock' });
@@ -359,8 +360,8 @@ class Component extends DCLogic {
       ctaNote: pickSel,
       ctaTap: () => { if (stdSel) this.setState({ method: 'standard', screen: 'checkout', g1Open: true }); else if (pickSel) this.setState({ method: 'pickup', screen: 'checkout', g1Open: true }); },
       stores: stores, storeChips: storeChips, storeGroups: storeGroups, emptyFilter: stores.length > 0 && storeGroups.length === 0, showAllStores: () => this.setState({ storeFilter: 'all' }), storeAllFailed: storeAllFailed, hasStores: stores.length > 0, noResults: stores.length === 0, query: st.query,
-      searchKey: (e) => { if (e.key === 'Enter') { e.preventDefault(); this.applyQuery(e.target.value.trim()); e.target.blur(); } }, searchChange: (e) => { this.applyQuery(e.target.value.trim()); }, clearQuery: () => this.applyQuery(''), areaTitle: areaTitle, areaSub: areaSub, storeLoading: !!st.storeLoading, listOpacity: st.storeLoading ? '0.4' : '1', storeBottom: storeAllFailed ? '196px' : '0px', storeAddr: st.pickStore ? sAddr[st.pickStore].split(' · ')[0] : '', pickPriceText: fmt(10000 * st.qty), isRecheck: sc === 'pickRecheck', isPickConfirm: sc === 'pickConfirm', pickConfirmBack: () => this.setState({ screen: 'store' }), pickConfirmChange: () => this.setState({ screen: 'store', returnTo: 'alt' }), pickContinue: () => this.setState({ method: 'pickup', screen: 'checkout', intent: 'buy' }), changeRegion: () => this.applyQuery(''), recheckAll: () => this.setState({ stores: { E: 'fail', F: 'closed' }, dTried: false }),
-      productName: productName, productImg: isC ? IMG.made : IMG.roseS,
+      searchKey: (e) => { if (e.key === 'Enter') { e.preventDefault(); this.applyQuery(e.target.value.trim()); e.target.blur(); } }, searchChange: (e) => { this.applyQuery(e.target.value.trim()); }, clearQuery: () => this.applyQuery(''), areaTitle: areaTitle, areaSub: areaSub, storeLoading: !!st.storeLoading, listOpacity: st.storeLoading ? '0.4' : '1', storeBottom: storeAllFailed ? '196px' : '0px', storeAddr: st.pickStore ? sAddr[st.pickStore].split(' · ')[0] : '', pickPriceText: fmt(10000 * st.qty), isRecheck: sc === 'pickRecheck', isPickConfirm: sc === 'pickConfirm', pickConfirmBack: () => this.setState({ screen: 'store' }), pickConfirmChange: () => this.setState({ screen: 'store', returnTo: 'alt' }), pickContinue: () => this.setState({ method: 'pickup', screen: 'checkout', intent: 'buy', g1Open: true }), changeRegion: () => this.applyQuery(''), recheckAll: () => this.setState({ stores: { E: 'fail', F: 'closed' }, dTried: false }),
+      productName: productName, productImg: isMade ? IMG.made : IMG.roseS,
       freeShip: free, notFree: !free,
       remainText: fmt(Math.max(0, 30000 - subtotal)),
       progressPct: +Math.min(100, subtotal / 300).toFixed(1) + '%',

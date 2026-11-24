@@ -466,3 +466,10 @@ main article :is(h3, h4).apple-h { letter-spacing: -.02em; }
 
 /* 상세 스티키 헤더 프로젝트명: 전역 +2px 규칙(21px)에서 -2px → 19px */
 nav[aria-label="챕터"] .chapter-title { font-size: 19px !important; }
+
+/* 웹(≥1024px) 상세 설명글 가독성: 14·15px 설명 텍스트를 +2px(→16·17px). 라벨·배지·버튼·링크·히어로 메타(dd)·탭형 목록은 제외 */
+@media (min-width: 1024px) {
+  main article figcaption { font-size: 17px !important; }
+  main article p[class*="text-[13px]"][class*="text-"]:is([class*="text-sub"], [class*="text-white/65"]):not(.eyebrow, [class*="font-"], [class*="tracking"], [class*="uppercase"], [class*="rounded-full"], [class*="md:text"], [class*="sm:text"]) { font-size: 16px !important; }
+  main article :is(div, ul, ol, dl, table)[class*="text-[15px]"] { font-size: 17px; }
+}

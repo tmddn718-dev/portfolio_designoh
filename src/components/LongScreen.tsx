@@ -169,11 +169,12 @@ export function ExtendedPhoneScreen({ src, srcs, alt, ratio, zoomSrc, caption, e
   )
 }
 
-export type PhoneSide = { src: string; alt: string; caption: string; label?: string; big?: boolean; ratio?: number }
+export type PhoneSide = { src: string; alt: string; caption: string; label?: string; big?: boolean; ratio?: number; fold?: string }
 
 // 7) 폰 목업 좌우 비교: AS-IS(왼쪽)와 TO-BE(오른쪽)를 같은 폰 프레임으로 나란히 보여준다. 누르면 AS-IS/TO-BE(+추가 화면)를 전환하며 확대한다.
 export function PhoneCompare({ n, title, asis, tobe, extra = [], decision, color, className = '' }: { n?: string; title: string; asis: PhoneSide; tobe: PhoneSide; extra?: { src: string; alt: string; tag: string; big?: string }[]; decision?: string; color: string; className?: string }) {
-  const pair = [{ src: asis.src, alt: asis.alt, tag: 'AS-IS' }, { src: tobe.src, alt: tobe.alt, tag: 'TO-BE', big: tobe.big ? tobe.src : undefined }, ...extra]
+  // fold: 하단 고정 CTA가 있는 긴 화면을 390×844에 담은 합성본(상단 콘텐츠 + 고정 하단 바). 확대하면 원본 전체 화면(src)을 본다
+  const pair = [{ src: asis.fold ?? asis.src, alt: asis.alt, tag: 'AS-IS', big: asis.fold ? asis.src : undefined }, { src: tobe.fold ?? tobe.src, alt: tobe.alt, tag: 'TO-BE', big: tobe.fold ? tobe.src : tobe.big ? tobe.src : undefined }, ...extra]
   // 두 프레임은 같은 비율로 통일한다(2.6 이하 화면은 더 긴 쪽에 맞추고, 그보다 긴 화면은 기본 기기 비율에서 위쪽만 보여준다). 더 짧은 화면은 자르지 않고 위쪽 정렬로 담는다.
   const cap = (r?: number) => (r && r <= 2.6 ? r : 2.164)
   const fr = Math.max(cap(asis.ratio), cap(tobe.ratio), 2.164)
@@ -181,7 +182,7 @@ export function PhoneCompare({ n, title, asis, tobe, extra = [], decision, color
   const Col = ({ side, i }: { side: PhoneSide; i: 0 | 1 }) => (
     <figure className="min-w-0">
       <span className="inline-block rounded-full px-2.5 py-1 text-[13px] font-bold" style={i ? { background: color, color: onBrand(color) } : { background: '#e8e8e8', color: '#111' }}>{i ? 'TO-BE' : 'AS-IS'}</span>
-      <Zoomable src={side.src} alt={side.alt} caption={`${i ? 'TO-BE' : 'AS-IS'} · ${side.caption}`} pair={pair} pairIndex={i} pairColor={color} className="phone-light mt-3 w-full" imgClass="screen" frameRatio={frameRatio} imgFit={side.ratio && side.ratio < fr - 0.01 ? 'contain' : undefined} />
+      <Zoomable src={side.fold ?? side.src} big={side.fold ? side.src : undefined} alt={side.alt} caption={`${i ? 'TO-BE' : 'AS-IS'} · ${side.caption}`} pair={pair} pairIndex={i} pairColor={color} className="phone-light mt-3 w-full" imgClass="screen" frameRatio={side.fold ? undefined : frameRatio} imgFit={!side.fold && side.ratio && side.ratio < fr - 0.01 ? 'contain' : undefined} />
       <figcaption className="mt-3 text-[13px] leading-[1.6] sm:text-[14px]" style={i ? undefined : { color: 'var(--color-sub)' }}>{side.caption}</figcaption>
     </figure>
   )

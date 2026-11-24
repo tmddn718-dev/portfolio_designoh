@@ -45,7 +45,7 @@ const Head = ({ label, children, className = '', sm = false, role, desc }: { lab
 // 모든 폰 목업은 390×844 프레임(phone-pro)으로 통일한다.
 // - 하단 고정 CTA가 있는 긴 화면(FOLD): 실제 폰에서 스크롤 맨 위일 때 보이는 모습(상단 콘텐츠 + 고정 하단 바)을 원본 픽셀로 이어 390×844에 담고, 눌러서 전체 화면을 본다
 // - CTA 없는 긴 스크롤 화면(LONG): 프레임은 고정하고 아래로 이어서 보여준다(Overflow)
-const FOLD = ['scA', 'scB', 'pickB', 'progress', 'recs', 'done']
+const FOLD = ['scA', 'scB', 'pickB', 'progress', 'recs', 'done', 'review', 'reschedNone']
 const LONG: Record<string, number> = { conds: 2214 / 780, recLoading: 2278 / 780 }
 const PhoneShot = ({ n, cap }: { n: string; cap: string }) => LONG[n]
   ? <ExtendedPhoneScreen src={full(n)} ratio={LONG[n]} alt={`NODI ${cap} 화면`} />

@@ -19,11 +19,11 @@ const karrotList = [['c1', '개요'], ['c2', '문제'], ['c3', '솔루션'], ['t
 const oliveList = [['c1', '개요'], ['c2', '문제 발견'], ['c3', '솔루션'], ['c4', '예외 상태'], ['c5', '회고']]
 
 // ── 공통 조각 ────────────────────────────────────────────
-const Screen = ({ src, alt, cap, className = '' }: { src: string; alt: string; cap?: string; className?: string }) => (
-  <Zoomable src={src} alt={alt} caption={cap ?? alt} className={`phone-light w-full ${className}`} imgClass="screen" />
+const Screen = ({ src, alt, cap, className = '', big }: { src: string; alt: string; cap?: string; className?: string; big?: string }) => (
+  <Zoomable src={src} big={big} alt={alt} caption={cap ?? alt} className={`phone-light w-full ${className}`} imgClass="screen" />
 )
-const Fig = ({ src, alt, cap, className = '' }: { src: string; alt: string; cap: string; className?: string }) => (
-  <figure className={className}><Screen src={src} alt={alt} cap={cap} /><figcaption className="mt-3 text-[14px] text-sub">{cap}</figcaption></figure>
+const Fig = ({ src, alt, cap, className = '', big }: { src: string; alt: string; cap: string; className?: string; big?: string }) => (
+  <figure className={className}><Screen src={src} alt={alt} cap={cap} big={big} /><figcaption className="mt-3 text-[14px] text-sub">{cap}</figcaption></figure>
 )
 const TALL: Record<string, number> = { 'n-pickupFail': 2000 / 780 } // 390×844보다 긴 스크롤 화면(하단 고정 CTA가 없는 것)만: 프레임은 고정하고 아래로 이어서 보여준다
 const Tall = ({ src, alt, cap, ratio, className = '' }: { src: string; alt: string; cap: string; ratio: number; className?: string }) => (
@@ -167,7 +167,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <div className="mt-8 rounded-[28px] bg-white p-5 md:p-10">
               <p className="eyebrow" style={{ color: S }}>Before / After · 개선안</p>
               <div className="mt-6 grid items-start gap-10 md:grid-cols-12">
-                <div className="mx-auto grid w-full max-w-[420px] grid-cols-2 items-start gap-3 md:col-span-5"><Fig src="/images/oliveyoung-todaydream/cart-asis-01-tall.jpg" alt="기존 장바구니 맨 위: 배송 방식 탭, 배송지, 상품과 옵션, 하단 고정 총액과 구매 버튼" cap="AS-IS · 기존 장바구니" /><Fig src={I('n-cart')} alt="개선 장바구니: 무료배송 남은 금액, 현재 상품, 함께 담기 좋은 상품과 담기 버튼, 배송 시간 선택 CTA" cap="TO-BE · 추천 상품과 남은 금액" /></div>
+                <div className="mx-auto grid w-full max-w-[420px] grid-cols-2 items-start gap-3 md:col-span-5"><Fig src="/images/oliveyoung-todaydream/fold-cart-asis-01.webp" big="/images/oliveyoung-todaydream/cart-asis-01-tall.jpg" alt="기존 장바구니 맨 위: 배송 방식 탭, 배송지, 상품과 옵션, 하단 고정 총액과 구매 버튼" cap="AS-IS · 기존 장바구니" /><Fig src={I('fold-n-cart')} big={I('n-cart')} alt="개선 장바구니: 무료배송 남은 금액, 현재 상품, 함께 담기 좋은 상품과 담기 버튼, 배송 시간 선택 CTA" cap="TO-BE · 추천 상품과 남은 금액" /></div>
                 <ol className="space-y-8 md:col-span-7">
                   {[
                     ['01', '무료배송 조건의 가시성', '현재 10,000원, 기준 30,000원, 남은 금액 20,000원과 진행 바(33.3%)를 한 카드에 모았습니다. 기준 금액은 프로토타입 예시 값입니다.'],
@@ -183,8 +183,8 @@ function OliveRenewed({ c }: { c: Ctx }) {
               <p className="mt-3 max-w-[48rem] text-[15px] leading-[1.65] text-sub">기존 장바구니에도 하단 고정 구매 버튼과 무료배송 안내가 있었습니다. 같은 정보 맥락의 화면을 나란히 비교했고, 눌러서 AS-IS와 TO-BE를 전환하며 확대해 볼 수 있습니다.</p>
               <div className="mt-8 space-y-14">
                 <PhoneCompare n="02" title="관련 상품 탐색" color={A}
-                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-03-tall.jpg', alt: '기존 장바구니: 함께 보면 좋은 상품 가로 카드 목록', ratio: 1880 / 780, caption: '‘함께 보면 좋은 상품’을 가로 카드로 넘겨 보며 상품 정보 중심으로 탐색해요.' }}
-                  tobe={{ src: I('n-cartAdded'), alt: '개선 장바구니: 함께 담기 좋은 상품 목록과 담기 버튼, 무료배송 조건 안내', ratio: 1880 / 780, caption: '‘함께 담기 좋은 상품’을 한 줄씩 보여주고, 담기 버튼과 무료배송 조건 충족 여부를 함께 확인해요.' }}
+                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-03-tall.jpg', fold: '/images/oliveyoung-todaydream/fold-cart-asis-03.webp', alt: '기존 장바구니: 함께 보면 좋은 상품 가로 카드 목록', ratio: 1880 / 780, caption: '‘함께 보면 좋은 상품’을 가로 카드로 넘겨 보며 상품 정보 중심으로 탐색해요.' }}
+                  tobe={{ src: I('n-cartAdded'), fold: I('fold-n-cartAdded'), alt: '개선 장바구니: 함께 담기 좋은 상품 목록과 담기 버튼, 무료배송 조건 안내', ratio: 1880 / 780, caption: '‘함께 담기 좋은 상품’을 한 줄씩 보여주고, 담기 버튼과 무료배송 조건 충족 여부를 함께 확인해요.' }}
                   decision="추천 상품을 구경하는 목록에서, 현재 장바구니 금액과 무료배송 조건을 보며 담을지 판단하는 목록으로 바꿨어요." />
               </div>
             </div>
@@ -230,7 +230,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
         <div className="mt-12"><Strip label="구매 예외 상황 갤러리">{[
           ['n-optFail', '재고 확인 실패'], ['n-altNone', '전체 품절'], ['n-restock', '재입고 알림'], ['n-stockChanged', '주문 직전 재고 변경'],
           ['n-pickupFail', '픽업 재고 조회 실패'], ['n-pickupNone', '픽업 가능 매장 없음'],
-        ].map(([n, label]) => <figure key={n} className="w-[230px] shrink-0">{TALL[n] ? <ExtendedPhoneScreen src={I(n)} alt={`${label} 화면`} ratio={TALL[n]} /> : <Screen src={I(n)} alt={`${label} 화면`} />}<figcaption className="mt-3 text-[14px] text-sub">{label}</figcaption></figure>)}</Strip></div>
+        ].map(([n, label]) => <figure key={n} className="w-[230px] shrink-0">{TALL[n] ? <ExtendedPhoneScreen src={I(n)} alt={`${label} 화면`} ratio={TALL[n]} /> : <Screen src={n === 'n-pickupNone' ? I('fold-n-pickupNone') : I(n)} big={n === 'n-pickupNone' ? I(n) : undefined} alt={`${label} 화면`} />}<figcaption className="mt-3 text-[14px] text-sub">{label}</figcaption></figure>)}</Strip></div>
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="재고 상태에 따른 흐름을 직접 확인해보세요" />
       </section>
 

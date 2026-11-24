@@ -25,6 +25,10 @@ const Screen = ({ src, alt, cap, className = '' }: { src: string; alt: string; c
 const Fig = ({ src, alt, cap, className = '' }: { src: string; alt: string; cap: string; className?: string }) => (
   <figure className={className}><Screen src={src} alt={alt} cap={cap} /><figcaption className="mt-3 text-[14px] text-sub">{cap}</figcaption></figure>
 )
+const TALL: Record<string, number> = { 'n-pickupFail': 2000 / 780, 'n-pickupNone': 2400 / 780 } // 390×844보다 긴 화면: 프레임은 고정하고 아래로 이어서 보여준다
+const Tall = ({ src, alt, cap, ratio, className = '' }: { src: string; alt: string; cap: string; ratio: number; className?: string }) => (
+  <figure className={className}><ExtendedPhoneScreen src={src} alt={alt} ratio={ratio} /><figcaption className="mt-3 text-[14px] text-sub">{cap}</figcaption></figure>
+)
 const Ann = ({ n, t, d, color }: { n: string; t: string; d?: string; color: string }) => (
   <li className="flex gap-3"><span className="shrink-0 grid place-items-center w-7 h-7 rounded-full text-[13px] font-bold" style={{ background: color, color: onBrand(color) }}>{n}</span><div><p className="text-[16px] font-bold leading-snug">{t}</p>{d && <p className="mt-0.5 text-[14px] leading-snug text-sub">{d}</p>}</div></li>
 )
@@ -137,7 +141,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
             {p.beforeAfter?.[0] && <div className="mt-8"><BeforeAfter data={p.beforeAfter[0]} color={A} /></div>}
             <div className="mt-8 grid items-center gap-6 md:grid-cols-12 md:gap-10">
               <div className="md:col-span-7"><Result value="평균 약 42초 단축" task="품절 이후 대체 구매 경로를 찾아 결제를 확정하는" /></div>
-              <div className="mx-auto grid max-w-[360px] grid-cols-2 gap-3 md:col-span-5 md:max-w-none"><Fig src={I('n-altMethods')} alt="다른 구매 방법 안내" cap="일반배송과 픽업 비교" /><Fig src={I('n-pickup')} alt="매장 픽업 선택" cap="픽업 매장 선택" /></div>
+              <div className="mx-auto grid max-w-[360px] grid-cols-2 gap-3 md:col-span-5 md:max-w-none"><Fig src={I('n-altMethods')} alt="다른 구매 방법 안내" cap="일반배송과 픽업 비교" /><Tall src={I('n-pickup')} alt="매장 픽업 선택" cap="픽업 매장 선택" ratio={2400 / 780} /></div>
             </div>
             <p className="mt-5 max-w-[48rem] text-[15px] leading-[1.65] text-sub">가능한 구매 경로를 바로 확인하는 개선 흐름에서 과제 수행 시간이 짧게 나타났습니다.</p>
           </article>
@@ -163,7 +167,9 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <div className="mt-8 rounded-[28px] bg-white p-5 md:p-10">
               <p className="eyebrow" style={{ color: S }}>Before / After · 개선안</p>
               <div className="mt-6 grid items-start gap-10 md:grid-cols-12">
-                <div className="mx-auto grid w-full max-w-[420px] grid-cols-2 items-start gap-3 md:col-span-5"><Fig src="/images/oliveyoung-todaydream/cart-asis-01-tall.jpg" alt="기존 장바구니 맨 위: 배송 방식 탭, 배송지, 상품과 옵션, 하단 고정 총액과 구매 버튼" cap="AS-IS · 기존 장바구니" /><Fig src={I('n-cart')} alt="개선 장바구니: 무료배송 남은 금액, 현재 상품, 함께 담기 좋은 상품과 담기 버튼, 배송 시간 선택 CTA" cap="TO-BE · 추천 상품과 남은 금액" /></div>
+                <div className="mx-auto w-full max-w-[420px] md:col-span-5"><PhoneOverflowCompare color={A}
+                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-01-tall.jpg', ratio: 1720 / 780, alt: '기존 장바구니 맨 위: 배송 방식 탭, 배송지, 상품과 옵션, 하단 고정 총액과 구매 버튼', caption: '기존 장바구니' }}
+                  tobe={{ src: I('n-cart'), ratio: 1720 / 780, alt: '개선 장바구니: 무료배송 남은 금액, 현재 상품, 함께 담기 좋은 상품과 담기 버튼, 배송 시간 선택 CTA', caption: '추천 상품과 남은 금액' }} /></div>
                 <ol className="space-y-8 md:col-span-7">
                   {[
                     ['01', '무료배송 조건의 가시성', '현재 10,000원, 기준 30,000원, 남은 금액 20,000원과 진행 바(33.3%)를 한 카드에 모았습니다. 기준 금액은 프로토타입 예시 값입니다.'],
@@ -226,7 +232,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
         <div className="mt-12"><Strip label="구매 예외 상황 갤러리">{[
           ['n-optFail', '재고 확인 실패'], ['n-altNone', '전체 품절'], ['n-restock', '재입고 알림'], ['n-stockChanged', '주문 직전 재고 변경'],
           ['n-pickupFail', '픽업 재고 조회 실패'], ['n-pickupNone', '픽업 가능 매장 없음'],
-        ].map(([n, label]) => <figure key={n} className="w-[230px] shrink-0"><Screen src={I(n)} alt={`${label} 화면`} /><figcaption className="mt-3 text-[14px] text-sub">{label}</figcaption></figure>)}</Strip></div>
+        ].map(([n, label]) => <figure key={n} className="w-[230px] shrink-0">{TALL[n] ? <ExtendedPhoneScreen src={I(n)} alt={`${label} 화면`} ratio={TALL[n]} /> : <Screen src={I(n)} alt={`${label} 화면`} />}<figcaption className="mt-3 text-[14px] text-sub">{label}</figcaption></figure>)}</Strip></div>
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="재고 상태에 따른 흐름을 직접 확인해보세요" />
       </section>
 
@@ -352,7 +358,7 @@ function Olive({ c }: { c: Ctx }) {
             <Num n="02" t="수령 방법별로 재고와 주문 가능 상태를 구분" />
             <p className="mt-4 text-[17px] leading-[1.65] max-w-2xl">오늘드림 품절을 상품 전체 품절로 읽지 않도록, 오늘드림은 배송지 · 일반배송은 동일 옵션 · 매장 픽업은 선택한 매장 기준으로 따로 확인해요. <b>재고 조회 실패는 품절로 표시하지 않아요.</b></p>
             <ul className="mt-5 flex flex-wrap gap-2" aria-label="재고 상태">{states.map(s => <li key={s} className="px-4 py-2 rounded-full bg-white border border-grid text-[14px]">{s}</li>)}</ul>
-            <div className="mt-10 grid grid-cols-3 gap-4 md:gap-6 md:max-w-3xl"><Fig src={I('n-altMethods')} alt="일반배송 구매 가능" cap="일반배송 구매 가능" /><Fig src={I('n-pickup')} alt="픽업 매장 선택" cap="픽업 매장 선택" className="md:mt-10" /><Fig src={I('n-stockChanged')} alt="주문 직전 재고 변동" cap="주문 직전 재고 변동" /></div>
+            <div className="mt-10 grid grid-cols-3 gap-4 md:gap-6 md:max-w-3xl"><Fig src={I('n-altMethods')} alt="일반배송 구매 가능" cap="일반배송 구매 가능" /><Tall src={I('n-pickup')} alt="픽업 매장 선택" cap="픽업 매장 선택" ratio={2400 / 780} className="md:mt-10" /><Fig src={I('n-stockChanged')} alt="주문 직전 재고 변동" cap="주문 직전 재고 변동" /></div>
             <p className="mt-4 text-[15px] leading-relaxed text-sub max-w-2xl">옵션·수량·배송지·매장이 바뀌면 그 조건으로 재고를 다시 확인하고, 주문 직전에 재고가 소진되면 상품 정보를 유지한 채 다른 구매 방법을 다시 고르게 해요.</p>
           </Reveal>
           {p.beforeAfter?.[1] && <div className="mt-16"><div className="max-w-[62ch]"><p className="eyebrow rule pt-4 text-sub">Before / After · 수령 방법 선택</p><h3 className="mt-4 text-[28px] md:text-[32px] font-bold tracking-tight leading-tight">수령 방법의 존재 확인에서, 구매 가능한 방법을 비교·선택으로</h3><p className="mt-4 text-[15px] text-sub"></p></div><div className="mt-8"><BeforeAfter data={p.beforeAfter[1]} color={A} /></div></div>}

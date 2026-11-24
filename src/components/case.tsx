@@ -47,7 +47,7 @@ export function ChapterNav({ active, list = chapters, title, onCta }: { active: 
     <div className="wrap gutter"><div className="pointer-events-auto relative rounded-[16px] bg-[rgba(29,29,31,.95)] text-white backdrop-blur-xl overflow-hidden shadow-[0_10px_30px_-12px_rgba(0,0,0,.5)]">
       <div aria-hidden className="absolute left-0 bottom-0 h-[2px] bg-[#2997ff]" style={{ width: `${w}%` }} />
       <div className="px-5 flex items-center justify-between gap-4 h-[52px]">
-        {title && <p className="hidden sm:block text-[19px] font-semibold tracking-tight shrink-0">{title}</p>}
+        {title && <p className="chapter-title hidden sm:block text-[19px] font-semibold tracking-tight shrink-0">{title}</p>}
         <ol className="flex items-center gap-5 overflow-x-auto text-[13px] min-w-0 flex-1 sm:flex-none">
           {list.map(([id, label]) => (
             <li key={id}><a href={`#${id}`} aria-current={active === id ? 'true' : undefined}

@@ -11,9 +11,11 @@
 <meta name="apple-mobile-web-app-title" content="우리사이">
 <style id="hi-safe">:root{--sab:34px}
 /* 390×844 기기 기준 하단 홈 인디케이터 영역(안전 영역 34px). 탭바·하단 시트·CTA는 --sab 만큼 위로 올라간다 */
-div:has(>.ws-scroll)::after{content:"";position:absolute;left:50%;bottom:8px;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:#161616;z-index:60;pointer-events:none}
-div:has(>.ws-scroll):has([aria-label="사진 크게 보기"])::after{background:#fff}
-@media (hover:none) and (pointer:coarse){:root{--sab:env(safe-area-inset-bottom,0px)}div:has(>.ws-scroll)::after{display:none}}</style>
+div:not([role=dialog]):has(>.ws-scroll)::after{content:"";position:absolute;left:50%;bottom:8px;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:#161616;z-index:60;pointer-events:none}
+div:not([role=dialog]):has(>.ws-scroll):has([aria-label="사진 크게 보기"])::after{background:#fff}
+/* 하단 바(탭바·고정 CTA)가 없는 스크롤 화면은 목록 끝이 인디케이터에 가리지 않도록 끝에 안전 영역만큼 여백 */
+div:not([role=dialog]):has(>.ws-scroll):not(:has(.ws-bnav)):not(:has(.wsux-fixed-bar))>.ws-scroll{padding-bottom:var(--sab,0px)}
+@media (hover:none) and (pointer:coarse){:root{--sab:env(safe-area-inset-bottom,0px)}div:not([role=dialog]):has(>.ws-scroll)::after{display:none}}</style>
 <link rel="stylesheet" href="./ux-test/a11y-p0.css">
 <link rel="stylesheet" href="./ux-test/ux-test.css">
 </head>
@@ -1848,7 +1850,7 @@ class Component extends DCLogic {
       // me
       meStats: [{ label: '추억', value: all.length }, { label: '함께한 사람', value: s.friends.length }, { label: '지역', value: usedRegions.length }],
       peopleRows: s.friends.map((p, i) => ({ nick: p, count: all.filter(m => m.w.includes(p)).length, border: i ? '1px solid var(--ws-color-border-subtle)' : '0' })),
-      logout: () => { ev('logout'); location.href = '/#/login'; },
+      logout: () => { ev('logout'); this.setState({ auth: 'guest', tab: 'home', stack: [], overlay: null }); }, // 포트폴리오 안에서는 사이트 밖으로 나가지 않고 게스트 둘러보기 모드로 전환
       // detail
       cur, region, regionPeek, mapMarkers, footDomestic: s.footScope === 'domestic', footOverseas: s.footScope === 'overseas', showDomestic: () => this.setState({ footScope: 'domestic' }), showOverseas: () => this.setState({ footScope: 'overseas' }), domesticBg: s.footScope === 'domestic' ? 'var(--ws-color-bg-surface)' : 'transparent', domesticFg: s.footScope === 'domestic' ? 'var(--ws-color-fg-brand)' : 'var(--ws-color-fg-secondary)', overseasBg: s.footScope === 'overseas' ? 'var(--ws-color-bg-surface)' : 'transparent', overseasFg: s.footScope === 'overseas' ? 'var(--ws-color-fg-brand)' : 'var(--ws-color-fg-secondary)', mapRegionCount: mapMarkers.length,
       openMore: () => this.say(guest ? '예시 추억에서는 볼 수만 있어요.' : '대표 사진 바꾸기 · 내 기록 삭제 · 신고는 다음 단계에서 연결돼요.'),

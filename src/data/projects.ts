@@ -240,7 +240,7 @@ export const projects: Project[] = [
     summary: { concept: [['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자마다 사진과 이야기를 한 추억에'], ['다시 발견', '사람·장소·시간으로 다시 찾기'], ['대화', '사진 아래에서 바로 반응·댓글']], short: '흩어진 기억을 하나의 추억으로', about: '친구와 함께한 사진과 이야기를 하나의 추억으로 모으고, 시간이 지난 뒤에도 다시 찾아 대화하도록 설계한 공동 기록 서비스입니다.', decision: '그룹 생성 없이 하나의 추억부터 기록을 시작합니다.\n사진별 반응·댓글과 사람·장소·시간 기반 탐색으로, 기록이 다시 대화로 이어지게 설계했습니다.', status: '참여자 7명의 설문과 서버 권한 시나리오 테스트를 진행했습니다. 사진별 반응과 발자국 기능의 사용성은 아직 검증하지 않았습니다.', kind: 'evidence' },
     accent: '#566B5C',
     mock: { srcs: ['/images/woorisai/feed.webp', '/images/woorisai/home.webp', '/images/woorisai/new.webp'], framed: true },
-    proto: { url: '/proto/woorisai/index.html?v=20261124-safe', w: 390, h: 844, pro: true },
+    proto: { url: '/proto/woorisai/index.html?v=20261124-safe2', w: 390, h: 844, pro: true },
     gallery: [
       { src: '/images/woorisai/home.webp', alt: '홈: 최근 함께한 추억, 다가오는 약속, 우리의 발자국', caption: '홈' },
       { src: '/images/woorisai/feed.webp', alt: '추억 피드: 초대된 사람만 보는 공동 게시물', caption: '추억 피드' },

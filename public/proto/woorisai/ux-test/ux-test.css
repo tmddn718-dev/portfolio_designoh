@@ -60,7 +60,7 @@
 .ws-bnav__item[aria-current="true"] lucide-icon,.ws-bnav__item[aria-current="page"] lucide-icon{animation:wsux-icon-settle var(--wsux-motion-base) var(--wsux-ease-spring) both}
 button[aria-pressed="true"]{animation:wsux-select var(--wsux-motion-base) var(--wsux-ease-spring)}
 button[style*="position:absolute"][style*="translate(-50%,-50%)"] img,button[style*="position:absolute"][style*="translate(-50%,-50%)"]>span{animation:wsux-marker-in var(--wsux-motion-slow) var(--wsux-ease-spring) both}
-.wsux-fixed-bar{padding-bottom:calc(14px + env(safe-area-inset-bottom))!important}
+.wsux-fixed-bar{padding-bottom:calc(14px + var(--sab,0px))!important}
 .wsux-fixed-bar .ws-btn{min-height:52px;border-radius:16px}
 .wsux-fixed-bar{animation:wsux-fixed-in var(--wsux-motion-base) var(--wsux-ease-out) both}
 .wsux-scrim{animation:wsux-fade-in 160ms ease-out both}

@@ -6,6 +6,11 @@
     <title>당근 대형 가구 거래 정보 · 전체 화면</title>
     <script type="module" crossorigin src="./assets/index-6_Q34HYy.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CTmJuD_s.css">
+    <style id="hi-safe">:root{--sab:34px}
+      /* 390×844 기기 기준 하단 홈 인디케이터 영역(안전 영역 34px): 화면과 탭바·하단 바는 --sab 만큼 위로 올라가고, 그 아래는 앱 배경색 */
+      .karrot-app .screen{bottom:var(--sab,0px)}
+      .karrot-app::after{content:"";position:absolute;left:50%;bottom:8px;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:#161616;z-index:9999;pointer-events:none}
+      @media (hover:none) and (pointer:coarse){:root{--sab:env(safe-area-inset-bottom,0px)}.karrot-app::after{display:none}}</style>
   </head>
   <body>
     <div id="root"></div>

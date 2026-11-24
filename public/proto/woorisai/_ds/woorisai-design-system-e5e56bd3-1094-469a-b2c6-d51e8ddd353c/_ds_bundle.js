@@ -1465,7 +1465,7 @@ function BottomSheet({
       width: 375,
       maxWidth: 520,
       boxSizing: 'border-box',
-      padding: '8px 20px calc(24px + env(safe-area-inset-bottom,0px))',
+      padding: '8px 20px calc(24px + var(--sab,0px))',
       borderRadius: '20px 20px 0 0',
       background: 'var(--ws-color-bg-elevated)',
       boxShadow: 'var(--ws-elevation-3)',

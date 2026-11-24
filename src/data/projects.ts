@@ -39,7 +39,7 @@ export const projects: Project[] = [
     summary: { concept: [['회복', '품절 이후 다른 구매 방법으로 연결'], ['판단', '무료배송 조건과 연관 상품을 가까이 배치'], ['구조', '결제 정보를 목적별로 3그룹화'], ['검증', '두 과제의 평균 소요 시간 단축 확인']], short: '품절 이후에도 구매를 이어가는 경험', about: '오늘드림 품절 후 일반배송과 매장 픽업을 바로 확인하고, 장바구니와 주문·결제까지 이어갈 수 있도록 구매 흐름을 재설계했습니다.', decision: '품절 상태를 대체 구매 경로와 연결했습니다.\n장바구니에는 무료배송 조건과 연관 상품을 함께 배치하고, 주문·결제 정보는 목적에 따라 세 그룹으로 정리했습니다.', status: '동일한 참여자 8명이 기존 앱과 개선 프로토타입을 비교했습니다. 두 과제의 평균 소요 시간은 각각 약 42초와 26초 단축됐습니다.', kind: 'evidence' },
     accent: '#82DC28',
     mock: { srcs: ['/images/oliveyoung-todaydream/n-altMethods.webp', '/images/oliveyoung-todaydream/n-optC-indicator.png', '/images/oliveyoung-todaydream/n-restock.webp'], framed: true },
-    proto: { url: '/proto/oliveyoung/index.html', w: 390, h: 844, pro: true },
+    proto: { url: '/proto/oliveyoung/index.html?v=20261124-safe', w: 390, h: 844, pro: true },
     extra: {
       eyebrow: 'Commerce flow',
       title: '매출과 연결되는 구매 구간도 함께 개선',
@@ -144,7 +144,7 @@ export const projects: Project[] = [
         points: ['※ Before는 실제 당근 앱 화면 캡처이며 개인정보는 가렸습니다'],
       },
     ],
-    proto: { url: '/proto/karrot/index.html?sc=home&v=20261122-uxfix', w: 390, h: 844, pro: true },
+    proto: { url: '/proto/karrot/index.html?sc=home&v=20261124-safe', w: 390, h: 844, pro: true },
     gallery: [
       { src: '/images/karrot-large-furniture/f-home.webp', alt: '동네 홈 목록: 원목 4인용 식탁 등 가구 판매글과 글쓰기 버튼', caption: '동네 홈' },
       { src: '/images/karrot-large-furniture/L-s2.webp', alt: '판매글 작성을 아래로 스크롤하면 나오는 선택 입력 가구 정보 섹션', caption: '판매자 · 글 작성' },
@@ -240,7 +240,7 @@ export const projects: Project[] = [
     summary: { concept: [['기록', '추억 하나부터 가볍게 시작'], ['함께 쌓기', '참여자마다 사진과 이야기를 한 추억에'], ['다시 발견', '사람·장소·시간으로 다시 찾기'], ['대화', '사진 아래에서 바로 반응·댓글']], short: '흩어진 기억을 하나의 추억으로', about: '친구와 함께한 사진과 이야기를 하나의 추억으로 모으고, 시간이 지난 뒤에도 다시 찾아 대화하도록 설계한 공동 기록 서비스입니다.', decision: '그룹 생성 없이 하나의 추억부터 기록을 시작합니다.\n사진별 반응·댓글과 사람·장소·시간 기반 탐색으로, 기록이 다시 대화로 이어지게 설계했습니다.', status: '참여자 7명의 설문과 서버 권한 시나리오 테스트를 진행했습니다. 사진별 반응과 발자국 기능의 사용성은 아직 검증하지 않았습니다.', kind: 'evidence' },
     accent: '#566B5C',
     mock: { srcs: ['/images/woorisai/feed.webp', '/images/woorisai/home.webp', '/images/woorisai/new.webp'], framed: true },
-    proto: { url: '/proto/woorisai/index.html', w: 390, h: 844, pro: true },
+    proto: { url: '/proto/woorisai/index.html?v=20261124-safe', w: 390, h: 844, pro: true },
     gallery: [
       { src: '/images/woorisai/home.webp', alt: '홈: 최근 함께한 추억, 다가오는 약속, 우리의 발자국', caption: '홈' },
       { src: '/images/woorisai/feed.webp', alt: '추억 피드: 초대된 사람만 보는 공동 게시물', caption: '추억 피드' },

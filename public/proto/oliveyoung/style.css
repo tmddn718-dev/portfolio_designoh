@@ -19,3 +19,8 @@ button:focus-visible,[role=radio]:focus-visible{outline:2px solid #131518;outlin
 .fullbleed body{display:block;overflow:hidden}
 .fullbleed .stage{display:block;width:100vw;height:100vh;height:100dvh}
 .fullbleed .frame{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none;transform:none;margin:0}
+
+/* 390×844 기기 기준 하단 홈 인디케이터 영역(안전 영역 34px): 화면(하단 시트·CTA 포함)은 34px 위로 올라가고 그 아래는 흰 배경 + 인디케이터 */
+.frame{position:relative;box-sizing:border-box;padding-bottom:34px}
+.frame::after{content:"";position:absolute;left:50%;bottom:8px;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:#161616;z-index:9999;pointer-events:none}
+@media (hover:none) and (pointer:coarse){.frame{padding-bottom:env(safe-area-inset-bottom,0px)}.frame::after{display:none}}

@@ -116,7 +116,7 @@ class Component extends DCLogic {
   chooseStore(id) {
     const rt = this.state.returnTo;
     if (rt === 'detail') this.setState({ pickStore: id, recv: 'pickup', screen: 'detail', panelOpen: true });
-    else if (rt === 'alt') { const tok = (this.pickTok = (this.pickTok || 0) + 1); this.setState({ pickStore: id, screen: 'pickRecheck', altSel: 'pickup' }); this.later(() => { if (tok !== this.pickTok || this.state.screen !== 'pickRecheck') return; this.setState(this.state.qty > 2 ? { screen: 'alt' } : { screen: 'pickConfirm' }); }, 1000); }
+    else if (rt === 'alt' || rt === 'options') { const tok = (this.pickTok = (this.pickTok || 0) + 1); this.setState({ pickStore: id, screen: 'pickRecheck', altSel: 'pickup' }); this.later(() => { if (tok !== this.pickTok || this.state.screen !== 'pickRecheck') return; this.setState(this.state.qty > 2 ? { screen: 'alt' } : { screen: 'pickConfirm' }); }, 1000); }
     else this.setState({ pickStore: id, method: 'pickup', screen: 'checkout', g1Open: true });
   }
   renderVals() {
@@ -178,6 +178,9 @@ class Component extends DCLogic {
       };
     });
     const segOn = 'flex:1;height:44px;border:1.5px solid #131518;border-radius:6px;background:#FFFFFF;color:#131518;font-size:16px;font-weight:600;font-family:inherit';
+    const mSeg = 'min-width:0;height:60px;padding:0;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-family:inherit;font-size:14px;color:#141618;';
+    const mOn = mSeg + 'border:2px solid #141618;background:#F5F6F7;font-weight:600;';
+    const mOff = mSeg + 'border:1px solid #DADDE1;background:#FFFFFF;font-weight:400;';
     const segOff = 'flex:1;height:44px;border:1px solid #DCDFE3;border-radius:6px;background:#FFFFFF;color:#666B73;font-size:16px;font-family:inherit';
     const pillOn = 'height:40px;padding:0 14px;border:0;border-radius:20px;background:#131518;color:#FFFFFF;font-size:14px;font-weight:600;font-family:inherit';
     const pillOff = 'height:40px;padding:0 14px;border:0;border-radius:20px;background:transparent;color:#666B73;font-size:14px;font-family:inherit';
@@ -252,7 +255,10 @@ class Component extends DCLogic {
         : st.teaStage === 'checking' ? { hint: '재고를 확인하고 있어요', text: '확인 중', disabled: true }
         : { hint: '재고 정보를 불러오지 못했어요', text: '재고 다시 확인', disabled: false }
     };
-    const optInfo = optMap[st.optSel] || { hint: '옵션을 선택해 주세요', text: '옵션을 선택해 주세요', disabled: true };
+    let optInfo = optMap[st.optSel] || { hint: '옵션을 선택해 주세요', text: '옵션을 선택해 주세요', disabled: true };
+    const okOpt = st.optSel === 'A' || st.optSel === 'B' || (st.optSel === 'D' && st.teaStage === 'ok');
+    if (st.recv === 'pickup' && okOpt) optInfo = { hint: '선택한 옵션과 수량으로 픽업 가능한 매장을 확인해요', text: '픽업 가능한 매장 확인', disabled: false };
+    else if (st.recv === 'normal' && okOpt) optInfo = { hint: '일반배송으로 구매할 수 있어요', text: '이 옵션 선택하기', disabled: false };
     const rowBase = 'display:flex;gap:12px;align-items:flex-start;margin-top:8px;padding:14px;border-radius:8px;box-sizing:border-box;';
     const recvLine = st.method === 'today' ? '오늘드림 · 11/17 (화) ' + times[st.slot].replace(/ /g, '') : st.method === 'pickup' ? '매장 픽업 · ' + storeName : '일반배송';
     const feeLine = fee === null ? '배송비 조회 값 반영' : '배송비 ' + (free ? '무료' : fmt(fee));
@@ -285,10 +291,15 @@ class Component extends DCLogic {
       nmA: optName('A'), nmB: optName('B'), nmC: optName('C', true), nmD: optName('D'),
       dStatText: st.teaStage === 'fail' ? '선택해 재고 확인' : (st.teaStage === 'checking' ? '확인 중…' : '오늘드림 구매 가능'),
       dStatStyle: 'font-size:14px;line-height:20px;font-weight:600;color:' + (st.teaStage === 'fail' ? '#8A5200' : (st.teaStage === 'checking' ? '#6E737B' : '#E9417F')),
+      stA: st.recv === 'normal' ? '일반배송 구매 가능' : st.recv === 'pickup' ? '매장 선택 후 확인' : '오늘드림 구매 가능', stAc: st.recv === 'today' ? '#C72764' : st.recv === 'normal' ? '#3F7A1A' : '#666B73',
+      stB: st.recv === 'normal' ? '일반배송 구매 가능' : st.recv === 'pickup' ? '매장 선택 후 확인' : '오늘드림 품절', stBc: st.recv === 'normal' ? '#3F7A1A' : '#666B73',
       optHint: optInfo.hint, optCtaText: optInfo.text, optCtaDisabled: optInfo.disabled, optShowLink: st.optSel === 'B',
       optCtaStyle: 'width:100%;height:52px;border-radius:8px;font-size:18px;font-weight:700;font-family:inherit;' + (optInfo.disabled ? 'border:0;background:#DCDFE3;color:#5E636B' : 'background:#131518;color:#FFFFFF;border:1px solid #131518'),
       optCtaTap: () => {
         const o = this.state.optSel;
+        const okO = o === 'A' || o === 'B' || (o === 'D' && this.state.teaStage === 'ok');
+        if (this.state.recv === 'pickup' && okO) { this.setState({ screen: 'store', returnTo: 'options' }); return; }
+        if (this.state.recv === 'normal' && okO) { this.setState({ method: 'standard', screen: 'checkout' }); return; }
         if (o === 'A' || (o === 'D' && this.state.teaStage === 'ok')) this.setState({ method: 'today', screen: 'checkout', g1Open: true });
         else if (o === 'B') this.openAlt();
         else if (o === 'C') this.setState({ screen: 'restock' });
@@ -298,13 +309,15 @@ class Component extends DCLogic {
       teaRecheck: () => { if (this.state.teaStage !== 'fail') return; this.setState({ teaStage: 'checking' }); this.later(() => this.setState({ teaStage: 'ok' }), 900); },
       stdInfoOpen: st.stdInfoOpen, toggleStdInfo: () => this.setState({ stdInfoOpen: !this.state.stdInfoOpen }),
       restart: () => { this.altTok++; this.timers.forEach(function (t) { clearTimeout(t); }); this.timers = []; this.setState(this.fresh(START, 'A')); },
-      panelOpen: st.panelOpen, panelClosed: !st.panelOpen,
+      recvToday: st.recv === 'today', recvPickup: st.recv === 'pickup', recvNormal: st.recv === 'normal', recvAddr: st.recv !== 'pickup',
+      segToday: st.recv === 'today' ? mOn : mOff, segPickup: st.recv === 'pickup' ? mOn : mOff, segNormal: st.recv === 'normal' ? mOn : mOff,
+      setToday: () => this.setState({ recv: 'today' }), setPickup: () => this.setState({ recv: 'pickup' }), setNormal: () => this.setState({ recv: 'normal' }),
+      sheetLine: st.recv === 'today' ? '오늘드림 · 우리집' : st.recv === 'normal' ? '일반배송 · 우리집' : (storeName ? '매장 픽업 · ' + storeName : '매장 픽업 · 매장 미선택'),
+      recvHint: st.addrChk ? '배송지를 확인하고 있어요. 옵션과 수량은 그대로 유지돼요.' : '옵션을 선택하면 ' + (st.recv === 'normal' ? '일반배송' : '오늘드림') + ' 가능 여부를 확인할 수 있어요.',
+      pickStoreHint: st.pickStore && st.stores[st.pickStore] === 'ok' ? '픽업 주문 가능' : '옵션을 선택하면 이 매장의 픽업 주문 가능 여부를 확인해요.',
+      changeAddrDetail: () => { this.setState({ addrChk: true }); this.later(() => this.setState({ addrChk: false }), 1100); }, optRecvChange: () => this.setState({ screen: 'detail', panelOpen: true }),
       togglePanel: () => this.setState({ panelOpen: !this.state.panelOpen }),
-      recvToday: st.recv === 'today', recvPickup: st.recv === 'pickup',
-      segToday: st.recv === 'today' ? segOn : segOff, segPickup: st.recv === 'pickup' ? segOn : segOff,
-      setToday: () => this.setState({ recv: 'today' }), setPickup: () => this.setState({ recv: 'pickup' }),
-      recvTitle: st.recv === 'today' ? '수령 방법 · 오늘드림' : '수령 방법 · 매장 픽업',
-      recvSub: st.recv === 'today' ? '우리집' : (storeName || '매장 선택 필요'),
+      panelOpen: st.panelOpen, panelClosed: !st.panelOpen,
       hasStore: !!st.pickStore, noStore: !st.pickStore, storeName: storeName,
       storeFromDetail: () => this.setState({ screen: 'store', returnTo: 'detail' }),
       storeFromAlt: () => this.setState({ screen: 'store', returnTo: 'alt' }),

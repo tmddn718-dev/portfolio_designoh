@@ -25,7 +25,7 @@ const Screen = ({ src, alt, cap, className = '' }: { src: string; alt: string; c
 const Fig = ({ src, alt, cap, className = '' }: { src: string; alt: string; cap: string; className?: string }) => (
   <figure className={className}><Screen src={src} alt={alt} cap={cap} /><figcaption className="mt-3 text-[14px] text-sub">{cap}</figcaption></figure>
 )
-const TALL: Record<string, number> = { 'n-pickupFail': 2000 / 780, 'n-pickupNone': 2400 / 780 } // 390×844보다 긴 화면: 프레임은 고정하고 아래로 이어서 보여준다
+const TALL: Record<string, number> = { 'n-pickupFail': 2000 / 780 } // 390×844보다 긴 스크롤 화면(하단 고정 CTA가 없는 것)만: 프레임은 고정하고 아래로 이어서 보여준다
 const Tall = ({ src, alt, cap, ratio, className = '' }: { src: string; alt: string; cap: string; ratio: number; className?: string }) => (
   <figure className={className}><ExtendedPhoneScreen src={src} alt={alt} ratio={ratio} /><figcaption className="mt-3 text-[14px] text-sub">{cap}</figcaption></figure>
 )
@@ -167,9 +167,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
             <div className="mt-8 rounded-[28px] bg-white p-5 md:p-10">
               <p className="eyebrow" style={{ color: S }}>Before / After · 개선안</p>
               <div className="mt-6 grid items-start gap-10 md:grid-cols-12">
-                <div className="mx-auto w-full max-w-[420px] md:col-span-5"><PhoneOverflowCompare color={A}
-                  asis={{ src: '/images/oliveyoung-todaydream/cart-asis-01-tall.jpg', ratio: 1720 / 780, alt: '기존 장바구니 맨 위: 배송 방식 탭, 배송지, 상품과 옵션, 하단 고정 총액과 구매 버튼', caption: '기존 장바구니' }}
-                  tobe={{ src: I('n-cart'), ratio: 1720 / 780, alt: '개선 장바구니: 무료배송 남은 금액, 현재 상품, 함께 담기 좋은 상품과 담기 버튼, 배송 시간 선택 CTA', caption: '추천 상품과 남은 금액' }} /></div>
+                <div className="mx-auto grid w-full max-w-[420px] grid-cols-2 items-start gap-3 md:col-span-5"><Fig src="/images/oliveyoung-todaydream/cart-asis-01-tall.jpg" alt="기존 장바구니 맨 위: 배송 방식 탭, 배송지, 상품과 옵션, 하단 고정 총액과 구매 버튼" cap="AS-IS · 기존 장바구니" /><Fig src={I('n-cart')} alt="개선 장바구니: 무료배송 남은 금액, 현재 상품, 함께 담기 좋은 상품과 담기 버튼, 배송 시간 선택 CTA" cap="TO-BE · 추천 상품과 남은 금액" /></div>
                 <ol className="space-y-8 md:col-span-7">
                   {[
                     ['01', '무료배송 조건의 가시성', '현재 10,000원, 기준 30,000원, 남은 금액 20,000원과 진행 바(33.3%)를 한 카드에 모았습니다. 기준 금액은 프로토타입 예시 값입니다.'],

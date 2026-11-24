@@ -27,12 +27,7 @@ const list = [['c1', '개요'], ['bg', '배경'], ['sol', '솔루션'], ['impl',
 const flow: [string, string][] = [['home', '자연어로 입력'], ['conds', '조건 확인'], ['sheetEdit', '조건 수정'], ['sheetPick', '참석자 선택'], ['required', '일정 필수 설정'], ['progress', '조율 현황'], ['recs', '추천 시간'], ['review', '최종 검토'], ['done', '저장 완료'], ['meetings', '내 회의'], ['detail', '회의 상세'], ['reschedAsk', '재조율 확인'], ['resched', '새 시간 조율'], ['changes', '변경 내용 검토'], ['inbox', '받은 요청'], ['respond', '가능 시간 응답'], ['changedReq', '변경된 요청'], ['reuse', '이전 회의 재사용'], ['reuseConds', '재사용 후 조건 확인']]
 const swatches: [string, string][] = [['Primary', '#3654D4'], ['Navy', '#18243A'], ['Canvas', '#F5F7FB'], ['Text sub', '#5B6B81'], ['Border', '#E2E8F0']]
 
-const Shot = ({ n, cap, className = '' }: { n: string; cap: string; className?: string }) => (
-  <figure className={className}>
-    <Zoomable src={img(n)} big={full(n)} alt={`NODI ${cap} 화면`} caption={cap} className="w-full" imgClass="phone-bare" />
-    <figcaption className="mt-3 text-[14px] text-sub">{cap}</figcaption>
-  </figure>
-)
+const Shot = ({ n, cap, className = '' }: { n: string; cap: string; className?: string }) => <Ph n={n} cap={cap} className={className} />
 const Callout = ({ n, t, d }: { n: string; t: string; d: string }) => (
   <li className="flex gap-3"><span className="shrink-0 grid place-items-center w-7 h-7 rounded-full text-[13px] font-bold text-white" style={{ background: p.accent }}>{n}</span><div><p className="text-[16px] font-bold leading-snug">{t}</p><p className="mt-0.5 text-[14px] leading-snug text-sub">{d}</p></div></li>
 )
@@ -47,9 +42,17 @@ const Head = ({ label, children, className = '', sm = false, role, desc }: { lab
     </div>
   </Reveal>
 )
+// 모든 폰 목업은 390×844 프레임(phone-pro)으로 통일한다.
+// - 하단 고정 CTA가 있는 긴 화면(FOLD): 실제 폰에서 스크롤 맨 위일 때 보이는 모습(상단 콘텐츠 + 고정 하단 바)을 원본 픽셀로 이어 390×844에 담고, 눌러서 전체 화면을 본다
+// - CTA 없는 긴 스크롤 화면(LONG): 프레임은 고정하고 아래로 이어서 보여준다(Overflow)
+const FOLD = ['scA', 'scB', 'pickB', 'progress', 'recs', 'done']
+const LONG: Record<string, number> = { conds: 2214 / 780, recLoading: 2278 / 780 }
+const PhoneShot = ({ n, cap }: { n: string; cap: string }) => LONG[n]
+  ? <ExtendedPhoneScreen src={full(n)} ratio={LONG[n]} alt={`NODI ${cap} 화면`} />
+  : <Zoomable src={FOLD.includes(n) ? `/images/nodi/fold-${n}.webp` : full(n)} big={FOLD.includes(n) ? full(n) : undefined} alt={`NODI ${cap} 화면`} caption={cap} className="phone-pro w-full" imgClass="screen" />
 const Ph = ({ n, cap, className = '' }: { n: string; cap: string; className?: string }) => (
   <figure className={className}>
-    <Zoomable src={full(n)} alt={`NODI ${cap} 화면`} caption={cap} className="phone-pro w-full" imgClass="screen" />
+    <PhoneShot n={n} cap={cap} />
     <figcaption className="mt-3 text-[14px] text-sub">{cap}</figcaption>
   </figure>
 )
@@ -348,7 +351,7 @@ export default function CaseNodi() {
           {flow.map(([n, l], i) => (
             <figure key={n} className="w-[210px] md:w-[250px]">
               <p className="text-[14px] mb-3"><b style={{ color: S }}>0{i + 1}</b> <span className="text-sub">{l}</span></p>
-              <Zoomable src={img(n)} big={full(n)} alt={`NODI ${l} 화면`} caption={l} imgClass="phone-bare" />
+              <PhoneShot n={n} cap={l} />
             </figure>
           ))}
         </Strip></div>

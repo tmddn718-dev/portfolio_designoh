@@ -75,7 +75,7 @@ class Component extends DCLogic {
     this.state = this.fresh(START, 'A');
   }
   fresh(screen, flow) {
-    return { screen: screen, flow: flow, panelOpen: false, recv: 'today', altStage: 'checking', altSel: null, stdTry: 0, stores: { E: 'fail', F: 'closed' }, query: '서울 구로구', intent: 'buy', dTried: false, pickStore: null, method: 'today', slot: 's1', recs: {}, storeFilter: 'all', slotSel: null, cartOpen: false, addrCheck: false, g1Open: true, benefitsOpen: false, teaStage: 'fail', stdInfoOpen: false, optSel: null, qty: 1, optMode: 'A', usePoint: false, agree: false, triedPay: false, stockHit: false, restocked: false, returnTo: 'alt' };
+    return { screen: screen, flow: flow, panelOpen: false, recv: 'today', altStage: 'checking', altSel: null, stdTry: 0, stores: { E: 'fail', F: 'closed' }, query: '서울 구로구', intent: 'buy', dTried: false, pickStore: null, method: 'today', slot: 's1', recs: {}, offOpen: false, appliedQuery: '서울 구로구', storeLoading: false, storeFilter: 'all', slotSel: null, cartOpen: false, addrCheck: false, g1Open: true, benefitsOpen: false, teaStage: 'fail', stdInfoOpen: false, optSel: null, qty: 1, optMode: 'A', usePoint: false, agree: false, triedPay: false, stockHit: false, restocked: false, returnTo: 'alt' };
   }
   componentWillUnmount() { this.timers.forEach(function (t) { clearTimeout(t); }); }
   later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
@@ -108,10 +108,15 @@ class Component extends DCLogic {
       this.setState({ stores: r });
     }, 800);
   }
+  applyQuery(q) {
+    const tok = (this.queryTok = (this.queryTok || 0) + 1);
+    this.setState({ query: q, storeLoading: true });
+    this.later(() => { if (tok !== this.queryTok) return; this.setState({ appliedQuery: q, storeLoading: false, stores: { E: 'fail', F: 'closed' }, dTried: false, offOpen: false, storeFilter: 'all' }); }, 700);
+  }
   chooseStore(id) {
     const rt = this.state.returnTo;
     if (rt === 'detail') this.setState({ pickStore: id, recv: 'pickup', screen: 'detail', panelOpen: true });
-    else if (rt === 'alt') this.setState({ pickStore: id, screen: 'alt', altSel: 'pickup' });
+    else if (rt === 'alt') { const tok = (this.pickTok = (this.pickTok || 0) + 1); this.setState({ pickStore: id, screen: 'pickRecheck', altSel: 'pickup' }); this.later(() => { if (tok !== this.pickTok || this.state.screen !== 'pickRecheck') return; this.setState(this.state.qty > 2 ? { screen: 'alt' } : { screen: 'pickConfirm' }); }, 1000); }
     else this.setState({ pickStore: id, method: 'pickup', screen: 'checkout', g1Open: true });
   }
   renderVals() {
@@ -179,28 +184,28 @@ class Component extends DCLogic {
     const btnBase = 'flex:none;width:96px;height:44px;padding:0;border-radius:8px;font-size:14px;font-family:inherit;';
     const secBlack = btnBase + 'border:0;background:none;color:#131518;font-weight:600;text-decoration:underline;text-underline-offset:3px';
     const offBtn = 'flex:none;width:96px;height:44px;padding:0;border:0;background:none;font-size:13px;font-family:inherit;color:#6E737B';
-    const q = (st.query || '').trim(), toks = q.split(/\s+/).filter(Boolean);
+    const q = (st.appliedQuery !== undefined ? st.appliedQuery : (st.query || '')).trim(), toks = q.split(/\s+/).filter(Boolean);
     const shown = ids.filter((id) => q === '' || q === '서울 구로구' || toks.every((t) => (sNames[id] + ' ' + sAddr[id]).indexOf(t) >= 0));
-    const storeBtn = 'flex:none;width:84px;height:44px;padding:0;border-radius:8px;font-size:14px;font-family:inherit;';
-    const sFilled = storeBtn + 'border:1px solid #131518;background:#131518;color:#FFFFFF;font-weight:600';
+    const storeBtn = 'width:100%;height:48px;margin-top:12px;padding:0;border-radius:8px;font-size:16px;font-family:inherit;';
+    const sFilled = storeBtn + 'border:1px solid #131518;background:#131518;color:#FFFFFF;font-weight:700';
     const sOutline = storeBtn + 'border:1px solid #131518;background:#FFFFFF;color:#131518;font-weight:600';
-    const sBusy = storeBtn + 'border:1px solid #EEEFF1;background:#F5F6F8;color:#666B73';
+    const sBusy = storeBtn + 'border:1px solid #EEEFF1;background:#F5F6F8;color:#666B73;font-weight:600';
     const sMap = {
-      none: ['재고 확인 전', PENDING, '확인', sOutline, false, '', true, 'check'],
-      checking: ['확인 중…', GRAY, '확인 중', sBusy, true, '', true, 'check'],
-      ok: ['픽업 주문 가능', OK, '선택', sFilled, false, '', true, 'ok'],
-      stockNoOrder: ['픽업 주문 불가', GRAY, '', '', true, ' · 매장 재고는 있어요', false, 'off'],
-      no: ['재고 없음', GRAY, '', '', true, '', false, 'off'],
-      fail: ['조회 실패', WARN, '다시 확인', sOutline, false, '', true, 'check'],
-      closed: ['픽업 접수 종료', GRAY, '', '', true, '', false, 'off']
+      none: ['재고 확인 전', PENDING, '픽업 가능 여부 확인', sOutline, false, '픽업 주문 가능 여부를 확인해야 해요.', 'check'],
+      checking: ['확인 중', GRAY, '확인 중', sBusy, true, '픽업 가능 여부를 확인하고 있어요.', 'check'],
+      ok: ['픽업 주문 가능', OK, '이 매장에서 픽업하기', sFilled, false, '픽업 준비 시간은 주문 단계에서 확인해요.', 'ok'],
+      stockNoOrder: ['', GRAY, '', '', true, '매장 재고는 있지만 픽업 주문은 불가해요.', 'off'],
+      no: ['', GRAY, '', '', true, '선택한 상품의 재고가 없어요.', 'off'],
+      fail: ['재고 조회 실패', WARN, '다시 확인', sOutline, false, '재고 정보를 불러오지 못했어요.', 'check'],
+      closed: ['', GRAY, '', '', true, '현재 픽업 주문 접수가 종료됐어요.', 'off']
     };
     const stores = shown.map((id) => {
       const s = st.stores[id] || 'none';
       const m = sMap[s];
       const parts = sAddr[id].split(' · ');
       return {
-        name: sNames[id], addr: parts[0], dist: parts[1] || '', chip: m[0], chipStyle: m[1], btnText: m[2], btnStyle: m[3], disabled: m[4], chipDesc: m[5], hasBtn: m[6], group: m[7],
-        nameStyle: 'font-size:16px;font-weight:600;line-height:22px;color:' + (m[7] === 'off' ? '#666B73' : '#131518'),
+        name: sNames[id], addr: parts[0], dist: parts[1] || '', chip: m[0], chipStyle: 'color:' + m[1].replace(/^.*color:/, ''), btnText: m[2], btnStyle: m[3], disabled: m[4], msg: m[5], group: m[6],
+        card: m[6] !== 'off', compact: m[6] === 'off',
         tap: () => { if (s === 'ok') this.chooseStore(id); else if (s === 'none' || s === 'fail') this.checkStore(id); }
       };
     });
@@ -208,9 +213,18 @@ class Component extends DCLogic {
     stores.forEach((x) => { cnt[x.group]++; });
     const sFilter = st.storeFilter || 'all';
     const chipStyle = (on) => 'flex:none;height:40px;padding:0 16px;border-radius:20px;font-size:14px;font-family:inherit;box-sizing:border-box;' + (on ? 'border:0;background:#131518;color:#FFFFFF;font-weight:600' : 'border:1px solid #DCDFE3;background:#FFFFFF;color:#3A3D42');
-    const storeChips = [['all', '전체', stores.length], ['ok', '픽업 가능', cnt.ok], ['check', '확인 필요', cnt.check]].map((c) => ({ label: c[1] + ' ' + c[2], selected: sFilter === c[0], style: chipStyle(sFilter === c[0]), pick: () => this.setState({ storeFilter: c[0] }) }));
-    const gDefs = [['ok', '픽업 주문 가능', '#1D7A4C'], ['check', '확인이 필요해요', '#8A5200'], ['off', '이용할 수 없어요', '#666B73']];
-    const storeGroups = gDefs.filter((g) => cnt[g[0]] > 0 && (sFilter === 'all' || sFilter === g[0])).map((g) => ({ title: g[1], color: g[2], count: cnt[g[0]], rows: stores.filter((x) => x.group === g[0]) }));
+    const storeChips = [['all', '전체', stores.length], ['ok', '픽업 가능', cnt.ok], ['check', '확인 필요', cnt.check], ['off', '이용 불가', cnt.off]].map((c) => ({ label: c[1] + ' ' + c[2], selected: sFilter === c[0], style: chipStyle(sFilter === c[0]), pick: () => this.setState({ storeFilter: c[0] }) }));
+    const gDefs = [['ok', '픽업 주문 가능한 매장'], ['check', '확인이 필요한 매장'], ['off', '현재 이용할 수 없는 매장']];
+    const offOpen = !!st.offOpen || sFilter === 'off';
+    const storeGroups = gDefs.filter((g) => cnt[g[0]] > 0 && (sFilter === 'all' || sFilter === g[0])).map((g) => {
+      const isOff = g[0] === 'off';
+      const open = isOff ? offOpen : true;
+      return { title: g[1], count: cnt[g[0]], rows: stores.filter((x) => x.group === g[0]), toggle: isOff && sFilter === 'all', plain: !(isOff && sFilter === 'all'), right: g[0] === 'ok' ? '거리순' : cnt[g[0]] + '곳', sub: '재고 없음·픽업 불가·접수 종료', open: open, chev: open ? 'M5 15l7-7 7 7' : 'M5 9l7 7 7-7', tap: () => this.setState({ offOpen: !this.state.offOpen }) };
+    });
+    const qNow = (st.appliedQuery || '').trim();
+    const regionDefault = qNow === '' || qNow === '서울 구로구';
+    const areaTitle = regionDefault ? '서울 구로구 주변 매장' : '‘' + qNow + '’ 검색 결과';
+    const areaSub = stores.length + '곳 중 픽업 주문 가능 ' + cnt.ok + '곳';
     const productName = isC ? '마데카소사이드 흔적리페어 10+1매' : '로제 PDRN 모공결광 10매';
     const recImg = { r1: IMG.rose, r2: IMG.tea };
     const addedItems = recDefs.filter((r) => st.recs[r.id]).map((r) => ({ name: r.name, img: recImg[r.id], priceText: fmt(r.price), remove: () => { const n = Object.assign({}, this.state.recs); n[r.id] = false; this.setState({ recs: n }); } }));
@@ -250,7 +264,7 @@ class Component extends DCLogic {
       flowLabel: !SCENARIOS ? '' : sc === 'home' ? '프로토타입 · 시뮬레이션' : 'Flow ' + (flow === 'S' ? 'G' : flow) + ' · 시뮬레이션',
       showDetail: ['detail', 'options', 'alt', 'restock', 'restockDone'].indexOf(sc) >= 0,
       isOptions: sc === 'options', isAlt: sc === 'alt', isRestock: sc === 'restock', isRestockDone: sc === 'restockDone',
-      isStore: sc === 'store', isCart: sc === 'cart', isSlot: sc === 'slot', isCheckout: sc === 'checkout' || sc === 'stockChanged', isStockChanged: sc === 'stockChanged', isDone: sc === 'done',
+      isStore: sc === 'store' || sc === 'pickRecheck', isCart: sc === 'cart', isSlot: sc === 'slot', isCheckout: sc === 'checkout' || sc === 'stockChanged', isStockChanged: sc === 'stockChanged', isDone: sc === 'done',
       startA: () => this.setState(this.fresh('detail', 'A')),
       startB: () => this.setState(this.fresh('detail', 'B')),
       startC: () => this.setState(this.fresh('detail', 'C')),
@@ -332,9 +346,7 @@ class Component extends DCLogic {
       ctaNote: pickSel,
       ctaTap: () => { if (stdSel) this.setState({ method: 'standard', screen: 'checkout', g1Open: true }); else if (pickSel) this.setState({ method: 'pickup', screen: 'checkout', g1Open: true }); },
       stores: stores, storeChips: storeChips, storeGroups: storeGroups, emptyFilter: stores.length > 0 && storeGroups.length === 0, showAllStores: () => this.setState({ storeFilter: 'all' }), storeAllFailed: storeAllFailed, hasStores: stores.length > 0, noResults: stores.length === 0, query: st.query,
-      searchKey: (e) => { if (e.key === 'Enter') { e.preventDefault(); this.setState({ query: e.target.value.trim() }); e.target.blur(); } },
-      searchChange: (e) => { this.setState({ query: e.target.value.trim() }); },
-      clearQuery: () => this.setState({ query: '' }),
+      searchKey: (e) => { if (e.key === 'Enter') { e.preventDefault(); this.applyQuery(e.target.value.trim()); e.target.blur(); } }, searchChange: (e) => { this.applyQuery(e.target.value.trim()); }, clearQuery: () => this.applyQuery(''), areaTitle: areaTitle, areaSub: areaSub, storeLoading: !!st.storeLoading, listOpacity: st.storeLoading ? '0.4' : '1', storeBottom: storeAllFailed ? '196px' : '0px', storeAddr: st.pickStore ? sAddr[st.pickStore].split(' · ')[0] : '', pickPriceText: fmt(10000 * st.qty), isRecheck: sc === 'pickRecheck', isPickConfirm: sc === 'pickConfirm', pickConfirmBack: () => this.setState({ screen: 'store' }), pickConfirmChange: () => this.setState({ screen: 'store', returnTo: 'alt' }), pickContinue: () => this.setState({ method: 'pickup', screen: 'checkout', intent: 'buy' }), changeRegion: () => this.applyQuery(''), recheckAll: () => this.setState({ stores: { E: 'fail', F: 'closed' }, dTried: false }),
       productName: productName, productImg: isC ? IMG.made : IMG.roseS,
       freeShip: free, notFree: !free,
       remainText: fmt(Math.max(0, 30000 - subtotal)),

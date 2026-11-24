@@ -225,6 +225,7 @@ function OliveRenewed({ c }: { c: Ctx }) {
         <ChapterHead color={S} n="03" label="Edge cases" title="대표 흐름과 예외 상황을 분리하다" desc="주요 구매 흐름과 분리해, 사용자가 멈출 수 있는 상태만 빠르게 비교할 수 있도록 묶었어요." />
         <div className="mt-12"><Strip label="구매 예외 상황 갤러리">{[
           ['n-optFail', '재고 확인 실패'], ['n-altNone', '전체 품절'], ['n-restock', '재입고 알림'], ['n-stockChanged', '주문 직전 재고 변경'],
+          ['n-pickupFail', '픽업 재고 조회 실패'], ['n-pickupNone', '픽업 가능 매장 없음'],
         ].map(([n, label]) => <figure key={n} className="w-[230px] shrink-0"><Screen src={I(n)} alt={`${label} 화면`} /><figcaption className="mt-3 text-[14px] text-sub">{label}</figcaption></figure>)}</Strip></div>
         <InteractionPreview p={p} wide={c.wide} onOpen={() => c.setOpen(true)} title="재고 상태에 따른 흐름을 직접 확인해보세요" />
       </section>

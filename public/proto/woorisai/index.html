@@ -12,6 +12,7 @@
 <style id="hi-safe">:root{--sab:34px}
 /* 390×844 기기 기준 하단 홈 인디케이터 영역(안전 영역 34px). 탭바·하단 시트·CTA는 --sab 만큼 위로 올라간다 */
 div:has(>.ws-scroll)::after{content:"";position:absolute;left:50%;bottom:8px;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:#161616;z-index:60;pointer-events:none}
+div:has(>.ws-scroll):has([aria-label="사진 크게 보기"])::after{background:#fff}
 @media (hover:none) and (pointer:coarse){:root{--sab:env(safe-area-inset-bottom,0px)}div:has(>.ws-scroll)::after{display:none}}</style>
 <link rel="stylesheet" href="./ux-test/a11y-p0.css">
 <link rel="stylesheet" href="./ux-test/ux-test.css">
@@ -1169,7 +1170,7 @@ div:has(>.ws-scroll)::after{content:"";position:absolute;left:50%;bottom:8px;wid
             </div>
           </sc-for>
         </div>
-        <div style="flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 12px 28px 20px">
+        <div style="flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 12px calc(14px + var(--sab,0px)) 20px">
           <span style="font:var(--type-caption-1);color:rgba(255,255,255,.72)">두 번 탭하거나 두 손가락으로 확대해요</span>
           <span style="display:flex;gap:4px">
             <sc-if value="{{ viewer.canDelete }}" hint-placeholder-val="{{ false }}">
